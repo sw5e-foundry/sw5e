@@ -1,0 +1,116 @@
+{
+  "_id": "j8ta27jY2ioWqYES",
+  "name": "Improved Force Barrier",
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Force%20Powers/ImprovedForceBarrier.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:59.1107695+00:00",
+      "importer_version": 3,
+      "uid": "Power.name-improved_force_barrier.level-5"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite</strong>: Force Barrier</em></p>\n<p>This power further bolsters your allies with toughness and resolve. Choose up to twelve creatures within range. Each target gains the following benefits:</p>\n<ul>\n<li>The becomes immune to poison and disease. Any currently existing poison or diseases still exist.</li>\n<li>The creature becomes immune to being frightened by powers.</li>\n<li>The creature's hit point maximum and current hit points increase by [[/r 2d10]] for the duration.</li>\n</ul>\n<p>These benefits last for 24 hours or until the end of your next long rest, whichever happens first.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "PHB",
+    "activation": {
+      "type": "minute",
+      "cost": 10,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "30",
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "heal",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "2d10",
+          "healing"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "level": 5,
+    "school": "lgt",
+    "components": {
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": false,
+      "value": ""
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": true
+    },
+    "scaling": {
+      "mode": "none",
+      "formula": null
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493979297,
+    "modifiedTime": 1707077464877,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!j8ta27jY2ioWqYES"
+}

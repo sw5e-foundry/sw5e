@@ -1,0 +1,138 @@
+{
+  "_id": "clkMPGrmZ27Uj7Ym",
+  "name": "Scrapper Practice",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/ScrapperPractice.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1764528+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-scrapper_practice"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Scrapper Practice</h1>\n<p>Those operatives who choose the Scrapper Practice don't have the time or patience for the fair fight. They utilize close-quarters blaster combat blended with underhanded tactics to surprise and disable their foes.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": ""
+    },
+    "source": "EC",
+    "identifier": "scrapperpractice",
+    "classIdentifier": "operative",
+    "advancement": [
+      {
+        "_id": "1OXUtItYgoDD1491",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.ygYuniEqiwudKCmN",
+            "Compendium.sw5e.archetypefeatures.o6vBVCGXFUFTYbqd"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "I0bcQ2QPln79xKnN",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.APAgv3dOKSv0M6ty"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 9,
+        "title": "Features"
+      },
+      {
+        "_id": "1C1MSjRM6Hz9AttB",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.VdSHGgo3eAcb00Vv"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 13,
+        "title": "Features"
+      },
+      {
+        "_id": "1Gj30Ax2aoMhIRVp",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.t55c7OyiSdmENJIM"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 17,
+        "title": "Features"
+      },
+      {
+        "_id": "1On6qbxeF8Zmido0",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "weapon:smb",
+            "weapon:mrb"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      },
+      {
+        "_id": "1ARJDyZsEzl91dvQ",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:itm",
+                "skills:per"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 13
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959762,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!clkMPGrmZ27Uj7Ym"
+}

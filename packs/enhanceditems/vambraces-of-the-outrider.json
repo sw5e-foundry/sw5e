@@ -1,0 +1,153 @@
+{
+  "name": "Vambraces of the Outrider",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:04.8434442+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-vambraces_of_the_outrider.subtype-forearms"
+    }
+  },
+  "type": "equipment",
+  "img": "systems/sw5e/packs/Icons/Enhanced%20Items/VambracesOfTheOutrider.webp",
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<h4>Adventuring Gear (Forearms)</h4>\n <p><em><strong>Requires attunement</strong></em></p>\n<p><em>Prerequisite:  at least 3 levels in scout</em></p>\n<hr />\n<p>This item can hold a number of charges equal to half your scout level (rounded up). When you complete a long rest, this item regains all missing charges. When you cast a tech power of 1st level or higher, you can expend one or more charges to reduce the tech power's cost by 1 per charge spent, to a minimum of 1.</p>\n<p>When you reach 5th level in scout, you can maintain two targets of your Ranger's Quarry feature, instead of one. Additionally, the reload value of the wrist launcher increases by 1, to 2.</p>\n<p>When you reach 11th level in scout, when you are forced to make a concentration check by the target of your Ranger's Quarry, you have advantage on the check and add your Intelligence modifier to the roll. Additionally, the reload value of the wrist launcher increases by 1, to 3.</p>\n<p>When you reach 17th level in scout, when you miss with a tech or weapon attack, the target takes damage equal to the attack's governing ability modifier. If the target of the attack is the target of your Ranger's Quarry feature, you can choose to deal your Ranger's Quarry damage as well. Additionally, the reload value of the wrist launcher increases by 1, to 4.</p>\n<p><em>This pair of matching vambraces are inlaid with the etched visage of an eagle. One contains an integrated wristpad, while the other contains an integrated wrist launcher.</em></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": 1,
+    "equipped": false,
+    "rarity": "prototype",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "ceil((@classes.scout.levels)/2)",
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "armor": {
+      "value": null,
+      "dex": null
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "attributes": {
+      "capx": {
+        "value": null
+      },
+      "dmgred": {
+        "value": null
+      },
+      "regrateco": {
+        "value": null
+      },
+      "cscap": {
+        "value": null
+      },
+      "sscap": {
+        "value": null
+      },
+      "fuelcostsmod": {
+        "value": null
+      },
+      "powerdicerec": {
+        "value": ""
+      },
+      "hdclass": {
+        "value": null
+      }
+    },
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null
+    },
+    "speed": {
+      "value": null,
+      "conditions": ""
+    },
+    "strength": null,
+    "stealth": false,
+    "properties": {},
+    "proficient": true,
+    "type": {
+      "value": "clothing"
+    }
+  },
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1667426100794,
+    "modifiedTime": 1713006985084,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "74wHktGyJoi20t5A",
+  "_key": "!items!74wHktGyJoi20t5A"
+}

@@ -1,0 +1,186 @@
+{
+  "_id": "Y8uZyqAuOWmUZEDP",
+  "name": "Cybertech Engineering",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/CybertechEngineering.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1684586+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-cybertech_engineering"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Cybertech Engineering</h1>\n<p>Those engineers who choose the Cybertech Engineering discipline focus on the ability to enhance their primary wristpad in order to augment and empower their techcasting abilities.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": "<h1>Cybertech Modifications</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.HefTS3iJQ35OrOFF]{Advanced biotic amplifier}</li>\n<li>@Compendium[sw5e.invocations.eUkF2JUdBnS4xgQM]{Advanced corrosive amplifier}</li>\n<li>@Compendium[sw5e.invocations.kY6Sytp2kCrw8a8Y]{Advanced cryo amplifier}</li>\n<li>@Compendium[sw5e.invocations.6eyPvdQSNt1FzWOf]{Advanced explosive amplifier}</li>\n<li>@Compendium[sw5e.invocations.AGGXEYLIfkVxEoVC]{Arakyd vector}</li>\n<li>@Compendium[sw5e.invocations.nMud2vZkcAXtMv6r]{Augmented explosive}</li>\n<li>@Compendium[sw5e.invocations.2cm7vPgSCHqKMLoc]{Belasco dynamics}</li>\n<li>@Compendium[sw5e.invocations.mNnPoZB19dYmZgSM]{Biotic amplifier}</li>\n<li>@Compendium[sw5e.invocations.jg2dKvm6vxMYsgKy]{Climbing gloves}</li>\n<li>@Compendium[sw5e.invocations.ILU4FgFHeYFXFyJ0]{Corrosive amplifier}</li>\n<li>@Compendium[sw5e.invocations.dB0KxwGFCV1g9ANb]{Cryo amplifier}</li>\n<li>@Compendium[sw5e.invocations.WYkupCPXQMvUrEuD]{Darkvision goggles}</li>\n<li>@Compendium[sw5e.invocations.Is1YGkBFk1iv6RZz]{Explosive amplifier}</li>\n<li>@Compendium[sw5e.invocations.Eh7UTIOIpLKxSiPW]{Imaging amplifier}</li>\n<li>@Compendium[sw5e.invocations.x9lHekJbCrmhFyEO]{Jet boots}</li>\n<li>@Compendium[sw5e.invocations.HdMiD1ZZ47IyDXmb]{Mechanical arm}</li>\n<li>@Compendium[sw5e.invocations.pP0OfL2IhM0ZuBh9]{Prototype biotic amplifier}</li>\n<li>@Compendium[sw5e.invocations.PfC1YFwwWiGSQEh5]{Prototype corrosive amplifier}</li>\n<li>@Compendium[sw5e.invocations.rLDZqzDGkVrLq1Ug]{Prototype cryo amplifier}</li>\n<li>@Compendium[sw5e.invocations.gHuNv8vXyypmjQqu]{Prototype explosive amplifier}</li>\n<li>@Compendium[sw5e.invocations.sAnkaA8JhJGhb2Ft]{Powered grappling hook}</li>\n<li>@Compendium[sw5e.invocations.movxFoymNdUKMu8Z]{Sentry turret}</li>\n<li>@Compendium[sw5e.invocations.JBWWUOZthR4rltNs]{Truesight goggles}</li>\n<li>@Compendium[sw5e.invocations.erJmS5KKCSklbhle]{Wrist-mounted grappling hook}</li>\n</ul>"
+    },
+    "source": "EC",
+    "identifier": "cybertechengineering",
+    "classIdentifier": "engineer",
+    "advancement": [
+      {
+        "_id": "ganXwIaMBL5btPrP",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.LOvhhdrch9KFgkIc",
+            "Compendium.sw5e.archetypefeatures.8odrtKOlTeo4WEsr",
+            "Compendium.sw5e.archetypefeatures.kxOWjaI2uhux0jSu"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "Mwypv2fdoj7DgicJ",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.cxwXHpsjxTOGh3aG"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 6,
+        "title": "Features"
+      },
+      {
+        "_id": "1G8GbJsgouOQUSUU",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.XvUPZ0OWc1KTLgZt"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 14,
+        "title": "Features"
+      },
+      {
+        "_id": "PoO6jTZMkQI1IEXR",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.RhgLSBN7PDwunvA1"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 18,
+        "title": "Features"
+      },
+      {
+        "_id": "MQLzTfcFs5w1xkwe",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "tool:cybertechsimplements"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      },
+      {
+        "_id": "CzRMMpQsU5bhZ5a1",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "",
+          "choices": {
+            "3": 4,
+            "5": 1,
+            "9": 1,
+            "11": 1,
+            "13": 1,
+            "17": 1
+          },
+          "allowDrops": true,
+          "type": "feat",
+          "pool": [
+            "Compendium.sw5e.invocations.pDaeunkidKg5dId9",
+            "Compendium.sw5e.invocations.GFBngMNHBIboSe21",
+            "Compendium.sw5e.invocations.qAEgZISsYOY3Doxe",
+            "Compendium.sw5e.invocations.1gVqwPiY34ZQ2jHQ",
+            "Compendium.sw5e.invocations.4xjvDHGcAAO93nKX",
+            "Compendium.sw5e.invocations.Opk2FHRzbN9hRvx6",
+            "Compendium.sw5e.invocations.49EOtdJZd1LCa5Px",
+            "Compendium.sw5e.invocations.BkiLl9b4C3OWBOJE",
+            "Compendium.sw5e.invocations.EWohmhy4wewPq66N",
+            "Compendium.sw5e.invocations.aP0vgCHbggSxLqcI",
+            "Compendium.sw5e.invocations.lXeqyr8uUA1GD4oA",
+            "Compendium.sw5e.invocations.HJTNHIdWT7SmfRYl",
+            "Compendium.sw5e.invocations.AT3fT29pMlC6xSHO",
+            "Compendium.sw5e.invocations.irQQY0hJFTIdHssg",
+            "Compendium.sw5e.invocations.xFh87C1O0wT79UUh",
+            "Compendium.sw5e.invocations.3hzzFvtoeQfXHRKs",
+            "Compendium.sw5e.invocations.c2hDEK7QDWZaiAPy",
+            "Compendium.sw5e.invocations.lsW9DAi1zDC2kWDE",
+            "Compendium.sw5e.invocations.lYdE5aVQJ49OnezS",
+            "Compendium.sw5e.invocations.qrfnCAyHXc5ztWal",
+            "Compendium.sw5e.invocations.PgEODHWP5JkAYu7s",
+            "Compendium.sw5e.invocations.AF7dWD8oQvLfWsCY",
+            "Compendium.sw5e.invocations.71B7JGyzhFVJTIVZ",
+            "Compendium.sw5e.invocations.j8IM719XFCvZQD8L",
+            "Compendium.sw5e.invocations.JKpUzOo8z625YUyu",
+            "Compendium.sw5e.invocations.tNIU3Th9HJIXgapY",
+            "Compendium.sw5e.invocations.FhUfSVTHWvtl5ayZ",
+            "Compendium.sw5e.invocations.X4u0O9PxBgBgsKin",
+            "Compendium.sw5e.invocations.iM7oP11UluoYFn6d",
+            "Compendium.sw5e.invocations.y3YJvHgXFFQEiHGm",
+            "Compendium.sw5e.invocations.H2BPwM1H4YdU9OQQ",
+            "Compendium.sw5e.invocations.40MNa1hZcUmquhmw",
+            "Compendium.sw5e.invocations.Yj4TikDgYLBzRgwx"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "class",
+            "subtype": "cybertech engineeringInvocation",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Cybertech Modifications"
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959755,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!Y8uZyqAuOWmUZEDP"
+}

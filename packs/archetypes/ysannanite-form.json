@@ -1,0 +1,131 @@
+{
+  "_id": "XKpKuW4WGO0M31co",
+  "name": "Ysannanite Form",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/YsannaniteForm.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1724558+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-ysannanite_form"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Ysannanite Form</h1>\n<p>Ysannanite Form, also know as the Unorthodox Form, pairs the use of lightsaber with blasters, seamlessly blending the two weapons to perform impressive feats. Those guardians who focus on the Ysannanite Form are able to cut enemies down as efficiently with blaster as with blade.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": ""
+    },
+    "source": "EC",
+    "identifier": "ysannaniteform",
+    "classIdentifier": "guardian",
+    "advancement": [
+      {
+        "_id": "K3k81wAUP6i1DeEy",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.1QZNaWpMgsZmn3Lf",
+            "Compendium.sw5e.archetypefeatures.vNY00do0tlsbdIcp",
+            "Compendium.sw5e.archetypefeatures.D2S2JJqdpnT520ri",
+            "Compendium.sw5e.archetypefeatures.Vl1fYezxoWQRjGDe"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "1xPOqrSK13OtSSfe",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.1B6xQuJCP8NK3Etg"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 7,
+        "title": "Features"
+      },
+      {
+        "_id": "1t4QlvIn4QSE1Odq",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.N4m8VRMbmlNAdPdo"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 15,
+        "title": "Features"
+      },
+      {
+        "_id": "CO5IXwi41HBC13M9",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.fJOMvX0p6D3Uklrr"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 20,
+        "title": "Features"
+      },
+      {
+        "_id": "OvE3frWrC0RES2u4",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "weapon:smb:*"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "weapon:mrb:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959754,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!XKpKuW4WGO0M31co"
+}

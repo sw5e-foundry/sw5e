@@ -1,0 +1,109 @@
+{
+  "_id": "aEJv0cH5bnYhgxMC",
+  "name": "Stamina Adrenal (Fine)",
+  "type": "consumable",
+  "img": "systems/sw5e/packs/Icons/Enhanced%20Items/StaminaAdrenal.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:04.8524401+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-stamina_adrenal_fine.subtype-adrenal"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Consumable (Adrenal)</h4>\n <p>As an action, you can administer this adrenal to a creature within 5 feet. When you administer this adrenal, the target's current and maximum hit points increase by 20. This effect lasts for 1 minute. A creature can benefit from only one adrenal at a time. </p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "premium",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "heal",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "20",
+          "healing"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "properties": {},
+    "type": {
+      "value": "substance",
+      "subtype": "adrenal"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493964775,
+    "modifiedTime": 1713006985084,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!aEJv0cH5bnYhgxMC"
+}

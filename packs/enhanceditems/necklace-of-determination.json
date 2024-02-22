@@ -1,0 +1,154 @@
+{
+  "_id": "AGPHmTRmygHFA2W3",
+  "name": "Necklace of Determination",
+  "type": "equipment",
+  "img": "systems/sw5e/packs/Icons/Enhanced%20Items/NecklaceOfDetermination.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:04.8374474+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-necklace_of_determination.subtype-neck"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Adventuring Gear (Neck)</h4>\n <p><em><strong>Requires attunement</strong></em></p>\n<p><em>Prerequisite:  at least 3 levels in monk</em></p>\n<hr />\n<p>This item can hold a number of charges equal to half your monk level (rounded up). When you complete a long rest, this item regains all missing charges. When you would expend a focus point, you can instead expend a charge.</p>\n<p>When you reach 5th level in monk, when you use your Slow Fall feature, the amount is increased to ten times your monk level, instead of five.</p>\n<p>When you reach 11th level in monk, when you use your Deflect Missiles feature, you can add your Wisdom or Charisma modifier to the roll (your choice, a minimum of +1).</p>\n<p>When you reach 17th level in monk, you can add half your Dexterity modifier (rounded down) to your focus save DC and focus attack modifier.</p>\n<p><em>This simple necklace comprised of a series of tiny gray beads hosts a single pale blue crystal that glows faintly.</em></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": 1,
+    "equipped": false,
+    "rarity": "prototype",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "ceil((@classes.monk.levels)/2)",
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "armor": {
+      "value": null,
+      "dex": null
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "attributes": {
+      "capx": {
+        "value": null
+      },
+      "dmgred": {
+        "value": null
+      },
+      "regrateco": {
+        "value": null
+      },
+      "cscap": {
+        "value": null
+      },
+      "sscap": {
+        "value": null
+      },
+      "fuelcostsmod": {
+        "value": null
+      },
+      "powerdicerec": {
+        "value": ""
+      },
+      "hdclass": {
+        "value": null
+      }
+    },
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null,
+      "overrides": {}
+    },
+    "speed": {
+      "value": null,
+      "conditions": ""
+    },
+    "strength": null,
+    "stealth": false,
+    "properties": {},
+    "proficient": true,
+    "type": {
+      "value": "trinket"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493964482,
+    "modifiedTime": 1713006985084,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!AGPHmTRmygHFA2W3"
+}

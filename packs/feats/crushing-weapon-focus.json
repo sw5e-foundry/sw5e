@@ -1,0 +1,132 @@
+{
+  "_id": "4Uzb14t5qGL5T36Y",
+  "name": "Crushing Weapon Focus",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Feats/CrushingWeaponFocus.webp",
+  "effects": [
+    {
+      "name": "Crushing Weapon Focus",
+      "icon": "icons/svg/item-bag.svg",
+      "origin": "Compendium.sw5e.feats.Item.4Uzb14t5qGL5T36Y",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "QZAcpTkF31GwlnAO",
+      "changes": [
+        {
+          "key": "system.bonuses.mpak.damage",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "sort": 0,
+      "_key": "!items.effects!4Uzb14t5qGL5T36Y.QZAcpTkF31GwlnAO"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:06.8182992+00:00",
+      "importer_version": 3,
+      "uid": "WeaponFocus.name-crushing_weapon_focus"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>You've focused your combat training on crushing weapons. You gain the following benefits while wielding any of these weapons, if you are proficient with it:</p>\n<ul>\n<li>You gain a +1 bonus to the weapon's damage rolls.</li>\n<li>When you score a critical hit with the weapon, you add the attack's governing ability modifier twice, instead of once, to the attack's damage.</li>\n<li>When you take the Attack action, you can choose to forgo one or more attacks to <strong>shatter</strong> the ground. For each attack you forgo, choose a separate 5-foot square within your weapon's reach to shatter. That square becomes difficult terrain until cleared. Each 5-foot-square portion of the area requires at least 1 minute to clear by hand. Additionally, each creature other than you in an affected square must make a Dexterity saving throw (DC = 8 + your bonus to attacks with the weapon). On a failed save, a creature takes damage equal to the attack's governing ability modifier.</li></ul>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": null,
+    "source": "WH",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": "5",
+      "width": null,
+      "units": "ft",
+      "type": "square"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "customizationOption",
+      "subtype": "weaponFocus"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493966757,
+    "modifiedTime": 1713006993008,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!4Uzb14t5qGL5T36Y"
+}

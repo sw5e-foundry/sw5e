@@ -1,0 +1,121 @@
+{
+  "_id": "ptJeHKFjbQqRPINv",
+  "name": "Tihaar (Matured)",
+  "type": "consumable",
+  "img": "systems/sw5e/packs/Icons/Storage/Canteen.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:04.8204575+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-tihaar_matured.subtype-substance"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Consumable (Substance)</h4>\n <p>This colorless spirit, favored by Mandalorians, burns the mouth and throat when consumed. As an action, you can apply this substance to a creature within 5 feet. For the next 10 minutes, the creature experiences a high that allows them to roll an additional [[/r d6]] when making an ability check or saving throw using Constitution, and at the start of each of the creature's turns it gains [[/r 2d6]] temporary hit points. At the end of the high, the creature must succeed on a DC 18 Constitution saving throw or experience a low that lasts 1 hour, during which they must roll a [[/r d6]] and subtract the result when making an ability check or saving throw using Constitution, and for the duration their current and maximum hit points are reduced by [[/r 2d6]]. If this would reduce your maximum hit points below 1, it instead becomes 1. At the end of the low, the creature must make a DC 18 Wisdom saving throw to resist addiction.</p>\n<p> </p>\n<h2>Tihaar</h2>\n<p>This colorless spirit, favored by Mandalorians, burns the mouth and throat when consumed. As an action, you can apply this substance to a creature within 5 feet. For the next minute, the creature experiences a high that allows them to roll an additional [[/r d3]] when making an ability check or saving throw using Constitution, and at the start of each of the creature's turns it gains [[/r 2d3]] temporary hit points. At the end of the high, the creature must succeed on a DC 14 Constitution saving throw or experience a low that lasts 10 minutes, during which they must roll a [[/r d3]] and subtract the result when making an ability check or saving throw using Constitution, and for the duration their current and maximum hit points are reduced by [[/r 2d3]]. If this would reduce your maximum hit points below 1, it instead becomes 1. At the end of the low, the creature must make a DC 14 Wisdom saving throw to resist addiction.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 85,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "prototype",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "10",
+      "units": "minute"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "2d3",
+          "temphp"
+        ],
+        [
+          "2d3",
+          ""
+        ],
+        [
+          "2d6",
+          "temphp"
+        ],
+        [
+          "2d6",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "1d6",
+    "save": {
+      "ability": "con",
+      "dc": 18,
+      "scaling": "flat"
+    },
+    "properties": {},
+    "type": {
+      "value": "substance",
+      "subtype": "beverage"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493964970,
+    "modifiedTime": 1713006985084,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!ptJeHKFjbQqRPINv"
+}

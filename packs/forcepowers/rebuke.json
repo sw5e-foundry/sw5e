@@ -1,0 +1,124 @@
+{
+  "_id": "MRG1vwD3V8DXa7SA",
+  "name": "Rebuke",
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Force%20Powers/Rebuke.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:59.1207632+00:00",
+      "importer_version": 3,
+      "uid": "Power.name-rebuke.level-0"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>You strike a creature with the righteous fury of the Force. Make a melee force attack against the target, if the attack hits, the target takes force damage depending on its alignment: a dark-aligned creature takes [[/r 1d12]] force damage, a balanced or unaligned creature takes [[/r 1d10]] force damage, and a light-aligned creature takes [[/r 1d8]] force damage.</p>\n<p>The power's damage increases by one die when you reach 5th, 11th, and 17th level.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "PHB",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": null,
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "touch"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "mpak",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d12",
+          "force"
+        ],
+        [
+          "1d10",
+          "force"
+        ],
+        [
+          "1d8",
+          "force"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "level": 0,
+    "school": "lgt",
+    "components": {
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": false,
+      "value": ""
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": true
+    },
+    "scaling": {
+      "mode": "atwill",
+      "formula": null
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493979217,
+    "modifiedTime": 1707077464877,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!MRG1vwD3V8DXa7SA"
+}

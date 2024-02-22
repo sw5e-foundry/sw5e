@@ -1,0 +1,121 @@
+{
+  "_id": "qrHsv2kIAuh551eP",
+  "name": "Whills Order",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/WhillsOrder.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1744539+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-whills_order"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Whills Order</h1>\n<p>Monks of the Whills Order hold the secrets of the Force sacred, and dedicate their lives to defending ancient  knowledge of the Force and its artifacts. They master the use of ranged weapons, often crafting their own weapons in respectful admiration of the Jedi tradition of crafting lightweapons.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": ""
+    },
+    "source": "EC",
+    "identifier": "whillsorder",
+    "classIdentifier": "monk",
+    "advancement": [
+      {
+        "_id": "19MVbPuUBQ98Ovau",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.VEOq69gg0l6lolMK"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "HqPcRpmOGLv10QPB",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.aZhT3MroOAPBsYk3"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 6,
+        "title": "Features"
+      },
+      {
+        "_id": "1viDVMcERu56Pz6C",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.mCJv9MUv4Zp11I8G"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 11,
+        "title": "Features"
+      },
+      {
+        "_id": "1snywPRjSvLb1IwB",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.R5H3i6PfQEzdXyz9"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 17,
+        "title": "Features"
+      },
+      {
+        "_id": "1inr4iJi7iGN1rFd",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "weapon:blaster pistol",
+            "weapon:blaster rifle",
+            "weapon:ion pistol",
+            "weapon:ion rifle",
+            "weapon:lightbow"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959775,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!qrHsv2kIAuh551eP"
+}

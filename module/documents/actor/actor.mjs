@@ -509,7 +509,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
       // Calculate known powers
       for (const pwr of this.itemTypes.power) {
-        if ( pwr?.system?.preparation?.mode === "innate" || pwr?.system?.components?.freeLearn ) continue;
+        if ( pwr?.system?.preparation?.mode === "innate" || pwr?.system?.properties?.has?.('freeLearn') ) continue;
         const school = pwr?.system?.school;
         if (["lgt", "uni", "drk"].includes(school)) charProgression.force.powersKnownCur++;
         if ("tec" === school) charProgression.tech.powersKnownCur++;

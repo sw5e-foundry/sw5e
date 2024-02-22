@@ -1,0 +1,124 @@
+{
+  "_id": "6dpegAl6CZFYA9Me",
+  "name": "Greater Saber Throw",
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Force%20Powers/GreaterSaberThrow.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:59.1567429+00:00",
+      "importer_version": 3,
+      "uid": "Power.name-greater_saber_throw.level-5"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite</strong>: Improved Saber Throw</em></p>\n<p>As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's range, otherwise the power fails. On a hit, the target takes [[/r 6d8]] damage of the same type as the weapon's damage and must make a Constitution saving throw against an additional effect depending on your choice of casting ability:</p>\n<p><strong><em>Wisdom.</em></strong> The target takes an additional [[/r 4d6]] force damage and it gains four levels of slowed until the end of its next turn. On a success, the target takes half as much damage and its speed isn't reduced.</p>\n<p><strong><em>Charisma.</em></strong> The target takes an additional [[/r 4d6]] necrotic damage and cannot regain hit points until the end of its next turn. On a success, the target takes half as much damage and its healing capability is unaffected.</p>\n<p>The weapon then immediately returns to your hand.</p>\n<p><strong><em>Force Potency.</em></strong> When you cast this power using a force slot of 6th level or higher, the force or necrotic damage increases by [[/r 1d6]] for each slot above 5th.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "PHB",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "30",
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "rpak",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "6d8",
+          "damage"
+        ],
+        [
+          "4d6",
+          "force"
+        ],
+        [
+          "4d6",
+          "necrotic"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "power"
+    },
+    "level": 5,
+    "school": "uni",
+    "components": {
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": false,
+      "value": ""
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": true
+    },
+    "scaling": {
+      "mode": "level",
+      "formula": null
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493979179,
+    "modifiedTime": 1713006988610,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!6dpegAl6CZFYA9Me"
+}

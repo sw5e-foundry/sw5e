@@ -1,0 +1,132 @@
+{
+  "_id": "xgei9ZI6JKZ47z3n",
+  "name": "Sidearm Supremacy",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Feats/SidearmSupremacy.webp",
+  "effects": [
+    {
+      "name": "Sidearm Supremacy",
+      "icon": "icons/svg/item-bag.svg",
+      "origin": "Compendium.sw5e.feats.Item.xgei9ZI6JKZ47z3n",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "OnRKo4dAhUWI1j5B",
+      "changes": [
+        {
+          "key": "system.bonuses.rpak.attack",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "sort": 0,
+      "_key": "!items.effects!xgei9ZI6JKZ47z3n.OnRKo4dAhUWI1j5B"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:07.0361732+00:00",
+      "importer_version": 3,
+      "uid": "WeaponSupremacy.name-sidearm_supremacy"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>You've specialized your combat training with sidearm weapons. You gain the following benefits while wielding any of these weapons, if you are proficient with it:</p>\n<ul>\n<li>You gain a +1 bonus to the weapon's attack rolls.</li>\n<li>Whenever you have advantage on an attack roll and hit and the lower of the two [[/r d20]] rolls would also hit (or a creature has disadvantage on a saving throw and the higher of the two d20s would also fail), and the target is no more than one size larger than you (your size or smaller if your weapon has the light property), it must succeed on a Strength saving throw (DC = 8 + your bonus to attacks with the weapon) or it drops an object of your choice. If you have a free hand and the object is within your reach, you catch the object. Otherwise, it lands at your feet.</li>\n<li>You can now reload these weapons using your reaction or object interaction, instead of just your action or bonus action. You must have one free hand to reload.</li>\n<li>When you take the Attack action, you can choose to forgo one or more attacks to <strong>daze</strong> a creature. For each attack you forgo, you expend 2 ammunition and choose a creature that is no more than one size larger than you (your size or smaller if your weapon has the light property), has a head, and is within your weapon's normal range. The creature must succeed on a Constitution saving throw (DC = 8 + your bonus to attacks with the weapon) or become incapacitated until the end of its next turn or until it takes damage, whichever happens first.  If you could already daze, instead you can do so as your bonus action.</li></ul>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": null,
+    "source": "WH",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "creature"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "str",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "customizationOption",
+      "subtype": "weaponSupremacy"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493966850,
+    "modifiedTime": 1713006993008,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!xgei9ZI6JKZ47z3n"
+}

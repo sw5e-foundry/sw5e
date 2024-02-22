@@ -1,0 +1,172 @@
+{
+  "_id": "eOLzXC7n1SjBZfty",
+  "name": "Tactician Pursuit",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/TacticianPursuit.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:58.3472117+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-tactician_pursuit"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Tactician Pursuit</h1>\n<p>Tacticians study strategy and the ways of war. Those scholars who choose the Tactician Pursuit train themselves and their allies in combat maneuvers to deftly eliminate their foes through clever positioning, and fierce, timely attacks.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": "<h1>Tactician Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.rKzwg9YbTGAJTQI7]{Commander's armor}</li>\n<li>@Compendium[sw5e.invocations.E1WSY3HsDyrNPs1I]{Contingency plan}</li>\n<li>@Compendium[sw5e.invocations.Gj9IFAC7mMsQDpCR]{Fighting style}</li>\n<li>@Compendium[sw5e.invocations.LGbJQrNIEjHexn86]{Firing command}</li>\n<li>@Compendium[sw5e.invocations.BNbHRQIZtIvXoY0F]{Observant leader}</li>\n<li>@Compendium[sw5e.invocations.wWdYIT2D1sPcyNvi]{Studied commander}</li>\n<li>@Compendium[sw5e.invocations.pRlS3nJVaog3GaDp]{Tactical retreat}</li>\n<li>@Compendium[sw5e.invocations.3y39xCDNPHfL8149]{Unbound commander}</li>\n</ul>"
+    },
+    "source": "PHB",
+    "identifier": "tacticianpursuit",
+    "classIdentifier": "scholar",
+    "advancement": [
+      {
+        "_id": "nKRrRrwMOdW13htV",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.dNtJVJ9I4aZkDOBX",
+            "Compendium.sw5e.archetypefeatures.lVMORYeK91lvgrwI"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "1b9ABNnW83g816Lv",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.t4nWB2j7ima6POST"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 6,
+        "title": "Features"
+      },
+      {
+        "_id": "8heTMYmDQbiMTCVI",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.1cxc0QDekoOmh4jL"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 9,
+        "title": "Features"
+      },
+      {
+        "_id": "1TtCCW9vBBht1HNT",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.sZZ2LNKMInGa6qst"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 17,
+        "title": "Features"
+      },
+      {
+        "_id": "4nSyJ2OXITR1On86",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "weapon:mrb:*"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "weapon:mvb:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      },
+      {
+        "_id": "EJDroYfXgsl1xTJO",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
+          "choices": {
+            "2": 2,
+            "3": 2,
+            "5": 1,
+            "9": 1,
+            "11": 1,
+            "13": 1,
+            "17": 1
+          },
+          "allowDrops": true,
+          "type": "feat",
+          "pool": [
+            "Compendium.sw5e.invocations.rKzwg9YbTGAJTQI7",
+            "Compendium.sw5e.invocations.E1WSY3HsDyrNPs1I",
+            "Compendium.sw5e.invocations.ofmpikUDO5wHOtgA",
+            "Compendium.sw5e.invocations.LGbJQrNIEjHexn86",
+            "Compendium.sw5e.invocations.BNbHRQIZtIvXoY0F",
+            "Compendium.sw5e.invocations.wWdYIT2D1sPcyNvi",
+            "Compendium.sw5e.invocations.pRlS3nJVaog3GaDp",
+            "Compendium.sw5e.invocations.3y39xCDNPHfL8149"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "class",
+            "subtype": "tactician pursuitInvocation",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Tactician Discoveries"
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959764,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!eOLzXC7n1SjBZfty"
+}

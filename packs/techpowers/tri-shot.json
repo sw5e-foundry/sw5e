@@ -1,0 +1,124 @@
+{
+  "_id": "mNJZvqy5pITDFdkS",
+  "name": "Tri-Shot",
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Tech%20Powers/Tri-Shot.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:03.1924018+00:00",
+      "importer_version": 3,
+      "uid": "Power.name-tri_shot.level-0"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>Choose up to three creatures within range, none of whom can be more than 10 feet apart. If you choose three creatures, each target must succeed on a Dexterity saving throw or take [[/r 1d4]] energy damage. If you choose two creatures, each target takes [[/r 1d6]] energy damage on a failed save instead. If you choose only one creature, the target takes [[/r 1d8]] energy damage on a failed save.</p>\n<p>This power's damage increases by one die when you reach 5th level (two dice), 11th level (three dice), and 17th level (four dice).</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "EC",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "60",
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d4",
+          "energy"
+        ],
+        [
+          "1d6",
+          "energy"
+        ],
+        [
+          "1d8",
+          "energy"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": null,
+      "scaling": "power"
+    },
+    "level": 0,
+    "school": "tec",
+    "components": {
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": false,
+      "value": ""
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": true
+    },
+    "scaling": {
+      "mode": "atwill",
+      "formula": null
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494020618,
+    "modifiedTime": 1707077465284,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!mNJZvqy5pITDFdkS"
+}

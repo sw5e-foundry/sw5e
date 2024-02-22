@@ -1360,7 +1360,7 @@ SW5E.consumableTypes = {
     subtypes: {
       medpac: "SW5E.ConsumableMedicalMedpac",
       vitapac: "SW5E.ConsumableMedicalVitapac",
-      repairkit: "SW5E.ConsumableMedicalRepairKit"
+      droid: "SW5E.ConsumableMedicalDroid"
     }
   },
   substance: {

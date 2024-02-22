@@ -1,0 +1,124 @@
+{
+  "_id": "80auw3hdVYZAXGtr",
+  "name": "Unstable Engineering",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/UnstableEngineering.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:58.3432141+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-unstable_engineering"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Unstable Engineering</h1>\n<p>Those engineers who choose the Unstable Engineering discipline create and use untested combinations, resulting in powerful—and often unpredictable—effects.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": ""
+    },
+    "source": "PHB",
+    "identifier": "unstableengineering",
+    "classIdentifier": "engineer",
+    "advancement": [
+      {
+        "_id": "GGQLBkySp8Zao3By",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.wWfhWT9EWJocFdvN",
+            "Compendium.sw5e.archetypefeatures.4kaPEfyaPPsj31rt",
+            "Compendium.sw5e.archetypefeatures.qFemjEKtrtLWwh75"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "dbaaoYweRKPF6U5a",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.RuIki7FioitRdmYm"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 6,
+        "title": "Features"
+      },
+      {
+        "_id": "jfkVUmSGYKuSURww",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.W6EpVeNBcn80fWdK"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 14,
+        "title": "Features"
+      },
+      {
+        "_id": "1rx7WOTgkMvv15v2",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.boJLDGKWXUcLVjT6"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 18,
+        "title": "Features"
+      },
+      {
+        "_id": "LrLm9wXT2bV1DP6u",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:artisan:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959715,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!80auw3hdVYZAXGtr"
+}

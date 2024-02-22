@@ -1,0 +1,177 @@
+{
+  "_id": "nig3ZPBNyS0KzZmL",
+  "name": "Chef Pursuit",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/ChefPursuit.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1774524+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-chef_pursuit"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Chef Pursuit</h1>\n<p>Without it empires fall, armies dissolve into nothingness, and species are forgotten with the passage of time. A favored tool of assassins, crime lords, and moguls: food. Those scholars who choose the Chef Pursuit know the importance and power that food carries.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": "<h1>Chef Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.Rgo1yvfNXpomIxc6]{Allergens}</li>\n<li>@Compendium[sw5e.invocations.BGhI0oqlP37M916r]{Alternative fuel}</li>\n<li>@Compendium[sw5e.invocations.F2RfuXpGudIgHYaR]{Banquet}</li>\n<li>@Compendium[sw5e.invocations.QcDLLVt0AeSuBXre]{Brain food}</li>\n<li>@Compendium[sw5e.invocations.WuVg1QpZwTVNBGvo]{Debilitants}</li>\n<li>@Compendium[sw5e.invocations.oBoBLTIIQiSNKob7]{Energizers}</li>\n<li>@Compendium[sw5e.invocations.rEurkWMlj6RwodoQ]{Enhancers}</li>\n<li>@Compendium[sw5e.invocations.DGVURcZoXWwkNgMc]{Filling meal}</li>\n<li>@Compendium[sw5e.invocations.BYspMucGpM6CuwIN]{Full course}</li>\n<li>@Compendium[sw5e.invocations.VirrTNmszKdHDJ6H]{Health food}</li>\n<li>@Compendium[sw5e.invocations.Ial4QnGTTqr7CReT]{Muscle relaxants}</li>\n<li>@Compendium[sw5e.invocations.d9um1RPYANCMSWGe]{On the rocks}</li>\n<li>@Compendium[sw5e.invocations.G80KOpVBCjtvBoj4]{Secret ingredient}</li>\n<li>@Compendium[sw5e.invocations.FXTJZaUX3mkroOjm]{Spice of life}</li>\n<li>@Compendium[sw5e.invocations.qh79HYjg5lxRMDSl]{Supplements}</li>\n<li>@Compendium[sw5e.invocations.eMElabL116n5XJmD]{Vitamins}</li>\n</ul>"
+    },
+    "source": "EC",
+    "identifier": "chefpursuit",
+    "classIdentifier": "scholar",
+    "advancement": [
+      {
+        "_id": "VXUBGqZtTuz1uO6G",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.CAZeKeseBHQp9Pko",
+            "Compendium.sw5e.archetypefeatures.nCs6NVeaLoDueywC"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "Tftd2aJ3EnM1j3JU",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.szOx52zJzpJDDk2G"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 6,
+        "title": "Features"
+      },
+      {
+        "_id": "1hWKKqU1o6X41KJg",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.OMEv8u23ORmqxHnj"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 9,
+        "title": "Features"
+      },
+      {
+        "_id": "1tHvDrvip0MD1oXe",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.gyGfm8RxCPlB4ObC"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 17,
+        "title": "Features"
+      },
+      {
+        "_id": "MzWJAztFPxJxIkCp",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:nat",
+                "skills:sur"
+              ]
+            }
+          ],
+          "grants": [
+            "tool:chefskit"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      },
+      {
+        "_id": "1v3FEsYZA5yL1GEC",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
+          "choices": {
+            "2": 2,
+            "3": 2,
+            "5": 1,
+            "9": 1,
+            "11": 1,
+            "13": 1,
+            "17": 1
+          },
+          "allowDrops": true,
+          "type": "feat",
+          "pool": [
+            "Compendium.sw5e.invocations.Rgo1yvfNXpomIxc6",
+            "Compendium.sw5e.invocations.BGhI0oqlP37M916r",
+            "Compendium.sw5e.invocations.F2RfuXpGudIgHYaR",
+            "Compendium.sw5e.invocations.QcDLLVt0AeSuBXre",
+            "Compendium.sw5e.invocations.WuVg1QpZwTVNBGvo",
+            "Compendium.sw5e.invocations.oBoBLTIIQiSNKob7",
+            "Compendium.sw5e.invocations.rEurkWMlj6RwodoQ",
+            "Compendium.sw5e.invocations.DGVURcZoXWwkNgMc",
+            "Compendium.sw5e.invocations.BYspMucGpM6CuwIN",
+            "Compendium.sw5e.invocations.VirrTNmszKdHDJ6H",
+            "Compendium.sw5e.invocations.Ial4QnGTTqr7CReT",
+            "Compendium.sw5e.invocations.d9um1RPYANCMSWGe",
+            "Compendium.sw5e.invocations.G80KOpVBCjtvBoj4",
+            "Compendium.sw5e.invocations.FXTJZaUX3mkroOjm",
+            "Compendium.sw5e.invocations.qh79HYjg5lxRMDSl",
+            "Compendium.sw5e.invocations.eMElabL116n5XJmD"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "class",
+            "subtype": "chef pursuitInvocation",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Chef Discoveries"
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959769,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!nig3ZPBNyS0KzZmL"
+}

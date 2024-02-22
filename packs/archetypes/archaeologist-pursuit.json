@@ -1,0 +1,162 @@
+{
+  "_id": "Qlp03hPWaKZwxUa4",
+  "name": "Archaeologist Pursuit",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/ArchaeologistPursuit.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-05-30T20:14:20.0051171+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-archaeologist_pursuit"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Archaeologist Pursuit</h1>\n<p>Archaeologists are those who study the remnants of historical civilizations. Those scholars who choose the Archaeologist Pursuit are driven by a desire to uncover the past, forming a connection to the lives of those that came before, and unlocking within themselves a connection not just to history, but to the Force itself.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": "<h1>Archaeologist Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.NF681pzwk0n7IMzf]{Archive research}</li>\n<li>@Compendium[sw5e.invocations.F593Y6MWg9e7mOmi]{Force combat knowledge}</li>\n<li>@Compendium[sw5e.invocations.hiHMd46Ad5WAkwHL]{It belongs in a museum}</li>\n<li>@Compendium[sw5e.invocations.bS7xvsYZcZ1onGfB]{Localized survey}</li>\n<li>@Compendium[sw5e.invocations.Duv2a1FchU7TourL]{Making this up as you go}</li>\n<li>@Compendium[sw5e.invocations.Isk2PHfk82CcMFmF]{Telekinetic ministrations}</li>\n<li>@Compendium[sw5e.invocations.7f7bRcKW9TPGA8qD]{The years and the mileage}</li>\n<li>@Compendium[sw5e.invocations.talYZt1amuwSxg56]{Tomb of the ancients}</li>\n</ul>"
+    },
+    "source": "EC",
+    "identifier": "archaeologistpursuit",
+    "classIdentifier": "scholar",
+    "advancement": [
+      {
+        "_id": "1b5H7r7Scp7ci9qJ",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.MWo1kqA0ba5Ta43R",
+            "Compendium.sw5e.archetypefeatures.KL57sS7jcwOWdqZ8",
+            "Compendium.sw5e.archetypefeatures.HuWC6nLw7bmqQz4H"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "1OYmyH4zNUxk1QMg",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.pANZh0AtuI6THv2S"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 6,
+        "title": "Features"
+      },
+      {
+        "_id": "2E8rxHHPrkNcIJn3",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.pJ8e1i2GwBP8yRum"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 9,
+        "title": "Features"
+      },
+      {
+        "_id": "dy3q5WeHITb1xCbV",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.wNQS0Ptg34IyGxZZ"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 17,
+        "title": "Features"
+      },
+      {
+        "_id": "4SZ9XitDjod1j9kT",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "tool:archaeologistkit"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      },
+      {
+        "_id": "UZE9p5lM4SU1aWQd",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
+          "choices": {
+            "2": 2,
+            "3": 2,
+            "5": 1,
+            "9": 1,
+            "11": 1,
+            "13": 1,
+            "17": 1
+          },
+          "allowDrops": true,
+          "type": "feat",
+          "pool": [
+            "Compendium.sw5e.invocations.NF681pzwk0n7IMzf",
+            "Compendium.sw5e.invocations.F593Y6MWg9e7mOmi",
+            "Compendium.sw5e.invocations.hiHMd46Ad5WAkwHL",
+            "Compendium.sw5e.invocations.bS7xvsYZcZ1onGfB",
+            "Compendium.sw5e.invocations.Duv2a1FchU7TourL",
+            "Compendium.sw5e.invocations.Isk2PHfk82CcMFmF",
+            "Compendium.sw5e.invocations.7f7bRcKW9TPGA8qD",
+            "Compendium.sw5e.invocations.talYZt1amuwSxg56"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "class",
+            "subtype": "archaeologist pursuitInvocation",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Archaeologist Discoveries"
+      }
+    ],
+    "powercasting": {
+      "force": "arch",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959744,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!Qlp03hPWaKZwxUa4"
+}

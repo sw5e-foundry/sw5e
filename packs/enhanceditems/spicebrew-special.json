@@ -1,0 +1,104 @@
+{
+  "_id": "acE9sDGk1kqhpq5S",
+  "name": "Spicebrew (Special)",
+  "type": "consumable",
+  "img": "systems/sw5e/packs/Icons/Storage/Canteen.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:04.8194581+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-spicebrew_special.subtype-substance"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Consumable (Substance)</h4>\n <p>Spicebrew, a popular drink across the galaxy, is a tanned alcoholic beverage topped with foam. As an action, you can apply this substance to a creature within 5 feet. For the next hour, the creature experiences a high that increases their current and maximum force points by [[/r 2d12]]. At the end of the high, the creature must succeed on a DC 24 Constitution saving throw or experience a low that lasts 8 hours, their current and maximum force points are reduced by [[/r 2d12]]. At the end of the low, the creature must make a DC 24 Wisdom saving throw to resist addiction.</p>\n<p> </p>\n<h2>Spicebrew</h2>\n<p>Spicebrew, a popular drink across the galaxy, is a tanned alcoholic beverage topped with foam. As an action, you can apply this substance to a creature within 5 feet. For the next minute, the creature experiences a high that increases their current and maximum force points by [[/r 2d3]]. At the end of the high, the creature must succeed on a DC 14 Constitution saving throw or experience a low that lasts 10 minutes, their current and maximum force points are reduced by [[/r 2d3]]. At the end of the low, the creature must make a DC 14 Wisdom saving throw to resist addiction.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 90,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "artifact",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "hour"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "2d12",
+    "save": {
+      "ability": "con",
+      "dc": 24,
+      "scaling": "flat"
+    },
+    "properties": {},
+    "type": {
+      "value": "substance",
+      "subtype": "beverage"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493964783,
+    "modifiedTime": 1713006985084,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!acE9sDGk1kqhpq5S"
+}

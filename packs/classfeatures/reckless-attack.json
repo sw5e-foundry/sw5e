@@ -1,0 +1,139 @@
+{
+  "_id": "DqNRgYsYggcj2Shl",
+  "name": "Reckless Attack",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/BSKR-Passive.webp",
+  "effects": [
+    {
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/BSKR-Passive.webp",
+      "origin": "Compendium.sw5e.classfeatures.Item.DqNRgYsYggcj2Shl",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Reckless Attack",
+      "_id": "zzOesxeGFHtn9AdN",
+      "changes": [
+        {
+          "key": "flags.sw5e.advantage.attack.str",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "flags.sw5e.grants.advantage.attack.all",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "sort": 0,
+      "_key": "!items.effects!DqNRgYsYggcj2Shl.zzOesxeGFHtn9AdN"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:58.5600877+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-reckless_attack.source-class.sourceName-berserker.level-2"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Berserker:</strong> 2nd level</em></p>\n<p>You can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives you advantage on melee weapon attack rolls using Strength during this turn, but attack rolls against you have advantage until your next turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Berserker 2",
+    "source": "PHB",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
+    "createdTime": 1674493962282,
+    "modifiedTime": 1700067491025,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!DqNRgYsYggcj2Shl"
+}

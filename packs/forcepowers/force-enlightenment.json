@@ -1,0 +1,116 @@
+{
+  "_id": "BvJEcLQzxf9G2a8x",
+  "name": "Force Enlightenment",
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Force%20Powers/ForceEnlightenment.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:59.1497461+00:00",
+      "importer_version": 3,
+      "uid": "Power.name-force_enlightenment.level-2"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite</strong>: Guidance</em></p>\n<p>You touch a creature and enhance it with the Force. Choose one of the following effects; the target gains that effect until the power ends.</p>\n<ul>\n<li><strong><em>Strength.</em></strong> The target has advantage on Strength checks, and his or her carrying capacity doubles.</li>\n<li><strong><em>Dexterity.</em></strong> The target has advantage on Dexterity checks. It also doesn't take damage from falling 20 feet or less if it isn't incapacitated.</li>\n<li><strong><em>Endurance.</em></strong> The target has advantage on Constitution checks. It also gains [[/r 2d6]] temporary hit points, which are lost when the power ends.</li>\n<li><strong><em>Cunning.</em></strong> The target has advantage on Intelligence checks.</li>\n<li><strong><em>Wisdom.</em></strong> The target has advantage on Wisdom checks.</li>\n<li><strong><em>Splendor.</em></strong> The target has advantage on Charisma checks.</li>\n</ul>\n<p>This power has no effect on droids or constructs.</p>\n<p><strong><em>Force Potency.</em></strong> When you cast this power using a force slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "PHB",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "hour"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": null,
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "touch"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "heal",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "2d6",
+          "temphp"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "level": 2,
+    "school": "lgt",
+    "components": {
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": true,
+      "value": ""
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": true
+    },
+    "scaling": {
+      "mode": "level",
+      "formula": null
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493979187,
+    "modifiedTime": 1713006988610,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!BvJEcLQzxf9G2a8x"
+}

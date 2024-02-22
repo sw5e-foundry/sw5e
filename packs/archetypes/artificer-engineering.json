@@ -1,0 +1,175 @@
+{
+  "_id": "1xihjITntU4T6OfP",
+  "name": "Artificer Engineering",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/ArtificerEngineering.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1674586+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-artificer_engineering"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Artificer Engineering</h1>\n<p>Those engineers who choose the Artificer Engineering discipline focus on building and modifying lightsabers, while tapping into the latent presence of the Force in these lightsaber crystals.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": "<h1>Artificer Modifications</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.MUmGGzRpanYlYOS8]{Additonal beam port}</li>\n<li>@Compendium[sw5e.invocations.BPFBtkWD0RKPEITL]{Adegan crystal}</li>\n<li>@Compendium[sw5e.invocations.4pWcO0OsRziug7Tf]{Advanced blastsaber }</li>\n<li>@Compendium[sw5e.invocations.W6fh25j3AC7bevXH]{Advanced brightsaber }</li>\n<li>@Compendium[sw5e.invocations.sfObiRVLEFDvkoLO]{Advanced disruptorsaber}</li>\n<li>@Compendium[sw5e.invocations.d2Yynsa6QLDwVfgL]{Barrier }</li>\n<li>@Compendium[sw5e.invocations.IqFiTCEVYci4gzYl]{Beam gem lens}</li>\n<li>@Compendium[sw5e.invocations.BG7qUfDCJvJFs7c4]{Biometric safety measures}</li>\n<li>@Compendium[sw5e.invocations.dXzuqPTwEYRwPLym]{Blastsaber conversion}</li>\n<li>@Compendium[sw5e.invocations.Z0vOtEHLZTUyDm8g]{Brightsaber conversion}</li>\n<li>@Compendium[sw5e.invocations.AyO4SovZcrkkBRkz]{Burn through}</li>\n<li>@Compendium[sw5e.invocations.4NSLyDQDijJu36P7]{Comfortable handle}</li>\n<li>@Compendium[sw5e.invocations.Xd9uuXrkCCKu0JG7]{Crossguard}</li>\n<li>@Compendium[sw5e.invocations.otwMveJl9LluzYeE]{Disruptorsaber conversion}</li>\n<li>@Compendium[sw5e.invocations.EgG24O85Luvth2ew]{Extended beam}</li>\n<li>@Compendium[sw5e.invocations.B1AgyKCbKAsXxZ2u]{Greatsaber array}</li>\n<li>@Compendium[sw5e.invocations.nurOoILw6W4Q47aa]{Intense beam}</li>\n<li>@Compendium[sw5e.invocations.tUgvwLahgd2B3QU5]{Magnetic-lock grip}</li>\n<li>@Compendium[sw5e.invocations.foFN496BcC88eKUH]{Prototype blastsaber }</li>\n<li>@Compendium[sw5e.invocations.fLUS3NmJmFYmg7Bq]{Prototype brightsaber }</li>\n<li>@Compendium[sw5e.invocations.7QTbSDO3YHgUSWws]{Prototype disruptorsaber}</li>\n<li>@Compendium[sw5e.invocations.KDV7Hehs6miB7v3i]{Returning weapon}</li>\n</ul>"
+    },
+    "source": "EC",
+    "identifier": "artificerengineering",
+    "classIdentifier": "engineer",
+    "advancement": [
+      {
+        "_id": "BvAw64q9BcMMlECL",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.wH3nQugJ2IRpvwn0",
+            "Compendium.sw5e.archetypefeatures.fg3RcbfPcrM3qEvx",
+            "Compendium.sw5e.archetypefeatures.JcTBEgOPZKDHv4Kk"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "HHNQ7D2ORU1SO0Y8",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.ngkilkFnGa9bvYPe"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 6,
+        "title": "Features"
+      },
+      {
+        "_id": "mfCC3jz9SnBtki1H",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.NqkOB6YZfthk3RhW"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 14,
+        "title": "Features"
+      },
+      {
+        "_id": "1MmyihKPLxq41Lv7",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.anG6PYbYVwOsIPCc"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 18,
+        "title": "Features"
+      },
+      {
+        "_id": "3YrLVBZte0xOPMDj",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "tool:artificersimplements"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      },
+      {
+        "_id": "CJtMMhupS9l1SThJ",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "",
+          "choices": {
+            "3": 4,
+            "5": 1,
+            "9": 1,
+            "11": 1,
+            "13": 1,
+            "17": 1
+          },
+          "allowDrops": true,
+          "type": "feat",
+          "pool": [
+            "Compendium.sw5e.invocations.MUmGGzRpanYlYOS8",
+            "Compendium.sw5e.invocations.BPFBtkWD0RKPEITL",
+            "Compendium.sw5e.invocations.4pWcO0OsRziug7Tf",
+            "Compendium.sw5e.invocations.W6fh25j3AC7bevXH",
+            "Compendium.sw5e.invocations.sfObiRVLEFDvkoLO",
+            "Compendium.sw5e.invocations.d2Yynsa6QLDwVfgL",
+            "Compendium.sw5e.invocations.IqFiTCEVYci4gzYl",
+            "Compendium.sw5e.invocations.BG7qUfDCJvJFs7c4",
+            "Compendium.sw5e.invocations.dXzuqPTwEYRwPLym",
+            "Compendium.sw5e.invocations.Z0vOtEHLZTUyDm8g",
+            "Compendium.sw5e.invocations.AyO4SovZcrkkBRkz",
+            "Compendium.sw5e.invocations.4NSLyDQDijJu36P7",
+            "Compendium.sw5e.invocations.Xd9uuXrkCCKu0JG7",
+            "Compendium.sw5e.invocations.otwMveJl9LluzYeE",
+            "Compendium.sw5e.invocations.EgG24O85Luvth2ew",
+            "Compendium.sw5e.invocations.B1AgyKCbKAsXxZ2u",
+            "Compendium.sw5e.invocations.nurOoILw6W4Q47aa",
+            "Compendium.sw5e.invocations.tUgvwLahgd2B3QU5",
+            "Compendium.sw5e.invocations.foFN496BcC88eKUH",
+            "Compendium.sw5e.invocations.fLUS3NmJmFYmg7Bq",
+            "Compendium.sw5e.invocations.7QTbSDO3YHgUSWws",
+            "Compendium.sw5e.invocations.KDV7Hehs6miB7v3i"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "class",
+            "subtype": "artificer engineeringInvocation",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Artificer Modifications"
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959706,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!1xihjITntU4T6OfP"
+}

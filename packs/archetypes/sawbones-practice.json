@@ -1,0 +1,118 @@
+{
+  "_id": "clgsLYZaIxSQ0pLW",
+  "name": "Sawbones Practice",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/SawbonesPractice.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1764528+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-sawbones_practice"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Sawbones Practice</h1>\n<p>Those operatives who choose the Sawbones Practice have studied the humanoid body on a more intimate level than other operatives. While others may know where best to stab in order to kill, you also know how to repair the wounds you inflict, as well as how to make them even deeper. You delve into the secrets of the body, learning as much medical knowledge as you can get your hands on, regardless of how dirty the work becomes.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": ""
+    },
+    "source": "EC",
+    "identifier": "sawbonespractice",
+    "classIdentifier": "operative",
+    "advancement": [
+      {
+        "_id": "uthEHV5NmlG1wEi9",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.kVTZjfeZRtAQTRNZ",
+            "Compendium.sw5e.archetypefeatures.Zy87jhJHs3BUGim5"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "o5zIB0McS9pGMqqP",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.eWjwLseohzB8EhYQ"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 9,
+        "title": "Features"
+      },
+      {
+        "_id": "1pOvZ1mBxeye1gyT",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.4vKrQarcBwYaFiQ8"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 13,
+        "title": "Features"
+      },
+      {
+        "_id": "CN3vskTWZ6u1BLr2",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.IBxXS7o4VV3znf5i"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 17,
+        "title": "Features"
+      },
+      {
+        "_id": "1IoqAekQylji1PiZ",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:med"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959761,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!clgsLYZaIxSQ0pLW"
+}

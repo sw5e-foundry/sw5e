@@ -1,0 +1,125 @@
+{
+  "_id": "SlLYGmp4cj1rfVtu",
+  "name": "Performance Practice",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/PerformancePractice.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1754539+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-performance_practice"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Performance Practice</h1>\n<p>Some operatives choose to master finesse and timing through performance art. Those operatives who choose the Performance Practice become skilled performers who prove especially deadly in close combat, able to find the rhythm of an attacker's strikes as easily as any song.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": ""
+    },
+    "source": "EC",
+    "identifier": "performancepractice",
+    "classIdentifier": "operative",
+    "advancement": [
+      {
+        "_id": "1nGup40WHXlaVul4",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.Hs70CSkFwtmp6rsI",
+            "Compendium.sw5e.archetypefeatures.q5oRw0VY6iFzFD5m"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "49uIDE0wgDX6y5Bq",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.VjW1AOzY7omnzZed"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 9,
+        "title": "Features"
+      },
+      {
+        "_id": "HAugyKkY0qC1ev9j",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.3oAeNXG09ceHHtZt"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 13,
+        "title": "Features"
+      },
+      {
+        "_id": "8Y4rek28xdj1mbBb",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.pqpMDla2xTiLKmQz"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 17,
+        "title": "Features"
+      },
+      {
+        "_id": "1IGpLbWo4CYh1OZX",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:music:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:prf"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959747,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!SlLYGmp4cj1rfVtu"
+}

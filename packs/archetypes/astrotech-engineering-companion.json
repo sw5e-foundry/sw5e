@@ -1,0 +1,119 @@
+{
+  "_id": "QHBh0MLldjImDdoX",
+  "name": "Astrotech Engineering (Companion)",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/AstrotechEngineering-Companion.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1674586+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-astrotech_engineering_companion"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Astrotech Engineering (Companion)</h1>\n<p>Those engineers who choose the Astrotech Engineering discipline focus on crafting and upgrading their droid companions.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": ""
+    },
+    "source": "EC",
+    "identifier": "astrotechengineering",
+    "classIdentifier": "engineer",
+    "advancement": [
+      {
+        "_id": "1oka0BtPFdUEgAL8",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.dsCEkyrz9k3oUxtN",
+            "Compendium.sw5e.archetypefeatures.n8a7Oz57PVYJNqUH",
+            "Compendium.sw5e.archetypefeatures.bSSZQE5BGifFx4dK"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "1bZUKfMHfDco1riY",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.GhSNtfyMCzNDw1iW"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 6,
+        "title": "Features"
+      },
+      {
+        "_id": "1SUS5OIGGsvL18vv",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.S54GOabRiyXoOSMW"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 14,
+        "title": "Features"
+      },
+      {
+        "_id": "1zqSkdYphBOHDblW",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.jKYj9wLY1UMLTvYG"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 18,
+        "title": "Features"
+      },
+      {
+        "_id": "yv3Wow6ctR16ejKa",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "tool:astrotechsimplements"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959742,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!QHBh0MLldjImDdoX"
+}

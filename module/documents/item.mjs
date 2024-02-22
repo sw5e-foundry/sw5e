@@ -717,7 +717,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     this.system.preparation.mode ||= "prepared";
     this.labels.level = CONFIG.SW5E.powerLevels[this.system.level];
     this.labels.school = CONFIG.SW5E.powerSchools[this.system.school]?.label;
-    this.labels.components = this.system.properties.reduce((obj, c) => {
+    this.labels.components = Object.keys(this.system.properties).reduce((obj, c) => {
       const config = attributes[c];
       if ( !config ) return obj;
       const { abbreviation: abbr, label, icon } = config;

@@ -1,0 +1,116 @@
+{
+  "_id": "frP3to9rkxzszdmx",
+  "name": "Disintegrate",
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Tech%20Powers/Disintegrate.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:59.1517445+00:00",
+      "importer_version": 3,
+      "uid": "Power.name-disintegrate.level-6"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>A blast of corrosive energy emits from you. Choose a target within range. </p>\n<p>A creature targeted by this power must make a Dexterity saving throw. On a failed save, the target takes [[/r 10d6 + 40]] acid damage. If this damage reduces the target to 0 hit points, it is disintegrated.</p>\n<p>A disintegrated creature and everything unenhanced it is wearing or carrying are reduced to a pile of fine gray dust. A creature destroyed in this way can not be revitalized.</p>\n<p>This power automatically disintegrates an unenhanced Large or smaller object. If the target is a Huge or larger object, this power disintegrates a 10-foot-cube portion of it. </p>\n<p><strong><em>Overcharge Tech.</em></strong> When you cast this power using a tech slot of 7th level or higher, the damage increases by [[/r 3d6]] for each slot level above 6th.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "PHB",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": "10",
+      "width": null,
+      "units": "ft",
+      "type": "cube"
+    },
+    "range": {
+      "value": "60",
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "10d6 + 40",
+          "acid"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": null,
+      "scaling": "power"
+    },
+    "level": 6,
+    "school": "tec",
+    "components": {
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": false,
+      "value": ""
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": true
+    },
+    "scaling": {
+      "mode": "level",
+      "formula": "3d6"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494020603,
+    "modifiedTime": 1713006988947,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!frP3to9rkxzszdmx"
+}

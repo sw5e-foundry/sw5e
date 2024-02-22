@@ -1,0 +1,116 @@
+{
+  "_id": "aTtFmYnEFDouWu6W",
+  "name": "Enhance Droid",
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Tech%20Powers/EnhanceDroid.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:59.1537443+00:00",
+      "importer_version": 3,
+      "uid": "Power.name-enhance_droid.level-2"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>You touch a droid or construct and upgrade one of its aspects. Choose one of the following effects; the target gains that effect until the power ends. </p>\n<ul>\n<li><strong><em>Servomotor.</em></strong> The target has advantage on Strength checks, and its carrying capacity doubles. </li>\n<li><strong><em>Motivator.</em></strong> The target has advantage on Dexterity checks. It also doesn't take damage from falling 20 feet or less if it isn't incapacitated. </li>\n<li><strong><em>Power Core.</em></strong> The target has advantage on Constitution checks. It also gains [[/r 2d6]] temporary hit points, which are lost when the power ends. </li>\n<li><strong><em>Databanks.</em></strong> The target has advantage on Intelligence checks. </li>\n<li><strong><em>Sensors.</em></strong> The target has advantage on Wisdom checks. </li>\n<li><strong><em>Relations Protocols.</em></strong> The target has advantage on Charisma checks. </li>\n</ul>\n<p><strong><em>Overcharge Tech.</em></strong> When you cast this power using a tech slot of 3rd level or higher, you can target one additional droid or construct for each slot level above 2nd.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "PHB",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "hour"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": null,
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "touch"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "heal",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "2d6",
+          "temphp"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "level": 2,
+    "school": "tec",
+    "components": {
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": true,
+      "value": ""
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": true
+    },
+    "scaling": {
+      "mode": "level",
+      "formula": null
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494020591,
+    "modifiedTime": 1713006988947,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!aTtFmYnEFDouWu6W"
+}

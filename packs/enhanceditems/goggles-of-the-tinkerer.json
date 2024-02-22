@@ -1,0 +1,154 @@
+{
+  "_id": "pOvpbyomB4XHzzGh",
+  "name": "Goggles of the Tinkerer",
+  "type": "equipment",
+  "img": "systems/sw5e/packs/Icons/Enhanced%20Items/GogglesOfTheTinkerer.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:04.7145191+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-goggles_of_the_tinkerer.subtype-head"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Adventuring Gear (Head)</h4>\n <p><em><strong>Requires attunement</strong></em></p>\n<p><em>Prerequisite:  at least 3 levels in engineer</em></p>\n<hr />\n<p>This item can hold a number of charges equal to half your engineer level (rounded up). When you complete a long rest, this item regains all missing charges. Once per turn, when you use a Potent Aptitude feature, you can spend 1 charge to roll the Potent Aptitude dice twice and add them together.</p>\n<p>When you reach 5th level in engineer, you become a valid target of your Potent Aptitude feature. Additionally, you gain 1 additional modification slot.</p>\n<p>When you reach 11th level in engineer, you can add half your proficiency bonus, rounded down, to any ability check with tools you make that doesn't already include your proficiency bonus. Additionally, you gain 1 additional modification slot (2).</p>\n<p>When you reach 17th level in engineer, when use your bonus action to grant a Potent Aptitude die, you can grant a [[/r d4]] instead of expending a use of your Potent Aptitude. Additionally, you gain 1 additional modification slot (3).</p>\n<p><em>These goggles feature one-way glass lenses. When worn over the eyes, the lenses take whatever appearance the bearer decides.</em></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": 1,
+    "equipped": false,
+    "rarity": "prototype",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "ceil((@classes.engineer.levels)/2)",
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "armor": {
+      "value": null,
+      "dex": null
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "attributes": {
+      "capx": {
+        "value": null
+      },
+      "dmgred": {
+        "value": null
+      },
+      "regrateco": {
+        "value": null
+      },
+      "cscap": {
+        "value": null
+      },
+      "sscap": {
+        "value": null
+      },
+      "fuelcostsmod": {
+        "value": null
+      },
+      "powerdicerec": {
+        "value": ""
+      },
+      "hdclass": {
+        "value": null
+      }
+    },
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null,
+      "overrides": {}
+    },
+    "speed": {
+      "value": null,
+      "conditions": ""
+    },
+    "strength": null,
+    "stealth": false,
+    "properties": {},
+    "proficient": true,
+    "type": {
+      "value": "clothing"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493964965,
+    "modifiedTime": 1713006985084,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!pOvpbyomB4XHzzGh"
+}

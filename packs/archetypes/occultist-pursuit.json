@@ -1,0 +1,161 @@
+{
+  "_id": "Zcx4q2QupVJr2Rmh",
+  "name": "Occultist Pursuit",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/OccultistPursuit.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1784519+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-occultist_pursuit"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Occultist Pursuit</h1>\n<p>Occultists research the obscure practitioners of mystical arts, from witches to shamans to sorcerers. Those scholars who choose the Occultist Pursuit learn to harness these magics to bewitch and confound their enemies. </p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": "<h1>Occultist Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.z2LxheTxg2SjyTLq]{Arcane membrane}</li>\n<li>@Compendium[sw5e.invocations.x2Brnm7YoOvmHD29]{Evil eye}</li>\n<li>@Compendium[sw5e.invocations.rwiOEa6UDDGE8JiK]{Exsanguination}</li>\n<li>@Compendium[sw5e.invocations.hq0qrr5Oof1tAvjf]{Hexes and superstitions }</li>\n<li>@Compendium[sw5e.invocations.CHjXPUFGPQw91jvF]{Natural karma}</li>\n<li>@Compendium[sw5e.invocations.qYYJCDYt4iztZjw6]{Savage sortilege}</li>\n<li>@Compendium[sw5e.invocations.7NxzaKfEoEODPFJp]{Supernatural vigor}</li>\n</ul>"
+    },
+    "source": "EC",
+    "identifier": "occultistpursuit",
+    "classIdentifier": "scholar",
+    "advancement": [
+      {
+        "_id": "1S4STcI7m7Zq1iQ7",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.aGO7s8TkeY9fEmd4",
+            "Compendium.sw5e.archetypefeatures.wLJ4f7vlpoBiSlUX"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "1mcRKlFl6NXBzOtg",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.ZI7BjzLcFQzru8Ga"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 6,
+        "title": "Features"
+      },
+      {
+        "_id": "1AfxOjHtc1121ceN",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.wokNr8mYw9khsGQK"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 9,
+        "title": "Features"
+      },
+      {
+        "_id": "ayAoK3oLJMUNtQ6h",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.bcFE1wrOE90hfVrM"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 17,
+        "title": "Features"
+      },
+      {
+        "_id": "1oIrNNfdH3FbhU6V",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:lor",
+            "skills:nat"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      },
+      {
+        "_id": "HHiEhRs75qoVvspr",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
+          "choices": {
+            "2": 2,
+            "3": 2,
+            "5": 1,
+            "9": 1,
+            "11": 1,
+            "13": 1,
+            "17": 1
+          },
+          "allowDrops": true,
+          "type": "feat",
+          "pool": [
+            "Compendium.sw5e.invocations.z2LxheTxg2SjyTLq",
+            "Compendium.sw5e.invocations.x2Brnm7YoOvmHD29",
+            "Compendium.sw5e.invocations.rwiOEa6UDDGE8JiK",
+            "Compendium.sw5e.invocations.hq0qrr5Oof1tAvjf",
+            "Compendium.sw5e.invocations.CHjXPUFGPQw91jvF",
+            "Compendium.sw5e.invocations.qYYJCDYt4iztZjw6",
+            "Compendium.sw5e.invocations.7NxzaKfEoEODPFJp"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "class",
+            "subtype": "occultist pursuitInvocation",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Occultist Discoveries"
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959757,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!Zcx4q2QupVJr2Rmh"
+}

@@ -1,0 +1,147 @@
+{
+  "_id": "b5o43ocdxaR9Ed7f",
+  "name": "Stroke of Luck",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/OPRT-Action.webp",
+  "effects": [
+    {
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/OPRT-Passive.webp",
+      "origin": "Compendium.sw5e.classfeatures.Item.b5o43ocdxaR9Ed7f",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Stroke of Luck",
+      "_id": "vx0UtN3OrUPcHtiS",
+      "changes": [
+        {
+          "key": "system.abilities.dex.max",
+          "mode": 2,
+          "value": "2"
+        },
+        {
+          "key": "system.abilities.dex.value",
+          "mode": 2,
+          "value": "2"
+        },
+        {
+          "key": "system.abilities.int.max",
+          "mode": 2,
+          "value": "2"
+        },
+        {
+          "key": "system.abilities.int.value",
+          "mode": 2,
+          "value": "2"
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "sort": 0,
+      "_key": "!items.effects!b5o43ocdxaR9Ed7f.vx0UtN3OrUPcHtiS"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:58.6650276+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-stroke_of_luck.source-class.sourceName-operative.level-20"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Operative:</strong> 20th level</em></p>\n<p>You have an uncanny knack for succeeding when you need to. Your Dexterity and Intelligence scores increase by 2. Your maximum for those scores increases by 2. Additionally, if your attack misses a target within range, you can turn the miss into a hit. Alternatively, if you fail an ability check, you can treat the [[/r d20]] roll as a 20.</p>\n<p>Once you've used this feature, you can't use it again until you finish a short or long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Operative 20",
+    "source": "PHB",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
+    "createdTime": 1674493962340,
+    "modifiedTime": 1700067645591,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!b5o43ocdxaR9Ed7f"
+}

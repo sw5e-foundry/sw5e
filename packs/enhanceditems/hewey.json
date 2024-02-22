@@ -1,0 +1,141 @@
+{
+  "_id": "vVZLhjV6BbKQRTxr",
+  "name": "Hewey",
+  "type": "weapon",
+  "img": "systems/sw5e/packs/Icons/Martial%20Vibroweapons/Vibroblade.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:05.3831321+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-hewey.subtype-vibroblade"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Weapon (Vibroblade)</h4>\n <p>You gain a +1 bonus to attack and damage rolls with this enhanced weapon.</p>\n<p>This weapon has 6 charges and regains [[/r 1d6]] charges when you complete a long rest. Once per turn when you hit with a melee weapon attack with this weapon, you can expend a charge to have the weapon deal an additional [[/r 1d8]] kinetic damage. </p>\n<p><em>Hewey is an N-30 battle blade owned by the mercenary Corso Riggs during the Galactic Cold War.</em></p>\n<p> </p>\n<h2>Vibroblade</h2>\n<h3>Versatile ([[/r 1d10]])</h3>\n<p>A weapon with this property can be used with one or two hands. A damage value in parentheses appears with the property—the damage when the weapon is used with two hands to make a melee attack.\t</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "WH",
+    "quantity": 1,
+    "weight": 5,
+    "price": {
+      "value": 200,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "advanced",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": 6,
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "mwak",
+    "attackBonus": "1",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d8 + @mod + 1",
+          "kinetic"
+        ],
+        [
+          "1d8",
+          "kinetic"
+        ]
+      ],
+      "versatile": "1d10 +  @mod + 1"
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "none"
+    },
+    "armor": {
+      "value": 10
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null,
+      "overrides": {}
+    },
+    "weaponClass": "blade",
+    "ammo": {
+      "target": null,
+      "value": null,
+      "use": null,
+      "types": []
+    },
+    "properties": {
+      "ver": true
+    },
+    "proficient": null,
+    "equiped": false,
+    "type": {
+      "value": "martialVW",
+      "baseItem": "vibroblade"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493965013,
+    "modifiedTime": 1713006985084,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!vVZLhjV6BbKQRTxr"
+}

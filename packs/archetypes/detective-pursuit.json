@@ -1,0 +1,170 @@
+{
+  "_id": "McHpJx05RXVxK4gq",
+  "name": "Detective Pursuit",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/DetectivePursuit.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1774524+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-detective_pursuit"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Detective Pursuit</h1>\n<p>Some individuals learn to hone their instincts to investigate and discover that which others can't see. Those scholars who choose the Detective Pursuit train themselves to see the things that others miss, gaining a unique—and powerful—perspective.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": "<h1>Detective Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.JrNXO4IXWTrSrjoC]{Athletic}</li>\n<li>@Compendium[sw5e.invocations.iCBrBoDdNWmdUIBn]{Brawler adept}</li>\n<li>@Compendium[sw5e.invocations.S6cgCkkLzPH4BhdC]{Eye for attire}</li>\n<li>@Compendium[sw5e.invocations.9DECdDtn3CmaT2Hb]{Eye for detail}</li>\n<li>@Compendium[sw5e.invocations.0QIdgRNScMmjC5Ri]{Ear for deceit}</li>\n<li>@Compendium[sw5e.invocations.Vmx5MsNAJ9q83C8c]{Fighting style}</li>\n<li>@Compendium[sw5e.invocations.vxfEJBtnlkIIdV7C]{Scrapper's armor}</li>\n<li>@Compendium[sw5e.invocations.stnR95FyxAfb3aoq]{Steady eye}</li>\n<li>@Compendium[sw5e.invocations.CHxJTJgacEsd3ZTa]{Thirst for justice}</li>\n<li>@Compendium[sw5e.invocations.ajyvq8oI5fa2Qbci]{Unerring eye}</li>\n</ul>"
+    },
+    "source": "EC",
+    "identifier": "detectivepursuit",
+    "classIdentifier": "scholar",
+    "advancement": [
+      {
+        "_id": "1yDYkK48H7241PsC",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.W5u2eDcPKOToaldJ",
+            "Compendium.sw5e.archetypefeatures.3xIaG9crc9GhsCA6"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "siDjxeI5a5381PnW",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.qTmxhbveE0VYfCGt"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 6,
+        "title": "Features"
+      },
+      {
+        "_id": "1ftKU4g8ZC6LqG0c",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.CBXMcglIi2IMS7WM"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 9,
+        "title": "Features"
+      },
+      {
+        "_id": "1EPVxXWfFehb1PJA",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.i77R0HxIcTGrzhnx"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 17,
+        "title": "Features"
+      },
+      {
+        "_id": "1bywPHnlnyBA11A9",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "weapon:mvb:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:inv"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      },
+      {
+        "_id": "WvrMFTalT28vy2QS",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
+          "choices": {
+            "2": 2,
+            "3": 2,
+            "5": 1,
+            "9": 1,
+            "11": 1,
+            "13": 1,
+            "17": 1
+          },
+          "allowDrops": true,
+          "type": "feat",
+          "pool": [
+            "Compendium.sw5e.invocations.JrNXO4IXWTrSrjoC",
+            "Compendium.sw5e.invocations.iCBrBoDdNWmdUIBn",
+            "Compendium.sw5e.invocations.S6cgCkkLzPH4BhdC",
+            "Compendium.sw5e.invocations.9DECdDtn3CmaT2Hb",
+            "Compendium.sw5e.invocations.0QIdgRNScMmjC5Ri",
+            "Compendium.sw5e.invocations.gQk7kcSxPMtgfvNo",
+            "Compendium.sw5e.invocations.vxfEJBtnlkIIdV7C",
+            "Compendium.sw5e.invocations.stnR95FyxAfb3aoq",
+            "Compendium.sw5e.invocations.CHxJTJgacEsd3ZTa",
+            "Compendium.sw5e.invocations.ajyvq8oI5fa2Qbci"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "class",
+            "subtype": "detective pursuitInvocation",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Detective Discoveries"
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.0.1.2.9.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493959739,
+    "modifiedTime": 1713006989346,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!McHpJx05RXVxK4gq"
+}

@@ -9,6 +9,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @mixes ActivatedEffectTemplate
  * @mixes ActionTemplate
  *
+ * @property {string} requirements       Actor details required to use this feature.
  * @property {string} maneuverTypes      Maneuver type as defined in `SW5E.maneuverTypes`.
  */
 export default class ManeuverData extends SystemDataModel.mixin(
@@ -19,6 +20,7 @@ export default class ManeuverData extends SystemDataModel.mixin(
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
+      requirements: new foundry.data.fields.StringField({ required: true, nullable: true, label: "SW5E.Requirements" }),
       maneuverType: new foundry.data.fields.StringField({
         required: true,
         initial: "general",

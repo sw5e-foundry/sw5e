@@ -1038,7 +1038,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     const rollData = this.getRollData();
 
     // Use wisdom on attack rolls for starship weapons, unless an item specific ability is set
-    if (rollData && !this.system.ability && isStarshipItem) rollData.mod = rollData.abilities.wis?.mod;
+    if (rollData && !this.system.ability && this.isStarshipItem) rollData.mod = rollData.abilities.wis?.mod;
 
     // Define Roll bonuses
     const parts = [];

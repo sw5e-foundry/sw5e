@@ -1270,9 +1270,6 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       const cast = attr[castType];
       const castSource = this._source.system.attributes[castType];
 
-      if (castSource.points.max !== null) continue;
-      if (cast.level === 0) continue;
-
       if (cast.override) ability[castType] = {
         id: cast.override,
         mod: abl[cast.override]?.mod ?? 0
@@ -1287,7 +1284,10 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
           { id: "str", mod: -Infinity }
         );
       }
-      if ( ability[castType]?.mod ) cast.points.max += ability[castType].mod;
+
+      if (castSource.points.max !== null) continue;
+
+      if ( ability[castType]?.mod && cast.level !== 0 ) cast.points.max += ability[castType].mod;
 
       const levelBonus = simplifyBonus(cast.points.bonuses.level ?? 0, rollData) * lvl;
       const overallBonus = simplifyBonus(cast.points.bonuses.overall ?? 0, rollData);

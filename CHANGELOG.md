@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Starship firing arc templates will now be correctly positioned on the ship's center.
 - Power items on the items directory can once again be opened.
 - Powercasting points 'bonuses' should now work even if you don't have any powercasting levels.
+- Starship mod's grade should properly migrate to only integers.
 
 ## [2.4.1.2.8.0] - 2024-01-03
 

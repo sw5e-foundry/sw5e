@@ -84,10 +84,19 @@ export default class StarshipModData extends SystemDataModel.mixin(
   /*  Migrations                                  */
   /* -------------------------------------------- */
 
-  // /** @inheritdoc */
-  // static _migrateData(source) {
-  //   super._migrateData(source);
-  // }
+  /** @inheritdoc */
+  static _migrateData(source) {
+    super._migrateData(source);
+    StarshipModData.#migrateGrade(source);
+  }
+
+  /**
+   * Ensure grades are integers.
+   * @param {object} source The candidate source data from which the model will be constructed.
+   */
+  static #migrateGrade(source) {
+    if (source.grade?.value === null) source.grade.value = 0;
+  }
 
   /* -------------------------------------------- */
   /*  Getters                                     */

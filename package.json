@@ -2,13 +2,13 @@
   "scripts": {
     "build": "npm run build:code && npm run build:css && npm run build:db",
     "build:clean": "node ./utils/packs.mjs package clean",
-    "build:code": "rollup sw5e.mjs -f es -o sw5e-compiled.mjs -p node-resolve -m --sourcemapFile sw5e.mjs",
-    "build:css": "lessc less/sw5e.less sw5e.css",
+    "build:code": "rollup sw5e.mjs -f es -o dist/sw5e.mjs -p node-resolve -m --sourcemapFile sw5e.mjs",
+    "build:css": "lessc less/sw5e.less dist/sw5e.css",
     "build:db": "node ./utils/packs.mjs package pack",
     "build:json": "node ./utils/packs.mjs package unpack",
-    "lint": "eslint --ext .mjs --ignore-path .gitignore ./",
-    "lint:fix": "eslint --ext .mjs --ignore-path .gitignore ./ --fix",
-    "postinstall": "npm run build:css && npm run build:db",
+    "lint": "eslint --ext .mjs --ignore-path .gitignore ./ dist/",
+    "lint:fix": "eslint --ext .mjs --ignore-path .gitignore ./ dist/ --fix",
+    "postinstall": "npm run build",
     "watch": "less-watch-compiler less/ ./ sw5e.less"
   },
   "devDependencies": {

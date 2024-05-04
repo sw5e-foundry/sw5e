@@ -1,7 +1,7 @@
 import { Progress } from "./progress.mjs";
 import { fontAwesomeIcon, htmlQuery, htmlQueryAll, objectHasKey, isObject, getSelectedOrOwnActors } from "../../utils.mjs";
 import * as browserTabs from "./tabs/_module.mjs";
-import Tagify from "@yaireo/tagify";
+import * as Tagify from "@yaireo/tagify";
 import noUiSlider from "nouislider";
 
 class PackLoader {

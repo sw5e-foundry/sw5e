@@ -23,8 +23,7 @@ export default class ActorArmorConfig extends BaseConfigSheet {
       classes: ["sw5e", "actor-armor-config"],
       template: "systems/sw5e/templates/apps/actor-armor.hbs",
       width: 320,
-      height: "auto",
-      sheetConfig: false
+      height: "auto"
     });
   }
 

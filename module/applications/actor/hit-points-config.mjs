@@ -28,8 +28,7 @@ export default class ActorHitPointsConfig extends BaseConfigSheet {
       classes: ["sw5e", "actor-hit-points-config"],
       template: "systems/sw5e/templates/apps/hit-points-config.hbs",
       width: 320,
-      height: "auto",
-      sheetConfig: false
+      height: "auto"
     });
   }
 

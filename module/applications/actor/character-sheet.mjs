@@ -1,12 +1,12 @@
-import ActorSheet5e from "./base-sheet.mjs";
+import ActorSheetSW5e from "./base-sheet.mjs";
 import ActorTypeConfig from "./type-config.mjs";
-import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 
 /**
  * An Actor sheet for player character type actors in the SW5E system.
  */
-export default class ActorSheet5eCharacter extends ActorSheet5e {
+export default class ActorSheetSW5eCharacter extends ActorSheetSW5e {
+
   /** @inheritDoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -75,10 +75,10 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     return foundry.utils.mergeObject(context, {
       disableExperience: game.settings.get("sw5e", "disableExperienceTracking"),
       classLabels: classes.map(c => c.name).join(", "),
-      multiclassLabels: classes.map(c => [c.archetype?.name ?? "", c.name, c.system.levels].filterJoin(" ")).join(", "),
       labels: {
         type: context.system.details.type.label
       },
+      multiclassLabels: classes.map(c => [c.archetype?.name ?? "", c.name, c.system.levels].filterJoin(" ")).join(", "),
       weightUnit: game.i18n.localize(
         `SW5E.Abbreviation${game.settings.get("sw5e", "metricWeightUnits") ? "Kg" : "Lbs"}`
       ),
@@ -102,17 +102,6 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
     this._prepareItemsCategorized(context, categories);
 
-    // Apply active item filters
-    for (const itemType of Object.values(categories.inventory)) {
-      itemType.items = this._filterItems(itemType.items, this._filters.inventory);
-    }
-    for (const featType of Object.values(categories.features)) {
-      featType.items = this._filterItems(featType.items, this._filters.features);
-    }
-    categories.powers.for.items = this._filterItems(categories.powers.for.items, this._filters.forcePowerbook);
-    categories.powers.tec.items = this._filterItems(categories.powers.tec.items, this._filters.techPowerbook);
-    categories.maneuvers.items = this._filterItems(categories.maneuvers.items, this._filters.superiorityPowerbook);
-
     // Organize Powerbook and count the number of prepared powers (excluding always, at will, etc...)
     categories.powers.for.items = this._preparePowerbook(context, categories.powers.for.items, "uni");
     categories.powers.tec.items = this._preparePowerbook(context, categories.powers.tec.items, "tec");
@@ -129,7 +118,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
           const delta = level - cls.system.levels;
           return { level, delta, disabled: delta > maxLevelDelta };
         });
-      arr.push(cls);
+        ctx.prefixedImage = cls.img ? foundry.utils.getRoute(cls.img) : null;
+        arr.push(cls);
       const identifier = cls.system.identifier || cls.name.slugify({ strict: true });
       const archetype = categories.class.archetype.items.findSplice(s => s.system.classIdentifier === identifier);
       if (archetype) arr.push(archetype);
@@ -197,15 +187,15 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
    * @param {object} context  Context data for display.
    * @protected
    */
-  _prepareItemToggleState(item, context) {
+  _prepareItem(item, context) {
     if (item.type === "power") {
       const prep = item.system.preparation || {};
       const isAlways = prep.mode === "always";
       const isPrepared = !!prep.prepared;
       context.toggleClass = isPrepared ? "active" : "";
       if (isAlways) context.toggleClass = "fixed";
-      if (isAlways) context.toggleTitle = CONFIG.SW5E.powerPreparationModes.always;
-      else if (isPrepared) context.toggleTitle = CONFIG.SW5E.powerPreparationModes.prepared;
+      if (isAlways) context.toggleTitle = CONFIG.SW5E.powerPreparationModes.always.label;
+      else if (isPrepared) context.toggleTitle = CONFIG.SW5E.powerPreparationModes.prepared.label;
       else context.toggleTitle = game.i18n.localize("SW5E.PowerUnprepared");
     } else {
       const isActive = !!item.system.equipped;
@@ -223,8 +213,6 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
   activateListeners(html) {
     super.activateListeners(html);
     if (!this.isEditable) return;
-    html.find(".level-selector").change(this._onLevelChange.bind(this));
-    html.find(".item-toggle").click(this._onToggleItem.bind(this));
     html.find(".short-rest").click(this._onShortRest.bind(this));
     html.find(".long-rest").click(this._onLongRest.bind(this));
     html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
@@ -315,7 +303,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
    * Handle mouse click events for character sheet actions.
    * @param {MouseEvent} event  The originating click event.
    * @returns {Promise}         Dialog or roll result.
-   * @private
+   * @protected
    */
   _onSheetAction(event) {
     event.preventDefault();
@@ -326,58 +314,6 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       case "rollInitiative":
         return this.actor.rollInitiativeDialog({ event });
     }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Respond to a new level being selected from the level selector.
-   * @param {Event} event                           The originating change.
-   * @returns {Promise<AdvancementManager|Item5e>}  Manager if advancements needed, otherwise updated item.
-   * @private
-   */
-  async _onLevelChange(event) {
-    event.preventDefault();
-
-    const delta = Number(event.target.value);
-    const itemId = event.target.closest(".item")?.dataset.itemId;
-    if (!delta || !itemId) return;
-    const item = this.actor.items.get(itemId);
-
-    let attr = null;
-    if (item.type === "class") attr = "levels";
-    else if (item.type === "deployment") attr = "rank";
-    if (!attr) return ui.error(`Unexpected item.type '${item.type}'`);
-
-    if (!game.settings.get("sw5e", "disableAdvancements")) {
-      const manager = AdvancementManager.forLevelChange(this.actor, itemId, delta);
-      if (manager.steps.length) {
-        if (delta > 0) return manager.render(true);
-        try {
-          const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(item);
-          if (shouldRemoveAdvancements) return manager.render(true);
-        } catch(err) {
-          return;
-        }
-      }
-    }
-    return item.update({ [`system.${attr}`]: item.system[attr] + delta });
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Handle toggling the state of an Owned Item within the Actor.
-   * @param {Event} event        The triggering click event.
-   * @returns {Promise<Item5e>}  Item with the updates applied.
-   * @private
-   */
-  _onToggleItem(event) {
-    event.preventDefault();
-    const itemId = event.currentTarget.closest(".item").dataset.itemId;
-    const item = this.actor.items.get(itemId);
-    const attr = item.type === "power" ? "system.preparation.prepared" : "system.equipped";
-    return item.update({ [attr]: !foundry.utils.getProperty(item, attr) });
   }
 
   /* -------------------------------------------- */
@@ -412,6 +348,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
   /** @override */
   async _onDropSingleItem(itemData) {
+    
     // Increment the number of class levels a character instead of creating a new item
     if (itemData.type === "class") {
       const charLevel = this.actor.system.details.level;

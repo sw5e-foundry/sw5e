@@ -154,12 +154,12 @@ Hooks.once("init", function() {
     makeDefault: false,
     label: "SW5E.SheetDnDClassNPC"
   });
-  Actors.registerSheet("sw5e", applications.actor.ActorSheet5eStarship, {
+  Actors.registerSheet("sw5e", applications.actor.ActorSheetSW5eStarship, {
     types: ["starship"],
     makeDefault: true,
     label: "SW5E.SheetClassStarship"
   });
-  Actors.registerSheet("sw5e", applications.actor.ActorSheet5eVehicle, {
+  Actors.registerSheet("sw5e", applications.actor.ActorSheetSW5eVehicle, {
     types: ["vehicle"],
     makeDefault: true,
     label: "SW5E.SheetClassVehicle"

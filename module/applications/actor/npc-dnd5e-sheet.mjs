@@ -1,9 +1,10 @@
-import ActorSheetOrig5e from "./base-orig-sheet.mjs";
+import ActorSheetDnD5e from "./base-dnd5e-sheet.mjs";
+import ActorTypeConfig from "./type-config.mjs";
 
 /**
  * An Actor sheet for NPC type characters in the SW5E system.
  */
-export default class ActorSheetOrig5eNPC extends ActorSheetOrig5e {
+export default class ActorSheetDnD5e5eNPC extends ActorSheetDnD5e {
   /** @inheritDoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -11,18 +12,6 @@ export default class ActorSheetOrig5eNPC extends ActorSheetOrig5e {
       width: 600
     });
   }
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  static unsupportedItemTypes = new Set([
-    "background",
-    "class",
-    "archetype",
-    "species",
-    "starshipsize",
-    "starshipmod"
-  ]);
 
   /* -------------------------------------------- */
   /*  Context Preparation                         */
@@ -68,6 +57,7 @@ export default class ActorSheetOrig5eNPC extends ActorSheetOrig5e {
     };
 
     // Start by classifying items into groups for rendering
+    const maxLevelDelta = CONFIG.SW5E.maxLevel - (this.actor.system.details.level ?? 0);
     let [powers, other] = context.items.reduce(
       (arr, item) => {
         const { quantity, uses, recharge, target } = item.system;
@@ -79,7 +69,10 @@ export default class ActorSheetOrig5eNPC extends ActorSheetOrig5e {
         ctx.isDepleted = item.isOnCooldown && uses.per && uses.value > 0;
         ctx.hasTarget = !!target && !["none", ""].includes(target.type);
         ctx.canToggle = false;
-        if (item.type === "power") arr[0].push(item);
+        if ( item.type === "class" ) ctx.availableLevels = Array.fromRange(CONFIG.SW5E.maxLevel, 1).map(level => ({
+          level, delta: level - item.system.levels, disabled: (level - item.system.levels) > maxLevelDelta
+        }));
+          if (item.type === "power") arr[0].push(item);
         else arr[1].push(item);
         return arr;
       },
@@ -87,8 +80,8 @@ export default class ActorSheetOrig5eNPC extends ActorSheetOrig5e {
     );
 
     // Apply item filters
-    powers = this._filterItems(powers, this._filters.powerbook);
-    other = this._filterItems(other, this._filters.features);
+    powers = this._filterItems(powers, this._filters.powerbook.properties);
+    other = this._filterItems(other, this._filters.features.properties);
 
     // Organize Powerbook
     const powerbook = this._preparePowerbook(context, powers);
@@ -96,8 +89,8 @@ export default class ActorSheetOrig5eNPC extends ActorSheetOrig5e {
     // Organize Features
     for (let item of other) {
       if (item.type === "weapon") features.weapons.items.push(item);
-      else if (item.type === "feat") {
-        if (item.system.activation.type) features.actions.items.push(item);
+      else if ( ["background", "class", "feat", "species", "archetype"].includes(item.type) ) {
+        if (item.system.activation?.type) features.actions.items.push(item);
         else features.passive.items.push(item);
       } else features.equipment.items.push(item);
     }
@@ -124,11 +117,52 @@ export default class ActorSheetOrig5eNPC extends ActorSheetOrig5e {
   }
 
   /* -------------------------------------------- */
+  /*  Event Listeners and Handlers
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  activateListeners(html) {
+    super.activateListeners(html);
+    if ( !this.isEditable ) return;
+    html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _onConfigMenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if ( (event.currentTarget.dataset.action === "type") && (this.actor.system.details.species?.id) ) {
+      new ActorTypeConfig(this.actor.system.details.species, { keyPath: "system.type" }).render(true);
+    }
+    else return super._onConfigMenu(event);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle mouse click events for NPC sheet actions.
+   * @param {MouseEvent} event  The originating click event.
+   * @returns {Promise}         Dialog or roll result.
+   * @private
+   */
+  _onSheetAction(event) {
+    event.preventDefault();
+    const button = event.currentTarget;
+    switch ( button.dataset.action ) {
+      case "rollDeathSave":
+        return this.actor.rollDeathSave({event: event});
+    }
+  }
+
+  /* -------------------------------------------- */
   /*  Object Updates                              */
   /* -------------------------------------------- */
 
   /** @inheritDoc */
   async _updateObject(event, formData) {
+    
     // Format NPC Challenge Rating
     const crs = { "1/8": 0.125, "1/4": 0.25, "1/2": 0.5 };
     let crv = "system.details.cr";

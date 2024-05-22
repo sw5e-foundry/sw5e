@@ -4,6 +4,7 @@ import Actor5e from "../../documents/actor/actor.mjs";
  * A specialized form used to select from a checklist of attributes, traits, or properties
  */
 export default class ActorTypeConfig extends DocumentSheet {
+
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -29,7 +30,7 @@ export default class ActorTypeConfig extends DocumentSheet {
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   get id() {
     return `actor-type-${this.object.id}`;
   }
@@ -47,14 +48,12 @@ export default class ActorTypeConfig extends DocumentSheet {
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   getData(options = {}) {
     // Get current value or new default
     let attr = foundry.utils.getProperty(this.object, this.options.keyPath);
     if (foundry.utils.getType(attr) !== "Object") attr = {
       value: attr in CONFIG.SW5E.creatureTypes ? attr : "humanoid",
-      showCustom: Object.hasOwn(attr, "custom"),
-      showSwarm: Object.hasOwn(attr, "swarm"),
       subtype: "",
       swarm: "",
       custom: ""
@@ -64,25 +63,27 @@ export default class ActorTypeConfig extends DocumentSheet {
     const types = {};
     for (let [k, v] of Object.entries(CONFIG.SW5E.creatureTypes)) {
       types[k] = {
-        label: game.i18n.localize(v),
+        label: game.i18n.localize(v.label),
         chosen: attr.value === k
       };
     }
 
     // Return data for rendering
     return {
-      types,
+      types: types,
       custom: {
         value: attr.custom,
         label: game.i18n.localize("SW5E.CreatureTypeSelectorCustom"),
         chosen: attr.value === "custom"
       },
+      showCustom: Object.hasOwn(attr, "custom"),
+      showSwarm: Object.hasOwn(attr, "swarm"),
       subtype: attr.subtype,
       swarm: attr.swarm,
       sizes: Array.from(Object.entries(CONFIG.SW5E.actorSizes))
         .reverse()
-        .reduce((obj, e) => {
-          obj[e[0]] = e[1];
+        .reduce((obj, [key, { label }]) => {
+          obj[key] = label;
           return obj;
         }, {}),
       preview: Actor5e.formatCreatureType(attr) || "–"

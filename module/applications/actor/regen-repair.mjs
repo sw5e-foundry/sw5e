@@ -1,5 +1,5 @@
 /**
- * A helper Dialog subclass for completing a regen repair
+ * A helper Dialog subclass for completing a regen repair.
  *
  * @param {Actor5e} actor           Actor that is taking the regen repair.
  * @param {object} [dialogData={}]  An object of dialog data which configures how the modal window is rendered.
@@ -20,7 +20,7 @@ export default class RegenRepairDialog extends Dialog {
 
   /** @inheritDoc */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       template: "systems/sw5e/templates/apps/regen-repair.hbs",
       classes: ["sw5e", "dialog"]
     });
@@ -28,16 +28,18 @@ export default class RegenRepairDialog extends Dialog {
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritDoc */
   getData() {
-    const data = super.getData();
+    const context = super.getData();
+    context.isGroup = this.actor.type === "group";
+
     const attr = this.actor.system.attributes;
     if (attr.hp.temp === attr.hp.tempmax || attr.shld.depleted || Number(attr.shld.dice) === 0) {
-      data.useShieldDie = false;
+      context.useShieldDie = false;
     } else {
-      data.useShieldDie = true;
+      context.useShieldDie = true;
     }
-    return data;
+    return context;
   }
 
   /* -------------------------------------------- */

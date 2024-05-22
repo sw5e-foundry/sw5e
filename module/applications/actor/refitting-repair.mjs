@@ -25,11 +25,12 @@ export default class RefittingRepairDialog extends Dialog {
 
   /** @inheritDoc */
   getData() {
-    const data = super.getData();
+    const context = super.getData();
     const variant = game.settings.get("sw5e", "restVariant");
-    data.promptNewDay = variant !== "gritty"; // It's always a new day when repairing 1 week
-    data.newDay = variant === "normal"; // It's probably a new day when repaiting normally (8 hours)
-    return data;
+    context.isGroup = this.actor.type === "group";
+    context.promptNewDay = variant !== "gritty"; // It's always a new day when repairing 1 week
+    context.newDay = variant === "normal"; // It's probably a new day when repariting normally (8 hours)
+    return context;
   }
 
   /* -------------------------------------------- */
@@ -50,11 +51,8 @@ export default class RefittingRepairDialog extends Dialog {
             icon: '<i class="fas fa-wrench"></i>',
             label: game.i18n.localize("SW5E.Repair"),
             callback: html => {
-              let newDay = true;
-              if (game.settings.get("sw5e", "restVariant") !== "gritty") {
-                newDay = html.find('input[name="newDay"]')[0].checked;
-              }
-              resolve(newDay);
+              const formData = new FormDataExtended(html.find("form")[0]);
+              resolve(formData.object);
             }
           },
           cancel: {

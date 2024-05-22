@@ -1,5 +1,4 @@
-import ActorSheet5e from "./base-sheet.mjs";
-import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
+import ActorSheetSW5e from "./base-sheet.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 
 import { fromUuidSynchronous } from "../../utils.mjs";
@@ -7,11 +6,11 @@ import { fromUuidSynchronous } from "../../utils.mjs";
 /**
  * An Actor sheet for starships in the SW5E system.
  */
-export default class ActorSheet5eStarship extends ActorSheet5e {
+export default class ActorSheetSW5eStarship extends ActorSheetSW5e {
   /** @override */
   get template() {
-    if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/limited-sheet.hbs";
-    return "systems/sw5e/templates/actors/newActor/starship-sheet.hbs";
+    if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/SW5eActor/limited-sheet.hbs";
+    return "systems/sw5e/templates/actors/SW5eActor/starship-sheet.hbs";
   }
 
   /** @inheritDoc */
@@ -225,6 +224,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         const delta = tier - ss.system.tier;
         return { tier, delta, disabled: delta > maxTierDelta };
       });
+      ctx.prefixedImage = ss.img ? foundry.utils.getRoute(ss.img) : null;
     }
     categories.features.unshift(categories.class.starshipsize);
 
@@ -247,7 +247,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
    * @param {object} context  Context data for display.
    * @protected
    */
-  _prepareItemToggleState(item, context) {
+  _prepareItem(item, context) {
     if (item.isStarshipItem) {
       const isActive = !!item.system.equipped;
       context.toggleClass = isActive ? "active" : "";
@@ -279,8 +279,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     html.find(".refuel").click(this._onIncrementFuelLevel.bind(this));
     html.find(".burnfuel").click(this._onDecrementFuelLevel.bind(this));
     html.find(".powerslider").change("input", this._powerRoutingSliderUpdate.bind(this));
-    // Tier selector
-    html.find(".tier-selector").change(this._onTierChange.bind(this));
     // Recharge, Refitting and Regen Repairs
     html.find(".recharge-repair").click(this._onRechargeRepair.bind(this));
     html.find(".refitting-repair").click(this._onRefittingRepair.bind(this));
@@ -289,8 +287,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
     // Deployment controls
     html.find(".deploy-control").click(this._onDeployControl.bind(this));
-    // Item State Toggling
-    html.find(".item-toggle").click(this._onToggleItem.bind(this));
     // Display firing arc
     html.find(".item.group-grid-inventory").mouseover(this._onMouseOverItem.bind(this));
     html.find(".item.group-grid-inventory").mouseout(this._onMouseOutItem.bind(this));
@@ -302,7 +298,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
    * Handle mouse click events for starship sheet actions.
    * @param {MouseEvent} event  The originating click event.
    * @returns {Promise}         Dialog or roll result.
-   * @private
+   * @protected
    */
   _onSheetAction(event) {
     event.preventDefault();
@@ -320,82 +316,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
   /* -------------------------------------------- */
 
   /**
-   * Respond to a new tier being selected from the tier selector.
-   * @param {Event} event                           The originating change.
-   * @returns {Promise<AdvancementManager|Item5e>}  Manager if advancements needed, otherwise updated item.
-   * @private
-   */
-  async _onTierChange(event) {
-    event.preventDefault();
-
-    const delta = Number(event.target.value);
-    const itemId = event.target.closest(".item")?.dataset.itemId;
-    if (!delta || !itemId) return;
-    const item = this.actor.items.get(itemId);
-
-    let attr = null;
-    if (item.type === "starshipsize") attr = "tier";
-    if (!attr) return ui.error(`Unexpected item.type '${item.type}'`);
-
-    if (!game.settings.get("sw5e", "disableAdvancements")) {
-      const manager = AdvancementManager.forLevelChange(this.actor, itemId, delta);
-      if (manager.steps.length) {
-        if (delta > 0) return manager.render(true);
-        try {
-          const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(item);
-          if (shouldRemoveAdvancements) return manager.render(true);
-        } catch(err) {
-          return;
-        }
-      }
-    }
-    return item.update({ [`system.${attr}`]: item.system[attr] + delta });
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Handle toggling the state of an Owned Item within the Actor.
-   * @param {Event} event             The triggering click event.
-   * @returns {Promise<Item5e>|void}  Item with the updates applied.
-   * @private
-   */
-  _onToggleItem(event) {
-    event.preventDefault();
-    const itemId = event.currentTarget.closest(".item").dataset.itemId;
-    const item = this.actor.items.get(itemId);
-    const val = foundry.utils.getProperty(item, "system.equipped");
-    const updates = [];
-
-    const { minCrew, installCost, installTime } = this.actor.getInstallationData(itemId);
-
-    const callback = html => {
-      if (val !== foundry.utils.getProperty(item, "system.equipped")) return;
-      if (!val && item.type === "equipment") {
-        for (const i of this.actor.items) {
-          if (i.type === "equipment" && i.system.armor.type === item.system.armor.type && i.system.equipped) {
-            updates.push({ _id: i.id, "system.equipped": false });
-          }
-        }
-      }
-      updates.push({ _id: item.id, "system.equipped": !val });
-
-      this.actor.updateEmbeddedDocuments("Item", updates);
-    };
-
-    // Shift click skips the confirmation dialog
-    if (event.shiftKey) callback();
-    else Dialog.confirm({
-      title: game.i18n.localize(val ? "SW5E.StarshipEquipUninstallTitle" : "SW5E.StarshipEquipInstallTitle"),
-      content: game.i18n.format(val ? "SW5E.StarshipEquipUninstallContent" : "SW5E.StarshipEquipInstallContent", {
-        minCrew,
-        installCost,
-        installTime
-      }),
-      yes: callback
-    });
-  }
-
   /* -------------------------------------------- */
 
   /**
@@ -523,7 +443,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
   /* -------------------------------------------- */
 
   /**
-   * Handle rolling NPC health values using the provided formula
+   * Handle rolling Starship health values using the provided formula
    * @param {Event} event     The original click event
    * @private
    */

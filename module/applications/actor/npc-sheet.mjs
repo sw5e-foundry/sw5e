@@ -1,11 +1,12 @@
-import ActorSheet5e from "./base-sheet.mjs";
+import ActorSheetSW5e from "./base-sheet.mjs";
+import ActorTypeConfig from "./type-config.mjs";
 import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 
 /**
  * An Actor sheet for NPC type characters in the SW5E system.
  */
-export default class ActorSheet5eNPC extends ActorSheet5e {
+export default class ActorSheetSW5eNPC extends ActorSheetSW5e {
   /** @override */
   get template() {
     if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/limited-sheet.hbs";
@@ -26,18 +27,6 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
       ]
     });
   }
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  static unsupportedItemTypes = new Set([
-    "background",
-    "class",
-    "archetype",
-    "species",
-    "starshipsize",
-    "starshipmod"
-  ]);
 
   /* -------------------------------------------- */
   /*  Context Preparation                         */
@@ -64,6 +53,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
 
   /** @override */
   _prepareItems(context) {
+
     // Categorize Items as Features and Powers
     const features = {
       weapons: {
@@ -105,6 +95,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     };
 
     // Start by classifying items into groups for rendering
+    const maxLevelDelta = CONFIG.SW5E.maxLevel - (this.actor.system.details.level ?? 0);
     let {forcepowers, techpowers, deployments, deploymentfeatures, ventures, other} = context.items.reduce(
       (obj, item) => {
         const { quantity, uses, recharge, target } = item.system;
@@ -125,7 +116,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
 
         // Item toggle state
         ctx.canToggle = false;
-
+  
         // Item Weight
         if ("weight" in item.system) ctx.totalWeight = ((item.system.quantity ?? 1) * item.system.weight).toNearest(0.1);
 
@@ -135,6 +126,9 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
         item.sheet._getWeaponReloadProperties(ctx);
 
         // Categorize the item
+        if ( item.type === "class" ) ctx.availableLevels = Array.fromRange(CONFIG.SW5E.maxLevel, 1).map(level => ({
+          level, delta: level - item.system.levels, disabled: (level - item.system.levels) > maxLevelDelta
+        }));
         if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.system.school)) obj.forcepowers.push(item);
         else if (item.type === "power" && ["tec"].includes(item.system.school)) obj.techpowers.push(item);
         else if (item.type === "deployment") obj.deployments.push(item);
@@ -159,11 +153,11 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     );
 
     // Apply item filters
-    forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
-    techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
-    deploymentfeatures = this._filterItems(deploymentfeatures, this._filters.ssfeatures);
-    ventures = this._filterItems(ventures, this._filters.ssfeatures);
-    other = this._filterItems(other, this._filters.features);
+    forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook.properties);
+    techpowers = this._filterItems(techpowers, this._filters.techPowerbook.properties.properties);
+    deploymentfeatures = this._filterItems(deploymentfeatures, this._filters.ssfeatures.properties);
+    ventures = this._filterItems(ventures, this._filters.ssfeatures.properties);
+    other = this._filterItems(other, this._filters.features.properties);
 
     // Organize Powerbook
     const forcePowerbook = this._preparePowerbook(context, forcepowers, "uni");
@@ -172,8 +166,8 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     // Organize Features
     for (let item of other) {
       if (item.type === "weapon") features.weapons.items.push(item);
-      else if (item.type === "feat") {
-        if (item.system.activation.type) features.actions.items.push(item);
+      else if ( ["background", "class", "feat", "species", "archetype"].includes(item.type) ) {
+        if (item.system.activation?.type) features.actions.items.push(item);
         else features.passive.items.push(item);
       } else features.equipment.items.push(item);
     }
@@ -219,24 +213,6 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     if (this.actor.shield) label.push(this.actor.shield.name);
     return label.filterJoin(", ");
   }
-
-  /* -------------------------------------------- */
-  /*  Object Updates                              */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  async _updateObject(event, formData) {
-    // Format NPC Challenge Rating
-    const crs = { "1/8": 0.125, "1/4": 0.25, "1/2": 0.5 };
-    let crv = "system.details.cr";
-    let cr = formData[crv];
-    cr = crs[cr] || parseFloat(cr);
-    if (cr) formData[crv] = cr < 1 ? cr : parseInt(cr);
-
-    // Parent ActorSheet update steps
-    return super._updateObject(event, formData);
-  }
-
   /* -------------------------------------------- */
   /*  Event Listeners and Handlers                */
   /* -------------------------------------------- */
@@ -246,6 +222,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     super.activateListeners(html);
     if (!this.isEditable) return;
     html.find(".level-selector").change(this._onLevelChange.bind(this));
+    html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
   }
 
   /* -------------------------------------------- */
@@ -295,5 +272,52 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
 
     // Create the owned item as normal
     return super._onDropItemCreate(itemData);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _onConfigMenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if ( (event.currentTarget.dataset.action === "type") && (this.actor.system.details.species?.id) ) {
+      new ActorTypeConfig(this.actor.system.details.species, { keyPath: "system.type" }).render(true);
+    }
+    else return super._onConfigMenu(event);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle mouse click events for NPC sheet actions.
+   * @param {MouseEvent} event  The originating click event.
+   * @returns {Promise}         Dialog or roll result.
+   * @private
+   */
+  _onSheetAction(event) {
+    event.preventDefault();
+    const button = event.currentTarget;
+    switch ( button.dataset.action ) {
+      case "rollDeathSave":
+        return this.actor.rollDeathSave({event: event});
+    }
+  }
+
+  /* -------------------------------------------- */
+  /*  Object Updates                              */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async _updateObject(event, formData) {
+    
+    // Format NPC Challenge Rating
+    const crs = { "1/8": 0.125, "1/4": 0.25, "1/2": 0.5 };
+    let crv = "system.details.cr";
+    let cr = formData[crv];
+    cr = crs[cr] || parseFloat(cr);
+    if (cr) formData[crv] = cr < 1 ? cr : parseInt(cr);
+
+    // Parent ActorSheet update steps
+    return super._updateObject(event, formData);
   }
 }

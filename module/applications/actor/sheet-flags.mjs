@@ -4,6 +4,7 @@ import BaseConfigSheet from "./base-config.mjs";
  * An application class which provides advanced configuration for special character flags which modify an Actor.
  */
 export default class ActorSheetFlags extends BaseConfigSheet {
+
   /** @inheritDoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -44,7 +45,7 @@ export default class ActorSheetFlags extends BaseConfigSheet {
   _getClasses() {
     const classes = this.object.items.filter(i => i.type === "class");
     return classes
-      .sort((a, b) => a.name.localeCompare(b.name))
+      .sort((a, b) => a.name.localeCompare(b.name, game.i18n.lang))
       .reduce((obj, i) => {
         obj[i.id] = i.name;
         return obj;

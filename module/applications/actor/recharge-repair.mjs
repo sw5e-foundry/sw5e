@@ -1,5 +1,5 @@
 /**
- * A helper Dialog subclass for rolling Hull Dice on a recharge repair
+ * A helper Dialog subclass for rolling Hull Dice on a recharge repair.
  *
  * @param {Actor5e} actor           Actor that is taking the recharge repair.
  * @param {object} [dialogData={}]  An object of dialog data which configures how the modal window is rendered.
@@ -26,7 +26,7 @@ export default class RechargeRepairDialog extends Dialog {
 
   /** @inheritDoc */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       template: "systems/sw5e/templates/apps/recharge-repair.hbs",
       classes: ["sw5e", "dialog"]
     });
@@ -36,31 +36,35 @@ export default class RechargeRepairDialog extends Dialog {
 
   /** @inheritDoc */
   getData() {
-    const data = super.getData();
-
-    // Determine Hull Dice
-    data.availableHD = this.actor.itemTypes.starshipsize.reduce((hulld, item) => {
-      const { tier, size, hullDice, hullDiceStart, hullDiceUsed } = item.system;
-      const denom = hullDice ?? "d6";
-      const hugeOrGrg = ["huge", "grg"].includes(size);
-      const available =
-        parseInt(hullDiceStart ?? 1)
-        + (parseInt(hugeOrGrg ? 2 : 1) * parseInt(tier ?? 0))
-        - parseInt(hullDiceUsed ?? 0);
-      hulld[denom] = denom in hulld ? hulld[denom] + available : available;
-      return hulld;
-    }, {});
-    data.canRoll = this.actor.system.attributes.hull.dice > 0;
-    data.denomination = this._denom;
+    const context = super.getData();
+    context.isGroup = this.actor.type === "group";
+    
+    if ( foundry.utils.hasProperty(this.actor, "system.attributes.hulld") ) {
+      // Determine Hull Dice
+      context.availableHD = this.actor.itemTypes.starshipsize.reduce((hulld, item) => {
+        const { tier, size, hullDice, hullDiceStart, hullDiceUsed } = item.system;
+        const denom = hullDice ?? "d6";
+        const hugeOrGrg = ["huge", "grg"].includes(size);
+        const available =
+          parseInt(hullDiceStart ?? 1)
+          + (parseInt(hugeOrGrg ? 2 : 1) * parseInt(tier ?? 0))
+          - parseInt(hullDiceUsed ?? 0);
+        hulld[denom] = denom in hulld ? hulld[denom] + available : available;
+        return hulld;
+      }, {});
+      context.canRoll = this.actor.system.attributes.hull.dice > 0;
+      context.denomination = this._denom;
+    }
 
     // Determine rest type
     const variant = game.settings.get("sw5e", "restVariant");
-    data.promptNewDay = variant !== "epic"; // It's never a new day when only repairing 1 minute
-    data.newDay = false; // It may be a new day, but not by default
-    return data;
+    context.promptNewDay = variant !== "epic";     // It's never a new day when only repairing 1 minute
+    context.newDay = false;                        // It may be a new day, but not by default
+    return context;
   }
 
   /* -------------------------------------------- */
+
 
   /** @inheritDoc */
   activateListeners(html) {
@@ -102,11 +106,8 @@ export default class RechargeRepairDialog extends Dialog {
             icon: '<i class="fas fa-wrench"></i>',
             label: game.i18n.localize("SW5E.Repair"),
             callback: html => {
-              let newDay = false;
-              if (game.settings.get("sw5e", "restVariant") === "gritty") {
-                newDay = html.find('input[name="newDay"]')[0].checked;
-              }
-              resolve(newDay);
+              const formData = new FormDataExtended(html.find("form")[0]);
+              resolve(formData.object);
             }
           },
           cancel: {

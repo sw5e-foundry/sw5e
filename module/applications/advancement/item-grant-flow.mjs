@@ -4,6 +4,7 @@ import AdvancementFlow from "./advancement-flow.mjs";
  * Inline application that presents the player with a list of items to be added.
  */
 export default class ItemGrantFlow extends AdvancementFlow {
+
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -19,13 +20,12 @@ export default class ItemGrantFlow extends AdvancementFlow {
    */
   async getContext() {
     const config = this.advancement.configuration.items;
-    const added =
-      this.retainedData?.items.map(i => foundry.utils.getProperty(i, "flags.sw5e.sourceId"))
+    const added = this.retainedData?.items.map(i => foundry.utils.getProperty(i, "flags.sw5e.sourceId"))
       ?? this.advancement.value.added;
     const checked = new Set(Object.values(added ?? {}));
     return {
       optional: this.advancement.configuration.optional,
-      items: (await Promise.all(config.map(uuid => fromUuid(uuid)))).reduce((arr, item) => {
+      items: (await Promise.all(config.map(i => fromUuid(i.uuid)))).reduce((arr, item) => {
         if (!item) return arr;
         item.checked = added ? checked.has(item.uuid) : true;
         arr.push(item);

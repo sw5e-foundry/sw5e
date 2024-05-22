@@ -349,7 +349,7 @@ export default class AdvancementManager extends Application {
     }
 
     // All other items, just create some flows down from current character level
-    Array.fromRange(manager.clone.system.details.level + 1)
+    Array.fromRange((manager.clone.system.details.level ?? 0) + 1)
       .flatMap(l => this.flowsForLevel(clonedItem, l))
       .reverse()
       .forEach(flow => manager.steps.push({ type: "reverse", flow, automatic: true }));
@@ -452,7 +452,7 @@ export default class AdvancementManager extends Application {
    * @returns {number}       Working level.
    */
   static currentLevel(item, actor) {
-    // Return item.system.levels ?? item.class?.system.levels ?? actor.system.details.level;
+    // return item.system.levels ?? item.class?.system.levels ?? actor.system.details.level ?? 0;
     return item.curAdvancementLevel;
   }
 

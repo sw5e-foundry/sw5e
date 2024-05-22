@@ -4,6 +4,7 @@ import ItemGrantFlow from "./item-grant-flow.mjs";
  * Inline application that presents the player with a choice of items.
  */
 export default class ItemChoiceFlow extends ItemGrantFlow {
+
   /**
    * Set of selected UUIDs.
    * @type {Set<string>}
@@ -40,7 +41,7 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
       this.retainedData?.items.map(i => foundry.utils.getProperty(i, "flags.sw5e.sourceId"))
         ?? Object.values(this.advancement.value[this.level] ?? {})
     );
-    this.pool ??= await Promise.all(this.advancement.configuration.pool.map(uuid => fromUuid(uuid)));
+    this.pool ??= await Promise.all(this.advancement.configuration.pool.map(i => fromUuid(i.uuid)));
     if (!this.dropped) {
       this.dropped = [];
       for (const data of this.retainedData?.items ?? []) {
@@ -64,9 +65,11 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
     }
 
     const items = [...this.pool, ...this.dropped].reduce((items, i) => {
-      i.checked = this.selected.has(i.uuid);
-      i.disabled = !i.checked && choices.full;
-      if (!previouslySelected.has(i.uuid)) items.push(i);
+      if ( i ) {
+        i.checked = this.selected.has(i.uuid);
+        i.disabled = !i.checked && choices.full;
+        if (!previouslySelected.has(i.uuid)) items.push(i);
+      }
       return items;
     }, []);
 
@@ -137,7 +140,7 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
     for (const [level, data] of Object.entries(this.advancement.value.added ?? {})) {
       if (level >= this.level) continue;
       if (Object.values(data).includes(item.uuid)) {
-        ui.notifications.error(game.i18n.localize("SW5E.AdvancementItemChoicePreviouslyChosenWarning"));
+        ui.notifications.error("SW5E.AdvancementItemChoicePreviouslyChosenWarning", {localize: true});
         return null;
       }
     }

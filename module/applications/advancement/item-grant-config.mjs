@@ -4,6 +4,7 @@ import AdvancementConfig from "./advancement-config.mjs";
  * Configuration application for item grants.
  */
 export default class ItemGrantConfig extends AdvancementConfig {
+
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -19,9 +20,9 @@ export default class ItemGrantConfig extends AdvancementConfig {
   /** @inheritdoc */
   getData(options = {}) {
     const context = super.getData(options);
-    context.showPowerConfig = context.configuration.items
-      .map(uuid => fromUuidSync(uuid))
-      .some(i => i?.type === "power");
+    const indexes = context.configuration.items.map(i => fromUuidSync(i.uuid));
+    context.showContainerWarning = indexes.some(i => i?.type === "container");
+    context.showPowerConfig = indexes.some(i => i?.type === "power");
     return context;
   }
 

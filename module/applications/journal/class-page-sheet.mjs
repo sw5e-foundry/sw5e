@@ -53,7 +53,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     context.optionalTable = await this._getOptionalTable(linked);
     context.features = await this._getFeatures(linked);
     context.optionalFeatures = await this._getFeatures(linked, true);
-    context.archetypes?.sort((lhs, rhs) => lhs.name.localeCompare(rhs.name));
+    context.archetypes?.sort((lhs, rhs) => lhs.name.localeCompare(rhs.name, game.i18n.lang));
 
     return context;
   }
@@ -172,7 +172,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
             continue;
           case "ItemGrant":
             if (advancement.configuration.optional) continue;
-            features.push(...(await Promise.all(advancement.configuration.items.map(makeLink))));
+            features.push(...(await Promise.all(advancement.configuration.items.map(i => makeLink(i.uuid)))));
             break;
         }
       }
@@ -262,7 +262,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
         switch (advancement.constructor.typeName) {
           case "ItemGrant":
             if (!advancement.configuration.optional) continue;
-            features.push(...(await Promise.all(advancement.configuration.items.map(makeLink))));
+            features.push(...(await Promise.all(advancement.configuration.items.map(i => makeLink(i.uuid)))));
             break;
         }
       }
@@ -289,8 +289,8 @@ export default class JournalClassPageSheet extends JournalPageSheet {
    * @returns {object[]}   Prepared features.
    */
   async _getFeatures(item, optional = false) {
-    const prepareFeature = async uuid => {
-      const document = await fromUuid(uuid);
+    const prepareFeature = async f => {
+      const document = await fromUuid(f.uuid);
       return {
         document,
         name: document.name,

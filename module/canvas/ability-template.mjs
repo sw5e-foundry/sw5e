@@ -2,6 +2,7 @@
  * A helper class for building MeasuredTemplates for 5e powers and abilities
  */
 export default class AbilityTemplate extends MeasuredTemplate {
+
   /**
    * Track the timestamp when the last mouse move event was captured.
    * @type {number}
@@ -29,7 +30,7 @@ export default class AbilityTemplate extends MeasuredTemplate {
   /**
    * A factory method to create an AbilityTemplate instance using provided data from an Item5e instance
    * @param {Item5e} item               The Item object for which to construct the template
-   * @param {object} [options={}] Options to modify the created template.
+   * @param {object} [options={}]       Options to modify the created template.
    * @returns {AbilityTemplate|null}    The template object, or null if the item does not produce a template
    */
   static fromItem(item, options={}) {
@@ -71,12 +72,32 @@ export default class AbilityTemplate extends MeasuredTemplate {
         break;
     }
 
+    /**
+     * A hook event that fires before a template is created for an Item.
+     * @function sw5e.preCreateItemTemplate
+     * @memberof hookEvents
+     * @param {Item5e} item                     Item for which the template is being placed.
+     * @param {object} templateData             Data used to create the new template.
+     * @returns {boolean}                       Explicitly return false to prevent the template from being placed.
+     */
+    if ( Hooks.call("sw5e.preCreateItemTemplate", item, templateData) === false ) return null;
+
     // Return the template constructed from the item data
     const cls = CONFIG.MeasuredTemplate.documentClass;
     const template = new cls(templateData, { parent: canvas.scene });
     const object = new this(template);
     object.item = item;
     object.actorSheet = item.actor?.sheet || null;
+
+    /**
+     * A hook event that fires after a template is created for an Item.
+     * @function sw5e.createItemTemplate
+     * @memberof hookEvents
+     * @param {Item5e} item                Item for which the template is being placed.
+     * @param {AbilityTemplate} template   The template being placed.
+     */
+    Hooks.callAll("sw5e.createItemTemplate", item, object);
+
     return object;
   }
 

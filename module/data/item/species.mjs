@@ -1,5 +1,5 @@
 import Actor5e from "../../documents/actor/actor.mjs";
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import { AdvancementField, IdentifierField } from "../fields.mjs";
 import { CreatureTypeField, MovementField, SensesField } from "../shared/_module.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
@@ -8,7 +8,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * Data definition for Species items.
  * @mixes ItemDescriptionTemplate
  *
- * @property {string} identifier        Identifier slug for this class.
+ * @property {string} identifier        Identifier slug for this species.
  * @property {object[]} advancement     Advancement objects for this species.
  * @property {MovementField} movement
  * @property {SensesField} senses
@@ -30,7 +30,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {string} manufacturer
  * @property {string} droidLanguage
  */
-export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
+export default class SpeciesData extends ItemDataModel.mixin(ItemDescriptionTemplate) {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
@@ -104,9 +104,9 @@ export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTe
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static metadata = Object.freeze({
+  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
     singleton: true
-  });
+  }, {inplace: false}));
 
   /* -------------------------------------------- */
   /*  Properties                                  */
@@ -170,8 +170,9 @@ export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTe
       { type: "Trait", configuration: { grants: ["languages:standard:common"] } }
     ];
     this.parent.updateSource({"system.advancement": toCreate.map(c => {
-      const AdvancementClass = CONFIG.SW5E.advancementTypes[c.type];
-      return new AdvancementClass(c, { parent: this.parent }).toObject();
+      const config = CONFIG.SW5E.advancementTypes[c.type];
+      const cls = config.documentClass ?? config;
+      return new cls(c, { parent: this.parent }).toObject();
     })});
   }
 
@@ -186,7 +187,7 @@ export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTe
    * @protected
    */
   _onCreate(data, options, userId) {
-    if ( (game.user.id !== userId) || this.parent.actor?.type !== "character" ) return;
+    if ( (game.user.id !== userId) || !["character", "npc"].includes(this.parent.actor?.type) ) return;
     this.parent.actor.update({ "system.details.species": this.parent.id });
   }
 
@@ -201,7 +202,7 @@ export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTe
    * @protected
    */
   async _preDelete(options, user) {
-    if ( (this.parent.actor?.type !== "character") ) return;
+    if ( !["character", "npc"].includes(this.parent.actor?.type) ) return;
     await this.parent.actor.update({ "system.details.species": null });
   }
 }

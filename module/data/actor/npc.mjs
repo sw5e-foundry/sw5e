@@ -1,5 +1,7 @@
+import Proficiency from "../../documents/actor/proficiency.mjs";
 import { FormulaField } from "../fields.mjs";
 import CreatureTypeField from "../shared/creature-type-field.mjs";
+import RollConfigField from "../shared/roll-config-field.mjs";
 import SourceField from "../shared/source-field.mjs";
 import AttributesFields from "./templates/attributes.mjs";
 import CreatureTemplate from "./templates/creature.mjs";
@@ -20,6 +22,9 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {number} attributes.hp.temp         Temporary HP applied on top of value.
  * @property {number} attributes.hp.tempmax      Temporary change to the maximum HP.
  * @property {string} attributes.hp.formula      Formula used to determine hit points.
+ * @property {object} attributes.death
+ * @property {number} attributes.death.success   Number of successful death saves.
+ * @property {number} attributes.death.failure   Number of failed death saves.
  * @property {object} details
  * @property {TypeData} details.type             Creature type of this NPC.
  * @property {string} details.type.value         NPC's type as defined in the system configuration.
@@ -44,6 +49,14 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {number} resources.lair.initiative  Initiative count when lair actions are triggered.
  */
 export default class NPCData extends CreatureTemplate {
+
+  /** @inheritdoc */
+  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+    supportsAdvancement: true
+  }, {inplace: false}));
+
+  /* -------------------------------------------- */
+
   /** @inheritdoc */
   static _systemType = "npc";
 
@@ -94,8 +107,16 @@ export default class NPCData extends CreatureTemplate {
               formula: new FormulaField({ required: true, label: "SW5E.HPFormula" })
             },
             { label: "SW5E.HitPoints" }
-          )
-        },
+          ),
+          death: new RollConfigField({
+            success: new foundry.data.fields.NumberField({
+              required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.DeathSaveSuccesses"
+            }),
+            failure: new foundry.data.fields.NumberField({
+              required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.DeathSaveFailures"
+            })
+          }, {label: "SW5E.DeathSave"})
+          },
         { label: "SW5E.Attributes" }
       ),
       details: new foundry.data.fields.SchemaField(
@@ -252,13 +273,14 @@ export default class NPCData extends CreatureTemplate {
     const pattern = /^(?:swarm of (?<size>[\w-]+) )?(?<type>[^(]+?)(?:\((?<subtype>[^)]+)\))?$/i;
     const match = original.trim().match(pattern);
     if (match) {
+
       // Match a known creature type
       const typeLc = match.groups.type.trim().toLowerCase();
       const typeMatch = Object.entries(CONFIG.SW5E.creatureTypes).find(([k, v]) => {
         return (
           typeLc === k
-          || typeLc === game.i18n.localize(v).toLowerCase()
-          || typeLc === game.i18n.localize(`${v}Pl`).toLowerCase()
+          || typeLc === game.i18n.localize(v.label).toLowerCase()
+          || typeLc === game.i18n.localize(`${v.label}Pl`).toLowerCase()
         );
       });
       if (typeMatch) source.type.value = typeMatch[0];
@@ -272,7 +294,7 @@ export default class NPCData extends CreatureTemplate {
       if (match.groups.size) {
         const sizeLc = match.groups.size ? match.groups.size.trim().toLowerCase() : "tiny";
         const sizeMatch = Object.entries(CONFIG.SW5E.actorSizes).find(([k, v]) => {
-          return sizeLc === k || sizeLc === game.i18n.localize(v).toLowerCase();
+          return sizeLc === k || sizeLc === game.i18n.localize(v.label).toLowerCase();
         });
         source.type.swarm = sizeMatch ? sizeMatch[0] : "tiny";
       } else source.type.swarm = "";
@@ -347,5 +369,77 @@ export default class NPCData extends CreatureTemplate {
       source.details.powerForceLevel = level;
       source.details.powerTechLevel = level;
     }
+  }
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+  
+  //TODO: update this from where it was pulled from
+  /** @inheritdoc */
+  prepareBaseData() {
+    this.details.level = 0;
+
+    for ( const item of this.parent.items ) {
+      // Class levels & hit dice
+      if ( item.type === "class" ) {
+        const classLevels = parseInt(item.system.levels) ?? 1;
+        this.details.level += classLevels;
+      }
+
+      // Attuned items
+      else if ( item.system.attunement === CONFIG.SW5E.attunementTypes.ATTUNED ) {
+        this.attributes.attunement.value += 1;
+      }
+    }
+
+    // Kill Experience
+    this.details.xp ??= {};
+    this.details.xp.value = this.parent.getCRExp(this.details.cr);
+
+    // Proficiency
+    this.attributes.prof = Proficiency.calculateMod(Math.max(this.details.cr, this.details.level, 1));
+
+    // Powercaster Level
+    if ( this.attributes.powercasting && !Number.isNumeric(this.details.powerLevel) ) {
+      this.details.powerLevel = Math.max(this.details.cr, 1);
+    }
+
+    AttributesFields.prepareBaseArmorClass.call(this);
+  }
+
+  /* -------------------------------------------- */
+
+  //TODO: update this from where it was pulled from
+  /**
+   * Prepare movement & senses values derived from species item.
+   */
+  prepareEmbeddedData() {
+    if ( this.details.species instanceof Item ) {
+      AttributesFields.prepareSpecies.call(this, this.details.species, { force: true });
+      this.details.type = this.details.species.system.type;
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  //TODO: update this from where it was pulled from
+  /** @inheritdoc */
+  prepareDerivedData() {
+    const rollData = this.getRollData({ deterministic: true });
+    const { originalSaves } = this.parent.getOriginalStats();
+
+    this.prepareAbilities({ rollData, originalSaves });
+    AttributesFields.prepareExhaustionLevel.call(this);
+    AttributesFields.prepareMovement.call(this);
+    AttributesFields.prepareConcentration.call(this, rollData);
+    TraitsFields.prepareResistImmune.call(this);
+
+    // Hit Points
+    const hpOptions = {
+      advancement: Object.values(this.parent.classes).map(c => c.advancement.byType.HitPoints?.[0]).filter(a => a),
+      mod: this.abilities[CONFIG.SW5E.defaultAbilities.hitPoints ?? "con"]?.mod ?? 0
+    };
+    AttributesFields.prepareHitPoints.call(this, this.attributes.hp, hpOptions);
   }
 }

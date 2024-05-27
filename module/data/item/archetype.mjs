@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import { AdvancementField, IdentifierField } from "../fields.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 
@@ -6,9 +6,9 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * Data definition for Archetype items.
  * @mixes ItemDescriptionTemplate
  *
- * @property {string} identifier       Identifier slug for this archetype.
- * @property {string} classIdentifier  Identifier slug for the class with which this archetype should be associated.
- * @property {object[]} advancement    Advancement objects for this archetype.
+ * @property {string} identifier                   Identifier slug for this archetype.
+ * @property {string} classIdentifier              Identifier slug for the class with which this archetype should be associated.
+ * @property {object[]} advancement                Advancement objects for this archetype.
  * @property {object} powercasting                 Details on class's powercasting ability.
  * @property {string} powercasting.force           Force power progression as defined in `SW5E.powerProgression`.
  * @property {string} powercasting.forceOverride   Ability score to use for forcecasting.
@@ -17,7 +17,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {object} superiority                  Details on class's superiority ability.
  * @property {string} superiority.progression      Superiority progression as defined in `SW5E.superiorityProgression`.
  */
-export default class ArchetypeData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
+export default class ArchetypeData extends ItemDataModel.mixin(ItemDescriptionTemplate) {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {

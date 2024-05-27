@@ -6187,7 +6187,7 @@ preLocalize("groupTypes");
  * @property {Set<string>} validItemTypes        What item types this advancement can be used with.
  */
 
-const _ALL_ITEM_TYPES = ["background", "class", "species", "archetype", "starshipsize"];
+const _ALL_ITEM_TYPES = ["background", "class", "species", "archetype", "deployment", "starshipsize"];
 
 /**
  * Advancement types that can be added to items.

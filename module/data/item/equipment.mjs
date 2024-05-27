@@ -1,17 +1,24 @@
 import { FormulaField } from "../fields.mjs";
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import EquippableItemTemplate from "./templates/equippable-item.mjs";
+import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import MountableTemplate from "./templates/mountable.mjs";
 import ModdableTemplate from "./templates/moddable.mjs";
+import ItemTypeField from "./fields/item-type-field.mjs";
 import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
 
+
+const { NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
 /**
  * Data definition for Equipment items.
  * @mixes ItemDescriptionTemplate
+ * @mixes ItemTypeTemplate
+ * @mixes IdentifiableTemplate
  * @mixes PhysicalItemTemplate
  * @mixes EquippableItemTemplate
  * @mixes ActivatedEffectTemplate
@@ -20,18 +27,16 @@ import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
  * @mixes ModdableTemplate
  *
  * @property {object} armor                 Armor details and equipment type information.
- * @property {string} armor.type            Equipment type as defined in `SW5E.equipmentTypes`.
  * @property {number} armor.value           Base armor class or shield bonus.
  * @property {number} armor.dex             Maximum dex bonus added to armor class.
- * @property {string} baseItem              Base armor as defined in `SW5E.armorIds` for determining proficiency.
+ * @property {number} armor.magicalBonus    Bonus added to AC from the armor's magical nature.
  * @property {object} speed                 Speed granted by a piece of vehicle equipment.
  * @property {number} speed.value           Speed granted by this piece of equipment measured in feet or meters
  *                                          depending on system setting.
  * @property {string} speed.conditions      Conditions that may affect item's speed.
  * @property {number} strength              Minimum strength required to use a piece of armor.
- * @property {boolean} stealth              Does this equipment grant disadvantage on stealth checks when used?
- * @property {object} properties            Mapping of various weapon property booleans and numbers.
  * @property {number} proficient            Does the owner have proficiency in this piece of equipment?
+ * @property {object} properties            Mapping of various weapon property booleans and numbers.
  * @property {object} attributes
  * @property {object} attributes.capx
  * @property {number} attributes.capx.value            Starship: Multiplier for shield capacity.
@@ -50,8 +55,10 @@ import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
  * @property {object} attributes.hdclass
  * @property {number} attributes.hdclass.value         Starship: Hyperdrive class.
  */
-export default class EquipmentData extends SystemDataModel.mixin(
+export default class EquipmentData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
+  IdentifiableTemplate, 
+  ItemTypeTemplate,
   PhysicalItemTemplate,
   EquippableItemTemplate,
   ActivatedEffectTemplate,
@@ -62,39 +69,36 @@ export default class EquipmentData extends SystemDataModel.mixin(
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
-      armor: new foundry.data.fields.SchemaField(
+      type: new ItemTypeField({value: "light", subtype: false}, {label: "SW5E.ItemEquipmentType"}),
+      armor: new SchemaField(
         {
-          type: new foundry.data.fields.StringField({
-            required: true,
-            initial: "light",
-            label: "SW5E.ItemEquipmentType"
-          }),
           value: new foundry.data.fields.NumberField({
             required: true,
             integer: true,
             min: 0,
             label: "SW5E.ArmorClass"
           }),
-          dex: new foundry.data.fields.NumberField({ required: true, integer: true, label: "SW5E.ItemEquipmentDexMod" })
+          magicalBonus: new NumberField({min: 0, integer: true, label: "SW5E.MagicalBonus"}),
+          dex: new NumberField({ required: true, integer: true, label: "SW5E.ItemEquipmentDexMod" })
         },
-        { label: "" }
       ),
-      baseItem: new foundry.data.fields.StringField({ required: true, label: "SW5E.ItemEquipmentBase" }),
-      speed: new foundry.data.fields.SchemaField(
+      properties: new SetField(new StringField(), {
+        label: "SW5E.ItemEquipmentProperties"
+      }),
+      speed: new SchemaField(
         {
-          value: new foundry.data.fields.NumberField({ required: true, min: 0, label: "SW5E.Speed" }),
-          conditions: new foundry.data.fields.StringField({ required: true, label: "SW5E.SpeedConditions" })
+          value: new NumberField({ required: true, min: 0, label: "SW5E.Speed" }),
+          conditions: new StringField({ required: true, label: "SW5E.SpeedConditions" })
         },
         { label: "SW5E.Speed" }
       ),
-      strength: new foundry.data.fields.NumberField({
+      strength: new NumberField({
         required: true,
         integer: true,
         min: 0,
         label: "SW5E.ItemRequiredStr"
       }),
-      stealth: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.ItemEquipmentStealthDisav" }),
-      proficient: new foundry.data.fields.NumberField({
+      proficient: new NumberField({
         required: true,
         min: 0,
         max: 1,
@@ -102,25 +106,21 @@ export default class EquipmentData extends SystemDataModel.mixin(
         initial: null,
         label: "SW5E.ProficiencyLevel"
       }),
-      properties: makeItemProperties(CONFIG.SW5E.equipmentProperties, {
-        required: true,
-        label: "SW5E.ItemEquipmentProperties"
-      }),
 
       // Starship equipment
-      attributes: new foundry.data.fields.SchemaField({
-        capx: new foundry.data.fields.SchemaField(
+      attributes: new SchemaField({
+        capx: new SchemaField(
           {
-            value: new foundry.data.fields.NumberField({
+            value: new NumberField({
               nullable: true,
               min: 0
             })
           },
           { required: true, label: "SW5E.CapacityMultiplier" }
         ),
-        dmgred: new foundry.data.fields.SchemaField(
+        dmgred: new SchemaField(
           {
-            value: new foundry.data.fields.NumberField({
+            value: new NumberField({
               nullable: true,
               integer: true,
               min: 0
@@ -128,18 +128,18 @@ export default class EquipmentData extends SystemDataModel.mixin(
           },
           { required: true, label: "SW5E.DmgRed" }
         ),
-        regrateco: new foundry.data.fields.SchemaField(
+        regrateco: new SchemaField(
           {
-            value: new foundry.data.fields.NumberField({
+            value: new NumberField({
               nullable: true,
               min: 0
             })
           },
           { required: true, label: "SW5E.RegenerationRateCoefficient" }
         ),
-        cscap: new foundry.data.fields.SchemaField(
+        cscap: new SchemaField(
           {
-            value: new foundry.data.fields.NumberField({
+            value: new NumberField({
               nullable: true,
               integer: true,
               min: 0
@@ -147,9 +147,9 @@ export default class EquipmentData extends SystemDataModel.mixin(
           },
           { required: true, label: "SW5E.CentStorageCapacity" }
         ),
-        sscap: new foundry.data.fields.SchemaField(
+        sscap: new SchemaField(
           {
-            value: new foundry.data.fields.NumberField({
+            value: new NumberField({
               nullable: true,
               integer: true,
               min: 0
@@ -157,22 +157,22 @@ export default class EquipmentData extends SystemDataModel.mixin(
           },
           { required: true, label: "SW5E.SysStorageCapacity" }
         ),
-        fuelcostsmod: new foundry.data.fields.SchemaField(
+        fuelcostsmod: new SchemaField(
           {
-            value: new foundry.data.fields.NumberField({
+            value: new NumberField({
               nullable: true,
               min: 0
             })
           },
           { required: true, label: "SW5E.FuelCostsMod" }
         ),
-        powerdicerec: new foundry.data.fields.SchemaField(
+        powerdicerec: new SchemaField(
           { value: new FormulaField({}) },
           { label: "SW5E.PowerDiceRecovery" }
         ),
-        hdclass: new foundry.data.fields.SchemaField(
+        hdclass: new SchemaField(
           {
-            value: new foundry.data.fields.NumberField({
+            value: new NumberField({
               nullable: true,
               min: 0,
               max: 15
@@ -192,6 +192,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
   static _migrateData(source) {
     super._migrateData(source);
     EquipmentData.#migrateArmor(source);
+    EquipmentData.#migrateType(source);
     EquipmentData.#migrateStrength(source);
     EquipmentData.#migrateProficient(source);
     EquipmentData.#migrateStarshipData(source);
@@ -207,12 +208,22 @@ export default class EquipmentData extends SystemDataModel.mixin(
   static #migrateArmor(source) {
     if (!("armor" in source)) return;
     source.armor ??= {};
-    if (source.armor.type === "bonus") source.armor.type = "trinket";
     if (typeof source.armor.dex === "string") {
       const dex = source.armor.dex;
       if (dex === "") source.armor.dex = null;
       else if (Number.isNumeric(dex)) source.armor.dex = Number(dex);
     }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Apply migrations to the type field.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static #migrateType(source) {
+    if ( !("type" in source) ) return;
+    if ( source.type.value === "bonus" ) source.type.value = "trinket";
   }
 
   /* -------------------------------------------- */
@@ -248,6 +259,18 @@ export default class EquipmentData extends SystemDataModel.mixin(
   /* -------------------------------------------- */
 
   /**
+   * Migrates stealth disadvantage boolean to properties.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static _migrateStealth(source) {
+    if ( foundry.utils.getProperty(source, "system.stealth") === true ) {
+      foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", ["stealthDisadvantage"]);
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Migrate the proficient field to convert boolean values.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
@@ -256,7 +279,29 @@ export default class EquipmentData extends SystemDataModel.mixin(
   }
 
   /* -------------------------------------------- */
-  /*  Getters                                     */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    this.armor.value = (this._source.armor.value ?? 0) + (this.magicAvailable ? (this.armor.magicalBonus ?? 0) : 0);
+    this.type.label = CONFIG.SW5E.equipmentTypes[this.type.value]
+      ?? game.i18n.localize(CONFIG.Item.typeLabels.equipment);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async getFavoriteData() {
+    return foundry.utils.mergeObject(await super.getFavoriteData(), {
+      subtitle: [this.type.label, this.parent.labels.activation],
+      uses: this.hasLimitedUses ? this.getUsesData() : null
+    });
+  }
+
+  /* -------------------------------------------- */
+  /*  Properties                                  */
   /* -------------------------------------------- */
 
   /**
@@ -265,9 +310,22 @@ export default class EquipmentData extends SystemDataModel.mixin(
    */
   get chatProperties() {
     return [
-      CONFIG.SW5E.equipmentTypes[this.armor.type],
-      this.parent.labels?.armor ?? null,
-      this.stealth ? game.i18n.localize("SW5E.StealthDisadvantage") : null
+      this.type.label,
+      (this.isArmor || this.isMountable) ? (this.parent.labels?.armor ?? null) : null,
+      this.properties.has("stealthDisadvantage") ? game.i18n.localize("SW5E.Item.Property.StealthDisadvantage") : null
+    ];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Properties displayed on the item card.
+   * @type {string[]}
+   */
+  get cardProperties() {
+    return [
+      (this.isArmor || this.isMountable) ? (this.parent.labels?.armor ?? null) : null,
+      this.properties.has("stealthDisadvantage") ? game.i18n.localize("SW5E.Item.Property.StealthDisadvantage") : null
     ];
   }
 
@@ -278,7 +336,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
    * @type {boolean}
    */
   get isArmor() {
-    return this.armor.type in CONFIG.SW5E.armorTypes;
+    return this.type.value in CONFIG.SW5E.armorTypes;
   }
 
   /* -------------------------------------------- */
@@ -289,7 +347,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
    * @type {boolean}
    */
   get isMountable() {
-    return this.armor.type === "vehicle";
+    return this.type.value === "vehicle";
   }
 
   /* -------------------------------------------- */
@@ -304,9 +362,9 @@ export default class EquipmentData extends SystemDataModel.mixin(
     if ( !actor ) return 0;
     if ( actor.type === "npc" ) return 1; // NPCs are always considered proficient with any armor in their stat block.
     const config = CONFIG.SW5E.armorProficienciesMap;
-    const itemProf = config[this.armor?.type];
+    const itemProf = config[this.type.value];
     const actorProfs = actor.system.traits?.armorProf?.value ?? new Set();
-    const isProficient = (itemProf === true) || actorProfs.has(itemProf) || actorProfs.has(this.baseItem);
+    const isProficient = (itemProf === true) || actorProfs.has(itemProf) || actorProfs.has(this.type.baseItem);
     return Number(isProficient);
   }
 
@@ -318,5 +376,20 @@ export default class EquipmentData extends SystemDataModel.mixin(
    */
   get isStarshipItem() {
     return (this.armor.type in CONFIG.SW5E.ssEquipmentTypes) || this.armor.type === "starship"
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does this armor impose disadvantage on stealth checks?
+   * @type {boolean}
+   * @deprecated since SW5e 3.0, available until SW5e 3.2
+   */
+  get stealth() {
+    foundry.utils.logCompatibilityWarning(
+      "The `system.stealth` value on equipment has migrated to the 'stealthDisadvantage' property.",
+      { since: "SW5e 3.0", until: "SW5e 3.2" }
+    );
+    return this.properties.has("stealthDisadvantage");
   }
 }

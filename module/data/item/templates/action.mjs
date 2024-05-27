@@ -1,12 +1,17 @@
-import SystemDataModel from "../../abstract.mjs";
+import { ItemDataModel } from "../../abstract.mjs";
 import { FormulaField } from "../../fields.mjs";
+import SummonsField from "../fields/summons-field.mjs";
+
+const { ArrayField, BooleanField, NumberField, SchemaField, StringField } = foundry.data.fields;
 
 /**
  * Data model template for item actions.
  *
  * @property {string} ability             Ability score to use when determining modifier.
  * @property {string} actionType          Action type as defined in `SW5E.itemActionTypes`.
- * @property {string} attackBonus         Numeric or dice bonus to attack rolls.
+ * @property {object} attack              Information how attacks are handled.
+ * @property {string} attack.bonus        Numeric or dice bonus to attack rolls.
+ * @property {boolean} attack.flat        Is the attack bonus the only bonus to attack rolls?
  * @property {string} chatFlavor          Extra text displayed in chat.
  * @property {object} critical            Information on how critical hits are handled.
  * @property {number} critical.threshold  Minimum number on the dice to roll a critical hit.
@@ -19,28 +24,32 @@ import { FormulaField } from "../../fields.mjs";
  * @property {string} save.ability        Ability required for the save.
  * @property {number} save.dc             Custom saving throw value.
  * @property {string} save.scaling        Method for automatically determining saving throw DC.
+ * @property {SummonsData} summons
  * @mixin
  */
-export default class ActionTemplate extends SystemDataModel {
+export default class ActionTemplate extends ItemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
-      ability: new foundry.data.fields.StringField({
+      ability: new StringField({
         required: true,
         nullable: true,
         initial: null,
         label: "SW5E.AbilityModifier"
       }),
-      actionType: new foundry.data.fields.StringField({
+      actionType: new StringField({
         required: true,
         nullable: true,
         initial: null,
         label: "SW5E.ItemActionType"
       }),
-      attackBonus: new FormulaField({ required: true, label: "SW5E.ItemAttackBonus" }),
-      chatFlavor: new foundry.data.fields.StringField({ required: true, label: "SW5E.ChatFlavor" }),
-      critical: new foundry.data.fields.SchemaField({
-        threshold: new foundry.data.fields.NumberField({
+      attack: new SchemaField({
+        bonus: new FormulaField({required: true, label: "SW5E.ItemAttackBonus"}),
+        flat: new BooleanField({label: "SW5E.ItemAttackFlat"})
+      }),
+      chatFlavor: new StringField({ required: true, label: "SW5E.ChatFlavor" }),
+      critical: new SchemaField({
+        threshold: new NumberField({
           required: true,
           integer: true,
           initial: null,
@@ -49,10 +58,10 @@ export default class ActionTemplate extends SystemDataModel {
         }),
         damage: new FormulaField({ required: true, label: "SW5E.ItemCritExtraDamage" })
       }),
-      damage: new foundry.data.fields.SchemaField(
+      damage: new SchemaField(
         {
-          parts: new foundry.data.fields.ArrayField(
-            new foundry.data.fields.ArrayField(new foundry.data.fields.StringField({ nullable: true })),
+          parts: new ArrayField(
+            new ArrayField(new StringField({ nullable: true })),
             { required: true }
           ),
           versatile: new FormulaField({ required: true, label: "SW5E.VersatileDamage" })
@@ -60,16 +69,16 @@ export default class ActionTemplate extends SystemDataModel {
         { label: "SW5E.Damage" }
       ),
       formula: new FormulaField({ required: true, label: "SW5E.OtherFormula" }),
-      save: new foundry.data.fields.SchemaField(
+      save: new SchemaField(
         {
-          ability: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.Ability" }),
-          dc: new foundry.data.fields.NumberField({
+          ability: new StringField({ required: true, blank: true, label: "SW5E.Ability" }),
+          dc: new NumberField({
             required: true,
             min: 0,
             integer: true,
             label: "SW5E.AbbreviationDC"
           }),
-          scaling: new foundry.data.fields.StringField({
+          scaling: new StringField({
             required: true,
             blank: false,
             initial: "power",
@@ -77,7 +86,8 @@ export default class ActionTemplate extends SystemDataModel {
           })
         },
         { label: "SW5E.SavingThrow" }
-      )
+      ),
+      summons: new SummonsField()
     };
   }
 
@@ -89,7 +99,7 @@ export default class ActionTemplate extends SystemDataModel {
   static _migrateData(source) {
     super._migrateData(source);
     ActionTemplate.#migrateAbility(source);
-    ActionTemplate.#migrateAttackBonus(source);
+    ActionTemplate.#migrateAttack(source);
     ActionTemplate.#migrateCritical(source);
     ActionTemplate.#migrateSave(source);
     ActionTemplate.#migrateDamage(source);
@@ -108,12 +118,15 @@ export default class ActionTemplate extends SystemDataModel {
   /* -------------------------------------------- */
 
   /**
-   * Ensure a 0 or null in attack bonus is converted to an empty string rather than "0".
+   * Move 'attackBonus' to 'attack.bonus' and ensure a 0 or null is converted to an empty string rather than "0".
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateAttackBonus(source) {
-    if ([0, "0", null].includes(source.attackBonus)) source.attackBonus = "";
-    else if (typeof source.attackBonus === "number") source.attackBonus = source.attackBonus.toString();
+  static #migrateAttack(source) {
+    if ( "attackBonus" in source ) {
+      source.attack ??= {};
+      source.attack.bonus ??= source.attackBonus;
+    }
+    if ( [0, "0", null].includes(source.attack?.bonus) ) source.attack.bonus = "";
   }
 
   /* -------------------------------------------- */
@@ -146,7 +159,6 @@ export default class ActionTemplate extends SystemDataModel {
       if (source.save.dc === "") source.save.dc = null;
       else if (Number.isNumeric(source.save.dc)) source.save.dc = Number(source.save.dc);
     }
-    if (typeof source.save?.dc === "number" && Number.isNaN(source.save?.dc)) source.save.dc = null;
   }
 
   /* -------------------------------------------- */
@@ -177,8 +189,8 @@ export default class ActionTemplate extends SystemDataModel {
       || {
         mwak: "str",
         rwak: "dex",
-        mpak: this.parent?.actor?.system?.attributes?.powercasting || "int",
-        rpak: this.parent?.actor?.system?.attributes?.powercasting || "int"
+        mpak: this.parent?.actor?.system.attributes.powercasting || "int",
+        rpak: this.parent?.actor?.system.attributes.powercasting || "int"
       }[this.actionType]
       || null
     );
@@ -198,21 +210,6 @@ export default class ActionTemplate extends SystemDataModel {
   /* -------------------------------------------- */
 
   /**
-   * What is the base critical hit threshold for this item? Only used when no overrides are set:
-   *  - `critical.threshold` defined on the item
-   *  - `critical.threshold` defined on ammunition, if consumption mode is set to ammo
-   *  - Type-specific critical threshold
-   * @type {number}
-   */
-  get baseCriticalThreshold() {
-    if (!this.hasAttack) return null;
-    const threshold = this._typeBaseCriticalThreshold;
-    return threshold < Infinity ? threshold : 20;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
    * What is the critical hit threshold for this item? Uses the smallest value from among the following sources:
    *  - `critical.threshold` defined on the item
    *  - `critical.threshold` defined on ammunition, if consumption mode is set to ammo
@@ -220,21 +217,13 @@ export default class ActionTemplate extends SystemDataModel {
    * @type {number|null}
    */
   get criticalThreshold() {
-    if (!this.hasAttack) return null;
-    let ammoThreshold = this.getAmmo?.item?.system?.critical?.threshold ?? Infinity;
+    if ( !this.hasAttack ) return null;
+    let ammoThreshold = Infinity;
+    if ( this.hasAmmo ) {
+      ammoThreshold = this.parent?.actor?.items.get(this.consume.target)?.system.critical.threshold ?? Infinity;
+    }
     const threshold = Math.min(this.critical.threshold ?? Infinity, this._typeCriticalThreshold, ammoThreshold);
-    return threshold < Infinity ? threshold : this.baseCriticalThreshold;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Default base critical threshold for this type.
-   * @type {number}
-   * @internal
-   */
-  get _typeBaseCriticalThreshold() {
-    return Infinity;
+    return threshold < Infinity ? threshold : 20;
   }
 
   /* -------------------------------------------- */
@@ -291,6 +280,16 @@ export default class ActionTemplate extends SystemDataModel {
   /* -------------------------------------------- */
 
   /**
+   * Does this Item implement summoning as part of its usage?
+   * @type {boolean}
+   */
+  get hasSummoning() {
+    return (this.actionType === "summ") && !!this.summons?.profiles.length;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Does the Item provide an amount of healing instead of conventional damage?
    * @type {boolean}
    */
@@ -306,5 +305,20 @@ export default class ActionTemplate extends SystemDataModel {
    */
   get isVersatile() {
     return this.actionType && !!(this.hasDamage && this.damage.versatile);
+  }
+
+  /* -------------------------------------------- */
+  /*  Helpers                                     */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  getRollData(options) {
+    const data = super.getRollData(options);
+    const key = this.abilityMod;
+    if ( data && key && ("abilities" in data) ) {
+      const ability = data.abilities[key];
+      data.mod = ability?.mod ?? 0;
+    }
+    return data;
   }
 }

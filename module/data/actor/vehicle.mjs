@@ -42,6 +42,7 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {SourceField} details.source              Adventure or sourcebook where this vehicle originated.
  */
 export default class VehicleData extends CommonTemplate {
+
   /** @inheritdoc */
   static _systemType = "vehicle";
 
@@ -220,6 +221,27 @@ export default class VehicleData extends CommonTemplate {
     if ( source.details?.source && (foundry.utils.getType(source.details.source) !== "Object") ) {
       source.details.source = { custom: source.details.source };
     }
+  }
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  prepareBaseData() {
+    this.attributes.prof = 0;
+    AttributesFields.prepareBaseArmorClass.call(this);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  prepareDerivedData() {
+    const rollData = this.getRollData({ deterministic: true });
+    const { originalSaves } = this.parent.getOriginalStats();
+
+    this.prepareAbilities({ rollData, originalSaves });
+    AttributesFields.prepareHitPoints.call(this, this.attributes.hp);
   }
 }
 

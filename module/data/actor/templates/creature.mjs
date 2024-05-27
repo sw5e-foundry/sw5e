@@ -1,4 +1,5 @@
 import { FormulaField, MappingField } from "../../fields.mjs";
+import RollConfigField from "../../shared/roll-config-field.mjs";
 import CommonTemplate from "./common.mjs";
 
 /**
@@ -69,8 +70,7 @@ export default class CreatureTemplate extends CommonTemplate {
         },
         { label: "SW5E.Bonuses" }
       ),
-      skills: new MappingField(
-        new foundry.data.fields.SchemaField({
+      skills: new MappingField(new RollConfigField({
           value: new foundry.data.fields.NumberField({
             required: true,
             nullable: false,
@@ -80,7 +80,7 @@ export default class CreatureTemplate extends CommonTemplate {
             initial: 0,
             label: "SW5E.ProficiencyLevel"
           }),
-          ability: new foundry.data.fields.StringField({ required: true, initial: "dex", label: "SW5E.Ability" }),
+          ability: "dex",
           bonuses: new foundry.data.fields.SchemaField(
             {
               check: new FormulaField({ required: true, label: "SW5E.SkillBonusCheck" }),
@@ -97,7 +97,7 @@ export default class CreatureTemplate extends CommonTemplate {
         }
       ),
       tools: new MappingField(
-        new foundry.data.fields.SchemaField({
+        new RollConfigField({
           value: new foundry.data.fields.NumberField({
             required: true,
             nullable: false,
@@ -107,7 +107,7 @@ export default class CreatureTemplate extends CommonTemplate {
             initial: 1,
             label: "SW5E.ProficiencyLevel"
           }),
-          ability: new foundry.data.fields.StringField({ required: true, initial: "int", label: "SW5E.Ability" }),
+          ability: "int",
           bonuses: new foundry.data.fields.SchemaField(
             {
               check: new FormulaField({ required: true, label: "SW5E.CheckBonus" })
@@ -173,7 +173,7 @@ export default class CreatureTemplate extends CommonTemplate {
     const levels = Object.keys(CONFIG.SW5E.powerLevels)
       .filter(a => a !== "0")
       .map(l => `power${l}`);
-    return [...levels, "pact"];
+    return [...levels];
   }
 
   /* -------------------------------------------- */

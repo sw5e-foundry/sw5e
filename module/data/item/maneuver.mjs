@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
@@ -11,7 +11,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  *
  * @property {string} maneuverTypes      Maneuver type as defined in `SW5E.maneuverTypes`.
  */
-export default class ManeuverData extends SystemDataModel.mixin(
+export default class ManeuverData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
   ActivatedEffectTemplate,
   ActionTemplate

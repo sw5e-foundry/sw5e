@@ -1,11 +1,15 @@
 import TraitAdvancement from "../../documents/advancement/trait.mjs";
-import SystemDataModel from "../abstract.mjs";
-import { AdvancementField, IdentifierField } from "../fields.mjs";
+import { ItemDataModel } from "../abstract.mjs";
+import { AdvancementField, FormulaField, IdentifierField } from "../fields.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import StartingEquipmentTemplate from "./templates/starting-equipment.mjs";
+
+const { ArrayField, NumberField, SchemaField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Class items.
  * @mixes ItemDescriptionTemplate
+ * @mixes StartingEquipmentTemplate
  *
  * @property {string} identifier                   Identifier slug for this class.
  * @property {number} levels                       Current number of levels in this class.
@@ -23,13 +27,14 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {string} atFlavorText.value           Flavor and list of class archetypes.
  * @property {object} invocations
  * @property {string} invocations.value            Flavor and list of class invocations.
+ * @property {string} wealth                       Formula used to determine starting wealth.
  */
-export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
+export default class ClassData extends ItemDataModel.mixin(ItemDescriptionTemplate, StartingEquipmentTemplate) {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
       identifier: new IdentifierField({ required: true, label: "SW5E.Identifier" }),
-      levels: new foundry.data.fields.NumberField({
+      levels: new NumberField({
         required: true,
         nullable: false,
         integer: true,
@@ -37,7 +42,7 @@ export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemp
         initial: 1,
         label: "SW5E.ClassLevels"
       }),
-      hitDice: new foundry.data.fields.StringField({
+      hitDice: new StringField({
         required: true,
         initial: "d6",
         blank: false,
@@ -45,7 +50,7 @@ export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemp
         validate: v => /d\d+/.test(v),
         validationError: "must be a dice value in the format d#"
       }),
-      hitDiceUsed: new foundry.data.fields.NumberField({
+      hitDiceUsed: new NumberField({
         required: true,
         nullable: false,
         integer: true,
@@ -53,29 +58,29 @@ export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemp
         min: 0,
         label: "SW5E.HitDiceUsed"
       }),
-      advancement: new foundry.data.fields.ArrayField(new AdvancementField(), { label: "SW5E.AdvancementTitle" }),
-      powercasting: new foundry.data.fields.SchemaField(
+      advancement: new ArrayField(new AdvancementField(), { label: "SW5E.AdvancementTitle" }),
+      powercasting: new SchemaField(
         {
-          force: new foundry.data.fields.StringField({
+          force: new StringField({
             required: true,
             initial: "none",
             blank: false,
             label: "SW5E.ForcePowerProgression"
           }),
-          forceOverride: new foundry.data.fields.StringField({ required: true, label: "SW5E.ForceCastingOverride" }),
-          tech: new foundry.data.fields.StringField({
+          forceOverride: new StringField({ required: true, label: "SW5E.ForceCastingOverride" }),
+          tech: new StringField({
             required: true,
             initial: "none",
             blank: false,
             label: "SW5E.TechPowerProgression"
           }),
-          techOverride: new foundry.data.fields.StringField({ required: true, label: "SW5E.TechCastingOverride" })
+          techOverride: new StringField({ required: true, label: "SW5E.TechCastingOverride" })
         },
         { label: "SW5E.Powercasting" }
       ),
-      superiority: new foundry.data.fields.SchemaField(
+      superiority: new SchemaField(
         {
-          progression: new foundry.data.fields.NumberField({
+          progression: new NumberField({
             required: true,
             initial: 0,
             label: "SW5E.SuperiorityProgression"
@@ -83,15 +88,28 @@ export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemp
         },
         { label: "SW5E.Superiority" }
       ),
-      atFlavorText: new foundry.data.fields.SchemaField(
-        { value: new foundry.data.fields.StringField({ required: true, initial: "" }) },
+      atFlavorText: new SchemaField(
+        { value: new StringField({ required: true, initial: "" }) },
         { label: "SW5E.ArchetypePl" }
       ),
-      invocations: new foundry.data.fields.SchemaField(
-        { value: new foundry.data.fields.StringField({ required: true, initial: "" }) },
+      invocations: new SchemaField(
+        { value: new StringField({ required: true, initial: "" }) },
         { label: "SW5E.Invocations" }
-      )
+      ),
+      wealth: new FormulaField({label: "SW5E.StartingEquipment.Wealth.Label"})
     });
+  }
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async getFavoriteData() {
+    const context = await super.getFavoriteData();
+    if ( this.parent.archetype ) context.subtitle = this.parent.archetype.name;
+    context.value = this.levels;
+    return context;
   }
 
   /* -------------------------------------------- */

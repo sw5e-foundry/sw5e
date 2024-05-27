@@ -34,7 +34,7 @@ export class TraitConfigurationData extends foundry.abstract.DataModel {
           required: true, positive: true, integer: true, initial: 1, label: "SW5E.AdvancementTraitCount"
         }),
         pool: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-          required: false, initial: undefined, label: "DOCUMENT.Items"
+          required: false, label: "DOCUMENT.Items"
         })
       }), {label: "SW5E.AdvancementTraitChoices"})
     };
@@ -50,7 +50,7 @@ export class TraitValueData extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
       chosen: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-        required: false, initial: undefined
+        required: false
       })
     };
   }

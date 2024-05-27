@@ -1,11 +1,24 @@
+import Proficiency from "../../documents/actor/proficiency.mjs";
+import { simplifyBonus } from "../../utils.mjs";
 import { FormulaField, MappingField, UUIDField, LocalDocumentField } from "../fields.mjs";
+import RollConfigField from "../shared/roll-config-field.mjs";
 import AttributesFields from "./templates/attributes.mjs";
 import CommonTemplate from "./templates/common.mjs";
 import DetailsFields from "./templates/details.mjs";
 import TraitsFields from "./templates/traits.mjs";
 
+const { SchemaField, NumberField, StringField, BooleanField, ArrayField, IntegerSortField } = foundry.data.fields;
+
 /**
- * System data definition for Vehicles.
+ * @typedef {object} ActorFavorites5e
+ * @property {"effect"|"item"|"skill"|"slots"|"tool"} type  The favorite type.
+ * @property {string} id                                    The Document UUID, skill or tool identifier, or power slot
+ *                                                          level identifier.
+ * @property {number} sort                                  The sort value.
+ */
+
+/**
+ * System data definition for Starships.
  *
  * @property {object} attributes
  * @property {object} attributes.ac
@@ -60,6 +73,7 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {Item5e|string} details.starshipsize              Starships's size item or name.
  * @property {Object<string, SkillData>} skills                Starship's skills.
  * @property {object} traits
+ * @property {ActorFavorites5e[]} favorites               The character's favorites.
  * @property {SimpleTraitData} traits.ci                       Condition immunities.
  * @property {DamageTraitData} traits.di                       Hull Damage immunities.
  * @property {DamageTraitData} traits.dr                       Hull Damage resistances.
@@ -69,6 +83,13 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {DamageTraitData} traits.sdv                      Shield Damage vulnerabilities.
  */
 export default class StarshipData extends CommonTemplate {
+  /** @inheritdoc */
+  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+    supportsAdvancement: true
+  }, {inplace: false}));
+
+  /* -------------------------------------------- */
+
   /** @inheritdoc */
   static _systemType = "starship";
 
@@ -80,11 +101,11 @@ export default class StarshipData extends CommonTemplate {
       attributes: new foundry.data.fields.SchemaField(
         {
           ...AttributesFields.common,
-          bonuses: new foundry.data.fields.SchemaField(
+          bonuses: new SchemaField(
             {
               mwak: makeAttackBonuses({ label: "SW5E.BonusMWAttack" }),
               rwak: makeAttackBonuses({ label: "SW5E.BonusRWAttack" }),
-              abilities: new foundry.data.fields.SchemaField(
+              abilities: new SchemaField(
                 {
                   check: new FormulaField({ required: true, label: "SW5E.BonusAbilityCheck" }),
                   save: new FormulaField({ required: true, label: "SW5E.BonusAbilitySave" }),
@@ -95,43 +116,43 @@ export default class StarshipData extends CommonTemplate {
             },
             { label: "SW5E.Bonuses" }
           ),
-          ac: new foundry.data.fields.SchemaField(
+          ac: new SchemaField(
             {
-              flat: new foundry.data.fields.NumberField({ integer: true, min: 0, label: "SW5E.ArmorClassFlat" }),
-              calc: new foundry.data.fields.StringField({ initial: "starship", label: "SW5E.ArmorClassCalculation" }),
+              flat: new NumberField({ integer: true, min: 0, label: "SW5E.ArmorClassFlat" }),
+              calc: new StringField({ initial: "starship", label: "SW5E.ArmorClassCalculation" }),
               formula: new FormulaField({ deterministic: true, label: "SW5E.ArmorClassFormula" })
             },
             { label: "SW5E.ArmorClass" }
           ),
-          hp: new foundry.data.fields.SchemaField(
+          hp: new SchemaField(
             {
-              value: new foundry.data.fields.NumberField({
+              value: new NumberField({
                 nullable: true,
                 integer: true,
                 min: 0,
                 initial: null,
                 label: "SW5E.HullPointsCurrent"
               }),
-              max: new foundry.data.fields.NumberField({
+              max: new NumberField({
                 nullable: true,
                 integer: true,
                 min: 0,
                 initial: null,
                 label: "SW5E.HullPointsOverride"
               }),
-              temp: new foundry.data.fields.NumberField({
+              temp: new NumberField({
                 integer: true,
                 initial: 0,
                 min: 0,
                 label: "SW5E.ShieldPoints"
               }),
-              tempmax: new foundry.data.fields.NumberField({
+              tempmax: new NumberField({
                 integer: true,
                 nullable: true,
                 initial: null,
                 label: "SW5E.ShieldPointsMax"
               }),
-              bonuses: new foundry.data.fields.SchemaField({
+              bonuses: new SchemaField({
                 level: new FormulaField({ deterministic: true, label: "SW5E.HullPointsBonusLevel" }),
                 overall: new FormulaField({ deterministic: true, label: "SW5E.HullPointsBonusOverall" }),
                 templevel: new FormulaField({ deterministic: true, label: "SW5E.ShieldPointsBonusLevel" }),
@@ -140,9 +161,9 @@ export default class StarshipData extends CommonTemplate {
             },
             { label: "SW5E.HullPoints" }
           ),
-          death: new foundry.data.fields.SchemaField(
+          death: new RollConfigField(
             {
-              success: new foundry.data.fields.NumberField({
+              success: new NumberField({
                 required: true,
                 nullable: false,
                 integer: true,
@@ -150,7 +171,7 @@ export default class StarshipData extends CommonTemplate {
                 initial: 0,
                 label: "SW5E.DestructionSaveSuccesses"
               }),
-              failure: new foundry.data.fields.NumberField({
+              failure: new NumberField({
                 required: true,
                 nullable: false,
                 integer: true,
@@ -161,7 +182,7 @@ export default class StarshipData extends CommonTemplate {
             },
             { label: "SW5E.DeathSave" }
           ),
-          systemDamage: new foundry.data.fields.NumberField({
+          systemDamage: new NumberField({
             required: true,
             nullable: false,
             integer: true,
@@ -169,25 +190,25 @@ export default class StarshipData extends CommonTemplate {
             initial: 0,
             label: "SW5E.SystemDamage"
           }),
-          deployment: new foundry.data.fields.SchemaField({
-            pilot: new foundry.data.fields.SchemaField({
+          deployment: new SchemaField({
+            pilot: new SchemaField({
               value: new UUIDField({ label: "SW5E.DeployedPilot", nullable: true }),
-              active: new foundry.data.fields.BooleanField()
+              active: new BooleanField()
             }),
-            crew: new foundry.data.fields.SchemaField({
-              items: new foundry.data.fields.SetField(new UUIDField({ label: "SW5E.DeployedCrew", nullable: true })),
-              active: new foundry.data.fields.BooleanField()
+            crew: new SchemaField({
+              items: new SetField(new UUIDField({ label: "SW5E.DeployedCrew", nullable: true })),
+              active: new BooleanField()
             }),
-            passenger: new foundry.data.fields.SchemaField({
-              items: new foundry.data.fields.SetField(new UUIDField({ label: "SW5E.DeployedPassenger", nullable: true })),
-              active: new foundry.data.fields.BooleanField()
+            passenger: new SchemaField({
+              items: new SetField(new UUIDField({ label: "SW5E.DeployedPassenger", nullable: true })),
+              active: new BooleanField()
             }),
-            active: new foundry.data.fields.SchemaField({
+            active: new SchemaField({
               value: new UUIDField({ label: "SW5E.DeployedActive", nullable: true })
             })
           }),
-          fuel: new foundry.data.fields.SchemaField({
-            value: new foundry.data.fields.NumberField({
+          fuel: new SchemaField({
+            value: new NumberField({
               required: true,
               nullable: false,
               integer: true,
@@ -195,14 +216,14 @@ export default class StarshipData extends CommonTemplate {
               initial: 0
             })
           }),
-          power: new foundry.data.fields.SchemaField({
-            routing: new foundry.data.fields.StringField({
+          power: new SchemaField({
+            routing: new StringField({
               required: true,
               nullable: false,
               initial: "none"
             }),
-            central: new foundry.data.fields.SchemaField({
-              value: new foundry.data.fields.NumberField({
+            central: new SchemaField({
+              value: new NumberField({
                 required: true,
                 nullable: false,
                 integer: true,
@@ -210,8 +231,8 @@ export default class StarshipData extends CommonTemplate {
                 initial: 0
               })
             }),
-            comms: new foundry.data.fields.SchemaField({
-              value: new foundry.data.fields.NumberField({
+            comms: new SchemaField({
+              value: new NumberField({
                 required: true,
                 nullable: false,
                 integer: true,
@@ -219,8 +240,8 @@ export default class StarshipData extends CommonTemplate {
                 initial: 0
               })
             }),
-            engines: new foundry.data.fields.SchemaField({
-              value: new foundry.data.fields.NumberField({
+            engines: new SchemaField({
+              value: new NumberField({
                 required: true,
                 nullable: false,
                 integer: true,
@@ -228,8 +249,8 @@ export default class StarshipData extends CommonTemplate {
                 initial: 0
               })
             }),
-            shields: new foundry.data.fields.SchemaField({
-              value: new foundry.data.fields.NumberField({
+            shields: new SchemaField({
+              value: new NumberField({
                 required: true,
                 nullable: false,
                 integer: true,
@@ -237,8 +258,8 @@ export default class StarshipData extends CommonTemplate {
                 initial: 0
               })
             }),
-            sensors: new foundry.data.fields.SchemaField({
-              value: new foundry.data.fields.NumberField({
+            sensors: new SchemaField({
+              value: new NumberField({
                 required: true,
                 nullable: false,
                 integer: true,
@@ -246,8 +267,8 @@ export default class StarshipData extends CommonTemplate {
                 initial: 0
               })
             }),
-            weapons: new foundry.data.fields.SchemaField({
-              value: new foundry.data.fields.NumberField({
+            weapons: new SchemaField({
+              value: new NumberField({
                 required: true,
                 nullable: false,
                 integer: true,
@@ -256,14 +277,14 @@ export default class StarshipData extends CommonTemplate {
               })
             })
           }),
-          used: new foundry.data.fields.BooleanField()
+          used: new BooleanField()
         },
         { label: "SW5E.Attributes" }
       ),
-      details: new foundry.data.fields.SchemaField(
+      details: new SchemaField(
         {
           ...DetailsFields.common,
-          source: new foundry.data.fields.StringField({ required: true, label: "SW5E.Source" }),
+          source: new StringField({ required: true, label: "SW5E.Source" }),
           starshipsize: new LocalDocumentField(foundry.documents.BaseItem, {
             required: true, fallback: true, label: "SW5E.StarshipSize"
           })
@@ -271,10 +292,10 @@ export default class StarshipData extends CommonTemplate {
         { label: "SW5E.Details"
         }),
       skills: new MappingField(
-        new foundry.data.fields.SchemaField({
-          value: new foundry.data.fields.NumberField({ required: true, initial: 0, label: "SW5E.ProficiencyLevel" }),
-          ability: new foundry.data.fields.StringField({ required: true, initial: "dex", label: "SW5E.Ability" }),
-          bonuses: new foundry.data.fields.SchemaField(
+        new RollConfigField({
+          value: new NumberField({ required: true, initial: 0, label: "SW5E.ProficiencyLevel" }),
+          ability: "dex",
+          bonuses: new SchemaField(
             {
               check: new FormulaField({ required: true, label: "SW5E.SkillBonusCheck" }),
               passive: new FormulaField({ required: true, label: "SW5E.SkillBonusPassive" })
@@ -284,7 +305,7 @@ export default class StarshipData extends CommonTemplate {
         }),
         { initialKeys: CONFIG.SW5E.starshipSkills, initialValue: this.#initialSkillValue }
       ),
-      traits: new foundry.data.fields.SchemaField(
+      traits: new SchemaField(
         {
           ci: TraitsFields.makeSimpleTrait({ label: "SW5E.ConImm" }),
           dr: TraitsFields.makeDamageTrait({ label: "SW5E.HullDamRes" }, { initial: ["ion", "lightning", "necrotic"] }),
@@ -295,10 +316,17 @@ export default class StarshipData extends CommonTemplate {
           sdi: TraitsFields.makeDamageTrait({ label: "SW5E.ShieldDamImm" }, { initial: ["poison", "psychic"] })
         },
         { label: "SW5E.Traits" }
-      )
+      ),
+      favorites: new ArrayField(new SchemaField({
+        type: new StringField({ required: true, blank: false }),
+        id: new StringField({ required: true, blank: false }),
+        sort: new IntegerSortField()
+      }), { label: "SW5E.Favorites" })
     });
   }
 
+  /* -------------------------------------------- */
+  /*  Data Migration                              */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
@@ -330,12 +358,165 @@ export default class StarshipData extends CommonTemplate {
     if (CONFIG.SW5E.starshipSkills[key]?.ability) initial.ability = CONFIG.SW5E.starshipSkills[key].ability;
     return initial;
   }
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  //TODO: Update this for starships
+  /** @inheritdoc */
+  prepareBaseData() {
+    this.details.level = 0;
+    this.attributes.hd = 0;
+    this.attributes.attunement.value = 0;
+
+    for ( const item of this.parent.items ) {
+      // Class levels & hit dice
+      if ( item.type === "class" ) {
+        const classLevels = parseInt(item.system.levels) || 1;
+        this.details.level += classLevels;
+        this.attributes.hd += classLevels - (parseInt(item.system.hitDiceUsed) || 0);
+      }
+
+      // Attuned items
+      else if ( item.system.attunement === CONFIG.SW5E.attunementTypes.ATTUNED ) {
+        this.attributes.attunement.value += 1;
+      }
+    }
+
+    // Character proficiency bonus
+    this.attributes.prof = Proficiency.calculateMod(this.details.level);
+
+    // Experience required for next level
+    const { xp, level } = this.details;
+    xp.max = this.parent.getLevelExp(level || 1);
+    xp.min = level ? this.parent.getLevelExp(level - 1) : 0;
+    if ( level >= CONFIG.SW5E.CHARACTER_EXP_LEVELS.length ) xp.pct = 100;
+    else {
+      const required = xp.max - xp.min;
+      const pct = Math.round((xp.value - xp.min) * 100 / required);
+      xp.pct = Math.clamped(pct, 0, 100);
+    }
+
+    AttributesFields.prepareBaseArmorClass.call(this);
+  }
+
+  /* -------------------------------------------- */
+
+  //TODO: Update this for starships
+  /**
+   * Prepare movement & senses values derived from species item.
+   */
+  prepareEmbeddedData() {
+    if ( this.details.species instanceof Item ) {
+      AttributesFields.prepareSpecies.call(this, this.details.species);
+      this.details.type = this.details.species.system.type;
+    } else {
+      this.attributes.movement.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
+      this.attributes.senses.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
+      this.details.type = new CreatureTypeField({ swarm: false }).initialize({ value: "humanoid" }, this);
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  //TODO: Update this for starships
+  /**
+   * Prepare remaining starship data.
+   */
+  prepareDerivedData() {
+    const rollData = this.getRollData({ deterministic: true });
+    const { originalSaves } = this.parent.getOriginalStats();
+
+    this.prepareAbilities({ rollData, originalSaves });
+    AttributesFields.prepareExhaustionLevel.call(this);
+    AttributesFields.prepareMovement.call(this);
+    AttributesFields.prepareConcentration.call(this, rollData);
+    TraitsFields.prepareResistImmune.call(this);
+
+    // Hit Points
+    const hpOptions = {};
+    if ( this.attributes.hp.max === null ) {
+      hpOptions.advancement = Object.values(this.parent.classes)
+        .map(c => c.advancement.byType.HitPoints?.[0]).filter(a => a);
+      hpOptions.bonus = (simplifyBonus(this.attributes.hp.bonuses.level, rollData) * this.details.level)
+        + simplifyBonus(this.attributes.hp.bonuses.overall, rollData);
+      hpOptions.mod = this.abilities[CONFIG.SW5E.defaultAbilities.hitPoints ?? "con"]?.mod ?? 0;
+    }
+    AttributesFields.prepareHitPoints.call(this, this.attributes.hp, hpOptions);
+  }
+
+  /* -------------------------------------------- */
+  /*  Helpers                                     */
+  /* -------------------------------------------- */
+  
+  //TODO: Update this for starships
+  /** @inheritdoc */
+  getRollData({ deterministic=false }={}) {
+    const data = super.getRollData({ deterministic });
+    data.classes = {};
+    for ( const [identifier, cls] of Object.entries(this.parent.classes) ) {
+      data.classes[identifier] = {...cls.system};
+      if ( cls.archetype ) data.classes[identifier].archetype = cls.archetype.system;
+    }
+    return data;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Checks whether the item with the given relative UUID has been favorited
+   * @param {string} favoriteId  The relative UUID of the item to check.
+   * @returns {boolean}
+   */
+  hasFavorite(favoriteId) {
+    return !!this.favorites.find(f => f.id === favoriteId);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Add a favorite item to this actor.
+   * If the given item is already favorite, this method has no effect.
+   * @param {ActorFavorites5e} favorite  The favorite to add.
+   * @returns {Promise<Actor5e>}
+   * @throws If the item intended to be favorited does not belong to this actor.
+   */
+  addFavorite(favorite) {
+    if ( this.hasFavorite(favorite.id) ) return Promise.resolve(this.parent);
+
+    if ( favorite.id.startsWith(".") && fromUuidSync(favorite.id, { relative: this.parent }) === null ) {
+      // Assume that an ID starting with a "." is a relative ID.
+      throw new Error(`The item with id ${favorite.id} is not owned by actor ${this.parent.id}`);
+    }
+
+    let maxSort = 0;
+    const favorites = this.favorites.map(f => {
+      if ( f.sort > maxSort ) maxSort = f.sort;
+      return { ...f };
+    });
+    favorites.push({ ...favorite, sort: maxSort + CONST.SORT_INTEGER_DENSITY });
+    return this.parent.update({ "system.favorites": favorites });
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Removes the favorite with the given relative UUID or resource ID
+   * @param {string} favoriteId  The relative UUID or resource ID of the favorite to remove.
+   * @returns {Promise<Actor5e>}
+   */
+  removeFavorite(favoriteId) {
+    if ( favoriteId.startsWith("resources.") ) return this.parent.update({ [`system.${favoriteId}.max`]: 0 });
+    const favorites = this.favorites.filter(f => f.id !== favoriteId);
+    return this.parent.update({ "system.favorites": favorites });
+  }
 }
 
 /* -------------------------------------------- */
 
 /**
- * Data structure for actor's attack bonuses.
+ * Data structure for starship's attack bonuses.
  *
  * @typedef {object} AttackBonusesData
  * @property {string} attack  Numeric or dice bonus to attack rolls.
@@ -347,8 +528,8 @@ export default class StarshipData extends CommonTemplate {
  * @param {object} schemaOptions  Options passed to the outer schema.
  * @returns {AttackBonusesData}
  */
-export function makeAttackBonuses(schemaOptions = {}) {
-  return new foundry.data.fields.SchemaField(
+function makeAttackBonuses(schemaOptions = {}) {
+  return new SchemaField(
     {
       attack: new FormulaField({ required: true, label: "SW5E.BonusAttack" }),
       damage: new FormulaField({ required: true, label: "SW5E.BonusDamage" })

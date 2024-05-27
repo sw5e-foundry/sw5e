@@ -6,7 +6,7 @@
  * @param {number} [options.advantageMode]  What advantage modifier to apply to the roll (none, advantage, disadvantage)
  * @param {number} [options.critical]       The value of d20 result which represents a critical success
  * @param {number} [options.fumble]         The value of d20 result which represents a critical failure
- * @param {number} [options.targetValue]    Assign a target value against which the result should be compared
+ * @param {number} [options.targetValue]    Assign a target value against which the result of this roll should be compared
  * @param {boolean} [options.elvenAccuracy=false]      Allow Elven Accuracy to modify this roll?
  * @param {boolean} [options.halflingLucky=false]      Allow Halfling Luck to modify this roll?
  * @param {boolean} [options.reliableTalent=false]     Allow Reliable Talent to modify this roll?
@@ -173,6 +173,7 @@ export default class D20Roll extends Roll {
 
   /** @inheritdoc */
   async toMessage(messageData = {}, options = {}) {
+
     // Evaluate the roll now so we have the results available to determine whether reliable talent came into play
     if (!this._evaluated) await this.evaluate({ async: true });
 
@@ -230,7 +231,7 @@ export default class D20Roll extends Roll {
   ) {
     // Render the Dialog inner HTML
     const content = await renderTemplate(template ?? this.constructor.EVALUATION_TEMPLATE, {
-      formula: `${this.formula} + @bonus`,
+      formulas: [{formula: `${this.formula} + @bonus`}],
       defaultRollMode,
       rollModes: CONFIG.Dice.rollModes,
       chooseModifier,

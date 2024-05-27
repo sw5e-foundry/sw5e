@@ -161,7 +161,7 @@ export default class AttribDieRoll extends Roll {
   ) {
     // Render the Dialog inner HTML
     const content = await renderTemplate(template ?? this.constructor.EVALUATION_TEMPLATE, {
-      formula: `${this.formula} + @bonus`,
+      formulas: [{formula: `${this.formula} + @bonus`}],
       defaultRollMode,
       rollModes: CONFIG.Dice.rollModes,
       chooseModifier,
@@ -229,8 +229,16 @@ export default class AttribDieRoll extends Roll {
     // Customize the modifier
     if (form.ability?.value) {
       const abl = this.data.abilities[form.ability.value];
-      this.terms.findSplice(t => t.term === "@mod", new NumericTerm({ number: abl.mod }));
-      this.options.flavor += ` (${CONFIG.SW5E.abilities[form.ability.value]})`;
+      this.terms = this.terms.flatMap(t => {
+        if ( t.term === "@mod" ) return new NumericTerm({number: abl.mod});
+        if ( t.term === "@abilityCheckBonus" ) {
+          const bonus = abl.bonuses?.check;
+          if ( bonus ) return new Roll(bonus, this.data).terms;
+          return new NumericTerm({number: 0});
+        }
+        return t;
+      });
+      this.options.flavor += ` (${CONFIG.SW5E.abilities[form.ability.value]?.label ?? ""})`;
     }
 
     // Apply advantage or disadvantage

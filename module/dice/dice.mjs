@@ -78,6 +78,7 @@ export async function d20Roll({
   rollMode,
   flavor
 } = {}) {
+
   // Handle input arguments
   const formula = ["1d20"].concat(parts).join(" + ");
   const {advantageMode, isFF} = CONFIG.Dice.D20Roll.determineAdvantageMode({
@@ -124,6 +125,11 @@ export async function d20Roll({
 
   // Evaluate the configured roll
   await roll.evaluate({ async: true });
+
+  // Attach original message ID to the message
+  messageData = foundry.utils.expandObject(messageData);
+  const messageId = event?.target.closest("[data-message-id]")?.dataset.messageId;
+  if ( messageId ) foundry.utils.setProperty(messageData, "flags.sw5e.originatingMessage", messageId);
 
   // Create a Chat Message
   if (roll && chatMessage) await roll.toMessage(messageData);
@@ -218,6 +224,11 @@ export async function attribDieRoll({
   // Evaluate the configured roll
   await roll.evaluate({ async: true });
 
+  // Attach original message ID to the message
+  messageData = foundry.utils.expandObject(messageData);
+  const messageId = event?.target.closest("[data-message-id]")?.dataset.messageId;
+  if ( messageId ) foundry.utils.setProperty(messageData, "flags.sw5e.originatingMessage", messageId);
+
   // Create a Chat Message
   if (roll && chatMessage) await roll.toMessage(messageData);
   return roll;
@@ -260,9 +271,11 @@ function _determineAttribDieAdvantageMode({
  *
  * @typedef {object} DamageRollConfiguration
  *
+ * @property {SingleDamageRollConfiguration[]} [rollConfigs=[]]  Separate roll configurations for different damages.
  * @property {string[]} [parts=[]]  The dice roll component parts.
  * @property {object} [data={}]     Data that will be used when parsing this roll.
  * @property {Event} [event]        The triggering event for this roll.
+ * @property {boolean} [returnMultiple=false] Should multiple rolls be returned, or only the first?
  *
  * ## Critical Handling
  * @property {boolean} [allowCritical=true]  Is this damage roll allowed to be rolled as critical?
@@ -287,17 +300,28 @@ function _determineAttribDieAdvantageMode({
  */
 
 /**
+ * Configuration data for a single damage roll.
+ *
+ * @typedef {object} SingleDamageRollConfiguration
+ * @property {string[]} parts         The dice roll component parts.
+ * @property {string} [type]          Damage type represented by the roll.
+ * @property {string[]} [properties]  Physical properties of the damage source (e.g. magical, silvered).
+ */
+
+/**
  * A standardized helper function for managing core 5e damage rolls.
  * Holding SHIFT, ALT, or CTRL when the attack is rolled will "fast-forward".
  * This chooses the default options of a normal attack with no bonus, Critical, or no bonus respectively
  *
- * @param {DamageRollConfiguration} configuration  Configuration data for the Damage roll.
- * @returns {Promise<DamageRoll|null>}             The evaluated DamageRoll, or null if the workflow was canceled
+ * @param {DamageRollConfiguration} configuration    Configuration data for the Damage roll.
+ * @returns {Promise<DamageRoll|DamageRoll[]|null>}  The evaluated DamageRoll, or null if the workflow was canceled
  */
 export async function damageRoll({
+  rollConfigs=[],
   parts = [],
-  data,
+  data = {},
   event,
+  returnMultiple=false,
   allowCritical = true,
   critical,
   criticalBonusDice,
@@ -314,29 +338,37 @@ export async function damageRoll({
   rollMode,
   flavor
 } = {}) {
+
   // Handle input arguments
   const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
 
-  // Construct the DamageRoll instance
-  const formula = parts.join(" + ");
+  // If parts are still provided, treat it as the first roll
+  if ( parts.length ) rollConfigs.unshift({ parts });
+
   const { isCritical, isFF } = _determineCriticalMode({ critical, fastForward, event });
-  const roll = new CONFIG.Dice.DamageRoll(formula, data, {
-    flavor: flavor || title,
-    rollMode,
-    critical: isFF ? isCritical : false,
-    criticalBonusDice,
-    criticalMultiplier,
-    criticalBonusDamage,
-    multiplyNumeric: multiplyNumeric ?? game.settings.get("sw5e", "criticalDamageModifiers"),
-    powerfulCritical: powerfulCritical ?? game.settings.get("sw5e", "criticalDamageMaxDice")
-  });
+  const rolls = [];
+  flavor ??= title;
+  multiplyNumeric ??= game.settings.get("sw5e", "criticalDamageModifiers");
+  powerfulCritical ??= game.settings.get("sw5e", "criticalDamageMaxDice");
+  critical = isFF ? isCritical : false;
+  for ( const [index, { parts, type, properties }] of rollConfigs.entries() ) {
+    const formula = parts.join(" + ");
+    const rollOptions = {
+      flavor, rollMode, critical, criticalMultiplier, multiplyNumeric, powerfulCritical, type, properties
+    };
+    if ( index === 0 ) {
+      rollOptions.criticalBonusDice = criticalBonusDice;
+      rollOptions.criticalBonusDamage = criticalBonusDamage;
+    }
+    if ( formula ) rolls.push(new CONFIG.Dice.DamageRoll(formula, data, rollOptions));
+  }
 
   // Prompt a Dialog to further configure the DamageRoll
   if (!isFF) {
-    const configured = await roll.configureDialog(
+    const configured = await CONFIG.Dice.DamageRoll.configureDialog(rolls,
       {
         title,
-        defaultRollMode,
+        defaultRollMode: defaultRollMode,
         defaultCritical: isCritical,
         template,
         allowCritical
@@ -347,11 +379,35 @@ export async function damageRoll({
   }
 
   // Evaluate the configured roll
-  await roll.evaluate({ async: true });
+  for ( const roll of rolls ) {
+    await roll.evaluate({async: true});
+  }
+
+  // Attach original message ID to the message
+  messageData = foundry.utils.expandObject(messageData);
+  const messageId = event?.target.closest("[data-message-id]")?.dataset.messageId;
+  if ( messageId ) foundry.utils.setProperty(messageData, "flags.sw5e.originatingMessage", messageId);
 
   // Create a Chat Message
-  if (roll && chatMessage) await roll.toMessage(messageData);
-  return roll;
+  if ( rolls?.length && chatMessage ) await CONFIG.Dice.DamageRoll.toMessage(rolls, messageData, { rollMode });
+  if ( returnMultiple ) return rolls;
+  if ( rolls?.length <= 1 ) return rolls[0];
+
+  const mergedRoll = new CONFIG.Dice.DamageRoll();
+  mergedRoll._total = 0;
+  for ( const roll of rolls ) {
+    if ( mergedRoll.terms.length ) {
+      const operator = new OperatorTerm({operator: "+"});
+      operator._evaluated = true;
+      mergedRoll.terms.push(operator);
+    }
+    mergedRoll.terms.push(...roll.terms);
+    mergedRoll._total += roll.total;
+    mergedRoll.options = foundry.utils.mergeObject(roll.options, mergedRoll.options, { inplace: false });
+  }
+  mergedRoll._evaluated = true;
+  mergedRoll.resetFormula();
+  return mergedRoll;
 }
 
 /* -------------------------------------------- */

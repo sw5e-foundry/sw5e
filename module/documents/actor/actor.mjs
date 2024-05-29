@@ -854,7 +854,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       const povr = `${castType}override`;
       for ( const level of Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1) ) {
         const slot = powers[`power${level}`];
-
+        slot.level =  level;
         const override = Number.isNumeric(slot[povr]) ? Math.max(parseInt(slot[povr]), 0) : null;
         if ( Number.isNumeric(override) ) {
           if ( this.type === "npc" || slot[pval] === slot[pmax] ) slot[pval] = override;
@@ -989,19 +989,20 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // Configure prototype token settings
     const prototypeToken = {};
     if ("size" in (this.system.traits || {})) {
-      const size = CONFIG.SW5E.tokenSizes[this.system.traits.size || "med"];
+      const size = CONFIG.SW5E.actorSizes[this.system.traits.size || "med"].token ?? 1;
       if ( !foundry.utils.hasProperty(data, "prototypeToken.width") ) prototypeToken.width = size;
       if ( !foundry.utils.hasProperty(data, "prototypeToken.height") ) prototypeToken.height = size;
-      if ( this.type === "character" ) Object.assign(prototypeToken, {
-        sight: { enabled: true },
-        actorLink: true,
-        disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
-      });
-      else if (this.type === "starship") Object.assign(prototypeToken, {
-        actorLink: true
-      });
-      this.updateSource({ prototypeToken });
     }
+    if ( this.type === "character" ) Object.assign(prototypeToken, {
+      sight: { enabled: true },
+      actorLink: true,
+      disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+    });
+    else if (this.type === "starship") Object.assign(prototypeToken, {
+      actorLink: true
+    });
+    this.updateSource({ prototypeToken });
+    
   }
 
   /* -------------------------------------------- */
@@ -1024,7 +1025,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if ("size" in (this.system.traits || {})) {
       const newSize = foundry.utils.getProperty(changed, "system.traits.size");
       if (newSize && newSize !== this.system.traits?.size) {
-        let size = CONFIG.SW5E.tokenSizes[newSize];
+        let size = CONFIG.SW5E.actorSizes[newSize].token ?? 1;
         if (!foundry.utils.hasProperty(changed, "prototypeToken.width")) {
           changed.prototypeToken ||= {};
           changed.prototypeToken.height = size;
@@ -1033,13 +1034,19 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       }
     }
 
-    // Reset death save counters
+    // Reset death save counters and store hp
     if ("hp" in (this.system.attributes || {})) {
       const isDead = this.system.attributes.hp.value <= 0;
       if (isDead && foundry.utils.getProperty(changed, "system.attributes.hp.value") > 0) {
         foundry.utils.setProperty(changed, "system.attributes.death.success", 0);
         foundry.utils.setProperty(changed, "system.attributes.death.failure", 0);
       }
+      foundry.utils.setProperty(options, "sw5e.hp", { ...this.system.attributes.hp });
+    }
+
+    // Record previous exhaustion level.
+    if ( Number.isFinite(foundry.utils.getProperty(changed, "system.attributes.exhaustion")) ) {
+      foundry.utils.setProperty(options, "sw5e.originalExhaustion", this.system.attributes.exhaustion);
     }
   }
 
@@ -1065,7 +1072,13 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if (attribute === "attributes.hp") {
       const hp = this.system.attributes.hp;
       const delta = isDelta ? -1 * value : hp.value + hp.temp - value;
-      return this.applyDamage(Math.abs(delta), delta >= 0 ? 1 : -1);
+      return this.applyDamage(delta);
+    } else if ( attribute.startsWith(".") ) {
+      const item = fromUuidSync(attribute, { relative: this });
+      let newValue = item?.system.uses?.value ?? 0;
+      if ( isDelta ) newValue += value;
+      else newValue = value;
+      return item?.update({ "system.uses.value": newValue });
     }
     return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
   }
@@ -1073,38 +1086,177 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /* -------------------------------------------- */
 
   /**
-   * Apply a certain amount of damage or healing to the health pool for Actor
-   * @param {number} amount           An amount of damage (positive) or healing (negative) to sustain
-   * @param {number} multiplier       A multiplier which allows for resistance, vulnerability, or healing
-   * @param {object} cfg
-   * @param {string} [cfg.damageType] The damage type, will override multiplier if defined
-   * @param {string} [cfg.itemUuid]   The uuid of the item dealing the damage
-   * @returns {Promise<Actor5e>}      A Promise which resolves once the damage has been applied
+   * Description of a source of damage.
+   *
+   * @typedef {object} DamageDescription
+   * @property {number} value            Amount of damage.
+   * @property {string} type             Type of damage.
+   * @property {Set<string>} properties  Physical properties that affect damage application.
+   * @property {object} [active]
+   * @property {number} [active.multiplier]      Final calculated multiplier.
+   * @property {boolean} [active.modifications]  Did modification affect this description?
+   * @property {boolean} [active.resistance]     Did resistance affect this description?
+   * @property {boolean} [active.vulnerability]  Did vulnerability affect this description?
+   * @property {boolean} [active.immunity]       Did immunity affect this description?
    */
-  async applyDamage(amount = 0, multiplier = 1, { damageType = null, itemUuid = null } = {}) {
-    const traits = this.system.traits;
+
+  /**
+   * Options for damage application.
+   *
+   * @typedef {object} DamageApplicationOptions
+   * @property {boolean|Set<string>} [downgrade]  Should this actor's resistances and immunities be downgraded by one
+   *                                              step? A set of damage types to be downgraded or `true` to downgrade
+   *                                              all damage types.
+   * @property {number} [multiplier=1]         Amount by which to multiply all damage.
+   * @property {object|boolean} [ignore]       Set to `true` to ignore all damage modifiers. If set to an object, then
+   *                                           values can either be `true` to indicate that the all modifications of
+   *                                           that type should be ignored, or a set of specific damage types for which
+   *                                           it should be ignored.
+   * @property {boolean|Set<string>} [ignore.immunity]       Should this actor's damage immunity be ignored?
+   * @property {boolean|Set<string>} [ignore.resistance]     Should this actor's damage resistance be ignored?
+   * @property {boolean|Set<string>} [ignore.vulnerability]  Should this actor's damage vulnerability be ignored?
+   * @property {boolean|Set<string>} [ignore.modification]   Should this actor's damage modification be ignored?
+   * @property {boolean} [invertHealing=true]  Automatically invert healing types to it heals, rather than damages.
+   * @property {"damage"|"healing"} [only]     Apply only damage or healing parts. Untyped rolls will always be applied.
+   */
+
+  /**
+   * Apply a certain amount of damage or healing to the health pool for Actor
+   * @param {DamageDescription[]|number} damages     Damages to apply.
+   * @param {DamageApplicationOptions} [options={}]  Damage application options.
+   * @returns {Promise<Actor5e>}                     A Promise which resolves once the damage has been applied.
+   */
+  async applyDamage(damages, options={}) {
     const hp = this.system.attributes.hp;
     if (!hp) return this; // Group actors don't have HP at the moment
-    const updates = {};
 
-    amount = parseInt(amount) || 0;
-    if (amount <= 0) return this;
+    if ( foundry.utils.getType(options) !== "Object" ) {
+      foundry.utils.logCompatibilityWarning(
+        "Actor5e.applyDamage now takes an options object as its second parameter with `multiplier` as an parameter.",
+        { since: "SW5e 3.0", until: "SW5e 3.2" }
+      );
+      options = { multiplier: options };
+    }
 
-    if (damageType) damageType = damageType.toLowerCase();
+    if ( Number.isNumeric(damages) ) {
+      damages = [{ value: damages }];
+      options.ignore ??= true;
+    }
 
-    if (multiplier > 0) {
-      // Apply Damage Reduction
-      if (this.type === "starship" && itemUuid) {
-        // TODO SW5E: maybe expand this to work with characters as well?
-        const dr = this.system?.attributes?.equip?.armor?.dr ?? 0;
-        // Starship damage resistance applies only to attacks
-        const item = fromUuidSynchronous(itemUuid);
-        if (item && ["mwak", "rwak"].includes(item.system.actionType)) {
-          amount = Math.max(1, amount - dr);
-        }
+    damages = this.calculateDamage(damages, options);
+    if ( !damages ) return this;
+
+    // Round damage towards zero
+    let amount = damages.reduce((acc, d) => acc + d.value, 0);
+    amount = amount > 0 ? Math.floor(amount) : Math.ceil(amount);
+
+    // Apply Damage Reduction
+    if (this.type === "starship") {
+      // TODO SW5E: maybe expand this to work with characters as well?
+      const dr = this.system?.attributes?.equip?.armor?.dr ?? 0;
+      const itemUuid = damages[0].properties.uuid;
+      // Starship damage resistance applies only to attacks
+      const item = fromUuidSynchronous(itemUuid);
+      if (item && ["mwak", "rwak"].includes(item.system.actionType)) {
+        amount = Math.max(1, amount - dr);
       }
+    }
 
-      // Deduct damage from temp HP first
+      const deltaTemp = amount > 0 ? Math.min(hp.temp, amount) : 0;
+      const deltaHP = Math.clamped(amount - deltaTemp, -hp.damage, hp.value);
+      const updates = {
+        "system.attributes.hp.temp": hp.temp - deltaTemp,
+        "system.attributes.hp.value": hp.value - deltaHP
+      };
+  
+      /**
+       * A hook event that fires before damage is applied to an actor.
+       * @param {Actor5e} actor                     Actor the damage will be applied to.
+       * @param {number} amount                     Amount of damage that will be applied.
+       * @param {object} updates                    Distinct updates to be performed on the actor.
+       * @param {DamageApplicationOptions} options  Additional damage application options.
+       * @returns {boolean}                         Explicitly return `false` to prevent damage application.
+       * @function sw5e.preApplyDamage
+       * @memberof hookEvents
+       */
+      if ( Hooks.call("sw5e.preApplyDamage", this, amount, updates, options) === false ) return this;
+  
+      // Delegate damage application to a hook
+      // TODO: Replace this in the future with a better modifyTokenAttribute function in the core
+      if ( Hooks.call("modifyTokenAttribute", {
+        attribute: "attributes.hp",
+        value: amount,
+        isDelta: false,
+        isBar: true
+      }, updates) === false ) return this;
+  
+      await this.update(updates);
+  
+      /**
+       * A hook event that fires after damage has been applied to an actor.
+       * @param {Actor5e} actor                     Actor that has been damaged.
+       * @param {number} amount                     Amount of damage that has been applied.
+       * @param {DamageApplicationOptions} options  Additional damage application options.
+       * @function sw5e.applyDamage
+       * @memberof hookEvents
+       */
+      Hooks.callAll("sw5e.applyDamage", this, amount, options);
+  
+      return this;
+    }
+  
+    /* -------------------------------------------- */
+
+  /**
+   * Calculate the damage that will be applied to this actor.
+   * @param {DamageDescription[]} damages            Damages to calculate.
+   * @param {DamageApplicationOptions} [options={}]  Damage calculation options.
+   * @returns {DamageDescription[]|false}            New damage descriptions with changes applied, or `false` if the
+   *                                                 calculation was canceled.
+   */
+  calculateDamage(damages, options={}) {
+    damages = foundry.utils.deepClone(damages);
+
+    /**
+     * A hook event that fires before damage amount is calculated for an actor.
+     * @param {Actor5e} actor                     The actor being damaged.
+     * @param {DamageDescription[]} damages       Damage descriptions.
+     * @param {DamageApplicationOptions} options  Additional damage application options.
+     * @returns {boolean}                         Explicitly return `false` to prevent damage application.
+     * @function sw5e.preCalculateDamage
+     * @memberof hookEvents
+     */
+    if ( Hooks.call("sw5e.preCalculateDamage", this, damages, options) === false ) return false;
+
+    const multiplier = options.multiplier ?? 1;
+
+    const downgrade = type => options.downgrade === true || options.downgrade?.has?.(type);
+    const ignore = (category, type, skipDowngrade) => {
+      return options.ignore === true
+        || options.ignore?.[category] === true
+        || options.ignore?.[category]?.has?.(type)
+        || ((category === "immunity") && downgrade(type) && !skipDowngrade)
+        || ((category === "resistance") && downgrade(type) && !hasEffect("di", type));
+    };
+
+    const traits = this.system.traits ?? {};
+    const hasEffect = (category, type, properties) => {
+      if ( (category === "dr") && downgrade(type) && hasEffect("di", type, properties)
+        && !ignore("immunity", type, true) ) return true;
+      const config = traits[category];
+      if ( !config?.value.has(type) ) return false;
+      if ( !CONFIG.SW5E.damageTypes[type]?.isPhysical || !properties?.size ) return true;
+      return !config.bypasses?.intersection(properties)?.size;
+    };
+
+    const skipped = type => {
+      if ( options.only === "damage" ) return type in CONFIG.SW5E.healingTypes;
+      if ( options.only === "healing" ) return type in CONFIG.SW5E.damageTypes;
+      return false;
+    };
+
+    const rollData = this.getRollData({deterministic: true});
+    /*Deduct damage from temp HP first
       const tmp = parseInt(hp.temp) || 0;
       let tmpMult = multiplier;
       if (damageType) {
@@ -1127,36 +1279,57 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         else hpMult = 1;
       }
       const hpDamage = Math.floor(Math.min(hpCur, amount * hpMult));
+    */
+    damages.forEach(d => {
+      // Skip damage types with immunity
+      if ( skipped(d.type) || (!ignore("immunity", d.type) && hasEffect("di", d.type, d.properties)) ) {
+        d.value = 0;
+        d.active = { multiplier: 0, immunity: true };
+        return;
+      }
+      d.active = {};
 
-      // Prepare updates
-      updates["system.attributes.hp.temp"] = tmp - tmpDamage;
-      updates["system.attributes.hp.value"] = hpCur - hpDamage;
+      // Apply type-specific damage reduction
+      if ( !ignore("modification", d.type) && traits.dm?.amount[d.type] ) {
+        const modification = simplifyBonus(traits.dm.amount[d.type], rollData);
+        if ( Math.sign(d.value) !== Math.sign(d.value + modification) ) d.value = 0;
+        else d.value += modification;
+        d.active.modification = true;
+      }
 
-      amount = tmpDamage + hpDamage;
-    } else {
-      // Calculate healing
-      const hpMax = (parseInt(hp.max) || 0) + (parseInt(hp.tempmax) || 0);
-      const hpCur = parseInt(hp.value) || 0;
-      const heal = Math.floor(amount * -multiplier);
+      let damageMultiplier = multiplier;
 
-      // Prepare updates
-      updates["system.attributes.hp.value"] = Math.min(hpCur + heal, hpMax);
-      amount = -heal;
-    }
+      // Apply type-specific damage resistance
+      if ( !ignore("resistance", d.type) && hasEffect("dr", d.type, d.properties) ) {
+        damageMultiplier /= 2;
+        d.active.resistance = true;
+      }
 
-    // Delegate damage application to a hook
-    // TODO replace this in the future with a better modifyTokenAttribute function in the core
-    const allowed = Hooks.call(
-      "modifyTokenAttribute",
-      {
-        attribute: "attributes.hp",
-        value: amount,
-        isDelta: false,
-        isBar: true
-      },
-      updates
-    );
-    return allowed !== false ? await this.update(updates, { dhp: -amount }) : this;
+      // Apply type-specific damage vulnerability
+      if ( !ignore("vulnerability", d.type) && hasEffect("dv", d.type, d.properties) ) {
+        damageMultiplier *= 2;
+        d.active.vulnerability = true;
+      }
+
+      // Negate healing types
+      if ( (options.invertHealing !== false) && (d.type === "healing") ) damageMultiplier *= -1;
+
+      d.value = d.value * damageMultiplier;
+      d.active.multiplier = damageMultiplier;
+    });
+
+    /**
+     * A hook event that fires after damage values are calculated for an actor.
+     * @param {Actor5e} actor                     The actor being damaged.
+     * @param {DamageDescription[]} damages       Damage descriptions.
+     * @param {DamageApplicationOptions} options  Additional damage application options.
+     * @returns {boolean}                         Explicitly return `false` to prevent damage application.
+     * @function sw5e.calculateDamage
+     * @memberof hookEvents
+     */
+    if ( Hooks.call("sw5e.calculateDamage", this, damages, options) === false ) return false;
+
+    return damages;
   }
 
   /* -------------------------------------------- */
@@ -1173,23 +1346,6 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // Update the actor if the new amount is greater than the current
     const tmp = parseInt(hp.temp) || 0;
     return amount > tmp ? this.update({ "system.attributes.hp.temp": amount }) : this;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Apply an array of damages to the health pool of the Actor
-   * @param {{Number: amount, String: type}[]} damages    Amount and Types of the damages to apply
-   * @param {string} [itemUuid]                           The uuid of the item dealing the damage
-   */
-  async applyDamages(damages, itemUuid = null) {
-    for (const damage of damages) {
-      await this.applyDamage(Math.abs(damage.amount), damage.amount >= 0 ? 1 : -1, {
-        damageType: damage.type,
-        itemUuid
-      });
-    }
-    return this;
   }
 
   /* -------------------------------------------- */

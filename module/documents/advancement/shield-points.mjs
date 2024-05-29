@@ -42,15 +42,6 @@ export default class ShieldPointsAdvancement extends HitPointsAdvancement {
   }
 
   /* -------------------------------------------- */
-  /*  Editing Methods                             */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static availableForItem(item) {
-    return !item.advancement.byType.ShieldPoints?.length;
-  }
-
-  /* -------------------------------------------- */
   /*  Display Methods                             */
   /* -------------------------------------------- */
 
@@ -72,6 +63,15 @@ export default class ShieldPointsAdvancement extends HitPointsAdvancement {
       const quant = this.quantForLevel(level);
       return total + Math.max(this.valueForLevel(parseInt(level)) + (quant * mod), quant);
     }, 0);
+  }
+
+  /* -------------------------------------------- */
+  /*  Editing Methods                             */
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static availableForItem(item) {
+    return !item.advancement.byType.ShieldPoints?.length;
   }
 
   /* -------------------------------------------- */

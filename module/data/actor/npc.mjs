@@ -375,7 +375,6 @@ export default class NPCData extends CreatureTemplate {
   /*  Data Preparation                            */
   /* -------------------------------------------- */
   
-  //TODO: update this from where it was pulled from
   /** @inheritdoc */
   prepareBaseData() {
     this.details.level = 0;
@@ -385,6 +384,11 @@ export default class NPCData extends CreatureTemplate {
       if ( item.type === "class" ) {
         const classLevels = parseInt(item.system.levels) ?? 1;
         this.details.level += classLevels;
+      }
+
+      if ( item.type === "deployment" ) {
+        const deploymentRanks = parseInt(item.system.ranks) ?? 0;
+        this.details.ranks += deploymentRanks;
       }
 
       // Attuned items
@@ -400,12 +404,9 @@ export default class NPCData extends CreatureTemplate {
     // Proficiency
     this.attributes.prof = Proficiency.calculateMod(Math.max(this.details.cr, this.details.level, 1));
 
-    // Powercaster Level
-    if ( this.attributes.powercasting && !Number.isNumeric(this.details.powerLevel) ) {
-      this.details.powerLevel = Math.max(this.details.cr, 1);
-    }
-
     AttributesFields.prepareBaseArmorClass.call(this);
+    AttributesFields.prepareBasePowercasting.call(this);
+    AttributesFields.prepareBaseSuperiority.call(this);
   }
 
   /* -------------------------------------------- */

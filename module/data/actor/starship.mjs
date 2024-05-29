@@ -1,5 +1,4 @@
-import Proficiency from "../../documents/actor/proficiency.mjs";
-import { simplifyBonus } from "../../utils.mjs";
+import { simplifyBonus, fromUuidSynchronous } from "../../utils.mjs";
 import { FormulaField, MappingField, UUIDField, LocalDocumentField } from "../fields.mjs";
 import RollConfigField from "../shared/roll-config-field.mjs";
 import AttributesFields from "./templates/attributes.mjs";
@@ -363,42 +362,117 @@ export default class StarshipData extends CommonTemplate {
   /*  Data Preparation                            */
   /* -------------------------------------------- */
 
-  //TODO: Update this for starships
   /** @inheritdoc */
   prepareBaseData() {
-    this.details.level = 0;
-    this.attributes.hd = 0;
-    this.attributes.attunement.value = 0;
+    
+    // Determine starship's proficiency bonus based on active deployed crew member
+    this.attributes.prof = 0;
+    const active = this.attributes.deployment.active;
+    const actor = fromUuidSynchronous(active.value);
+    if (actor?.system?.details?.ranks) this.attributes.prof = actor.system.attributes?.prof ?? 0;
 
-    for ( const item of this.parent.items ) {
-      // Class levels & hit dice
-      if ( item.type === "class" ) {
-        const classLevels = parseInt(item.system.levels) || 1;
-        this.details.level += classLevels;
-        this.attributes.hd += classLevels - (parseInt(item.system.hitDiceUsed) || 0);
+    // Determine Starship size-based properties based on owned Starship item
+    const sizeData = this.itemTypes.starshipsize[0]?.system ?? {};
+    const hugeOrGrg = ["huge", "grg"].includes(sizeData.size);
+    const tiers = parseInt(sizeData.tier ?? 0);
+
+    this.traits.size = sizeData.size ?? "med"; // Needs to be the short code
+    this.details.tier = tiers;
+
+    this.attributes.cost = {
+      baseBuild: sizeData.buildBaseCost ?? 0,
+      baseUpgrade: CONFIG.SW5E.ssBaseUpgradeCost[tiers],
+      multEquip: sizeData.equipCostMult ?? 1,
+      multModification: sizeData.modCostMult ?? 1,
+      multUpgrade: sizeData.upgrdCostMult ?? 1
+    };
+
+    this.attributes.equip = {
+      size: {
+        cargoCap: sizeData.cargoCap ?? 0,
+        crewMinWorkforce: parseInt(sizeData.crewMinWorkforce ?? 1),
+        foodCap: sizeData.foodCap ?? 0
       }
+    };
 
-      // Attuned items
-      else if ( item.system.attunement === CONFIG.SW5E.attunementTypes.ATTUNED ) {
-        this.attributes.attunement.value += 1;
-      }
-    }
+    this.attributes.fuel.cost = sizeData.fuelCost ?? 0;
+    this.attributes.fuel.fuelCap = sizeData.fuelCap ?? 0;
 
-    // Character proficiency bonus
-    this.attributes.prof = Proficiency.calculateMod(this.details.level);
+    const hullmax = (sizeData.hullDiceStart ?? 0) + ((hugeOrGrg ? 2 : 1) * tiers);
+    this.attributes.hull = {
+      die: sizeData.hullDice ?? "d1",
+      dicemax: hullmax,
+      dice: hullmax - parseInt(sizeData.hullDiceUsed ?? 0)
+    };
 
-    // Experience required for next level
-    const { xp, level } = this.details;
-    xp.max = this.parent.getLevelExp(level || 1);
-    xp.min = level ? this.parent.getLevelExp(level - 1) : 0;
-    if ( level >= CONFIG.SW5E.CHARACTER_EXP_LEVELS.length ) xp.pct = 100;
-    else {
-      const required = xp.max - xp.min;
-      const pct = Math.round((xp.value - xp.min) * 100 / required);
-      xp.pct = Math.clamped(pct, 0, 100);
-    }
+    const shldmax = (sizeData.shldDiceStart ?? 0) + ((hugeOrGrg ? 2 : 1) * tiers);
+    this.attributes.shld = {
+      die: sizeData.shldDice ?? "d1",
+      dicemax: shldmax,
+      dice: shldmax - parseInt(sizeData.shldDiceUsed ?? 0)
+    };
 
-    AttributesFields.prepareBaseArmorClass.call(this);
+    this.attributes.mods = {
+      cap: { max: sizeData.modBaseCap ?? 0 },
+      suite: { max: sizeData.modMaxSuitesBase ?? 0 },
+      hardpoint: { max: 0 }
+    };
+
+    this.attributes.power.die = CONFIG.SW5E.powerDieTypes[tiers];
+
+    this.attributes.workforce = {
+      minBuild: sizeData.buildMinWorkforce ?? 0,
+      minEquip: sizeData.equipMinWorkforce ?? 0,
+      minModification: sizeData.modMinWorkforce ?? 0,
+      minUpgrade: sizeData.upgrdMinWorkforce ?? 0
+    };
+    this.attributes.workforce.max = this.attributes.workforce.minBuild * 5;
+
+    // Determine Starship armor-based properties based on owned Starship item
+    const armorData = this.getEquipment("starship", { equipped: true })?.[0]?.system ?? {};
+    this.attributes.equip.armor = {
+      dr: parseInt(armorData.attributes?.dmgred?.value ?? 0),
+      maxDex: armorData.armor?.dex ?? 99,
+      stealthDisadv: armorData.stealth ?? false
+    };
+
+    // Determine Starship hyperdrive-based properties based on owned Starship item
+    const hyperdriveData = this.getEquipment("hyper", { equipped: true })?.[0]?.system ?? {};
+    this.attributes.equip.hyperdrive = {
+      class: parseFloat(hyperdriveData.attributes?.hdclass?.value ?? null)
+    };
+
+    // Determine Starship power coupling-based properties based on owned Starship item
+    const pwrcplData = this.getEquipment("powerc", { equipped: true })?.[0]?.system ?? {};
+    this.attributes.equip.powerCoupling = {
+      centralCap: parseInt(pwrcplData.attributes?.cscap?.value ?? 0),
+      systemCap: parseInt(pwrcplData.attributes?.sscap?.value ?? 0)
+    };
+
+    this.attributes.power.central.max = 0;
+    this.attributes.power.comms.max = 0;
+    this.attributes.power.engines.max = 0;
+    this.attributes.power.shields.max = 0;
+    this.attributes.power.sensors.max = 0;
+    this.attributes.power.weapons.max = 0;
+
+    // Determine Starship reactor-based properties based on owned Starship item
+    const reactorData = this.getEquipment("reactor", { equipped: true })?.[0]?.system ?? {};
+    this.attributes.equip.reactor = {
+      fuelMult: parseFloat(reactorData.attributes?.fuelcostsmod?.value ?? 1),
+      powerRecDie: reactorData.attributes?.powerdicerec?.value ?? "1d1"
+    };
+
+    // Determine Starship shield-based properties based on owned Starship item
+    const shieldData = this.getEquipment("ssshield", { equipped: true })?.[0]?.system ?? {};
+    this.attributes.equip.shields = {
+      capMult: parseFloat(shieldData.attributes?.capx?.value ?? 0),
+      regenRateMult: parseFloat(shieldData.attributes?.regrateco?.value ?? 0)
+    };
+
+    // Inherit deployed pilot's proficiency in piloting
+    const pilot = fromUuidSynchronous(this.attributes.deployment.pilot.value);
+    if (pilot) this.skills.man.value = Math.max(this.skills.man.value, pilot.system.skills.pil.value);
   }
 
   /* -------------------------------------------- */
@@ -429,21 +503,25 @@ export default class StarshipData extends CommonTemplate {
     const { originalSaves } = this.parent.getOriginalStats();
 
     this.prepareAbilities({ rollData, originalSaves });
-    AttributesFields.prepareExhaustionLevel.call(this);
     AttributesFields.prepareMovement.call(this);
-    AttributesFields.prepareConcentration.call(this, rollData);
     TraitsFields.prepareResistImmune.call(this);
 
-    // Hit Points
-    const hpOptions = {};
+    // Hull/Shield Points
+    const hspOptions = {};
     if ( this.attributes.hp.max === null ) {
-      hpOptions.advancement = Object.values(this.parent.classes)
-        .map(c => c.advancement.byType.HitPoints?.[0]).filter(a => a);
-      hpOptions.bonus = (simplifyBonus(this.attributes.hp.bonuses.level, rollData) * this.details.level)
+      hspOptions.hullAdvancement = Object.values(this.parent.starshipsizes)
+        .map(c => c.advancement.byType.hullPoints?.[0]).filter(a => a);
+      hspOptions.hullBonus = (simplifyBonus(this.attributes.hp.bonuses.level, rollData) * this.details.tier)
         + simplifyBonus(this.attributes.hp.bonuses.overall, rollData);
-      hpOptions.mod = this.abilities[CONFIG.SW5E.defaultAbilities.hitPoints ?? "con"]?.mod ?? 0;
+      hspOptions.hullMod = this.abilities[CONFIG.SW5E.defaultAbilities.hullPoints ?? "str"]?.mod ?? 0;
+      hspOptions.shieldAdvancement = Object.values(this.parent.starshipsizes)
+        .map(c => c.advancement.byType.shieldPoints?.[0]).filter(a => a);
+      hspOptions.shieldBonus = (simplifyBonus(this.attributes.hp.bonuses.templevel, rollData) * this.details.tier)
+        + simplifyBonus(this.attributes.hp.bonuses.tempoverall, rollData);
+      hspOptions.shieldMod = this.abilities[CONFIG.SW5E.defaultAbilities.shieldPoints ?? "con"]?.mod ?? 0;
+      hspOptions.shieldCapMult = this.attributes.equip.shields.capMult
     }
-    AttributesFields.prepareHitPoints.call(this, this.attributes.hp, hpOptions);
+    AttributesFields.prepareHullShieldPoints.call(this, this.attributes.hp, hspOptions);
   }
 
   /* -------------------------------------------- */
@@ -454,11 +532,11 @@ export default class StarshipData extends CommonTemplate {
   /** @inheritdoc */
   getRollData({ deterministic=false }={}) {
     const data = super.getRollData({ deterministic });
-    data.classes = {};
-    for ( const [identifier, cls] of Object.entries(this.parent.classes) ) {
-      data.classes[identifier] = {...cls.system};
-      if ( cls.archetype ) data.classes[identifier].archetype = cls.archetype.system;
+    data.starships = {};
+    for (const [identifier, ss] of Object.entries(this.parent.starships)) {
+      data.starships[identifier] = { ...ss.system };
     }
+
     return data;
   }
 
@@ -511,29 +589,43 @@ export default class StarshipData extends CommonTemplate {
     const favorites = this.favorites.filter(f => f.id !== favoriteId);
     return this.parent.update({ "system.favorites": favorites });
   }
+    /* -------------------------------------------- */
+
+  /**
+   * Get a list of all equipment of a certain type.
+   * @param {string} type         The type of equipment to return, empty for all.
+   * @param {boolean} [equipped]  Ignore non-equipped items
+   * @type {object}               Array of items of that type
+   */
+  getEquipment(type, { equipped = false } = {}) {
+    return this.itemTypes.equipment.filter(
+      item => type === item.system.armor.type && (!equipped || item.system.equipped)
+    );
+  }
+
 }
 
-/* -------------------------------------------- */
+  /* -------------------------------------------- */
 
-/**
- * Data structure for starship's attack bonuses.
- *
- * @typedef {object} AttackBonusesData
- * @property {string} attack  Numeric or dice bonus to attack rolls.
- * @property {string} damage  Numeric or dice bonus to damage rolls.
- */
+  /**
+   * Data structure for starship's attack bonuses.
+   *
+   * @typedef {object} AttackBonusesData
+   * @property {string} attack  Numeric or dice bonus to attack rolls.
+   * @property {string} damage  Numeric or dice bonus to damage rolls.
+   */
 
-/**
- * Produce the schema field for a simple trait.
- * @param {object} schemaOptions  Options passed to the outer schema.
- * @returns {AttackBonusesData}
- */
-function makeAttackBonuses(schemaOptions = {}) {
-  return new SchemaField(
-    {
-      attack: new FormulaField({ required: true, label: "SW5E.BonusAttack" }),
-      damage: new FormulaField({ required: true, label: "SW5E.BonusDamage" })
-    },
-    schemaOptions
-  );
-}
+  /**
+   * Produce the schema field for a simple trait.
+   * @param {object} schemaOptions  Options passed to the outer schema.
+   * @returns {AttackBonusesData}
+   */
+  function makeAttackBonuses(schemaOptions = {}) {
+    return new SchemaField(
+      {
+        attack: new FormulaField({ required: true, label: "SW5E.BonusAttack" }),
+        damage: new FormulaField({ required: true, label: "SW5E.BonusDamage" })
+      },
+      schemaOptions
+    );
+  }

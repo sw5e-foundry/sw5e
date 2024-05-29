@@ -254,12 +254,12 @@ export default class CharacterData extends CreatureTemplate {
   /*  Data Preparation                            */
   /* -------------------------------------------- */
 
-  //TODO: Update this from where it was pulled
   /** @inheritdoc */
   prepareBaseData() {
     this.details.level = 0;
     this.attributes.hd = 0;
     this.attributes.attunement.value = 0;
+    this.details.ranks = 0;
 
     for ( const item of this.parent.items ) {
       // Class levels & hit dice
@@ -267,6 +267,12 @@ export default class CharacterData extends CreatureTemplate {
         const classLevels = parseInt(item.system.levels) || 1;
         this.details.level += classLevels;
         this.attributes.hd += classLevels - (parseInt(item.system.hitDiceUsed) || 0);
+      }
+
+      // Determine character rank based on owned Deployment items
+      if (item.type === "deployment") {
+        const rankLevels = parseInt(item.system.levels) || 1;
+        this.details.ranks += rankLevels;
       }
 
       // Attuned items
@@ -289,7 +295,20 @@ export default class CharacterData extends CreatureTemplate {
       xp.pct = Math.clamped(pct, 0, 100);
     }
 
+    // Prestige required for next rank
+    const { prestige, ranks } = this.details;
+    prestige.max = this.parent.getRankExp(ranks || 1);
+    prestige.min = ranks ? this.parent.getRankExp(ranks - 1) : 0;
+    if ( ranks >= CONFIG.SW5E.CHARACTER_PRESTIGE_RANKS.length ) prestige.pct = 100;
+    else {
+      const required = prestige.max - prestige.min;
+      const pct = Math.round((prestige.value - prestige.min) * 100 / required);
+      prestige.pct = Math.clamped(pct, 0, 100);
+    }
+    
     AttributesFields.prepareBaseArmorClass.call(this);
+    AttributesFields.prepareBasePowercasting.call(this);
+    AttributesFields.prepareBaseSuperiority.call(this);
   }
 
   /* -------------------------------------------- */
@@ -349,6 +368,12 @@ export default class CharacterData extends CreatureTemplate {
       data.classes[identifier] = {...cls.system};
       if ( cls.archetype ) data.classes[identifier].archetype = cls.archetype.system;
     }
+
+    data.deployments = {};
+    for (const [identifier, dep] of Object.entries(this.parent.deployments)) {
+      data.deployments[identifier] = { ...dep.system };
+    }
+
     return data;
   }
 

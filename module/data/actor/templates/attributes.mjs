@@ -176,7 +176,7 @@ export default class AttributesFields {
 
   /**
    * Initialize derived AC fields for Active Effects to target.
-   * @this {CharacterData|NPCData|VehicleData}
+   * @this {CharacterData|NPCData|StarshipData|VehicleData}
    */
   static prepareBaseArmorClass() {
     const ac = this.attributes.ac;
@@ -215,6 +215,195 @@ export default class AttributesFields {
   /* -------------------------------------------- */
 
   /**
+   * Prepare base data related to the power-casting capabilities of the Actor.
+   * Mutates the value of the system.powers object.
+   * @this {CharacterData|NPCData}
+   */
+  static prepareBasePowercasting() {
+
+    const isNPC = this.type === "npc";
+
+    // Prepare base progression data
+    const charProgression = ["force", "tech"].reduce((obj, castType) => {
+      obj[castType] = {
+        castType,
+        prefix: castType.slice(0, 1),
+        powersKnownCur: 0,
+        powersKnownMax: 0,
+        points: 0,
+        casterLevel: 0,
+        maxPowerLevel: 0,
+        maxClassProg: null,
+        maxClassLevel: 0,
+        classes: 0,
+        attributeOverride: null
+      };
+      return obj;
+    }, {});
+
+    if (isNPC) {
+      for (const progression of Object.values(charProgression)) {
+        const level = this.system?.details?.[`power${progression.castType.capitalize()}Level`];
+        if (level) {
+          progression.classes = 1;
+          progression.points = level * CONFIG.SW5E.powerPointsBase.full;
+          progression.casterLevel = level;
+          progression.maxClassLevel = level;
+          progression.maxClassProg = "full";
+        }
+      }
+    } else {
+      // Translate the list of classes into force and tech power-casting progression
+      for (const cls of this.itemTypes.class) {
+        const cd = cls.system;
+        const ad = cls?.archetype?.system;
+        const levels = cd.levels;
+        if (levels < 1) continue;
+        for (const progression of Object.values(charProgression)) {
+          const castType = progression.castType;
+
+          let prog = ad?.powercasting?.[castType] ?? "none";
+          if (prog === "none") prog = cd?.powercasting?.[castType] ?? "none";
+
+          if (!(prog in CONFIG.SW5E.powerProgression) || prog === "none") continue;
+          if (prog === "half" && castType === "tech" && levels < 2) continue; // Tech half-casters only get techcasting at lvl 2
+
+          for (let d of [ad, cd]) {
+            let override = d?.powercasting?.[`${castType}Override`];
+            if (override in CONFIG.SW5E.abilities) {
+              if (progression.override) this._preparationWarnings.push({
+                message: game.i18n.localize("SW5E.WarnMultiplePowercastingOverride"),
+                type: "warning"
+              });
+              progression.override = override;
+            }
+          }
+
+          const known = CONFIG.SW5E.powersKnown[castType][prog][levels];
+          const points = levels * CONFIG.SW5E.powerPointsBase[prog];
+          const casterLevel = levels * (CONFIG.SW5E.powerMaxLevel[prog][20] / 9);
+
+          progression.classes++;
+          progression.powersKnownMax += known;
+          progression.points += points;
+          progression.casterLevel += casterLevel;
+
+          if (levels > progression.maxClassLevel) {
+            progression.maxClassLevel = levels;
+            progression.maxClassProg = prog;
+          }
+        }
+      }
+
+      // Calculate known powers
+      for (const pwr of this.itemTypes.power) {
+        if ( pwr?.system?.preparation?.mode === "innate" || pwr?.system?.components?.freeLearn ) continue;
+        const school = pwr?.system?.school;
+        if (["lgt", "uni", "drk"].includes(school)) charProgression.force.powersKnownCur++;
+        if ("tec" === school) charProgression.tech.powersKnownCur++;
+      }
+
+      charProgression.tech.points /= 2;
+    }
+
+    // Apply progression data
+    for (const progression of Object.values(charProgression)) {
+      // 'Round Appropriately'
+      progression.points = Math.round(progression.points);
+      progression.casterLevel = Math.round(progression.casterLevel);
+
+      // What level is considered 'high level casting'
+      progression.limit = CONFIG.SW5E.powerLimit[progression.maxClassProg];
+
+      // What is the maximum power level you can cast
+      if (progression.classes) {
+        if (progression.classes === 1) {
+          progression.maxPowerLevel = CONFIG.SW5E.powerMaxLevel[progression.maxClassProg][progression.maxClassLevel];
+        } else {
+          progression.maxPowerLevel = CONFIG.SW5E.powerMaxLevel.full[progression.casterLevel];
+        }
+      }
+
+      // Shortcuts to make the code cleaner
+      const p = progression.prefix;
+      const pmax = `${p}max`;
+      const pval = `${p}value`;
+
+      // Set the 'power slots'
+      const powers = this.powers;
+      for ( const level of Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1) ) {
+        const slot = powers[`power${level}`] ??= { [pval]: 0 };
+
+        slot[pmax] = (level > progression.maxPowerLevel) ? 0 : ((level >= progression.limit) ? 1 : 1000);
+
+        if (isNPC) slot[pval] = slot[pmax];
+        else slot[pval] = Math.min(parseInt(slot[pval] ?? slot.value ?? slot[pmax]), slot[pmax]);
+      }
+
+      // Apply the calculated values to the sheet
+      const target = this.attributes[progression.castType];
+      target.known ??= {};
+      target.known.value = progression.powersKnownCur;
+      target.known.max = progression.powersKnownMax;
+      target.points.max ??= progression.points;
+      target.level = progression.casterLevel;
+      target.maxPowerLevel = progression.maxPowerLevel;
+      target.override = progression.override;
+    }
+  }
+
+    /* -------------------------------------------- */
+
+  /**
+   * Prepare base data related to the superiority capabilities of the Actor.
+   * Mutates the value of the system.superiority object.
+   * @this {CharacterData|NPCData}
+   */
+  static prepareBaseSuperiority() {
+    if (this.type === "vehicle" || this.type === "starship") return;
+    const superiority = this.attributes.super;
+
+    // Determine superiority level based on class items
+    let { level, levels, known, dice } = this.itemTypes.class.reduce(
+      (obj, cls) => {
+        const cd = cls?.system;
+        const ad = cls?.archetype?.system;
+
+        const cp = cd?.superiority?.progression ?? 0;
+        const ap = ad?.superiority?.progression ?? 0;
+
+        const progression = Math.max(cp, ap);
+        const levels = cd?.levels ?? 1;
+
+        if (progression) {
+          obj.level += levels * progression;
+          obj.levels += levels;
+          obj.known += CONFIG.SW5E.maneuversKnownProgression[Math.round(levels * progression)];
+          obj.dice += Math.round(CONFIG.SW5E.superiorityDiceQuantProgression[levels] * progression);
+        }
+
+        return obj;
+      },
+      { level: 0, levels: 0, known: 0, dice: 0 }
+    );
+
+    level = Math.round(Math.max(Math.min(level, CONFIG.SW5E.maxLevel), 0));
+    levels = Math.round(Math.max(Math.min(levels, CONFIG.SW5E.maxLevel), 0));
+
+    // Calculate derived values
+    superiority.level = level;
+    superiority.known ??= {};
+    superiority.known.value = this.itemTypes.maneuver.length;
+    superiority.known.max = known;
+    superiority.dice.max ??= dice;
+    superiority.die = CONFIG.SW5E.superiorityDieSizeProgression[levels];
+
+    this.superiority = superiority;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Calculate maximum hit points, taking an provided advancement into consideration.
    * @param {object} hp                 HP object to calculate.
    * @param {object} [options={}]
@@ -227,6 +416,33 @@ export default class AttributesFields {
     const base = advancement.reduce((total, advancement) => total + advancement.getAdjustedTotal(mod), 0);
     hp.max = (hp.max ?? 0) + base + bonus;
     if ( this.parent.hasConditionEffect("halfHealth") ) hp.max = Math.floor(hp.max * 0.5);
+
+    hp.effectiveMax = hp.max + (hp.tempmax ?? 0);
+    hp.value = Math.min(hp.value, hp.effectiveMax);
+    hp.damage = hp.effectiveMax - hp.value;
+    hp.pct = Math.clamped(hp.effectiveMax ? (hp.value / hp.effectiveMax) * 100 : 0, 0, 100);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Calculate maximum hull/shield points, taking an provided advancement into consideration.
+   * @param {object} hp                                                 HP object to calculate.
+   * @param {object} [options={}]
+   * @param {HullPointsAdvancement[]} [options.hullAdvancement=[]]      Advancement items from which to get hull points per-level.
+   * @param {ShieldPointsAdvancement[]} [options.shieldAdvancement=[]]  Advancement items from which to get shield points per-level.
+   * @param {number} [options.hullBonus=0]                              Additional bonus to add atop the calculated value.
+   * @param {number} [options.shieldBonus=0]                            Additional bonus to add atop the calculated value.
+   * @param {number} [options.hullMod=0]                                Modifier for the ability to add to hull points from advancement.
+   * @param {number} [options.shieldMod=0]                              Modifier for the ability to add to shield points from advancement.
+   * @param {number} [options.shieldCapMult=1]                          Multiplier for the shield points based on equipment.
+   * @this {ActorDataModel}
+   */
+  static prepareHullShieldPoints(hp, { hullAdvancement=[], shieldAdvancement=[], hullMod=0, shieldMod=0, hullBonus=0, shieldBonus=0, shieldCapMult=1 }={}) {
+    const hullBase = hullAdvancement.reduce((total, hullAdvancement) => total + hullAdvancement.getAdjustedTotal(hullMod), 0);
+    hp.max = (hp.max ?? 0) + hullBase + hullBonus;
+    const shieldBase = shieldAdvancement.reduce((total, shieldAdvancement) => total + Math.round(shieldAdvancement.getAdjustedTotal(shieldMod) * shieldCapMult), 0);
+    hp.tempmax = (hp.tempmax ?? 0) + shieldBase + shieldBonus;
 
     hp.effectiveMax = hp.max + (hp.tempmax ?? 0);
     hp.value = Math.min(hp.value, hp.effectiveMax);

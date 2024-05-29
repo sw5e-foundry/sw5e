@@ -64,19 +64,7 @@ export default class HullPointsAdvancement extends HitPointsAdvancement {
       return total + Math.max(this.valueForLevel(parseInt(level)) + (quant * mod), quant);
     }, 0);
   }
-
-  /* -------------------------------------------- */
-  /*  Application Methods                         */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  #getApplicableValue(value) {
-    const abilityId = CONFIG.SW5E.hullPointsAbility || "con";
-    value = Math.max(value + (this.actor.system.abilities[abilityId]?.mod ?? 0), 1);
-    value += simplifyBonus(this.actor.system.attributes.hp.bonuses.level, this.actor.getRollData());
-    return value;
-  }
-
+  
   /* -------------------------------------------- */
   /*  Editing Methods                             */
   /* -------------------------------------------- */
@@ -85,4 +73,21 @@ export default class HullPointsAdvancement extends HitPointsAdvancement {
   static availableForItem(item) {
     return !item.advancement.byType.HullPoints?.length;
   }
+
+  /* -------------------------------------------- */
+  /*  Application Methods                         */
+  /* -------------------------------------------- */
+
+  /**
+   * Add the ability modifier and any bonuses to the provided shield points value to get the number to apply.
+   * @param {number} value  Hull points taken at a given level.
+   * @returns {number}      Hull points adjusted with ability modifier and per-level bonuses.
+   */
+  #getApplicableValue(value) {
+    const abilityId = CONFIG.SW5E.hullPointsAbility || "con";
+    value = Math.max(value + (this.actor.system.abilities[abilityId]?.mod ?? 0), 1);
+    value += simplifyBonus(this.actor.system.attributes.hp.bonuses.level, this.actor.getRollData());
+    return value;
+  }
+
 }

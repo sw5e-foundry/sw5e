@@ -1093,11 +1093,16 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @property {string} type             Type of damage.
    * @property {Set<string>} properties  Physical properties that affect damage application.
    * @property {object} [active]
-   * @property {number} [active.multiplier]      Final calculated multiplier.
-   * @property {boolean} [active.modifications]  Did modification affect this description?
-   * @property {boolean} [active.resistance]     Did resistance affect this description?
-   * @property {boolean} [active.vulnerability]  Did vulnerability affect this description?
-   * @property {boolean} [active.immunity]       Did immunity affect this description?
+   * @property {number} [active.multiplier]            Final calculated multiplier.
+   * @property {number} [active.multiplierShield]      Final calculated multiplier.
+   * @property {boolean} [active.modifications]        Did modification affect this description?
+   * @property {boolean} [active.modificationsShield]  Did modification affect this description?
+   * @property {boolean} [active.resistance]           Did resistance affect this description?
+   * @property {boolean} [active.resistanceShield]     Did resistance affect this description?
+   * @property {boolean} [active.vulnerability]        Did vulnerability affect this description?
+   * @property {boolean} [active.vulnerabilityShield]  Did vulnerability affect this description?
+   * @property {boolean} [active.immunity]             Did immunity affect this description?
+   * @property {boolean} [active.immunityShield]       Did immunity affect this description?
    */
 
   /**
@@ -1238,10 +1243,25 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         || ((category === "immunity") && downgrade(type) && !skipDowngrade)
         || ((category === "resistance") && downgrade(type) && !hasEffect("di", type));
     };
+    const ignoreShield = (category, type, skipDowngrade) => {
+      return options.ignore === true
+        || options.ignore?.[category] === true
+        || options.ignore?.[category]?.has?.(type)
+        || ((category === "immunity") && downgrade(type) && !skipDowngrade)
+        || ((category === "resistance") && downgrade(type) && !hasEffect("sdi", type));
+    };
 
     const traits = this.system.traits ?? {};
     const hasEffect = (category, type, properties) => {
       if ( (category === "dr") && downgrade(type) && hasEffect("di", type, properties)
+        && !ignore("immunity", type, true) ) return true;
+      const config = traits[category];
+      if ( !config?.value.has(type) ) return false;
+      if ( !CONFIG.SW5E.damageTypes[type]?.isPhysical || !properties?.size ) return true;
+      return !config.bypasses?.intersection(properties)?.size;
+    };
+    const hasEffectShield = (category, type, properties) => {
+      if ( (category === "sdr") && downgrade(type) && hasEffect("sdi", type, properties)
         && !ignore("immunity", type, true) ) return true;
       const config = traits[category];
       if ( !config?.value.has(type) ) return false;
@@ -1256,38 +1276,59 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     };
 
     const rollData = this.getRollData({deterministic: true});
-    /*Deduct damage from temp HP first
-      const tmp = parseInt(hp.temp) || 0;
-      let tmpMult = multiplier;
-      if (damageType) {
-        const prefix = this.type === "starship" ? "sd" : "d";
-        if (traits[`${prefix}i`]?.value?.has(damageType)) tmpMult = 0;
-        else if (traits[`${prefix}r`]?.value?.has(damageType)) tmpMult = 0.5;
-        else if (traits[`${prefix}v`]?.value?.has(damageType)) tmpMult = 2;
-        else tmpMult = 1;
-      }
-      const tmpDamage = Math.floor(Math.min(tmp, amount * tmpMult));
-      amount = tmpMult ? amount - Math.min(tmp / tmpMult, amount) : 0;
-
-      // Remaining goes to health
-      const hpCur = parseInt(hp.value) || 0;
-      let hpMult = multiplier;
-      if (damageType) {
-        if (traits.di.value.has(damageType)) hpMult = 0;
-        else if (traits.dr.value.has(damageType)) hpMult = 0.5;
-        else if (traits.dv.value.has(damageType)) hpMult = 2;
-        else hpMult = 1;
-      }
-      const hpDamage = Math.floor(Math.min(hpCur, amount * hpMult));
-    */
+    let tmp = parseInt(hp.temp) || 0
     damages.forEach(d => {
+      d.active = {};
+
+      // If starship has remaining shields apply shield traits first
+      if ((this.type === "starship") && (tmp > 0)){
+        
+        // Skip damage types with immunity
+        if ( skipped(d.type) || (!ignoreShield("immunity", d.type) && hasEffectShield("sdi", d.type, d.properties)) ) {
+          d.value = 0;
+          d.active = { multiplierShield: 0, immunityShield: true };
+          return;
+        }
+
+        // Apply type-specific damage reduction
+        if ( !ignoreShield("modification", d.type) && traits.sdm?.amount[d.type] ) {
+          const modification = simplifyBonus(traits.sdm.amount[d.type], rollData);
+          if ( Math.sign(d.value) !== Math.sign(d.value + modification) ) d.value = 0;
+          else d.value += modification;
+          d.active.modificationShield = true;
+        }
+        let damageMultiplierShield = multiplier;
+
+        // Apply type-specific damage resistance
+        if ( !ignoreShield("resistance", d.type) && hasEffectShield("sdr", d.type, d.properties) ) {
+          damageMultiplierShield /= 2;
+          d.active.resistanceShield = true;
+        }
+  
+        // Apply type-specific damage vulnerability
+        if ( !ignoreShield("vulnerability", d.type) && hasEffectShield("sdv", d.type, d.properties) ) {
+          damageMultiplierShield *= 2;
+          d.active.vulnerabilityShield = true;
+        }
+
+        d.value = d.value * damageMultiplierShield;
+        d.active.multiplierShield = damageMultiplierShield;
+        if (tmp >= d.value) {
+          tmp = tmp - d.value;
+          return;
+        } else {
+          d.value = d.value - tmp;
+          d.value = d.value / damageMultiplierShield;
+          tmp = 0;
+        } 
+    
+      }
       // Skip damage types with immunity
       if ( skipped(d.type) || (!ignore("immunity", d.type) && hasEffect("di", d.type, d.properties)) ) {
         d.value = 0;
         d.active = { multiplier: 0, immunity: true };
         return;
       }
-      d.active = {};
 
       // Apply type-specific damage reduction
       if ( !ignore("modification", d.type) && traits.dm?.amount[d.type] ) {
@@ -1359,6 +1400,132 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   static getHPColor(current, max) {
     const pct = Math.clamped(current, 0, max) / max;
     return Color.fromRGB([1 - (pct / 2), pct, 0]);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Initiate concentration on an item.
+   * @param {Item5e} item                        The item on which to being concentration.
+   * @param {object} [effectData]                Effect data to merge into the created effect.
+   * @returns {Promise<ActiveEffect5e|void>}     A promise that resolves to the created effect.
+   */
+  async beginConcentrating(item, effectData={}) {
+    effectData = ActiveEffect5e.createConcentrationEffectData(item, effectData);
+
+    /**
+     * A hook that is called before a concentration effect is created.
+     * @function sw5e.preBeginConcentrating
+     * @memberof hookEvents
+     * @param {Actor5e} actor         The actor initiating concentration.
+     * @param {Item5e} item           The item that will be concentrated on.
+     * @param {object} effectData     Data used to create the ActiveEffect.
+     * @returns {boolean}             Explicitly return false to prevent the effect from being created.
+     */
+    if ( Hooks.call("sw5e.preBeginConcentrating", this, item, effectData) === false ) return;
+
+    const effect = await ActiveEffect5e.create(effectData, { parent: this });
+
+    /**
+     * A hook that is called after a concentration effect is created.
+     * @function sw5e.createConcentrating
+     * @memberof hookEvents
+     * @param {Actor5e} actor             The actor initiating concentration.
+     * @param {Item5e} item               The item that is being concentrated on.
+     * @param {ActiveEffect5e} effect     The created ActiveEffect instance.
+     */
+    Hooks.callAll("sw5e.beginConcentrating", this, item, effect);
+
+    return effect;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * End concentration on an item.
+   * @param {Item5e|ActiveEffect5e|string} [target]    An item or effect to end concentration on, or id of an effect.
+   *                                                   If not provided, all maintained effects are removed.
+   * @returns {Promise<ActiveEffect5e[]>}              A promise that resolves to the deleted effects.
+   */
+  async endConcentration(target) {
+    let effect;
+    const { effects } = this.concentration;
+
+    if ( !target ) {
+      return effects.reduce(async (acc, effect) => {
+        acc = await acc;
+        return acc.concat(await this.endConcentration(effect));
+      }, []);
+    }
+
+    if ( foundry.utils.getType(target) === "string" ) effect = effects.find(e => e.id === target);
+    else if ( target instanceof ActiveEffect5e ) effect = effects.has(target) ? target : null;
+    else if ( target instanceof Item5e ) {
+      effect = effects.find(e => {
+        const data = e.getFlag("sw5e", "itemData") ?? {};
+        return (data === target._id) || (data._id === target._id);
+      });
+    }
+    if ( !effect ) return [];
+
+    /**
+     * A hook that is called before a concentration effect is deleted.
+     * @function sw5e.preEndConcentration
+     * @memberof hookEvents
+     * @param {Actor5e} actor             The actor ending concentration.
+     * @param {ActiveEffect5e} effect     The ActiveEffect that will be deleted.
+     * @returns {boolean}                 Explicitly return false to prevent the effect from being deleted.
+     */
+    if ( Hooks.call("sw5e.preEndConcentration", this, effect) === false) return [];
+
+    await effect.delete();
+
+    /**
+     * A hook that is called after a concentration effect is deleted.
+     * @function sw5e.endConcentration
+     * @memberof hookEvents
+     * @param {Actor5e} actor             The actor ending concentration.
+     * @param {ActiveEffect5e} effect     The ActiveEffect that was deleted.
+     */
+    Hooks.callAll("sw5e.endConcentration", this, effect);
+
+    return [effect];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Create a chat message for this actor with a prompt to challenge concentration.
+   * @param {object} [options]
+   * @param {number} [options.dc]         The target value of the saving throw.
+   * @param {string} [options.ability]    An ability to use instead of the default.
+   * @returns {Promise<ChatMessage5e>}    A promise that resolves to the created chat message.
+   */
+  async challengeConcentration({ dc=10, ability=null }={}) {
+    const isConcentrating = this.concentration.effects.size > 0;
+    if ( !isConcentrating ) return null;
+
+    const dataset = {
+      action: "concentration",
+      dc: dc
+    };
+    if ( ability in CONFIG.SW5E.abilities ) dataset.ability = ability;
+
+    const config = {
+      type: "concentration",
+      format: "short",
+      icon: true
+    };
+
+    return ChatMessage.implementation.create({
+      content: await renderTemplate("systems/sw5e/templates/chat/request-card.hbs", {
+        dataset: { ...dataset, type: "concentration" },
+        buttonLabel: createRollLabel({ ...dataset, ...config }),
+        hiddenLabel: createRollLabel({ ...dataset, ...config, hideDC: true })
+      }),
+      whisper: game.users.filter(user => this.testUserPermission(user, "OWNER")),
+      speaker: ChatMessage.implementation.getSpeaker({ actor: this })
+    });
   }
 
   /* -------------------------------------------- */
@@ -1463,7 +1630,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const data = this.getRollData();
 
     // Add ability modifier
-    data.mod = abl?.mod;
+    data.mod = abl?.mod ?? 0;
     data.defaultAbility = options.ability ?? skl.ability;
 
     // Include proficiency bonus
@@ -1533,7 +1700,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const flavor = game.i18n.format("SW5E.SkillPromptTitle", { skill: CONFIG.SW5E.allSkills[skillId]?.label ?? "" });
     const rollData = foundry.utils.mergeObject(
       {
-        data,
+        data: data,
         title: `${flavor}: ${this.name}`,
         flavor,
         chooseModifier: true,
@@ -1661,7 +1828,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 
     // Reliable Talent applies to any tool check we have full or better proficiency in
-    const reliableTalent = (prof.multiplier >= 1 && this.getFlag("sw5e", "reliableTalent"));
+    const reliableTalent = (prof?.multiplier >= 1 && this.getFlag("sw5e", "reliableTalent"));
 
     const flavor = game.i18n.format("SW5E.ToolPromptTitle", {tool: Trait.keyLabel(toolId, {trait: "tool"}) ?? ""});
     const rollData = foundry.utils.mergeObject(
@@ -1851,9 +2018,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /**
    * Roll an Ability Saving Throw
    * Prompt the user for input regarding Advantage/Disadvantage and any Situational Bonus
-   * @param {string} abilityId    The ability ID (e.g. "str")
-   * @param {object} options      Options which configure how ability tests are rolled
-   * @returns {Promise<D20Roll>}  A Promise which resolves to the created Roll instance
+   * @param {string} abilityId          The ability ID (e.g. "str")
+   * @param {object} [options]          Options which configure how ability saves are rolled
+   * @returns {Promise<D20Roll|null>}   A Promise which resolves to the created Roll instance
    */
   async rollAbilitySave(abilityId, options = {}) {
     const flags = this.flags.sw5e ?? {};
@@ -2012,6 +2179,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   async rollDeathSave(options = {}) {
     const death = this.system.attributes.death;
+    if ( !death ) throw new Error(`Actors of the type '${this.type}' don't support death saves.`);
 
     // Display a warning if we are not at zero HP or if we already have reached 3
     if (this.system.attributes.hp.value > 0 || death.failure >= 3 || death.success >= 3) {
@@ -2165,6 +2333,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   async rollDestructionSave(options = {}) {
     const death = this.system.attributes.death;
+    if ( !death ) throw new Error(`Actors of the type '${this.type}' don't support destruction saves.`);
 
     // Display a warning if we are not at zero HP or if we already have reached 3
     if (this.system.attributes.hp.value > 0 || death.failure >= 3 || death.success >= 3) {
@@ -2201,15 +2370,16 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Evaluate the roll
+    const flavor = game.i18n.localize("SW5E.DestructionSavingThrow");
     const rollData = foundry.utils.mergeObject(
       {
-        parts,
         data,
-        title: `${game.i18n.localize("SW5E.DestructionSavingThrow")}: ${this.name}`,
+        title: `${flavor}: ${this.name}`,
+        flavor,
         halflingLucky: this.getFlag("sw5e", "halflingLucky"),
+        targetValue: 10,
         advantageHint,
         disadvantageHint,
-        targetValue: 10,
         messageData: {
           speaker: speaker,
           "flags.sw5e.roll": { type: "destruction" }
@@ -2217,6 +2387,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       },
       options
     );
+    rollData.parts = parts.concat(options.parts ?? []);
     rollData.advantage = advantage && !disadvantage;
     rollData.disadvantage = !advantage && disadvantage;
 
@@ -2303,6 +2474,61 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /* -------------------------------------------- */
 
   /**
+   * Perform a saving throw to maintain concentration.
+   * @param {object} [options]          Options to configure how the saving throw is rolled
+   * @returns {Promise<D20Roll|null>}   A Promise which resolves to the created Roll instance
+   */
+  async rollConcentration(options={}) {
+    if ( !this.isOwner ) return null;
+    const conc = this.system.attributes?.concentration;
+    if ( !conc ) throw new Error("You may not make a Concentration Saving Throw with this Actor.");
+
+    const config = CONFIG.SW5E;
+    const modes = CONFIG.Dice.D20Roll.ADV_MODE;
+    const parts = [];
+
+    // Concentration bonus
+    if ( conc.bonuses.save ) parts.push(conc.bonuses.save);
+
+    const ability = (conc.ability in config.abilities) ? conc.ability : config.defaultAbilities.concentration;
+
+    options = foundry.utils.mergeObject({
+      ability: ability,
+      isConcentration: true,
+      targetValue: 10,
+      advantage: options.advantage || (conc.roll.mode === modes.ADVANTAGE),
+      disadvantage: options.disadvantage || (conc.roll.mode === modes.DISADVANTAGE)
+    }, options);
+    options.parts = parts.concat(options.parts ?? []);
+
+    /**
+     * A hook event that fires before a saving throw to maintain concentration is rolled for an Actor.
+     * @function sw5e.preRollConcentration
+     * @memberof hookEvents
+     * @param {Actor5e} actor                   Actor for which the saving throw is being rolled.
+     * @param {D20RollConfiguration} options    Configuration data for the pending roll.
+     * @returns {boolean}                       Explicitly return `false` to prevent the save from being performed.
+     */
+    if ( Hooks.call("sw5e.preRollConcentration", this, options) === false ) return;
+
+    // Perform a standard ability save.
+    const roll = await this.rollAbilitySave(options.ability, options);
+
+    /**
+     * A hook event that fires after a saving throw to maintain concentration is rolled for an Actor.
+     * @function sw5e.rollConcentration
+     * @memberof hookEvents
+     * @param {Actor5e} actor     Actor for which the saving throw has been rolled.
+     * @param {D20Roll} roll      The resulting roll.
+     */
+    if ( roll ) Hooks.callAll("sw5e.rollConcentration", this, roll);
+
+    return roll;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Get an un-evaluated D20Roll instance used to roll initiative for this Actor.
    * @param {object} [options]                        Options which modify the roll
    * @param {D20Roll.ADV_MODE} [options.advantageMode]    A specific advantage mode to apply
@@ -2310,12 +2536,13 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {D20Roll}                               The constructed but unevaluated D20Roll
    */
   getInitiativeRoll(options = {}) {
+
     // Use a temporarily cached initiative roll
     if (this._cachedInitiativeRoll) return this._cachedInitiativeRoll.clone();
 
     // Obtain required data
     const init = this.system.attributes?.init;
-    const abilityId = init?.ability || CONFIG.SW5E.initiativeAbility;
+    const abilityId = init?.ability || CONFIG.SW5E.defaultAbilities.initiative;
     const data = this.getRollData();
     const flags = this.flags.sw5e || {};
     if (flags.initiativeAdv) options.advantageMode ??= sw5e.dice.D20Roll.ADV_MODE.ADVANTAGE;
@@ -2403,7 +2630,6 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // Temporarily cache the configured roll and use it to roll initiative for the Actor
     this._cachedInitiativeRoll = roll;
     await this.rollInitiative({ createCombatants: true });
-    delete this._cachedInitiativeRoll;
   }
 
   /* -------------------------------------------- */
@@ -2430,6 +2656,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       if ( combatant ) arr.push(combatant);
       return arr;
     }, []) : [game.combat.getCombatantByActor(this.id)];
+
     /**
      * A hook event that fires after an Actor has rolled for initiative.
      * @function sw5e.rollInitiative
@@ -2508,7 +2735,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if (rollConfig.chatMessage) roll.toMessage(rollConfig.messageData);
 
     const hp = this.system.attributes.hp;
-    const dhp = Math.min(Math.max(0, hp.max + (hp.tempmax ?? 0)) - hp.value, roll.total);
+    const dhp = Math.min(Math.max(0, hp.effectiveMax) - hp.value, roll.total);
     const updates = {
       actor: { "system.attributes.hp.value": hp.value + dhp },
       class: { "system.hitDiceUsed": cls.system.hitDiceUsed + 1 }
@@ -2527,11 +2754,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
      */
     if (Hooks.call("sw5e.rollHitDie", this, roll, updates) === false) return roll;
 
-    // Re-evaluate dhp in the event that it was changed in the previous hook
-    const updateOptions = { dhp: (updates.actor?.["system.attributes.hp.value"] ?? hp.value) - hp.value };
-
     // Perform updates
-    if (!foundry.utils.isEmpty(updates.actor)) await this.update(updates.actor, updateOptions);
+    if (!foundry.utils.isEmpty(updates.actor)) await this.update(updates.actor);
     if (!foundry.utils.isEmpty(updates.class)) await cls.update(updates.class);
 
     return roll;
@@ -3265,10 +3489,13 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * Configuration options for a rest.
    *
    * @typedef {object} RestConfiguration
+   * @property {string} type               Type of rest to perform.
    * @property {boolean} dialog            Present a dialog window which allows for rolling hit dice as part of the
    *                                       Short Rest and selecting whether a new day has occurred.
    * @property {boolean} chat              Should a chat message be created to summarize the results of the rest?
+   * @property {number} duration           Amount of time passed during the rest in minutes.
    * @property {boolean} newDay            Does this rest carry over to a new day?
+   * @property {boolean} [advanceTime]     Should the game clock be advanced by the rest duration?
    * @property {boolean} [autoHD]          Should hit dice be spent automatically during a short rest?
    * @property {number} [autoHDThreshold]  How many hit points should be missing before hit dice are
    *                                       automatically spent during a short rest.
@@ -3280,6 +3507,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @typedef {object} RestResult
    * @property {number} dhp            Hit points recovered during the rest.
    * @property {number} dhd            Hit dice recovered or spent during the rest.
+   * @property {number} [dtp = 0]      Tech points recovered during the rest.
+   * @property {number} [dfp = 0]      Force points recovered during the rest.
    * @property {object} updateData     Updates applied to the actor.
    * @property {object[]} updateItems  Updates applied to actor's items.
    * @property {boolean} longRest      Whether the rest type was a long rest.
@@ -3295,16 +3524,12 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {Promise<RestResult>}       A Promise which resolves once the short rest workflow has completed.
    */
   async shortRest(config = {}) {
-    config = foundry.utils.mergeObject(
-      {
-        dialog: true,
-        chat: true,
-        newDay: false,
-        autoHD: false,
-        autoHDThreshold: 3
-      },
-      config
-    );
+    if ( ["vehicle", "starship"].includes(this.type)) return;
+
+    config = foundry.utils.mergeObject({
+      type: "short", dialog: true, chat: true, newDay: false, advanceTime: false, autoHD: false, autoHDThreshold: 3,
+      duration: CONFIG.SW5E.restTypes.short.duration[game.settings.get("sw5e", "restVariant")]
+    }, config);
 
     /**
      * A hook event that fires before a short rest is started.
@@ -3317,26 +3542,37 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if (Hooks.call("sw5e.preShortRest", this, config) === false) return;
 
     // Take note of the initial hit points and number of hit dice the Actor has
-    const hd0 = this.system.attributes.hd;
-    const hp0 = this.system.attributes.hp.value;
+    const hd0 = foundry.utils.getProperty(this, "system.attributes.hd");
+    const hp0 = foundry.utils.getProperty(this, "system.attributes.hp.value");
+    const tp0 = foundry.utils.getProperty(this, "system.attributes.tech.points.value");
 
     // Display a Dialog for rolling hit dice
     if (config.dialog) {
       try {
-        config.newDay = await ShortRestDialog.shortRestDialog({ actor: this, canRoll: hd0 > 0 });
+        foundry.utils.mergeObject(config, await ShortRestDialog.shortRestDialog({ actor: this, canRoll: hd0 > 0 }));
       } catch(err) {
         return;
       }
     }
 
+    /**
+     * A hook event that fires after a short rest has started, after the configuration is complete.
+     * @function sw5e.shortRest
+     * @memberof hookEvents
+     * @param {Actor5e} actor             The actor that is being rested.
+     * @param {RestConfiguration} config  Configuration options for the rest.
+     * @returns {boolean}                 Explicitly return `false` to prevent the rest from being continued.
+     */
+    if ( Hooks.call("sw5e.shortRest", this, config) === false ) return;
+
     // Automatically spend hit dice
-    else if (config.autoHD) await this.autoSpendHitDice({ threshold: config.autoHDThreshold });
+    if ( !config.dialog && config.autoHD ) await this.autoSpendHitDice({ threshold: config.autoHDThreshold });
 
     // Return the rest result
-    const dhd = this.system.attributes.hd - hd0;
-    const dhp = this.system.attributes.hp.value - hp0;
-    const dtp = this.system.attributes.tech.points.max - this.system.attributes.tech.points.value;
-    return this._rest(config.chat, config.newDay, false, dhd, dhp, dtp);
+    const dhd = foundry.utils.getProperty(this, "system.attributes.hd") - hd0;
+    const dhp = foundry.utils.getProperty(this, "system.attributes.hp.value") - hp0;
+    const dtp = foundry.utils.getProperty(this, "system.attributes.tech.points.max") - tp0;
+    return this._rest(config, dhd, dhp, dtp);
   }
 
   /* -------------------------------------------- */
@@ -3347,14 +3583,12 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {Promise<RestResult>}          A Promise which resolves once the long rest workflow has completed.
    */
   async longRest(config = {}) {
-    config = foundry.utils.mergeObject(
-      {
-        dialog: true,
-        chat: true,
-        newDay: true
-      },
-      config
-    );
+    if ( ["vehicle", "starship"].includes(this.type)) return;
+
+    config = foundry.utils.mergeObject({
+      type: "long", dialog: true, chat: true, newDay: true, advanceTime: false,
+      duration: CONFIG.SW5E.restTypes.long.duration[game.settings.get("sw5e", "restVariant")]
+    }, config);
 
     /**
      * A hook event that fires before a long rest is started.
@@ -3368,16 +3602,21 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     if (config.dialog) {
       try {
-        config.newDay = await LongRestDialog.longRestDialog({ actor: this });
-      } catch(err) {
-        return;
-      }
+        foundry.utils.mergeObject(config, await LongRestDialog.longRestDialog({actor: this}));
+      } catch(err) { return; }
     }
 
-    const dtp = this.system.attributes.tech.points.max - this.system.attributes.tech.points.value;
-    const dfp = this.system.attributes.force.points.max - this.system.attributes.force.points.value;
+    /**
+     * A hook event that fires after a long rest has started, after the configuration is complete.
+     * @function sw5e.longRest
+     * @memberof hookEvents
+     * @param {Actor5e} actor             The actor that is being rested.
+     * @param {RestConfiguration} config  Configuration options for the rest.
+     * @returns {boolean}                 Explicitly return `false` to prevent the rest from being continued.
+     */
+    if ( Hooks.call("sw5e.longRest", this, config) === false ) return;
 
-    return this._rest(config.chat, config.newDay, true, 0, 0, dtp, dfp);
+    return this._rest(config);
   }
 
   /* -------------------------------------------- */
@@ -3385,34 +3624,49 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /**
    * Perform all of the changes needed for a short or long rest.
    *
-   * @param {boolean} chat           Summarize the results of the rest workflow as a chat message.
-   * @param {boolean} newDay         Has a new day occurred during this rest?
-   * @param {boolean} longRest       Is this a long rest?
-   * @param {number} [dhd=0]         Number of hit dice spent during so far during the rest.
-   * @param {number} [dhp=0]         Number of hit points recovered so far during the rest.
-   * @param {number} [dtp=0]         Number of tech points recovered so far during the rest.
-   * @param {number} [dfp=0]         Number of force points recovered so far during the rest.
+   * @param {RestConfiguration} config  Configuration data for the rest occurring.
+   * @param {RestResult} [result={}]    Results of the rest operation being built.
+   * @param {*[]} [args]
    * @returns {Promise<RestResult>}  Consolidated results of the rest workflow.
    * @private
    */
-  async _rest(chat, newDay, longRest, dhd = 0, dhp = 0, dtp = 0, dfp = 0) {
-    // TODO: Turn gritty realism into the SW5e longer rests variant rule https://sw5e.com/rules/variantRules/Longer%20Rests
+  async _rest(config, result={}, ...args) {
+    if ( args.length ) {
+      foundry.utils.logCompatibilityWarning(
+        "Actor5e._rest now takes a config object and a results object as parameters.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      const [longRest, dhd, dhp, dtp, dfp] = args;
+      config = { chat: config, newDay: result };
+      config.type = longRest ? "long" : "short";
+      result = { dhd, dhp, dtp, dfp };
+    }
+
+    if ( (foundry.utils.getType(this.system.rest) === "function")
+      && (await this.system.rest(config, result) === false) ) return;
+
     let hitPointsRecovered = 0;
     let hitPointUpdates = {};
     let hitDiceRecovered = 0;
     let hitDiceUpdates = [];
     const rolls = [];
+    const longRest = config.type === "long";
+    const newDay = config.newDay === true;
 
-    // Recover hit points & hit dice on long rest
+    // Recover hit points and hit dice and also calculate tech and force point recovery on long rest
     if (longRest) {
       ({ updates: hitPointUpdates, hitPointsRecovered } = this._getRestHitPointRecovery());
       ({ updates: hitDiceUpdates, hitDiceRecovered } = this._getRestHitDiceRecovery());
+      const tp0 = foundry.utils.getProperty(this, "system.attributes.tech.points.value");
+      const fp0 = foundry.utils.getProperty(this, "system.attributes.force.points.value");
+      dtp = foundry.utils.getProperty(this, "system.attributes.tech.points.max") - tp0;
+      dfp = foundry.utils.getProperty(this, "system.attributes.force.points.max") - fp0;
     }
 
     // Figure out the rest of the changes
-    const result = {
-      dhd: dhd + hitDiceRecovered,
-      dhp: dhp + hitPointsRecovered,
+    foundry.utils.mergeObject(result, {
+      dhd: (result.dhd ?? 0) + hitDiceRecovered,
+      dhp: (result.dhp ?? 0) + hitPointsRecovered,
       dtp,
       dfp,
       updateData: {
@@ -3430,34 +3684,39 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       ],
       longRest,
       newDay
-    };
+    });
     result.rolls = rolls;
 
     /**
      * A hook event that fires after rest result is calculated, but before any updates are performed.
      * @function sw5e.preRestCompleted
      * @memberof hookEvents
-     * @param {Actor5e} actor      The actor that is being rested.
-     * @param {RestResult} result  Details on the rest to be completed.
-     * @returns {boolean}          Explicitly return `false` to prevent the rest updates from being performed.
+     * @param {Actor5e} actor             The actor that is being rested.
+     * @param {RestResult} result         Details on the rest to be completed.
+     * @param {RestConfiguration} config  Configuration data for the rest occurring.
+     * @returns {boolean}                 Explicitly return `false` to prevent the rest updates from being performed.
      */
-    if (Hooks.call("sw5e.preRestCompleted", this, result) === false) return result;
+    if ( Hooks.call("sw5e.preRestCompleted", this, result, config) === false ) return result;
 
     // Perform updates
     await this.update(result.updateData, { isRest: true });
+
+    // Advance the game clock
+    if ( config.advanceTime && (config.duration > 0) && game.user.isGM ) await game.time.advance(60 * config.duration);
     await this.updateEmbeddedDocuments("Item", result.updateItems, { isRest: true });
 
     // Display a Chat Message summarizing the rest effects
-    if (chat) await this._displayRestResultMessage(result, longRest);
+    if (config.chat) await this._displayRestResultMessage(result, longRest);
 
     /**
      * A hook event that fires when the rest process is completed for an actor.
      * @function sw5e.restCompleted
      * @memberof hookEvents
-     * @param {Actor5e} actor      The actor that just completed resting.
-     * @param {RestResult} result  Details on the rest completed.
+     * @param {Actor5e} actor             The actor that just completed resting.
+     * @param {RestResult} result         Details on the rest completed.
+     * @param {RestConfiguration} config  Configuration data for that occurred.
      */
-    Hooks.callAll("sw5e.restCompleted", this, result);
+    Hooks.callAll("sw5e.restCompleted", this, result, config);
 
     // Return data summarizing the rest effects
     return result;
@@ -3542,7 +3801,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   async autoSpendHitDice({ threshold = 3 } = {}) {
     const hp = this.system.attributes.hp;
-    const max = Math.max(0, hp.max + hp.tempmax);
+    const max = Math.max(0, hp.effectiveMax);
     let diceRolled = 0;
     while (this.system.attributes.hp.value + threshold <= max) {
       const r = await this.rollHitDie();
@@ -3567,7 +3826,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     let max = hp.max;
     let updates = {};
     if (recoverTempMax) updates["system.attributes.hp.tempmax"] = 0;
-    else max = Math.max(0, max + (hp.tempmax || 0));
+    else max = Math.max(0, hp.effectiveMax);
     updates["system.attributes.hp.value"] = max;
     if (recoverTemp) updates["system.attributes.hp.temp"] = 0;
     return { updates, hitPointsRecovered: max - hp.value };
@@ -3585,7 +3844,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   _getRestResourceRecovery({ recoverShortRestResources = true, recoverLongRestResources = true } = {}) {
     let updates = {};
-    for (let [k, r] of Object.entries(this.system.resources)) {
+    for (let [k, r] of Object.entries(this.system.resources?? {})) {
       if (Number.isNumeric(r.max) && ((recoverShortRestResources && r.sr) || (recoverLongRestResources && r.lr))) {
         updates[`system.resources.${k}.value`] = Number(r.max);
       }
@@ -3604,6 +3863,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @protected
    */
   _getRestPowerRecovery({ recoverTechPowers = true, recoverForcePowers = true } = {}) {
+    const powers = this.system.powers ?? {};
     let updates = {};
 
     if (recoverTechPowers) {
@@ -3611,7 +3871,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       updates["system.attributes.tech.points.temp"] = 0;
       updates["system.attributes.tech.points.tempmax"] = 0;
 
-      for (let [k, v] of Object.entries(this.system.powers)) {
+      for (let [k, v] of Object.entries(powers)) {
         updates[`system.powers.${k}.tvalue`] = Number.isNumeric(v.toverride) ? v.toverride : v.tmax ?? 0;
       }
     }
@@ -3621,7 +3881,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       updates["system.attributes.force.points.temp"] = 0;
       updates["system.attributes.force.points.tempmax"] = 0;
 
-      for (let [k, v] of Object.entries(this.system.powers)) {
+      for (let [k, v] of Object.entries(powers)) {
         updates[`system.powers.${k}.fvalue`] = Number.isNumeric(v.foverride) ? v.foverride : v.fmax ?? 0;
       }
     }
@@ -3675,7 +3935,6 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         updates.push({ _id: item.id, "system.hitDiceUsed": hitDiceUsed - delta });
       }
     }
-
     return { updates, hitDiceRecovered };
   }
 
@@ -3683,7 +3942,6 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
   /**
    * Recovers item uses during short or long rests.
-   *
    * @param {object} [options]
    * @param {boolean} [options.recoverShortRestUses=true]  Recover uses for items that recharge after a short rest.
    * @param {boolean} [options.recoverLongRestUses=true]   Recover uses for items that recharge after a long rest.
@@ -3702,10 +3960,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if (recoverShortRestUses) recovery.push("sr");
     if (recoverLongRestUses) recovery.push("lr");
     if (recoverDailyUses) recovery.push("day");
-
     let updates = [];
     for (let item of this.items) {
-      const uses = item.system.uses;
+      const uses = item.system.uses ?? {};
       if (recovery.includes(uses?.per)) {
         updates.push({ _id: item.id, "system.uses.value": uses.max });
       }
@@ -3713,8 +3970,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         updates.push({ _id: item.id, "system.recharge.charged": true });
       }
 
-      // Items that roll to gain charges on a new day
-      if (recoverDailyUses && uses?.recovery && uses?.per in CONFIG.SW5E.limitedUseFormulaPeriods) {
+      // Items that roll to gain charges via a formula
+      if ( recoverDailyUses && uses.recovery && CONFIG.SW5E.limitedUsePeriods[uses.per]?.formula ) {
         const roll = new Roll(uses.recovery, item.getRollData());
         if (recoverLongRestUses && game.settings.get("sw5e", "restVariant") === "gritty") {
           roll.alter(7, 0, { multiplyNumeric: true });
@@ -3722,7 +3979,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
         let total = 0;
         try {
-          total = (await roll.evaluate({ async: true })).total;
+          total = (await roll.evaluate()).total;
         } catch(err) {
           ui.notifications.warn(
             game.i18n.format("SW5E.ItemRecoveryFormulaWarning", {

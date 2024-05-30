@@ -14,7 +14,6 @@ export default class HullPointsAdvancement extends HitPointsAdvancement {
     return foundry.utils.mergeObject(super.metadata, {
       title: game.i18n.localize("SW5E.AdvancementHullPointsTitle"),
       hint: game.i18n.localize("SW5E.AdvancementHullPointsHint"),
-      validItemTypes: new Set(["starshipsize"]),
       apps: {
         config: HullPointsConfig,
         flow: HullPointsFlow
@@ -79,14 +78,14 @@ export default class HullPointsAdvancement extends HitPointsAdvancement {
   /* -------------------------------------------- */
 
   /**
-   * Add the ability modifier and any bonuses to the provided shield points value to get the number to apply.
+   * Add the ability modifier and any bonuses to the provided hull points value to get the number to apply.
    * @param {number} value  Hull points taken at a given level.
    * @returns {number}      Hull points adjusted with ability modifier and per-level bonuses.
    */
   #getApplicableValue(value) {
-    const abilityId = CONFIG.SW5E.hullPointsAbility || "con";
+    const abilityId = CONFIG.SW5E.defaultAbilities.hullPoints || "con";
     value = Math.max(value + (this.actor.system.abilities[abilityId]?.mod ?? 0), 1);
-    value += simplifyBonus(this.actor.system.attributes.hp.bonuses.level, this.actor.getRollData());
+    value += simplifyBonus(this.actor.system.attributes.hp.bonuses?.level, this.actor.getRollData());
     return value;
   }
 

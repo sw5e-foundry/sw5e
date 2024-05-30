@@ -8,6 +8,7 @@ import ItemGrantConfigurationData from "../../data/advancement/item-grant.mjs";
  * skipping any or all of the items.
  */
 export default class ItemGrantAdvancement extends Advancement {
+
   /** @inheritdoc */
   static get metadata() {
     return foundry.utils.mergeObject(super.metadata, {
@@ -32,14 +33,14 @@ export default class ItemGrantAdvancement extends Advancement {
    * @type {Set<string>}
    */
   static VALID_TYPES = new Set([
-    "backpack",
-    "consumable",
-    "equipment",
     "feat",
+    "power",
+    "consumable",
+    "container",
+    "equipment",
     "loot",
     "maneuver",
     "modification",
-    "power",
     "tool",
     "weapon"
   ]);
@@ -58,9 +59,8 @@ export default class ItemGrantAdvancement extends Advancement {
   /** @inheritdoc */
   summaryForLevel(level, { configMode = false } = {}) {
     // Link to compendium items
-    if (!this.value.added || configMode) {
-      return this.configuration.items.reduce((html, uuid) => html + sw5e.utils.linkForUuid(uuid), "");
-    }
+    if ( !this.value.added || configMode ) return this.configuration.items.filter(i => fromUuidSync(i.uuid))
+      .reduce((html, i) => html + sw5e.utils.linkForUuid(i.uuid), "");
 
     // Link to items on the actor
     else {

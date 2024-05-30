@@ -22,7 +22,6 @@ export default class AbilityScoreImprovementAdvancement extends Advancement {
       icon: "systems/sw5e/icons/svg/ability-score-improvement.svg",
       title: game.i18n.localize("SW5E.AdvancementAbilityScoreImprovementTitle"),
       hint: game.i18n.localize("SW5E.AdvancementAbilityScoreImprovementHint"),
-      validItemTypes: new Set(["background", "class", "species"]),
       apps: {
         config: AbilityScoreImprovementConfig,
         flow: AbilityScoreImprovementFlow

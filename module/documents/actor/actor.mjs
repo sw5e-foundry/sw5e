@@ -3580,7 +3580,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /**
    * Take a long rest, recovering hit points, hit dice, resources, item uses, and tech & force power points & slots.
    * @param {RestConfiguration} [config]  Configuration options for a long rest.
-   * @returns {Promise<RestResult>}          A Promise which resolves once the long rest workflow has completed.
+   * @returns {Promise<RestResult>}       A Promise which resolves once the long rest workflow has completed.
    */
   async longRest(config = {}) {
     if ( ["vehicle", "starship"].includes(this.type)) return;
@@ -3700,10 +3700,10 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     // Perform updates
     await this.update(result.updateData, { isRest: true });
+    await this.updateEmbeddedDocuments("Item", result.updateItems, { isRest: true });
 
     // Advance the game clock
     if ( config.advanceTime && (config.duration > 0) && game.user.isGM ) await game.time.advance(60 * config.duration);
-    await this.updateEmbeddedDocuments("Item", result.updateItems, { isRest: true });
 
     // Display a Chat Message summarizing the rest effects
     if (config.chat) await this._displayRestResultMessage(result, longRest);
@@ -3714,7 +3714,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
      * @memberof hookEvents
      * @param {Actor5e} actor             The actor that just completed resting.
      * @param {RestResult} result         Details on the rest completed.
-     * @param {RestConfiguration} config  Configuration data for that occurred.
+     * @param {RestConfiguration} config  Configuration data for the rest that occurred.
      */
     Hooks.callAll("sw5e.restCompleted", this, result, config);
 
@@ -3963,7 +3963,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     let updates = [];
     for (let item of this.items) {
       const uses = item.system.uses ?? {};
-      if (recovery.includes(uses?.per)) {
+      if (recovery.includes(uses.per)) {
         updates.push({ _id: item.id, "system.uses.value": uses.max });
       }
       if (recoverLongRestUses && item.system.recharge?.value) {
@@ -4015,9 +4015,13 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * Configuration options for a repair.
    *
    * @typedef {object} RepairConfiguration
+   * @property {string} type                 Type of repair to perform.
    * @property {boolean} dialog              Present a dialog window which allows for rolling hull dice as part
    *                                         of the Repair and selecting whether a new day has occurred.
    * @property {boolean} chat                Should a chat message be created to summarize the results of the repair?
+   * @property {number} duration             Amount of time passed during the repair in minutes.
+   * @property {boolean} newDay              Does this repair carry over to a new day?
+   * @property {boolean} [advanceTime]       Should the game clock be advanced by the repair duration?
    * @property {boolean} [autoHD]            Should hull dice be spent automatically during a repair?
    * @property {boolean} [autoHDThreshold]   How many hull points should be missing before hull dice are
    *                                         automatically spent during a a repair.
@@ -4031,7 +4035,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @property {number} dhd               Hull dice recovered or spent during the repair.
    * @property {object} updateData        Updates applied to the actor.
    * @property {object[]} updateItems     Updates applied to actor's items.
-   * @property {boolean} RefittingRepair  Whether the rest type was a long rest.
+   * @property {boolean} RefittingRepair  Whether the rest type was a refitting repair.
    * @property {boolean} newDay           Whether a new day occurred during the repair.
    * @property {Roll[]} rolls             Any rolls that occurred during the rest process, not including hull/shld dice.
    */
@@ -4042,13 +4046,12 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {Promise<RepairResult>}       A Promise which resolves once the recharge repair workflow has completed.
    */
   async rechargeRepair(config = {}) {
-    config = foundry.utils.mergeObject(
+    if ( !this.type === "starship" ) return;
+
+      config = foundry.utils.mergeObject(
       {
-        dialog: true,
-        chat: true,
-        autoHD: false,
-        autoHDThreshold: 3,
-        newDay: false
+      type: "recharge", dialog: true, chat: true, newDay: false, advanceTime: false, autoHD: false, autoHDThreshold: 3,
+      duration: CONFIG.SW5E.repairTypes.recharge.duration[game.settings.get("sw5e", "restVariant")]
       },
       config
     );
@@ -4064,30 +4067,39 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if (Hooks.call("sw5e.preRechargeRepair", this, config) === false) return;
 
     // Take note of the initial hull points and number of hull dice the Actor has
-    const hd0 = this.system.attributes.hull.dice;
-    const hp0 = this.system.attributes.hp.value;
-    const regenShld = !this.system.attributes.shld.depleted;
+    const hd0 = foundry.utils.getProperty(this, "system.attributes.hull.dice");
+    const hp0 = foundry.utils.getProperty(this, "system.attributes.hp.value");
+    const regenShld = !foundry.utils.getProperty(this, "system.attributes.shld.depleted");
 
     // Display a Dialog for rolling hull dice
     if (config.dialog) {
       try {
-        config.newDay = await RechargeRepairDialog.rechargeRepairDialog({
+        foundry.utils.mergeObject(config, await RechargeRepairDialog.rechargeRepairDialog({
           actor: this,
           canRoll: hd0 > 0
-        });
+        }));
       } catch(err) {
         return;
       }
     }
 
+    /**
+     * A hook event that fires after a recharge repair has started, after the configuration is complete.
+     * @function sw5e.rechargeRepair
+     * @memberof hookEvents
+     * @param {Actor5e} actor             The actor that is being repaired.
+     * @param {RestConfiguration} config  Configuration options for the repair.
+     * @returns {boolean}                 Explicitly return `false` to prevent the rest from being continued.
+     */
+    if ( Hooks.call("sw5e.rechargeRepair", this, config) === false ) return;
+
     // Automatically spend hull dice
-    else if (config.autoHD) await this.autoSpendHullDice({ threshold: config.autoHDThreshold });
+    if ( !config.dialog && config.autoHD ) await this.autoSpendHullDice({ threshold: config.autoHDThreshold });
 
     // Return the rest result
-    const dhd = this.system.attributes.hull.dice - hd0;
-    const dhp = this.system.attributes.hp.value - hp0;
-
-    return this._repair(config.chat, config.newDay, false, regenShld, dhd, dhp);
+    const dhd = foundry.utils.getProperty(this, "system.attributes.hull.dice") - hd0;
+    const dhp = foundry.utils.getProperty(this, "system.attributes.hp.value") - hp0;
+    return this._repair(config, { regenShld, dhd, dhp } );
   }
 
   /* -------------------------------------------- */
@@ -4099,12 +4111,13 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {Promise<RepairResult>}       A Promise which resolves once the refitting repair workflow has completed.
    */
   async refittingRepair(config = {}) {
+    if ( !this.type === "starship" ) return;
+
     config = foundry.utils.mergeObject(
       {
-        dialog: true,
-        chat: true,
-        newDay: true
-      },
+        type: "refitting", dialog: true, chat: true, newDay: true, advanceTime: false,
+        duration: CONFIG.SW5E.repairTypes.refitting.duration[game.settings.get("sw5e", "restVariant")]
+        },
       config
     );
 
@@ -4120,13 +4133,23 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     if (config.dialog) {
       try {
-        config.newDay = await RefittingRepairDialog.refittingRepairDialog({ actor: this });
+        foundry.utils.mergeObject(config, await RefittingRepairDialog.refittingRepairDialog({ actor: this }));
       } catch(err) {
         return;
       }
     }
 
-    return this._repair(config.chat, config.newDay, true, true, 0, 0);
+    /**
+     * A hook event that fires after a refitting repair has started, after the configuration is complete.
+     * @function sw5e.refittingRepair
+     * @memberof hookEvents
+     * @param {Actor5e} actor               The actor that is being repaired.
+     * @param {RepairConfiguration} config  Configuration options for the repair.
+     * @returns {boolean}                   Explicitly return `false` to prevent the repair from being continued.
+     */
+    if ( Hooks.call("sw5e.refittingRepair", this, config) === false ) return;
+        
+        return this._repair(config);
   }
 
   /* -------------------------------------------- */
@@ -4185,16 +4208,27 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /**
    * Perform all of the changes needed for a recharge or refitting repair.
    *
-   * @param {boolean} chat             Summarize the results of the repair workflow as a chat message.
-   * @param {boolean} newDay           Has a new day occurred during this repair?
-   * @param {boolean} refittingRepair  Is this a refitting repair?
-   * @param {boolean} resetShields     reset shields to max during the repair.
-   * @param {number} [dhd=0]           Number of hull dice spent during so far during the repair.
-   * @param {number} [dhp=0]           Number of hull points recovered so far during the repair.
-   * @returns {Promise<RepairResult>}  Consolidated results of the repair workflow.
+   * @param {RepairConfiguration} config  Configuration data for the repair occurring.
+   * @param {RepairResult} [result={}]    Results of the repair operation being built.
+   * @param {*[]} [args]
+   * @returns {Promise<RepairResult>}     Consolidated results of the repair workflow.
    * @private
    */
-  async _repair(chat, newDay, refittingRepair, resetShields, dhd = 0, dhp = 0) {
+  async _repair(config, result={}, ...args) {
+    if ( args.length ) {
+      foundry.utils.logCompatibilityWarning(
+        "Actor5e._repair now takes a config object and a results object as parameters.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      const [refittingRepair, resetShields, dhd, dhp] = args;
+      config = { chat: config, newDay: result };
+      config.type = refittingRepair ? "refitting" : "recharge";
+      result = { resetShields, dhd, dhp };
+    }
+
+    if ( (foundry.utils.getType(this.system.repair) === "function")
+      && (await this.system.repair(config, result) === false) ) return;
+
     // TODO: Turn gritty realism into the SW5e longer repairs variant rule https://sw5e.com/rules/variantRules/Longer%20Repairs
     let powerDiceUpdates = {};
     let hullPointsRecovered = 0;
@@ -4206,6 +4240,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     let shldDiceRecovered = 0;
     let shldDiceUpdates = [];
     const rolls = [];
+    const refittingRepair = config.type === "refitting";
+    const newDay = config.newDay === true;
 
     // Recover power dice on any repair
     ({ updates: powerDiceUpdates } = this._getRepairPowerDiceRecovery());
@@ -4214,18 +4250,18 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if (refittingRepair) {
       ({ updates: hullPointUpdates, hullPointsRecovered } = this._getRepairHullPointRecovery());
       ({ updates: hullDiceUpdates, hullDiceRecovered } = this._getRepairHullDiceRecovery());
-      resetShields = true;
+      result.resetShields = true;
     }
 
-    if (resetShields) {
+    if (result.resetShields) {
       ({ updates: shldPointUpdates, shldPointsRecovered } = this._getRepairShieldPointRecovery());
       ({ updates: shldDiceUpdates, shldDiceRecovered } = this._getRepairShieldDiceRecovery());
     }
 
     // Figure out the repair of the changes
     const result = {
-      dhd: dhd + hullDiceRecovered,
-      dhp: dhp + hullPointsRecovered,
+      dhd: (result.dhd ?? 0) + hullDiceRecovered,
+      dhp: (result.dhp ?? 0) + hullPointsRecovered,
       shd: shldDiceRecovered,
       shp: shldPointsRecovered,
       updateData: {
@@ -4250,9 +4286,10 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
      * A hook event that fires after repair result is calculated, but before any updates are performed.
      * @function sw5e.preRepairCompleted
      * @memberof hookEvents
-     * @param {Actor5e} actor      The actor that is being repaired.
-     * @param {RepairResult} result  Details on the repair to be completed.
-     * @returns {boolean}          Explicitly return `false` to prevent the repair updates from being performed.
+     * @param {Actor5e} actor             The actor that is being repaired.
+     * @param {RepairResult} result       Details on the repair to be completed.
+     * @param {RestConfiguration} config  Configuration data for the repair occurring.
+     * @returns {boolean}                 Explicitly return `false` to prevent the repair updates from being performed.
      */
     if (Hooks.call("sw5e.preRepairCompleted", this, result) === false) return result;
 
@@ -4260,17 +4297,21 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     await this.update(result.updateData, { isRest: true });
     await this.updateEmbeddedDocuments("Item", result.updateItems, { isRest: true });
 
+    // Advance the game clock
+    if ( config.advanceTime && (config.duration > 0) && game.user.isGM ) await game.time.advance(60 * config.duration);
+
     // Display a Chat Message summarizing the repair effects
-    if (chat) await this._displayRepairResultMessage(result, refittingRepair);
+    if (config.chat) await this._displayRepairResultMessage(result, refittingRepair);
 
     /**
      * A hook event that fires when the repair process is completed for an actor.
      * @function sw5e.repairCompleted
      * @memberof hookEvents
-     * @param {Actor5e} actor        The actor that just completed repairing.
-     * @param {RepairResult} result  Details on the repair completed.
+     * @param {Actor5e} actor               The actor that just completed repairing.
+     * @param {RepairResult} result         Details on the repair completed.
+     * @param {RepairConfiguration} config  Configuration data for the repair that occurred.
      */
-    Hooks.callAll("sw5e.repairCompleted", this, result);
+    Hooks.callAll("sw5e.repairCompleted", this, result, config);
 
     // Return data summarizing the repair effects
     return result;
@@ -4286,7 +4327,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {Promise<ChatMessage>}           Chat message that was created.
    * @protected
    */
-  async _displayRepairResultMessage(result, refittingRepair) {
+  async _displayRepairResultMessage(result, refittingRepair = false) {
     const { dhd, dhp, shd, shp, newDay } = result;
     const hullDiceRestored = dhd !== 0;
     const hullPointsRestored = dhp !== 0;
@@ -4294,10 +4335,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const shldPointsRestored = shp !== 0;
     const length = refittingRepair ? "Refitting" : "Recharge";
 
-    let repairFlavor;
-    let message;
 
     // Summarize the repair duration
+    let repairFlavor;
     repairFlavor = refittingRepair && newDay ? "SW5E.RefittingRepairOvernight" : `SW5E.${length}RepairNormal`;
 
     // If we have a variant timing use the following instead
@@ -4318,6 +4358,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         */
 
     // Determine the chat message to display
+    let message;
     if (refittingRepair) {
       message = "SW5E.RefittingRepairResult";
       if (hullPointsRestored) message += "HP";
@@ -4394,7 +4435,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const max = MAth.max(0, hp.max);
     let diceRolled = 0;
     while (this.system.attributes.hp.value + threshold <= max) {
-      const r = await this.rollHullDie(undefined, { dialog: false });
+      const r = await this.rollHullDie();
       if (r === null) break;
       diceRolled += 1;
     }
@@ -4429,43 +4470,26 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   _getRepairShieldPointRecovery() {
     const hp = this.system.attributes.hp;
-    let max = Math.max(0, hp.tempmax);
+    let tempMax = Math.max(0, hp.tempmax);
     let updates = {};
 
-    updates["system.attributes.hp.temp"] = max;
+    updates["system.attributes.hp.temp"] = tempMax;
     updates["system.attributes.shld.depleted"] = false;
 
-    return { updates, shldPointsRecovered: max - hp.temp };
+    return { updates, shldPointsRecovered: tempMax - hp.temp };
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Recovers actor power dice.
-   *
-   * @returns {object}  Updates to the actor.
-   * @protected
-   */
-  _getRepairPowerDiceRecovery() {
-    const power = this.system.attributes.power;
-    const updates = {};
-
-    for (const slot of Object.keys(CONFIG.SW5E.powerDieSlots)) updates[`system.attributes.power.${slot}.value`] = power[slot].max;
-
-    return { updates };
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Recovers hull during a refitting repair.
+   * Recovers starship hull dice during a refitting repair.
    *
    * @param {object} [options]
    * @param {number} [options.maxHullDice]    Maximum number of hull dice to recover.
-   * @returns {object}                         Array of item updates and number of hit dice recovered.
+   * @returns {object}                        Array of item updates and number of hit dice recovered.
    * @protected
    */
-  _getRepairHullDiceRecovery({ maxHullDice = undefined } = {}) {
+  _getRepairHullDiceRecovery({ maxHullDice } = {}) {
     // Determine the number of hull dice which may be recovered
     if (maxHullDice === undefined) maxHullDice = this.system.attributes.hull.dicemax;
 
@@ -4495,7 +4519,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /* -------------------------------------------- */
 
   /**
-   * Recovers shields during a repair.
+   * Recovers starship shields dice during a repair.
    *
    * @returns {object}           Array of item updates and number of shield dice recovered.
    * @protected
@@ -4530,6 +4554,23 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /* -------------------------------------------- */
 
   /**
+   * Recovers starship power dice.
+   *
+   * @returns {object}  Updates to the actor.
+   * @protected
+   */
+  _getRepairPowerDiceRecovery() {
+    const power = this.system.attributes.power;
+    const updates = {};
+
+    for (const slot of Object.keys(CONFIG.SW5E.powerDieSlots)) updates[`system.attributes.power.${slot}.value`] = power[slot].max;
+
+    return { updates };
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Recovers item uses during recharge or refitting repairs.
    *
    * @param {object} [options]
@@ -4553,21 +4594,21 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     let updates = [];
     for (let item of this.items) {
-      const uses = item.system.uses;
-      if (recovery.includes(uses?.per)) {
+      const uses = item.system.uses ?? {};
+      if (recovery.includes(uses.per)) {
         updates.push({ _id: item.id, "system.uses.value": uses.max });
       }
       if (recoverRefittingRepairUses && item.system.recharge?.value) {
         updates.push({ _id: item.id, "system.recharge.charged": true });
       }
 
-      // Items that roll to gain charges on a new day
-      if (recoverDailyUses && uses?.recovery && uses?.per in CONFIG.SW5E.limitedUseFormulaPeriods) {
+      // Items that roll to gain charges via a formula
+      if (recoverDailyUses && uses.recovery && CONFIG.SW5E.limitedUsePeriods[uses.per]?.formula ) {
         const roll = new Roll(uses.recovery, this.getRollData());
 
         let total = 0;
         try {
-          total = (await roll.evaluate({ async: true })).total;
+          total = (await roll.evaluate()).total;
         } catch(err) {
           ui.notifications.warn(
             game.i18n.format("SW5E.ItemRecoveryFormulaWarning", {
@@ -4597,7 +4638,180 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   }
 
   /* -------------------------------------------- */
+  /*  Property Attribution                        */
+  /* -------------------------------------------- */
+
+  /**
+   * Format an HTML breakdown for a given property.
+   * @param {string} attribution      The property.
+   * @param {object} [options]
+   * @param {string} [options.title]  A title for the breakdown.
+   * @returns {Promise<string>}
+   */
+  async getAttributionData(attribution, { title }={}) {
+    switch ( attribution ) {
+      case "attributes.ac": return this._prepareArmorClassAttribution({ title });
+      case "attributes.movement": return this._prepareMovementAttribution();
+      default: return "";
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare a movement breakdown.
+   * @returns {string}
+   * @protected
+   */
+  _prepareMovementAttribution() {
+    const { movement } = this.system.attributes;
+    const units = movement.units || Object.keys(CONFIG.SW5E.movementUnits)[0];
+    return Object.entries(CONFIG.SW5E.movementTypes).reduce((html, [k, label]) => {
+      const value = movement[k];
+      if ( value || (k === "walk") ) html += `
+        <div class="row">
+          <i class="fas ${k}"></i>
+          <span class="value">${value ?? 0} <span class="units">${units}</span></span>
+          <span class="label">${label}</span>
+        </div>
+      `;
+      return html;
+    }, "");
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare an AC breakdown.
+   * @param {object} [options]
+   * @param {string} [options.title]  A title for the breakdown.
+   * @returns {Promise<string>}
+   * @protected
+   */
+  async _prepareArmorClassAttribution({ title }={}) {
+    const rollData = this.getRollData({ deterministic: true });
+    const ac = rollData.attributes.ac;
+    const cfg = CONFIG.SW5E.armorClasses[ac.calc];
+    const attribution = [];
+
+    if ( ac.calc === "flat" ) {
+      attribution.push({
+        label: game.i18n.localize("SW5E.ArmorClassFlat"),
+        mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+        value: ac.flat
+      });
+      return new PropertyAttribution(this, attribution, "attributes.ac", { title }).renderTooltip();
+    }
+
+    // Base AC Attribution
+    switch ( ac.calc ) {
+
+      // Natural armor
+      case "natural":
+        attribution.push({
+          label: game.i18n.localize("SW5E.ArmorClassNatural"),
+          mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+          value: ac.flat
+        });
+        break;
+
+      default:
+        const formula = ac.calc === "custom" ? ac.formula : cfg.formula;
+        let base = ac.base;
+        const dataRgx = new RegExp(/@([a-z.0-9_-]+)/gi);
+        for ( const [match, term] of formula.matchAll(dataRgx) ) {
+          const value = String(foundry.utils.getProperty(rollData, term));
+          if ( (term === "attributes.ac.armor") || (value === "0") ) continue;
+          if ( Number.isNumeric(value) ) base -= Number(value);
+          attribution.push({
+            label: match,
+            mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+            value
+          });
+        }
+        const armorInFormula = formula.includes("@attributes.ac.armor");
+        let label = game.i18n.localize("SW5E.PropertyBase");
+        if ( armorInFormula ) label = this.armor?.name ?? game.i18n.localize("SW5E.ArmorClassUnarmored");
+        attribution.unshift({
+          label,
+          mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+          value: base
+        });
+        break;
+    }
+
+    // Shield
+    if ( ac.shield !== 0 ) attribution.push({
+      label: this.shield?.name ?? game.i18n.localize("SW5E.EquipmentShield"),
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: ac.shield
+    });
+
+    // Bonus
+    if ( ac.bonus !== 0 ) attribution.push(...this._prepareActiveEffectAttributions("system.attributes.ac.bonus"));
+
+    // Cover
+    if ( ac.cover !== 0 ) attribution.push({
+      label: game.i18n.localize("SW5E.Cover"),
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: ac.cover
+    });
+
+    if ( attribution.length ) {
+      return new PropertyAttribution(this, attribution, "attributes.ac", { title }).renderTooltip();
+    }
+
+    return "";
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Break down all of the Active Effects affecting a given target property.
+   * @param {string} target               The data property being targeted.
+   * @returns {AttributionDescription[]}  Any active effects that modify that property.
+   * @protected
+   */
+  _prepareActiveEffectAttributions(target) {
+    const rollData = this.getRollData({ deterministic: true });
+    const attributions = [];
+    for ( const e of this.allApplicableEffects() ) {
+      let source = e.sourceName;
+      if ( !e.origin || (e.origin === this.uuid) ) source = e.name;
+      if ( !source || e.disabled || e.isSuppressed ) continue;
+      const value = e.changes.reduce((n, change) => {
+        if ( change.key !== target ) return n;
+        if ( change.mode !== CONST.ACTIVE_EFFECT_MODES.ADD ) return n;
+        return n + simplifyBonus(change.value, rollData);
+      }, 0);
+      if ( value ) attributions.push({ value, label: source, mode: CONST.ACTIVE_EFFECT_MODES.ADD });
+    }
+    return attributions;
+  }
+
+  /* -------------------------------------------- */
   /*  Conversion & Transformation                 */
+  /* -------------------------------------------- */
+
+  /**
+   * Fetch stats from the original actor for data preparation.
+   * @returns {{ originalSaves: object|null, originalSkills: object|null }}
+   */
+  getOriginalStats() {
+    // Retrieve data for polymorphed actors
+    let originalSaves = null;
+    let originalSkills = null;
+    if ( this.isPolymorphed ) {
+      const transformOptions = this.flags.sw5e?.transformOptions;
+      const original = game.actors?.get(this.flags.sw5e?.originalActor);
+      if ( original ) {
+        if ( transformOptions.mergeSaves ) originalSaves = original.system.abilities;
+        if ( transformOptions.mergeSkills ) originalSkills = original.system.skills;
+      }
+    }
+    return { originalSaves, originalSkills };
+  }
+
   /* -------------------------------------------- */
 
   /**
@@ -4665,6 +4879,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     } = {},
     { renderSheet = true } = {}
   ) {
+
     // Ensure the player is allowed to polymorph
     const allowed = game.settings.get("sw5e", "allowPolymorphing");
     if (!allowed && !game.user.isGM) {
@@ -4720,6 +4935,11 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     for (const k of ["offsetX", "offsetY", "scaleX", "scaleY", "src", "tint"]) {
       d.prototypeToken.texture[k] = source.prototypeToken.texture[k];
     }
+    foundry.utils.setProperty(d.prototypeToken, "flags.sw5e.tokenRing", foundry.utils.mergeObject(
+      foundry.utils.getProperty(d.prototypeToken, "flags.sw5e.tokenRing") ?? {},
+      foundry.utils.getProperty(source.prototypeToken, "flags.sw5e.tokenRing") ?? {},
+      { inplace: false }
+    ));
     for (const k of ["bar1", "bar2", "displayBars", "displayName", "disposition", "rotation", "elevation"]) {
       d.prototypeToken[k] = o.prototypeToken[k];
     }
@@ -4810,7 +5030,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         if (origin.type === "feat") return keepFeatAE;
         if (origin.type === "background") return keepBackgroundAE;
         if (["archetype", "class"].includes(origin.type)) return keepClassAE;
-        if (["equipment", "weapon", "tool", "loot", "backpack"].includes(origin.type)) return keepEquipmentAE;
+        if (["equipment", "weapon", "tool", "loot", "container"].includes(origin.type)) return keepEquipmentAE;
         return true;
       });
     }
@@ -4834,14 +5054,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if (this.isToken) {
       const tokenData = d.prototypeToken;
       delete d.prototypeToken;
-      let previousActorData;
-      if (game.sw5e.isV10) {
-        tokenData.actorData = d;
-        previousActorData = this.token.toObject().actorData;
-      } else {
-        tokenData.delta = d;
-        previousActorData = this.token.delta.toObject();
-      }
+      tokenData.delta = d;
+      const previousActorData = this.token.delta.toObject();
       foundry.utils.setProperty(tokenData, "flags.sw5e.previousActorData", previousActorData);
       await this.sheet?.close();
       const update = await this.token.update(tokenData);
@@ -4960,11 +5174,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       const prototypeTokenData = await baseActor.getTokenDocument();
       const actorData = this.token.getFlag("sw5e", "previousActorData");
       const tokenUpdate = this.token.toObject();
-      if (game.sw5e.isV10) tokenUpdate.actorData = actorData ?? {};
-      else {
-        actorData._id = tokenUpdate.delta._id;
-        tokenUpdate.delta = actorData;
-      }
+      actorData._id = tokenUpdate.delta._id;
+      tokenUpdate.delta = actorData;
 
       for (const k of ["width", "height", "alpha", "lockRotation", "name"]) {
         tokenUpdate[k] = prototypeTokenData[k];
@@ -4972,6 +5183,11 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       for (const k of ["offsetX", "offsetY", "scaleX", "scaleY", "src", "tint"]) {
         tokenUpdate.texture[k] = prototypeTokenData.texture[k];
       }
+      foundry.utils.setProperty(tokenUpdate, "flags.sw5e.tokenRing", foundry.utils.mergeObject(
+        foundry.utils.getProperty(tokenUpdate, "flags.sw5e.tokenRing") ?? {},
+        foundry.utils.getProperty(prototypeTokenData, "flags.sw5e.tokenRing") ?? {},
+        { inplace: false }
+      ));
       tokenUpdate.sight = prototypeTokenData.sight;
       tokenUpdate.detectionModes = prototypeTokenData.detectionModes;
 
@@ -5003,15 +5219,18 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // Get the Tokens which represent this actor
     if (canvas.ready) {
       const tokens = this.getActiveTokens(true);
-      const tokenData = await original.getTokenDocument();
+      const tokenData = (await original.getTokenDocument()).toObject();
       const tokenUpdates = tokens.map(t => {
-        const update = duplicate(tokenData);
+        const update = foundry.utils.deepClone(tokenData);
         update._id = t.id;
         delete update.x;
         delete update.y;
+        if ( !foundry.utils.getProperty(tokenData, "flags.sw5e.tokenRing") ) {
+          foundry.utils.setProperty(update, "flags.sw5e.tokenRing", {});
+        }
         return update;
       });
-      await canvas.scene.updateEmbeddedDocuments("Token", tokenUpdates);
+      await canvas.scene.updateEmbeddedDocuments("Token", tokenUpdates, { diff: false, recursive: false });
     }
     if (isOriginalActor) {
       await this.unsetFlag("sw5e", "isPolymorphed");
@@ -5178,7 +5397,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   static addDirectoryContextOptions(html, entryOptions) {
     entryOptions.push({
       name: "SW5E.PolymorphRestoreTransformation",
-      icon: '<i class="fas fa-backward"></i>',
+      icon: '<i class="fa-solid fa-backward"></i>',
       callback: li => {
         const actor = game.actors.get(li.data("documentId"));
         return actor.revertOriginalForm();
@@ -5188,8 +5407,48 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         if (!allowed && !game.user.isGM) return false;
         const actor = game.actors.get(li.data("documentId"));
         return actor && actor.isPolymorphed;
-      }
+      },
+      group: "system"
+    }, {
+      name: "SW5E.Group.Primary.Set",
+      icon: '<i class="fa-solid fa-star"></i>',
+      callback: li => {
+        game.settings.set("sw5e", "primaryParty", { actor: game.actors.get(li[0].dataset.documentId) });
+      },
+      condition: li => {
+        const actor = game.actors.get(li[0].dataset.documentId);
+        const primary = game.settings.get("sw5e", "primaryParty")?.actor;
+        return game.user.isGM && (actor.type === "group")
+          && (actor.system.type.value === "party") && (actor !== primary);
+      },
+      group: "system"
+    }, {
+      name: "SW5E.Group.Primary.Remove",
+      icon: '<i class="fa-regular fa-star"></i>',
+      callback: li => {
+        game.settings.set("sw5e", "primaryParty", { actor: null });
+      },
+      condition: li => {
+        const actor = game.actors.get(li[0].dataset.documentId);
+        const primary = game.settings.get("sw5e", "primaryParty")?.actor;
+        return game.user.isGM && (actor === primary);
+      },
+      group: "system"
     });
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Add class to actor entry representing the primary group.
+   * @param {jQuery} jQuery
+   */
+  static onRenderActorDirectory(jQuery) {
+    const primaryParty = game.settings.get("sw5e", "primaryParty")?.actor;
+    if ( primaryParty ) {
+      const element = jQuery[0]?.querySelector(`[data-entry-id="${primaryParty.id}"]`);
+      element?.classList.add("primary-party");
+    }
   }
 
   /* -------------------------------------------- */
@@ -5204,14 +5463,14 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     let localizedType;
     if (typeData.value === "custom") {
       localizedType = typeData.custom;
-    } else {
-      let code = CONFIG.SW5E.creatureTypes[typeData.value];
-      localizedType = game.i18n.localize(typeData.swarm ? `${code}Pl` : code);
+    } else if ( typeData.value in CONFIG.SW5E.creatureTypes ) {
+      const code = CONFIG.SW5E.creatureTypes[typeData.value];
+      localizedType = game.i18n.localize(typeData.swarm ? code.plural : code.label);
     }
     let type = localizedType;
     if (typeData.swarm) {
       type = game.i18n.format("SW5E.CreatureSwarmPhrase", {
-        size: game.i18n.localize(CONFIG.SW5E.actorSizes[typeData.swarm]),
+        size: game.i18n.localize(CONFIG.SW5E.actorSizes[typeData.swarm].label),
         type: localizedType
       });
     }
@@ -5224,13 +5483,41 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _onUpdate(data, options, userId) {
+  async _onUpdate(data, options, userId) {
     super._onUpdate(data, options, userId);
-    this._displayScrollingDamage(options.dhp);
+    if ( userId === game.userId ) {
+      await this.updateEncumbrance(options);
+      this._onUpdateExhaustion(data, options);
+    }
 
-    // // Get the changed attributes
-    // const keys = Object.keys(foundry.utils.flattenObject(data)).filter(k => k !== "_id");
-    // const changed = new Set(keys);
+    const hp = options.sw5e?.hp;
+    if ( hp && !options.isRest && !options.isAdvancement ) {
+      const curr = this.system.attributes.hp;
+      const changes = {
+        hp: curr.value - hp.value,
+        temp: curr.temp - hp.temp
+      };
+      changes.total = changes.hp + changes.temp;
+
+      if ( Number.isInteger(changes.total) && (changes.total !== 0) ) {
+        this._displayTokenEffect(changes);
+        if ( !game.settings.get("sw5e", "disableConcentration") && (userId === game.userId) && (changes.total < 0) ) {
+          this.challengeConcentration({ dc: this.getConcentrationDC(-changes.total) });
+        }
+
+        /**
+         * A hook event that fires when an actor is damaged or healed by any means. The actual name
+         * of the hook will depend on the change in hit points.
+         * @function sw5e.damageActor
+         * @memberof hookEvents
+         * @param {Actor5e} actor                                       The actor that had their hit points reduced.
+         * @param {{hp: number, temp: number, total: number}} changes   The changes to hit points.
+         * @param {object} update                                       The original update delta.
+         * @param {string} userId                                       Id of the user that performed the update.
+         */
+        Hooks.callAll(`sw5e.${changes.total > 0 ? "heal" : "damage"}Actor`, this, changes, data, userId);
+      }
+    }
 
     // When updating an actor deployed on a starship, rerender the starship sheet if it is open
     const starship = this.getStarship();
@@ -5241,9 +5528,33 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         app.render(true);
       }
     }
+  }
 
-    // // Additional options only apply to Actors which are not synthetic Tokens
-    // if (this.isToken) return;
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async _onCreateDescendantDocuments(parent, collection, documents, data, options, userId) {
+    if ( (userId === game.userId) && (collection === "items") ) await this.updateEncumbrance(options);
+    super._onCreateDescendantDocuments(parent, collection, documents, data, options, userId);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+    if ( (userId === game.userId) && (collection === "items") ) await this.updateEncumbrance(options);
+    super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async _onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
+    if ( (userId === game.userId) ) {
+      if ( collection === "items" ) await this.updateEncumbrance(options);
+      await this._clearFavorites(documents);
+    }
+    super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
   }
 
   /* -------------------------------------------- */
@@ -5273,26 +5584,118 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /* -------------------------------------------- */
 
   /**
-   * Display changes to health as scrolling combat text.
-   * Adapt the font size relative to the Actor's HP total to emphasize more significant blows.
-   * @param {number} dhp      The change in hit points that was applied
-   * @private
-   */
-  _displayScrollingDamage(dhp) {
-    if (!dhp) return;
-    dhp = Number(dhp);
-    const tokens = this.isToken ? [this.token?.object] : this.getActiveTokens(true);
-    for (const t of tokens) {
-      if ( !t.visible || !t.renderable ) continue;
-      const pct = Math.clamped(Math.abs(dhp) / this.system.attributes.hp.max, 0, 1);
-      canvas.interface.createScrollingText(t.center, dhp.signedString(), {
+  * Flash ring & display changes to health as scrolling combat text.
+  * @param {object} changes          Object of changes to hit points.
+  * @param {number} changes.hp       Changes to `hp.value`.
+  * @param {number} changes.temp     The change to `hp.temp`.
+  * @param {number} changes.total    The total change to hit points.
+  * @protected
+  */
+  _displayTokenEffect(changes) {
+    let key;
+    let value;
+    if ( changes.hp < 0 ) {
+      key = "damage";
+      value = changes.total;
+    } else if ( changes.hp > 0 ) {
+      key = "healing";
+      value = changes.total;
+    } else if ( changes.temp ) {
+      key = "temp";
+      value = changes.temp;
+    }
+    if ( !key || !value ) return;
+
+    const tokens = this.isToken ? [this.token] : this.getActiveTokens(true, true);
+    if ( !tokens.length ) return;
+
+    const pct = Math.clamped(Math.abs(value) / this.system.attributes.hp.max, 0, 1);
+    const fill = CONFIG.SW5E.tokenHPColors[key];
+
+    for ( const token of tokens ) {
+      if ( !token.object?.visible || !token.object?.renderable ) continue;
+      token.flashRing(key);
+      const t = token.object;
+      canvas.interface.createScrollingText(t.center, value.signedString(), {
         anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
+        // Adapt the font size relative to the Actor's HP total to emphasize more significant blows
         fontSize: 16 + (32 * pct), // Range between [16, 48]
-        fill: CONFIG.SW5E.tokenHPColors[dhp < 0 ? "damage" : "healing"],
+        fill: fill,
         stroke: 0x000000,
         strokeThickness: 4,
         jitter: 0.25
       });
     }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * TODO: Perform this as part of Actor._preUpdateOperation instead when it becomes available in v12.
+   * Handle syncing the Actor's exhaustion level with the ActiveEffect.
+   * @param {object} data                          The Actor's update delta.
+   * @param {DocumentModificationContext} options  Additional options supplied with the update.
+   * @returns {Promise<ActiveEffect|void>}
+   * @protected
+   */
+  async _onUpdateExhaustion(data, options) {
+    const level = foundry.utils.getProperty(data, "system.attributes.exhaustion");
+    if ( !Number.isFinite(level) ) return;
+    let effect = this.effects.get(ActiveEffect5e.ID.EXHAUSTION);
+    if ( level < 1 ) return effect?.delete();
+    else if ( effect ) {
+      const originalExhaustion = foundry.utils.getProperty(options, "sw5e.originalExhaustion");
+      return effect.update({ "flags.sw5e.exhaustionLevel": level }, { sw5e: { originalExhaustion } });
+    } else {
+      effect = await ActiveEffect.implementation.fromStatusEffect("exhaustion", { parent: this });
+      effect.updateSource({ "flags.sw5e.exhaustionLevel": level });
+      return ActiveEffect.implementation.create(effect, { parent: this, keepId: true });
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle applying/removing encumbrance statuses.
+   * @param {DocumentModificationContext} options  Additional options supplied with the update.
+   * @returns {Promise<ActiveEffect>|void}
+   */
+  updateEncumbrance(options) {
+    const encumbrance = this.system.attributes?.encumbrance;
+    if ( !encumbrance || (game.settings.get("sw5e", "encumbrance") === "none") ) return;
+    const statuses = [];
+    const variant = game.settings.get("sw5e", "encumbrance") === "variant";
+    if ( encumbrance.value > encumbrance.thresholds.maximum ) statuses.push("exceedingCarryingCapacity");
+    if ( (encumbrance.value > encumbrance.thresholds.heavilyEncumbered) && variant ) statuses.push("heavilyEncumbered");
+    if ( (encumbrance.value > encumbrance.thresholds.encumbered) && variant ) statuses.push("encumbered");
+
+    const effect = this.effects.get(ActiveEffect5e.ID.ENCUMBERED);
+    if ( !statuses.length ) return effect?.delete();
+
+    const effectData = { ...CONFIG.SW5E.encumbrance.effects[statuses[0]], statuses };
+    if ( effect ) {
+      const originalEncumbrance = effect.statuses.first();
+      return effect.update(effectData, { sw5e: { originalEncumbrance } });
+    }
+
+    return ActiveEffect.implementation.create(
+      { _id: ActiveEffect5e.ID.ENCUMBERED, ...effectData },
+      { parent: this, keepId: true }
+    );
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle clearing favorited entries that were deleted.
+   * @param {Document[]} documents  The deleted Documents.
+   * @returns {Promise<Actor5e>|void}
+   * @protected
+   */
+  _clearFavorites(documents) {
+    if ( !("favorites" in this.system) ) return;
+    const ids = new Set(documents.map(d => d.getRelativeUUID(this)));
+    const favorites = this.system.favorites.filter(f => !ids.has(f.id));
+    return this.update({ "system.favorites": favorites });
   }
 }

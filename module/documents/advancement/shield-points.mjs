@@ -14,7 +14,6 @@ export default class ShieldPointsAdvancement extends HitPointsAdvancement {
     return foundry.utils.mergeObject(super.metadata, {
       title: game.i18n.localize("SW5E.AdvancementShieldPointsTitle"),
       hint: game.i18n.localize("SW5E.AdvancementShieldPointsHint"),
-      validItemTypes: new Set(["starshipsize"]),
       apps: {
         config: ShieldPointsConfig,
         flow: ShieldPointsFlow
@@ -84,9 +83,9 @@ export default class ShieldPointsAdvancement extends HitPointsAdvancement {
    * @returns {number}      Shield points adjusted with ability modifier and per-level bonuses.
    */
   #getApplicableValue(value) {
-    const abilityId = CONFIG.SW5E.shieldPointsAbility || "str";
+    const abilityId = CONFIG.SW5E.defaultAbilities.shieldPoints || "str";
     value = Math.max(value + (this.actor.system.abilities[abilityId]?.mod ?? 0), 1);
-    value += simplifyBonus(this.actor.system.attributes.hp.bonuses.templevel, this.actor.getRollData());
+    value += simplifyBonus(this.actor.system.attributes.hp.bonuses?.templevel, this.actor.getRollData());
     return value;
   }
 

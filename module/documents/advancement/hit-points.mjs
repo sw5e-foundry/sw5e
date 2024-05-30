@@ -9,6 +9,7 @@ import { simplifyBonus } from "../../utils.mjs";
  * class can only have one.**
  */
 export default class HitPointsAdvancement extends Advancement {
+
   /** @inheritdoc */
   static get metadata() {
     return foundry.utils.mergeObject(super.metadata, {
@@ -17,7 +18,6 @@ export default class HitPointsAdvancement extends Advancement {
       title: game.i18n.localize("SW5E.AdvancementHitPointsTitle"),
       hint: game.i18n.localize("SW5E.AdvancementHitPointsHint"),
       multiLevel: true,
-      validItemTypes: new Set(["class"]),
       apps: {
         config: HitPointsConfig,
         flow: HitPointsFlow
@@ -148,9 +148,9 @@ export default class HitPointsAdvancement extends Advancement {
    * @returns {number}      Hit points adjusted with ability modifier and per-level bonuses.
    */
   #getApplicableValue(value) {
-    const abilityId = CONFIG.SW5E.hitPointsAbility || "con";
+    const abilityId = CONFIG.SW5E.defaultAbilities.hitPoints || "con";
     value = Math.max(value + (this.actor.system.abilities[abilityId]?.mod ?? 0), 1);
-    value += simplifyBonus(this.actor.system.attributes.hp.bonuses.level, this.actor.getRollData());
+    value += simplifyBonus(this.actor.system.attributes.hp.bonuses?.level, this.actor.getRollData());
     return value;
   }
 

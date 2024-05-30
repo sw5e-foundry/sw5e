@@ -19,7 +19,6 @@ export default class SizeAdvancement extends Advancement {
       icon: "systems/sw5e/icons/svg/size.svg",
       title: game.i18n.localize("SW5E.AdvancementSizeTitle"),
       hint: game.i18n.localize("SW5E.AdvancementSizeHint"),
-      validItemTypes: new Set(["species"]),
       apps: {
         config: SizeConfig,
         flow: SizeFlow
@@ -38,12 +37,12 @@ export default class SizeAdvancement extends Advancement {
   get automaticHint() {
     if ( !this.configuration.sizes.size ) return "";
     if ( this.configuration.sizes.size === 1 ) return game.i18n.format("SW5E.AdvancementSizeFlowHintSingle", {
-      size: CONFIG.SW5E.actorSizes[this.configuration.sizes.first()]
+      size: CONFIG.SW5E.actorSizes[this.configuration.sizes.first()].label
     });
 
     const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "disjunction" });
     return game.i18n.format("SW5E.AdvancementSizeflowHintMultiple", {
-      sizes: listFormatter.format(this.configuration.sizes.map(s => CONFIG.SW5E.actorSizes[s]))
+      sizes: listFormatter.format(this.configuration.sizes.map(s => CONFIG.SW5E.actorSizes[s].label))
     });
   }
 
@@ -61,7 +60,7 @@ export default class SizeAdvancement extends Advancement {
   /** @inheritdoc */
   summaryForLevel(level, { configMode=false }={}) {
     const sizes = configMode ? Array.from(this.configuration.sizes) : this.value.size ? [this.value.size] : [];
-    return sizes.map(s => `<span class="tag">${CONFIG.SW5E.actorSizes[s]}</span>`).join("");
+    return sizes.map(s => `<span class="tag">${CONFIG.SW5E.actorSizes[s].label}</span>`).join("");
   }
 
   /* -------------------------------------------- */
@@ -95,6 +94,6 @@ export default class SizeAdvancement extends Advancement {
   /** @inheritdoc */
   async reverse(level) {
     this.actor.updateSource({"system.traits.size": "med"});
-    this.updateSource({ "value.-=size": null });
+    this.updateSource({ "value.size": null });
   }
 }

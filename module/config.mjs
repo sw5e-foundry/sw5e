@@ -3151,6 +3151,36 @@ SW5E.restTypes = {
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for repair types.
+ *
+ * @typedef {object} RepairConfiguration
+ * @property {Record<string, number>} duration  Duration of different repair variants in minutes.
+ */
+
+/**
+ * Types of repairs.
+ * @enum {RepairConfiguration}
+ */
+SW5E.repairTypes = {
+  recharge: {
+    duration: {
+      normal: 60,
+      gritty: 480,
+      epic: 1
+    }
+  },
+  refitting: {
+    duration: {
+      normal: 480,
+      gritty: 10080,
+      epic: 60
+    }
+  }
+};
+
+/* -------------------------------------------- */
+
+/**
  * The set of possible sensory perception types which an Actor may have.
  * @enum {string}
  */

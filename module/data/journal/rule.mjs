@@ -7,6 +7,8 @@ const { HTMLField, StringField } = foundry.data.fields;
  * @property {string} type     Type of rule represented. Should match an entry defined in `CONFIG.SW5E.ruleTypes`.
  */
 export default class RuleJournalPageData extends foundry.abstract.DataModel {
+
+  /** @inheritDoc */
   static defineSchema() {
     return {
       tooltip: new HTMLField({label: "SW5E.Rule.Tooltip"}),

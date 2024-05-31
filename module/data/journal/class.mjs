@@ -12,6 +12,7 @@
  * @property {Set<string>} archetypeItems               UUIDs of all archetypes to display.
  */
 export default class ClassJournalPageData extends foundry.abstract.DataModel {
+  /** @inheritDoc */
   static defineSchema() {
     return {
       item: new foundry.data.fields.StringField({required: true, label: "JOURNALENTRYPAGE.SW5E.Class.Item"}),

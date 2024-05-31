@@ -1,4 +1,4 @@
-.sw5e-theme-dark .sw5e2,
+:is(.sw5e-theme-dark, .theme-dark) .sw5e2,
 .sw5e2.sw5e-theme-dark {
   &.sheet {
     /* TODO: Move these out once dark themes have been ported to all apps, not just the character sheet. */
@@ -94,7 +94,7 @@
 /*  Custom Elements                   */
 /* ---------------------------------- */
 
-.sw5e-theme-dark item-list-controls search {
+:is(.sw5e-theme-dark, .theme-dark) item-list-controls search {
   .filter-list {
     border: 1px solid var(--sw5e-color-blue-gray-1);
 
@@ -112,8 +112,9 @@
   }
 }
 
-.sw5e-theme-dark .effects-element {
-  .conditions-list .condition {
+:is(.sw5e-theme-dark, .theme-dark) .sw5e2.sheet.actor.character .effects-element {
+  .conditions-list .condition.content-link {
+    background: unset;
     border-color: var(--sw5e-color-blue-gray-3);
     &:hover { background: var(--sw5e-color-blue-gray-3); }
   }

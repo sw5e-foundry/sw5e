@@ -1,9 +1,9 @@
-.sw5e-theme-dark .sw5e2.sheet.actor.character,
+:is(.sw5e-theme-dark, .theme-dark) .sw5e2.sheet.actor.character,
 .sw5e2.sheet.actor.character.sw5e-theme-dark {
   &:not(.minimized) { background: none; }
 
   .window-content {
-    background: var(--sw5e-color-dark-gray) url("/ui/denim075.png");
+    background: var(--sw5e-color-dark-gray) url("../../ui/denim075.png");
 
     &::before {
       content: "";
@@ -55,5 +55,10 @@
     &::before { background-image: url("ui/ability-score-tab-dark.svg"); }
     .label { font-weight: bold; }
     .mod { color: var(--sw5e-color-blue-white); }
+  }
+
+  .content-link, .roll-link a, .reference-link a, .inline-roll, .award-link {
+    background: var(--sw5e-color-dark-gray);
+    border-color: var(--sw5e-border-dark)
   }
 }

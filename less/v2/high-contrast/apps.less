@@ -42,7 +42,7 @@
 /*  Light Mode                        */
 /* ---------------------------------- */
 
-.sw5e-flag-high-contrast.sw5e-theme-light .sw5e2,
+.sw5e-flag-high-contrast:is(.sw5e-theme-light, .theme-light) .sw5e2,
 .sw5e2.sw5e-flag-high-contrast.sw5e-theme-light {
   &.sheet {
     --filigree-background-color: #ffffff;
@@ -64,7 +64,7 @@
 /*  Dark Mode                         */
 /* ---------------------------------- */
 
-.sw5e-flag-high-contrast.sw5e-theme-dark .sw5e2,
+.sw5e-flag-high-contrast:is(.sw5e-theme-dark, .theme-dark) .sw5e2,
 .sw5e2.sw5e-flag-high-contrast.sw5e-theme-dark {
   &.sheet {
     --color-text-dark-primary: #fff;
@@ -83,6 +83,6 @@
   .card { border: var(--sw5e-border-dark); }
 }
 
-.sw5e-flag-high-contrast.sw5e-theme-dark item-list-controls search {
+.sw5e-flag-high-contrast:is(.sw5e-theme-dark, .theme-dark) item-list-controls search {
   .filter-control:not(.active) { color: var(--color-text-light-6); }
 }

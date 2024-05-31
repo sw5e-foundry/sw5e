@@ -6,7 +6,7 @@
         {{else}}
         <label>{{localize "SW5E.Level"}}</label>
         {{numberInput system.details.powerLevel name="system.details.powerLevel" class="powercasting-level"
-                      placeholder="0" min=0 step=1}}
+                      placeholder="0" min=0 step=1 disabled=classPowercasting}}
         {{/unless}}
         <select name="system.attributes.powercasting" data-type="String">
             {{#select system.attributes.powercasting}}

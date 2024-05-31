@@ -38,7 +38,7 @@
 /*  Light Mode                        */
 /* ---------------------------------- */
 
-.sw5e-flag-high-contrast.sw5e-theme-light .sw5e2.sheet.actor.character,
+.sw5e-flag-high-contrast:is(.sw5e-theme-light, .theme-dark) .sw5e2.sheet.actor.character,
 .sw5e2.sheet.actor.character.sw5e-flag-high-contrast.sw5e-theme-light {
   .sheet-header { background: var(--sw5e-color-maroon); }
   .sidebar .favorites > h3 { color: var(--sw5e-color-dark); }
@@ -49,7 +49,7 @@
 /*  Dark Mode                         */
 /* ---------------------------------- */
 
-.sw5e-flag-high-contrast.sw5e-theme-dark .sw5e2.sheet.actor.character,
+.sw5e-flag-high-contrast:is(.sw5e-theme-dark, .theme-dark) .sw5e2.sheet.actor.character,
 .sw5e2.sheet.actor.character.sw5e-flag-high-contrast.sw5e-theme-dark {
   .sheet-header { background: none; }
   .sidebar .favorites > h3 { color: var(--sw5e-color-light); }

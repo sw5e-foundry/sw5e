@@ -11,7 +11,8 @@
             </div>
             {{#unless disableExperience}}
             <div class="experience">
-                <input type="text" name="system.details.xp.value" value="{{system.details.xp.value}}" placeholder="0" data-dtype="Number">
+                <input type="text" name="system.details.xp.value" value="{{system.details.xp.value}}" placeholder="0"
+                    data-dtype="Number">
                 <span class="sep">/</span>
                 <span class="max">{{system.details.xp.max}}</span>
             </div>
@@ -21,28 +22,16 @@
             {{/unless}}
         </div>
         <div class="summary">
-            <input
-                type="text"
-                name="system.details.species"
-                value="{{system.details.species}}"
-                placeholder="{{ localize 'SW5E.Species' }}"
-            />
+            <input type="text" name="system.details.species" value="{{system.details.species}}"
+                placeholder="{{ localize 'SW5E.Species' }}" />
             {{#if labels.background}}
-                <span data-tooltip="SW5E.Background">{{labels.background}}</span>
+            <span data-tooltip="SW5E.Background">{{labels.background}}</span>
             {{else}}
-                <input
-                    type="text"
-                    name="system.details.background"
-                    value="{{system.details.background}}"
-                    placeholder="{{ localize 'SW5E.Background' }}"
-                />
+            <input type="text" name="system.details.background" value="{{system.details.background}}"
+                placeholder="{{ localize 'SW5E.Background' }}" />
             {{/if}}
-            <input
-                type="text"
-                name="system.details.alignment"
-                value="{{system.details.alignment}}"
-                placeholder="{{ localize 'SW5E.Alignment' }}"
-            />
+            <input type="text" name="system.details.alignment" value="{{system.details.alignment}}"
+                placeholder="{{ localize 'SW5E.Alignment' }}" />
             <div class="proficiency">Proficiency {{numberFormat system.attributes.prof decimals=0 sign=true}}</div>
         </div>
         {{!-- Header Attributes --}}
@@ -50,12 +39,8 @@
             {{!-- ARMOR CLASS --}}
             <section class="attrib armor">
                 <h1 class="attribute-name box-title"> {{ localize "SW5E.ArmorClass" }} </h1>
-                <div
-                    class="attribute-value"
-                    data-attribution="attributes.ac"
-                    data-attribution-caption="SW5E.ArmorClass"
-                    data-tooltip-direction="DOWN"
-                >
+                <div class="attribute-value" data-attribution="attributes.ac" data-attribution-caption="SW5E.ArmorClass"
+                    data-tooltip-direction="DOWN">
                     <span>{{system.attributes.ac.value}}</span>
                 </div>
                 <footer class="attribute-footer">
@@ -67,38 +52,20 @@
             <section class="attrib health">
                 <h1 class="attribute-name box-title">{{ localize "SW5E.HitPoints" }}</h1>
                 <div class="attribute-value multiple">
-                    <input
-                        name="system.attributes.hp.value"
-                        type="text"
-                        value="{{hp.value}}"
-                        placeholder="10"
-                        data-tooltip="SW5E.HitPointsCurrent"
-                        data-dtype="Number"
-                    >
+                    <input name="system.attributes.hp.value" type="text" value="{{hp.value}}" placeholder="10"
+                        data-tooltip="SW5E.HitPointsCurrent" data-dtype="Number">
                     <span class="value-separator">/</span>
                     <span data-tooltip="{{#if hp.max}}SW5E.HitPointsOverride{{else}}SW5E.HitPointsMax{{/if}}">
                         {{hp.max}}
                     </span>
                 </div>
                 <footer class="attribute-footer hit-points">
-                    <input
-                        name="system.attributes.hp.temp"
-                        type="text"
-                        class="temphp"
-                        placeholder="+{{ localize 'SW5E.Temp' }}"
-                        value="{{hp.temp}}"
-                        data-tooltip="SW5E.HitPointsTemp"
-                        data-dtype="Number"
-                    >
-                    <input
-                        name="system.attributes.hp.tempmax"
-                        type="text"
-                        class="temphp"
-                        placeholder="+{{ localize 'SW5E.Max' }}"
-                        value="{{hp.tempmax}}"
-                        data-tooltip="SW5E.HitPointsTempMax"
-                        data-dtype="Number"
-                    >
+                    <input name="system.attributes.hp.temp" type="text" class="temphp"
+                        placeholder="+{{ localize 'SW5E.Temp' }}" value="{{hp.temp}}" data-tooltip="SW5E.HitPointsTemp"
+                        data-dtype="Number">
+                    <input name="system.attributes.hp.tempmax" type="text" class="temphp"
+                        placeholder="+{{ localize 'SW5E.Max' }}" value="{{hp.tempmax}}"
+                        data-tooltip="SW5E.HitPointsTempMax" data-dtype="Number">
                 </footer>
             </section>
 
@@ -113,8 +80,10 @@
                     </label>
                 </div>
                 <footer class="attribute-footer hit-dice">
-                    <button type="button" class="rest short-rest" data-tooltip="SW5E.ShortRest">{{ localize "SW5E.RestS" }}</button>
-                    <button type="button" class="rest long-rest" data-tooltip="SW5E.LongRest">{{ localize "SW5E.RestL" }}</button>
+                    <button type="button" class="rest short-rest" data-tooltip="SW5E.ShortRest">{{ localize "SW5E.RestS"
+                        }}</button>
+                    <button type="button" class="rest long-rest" data-tooltip="SW5E.LongRest">{{ localize "SW5E.RestL"
+                        }}</button>
                 </footer>
             </section>
 
@@ -141,7 +110,7 @@
         </div>
     </header>
     {{!-- PC Sheet Navigation --}}
-    <nav class="sheet-navigation root-tabs" style="grid-template-columns: repeat(6, 1fr);"  data-group="primary">
+    <nav class="sheet-navigation root-tabs" style="grid-template-columns: repeat(6, 1fr);" data-group="primary">
         <a class="item active" data-tab="attributes">{{localize "SW5E.Core"}}</a>
         <a class="item" data-tab="inventory">{{ localize "SW5E.Inventory" }}</a>
         <a class="item" data-tab="features">{{ localize "SW5E.Features" }}</a>
@@ -165,10 +134,14 @@
         </section>
         {{!-- Force Powers, Tech Powers and Maneuvers Tab --}}
         <section class="tab powerbooks" data-group="primary" data-tab="powerbooks">
-            <nav class="sheet-navigation powerbook-tabs tab-list" style="grid-template-columns: repeat(3, 1fr);"  data-subgroup-selection>
-                <button class="item active" data-subgroup="book-tab" data-target="force-powerbook">{{ localize "SW5E.ForcePowerbook" }}</button>
-                <button class="item" data-subgroup="book-tab" data-target="tech-powerbook">{{ localize "SW5E.TechPowerbook" }}</button>
-                <button class="item" data-subgroup="book-tab" data-target="superiority-powerbook">{{ localize "SW5E.SuperiorityPowerbook" }}</button>
+            <nav class="sheet-navigation powerbook-tabs tab-list" style="grid-template-columns: repeat(3, 1fr);"
+                data-subgroup-selection>
+                <button class="item active" data-subgroup="book-tab" data-target="force-powerbook">{{ localize
+                    "SW5E.ForcePowerbook" }}</button>
+                <button class="item" data-subgroup="book-tab" data-target="tech-powerbook">{{ localize
+                    "SW5E.TechPowerbook" }}</button>
+                <button class="item" data-subgroup="book-tab" data-target="superiority-powerbook">{{ localize
+                    "SW5E.SuperiorityPowerbook" }}</button>
             </nav>
 
             {{!-- Force Powers Tab --}}

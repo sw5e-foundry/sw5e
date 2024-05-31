@@ -3,14 +3,14 @@
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
         <div class="composed-icon profile">
-            {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}"/>{{/if}}
+            {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}" />{{/if}}
             <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
-            {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}"/>{{/if}}
+            {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}" />{{/if}}
         </div>
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
             </h1>
 
             <div class="item-subtitle">
@@ -73,90 +73,94 @@
 
             {{!-- Weapon/Equipment Properties --}}
             {{#if propertiesList}}
-                <h3 class="form-header">{{ localize "SW5E.ItemModificationPropertyPl" }}</h3>
-                <div class="form-group stacked item-properties">
-                    <label>{{ localize "SW5E.ItemProperties" }}</label>
-                    {{#each propertiesList as |property key|}} {{#if (eq property.type "Boolean")}}
-                        <label class="checkbox" data-tooltip="{{property.desc}}">
-                            <input class="tristate-checkbox" type="checkbox" name="system.properties.{{key}}"
-                                   {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
-                        </label>
-                    {{/if}} {{/each}}
+            <h3 class="form-header">{{ localize "SW5E.ItemModificationPropertyPl" }}</h3>
+            <div class="form-group stacked item-properties">
+                <label>{{ localize "SW5E.ItemProperties" }}</label>
+                {{#each propertiesList as |property key|}} {{#if (eq property.type "Boolean")}}
+                <label class="checkbox" data-tooltip="{{property.desc}}">
+                    <input class="tristate-checkbox" type="checkbox" name="system.properties.{{key}}" {{checked (lookup
+                        ../system.properties key)}} />{{ localize property.name }}
+                </label>
+                {{/if}} {{/each}}
 
-                    {{#each propertiesList as |property key|}} {{#if (eq property.type "Number")}}
-                        <label class="number" data-tooltip="{{property.desc}}">
-                            {{ localize property.name }}<input type="text" name="system.properties.{{key}}"
-                               value="{{lookup ../system.properties key}}" data-dtype="Number">
-                        </label>
-                    {{/if}} {{/each}}
-                </div>
+                {{#each propertiesList as |property key|}} {{#if (eq property.type "Number")}}
+                <label class="number" data-tooltip="{{property.desc}}">
+                    {{ localize property.name }}<input type="text" name="system.properties.{{key}}"
+                        value="{{lookup ../system.properties key}}" data-dtype="Number">
+                </label>
+                {{/if}} {{/each}}
+            </div>
             {{/if}}
 
             {{#if isWpnMod}}
-                {{!-- Attack Roll Bonus --}}
-                <div class="form-group">
-                    <label>{{ localize "SW5E.ItemAttackBonus" }}</label>
-                    <div class="form-fields">
-                        <input type="text" name="system.attackBonus" value="{{system.attackBonus}}"/>
-                    </div>
+            {{!-- Attack Roll Bonus --}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.ItemAttackBonus" }}</label>
+                <div class="form-fields">
+                    <input type="text" name="system.attackBonus" value="{{system.attackBonus}}" />
                 </div>
+            </div>
 
-                {{!-- Damage Formula --}}
-                <h4 class="damage-header">
-                    {{ localize "SW5E.Damage" }} {{ localize "SW5E.Formula" }}
-                    <a class="damage-control add-damage"><i class="fas fa-plus"></i></a>
-                </h4>
-                <ol class="damage-parts form-group">
-                    {{#each system.damage.parts as |part i| }}
-                    <li class="damage-part flexrow" data-damage-part="{{i}}">
-                        <input type="text" name="system.damage.parts.{{i}}.0" value="{{lookup this "0"}}"/>
-                        <select name="system.damage.parts.{{i}}.1">
-                            {{#select (lookup this "1") }}
-                            <option value="">{{ localize "SW5E.None" }}</option>
-                            {{#each ../config.damageTypes as |name type|}}
-                            <option value="{{type}}">{{name}}</option>
-                            {{/each}}
-                            {{#each ../config.healingTypes as |name type|}}
-                            <option value="{{type}}">{{name}}</option>
-                            {{/each}}
-                            {{/select}}
-                        </select>
-                        <a class="damage-control delete-damage"><i class="fas fa-minus"></i></a>
-                    </li>
-                    {{/each}}
-                </ol>
+            {{!-- Damage Formula --}}
+            <h4 class="damage-header">
+                {{ localize "SW5E.Damage" }} {{ localize "SW5E.Formula" }}
+                <a class="damage-control add-damage"><i class="fas fa-plus"></i></a>
+            </h4>
+            <ol class="damage-parts form-group">
+                {{#each system.damage.parts as |part i| }}
+                <li class="damage-part flexrow" data-damage-part="{{i}}">
+                    <input type="text" name="system.damage.parts.{{i}}.0" value="{{lookup this " 0"}}" />
+                    <select name="system.damage.parts.{{i}}.1">
+                        {{#select (lookup this "1") }}
+                        <option value="">{{ localize "SW5E.None" }}</option>
+                        {{#each ../config.damageTypes as |name type|}}
+                        <option value="{{type}}">{{name}}</option>
+                        {{/each}}
+                        {{#each ../config.healingTypes as |name type|}}
+                        <option value="{{type}}">{{name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                    <a class="damage-control delete-damage"><i class="fas fa-minus"></i></a>
+                </li>
+                {{/each}}
+            </ol>
             {{/if}}
 
             {{#if isEquipMod}}
-                {{!-- Armor Class --}}
-                <div class="form-group">
-                    <label>{{ localize "SW5E.ArmorClassBonus" }}</label>
-                    <div class="form-fields">
-                        <input type="text" name="system.armor.value" value="{{system.armor.value}}" data-dtype="Number" placeholder="{{ localize 'SW5E.None' }}"/>
-                    </div>
+            {{!-- Armor Class --}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.ArmorClassBonus" }}</label>
+                <div class="form-fields">
+                    <input type="text" name="system.armor.value" value="{{system.armor.value}}" data-dtype="Number"
+                        placeholder="{{ localize 'SW5E.None' }}" />
                 </div>
+            </div>
 
-                {{!-- Dexterity Modifier --}}
-                <div class="form-group">
-                    <label>{{ localize "SW5E.ItemEquipmentDexMod" }}</label>
-                    <div class="form-fields">
-                        <input type="text" name="system.armor.dex" value="{{system.armor.dex}}" data-dtype="Number" placeholder="{{ localize 'SW5E.Unchanged' }}"/>
-                    </div>
+            {{!-- Dexterity Modifier --}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.ItemEquipmentDexMod" }}</label>
+                <div class="form-fields">
+                    <input type="text" name="system.armor.dex" value="{{system.armor.dex}}" data-dtype="Number"
+                        placeholder="{{ localize 'SW5E.Unchanged' }}" />
                 </div>
+            </div>
 
-                {{!-- Required Strength --}}
-                <div class="form-group">
-                    <label>{{ localize "SW5E.ItemRequiredStr" }}</label>
-                    <div class="form-fields">
-                        <input type="text" name="system.strength" value="{{system.strength}}" data-dtype="Number" placeholder="{{ localize 'SW5E.Unchanged' }}"/>
-                    </div>
+            {{!-- Required Strength --}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.ItemRequiredStr" }}</label>
+                <div class="form-fields">
+                    <input type="text" name="system.strength" value="{{system.strength}}" data-dtype="Number"
+                        placeholder="{{ localize 'SW5E.Unchanged' }}" />
                 </div>
+            </div>
 
-                {{!-- Stealth Disadvantage --}}
-                <div class="form-group">
-                    <label>{{ localize "SW5E.ItemEquipmentStealthDisav" }}</label>
-                    <input class="tristate-checkbox" type="checkbox" name="system.stealth" value="1" {{checked system.stealth}}/>
-                </div>
+            {{!-- Stealth Disadvantage --}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.ItemEquipmentStealthDisav" }}</label>
+                <input class="tristate-checkbox" type="checkbox" name="system.stealth" value="1" {{checked
+                    system.stealth}} />
+            </div>
             {{/if}}
         </div>
 

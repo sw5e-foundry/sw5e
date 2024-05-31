@@ -1,11 +1,13 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
         <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.BackgroundName' }}" />
+                <input name="name" type="text" value="{{item.name}}"
+                    placeholder="{{ localize 'SW5E.BackgroundName' }}" />
             </h1>
 
             <div class="item-subtitle">
@@ -34,18 +36,19 @@
 
         {{!-- Description Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
-            {{editor 
-				enriched.description 
-				target="system.description.value" 
-				button=true 
-				editable=editable 
-				engine="prosemirror"
-                collaborate=false
-			}}
+            {{editor
+            enriched.description
+            target="system.description.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+            }}
         </div>
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
+
             {{!-- Identifier --}}
             <div class="form-group">
                 <label>{{localize "SW5E.Identifier"}}</label>
@@ -53,6 +56,18 @@
                     <input type="text" name="system.identifier" value="{{system.identifier}}">
                 </div>
             </div>
+
+            {{!-- Starting Equipment --}}
+            <h3 class="form-header">
+                {{ localize "SW5E.StartingEquipment.Title" }}
+                <a class="config-button" data-action="starting-equipment"
+                    data-tooltip="SW5E.StartingEquipment.Action.Configure"
+                    aria-label="{{ localize 'SW5E.StartingEquipment.Action.Configure' }}">
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                </a>
+            </h3>
+            {{#with system.startingEquipmentDescription}}{{{ this }}}{{else}}{{ localize "None" }}{{/with}}
+
         </div>
 
         {{!-- Effects Tab --}}

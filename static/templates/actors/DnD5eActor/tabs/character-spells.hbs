@@ -4,9 +4,9 @@
     <div class="powercasting card {{#if primary}}primary{{/if}}" data-ability="{{ ability.ability }}">
         <div class="header">
             <h3>{{ label }}</h3>
-            <button type="button" class="radio-button" data-action="powercasting"
-                    data-tooltip="SW5E.PowerAbilitySet" aria-pressed="{{#if primary}}true{{else}}false{{/if}}"
-                    aria-label="{{ localize "SW5E.PowerAbilitySet" }}"></button>
+            <button type="button" class="radio-button" data-action="powercasting" data-tooltip="SW5E.PowerAbilitySet"
+                aria-pressed="{{#if primary}}true{{else}}false{{/if}}" aria-label="{{ localize " SW5E.PowerAbilitySet"
+                }}"></button>
         </div>
         <div class="info">
             <div class="ability">
@@ -36,8 +36,8 @@
 <{{ elements.inventory }} class="inventory-element" v2>
 
     {{!-- Searching & Filtering --}}
-    <item-list-controls for="powerbook" label="{{ localize "SW5E.PowersSearch" }}" sort="toggle" collection="items"
-                        keep-empty>
+    <item-list-controls for="powerbook" label="{{ localize " SW5E.PowersSearch" }}" sort="toggle" collection="items"
+        keep-empty>
         <datalist>
             <option value="action">{{ localize "SW5E.Action" }}</option>
             <option value="bonus">{{ localize "SW5E.BonusAction" }}</option>
@@ -70,7 +70,7 @@
                 <div class="item-header item-controls"></div>
                 {{#if (and usesSlots editable)}}
                 <a class="config-button" data-action="powerSlots" data-tooltip="SW5E.PowerSlotsConfig"
-                   aria-label="{{ localize "SW5E.PowerSlotsConfig" }}">
+                    aria-label="{{ localize " SW5E.PowerSlotsConfig" }}">
                     <i class="fas fa-cog"></i>
                 </a>
                 {{/if}}
@@ -81,7 +81,7 @@
             <div class="pips" data-prop="system.powers.{{ prop }}.value">
                 {{#each pips}}
                 <button type="button" class="{{ classes }}" data-n="{{ n }}" data-tooltip="{{ tooltip }}"
-                        aria-label="{{ label }}" aria-pressed="{{ filled }}">
+                    aria-label="{{ label }}" aria-pressed="{{ filled }}">
                     <sw5e-icon src="systems/sw5e/icons/svg/power-slot.svg"></sw5e-icon>
                 </button>
                 {{/each}}
@@ -99,10 +99,10 @@
 
                     {{!-- Power Name --}}
                     <div class="item-name item-action item-tooltip {{ @root.rollableClass }}" role="button"
-                         data-action="use" aria-label="{{ item.name }}">
+                        data-action="use" aria-label="{{ item.name }}">
                         {{#if ctx.concentration}}
                         <i class="concentration fas fa-arrow-rotate-left fa-spin fa-spin-reverse"
-                           aria-label="{{ localize "SW5E.Concentration" }}"></i>
+                            aria-label="{{ localize " SW5E.Concentration" }}"></i>
                         {{/if}}
                         <img class="item-image gold-icon" src="{{ item.img }}" alt="{{ item.name }}">
                         <div class="name name-stacked">
@@ -122,7 +122,7 @@
 
                     {{!-- Power School --}}
                     <div class="item-detail item-school" data-tooltip="{{ item.labels.school }}"
-                         aria-label="{{ item.labels.school }}">
+                        aria-label="{{ item.labels.school }}">
                         {{#with (lookup @root.config.powerSchools item.system.school) as |schoolConfig|}}
                         <sw5e-icon src="{{ schoolConfig.icon }}"></sw5e-icon>
                         {{/with}}
@@ -153,7 +153,8 @@
                     </div>
 
                     {{!-- Power Attack / DC --}}
-                    <div class="item-detail item-roll {{#if (and (not item.system.save.ability) (not ctx.toHit))}}empty{{/if}}">
+                    <div
+                        class="item-detail item-roll {{#if (and (not item.system.save.ability) (not ctx.toHit))}}empty{{/if}}">
                         {{#if ctx.toHit}}
                         <span class="sign">{{ ctx.toHit.sign }}</span>
                         <span class="value">{{ ctx.toHit.abs }}</span>
@@ -187,13 +188,13 @@
                         {{#if @root.editable}}
                         {{!-- Editing --}}
                         <a class="item-control item-action" data-action="edit" data-tooltip="SW5E.ItemEdit"
-                           aria-label="{{ localize "SW5E.ItemEdit" }}">
+                            aria-label="{{ localize " SW5E.ItemEdit" }}">
                             <i class="fas fa-pen-to-square"></i>
                         </a>
 
                         {{!-- Deleting --}}
                         <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"
-                           aria-label="{{ localize "SW5E.ItemDelete" }}">
+                            aria-label="{{ localize " SW5E.ItemDelete" }}">
                             <i class="fas fa-trash"></i>
                         </a>
                         {{else if @root.owner}}
@@ -201,7 +202,7 @@
                         {{#with ctx.preparation}}
                         {{#if applicable}}
                         <a class="item-control item-action {{ cls }}" data-action="prepare" data-tooltip="{{ title }}"
-                           aria-label="{{ title }}" aria-disabled="{{ this.disabled }}">
+                            aria-label="{{ title }}" aria-disabled="{{ this.disabled }}">
                             {{{ icon }}}
                         </a>
                         {{/if}}
@@ -209,8 +210,8 @@
                         {{/if}}
 
                         {{!-- Context Menu --}}
-                        <a class="item-control interface-only" data-context-menu
-                           aria-label="{{ localize "SW5E.AdditionalControls" }}">
+                        <a class="item-control interface-only" data-context-menu aria-label="{{ localize "
+                            SW5E.AdditionalControls" }}">
                             <i class="fas fa-ellipsis-vertical"></i>
                         </a>
 

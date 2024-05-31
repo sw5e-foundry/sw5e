@@ -25,7 +25,7 @@
             {{localize "SW5E.Quantity"}}
             {{#if @root.editable}}
             <a class="action-button" data-action="rollQuantities" data-tooltip="SW5E.QuantityRoll"
-               aria-label="{{localize 'SW5E.QuantityRoll'}}">
+                aria-label="{{localize 'SW5E.QuantityRoll'}}">
                 <i class="fa-solid fa-dice"></i>
             </a>
             {{/if}}
@@ -47,7 +47,9 @@
             {{#if section.displayHPColumn}}
             <div class="hp flexrow">
                 <div class="bar-container">
-                    <div class="bar" style="width:{{member.hp.pct}}%; background:{{member.hp.color}}; border-color:{{member.hp.border}}"></div>
+                    <div class="bar"
+                        style="width:{{member.hp.pct}}%; background:{{member.hp.color}}; border-color:{{member.hp.border}}">
+                    </div>
                 </div>
                 {{#if displayHPValues}}
                 <span class="current">{{member.hp.current}}</span>
@@ -59,15 +61,13 @@
             {{#if section.displayQuantityColumn}}
             <div class="quantity flexrow">
                 <input type="number" name="system.members.{{index}}.quantity.value" min="0" step="1"
-                       value="{{member.quantity.value}}">
-                <input type="text" name="system.members.{{index}}.quantity.formula"
-                       value="{{member.quantity.formula}}" placeholder="{{localize 'SW5E.Formula'}}">
+                    value="{{member.quantity.value}}">
+                <input type="text" name="system.members.{{index}}.quantity.formula" value="{{member.quantity.formula}}"
+                    placeholder="{{localize 'SW5E.Formula'}}">
             </div>
             {{else}}
-            <input type="hidden" name="system.members.{{index}}.quantity.value"
-                   value="{{member.quantity.value}}">
-            <input type="hidden" name="system.members.{{index}}.quantity.formula"
-                   value="{{member.quantity.formula}}">
+            <input type="hidden" name="system.members.{{index}}.quantity.value" value="{{member.quantity.value}}">
+            <input type="hidden" name="system.members.{{index}}.quantity.formula" value="{{member.quantity.formula}}">
             {{/if}}
             {{#if section.displayChallengeColumn}}
             <div class="challenge">

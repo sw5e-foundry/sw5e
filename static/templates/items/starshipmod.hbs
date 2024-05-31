@@ -2,9 +2,9 @@
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
         <div class="composed-icon profile">
-            {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}"/>{{/if}}
+            {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}" />{{/if}}
             <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
-            {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}"/>{{/if}}
+            {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}" />{{/if}}
         </div>
 
         <div class="header-details flexrow">
@@ -24,34 +24,19 @@
                     </select>
                 </li>
                 <li>
-                    <input
-                        type="text"
-                        data-dtype="Number"
-                        name="system.grade.value"
-                        value="{{system.grade.value}}"
-                        placeholder="0"
-                        data-tooltip="SW5E.ModGrade"
-                    />
+                    <input type="text" data-dtype="Number" name="system.grade.value" value="{{system.grade.value}}"
+                        placeholder="0" data-tooltip="SW5E.ModGrade" />
                 </li>
                 <li>
-                    <input
-                        type="text"
-                        data-dtype="Number"
-                        name="system.baseCost.value"
-                        value="{{system.baseCost.value}}"
-                        placeholder="{{ system.baseCost.default }}"
-                        data-tooltip="{{ labels.cost }}"
-                    />
+                    <input type="text" data-dtype="Number" name="system.baseCost.value"
+                        value="{{system.baseCost.value}}" placeholder="{{ system.baseCost.default }}"
+                        data-tooltip="{{ labels.cost }}" />
                 </li>
             </ul>
             <ul class="summary flexrow">
                 <li>
-                    <input
-                        type="text"
-                        name="system.prerequisites.value"
-                        value="{{system.prerequisites.value}}"
-                        placeholder="{{ localize 'SW5E.PrerequisitePl' }}"
-                    />
+                    <input type="text" name="system.prerequisites.value" value="{{system.prerequisites.value}}"
+                        placeholder="{{ localize 'SW5E.PrerequisitePl' }}" />
                 </li>
             </ul>
         </div>
@@ -76,15 +61,18 @@
 
             <div class="form-group stacked">
                 <label class="checkbox">
-                    <input type="checkbox" name="system.equipped" {{checked system.equipped}} /> {{ localize "SW5E.Installed"}}
+                    <input type="checkbox" name="system.equipped" {{checked system.equipped}} /> {{ localize
+                    "SW5E.Installed"}}
                 </label>
                 <label class="checkbox">
-                      <input type="checkbox" name="system.free.slot" {{checked system.free.slot}} /> {{ localize "SW5E.ModFreeSlot"}}
+                    <input type="checkbox" name="system.free.slot" {{checked system.free.slot}} /> {{ localize
+                    "SW5E.ModFreeSlot"}}
                 </label>
                 {{#if (eq system.system.value "Suite")}}
-                    <label class="checkbox">
-                          <input type="checkbox" name="system.free.suite" {{checked system.free.suite}} /> {{ localize "SW5E.ModFreeSuite"}}
-                    </label>
+                <label class="checkbox">
+                    <input type="checkbox" name="system.free.suite" {{checked system.free.suite}} /> {{ localize
+                    "SW5E.ModFreeSuite"}}
+                </label>
                 {{/if}}
             </div>
 

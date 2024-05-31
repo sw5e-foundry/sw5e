@@ -1,75 +1,120 @@
 <form id="ability-use-form">
-  <p>{{title}}</p>
-  <p class="notes">{{note}}</p>
-  {{#each warnings}}
-    <p class="notification warn">{{this}}</p>
-  {{/each}}
+    <p>{{title}}</p>
+    <p class="notes">{{note}}</p>
+    {{#each warnings}}
+    <p class="notification warning">{{this}}</p>
+    {{/each}}
 
-  {{#if (eq scaling "resource")}}
-  <div class="form-group">
-    <label>{{ localize "SW5E.ConsumeScalingLabel" }}</label>
-    <div class="form-fields">
-      <select name="resourceAmount">
-        {{selectOptions resourceOptions selected=resourceAmount localize=true}}
-      </select>
-    </div>
-  </div>
-  {{/if}}
-
-  {{#if (eq scaling "slot")}}
+    {{#if (eq scaling "resource")}}
     <div class="form-group">
-      <label>{{ localize "SW5E.PowerCastUpcast" }}</label>
-      <div class="form-fields">
-        <select name="slotLevel">
-          {{#select slotLevel}} {{#each slotOptions as |l|}}
-            <option value="{{l.key}}" {{disabled (not l.canCast)}}>{{l.label}}</option>
-          {{/each}} {{/select}}
-        </select>
-      </div>
+        <label>{{ localize "SW5E.ConsumeScalingLabel" }}</label>
+        <div class="form-fields">
+            <select name="resourceAmount">
+                {{selectOptions resourceOptions selected=resourceAmount localize=true}}
+            </select>
+        </div>
     </div>
+    {{/if}}
 
+    {{#if (eq scaling "slot")}}
     <div class="form-group">
-      <label class="checkbox">
-        <input type="checkbox" name="consumePowerSlot" {{checked consumePowerSlot}}>{{localize "SW5E.PowerCastConsume"}}
-      </label>
+        <label>{{ localize "SW5E.PowerCastUpcast" }}</label>
+        <div class="form-fields">
+            <select name="slotLevel">
+                {{#select slotLevel}} {{#each slotOptions as |l|}}
+                <option value="{{l.key}}" {{disabled (not l.canCast)}}>{{l.label}}</option>
+                {{/each}} {{/select}}
+            </select>
+        </div>
     </div>
 
     <div class="form-group">
-      <label class="checkbox">
-        <input type="checkbox" name="consumePowerPoints" {{checked consumePowerPoints}}>{{localize "SW5E.PowerCastConsumePoints"}}
-      </label>
+        <label class="checkbox">
+            <input type="checkbox" name="consumePowerSlot" {{checked consumePowerSlot}}>{{localize
+            "SW5E.PowerCastConsume"}}
+        </label>
     </div>
-  {{/if}}
 
-  {{#if consumeSuperiorityDie}}
     <div class="form-group">
-      <label class="checkbox"><input type="checkbox" name="consumeSuperiorityDie" {{checked consumeSuperiorityDie}} />{{localize
-          "SW5E.ConsumeSuperiorityDie"
-        }}</label>
+        <label class="checkbox">
+            <input type="checkbox" name="consumePowerPoints" {{checked consumePowerPoints}}>{{localize
+            "SW5E.PowerCastConsumePoints"}}
+        </label>
     </div>
-  {{/if}}
+    {{/if}}
 
-  {{#if (ne consumeUsage null)}}
+    {{#if consumeSuperiorityDie}}
     <div class="form-group">
-      <label class="checkbox">
-        <input type="checkbox" name="consumeUsage" {{checked consumeUsage}} />{{localize "SW5E.AbilityUseConsume"}}
-      </label>
+        <label class="checkbox"><input type="checkbox" name="consumeSuperiorityDie" {{checked
+                consumeSuperiorityDie}} />{{localize
+            "SW5E.ConsumeSuperiorityDie"
+            }}</label>
     </div>
-  {{/if}}
+    {{/if}}
 
-  {{#if (ne consumeResource null)}}
+    {{#if (ne beginConcentrating null)}}
+    {{#if concentration.show}}
     <div class="form-group">
-      <label class="checkbox">
-        <input type="checkbox" name="consumeResource" {{checked consumeResource}} />{{localize "SW5E.ConsumeResource"}}
-      </label>
+        <label>{{ localize "SW5E.ConcentratingEnd" }}</label>
+        <div class="form-fields">
+            <select name="endConcentration">
+                {{selectOptions concentration.options selected=endConcentration sort=true blank=concentration.optional
+                nameAttr="name" labelAttr="label"}}
+            </select>
+        </div>
     </div>
-  {{/if}}
+    {{/if}}
 
-  {{#if (ne createMeasuredTemplate null)}}
     <div class="form-group">
-      <label class="checkbox">
-        <input type="checkbox" name="createMeasuredTemplate" {{checked createMeasuredTemplate}} />{{localize "SW5E.PlaceTemplate"}}
-      </label>
+        <label class="checkbox">
+            <input type="checkbox" name="beginConcentrating" {{checked beginConcentrating}}>
+            {{ localize "SW5E.Concentration" }}
+        </label>
     </div>
-  {{/if}}
+    {{/if}}
+
+    {{#if (ne consumeUsage null)}}
+    <div class="form-group">
+        <label class="checkbox">
+            <input type="checkbox" name="consumeUsage" {{ checked consumeUsage }}>
+            {{localize "SW5E.AbilityUseConsume"}}
+        </label>
+    </div>
+    {{/if}}
+
+    {{#if (ne consumeResource null)}}
+    <div class="form-group">
+        <label class="checkbox">
+            <input type="checkbox" name="consumeResource" {{ checked consumeResource }}>
+            {{localize "SW5E.ConsumeResource"}}
+        </label>
+    </div>
+    {{/if}}
+
+    {{#if (ne createMeasuredTemplate null)}}
+    <div class="form-group">
+        <label class="checkbox">
+            <input type="checkbox" name="createMeasuredTemplate" {{ checked createMeasuredTemplate }}>
+            {{ localize "SW5E.PlaceTemplate" }}
+        </label>
+    </div>
+    {{/if}}
+
+    {{#if (ne createSummons null)}}
+    <div class="form-group">
+        <label class="checkbox">
+            <input type="checkbox" name="createSummons" {{ checked createSummons }}>
+            {{ localize "SW5E.Summoning.Action.Place" }}
+        </label>
+        {{#if summoningOptions}}
+        <div class="form-fields">
+            <select name="summonsProfile" aria-label="{{ localize 'SW5E.Summoning.Profile.Label' }}">
+                {{ selectOptions summoningOptions selected=summonsProfile }}
+            </select>
+        </div>
+        {{else}}
+        <input type="hidden" name="summonsProfile" value="{{ summonsProfile }}">
+        {{/if}}
+    </div>
+    {{/if}}
 </form>

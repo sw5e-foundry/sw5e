@@ -6,18 +6,14 @@
             {{#each abilities as |ability id|}}
             <li class="score{{#if ability.proficient}} proficient{{/if}}" data-ability="{{id}}">
                 <h2 class="ability-name rollable">{{ability.label}}</h2>
-                <input type="text" name="system.abilities.{{id}}.value" value="{{ability.value}}"
-                       class="ability-score" placeholder="10" data-dtype="Number">
+                <input type="text" name="system.abilities.{{id}}.value" value="{{ability.value}}" class="ability-score"
+                    placeholder="10" data-dtype="Number">
                 <div class="ability-modifiers">
                     <span class="ability-mod" data-tooltip="SW5E.Modifier">
                         {{numberFormat ability.mod decimals=0 sign=true}}
                     </span>
-                    <input
-                        type="hidden"
-                        name="system.abilities.{{id}}.proficient"
-                        value="{{ability.baseProf}}"
-                        data-dtype="Number"
-                    />
+                    <input type="hidden" name="system.abilities.{{id}}.proficient" value="{{ability.baseProf}}"
+                        data-dtype="Number" />
                     <a class="proficiency-toggle ability-proficiency" data-tooltip="SW5E.Proficiency">
                         {{{ability.icon}}}
                     </a>
@@ -25,9 +21,9 @@
                         {{numberFormat ability.save decimals=0 sign=true}}
                     </span>
                 </div>
-                    <a class="config-button" data-action="ability"
-                       data-tooltip="{{ localize "SW5E.AbilityConfigure" ability=ability.label }}">
-                        <i class="fas fa-cog"></i>
+                <a class="config-button" data-action="ability" data-tooltip="{{ localize " SW5E.AbilityConfigure"
+                    ability=ability.label }}">
+                    <i class="fas fa-cog"></i>
                 </a>
             </li>
             {{/each}}
@@ -38,8 +34,8 @@
         <h1>{{localize "SW5E.Skills" }}</h1>
         <ol>
             {{#each config.skills as |obj s|}} {{#with (lookup ../skills s) as |skill|}}
-            <li class="proficiency-row skill {{#if skill.value}}proficient{{/if}}"
-                    data-property="skills" data-key="{{s}}">
+            <li class="proficiency-row skill {{#if skill.value}}proficient{{/if}}" data-property="skills"
+                data-key="{{s}}">
                 <input type="hidden" name="system.skills.{{s}}.value" value="{{skill.baseValue}}" data-dtype="Number">
                 <input type="hidden" name="system.skills.{{s}}.ability" value="{{skill.ability}}">
                 <a class="proficiency-toggle skill-proficiency" data-tooltip="{{skill.hover}}">{{{skill.icon}}}</a>

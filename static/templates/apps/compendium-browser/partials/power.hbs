@@ -1,6 +1,6 @@
 <li class="item flexrow" data-entry-uuid="{{entry.uuid}}" data-level="{{entry.level}}" data-type="Item">
     <div class="image">
-        <img class="" src="{{entry.img}}" title="{{entry.name}}" width="32" height="32" loading="lazy"/>
+        <img class="" src="{{entry.img}}" title="{{entry.name}}" width="32" height="32" loading="lazy" />
     </div>
     <div class="name">
         <a class="item-link">{{entry.name}}</a>
@@ -9,11 +9,11 @@
         <span title="Power Activation">{{entry.timeLabel}}</span>
     </div>
     {{#if entry.components.concentration}}
-        <div class="concentration" style="margin-left: 5px; font-weight: bold;">
-            <span>{{ localize "SW5E.ConcentrationAbbr" }}</span>
-        </div>
+    <div class="concentration" style="margin-left: 5px; font-weight: bold;">
+        <span>{{ localize "SW5E.ConcentrationAbbr" }}</span>
+    </div>
     {{else}}
-        <div class="concentration" style="margin-left: 5px; font-weight: bold;"></div>
+    <div class="concentration" style="margin-left: 5px; font-weight: bold;"></div>
     {{/if}}
     <div class="level-full">
         <span title="Power level">{{entry.levelLabel}}</span>

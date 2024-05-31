@@ -1555,6 +1555,11 @@ SW5E.featureTypes = {
   },
   feat: {
     label: "SW5E.Feature.Feat"
+  },
+  maneuver: {
+    general: "SW5E.ManeuverTypeGeneral",
+    physical: "SW5E.ManeuverTypePhysical",
+    mental: "SW5E.ManeuverTypeMental"
   }
 };
 preLocalize("featureTypes", { key: "label" });

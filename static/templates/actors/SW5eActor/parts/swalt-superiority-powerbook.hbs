@@ -14,16 +14,11 @@
                 <i class="fas fa-cog"></i>
             </a>
             <div class="attribute-value multiple">
-                <input
-                    name="system.attributes.super.dice.value"
-                    type="text"
-                    class="value-number"
-                    value="{{super.dice.value}}"
-                    data-tooltip="SW5E.SuperDiceCurrent"
-                    data-dtype="Number"
-                >
+                <input name="system.attributes.super.dice.value" type="text" class="value-number"
+                    value="{{super.dice.value}}" data-tooltip="SW5E.SuperDiceCurrent" data-dtype="Number">
                 <span class="value-separator">/</span>
-                <span class="value-number" data-tooltip="{{#if sourceSuper.dice.max}}SW5E.SuperDiceOverride{{else}}SW5E.SuperDiceMax{{/if}}">
+                <span class="value-number"
+                    data-tooltip="{{#if sourceSuper.dice.max}}SW5E.SuperDiceOverride{{else}}SW5E.SuperDiceMax{{/if}}">
                     {{super.dice.max}}{{#if system.attributes.super.dice.max}}{{system.attributes.super.die}}{{/if}}
                 </span>
             </div>
@@ -58,7 +53,7 @@
 
         <div class="resource">
             <h1>{{localize "SW5E.ManeuversKnown"}}</h1>
-            
+
             <div class="attribute-value multiple">
                 <span class="value-number">{{system.attributes.super.known.value}}</span>
                 <span class="value-separator">/</span>
@@ -84,79 +79,85 @@
 
     <ol class="group-list">
         {{#each superiorityPowerbook as |section|}}
-            <li class="items-header powerbook-header" {{sw5e-dataset section.dataset}}>
-                <div class="group-list-title group-grid-maneuvers">
-                    <div class="item-name">
-                        <h3>{{section.label}}</h3>
-                        {{#if section.canCreate}}
-                        <a class="item-control item-action" data-action="create" data-tooltip="SW5E.ManeuverCreate"
-                            {{sw5e-dataset section.dataset}}>
-                            <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
-                        </a>
+        <li class="items-header powerbook-header" {{sw5e-dataset section.dataset}}>
+            <div class="group-list-title group-grid-maneuvers">
+                <div class="item-name">
+                    <h3>{{section.label}}</h3>
+                    {{#if section.canCreate}}
+                    <a class="item-control item-action" data-action="create" data-tooltip="SW5E.ManeuverCreate"
+                        {{sw5e-dataset section.dataset}}>
+                        <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
+                    </a>
+                    {{/if}}
+                </div>
+            </div>
+            <ol class="item-list">
+                {{#each section.maneuvers as |item i|}}
+                {{#sw5e-itemContext item as |ctx|}}
+                <li class="item group-grid-maneuvers {{#if ctx.isExpanded}}expanded{{/if}}" data-item-id="{{item.id}}">
+                    <div class="item-name rollable">
+                        <div class="item-image item-action" data-action="use" tabindex="0" role="button"
+                            aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
+                        <h4 class="item-action" data-action="expand">{{item.name}}</h4>
+                    </div>
+
+                    <div class="item-detail item-uses">
+                        {{#if item.hasLimitedUses }}
+                        {{localize "SW5E.Uses"}} {{#if
+                        item.system.uses.value}}{{item.system.uses.value}}{{else}}0{{/if}} / {{item.system.uses.max}}
                         {{/if}}
                     </div>
-                </div>
-                <ol class="item-list">
-                    {{#each section.maneuvers as |item i|}}
-                    {{#sw5e-itemContext item as |ctx|}}
-                        <li class="item group-grid-maneuvers {{#if ctx.isExpanded}}expanded{{/if}}" data-item-id="{{item.id}}">
-                            <div class="item-name rollable">
-                                <div class="item-image item-action" data-action="use" tabindex="0" role="button"
-                                    aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
-                                <h4 class="item-action" data-action="expand">{{item.name}}</h4>
-                            </div>
 
-                            <div class="item-detail item-uses">
-                                {{#if item.hasLimitedUses }}
-                                    {{localize "SW5E.Uses"}} {{#if item.system.uses.value}}{{item.system.uses.value}}{{else}}0{{/if}} / {{item.system.uses.max}}
-                                {{/if}}
-                            </div>
+                    <div class="item-detail item-school"></div>
+                    <div class="item-detail item-action">{{item.labels.activation}}</div>
+                    <div class="item-detail item-target"
+                        data-tooltip="{{localize 'SW5E.Range'}}: {{item.labels.range}}">
+                        {{#if item.labels.target}}{{item.labels.target}}{{else}}{{localize 'SW5E.None'}}{{/if}}
+                    </div>
 
-                            <div class="item-detail item-school"></div>
-                            <div class="item-detail item-action">{{item.labels.activation}}</div>
-                            <div class="item-detail item-target" data-tooltip="{{localize 'SW5E.Range'}}: {{item.labels.range}}">
-                                {{#if item.labels.target}}{{item.labels.target}}{{else}}{{localize 'SW5E.None'}}{{/if}}
-                            </div>
+                    {{#if @root.owner}}
+                    <div class="item-detail item-controls">
+                        {{#if section.canPrepare}}
+                        <a class="item-control item-toggle {{ctx.toggleClass}}" data-action="prepare"
+                            data-tooltip="{{ctx.toggleTitle}}">
+                            <i class="fas fa-check-circle"></i>
+                        </a>
+                        {{/if}}
+                        <a class="item-control item-action" data-action="edit" data-tooltip="SW5E.ItemEdit"><i
+                                class="fas fa-edit"></i></a>
+                        <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"><i
+                                class="fas fa-trash"></i></a>
+                    </div>
+                    {{/if}}
 
-                            {{#if @root.owner}}
-                                <div class="item-detail item-controls">
-                                    {{#if section.canPrepare}}
-                                        <a class="item-control item-toggle {{ctx.toggleClass}}" data-action="prepare" data-tooltip="{{ctx.toggleTitle}}">
-                                            <i class="fas fa-check-circle"></i>
-                                        </a>
-                                    {{/if}}
-                                    <a class="item-control item-action" data-action="edit" data-tooltip="SW5E.ItemEdit"><i class="fas fa-edit"></i></a>
-                                    <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"><i class="fas fa-trash"></i></a>
-                                </div>
-                            {{/if}}
-
-                            {{#if ctx.isExpanded}}
-                                {{> "sw5e.item-summary" (lookup @root.expandedData item.id)}}
-                            {{/if}}
-                        </li>
-                    {{/sw5e-itemContext}}
-                    {{/each}}
-                </ol>
-            </li>
+                    {{#if ctx.isExpanded}}
+                    {{> "sw5e.item-summary" (lookup @root.expandedData item.id)}}
+                    {{/if}}
+                </li>
+                {{/sw5e-itemContext}}
+                {{/each}}
+            </ol>
+        </li>
         {{else}}
-            {{#if owner}}
-                {{#if filters.superiorityPowerbook.size}}
-                    <li class="item flexrow">
-                        <p class="notes">{{localize "SW5E.FilterNoManeuvers"}}</p>
-                    </li>
-                {{else}}
-                    <li class="item flexrow inventory-header powerbook-header powerbook-empty" data-type="power" data-school="general">
-                        <div class="item-controls">
-                            <a class="item-control item-action" data-action="create" data-tooltip="SW5E.ManeuverCreate">
-                                <i class="fas fa-plus"></i> {{localize "SW5E.ManeuverAdd"}}
-                            </a>
-                        </div>
-                    </li>
-                    <li class="item flexrow">
-                        <p class="notes">{{localize "SW5E.NoSuperiorityLevels"}}</p>
-                    </li>
-                {{/if}}
-            {{/if}}
+        {{#if owner}}
+        {{#if filters.superiorityPowerbook.size}}
+        <li class="item flexrow">
+            <p class="notes">{{localize "SW5E.FilterNoManeuvers"}}</p>
+        </li>
+        {{else}}
+        <li class="item flexrow inventory-header powerbook-header powerbook-empty" data-type="power"
+            data-school="general">
+            <div class="item-controls">
+                <a class="item-control item-action" data-action="create" data-tooltip="SW5E.ManeuverCreate">
+                    <i class="fas fa-plus"></i> {{localize "SW5E.ManeuverAdd"}}
+                </a>
+            </div>
+        </li>
+        <li class="item flexrow">
+            <p class="notes">{{localize "SW5E.NoSuperiorityLevels"}}</p>
+        </li>
+        {{/if}}
+        {{/if}}
         {{/each}}
     </ol>
 </section>

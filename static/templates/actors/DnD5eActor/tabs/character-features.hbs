@@ -6,22 +6,20 @@
     <div class="class pill-lg" data-item-id="{{ cls.id }}" style="--underlay: url('{{ ctx.prefixedImage }}');">
         <div class="icons {{#if cls.archetype}}archetype{{/if}}">
             <img class="gold-icon item-tooltip" src="{{ cls.img }}" alt="{{ cls.name }}" data-action="edit"
-                 data-item-id="{{ cls.id }}">
+                data-item-id="{{ cls.id }}">
             {{#if cls.archetype}}
             <img class="gold-icon item-tooltip" src="{{ cls.archetype.img }}" alt="{{ cls.archetype.name }}"
-                 data-action="edit" data-item-id="{{ cls.archetype.id }}">
+                data-action="edit" data-item-id="{{ cls.archetype.id }}">
             {{/if}}
             {{#if @root.editable}}
             <div class="controls">
-                <a class="deletion-control item-control item-action" data-action="delete"
-                   data-tooltip="SW5E.ItemDelete" data-item-id="{{ cls.id }}"
-                   aria-label="{{ localize "SW5E.ItemDelete" }}">
+                <a class="deletion-control item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"
+                    data-item-id="{{ cls.id }}" aria-label="{{ localize " SW5E.ItemDelete" }}">
                     <i class="fas fa-circle-xmark"></i>
                 </a>
                 {{#if cls.archetype}}
-                <a class="deletion-control item-control item-action" data-action="delete"
-                   data-tooltip="SW5E.ItemDelete" data-item-id="{{ cls.archetype.id }}"
-                   aria-label="{{ localize "SW5E.ItemDelete" }}">
+                <a class="deletion-control item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"
+                    data-item-id="{{ cls.archetype.id }}" aria-label="{{ localize " SW5E.ItemDelete" }}">
                     <i class="fas fa-circle-xmark"></i>
                 </a>
                 {{/if}}
@@ -64,8 +62,8 @@
 <{{elements.inventory}} class="inventory-element" v2>
 
     {{!-- Searching, Filtering, & Sorting --}}
-    <item-list-controls for="features" label="{{ localize "SW5E.FeatureSearch" }}" sort="toggle" group
-                        group-label="{{ localize "SW5E.FilterGroupOrigin" }}" collection="items">
+    <item-list-controls for="features" label="{{ localize " SW5E.FeatureSearch" }}" sort="toggle" group
+        group-label="{{ localize " SW5E.FilterGroupOrigin" }}" collection="items">
         <datalist>
             <option value="action">{{ localize "SW5E.Action" }}</option>
             <option value="bonus">{{ localize "SW5E.BonusAction" }}</option>
@@ -104,7 +102,7 @@
 
                     {{!-- Item Name --}}
                     <div class="item-name item-action item-tooltip {{ @root.rollableClass }}" role="button"
-                         data-action="use" aria-label="{{ item.name }}">
+                        data-action="use" aria-label="{{ item.name }}">
                         <img class="item-image gold-icon" src="{{ item.img }}" alt="{{ item.name }}">
                         <div class="name name-stacked">
                             <span class="title">{{ item.name }}</span>
@@ -127,7 +125,7 @@
                     <div class="item-detail item-uses {{#unless ctx.hasUses}}empty{{/unless}}">
                         {{#if ctx.hasUses}}
                         <input type="text" value="{{ item.system.uses.value }}" placeholder="0" data-dtype="Number"
-                               data-name="system.uses.value" inputmode="numeric" pattern="[0-9+=\-]*">
+                            data-name="system.uses.value" inputmode="numeric" pattern="[0-9+=\-]*">
                         <span class="separator">&sol;</span>
                         <span class="max">{{ item.system.uses.max }}</span>
                         {{/if}}
@@ -146,20 +144,20 @@
                         {{#if @root.editable}}
                         {{!-- Editing --}}
                         <a class="item-control item-action" data-action="edit" data-tooltip="SW5E.ItemEdit"
-                           aria-label="{{ localize "SW5E.ItemEdit" }}">
+                            aria-label="{{ localize " SW5E.ItemEdit" }}">
                             <i class="fas fa-pen-to-square"></i>
                         </a>
 
                         {{!-- Deleting --}}
                         <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"
-                           aria-label="{{ localize "SW5E.ItemDelete" }}">
+                            aria-label="{{ localize " SW5E.ItemDelete" }}">
                             <i class="fas fa-trash"></i>
                         </a>
                         {{/if}}
 
                         {{!-- Context Menu --}}
-                        <a class="item-control interface-only" data-context-menu
-                           aria-label="{{ localize "SW5E.AdditionalControls" }}">
+                        <a class="item-control interface-only" data-context-menu aria-label="{{ localize "
+                            SW5E.AdditionalControls" }}">
                             <i class="fas fa-ellipsis-vertical"></i>
                         </a>
 

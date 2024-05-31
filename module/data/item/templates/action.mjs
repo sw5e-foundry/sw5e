@@ -207,6 +207,22 @@ export default class ActionTemplate extends ItemDataModel {
     return null;
   }
 
+
+  /* -------------------------------------------- */
+
+  /**
+   * What is the base critical hit threshold for this item? Only used when no overrides are set:
+   *  - `critical.threshold` defined on the item
+   *  - `critical.threshold` defined on ammunition, if consumption mode is set to ammo
+   *  - Type-specific critical threshold
+   * @type {number}
+   */
+  get baseCriticalThreshold() {
+    if (!this.hasAttack) return null;
+    const threshold = this._typeBaseCriticalThreshold;
+    return threshold < Infinity ? threshold : 20;
+  }
+
   /* -------------------------------------------- */
 
   /**
@@ -223,7 +239,18 @@ export default class ActionTemplate extends ItemDataModel {
       ammoThreshold = this.parent?.actor?.items.get(this.consume.target)?.system.critical.threshold ?? Infinity;
     }
     const threshold = Math.min(this.critical.threshold ?? Infinity, this._typeCriticalThreshold, ammoThreshold);
-    return threshold < Infinity ? threshold : 20;
+    return threshold < Infinity ? threshold : this.baseCriticalThreshold;;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Default base critical threshold for this type.
+   * @type {number}
+   * @internal
+   */
+  get _typeBaseCriticalThreshold() {
+    return Infinity;
   }
 
   /* -------------------------------------------- */

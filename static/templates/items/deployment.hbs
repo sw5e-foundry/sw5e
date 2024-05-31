@@ -5,12 +5,8 @@
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input
-                    name="name"
-                    type="text"
-                    value="{{item.name}}"
-                    placeholder="{{ localize 'SW5E.DeploymentName' }}"
-                />
+                <input name="name" type="text" value="{{item.name}}"
+                    placeholder="{{ localize 'SW5E.DeploymentName' }}" />
             </h1>
 
             <div class="item-subtitle">
@@ -38,12 +34,12 @@
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
             {{editor
-                enriched.description
-                target="system.description.value"
-                button=true
-                editable=editable
-                engine="prosemirror"
-                collaborate=false
+            enriched.description
+            target="system.description.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
             }}
         </div>
 
@@ -61,7 +57,7 @@
             </div>
         </div>
 
-        {{!-- Advancement Tab --}} 
+        {{!-- Advancement Tab --}}
         {{> "sw5e.item-advancement"}}
     </section>
 </form>

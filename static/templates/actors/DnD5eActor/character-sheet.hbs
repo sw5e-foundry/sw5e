@@ -30,16 +30,18 @@
 
             {{!-- Character Summary --}}
             <ul class="summary flexrow">
-                {{#if system.details.species.name}}
-                    <span data-tooltip="SW5E.Species">{{system.details.species.name}}</span>
-                {{else}}
-                    <input
-                        type="text"
-                        name="system.details.species"
-                        value="{{system.details.species}}"
-                        placeholder="{{ localize 'SW5E.Species' }}"
-                    />
-                {{/if}}
+                <li class="species">
+                    {{#if system.details.species.name}}
+                        <span data-tooltip="SW5E.Species">{{system.details.species.name}}</span>
+                    {{else}}
+                        <input
+                            type="text"
+                            name="system.details.species"
+                            value="{{system.details.species}}"
+                            placeholder="{{ localize 'SW5E.Species' }}"
+                        />
+                    {{/if}}
+                </li>
                 <li class="background">
                     {{#if system.details.background.name}}
                         <span data-tooltip="SW5E.Background">{{system.details.background.name}}</span>
@@ -181,7 +183,8 @@
                             {{numberFormat ability.save decimals=0 sign=true}}
                         </span>
                     </div>
-                    <a class="config-button" data-action="ability" data-tooltip="SW5E.AbilityConfigure">
+                    <a class="config-button" data-action="ability"
+                       data-tooltip="{{ localize "SW5E.AbilityConfigure" ability=ability.label }}">
                         <i class="fas fa-cog"></i>
                     </a>
                 </li>
@@ -279,7 +282,7 @@
 
         {{!-- Inventory Tab --}}
         <div class="tab inventory flexcol" data-group="primary" data-tab="inventory">
-            {{> "sw5e.actor-inventory" sections=inventory}}
+            {{> "sw5e.inventory" sections=inventory}}
         </div>
 
         {{!-- Features Tab --}}

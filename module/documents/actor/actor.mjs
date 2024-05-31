@@ -4051,7 +4051,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       config = foundry.utils.mergeObject(
       {
       type: "recharge", dialog: true, chat: true, newDay: false, advanceTime: false, autoHD: false, autoHDThreshold: 3,
-      duration: CONFIG.SW5E.repairTypes.recharge.duration[game.settings.get("sw5e", "restVariant")]
+      duration: CONFIG.SW5E.repairTypes.recharge.duration[game.settings.get("sw5e", "repairVariant")]
       },
       config
     );
@@ -4116,7 +4116,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     config = foundry.utils.mergeObject(
       {
         type: "refitting", dialog: true, chat: true, newDay: true, advanceTime: false,
-        duration: CONFIG.SW5E.repairTypes.refitting.duration[game.settings.get("sw5e", "restVariant")]
+        duration: CONFIG.SW5E.repairTypes.refitting.duration[game.settings.get("sw5e", "repairVariant")]
         },
       config
     );
@@ -4338,24 +4338,18 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     // Summarize the repair duration
     let repairFlavor;
-    repairFlavor = refittingRepair && newDay ? "SW5E.RefittingRepairOvernight" : `SW5E.${length}RepairNormal`;
-
-    // If we have a variant timing use the following instead
-    /*
-        /* switch (game.settings.get("sw5e", "repairVariant")) {
-        /*     case "normal":
-        /*         repairFlavor =
-        /*             refittingRepair && newDay ? "SW5E.RefittingRepairOvernight" : `SW5E.${length}RepairNormal`;
-        /*         break;
-        /*     case "gritty":
-        /*         repairFlavor =
-        /*             !refittingRepair && newDay ? "SW5E.RechargeRepairOvernight" : `SW5E.${length}RepairGritty`;
-        /*         break;
-        /*     case "epic":
-        /*         repairFlavor = `SW5E.${length}RepairEpic`;
-        /*         break;
-        /* }
-        */
+    
+    switch (game.settings.get("sw5e", "repairVariant")) {
+      case "normal":
+        repairFlavor = refittingRepair && newDay ? "SW5E.RefittingRepairOvernight" : `SW5E.${length}RepairNormal`;
+        break;
+      case "gritty":
+        repairFlavor = !refittingRepair && newDay ? "SW5E.RechargeRepairOvernight" : `SW5E.${length}RepairGritty`;
+        break;
+      case "epic":
+        repairFlavor = `SW5E.${length}RepairEpic`;
+        break;
+      }
 
     // Determine the chat message to display
     let message;

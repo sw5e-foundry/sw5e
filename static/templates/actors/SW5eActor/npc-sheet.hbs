@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="summary">
-            <span class="npc-size">{{lookup config.actorSizes system.traits.size}}</span>
+            <span class="npc-size">{{lookup (lookup config.actorSizes system.traits.size) "label"}}</span>
             <input class="alignment"
                 type="text"
                 name="system.details.alignment"
@@ -76,7 +76,7 @@
             {{!-- HIT POINTS --}}
             <section class="attrib health">
                 <h1 class="attribute-name box-title">{{ localize "SW5E.HitPoints" }}</h1>
-                <a class="config-button" data-action="hit-points" data-tooltip="SW5E.HitPointsConfig">
+                <a class="config-button" data-action="hitPoints" data-tooltip="SW5E.HitPointsConfig">
                     <i class="fas fa-cog"></i>
                 </a>
                 <div class="attribute-value multiple">
@@ -90,14 +90,12 @@
                         data-dtype="Number"
                     >
                     <span class="value-separator">/</span>
-                    <input
-                        name="system.attributes.hp.max"
-                        type="text"
-                        value="{{hp.max}}"
-                        placeholder="10"
-                        data-tooltip="SW5E.HitPointsMax"
-                        data-dtype="Number"
-                    >
+                    {{#if system.details.level}}
+                        <span data-tooltip="SW5E.HitPointsMax">{{ hp.max }}</span>
+                        {{else}}
+                        <input name="system.attributes.hp.max" type="text" value="{{ hp.max }}" placeholder="10"
+                               data-tooltip="SW5E.HitPointsMax" data-dtype="Number">
+                    {{/if}}
                 </div>
                 <footer class="attribute-footer hit-points">
                     <input
@@ -174,7 +172,7 @@
                                         {{numberFormat ability.save decimals=0 sign=true}}
                                     </span>
                                 </div>
-                                <a class="config-button" data-action="ability" data-tooltip="SW5E.AbilityConfigure">
+                                <a class="config-button" data-action="ability" data-tooltip="{{ localize "SW5E.AbilityConfigure" ability=ability.label }}">
                                     <i class="fas fa-cog"></i>
                                 </a>
                             </li>
@@ -253,6 +251,17 @@
                             <input name="system.resources.lair.initiative" type="number" step="any"
                                    value="{{system.resources.lair.initiative}}"
                                    placeholder="20" data-tooltip="SW5E.LairActionInitiative">
+                        </div>
+                    </div>
+                    <div class="counter flexrow death-saves">
+                        <h4 class="rollable" data-action="rollDeathSave">{{ localize "SW5E.DeathSave" }}</h4>
+                        <div class="counter-value">
+                            <i class="fa-solid fa-check"></i>
+                            {{ numberInput system.attributes.death.success name="system.attributes.death.success"
+                               min=0 step=1 placeholder=0 }}
+                            <i class="fa-solid fa-times"></i>
+                            {{ numberInput system.attributes.death.failure name="system.attributes.death.failure"
+                               min=0 step=1 placeholder=0 }}
                         </div>
                     </div>
                 </div>

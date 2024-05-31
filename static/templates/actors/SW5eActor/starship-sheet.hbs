@@ -42,7 +42,7 @@
       {{!-- HULL POINTS --}}
       <section class="attrib health">
         <h1 class="attribute-name box-title">{{ localize "SW5E.HullPoints" }}</h1>
-        <a class="config-button" data-action="hull-points" data-tooltip="SW5E.HullPointsConfig">
+        <a class="config-button" data-action="hullPoints" data-tooltip="SW5E.HullPointsConfig">
           <i class="fas fa-cog"></i>
         </a>
         <div class="attribute-value multiple">
@@ -69,7 +69,7 @@
       <section class="attrib health">
         <h1 class="attribute-name box-title">{{ localize "SW5E.ShieldPoints" }}</h1>
         {{#if shieldInstalled}}
-          <a class="config-button" data-action="shield-points" data-tooltip="SW5E.ShieldPointsConfig">
+          <a class="config-button" data-action="shieldPoints" data-tooltip="SW5E.ShieldPointsConfig">
             <i class="fas fa-cog"></i>
           </a>
           <div class="attribute-value multiple">
@@ -152,7 +152,7 @@
                     {{numberFormat ability.save decimals=0 sign=true}}
                   </span>
                 </div>
-                <a class="config-button" data-action="ability" data-tooltip="SW5E.AbilityConfigure">
+                <a class="config-button" data-action="ability" data-tooltip="{{ localize "SW5E.AbilityConfigure" ability=ability.label }}">
                   <i class="fas fa-cog"></i>
                 </a>
               </li>

@@ -106,8 +106,8 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
 
   /** @override */
   get template() {
-    if ( !game.user.isGM && this.actor.limited ) return "systems/sw5e/templates/actors/limited-sheet-2.hbs";
-    return "systems/sw5e/templates/actors/character-sheet-2.hbs";
+    if ( !game.user.isGM && this.actor.limited ) return "systems/sw5e/templates/actors/DnD5e/limited-sheet-2.hbs";
+    return "systems/sw5e/templates/actors/DnD5e/character-sheet-2.hbs";
   }
 
   /* -------------------------------------------- */

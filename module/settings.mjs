@@ -3,14 +3,44 @@ import { ModuleArtConfig } from "./module-art.mjs";
 /**
  * Register all of the system's settings.
  */
-export default function registerSystemSettings() {
+export function registerSystemSettings() {
   // Internal System Migration Version
   game.settings.register("sw5e", "systemMigrationVersion", {
     name: "System Migration Version",
     scope: "world",
     config: false,
     type: String,
-    default: game.system.version
+    default: ""
+  });
+
+  // Challenge visibility
+  game.settings.register("sw5e", "challengeVisibility", {
+    name: "SETTINGS.5eChallengeVisibility.Name",
+    hint: "SETTINGS.5eChallengeVisibility.Hint",
+    scope: "world",
+    config: true,
+    default: "player",
+    type: String,
+    choices: {
+      all: "SETTINGS.5eChallengeVisibility.All",
+      player: "SETTINGS.5eChallengeVisibility.Player",
+      none: "SETTINGS.5eChallengeVisibility.None"
+    }
+  });
+
+  // Encumbrance tracking
+  game.settings.register("sw5e", "encumbrance", {
+    name: "SETTINGS.5eEncumbrance.Name",
+    hint: "SETTINGS.5eEncumbrance.Hint",
+    scope: "world",
+    config: true,
+    default: "none",
+    type: String,
+    choices: {
+      none: "SETTINGS.5eEncumbrance.None",
+      normal: "SETTINGS.5eEncumbrance.Normal",
+      variant: "SETTINGS.5eEncumbrance.Variant"
+    }
   });
 
   // Rest Recovery Rules
@@ -28,6 +58,22 @@ export default function registerSystemSettings() {
     }
   });
 
+
+  // Repair Recovery Rules
+  game.settings.register("sw5e", "repairVariant", {
+    name: "SETTINGS.5eRepairN",
+    hint: "SETTINGS.5eRepairL",
+    scope: "world",
+    config: true,
+    default: "normal",
+    type: String,
+    choices: {
+      normal: "SETTINGS.5eRepairPHB",
+      gritty: "SETTINGS.5eRepairGritty",
+      epic: "SETTINGS.5eRepairEpic"
+    }
+  });
+
   // Diagonal Movement Rule
   game.settings.register("sw5e", "diagonalMovement", {
     name: "SETTINGS.5eDiagN",
@@ -41,7 +87,7 @@ export default function registerSystemSettings() {
       5105: "SETTINGS.5eDiagDMG",
       EUCL: "SETTINGS.5eDiagEuclidean"
     },
-    onChange: rule => (canvas.grid.diagonalRule = rule)
+    onChange: rule => canvas.grid.diagonalRule = rule
   });
 
   // Allow rotating square templates
@@ -150,6 +196,16 @@ export default function registerSystemSettings() {
     type: Boolean
   });
 
+  // Disable Concentration Tracking
+  game.settings.register("sw5e", "disableConcentration", {
+    name: "SETTINGS.5eNoConcentrationN",
+    hint: "SETTINGS.5eNoConcentrationL",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
   // Collapse Item Cards (by default)
   game.settings.register("sw5e", "autoCollapseItemCards", {
     name: "SETTINGS.5eAutoCollapseCardN",
@@ -200,6 +256,16 @@ export default function registerSystemSettings() {
       keepBackgroundAE: true,
       transformTokens: true
     }
+  });
+
+  // Allow Summoning
+  game.settings.register("sw5e", "allowSummoning", {
+    name: "SETTINGS.SW5E.ALLOWSUMMONING.Name",
+    hint: "SETTINGS.SW5E.ALLOWSUMMONING.Hint",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
   });
 
   // Visual Color Theme
@@ -316,4 +382,93 @@ export default function registerSystemSettings() {
     type: Boolean,
     default: false
   });
+
+  // Primary Group
+  game.settings.register("sw5e", "primaryParty", {
+    name: "Primary Party",
+    scope: "world",
+    config: false,
+    default: null,
+    type: PrimaryPartyData,
+    onChange: s => ui.actors.render()
+  });
+
+  // Token Rings
+  game.settings.register("sw5e", "disableTokenRings", {
+    name: "SETTINGS.5eTokenRings.Name",
+    hint: "SETTINGS.5eTokenRings.Hint",
+    scope: "client",
+    config: true,
+    type: Boolean,
+    default: false,
+    requiresReload: true
+  });
+}
+
+/**
+ * Data model for tracking information on the primary party.
+ *
+ * @property {Actor5e} actor  Group actor representing the primary party.
+ */
+class PrimaryPartyData extends foundry.abstract.DataModel {
+  static defineSchema() {
+    return { actor: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseActor) };
+  }
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Register additional settings after modules have had a chance to initialize to give them a chance to modify choices.
+ */
+export function registerDeferredSettings() {
+  game.settings.register("sw5e", "theme", {
+    name: "SETTINGS.SW5E.THEME.Name",
+    hint: "SETTINGS.SW5E.THEME.Hint",
+    scope: "client",
+    config: true,
+    default: "",
+    type: String,
+    choices: {
+      "": "SHEETS.SW5E.THEME.Automatic",
+      ...CONFIG.SW5E.themes
+    },
+    onChange: s => setTheme(document.body, s)
+  });
+
+  setTheme(document.body, game.settings.get("sw5e", "theme"));
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    setTheme(document.body, game.settings.get("sw5e", "theme"));
+  });
+  matchMedia("(prefers-contrast: more)").addEventListener("change", () => {
+    setTheme(document.body, game.settings.get("sw5e", "theme"));
+  });
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Set the theme on an element, removing the previous theme class in the process.
+ * @param {HTMLElement} element  Body or sheet element on which to set the theme data.
+ * @param {string} [theme=""]    Theme key to set.
+ * @param {string[]} [flags=[]]  Additional theming flags to set.
+ */
+export function setTheme(element, theme="", flags=new Set()) {
+  element.className = element.className.replace(/\bsw5e-(theme|flag)-[\w-]+\b/g, "");
+
+  // Primary Theme
+  if ( !theme && (element === document.body) ) {
+    if ( matchMedia("(prefers-color-scheme: dark)").matches ) theme = "dark";
+    if ( matchMedia("(prefers-color-scheme: light)").matches ) theme = "light";
+  }
+  if ( theme ) {
+    element.classList.add(`sw5e-theme-${theme.slugify()}`);
+    element.dataset.theme = theme;
+  }
+  else delete element.dataset.theme;
+
+  // Additional Flags
+  if ( (element === document.body) && matchMedia("(prefers-contrast: more)").matches ) flags.add("high-contrast");
+  for ( const flag of flags ) element.classList.add(`sw5e-flag-${flag.slugify()}`);
+  element.dataset.themeFlags = Array.from(flags).join(" ");
 }

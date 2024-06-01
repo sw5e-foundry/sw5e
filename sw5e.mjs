@@ -57,9 +57,10 @@ Hooks.once("init", function() {
   console.log(`SW5e | Initializing the SW5e Game System - Version ${sw5e.version}\n${SW5E.ASCII}`);
 
   // TODO: Remove when v11 support is dropped.
-  CONFIG.compatibility.excludePatterns.push(/Math\.clamped/);
-  CONFIG.compatibility.excludePatterns.push(/\{\{filePicker}}/);
+    CONFIG.compatibility.excludePatterns.push(/\{\{filePicker}}/);
   CONFIG.compatibility.excludePatterns.push(/foundry\.dice\.terms/);
+  CONFIG.compatibility.excludePatterns.push(/core\.sourceId/);
+  if ( game.release.generation < 12 ) Math.clamp = Math.clamped;
 
   // Record Configuration Values
   CONFIG.SW5E = SW5E;
@@ -216,7 +217,7 @@ Hooks.once("init", function() {
   });
   DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalClassPageSheet, {
     label: "SW5E.SheetClassClassSummary",
-    types: ["class"]
+    types: ["class", "archetype"]
   });
   DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalMapLocationPageSheet, {
     label: "SW5E.SheetClassMapLocation",
@@ -225,6 +226,10 @@ Hooks.once("init", function() {
   DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalRulePageSheet, {
     label: "SW5E.SheetClassRule",
     types: ["rule"]
+  });
+  DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalPowerListPageSheet, {
+    label: "SW5E.SheetClassPowerList",
+    types: ["powers"]
   });
 
   CONFIG.Token.prototypeSheetClass = applications.TokenConfig5e;
@@ -265,12 +270,18 @@ function _configureTrackableAttributes() {
     ]
   };
 
+  const altPowers = Object.entries(SW5E.powerPreparationModes).reduce((acc, [k, v]) => {
+    if ( !["prepared", "always"].includes(k) && v.upcast ) acc.push(`powers.${k}`);
+    return acc;
+  }, []);
+
   const creature = {
     bar: [
       ...common.bar,
       "attributes.hp",
       "attributes.force.points.value",
       "attributes.tech.points.value",
+      ...altPowers,
       ...Array.fromRange(Object.keys(SW5E.powerLevels).length - 1, 1).map(l => `powers.power${l}`)
     ],
     value: [
@@ -317,6 +328,11 @@ function _configureTrackableAttributes() {
  * @internal
  */
 function _configureConsumableAttributes() {
+  const altPowers = Object.entries(SW5E.powerPreparationModes).reduce((acc, [k, v]) => {
+    if ( !["prepared", "always"].includes(k) && v.upcast ) acc.push(`powers.${k}.value`);
+    return acc;
+  }, []);
+
   CONFIG.SW5E.consumableResources = [
     ...Object.keys(SW5E.abilities).map(ability => `abilities.${ability}.value`),
     "attributes.ac.flat",
@@ -328,12 +344,13 @@ function _configureConsumableAttributes() {
     "details.xp.value",
     "resources.primary.value", "resources.secondary.value", "resources.tertiary.value",
     "resources.legact.value", "resources.legres.value",
+    ...altPowers,
     // ...Array.fromRange(Object.keys(SW5E.powerLevels).length - 1, 1).map(level => `powers.power${level}.value`)
     "attributes.force.points.value",
     "attributes.tech.points.value",
-    "attributes.super.dice.value"
+    "attributes.super.dice.value",
     // TODO SW5E: Check if this would work for consuming power dice
-    // ...Object.keys(SW5E.ssModSystems).map(system => `attributes.power.${system.lower()}.value`),
+    ...Object.keys(SW5E.ssModSystems).map(system => `attributes.power.${system.lower()}.value`),
   ];
 }
 
@@ -485,8 +502,7 @@ Hooks.once("setup", function() {
     .forEach(p => p.applicationClass = applications.item.ItemCompendium5e);
 
   // Configure token rings
-  CONFIG.SW5E.tokenRings.shaderClass ??= game.release.generation < 12
-    ? canvas.TokenRingSamplerShaderV11 : canvas.TokenRingSamplerShader;
+  CONFIG.SW5E.tokenRings.shaderClass ??= canvas.TokenRingSamplerShaderV11;
   CONFIG.Token.ringClass.initialize();
   let theme = `${game.settings.get("sw5e", "colorTheme")}-theme`;
   document.body.classList.add(theme);
@@ -554,8 +570,10 @@ Hooks.once("ready", async function() {
 /* -------------------------------------------- */
 
 Hooks.on("canvasInit", gameCanvas => {
+  if ( game.release.generation < 12 ) {
   gameCanvas.grid.diagonalRule = game.settings.get("sw5e", "diagonalMovement");
   SquareGrid.prototype.measureDistances = canvas.measureDistances;
+  }
   CONFIG.Token.ringClass.pushToLoad(gameCanvas.loadTexturesOptions.additionalSources);
 });
 
@@ -625,7 +643,7 @@ Hooks.on("renderChatLog", (app, html, data) => {
 });
 Hooks.on("renderChatPopout", (app, html, data) => documents.Item5e.chatListeners(html));
 
-Hooks.on("chatMessage", (app, message, data) => sw5e.applications.Award.chatMessage(message));
+Hooks.on("chatMessage", (app, message, data) => applications.Award.chatMessage(message));
 
 Hooks.on("renderActorDirectory", (app, html, data) => {
   documents.Actor5e.onRenderActorDirectory(html);
@@ -643,14 +661,17 @@ Hooks.on("renderSceneDirectory", (app, html, data) => {
 Hooks.on("renderCompendium", (compendium, html, data) => {
   DisplayCR(html, compendium);
 });
+Hooks.on("getCompendiumEntryContext", documents.Item5e.addCompendiumContextOptions);
 
 Hooks.on("renderItemDirectory", (app, html, data) => {
   setFolderBackground(html);
 });
+Hooks.on("getItemDirectoryEntryContext", documents.Item5e.addDirectoryContextOptions);
 
 Hooks.on("renderJournalDirectory", (app, html, data) => {
   setFolderBackground(html);
 });
+Hooks.on("renderJournalPageSheet", applications.journal.JournalSheet5e.onRenderJournalPageSheet);
 
 Hooks.on("renderRollTableDirectory", (app, html, data) => {
   setFolderBackground(html);

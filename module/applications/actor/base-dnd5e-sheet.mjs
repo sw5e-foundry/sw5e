@@ -145,6 +145,9 @@ export default class ActorSheetDnD5e extends ActorSheetMixin(ActorSheet) {
       config: CONFIG.SW5E,
       rollableClass: this.isEditable ? "rollable" : "",
       rollData: this.actor.getRollData(),
+      overrides: {
+        attunement: foundry.utils.hasProperty(this.actor.overrides, "system.attributes.attunement.max")
+      },
       elements: this.options.elements
     };
 
@@ -168,14 +171,20 @@ export default class ActorSheetDnD5e extends ActorSheetMixin(ActorSheet) {
     }
 
     // Skills & tools.
+    const baseAbility = (prop, key) => {
+      let src = source.system[prop]?.[key]?.ability;
+      if ( src ) return src;
+      if ( prop === "skills" ) src = CONFIG.SW5E.skills[key]?.ability;
+      return src ?? "int";
+    };
     ["skills", "tools"].forEach(prop => {
       for (const [key, entry] of Object.entries(context[prop])) {
         entry.abbreviation = CONFIG.SW5E.abilities[entry.ability]?.abbreviation;
         entry.icon = this._getProficiencyIcon(entry.value);
-        entry.hover = CONFIG.SW5E.proficiencyLevels[entry.value].label;
-        entry.label = prop === "skills" ? CONFIG.SW5E.skills[key]?.label : Trait.keyLabel(key, {trait: "tool"});
+        entry.hover = CONFIG.SW5E.proficiencyLevels[entry.value];
+        entry.label = (prop === "skills") ? CONFIG.SW5E.skills[key]?.label : Trait.keyLabel(key, {trait: "tool"});
         entry.baseValue = source.system[prop]?.[key]?.value ?? 0;
-        entry.baseAbility = source.system[prop]?.[key]?.ability ?? "int";
+        entry.baseAbility = baseAbility(prop, key);
       }
     });
 
@@ -418,10 +427,9 @@ export default class ActorSheetDnD5e extends ActorSheetMixin(ActorSheet) {
     };
 
     // Determine the maximum power level which has a slot
-    const maxLevel = Array.fromRange(10).reduce((max, i) => {
-      if (i === 0) return max;
+    const maxLevel = Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1).reduce((max, i) => {
       const level = levels[`power${i}`];
-      if ((level.max || level.override) && i > max) max = i;
+      if ( level && (level.max || level.override ) && ( i > max ) ) max = i;
       return max;
     }, 0);
 
@@ -432,6 +440,23 @@ export default class ActorSheetDnD5e extends ActorSheetMixin(ActorSheet) {
         const sl = `power${lvl}`;
         registerSection(sl, lvl, CONFIG.SW5E.powerLevels[lvl], levels[sl]);
       }
+    }
+
+    // Create powerbook sections for all alternative power preparation modes that have power slots.
+    for ( const [k, v] of Object.entries(CONFIG.SW5E.powerPreparationModes) ) {
+      if ( !(k in levels) || !v.upcast || !levels[k].max ) continue;
+
+      if ( !powerbook["0"] && v.at-wills ) registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
+      const l = levels[k];
+      const level = game.i18n.localize(`SW5E.PowerLevel${l.level}`);
+      const label = `${v.label} — ${level}`;
+      registerSection(k, sections[k], label, {
+        prepMode: k,
+        value: l.value,
+        max: l.max,
+        override: l.override,
+        config: v
+      });
     }
 
     // Iterate over every power item, adding powers to the powerbook by section
@@ -609,6 +634,7 @@ export default class ActorSheetDnD5e extends ActorSheetMixin(ActorSheet) {
 
       // Owned Item management
       html.find(".slot-max-override").click(this._onPowerSlotOverride.bind(this));
+      html.find(".attunement-max-override").click(this._onAttunementOverride.bind(this));
 
       this._disableOverriddenFields(html);
     }
@@ -988,7 +1014,7 @@ export default class ActorSheetDnD5e extends ActorSheetMixin(ActorSheet) {
       && (this._tabs[0].active === "inventory" || ["vehicle", "starship"].includes(this.actor.type))
     ) {
       const scroll = await Item5e.createScrollFromPower(itemData);
-      return scroll.toObject();
+      return scroll?.toObject?.();
     }
 
     // Clean up data
@@ -1032,8 +1058,8 @@ export default class ActorSheetDnD5e extends ActorSheetMixin(ActorSheet) {
    * @param {object} itemData    The item data requested for creation. **Will be mutated.**
    */
   _onDropResetData(itemData) {
-    if (!itemData.system) return;
-    ["equipped", "proficient", "prepared"].forEach(k => delete itemData.system[k]);
+    if ( !itemData.system ) return;
+    ["attuned", "equipped", "proficient", "prepared"].forEach(k => delete itemData.system[k]);
   }
 
   /* -------------------------------------------- */
@@ -1052,42 +1078,43 @@ export default class ActorSheetDnD5e extends ActorSheetMixin(ActorSheet) {
       header = list?.previousElementSibling;
     }
     const { level, preparationMode } = header?.closest("[data-level]")?.dataset ?? {};
-    const isForcePower = item.system.school in CONFIG.SW5E.powerSchoolsForce;
-    const isTechPower = item.system.school in CONFIG.SW5E.powerSchoolsTech;
 
     // Determine the actor's power slot progressions, if any.
+    const powercastKeys = Object.keys(CONFIG.SW5E.powercastingTypes);
     const progs = Object.values(this.document.classes).reduce((acc, cls) => {
-      if ( isForcePower && cls.powercasting?.force !== "none" ) acc.leveled = true;
-      if ( isTechPower && cls.powercasting?.tech !== "none" ) acc.leveled = true;
+      const type = cls.powercasting?.type;
+      if ( powercastKeys.includes(type) ) acc.add(type);
       return acc;
-    }, { leveled: false } );
+    }, new Set());
+
+    const prep = itemData.system.preparation;
 
     // Case 1: Drop an at-will.
     if ( itemData.system.level === 0 ) {
-      if ( ["prepared"].includes(preparationMode) ) {
-        itemData.system.preparation.mode = "prepared";
+      const modes = CONFIG.SW5E.powerPreparationModes;
+      if ( modes[preparationMode]?.atwills ) {
+        prep.mode = "prepared";
       } else if ( !preparationMode ) {
-        const isCaster = this.document.system.details.powerLevel || progs.leveled;
-        itemData.system.preparation.mode = isCaster ? "prepared" : "innate";
+        const isCaster = this.document.system.details.powerLevel || progs.size;
+        prep.mode = isCaster ? "prepared" : "innate";
       } else {
-        itemData.system.preparation.mode = preparationMode;
+        prep.mode = preparationMode;
       }
-      if ( itemData.system.preparation.mode === "prepared" ) itemData.system.preparation.prepared = true;
+      if ( modes[prep.mode]?.prepares ) prep.prepared = true;
     }
 
     // Case 2: Drop a leveled power in a section without a mode.
     else if ( (level === "0") || !preparationMode ) {
       if ( this.document.type === "npc" ) {
-        itemData.system.preparation.mode = this.document.system.details.powerLevel ? "prepared" : "innate";
+        prep.mode = this.document.system.details.powerLevel ? "prepared" : "innate";
       } else {
-        itemData.system.preparation.mode = progs.leveled ? "prepared" : "innate";
+        const m = progs.has("leveled") ? "prepared" : (progs.first() ?? "innate");
+        prep.mode = progs.has(prep.mode) ? prep.mode : m;
       }
     }
 
     // Case 3: Drop a leveled power in a specific section.
-    else {
-      itemData.system.preparation.mode = preparationMode;
-    }
+    else prep.mode = preparationMode;
   }
 
   /* -------------------------------------------- */
@@ -1109,6 +1136,28 @@ export default class ActorSheetDnD5e extends ActorSheetMixin(ActorSheet) {
     input.dataset.dtype = "Number";
     input.addEventListener("focus", event => event.currentTarget.select());
 
+    // Replace the HTML
+    const parent = span.parentElement;
+    parent.removeChild(span);
+    parent.appendChild(input);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle enabling editing for attunement maximum.
+   * @param {MouseEvent} event    The originating click event.
+   * @private
+   */
+  async _onAttunementOverride(event) {
+    const span = event.currentTarget.parentElement;
+    const input = document.createElement("INPUT");
+    input.type = "text";
+    input.name = "system.attributes.attunement.max";
+    input.value = this.actor.system.attributes.attunement.max;
+    input.placeholder = 3;
+    input.dataset.dtype = "Number";
+    input.addEventListener("focus", event => event.currentTarget.select());
 
     // Replace the HTML
     const parent = span.parentElement;

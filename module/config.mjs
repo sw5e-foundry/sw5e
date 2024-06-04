@@ -265,17 +265,18 @@ preLocalize("alignments");
 
 /**
  * An enumeration of item attunement types.
- * @enum {number}
+ * @enum {string}
  */
 SW5E.attunementTypes = {
-  NONE: 0,
-  REQUIRED: 1,
-  ATTUNED: 2
+  required: "SW5E.AttunementRequired",
+  optional: "SW5E.AttunementOptional"
 };
+preLocalize("attunementTypes");
 
 /**
  * An enumeration of item attunement states.
  * @type {{"0": string, "1": string, "2": string}}
+ * @deprecated since 3.2, available until 3.4
  */
 SW5E.attunements = {
   0: "SW5E.AttunementNone",
@@ -785,6 +786,7 @@ preLocalize("abilityConsumptionTypes", { sort: true });
  * @typedef {object} ActorSizeConfiguration
  * @property {string} label                   Localized label.
  * @property {string} abbreviation            Localized abbreviation.
+ * @property {number} hitDie                  Default hit die denomination for NPCs of this size.
  * @property {number} [token=1]               Default token size.
  * @property {number} [capacityMultiplier=1]  Multiplier used to calculate carrying capacities.
  */
@@ -797,57 +799,44 @@ SW5E.actorSizes = {
   tiny: {
     label: "SW5E.SizeTiny",
     abbreviation: "SW5E.SizeTinyAbbr",
+    hitDie: 4,
     token: 0.5,
     capacityMultiplier: 0.5
   },
   sm: {
     label: "SW5E.SizeSmall",
     abbreviation: "SW5E.SizeSmallAbbr",
+    hitDie: 6,
     dynamicTokenScale: 0.8
   },
   med: {
     label: "SW5E.SizeMedium",
-    abbreviation: "SW5E.SizeMediumAbbr"
+    abbreviation: "SW5E.SizeMediumAbbr",
+    hitDie: 8
   },
   lg: {
     label: "SW5E.SizeLarge",
     abbreviation: "SW5E.SizeLargeAbbr",
+    hitDie: 10,
     token: 2,
     capacityMultiplier: 2
   },
   huge: {
     label: "SW5E.SizeHuge",
     abbreviation: "SW5E.SizeHugeAbbr",
+    hitDie: 12,
     token: 3,
     capacityMultiplier: 4
   },
   grg: {
     label: "SW5E.SizeGargantuan",
     abbreviation: "SW5E.SizeGargantuanAbbr",
+    hitDie: 20,
     token: 4,
     capacityMultiplier: 8
   }
 };
 preLocalize("actorSizes", { keys: ["label", "abbreviation"] });
-patchConfig("actorSizes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
-
-/**
- * Default token image size for the values of `SW5E.actorSizes`.
- * @enum {number}
- * @deprecated since SW5e 3.0, available until SW5e 3.2
- */
-Object.defineProperty(SW5E, "tokenSizes", {
-  get() {
-    foundry.utils.logCompatibilityWarning(
-      "SW5E.tokenSizes has been deprecated and is now accessible through the .token property on SW5E.actorSizes.",
-      { since: "SW5e 3.0", until: "SW5e 3.2" }
-    );
-    return Object.entries(SW5E.actorSizes).reduce((obj, [k, v]) => {
-      obj[k] = v.token ?? 1;
-      return obj;
-    }, {});
-  }
-});
 
 /* -------------------------------------------- */
 /*  Canvas                                      */
@@ -914,18 +903,18 @@ SW5E.creatureTypes = {
   aberration: {
     label: "SW5E.CreatureAberration",
     plural: "SW5E.CreatureAberrationPl",
-    icon: "/icons/creatures/tentacles/tentacle-eyes-yellow-pink.webp",
+    icon: "icons/creatures/tentacles/tentacle-eyes-yellow-pink.webp",
     detectAlignment: true
   },
   beast: {
     label: "SW5E.CreatureBeast",
     plural: "SW5E.CreatureBeastPl",
-    icon: "/icons/creatures/claws/claw-bear-paw-swipe-red.webp",
+    icon: "icons/creatures/claws/claw-bear-paw-swipe-red.webp",
   },
   construct: {
     label: "SW5E.CreatureConstruct",
     plural: "SW5E.CreatureConstructPl",
-    icon: "/icons/creatures/magical/construct-stone-earth-gray.webp",
+    icon: "icons/creatures/magical/construct-stone-earth-gray.webp",
   },
   droid: {
     label: "SW5E.CreatureDroid",
@@ -938,22 +927,21 @@ SW5E.creatureTypes = {
   humanoid: {
     label: "SW5E.CreatureHumanoid",
     plural: "SW5E.CreatureHumanoidPl",
-    icon: "/icons/magic/unholy/strike-body-explode-disintegrate.webp",
+    icon: "icons/magic/unholy/strike-body-explode-disintegrate.webp",
   },
   plant: {
     label: "SW5E.CreaturePlant",
     plural: "SW5E.CreaturePlantPl",
-    icon: "/icons/magic/nature/tree-animated-strike.webp",
+    icon: "icons/magic/nature/tree-animated-strike.webp",
   },
   undead: {
     label: "SW5E.CreatureUndead",
     plural: "SW5E.CreatureUndeadPl",
-    icon: "/icons/magic/death/skull-horned-worn-fire-blue.webp",
+    icon: "icons/magic/death/skull-horned-worn-fire-blue.webp",
     detectAlignment: true
   }
 };
 preLocalize("creatureTypes", { keys: ["label", "plural"], sort: true });
-patchConfig("creatureTypes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
 
 /* -------------------------------------------- */
 
@@ -977,10 +965,11 @@ preLocalize("itemActionTypesAttack");
  */
 SW5E.itemActionTypes = {
   ...SW5E.itemActionTypesAttack,
+  abil: "SW5E.ActionAbil",
   save: "SW5E.ActionSave",
+  ench: "SW5E.ActionEnch",
   summ: "SW5E.ActionSumm",
   heal: "SW5E.ActionHeal",
-  abil: "SW5E.ActionAbil",
   util: "SW5E.ActionUtil",
   other: "SW5E.ActionOther"
 };
@@ -1035,7 +1024,7 @@ SW5E.limitedUseFormulaPeriods = {
  * @typedef {object} LimitedUsePeriodConfiguration
  * @property {string} label           Localized label.
  * @property {string} abbreviation    Shorthand form of the label.
- * @property {boolean} [formula]      Whether this limited use period restores chargs via formula.
+ * @property {boolean} [formula]      Whether this limited use period restores charges via formula.
  */
 
 /**
@@ -1081,6 +1070,25 @@ SW5E.limitedUsePeriods = {
 };
 preLocalize("limitedUsePeriods", { keys: ["label", "abbreviation"] });
 patchConfig("limitedUsePeriods", "label", { since: "SW5e 3.1", until: "SW5e 3.3" });
+
+/* -------------------------------------------- */
+
+/**
+ * Periods at which enchantments can be re-bound to new items.
+ * @enum {{ label: string }}
+ */
+SW5E.enchantmentPeriods = {
+  sr: {
+    label: "SW5E.UsesPeriods.Sr"
+  },
+  lr: {
+    label: "SW5E.UsesPeriods.Lr"
+  },
+  atwill: {
+    label: "SW5E.UsesPeriods.AtWill"
+  }
+};
+preLocalize("enchantmentPeriods", { key: "label" });
 
 /* -------------------------------------------- */
 
@@ -1349,6 +1357,9 @@ SW5E.consumableTypes = {
   food: {
     label: "SW5E.ConsumableFood"
   },
+  scroll: {
+    label: "SW5E.ConsumableScroll"
+  },
   trinket: {
     label: "SW5E.ConsumableTrinket"
   },
@@ -1368,7 +1379,6 @@ SW5E.consumableTypes = {
     label: "SW5E.ConsumableTechnology"
   }
 };
-patchConfig("consumableTypes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
 preLocalize("consumableTypes", { key: "label", sort: true });
 preLocalize("consumableTypes.ammo.subtypes", { sort: true });
 
@@ -1476,7 +1486,7 @@ SW5E.deprecatedItemTypes = [...Object.keys(SW5E.featLikeItemsMigration), "starsh
  * Categorization of all item types.
  */
 SW5E.itemTypes = {
-  inventory: ["weapon", "equipment", "consumable", "tool", "backpack", "modification", "loot", "starshipmod"],
+  inventory: ["weapon", "equipment", "consumable", "tool", "container", "modification", "loot", "starshipmod"],
   class: ["archetype", "background", "class", "deployment", "starshipsize", "species"],
   other: ["feat", "maneuver", "power"]
 };
@@ -1529,6 +1539,13 @@ SW5E.featureTypes = {
     label: "SW5E.Feature.Deployment.Label",
     subtypes: {
       venture: "SW5E.Feature.Deployment.Venture"
+    }
+  },
+  enchantment: {
+    label: "SW5E.Enchantment.Label",
+    subtypes: {
+      artificerInfusion: "SW5E.Feature.Class.ArtificerInfusion",
+      rune: "SW5E.Feature.Class.Rune"
     }
   },
   monster: {
@@ -2763,18 +2780,6 @@ preLocalize("modificationSlots", { keys: ["slot1", "slot2", "slot3", "slot4"] })
 /* -------------------------------------------- */
 
 /**
- * Types of damage that are considered physical.
- * @deprecated since SW5e 3.0, available until SW5e 3.2
- * @enum {string}
- */
-SW5E.physicalDamageTypes = {
-  kinetic: "SW5E.DamageKinetic"
-};
-preLocalize("physicalDamageTypes", { sort: true });
-
-/* -------------------------------------------- */
-
-/**
  * Configuration data for damage types.
  *
  * @typedef {object} DamageTypeConfiguration
@@ -2782,6 +2787,7 @@ preLocalize("physicalDamageTypes", { sort: true });
  * @property {string} icon           Icon representing this type.
  * @property {boolean} [isPhysical]  Is this a type that can be bypassed by magical or silvered weapons?
  * @property {string} [reference]    Reference to a rule page describing this damage type.
+ * @property {Color} Color           Visual color of the damage type.
  */
 
 /**
@@ -2792,11 +2798,12 @@ SW5E.damageTypes = {
   acid: {
     label: "SW5E.DamageAcid",
     icon: "systems/sw5e/icons/svg/damage/acid.svg",
+     color: new Color(0x839D50)
   },
   cold: {
     label: "SW5E.DamageCold",
     icon: "systems/sw5e/icons/svg/damage/cold.svg",
-    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4xsFUooHDEdfhw6g"
+    color: new Color(0xADD8E6)
   },
   energy: {
     label: "SW5E.DamageEnergy"
@@ -2804,12 +2811,12 @@ SW5E.damageTypes = {
   fire: {
     label: "SW5E.DamageFire",
     icon: "systems/sw5e/icons/svg/damage/fire.svg",
-    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.f1S66aQJi4PmOng6"
+    color: new Color(0xFF4500)
   },
   force: {
     label: "SW5E.DamageForce",
     icon: "systems/sw5e/icons/svg/damage/force.svg",
-    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.eFTWzngD8dKWQuUR"
+    color: new Color(0x800080)
   },
   ion: {
     label: "SW5E.DamageIon"
@@ -2820,28 +2827,27 @@ SW5E.damageTypes = {
   lightning: {
     label: "SW5E.DamageLightning",
     icon: "systems/sw5e/icons/svg/damage/lightning.svg",
-    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9SaxFJ9bM3SutaMC"
+    color: new Color(0x1E90FF)
   },
   necrotic: {
     label: "SW5E.DamageNecrotic",
     icon: "systems/sw5e/icons/svg/damage/necrotic.svg",
-    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.klOVUV5G1U7iaKoG"
+    color: new Color(0x006400)
   },
   poison: {
     label: "SW5E.DamagePoison",
-    icon: "systems/sw5e/icons/svg/statuses/poisoned.svg",
-    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.k5wOYXdWPzcWwds1"
+    icon: "systems/sw5e/icons/svg/damage/poison.svg",
+    color: new Color(0x8A2BE2)
   },
   psychic: {
     label: "SW5E.DamagePsychic",
     icon: "systems/sw5e/icons/svg/damage/psychic.svg",
-    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.YIKbDv4zYqbE5teJ"
+    color: new Color(0xFF1493)
   },
   sonic: {
     label: "SW5E.DamageSonic"
   }
 };
-patchConfig("damageTypes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
 preLocalize("damageTypes", { keys: ["label"], sort: true });
 
 
@@ -2852,14 +2858,15 @@ preLocalize("damageTypes", { keys: ["label"], sort: true });
 SW5E.healingTypes = {
   healing: {
     label: "SW5E.Healing",
-    icon: "systems/sw5e/icons/svg/damage/healing.svg"
+    icon: "systems/sw5e/icons/svg/damage/healing.svg",
+    color: new Color(0x46C252)
   },
   temphp: {
     label: "SW5E.HealingTemp",
-    icon: "systems/sw5e/icons/svg/damage/temphp.svg"
+    icon: "systems/sw5e/icons/svg/damage/temphp.svg",
+    color: new Color(0x4B66DE)
   }
 };
-patchConfig("healingTypes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
 preLocalize("healingTypes", { keys: ["label"] });
 
 /* -------------------------------------------- */
@@ -2931,17 +2938,62 @@ preLocalize("distanceUnits");
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for a weight unit.
+ *
+ * @typedef {object} WeightUnitConfiguration
+ * @property {string} label         Localized label for the unit.
+ * @property {string} abbreviation  Localized abbreviation for the unit.
+ * @property {number} conversion    Number that by which this unit should be multiplied to arrive at a standard value.
+ * @property {string} type          Whether this is an "imperial" or "metric" unit.
+ */
+
+/**
+ * The valid units for measurement of weight.
+ * @enum {WeightUnitConfiguration}
+ */
+SW5E.weightUnits = {
+  lb: {
+    label: "SW5E.WeightUnit.Pounds.Label",
+    abbreviation: "SW5E.WeightUnit.Pounds.Abbreviation",
+    conversion: 1,
+    type: "imperial"
+  },
+  tn: {
+    label: "SW5E.WeightUnit.Tons.Label",
+    abbreviation: "SW5E.WeightUnit.Tons.Abbreviation",
+    conversion: 2000,
+    type: "imperial"
+  },
+  kg: {
+    label: "SW5E.WeightUnit.Kilograms.Label",
+    abbreviation: "SW5E.WeightUnit.Kilograms.Abbreviation",
+    conversion: 2.5,
+    type: "metric"
+  },
+  Mg: {
+    label: "SW5E.WeightUnit.Megagrams.Label",
+    abbreviation: "SW5E.WeightUnit.Megagrams.Abbreviation",
+    conversion: 2500,
+    type: "metric"
+  }
+};
+preLocalize("weightUnits", { keys: ["label", "abbreviation"] });
+
+/* -------------------------------------------- */
+
+/**
  * Encumbrance configuration data.
  *
  * @typedef {object} EncumbranceConfiguration
  * @property {Record<string, number>} currencyPerWeight  Pieces of currency that equal a base weight (lbs or kgs).
- * @property {Record<string, object>} effects            Data used to create encumbrance-replated Active Effects.
+ * @property {Record<string, object>} effects            Data used to create encumbrance-related Active Effects.
  * @property {object} threshold                          Amount to multiply strength to get given capacity threshold.
  * @property {Record<string, number>} threshold.encumbered
  * @property {Record<string, number>} threshold.heavilyEncumbered
  * @property {Record<string, number>} threshold.maximum
  * @property {Record<string, {ft: number, m: number}>} speedReduction  Speed reduction caused by encumbered status.
  * @property {Record<string, number>} vehicleWeightMultiplier  Multiplier used to determine vehicle carrying capacity.
+ * @property {Record<string, Record<string, string>>} baseUnits  Base units used to calculate carrying weight.
  */
 
 /**
@@ -2970,15 +3022,15 @@ SW5E.encumbrance = {
   threshold: {
     encumbered: {
       imperial: 5,
-      metric: 2.2
+      metric: 2.5
     },
     heavilyEncumbered: {
       imperial: 10,
-      metric: 4.5
+      metric: 5
     },
     maximum: {
       imperial: 15,
-      metric: 6.8
+      metric: 7.5
     }
   },
   speedReduction: {
@@ -2995,20 +3047,17 @@ SW5E.encumbrance = {
       m: 1.5
     }
   },
-  vehicleWeightMultiplier: {
-    imperial: 2000, // 2000 lbs in an imperial ton
-    metric: 1000 // 1000 kg in a metric ton
+  baseUnits: {
+    default: {
+      imperial: "lb",
+      metric: "kg"
+    },
+    vehicle: {
+      imperial: "tn",
+      metric: "Mg"
+    }
   }
 };
-Object.defineProperty(SW5E.encumbrance, "strMultiplier", {
-  get() {
-    foundry.utils.logCompatibilityWarning(
-      "`SW5E.encumbrance.strMultiplier` has been moved to `SW5E.encumbrance.threshold.maximum`.",
-      { since: "SW5e 3.0", until: "SW5e 3.2" }
-    );
-    return this.threshold.maximum;
-  }
-});
 preLocalize("encumbrance.effects", { key: "name" });
 
 /* -------------------------------------------- */
@@ -3033,7 +3082,7 @@ SW5E.individualTargetTypes = {
   starship: "SW5E.TargetStarship",
   weapon: "SW5E.TargetWeapon"
 };
-preLocalize("individualTargetTypes", { sort: true });
+preLocalize("individualTargetTypes");
 
 /* -------------------------------------------- */
 
@@ -3403,7 +3452,7 @@ preLocalize("ssTypeDetails", { key: "name" });
 * @typedef {object} PowerPreparationModeConfiguration
 * @property {string} label           Localized name of this power preparation type.
 * @property {boolean} [upcast]       Whether this preparation mode allows for upcasting.
-* @property {boolean} [atWills]     Whether this mode allows for atWills in a powerbook.
+* @property {boolean} [atwills]     Whether this mode allows for atwills in a powerbook.
 * @property {number} [order]         The sort order of this mode in a powerbook.
 * @property {boolean} [prepares]     Whether this preparation mode prepares powers.
 */
@@ -3425,10 +3474,14 @@ SW5E.powerPreparationModes = {
   },
   atwill: {
     label: "SW5E.PowerPrepAtWill",
-    order: -20
+    order: -30
   },
   innate: {
     label: "SW5E.PowerPrepInnate",
+    order: -20
+  },
+  ritual: {
+    label: "SW5E.PowerPrepRitual",
     order: -10
   }
 };
@@ -3450,7 +3503,8 @@ SW5E.powerUpcastModes = ["always", "prepared"];
  * Configuration data for different types of powercasting supported.
  *
  * @typedef {object} PowercastingTypeConfiguration
- * @property {string} label                                                        Localized label.
+ * @property {string} label                               Localized label.
+ * @property {string} img                                 Image used when rendered as a favorite on the sheet.
  * @property {Object<string, PowercastingProgressionConfiguration>} [progression]  Any progression modes for this type.
  */
 
@@ -3473,6 +3527,7 @@ SW5E.powerUpcastModes = ["always", "prepared"];
  * @typedef {object} PowercastingSubtypeProgressionConfiguration
  * @property {string} label                        Localized label.
  * @property {number[]} powersKnown[classLevel]    The max number of known powers available to each class per level
+ * @property {boolean} [shortRest]                 Are these power slots additionally restored on a short rest?
  */
 
 /**
@@ -3482,6 +3537,7 @@ SW5E.powerUpcastModes = ["always", "prepared"];
 SW5E.powercastingTypes = {
   leveled: {
     label: "SW5E.PowerProgLeveled",
+    img: "systems/sw5e/icons/power-tiers/{id}.webp",
     progression: {
       full: {
         label: "SW5E.PowerProgFull",
@@ -3495,7 +3551,8 @@ SW5E.powercastingTypes = {
         },
         tech: {
           label: "SW5E.Tech",
-          powersKnown: [0, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+          powersKnown: [0, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+          shortRest: true
         }
       },
       "3/4": {
@@ -3510,7 +3567,8 @@ SW5E.powercastingTypes = {
         },
         tech: {
           label: "SW5E.Tech",
-          powersKnown: [0, 0, 0, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+          powersKnown: [0, 0, 0, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
+          shortRest: true
         }
       },
       half: {
@@ -3525,7 +3583,8 @@ SW5E.powercastingTypes = {
         },
         tech: {
           label: "SW5E.Tech",
-          powersKnown: [0, 0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+          powersKnown: [0, 0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+          shortRest: true
         }
       },
       arch: {
@@ -3541,7 +3600,8 @@ SW5E.powercastingTypes = {
         },
         tech: {
           label: "SW5E.Tech",
-          powersKnown: [0, 0, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+          powersKnown: [0, 0, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+          shortRest: true
         }
       }
     }
@@ -3723,7 +3783,7 @@ preLocalize("powerLevels");
  */
 SW5E.powerScalingModes = {
   none: "SW5E.PowerNone",
-  atWill: "SW5E.PowerAtWill",
+  atwill: "SW5E.PowerAtWill",
   level: "SW5E.PowerLevel"
 };
 preLocalize("powerScalingModes", { sort: true });
@@ -3827,7 +3887,6 @@ SW5E.powerSchoolsForce = {
   }
 };
 preLocalize("powerSchoolsForce", { key: "label", sort: true });
-patchConfig("powerSchoolsForce", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
 
 /* -------------------------------------------- */
 
@@ -3842,7 +3901,6 @@ SW5E.powerSchoolsTech = {
   }
 };
 preLocalize("powerSchoolsTech", { key: "label", sort: true });
-patchConfig("powerSchoolsTech", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
 
 /* -------------------------------------------- */
 
@@ -3859,13 +3917,28 @@ SW5E.powerSchools = {
   }
 };
 preLocalize("powerSchools", { key: "label", sort: true });
-patchConfig("powerSchools", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
+
+/* -------------------------------------------- */
+
+/**
+ * Types of power lists.
+ * @enum {string}
+ */
+SW5E.powerListTypes = {
+  class: "ITEM.TypeClass",
+  archetype: "ITEM.TypeArchetype",
+  background: "ITEM.TypeBackground",
+  species: "ITEM.TypeSpecies",
+  other: "JOURNALENTRYPAGE.SW5E.PowerList.Type.Other"
+};
+preLocalize("powerListTypes");
+
+/* -------------------------------------------- */
 
 // TODO SW5E: This is used for spell scrolls, it maps the level to the compendium ID of the item the spell would be bound to
 // We could use this with, say, holocrons to produce scrolls
 /**
- * Power Scroll Compendium UUIDs
- * Power scroll item ID within the `SW5E.sourcePacks` compendium for each level.
+ * Power scroll item ID within the `SW5E.sourcePacks` compendium or a full UUID for each power level.
  * @enum {string}
 
 SW5E.powerScrollIds = {
@@ -4959,7 +5032,10 @@ SW5E.equipmentProperties = {
  * @enum {string}
  */
 SW5E.sourcePacks = {
-  ITEMS: "sw5e.items"
+  BACKGROUNDS: "sw5e.backgrounds",
+  CLASSES: "sw5e.classes",
+  ITEMS: "sw5e.items",
+  SPECIES: "sw5e.species"
 };
 
 /* -------------------------------------------- */
@@ -5165,9 +5241,10 @@ SW5E.consumableResources = [
 
 /**
  * @typedef {object} _StatusEffectConfig5e
- * @property {string} icon         Icon used to represent the condition on the token.
- * @property {string} [reference]  UUID of a journal entry with details on this condition.
- * @property {string} [special]    Set this condition as a special status effect under this name.
+ * @property {string} icon            Icon used to represent the condition on the token.
+ * @property {string} [reference]     UUID of a journal entry with details on this condition.
+ * @property {string} [special]       Set this condition as a special status effect under this name.
+ * @property {string[]} [riders]      Additional conditions, by id, to apply as part of this condition.
  */
 
 /**
@@ -5294,14 +5371,14 @@ SW5E.conditionTypes = {
   unconscious: {
     label: "SW5E.ConUnconscious",
     icon: "systems/sw5e/icons/svg/statuses/unconscious.svg",
-    statuses: ["incapacitated", "prone"]
+    statuses: ["incapacitated"],
+    riders: ["prone"]
   },
   weakened: {
     label: "SW5E.ConWeakened"
   }
 };
 preLocalize("conditionTypes", { key: "label", sort: true });
-patchConfig("conditionTypes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
 
 /* -------------------------------------------- */
 
@@ -5369,7 +5446,7 @@ SW5E.statusEffects = {
   sleeping: {
     name: "EFFECT.SW5E.StatusSleeping",
     icon: "systems/sw5e/icons/svg/statuses/sleeping.svg",
-    statuses: ["incapacitated", "prone", "unconscious"]
+    statuses: ["incapacitated", "unconscious"]
   },
   stable: {
     name: "EFFECT.SW5E.StatusStable",
@@ -6460,7 +6537,7 @@ SW5E.rules = {
   castingatahigherlevel: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4H9SLM95OCLfFizz",
   upcasting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4H9SLM95OCLfFizz",
   castinginarmor: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.z4A8vHSK2pb8YA9X",
-  atWills: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.jZD5mCTnMPJ9jW67",
+  atwills: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.jZD5mCTnMPJ9jW67",
   rituals: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.FjWqT5iyJ89kohdA",
   castingtime: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.zRVW8Tvyk6BECjZD",
   bonusactioncasting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.RP1WL9FXI3aknlxZ",
@@ -6497,11 +6574,13 @@ SW5E.rules = {
   consumables: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.UEPAcZFzQ5x196zE",
   itempowers: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.DABoaeeF6w31UCsj",
   charges: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.NLRXcgrpRCfsA5mO",
+  powerscroll: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.gi8IKhtOlBVhMJrN",
   creaturetags: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9jV1fFF163dr68vd",
   telepathy: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.geTidcFIYWuUvD2L",
   legendaryactions: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.C1awOyZh78pq1xmY",
   lairactions: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.07PtjpMxiRIhkBEp",
-  regionaleffects: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.uj8W27NKFyzygPUd"
+  regionaleffects: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.uj8W27NKFyzygPUd",
+  disease: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.oNQWvyRZkTOJ8PBq"
 };
 
 /* -------------------------------------------- */

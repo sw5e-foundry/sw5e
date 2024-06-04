@@ -45,33 +45,25 @@
   }
 
   /* ----------------------------------------- */
-  /*  Two Column Configurations                */
+  /*  Column Configurations                    */
   /* ----------------------------------------- */
-  &.two-column {
-    --grid-two-column-left-size: 1fr;
-    --grid-two-column-right-size: 1fr;
-
+  &.two-column, &.three-column {
     form {
       display: grid;
-      grid-template-columns: var(--grid-two-column-left-size) var(--grid-two-column-right-size);
-      grid-template-areas: "left right";
-      grid-gap: 0.4em;
+      gap: 0.4em;
 
-      .left-column {
+      > .left-column {
         grid-area: left;
         display: flex;
         flex-direction: column;
-        > .form-group {
-          flex: none;
-        }
-        > .drop-target {
-          flex: 1;
-        }
-      }
-      .right-column {
-        grid-area: right;
 
-        &.level-list {
+        > .form-group { flex: none; }
+        > .drop-target { flex: 1; }
+      }
+      > .right-column {
+        grid-area: right;
+      }
+      > .level-list {
           label {
             flex: 0.5;
             padding-right: 0.5rem;
@@ -82,11 +74,44 @@
           }
         }
       }
+  }
+
+  &.two-column {
+    --grid-two-column-left-size: 1fr;
+    --grid-two-column-right-size: 1fr;
+
+    form {
+      grid-template-columns: var(--grid-two-column-left-size) var(--grid-two-column-right-size);
+      grid-template-areas: "left right";
+
       button[type="submit"] {
         grid-column-end: span 2;
       }
     }
   }
+
+  &.three-column {
+    --grid-three-column-left-size: 1fr;
+    --grid-three-column-center-size: 1fr;
+    --grid-three-column-right-size: 1fr;
+
+    form {
+      grid-template-columns:
+        var(--grid-two-column-left-size) var(--grid-two-column-center-size) var(--grid-two-column-right-size);
+      grid-template-areas: "left center right";
+
+      > .center-column {
+        grid-area: center;
+      }
+      button[type="submit"] {
+        grid-column-end: span 3;
+      }
+    }
+  }
+
+  /* ----------------------------------------- */
+  /*  Ability Score Improvement                */
+  /* ----------------------------------------- */
 
   form[data-type="AbilityScoreImprovement"] {
     .ability-scores {

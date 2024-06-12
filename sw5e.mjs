@@ -57,8 +57,11 @@ Hooks.once("init", function() {
   console.log(`SW5e | Initializing the SW5e Game System - Version ${sw5e.version}\n${SW5E.ASCII}`);
 
   // TODO: Remove when v11 support is dropped.
-    CONFIG.compatibility.excludePatterns.push(/\{\{filePicker}}/);
+  CONFIG.compatibility.excludePatterns.push(/filePicker|select/);
   CONFIG.compatibility.excludePatterns.push(/foundry\.dice\.terms/);
+  CONFIG.compatibility.excludePatterns.push(
+    /aggregateDamageRoll|configureDamage|preprocessFormula|simplifyRollFormula/
+  );
   CONFIG.compatibility.excludePatterns.push(/core\.sourceId/);
   if ( game.release.generation < 12 ) Math.clamp = Math.clamped;
 
@@ -470,6 +473,9 @@ function _configureStatusEffects() {
   for ( const [id, {label: name, ...data}] of Object.entries(CONFIG.SW5E.conditionTypes) ) {
     addEffect(CONFIG.statusEffects, { id, name, ...data });
   }
+  for ( const [id, data] of Object.entries(CONFIG.SW5E.encumbrance.effects) ) {
+    addEffect(CONFIG.statusEffects, { id, ...data, hud: false });
+  }
 }
 
 /* -------------------------------------------- */
@@ -691,7 +697,6 @@ Hooks.on("renderSettings", async (_app, html) => {
   $("#settings-documentation").after(elements);
 });
 
-Hooks.on("applyTokenStatusEffect", canvas.Token5e.onApplyTokenStatusEffect);
 Hooks.on("targetToken", canvas.Token5e.onTargetToken);
 
 Hooks.on("ActorSheetSW5eCharacter", (app, html, data) => {

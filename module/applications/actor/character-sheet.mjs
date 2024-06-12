@@ -90,6 +90,8 @@ export default class ActorSheetSW5eCharacter extends ActorSheetSW5e {
 
   /** @override */
   _prepareItems(context) {
+
+  //TODO: Look to see if DnD5e Character Sheet Item sorting can be used now
     const categories = this._prepareItemCategories({
       splitActive: true,
       featureTypes: Object.fromEntries(

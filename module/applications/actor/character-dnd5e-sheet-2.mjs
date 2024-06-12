@@ -1,11 +1,10 @@
 import CharacterData from "../../data/actor/character.mjs";
 import * as Trait from "../../documents/actor/trait.mjs";
-import { setTheme } from "../../settings.mjs";
 import { formatNumber, simplifyBonus, staticID } from "../../utils.mjs";
 import ContextMenu5e from "../context-menu.mjs";
 import SheetConfig5e from "../sheet-config.mjs";
 import Tabs5e from "../tabs.mjs";
-import ActorSheet5eCharacter from "./character-sheet.mjs";
+import ActorSheetDnD5eCharacter from "./character-dnd5e-sheet.mjs";
 
 /**
  * An Actor sheet for player character type actors.
@@ -245,8 +244,7 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
     }, { value: 0, label: CONFIG.SW5E.movementTypes.walk });
 
     // Hit Dice
-    context.hd = { value: attributes.hd, max: this.actor.system.details.level };
-    context.hd.pct = Math.clamped(context.hd.max ? (context.hd.value / context.hd.max) * 100 : 0, 0, 100);
+    context.hd = attributes.hd;
 
     // Death Saves
     const plurals = new Intl.PluralRules(game.i18n.lang, { type: "ordinal" });
@@ -322,7 +320,7 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
     // Character Background
     context.creatureType = {
       class: details.type.value === "custom" ? "none" : "",
-      icon: CONFIG.SW5E.creatureTypes[details.type.value]?.icon ?? "/icons/svg/mystery-man.svg",
+      icon: CONFIG.SW5E.creatureTypes[details.type.value]?.icon ?? "icons/svg/mystery-man.svg",
       title: details.type.value === "custom"
         ? details.type.custom
         : CONFIG.SW5E.creatureTypes[details.type.value]?.label,
@@ -344,9 +342,6 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
       context.senses[`custom${i + 1}`] = { label: v.trim() };
     });
     if ( foundry.utils.isEmpty(context.senses) ) delete context.senses;
-
-    // Inventory
-    this._prepareItems(context);
 
     // Powercasting
     context.powercasting = [];
@@ -485,7 +480,7 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
         const total = simplifyBonus(v, rollData);
         if ( !total ) return null;
         const value = {
-          label: `${CONFIG.SW5E.damageTypes[k]?.label ?? key} ${formatNumber(total, { signDisplay: "always" })}`,
+          label: `${CONFIG.SW5E.damageTypes[k]?.label ?? k} ${formatNumber(total, { signDisplay: "always" })}`,
           color: total > 0 ? "maroon" : "green"
         };
         const icons = value.icons = [];
@@ -755,16 +750,18 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
     requestAnimationFrame(() => game.tooltip.deactivate());
     game.tooltip.deactivate();
 
+    const modes = CONFIG.SW5E.powerPreparationModes;
+
     const { key } = event.target.closest("[data-key]")?.dataset ?? {};
     const { level, preparationMode } = event.target.closest("[data-level]")?.dataset ?? {};
     const isSlots = event.target.closest("[data-favorite-id]") || event.target.classList.contains("power-header");
     let type;
     if ( key in CONFIG.SW5E.skills ) type = "skill";
     else if ( key in CONFIG.SW5E.toolIds ) type = "tool";
-    else if ( preparationMode && (level !== "0") && isSlots ) type = "slots";
+    else if ( modes[preparationMode]?.upcast && (level !== "0") && isSlots ) type = "slots";
     if ( !type ) return super._onDragStart(event);
     const dragData = { sw5e: { action: "favorite", type } };
-    if ( type === "slots" ) dragData.sw5e.id = preparationMode === "pact" ? "pact" : `power${level}`;
+    if ( type === "slots" ) dragData.sw5e.id = (preparationMode === "prepared") ? `power${level}` : preparationMode;
     else dragData.sw5e.id = key;
     event.dataTransfer.setData("application/json", JSON.stringify(dragData));
   }
@@ -968,9 +965,9 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    */
   _onFindItem(type) {
     switch ( type ) {
-      case "class": game.packs.get("sw5e.classes").render(true); break;
-      case "species": game.packs.get("sw5e.species").render(true); break;
-      case "background": game.packs.get("sw5e.backgrounds").render(true); break;
+      case "class": game.packs.get(CONFIG.SW5E.sourcePacks.CLASSES)?.render(true); break;
+      case "species": game.packs.get(CONFIG.SW5E.sourcePacks.SPECIES)?.render(true); break;
+      case "background": game.packs.get(CONFIG.SW5E.sourcePacks.BACKGROUNDS)?.render(true); break;
     }
   }
 
@@ -1005,11 +1002,15 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    */
   _applyItemTooltips(element) {
     if ( "tooltip" in element.dataset ) return;
-    const target = element.closest("[data-item-id], [data-uuid]");
+    const target = element.closest("[data-item-id], [data-effect-id], [data-uuid]");
     let uuid = target.dataset.uuid;
-    if ( !uuid ) {
+    if ( !uuid && target.dataset.itemId ) {
       const item = this.actor.items.get(target.dataset.itemId);
       uuid = item?.uuid;
+    } else if ( !uuid && target.dataset.effectId ) {
+      const { effectId, parentId } = target.dataset;
+      const collection = parentId ? this.actor.items.get(parentId).effects : this.actor.effects;
+      uuid = collection.get(effectId)?.uuid;
     }
     if ( !uuid ) return;
     element.dataset.tooltip = `
@@ -1195,9 +1196,10 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @returns {Promise|void}
    * @protected
    */
-  _onUseFavorite(event) {
+  async _onUseFavorite(event) {
+    if ( !this.isEditable ) return;
     const { favoriteId } = event.currentTarget.closest("[data-favorite-id]").dataset;
-    const favorite = fromUuidSync(favoriteId, { relative: this.actor });
+    const favorite = await fromUuid(favoriteId, { relative: this.actor });
     if ( favorite instanceof sw5e.documents.Item5e ) return favorite.use({}, { event });
     if ( favorite instanceof sw5e.documents.ActiveEffect5e ) return favorite.update({ disabled: !favorite.disabled });
   }
@@ -1231,7 +1233,7 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
 
     return resources.concat(await this.actor.system.favorites.reduce(async (arr, f) => {
       const { id, type, sort } = f;
-      const favorite = fromUuidSync(id, { relative: this.actor });
+      const favorite = await fromUuid(id, { relative: this.actor });
       if ( !favorite && ((type === "item") || (type === "effect")) ) return arr;
       arr = await arr;
 
@@ -1272,7 +1274,7 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
         itemId: type === "item" ? favorite.id : null,
         effectId: type === "effect" ? favorite.id : null,
         parentId: (type === "effect") && (favorite.parent !== favorite.target) ? favorite.parent.id: null,
-        preparationMode: type === "slots" ? id === "pact" ? "pact" : "prepared" : null,
+        preparationMode: (type === "slots") ? (/power\d+/.test(id) ? "prepared" : id) : null,
         key: (type === "skill") || (type === "tool") ? id : null,
         toggle: toggle === undefined ? null : { applicable: true, value: toggle },
         quantity: quantity > 1 ? quantity : "",
@@ -1299,19 +1301,23 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
     if ( type === "slots" ) {
       const { value, max, level } = this.actor.system.powers[id] ?? {};
       const uses = { value, max, name: `system.powers.${id}.value` };
-      if ( id === "pact" ) return {
+      if ( !/power\d+/.test(id) ) return {
         uses, level,
-        title: game.i18n.localize("SW5E.PowerSlotsPact"),
-        subtitle: [game.i18n.localize(`SW5E.PowerLevel${level}`), game.i18n.localize("SW5E.AbbreviationSR")],
-        img: "icons/magic/unholy/silhouette-robe-evil-power.webp"
+        title: game.i18n.localize(`SW5E.PowerSlots${id.capitalize()}`),
+        subtitle: [
+          game.i18n.localize(`SW5E.PowerLevel${level}`),
+          game.i18n.localize(`SW5E.Abbreviation${CONFIG.SW5E.powercastingTypes[id]?.shortRest ? "SR" : "LR"}`)
+        ],
+        img: CONFIG.SW5E.powercastingTypes[id]?.img || CONFIG.SW5E.powercastingTypes.pact.img
       };
 
       const plurals = new Intl.PluralRules(game.i18n.lang, { type: "ordinal" });
+      const isSR = CONFIG.SW5E.powercastingTypes.leveled.shortRest;
       return {
         uses, level,
         title: game.i18n.format(`SW5E.PowerSlotsN.${plurals.select(level)}`, { n: level }),
-        subtitle: game.i18n.localize("SW5E.AbbreviationLR"),
-        img: `systems/sw5e/icons/power-tiers/${id}.webp`
+        subtitle: game.i18n.localize(`SW5E.Abbreviation${isSR ? "SR" : "LR"}`),
+        img: CONFIG.SW5E.powercastingTypes.leveled.img.replace("{id}", id)
       };
     }
 

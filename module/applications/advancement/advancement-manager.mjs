@@ -386,11 +386,12 @@ export default class AdvancementManager extends Application {
    * @private
    */
   createLevelChangeSteps(clonedItem, levelDelta) {
+    const speciesItem = this.clone.system?.details?.species instanceof Item ? this.clone.system.details.species : null;
     const pushSteps = (flows, data) => this.steps.push(...flows.map(flow => ({ flow, ...data })));
     const getItemFlows = advancementCharLevel =>
       this.clone.items.contents.flatMap(i => {
         if (clonedItem.type === "class") {
-          if (["class", "archetype"].includes(i.type)) return [];
+          if (["class", "archetype", "species"].includes(i.type)) return [];
           return this.constructor.flowsForLevel(i, advancementCharLevel);
         } else return [];
       });
@@ -400,6 +401,7 @@ export default class AdvancementManager extends Application {
       const advancementLevel = clonedItem.curAdvancementLevel + offset;
       const advancementCharLevel = clonedItem.curAdvancementCharLevel + offset;
       const stepData = { type: "forward", class: { item: clonedItem, level: advancementLevel } };
+      if (clonedItem.type === "class") pushSteps(this.constructor.flowsForLevel(speciesItem, advancementLevel), stepData);
       pushSteps(this.constructor.flowsForLevel(clonedItem, advancementLevel), stepData);
       if (clonedItem.type === "class") pushSteps(this.constructor.flowsForLevel(clonedItem.archetype, advancementLevel), stepData);
       pushSteps(getItemFlows(advancementCharLevel), stepData);
@@ -413,6 +415,7 @@ export default class AdvancementManager extends Application {
       pushSteps(getItemFlows(advancementCharLevel).reverse(), stepData);
       if (clonedItem.type === "class") pushSteps(this.constructor.flowsForLevel(clonedItem.archetype, advancementLevel).reverse(), stepData);
       pushSteps(this.constructor.flowsForLevel(clonedItem, advancementLevel).reverse(), stepData);
+      if (clonedItem.type === "class") pushSteps(this.constructor.flowsForLevel(speciesItem, advancementLevel).reverse(), stepData);
       if ((clonedItem.type !== "starshipsize" && advancementLevel === 1) || advancementLevel === 0) {
         this.steps.push({ type: "delete", item: clonedItem, automatic: true });
       }

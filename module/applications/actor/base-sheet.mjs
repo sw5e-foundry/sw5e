@@ -567,18 +567,15 @@ export default class ActorSheetSW5e extends ActorSheetMixin(ActorSheet) {
     // Item details
     ctx.isStack = Number.isNumeric(quantity) && quantity !== 1;
     ctx.id = item.id;
-    ctx.attunement = {
-      [CONFIG.SW5E.attunementTypes.REQUIRED]: {
-        icon: "fa-sun",
-        cls: "not-attuned",
-        title: "SW5E.AttunementRequired"
-      },
-      [CONFIG.SW5E.attunementTypes.ATTUNED]: {
-        icon: "fa-sun",
-        cls: "attuned",
-        title: "SW5E.AttunementAttuned"
-      }
-    }[item.system.attunement];
+    if ( item.system.attunement ) ctx.attunement = item.system.attuned ? {
+      icon: "fa-sun",
+      cls: "attuned",
+      title: "SW5E.AttunementAttuned"
+    } : {
+      icon: "fa-sun",
+      cls: "not-attuned",
+      title: CONFIG.SW5E.attunementTypes[item.system.attunement]
+    };
 
     // Prepare data needed to display expanded sections
     ctx.isExpanded = this._expanded.has(item.id);

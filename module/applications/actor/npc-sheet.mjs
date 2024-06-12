@@ -38,7 +38,10 @@ export default class ActorSheetSW5eNPC extends ActorSheetSW5e {
 
     // Challenge Rating
     const cr = parseFloat(context.system.details.cr ?? 0);
-    const crLabels = { 0: "0", 0.125: "1/8", 0.25: "1/4", 0.5: "1/2" };
+    const crLabels = {0: "0", 0.125: "1/8", 0.25: "1/4", 0.5: "1/2"};
+
+    // Class Powercasting
+    context.classPowercasting = Object.values(this.actor.classes).some(c => c.powercasting?.levels);
 
     return foundry.utils.mergeObject(context, {
       labels: {

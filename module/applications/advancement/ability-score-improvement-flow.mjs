@@ -104,7 +104,7 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
     super._onChangeInput(event);
     const input = event.currentTarget;
     const key = input.closest("[data-score]").dataset.score;
-    const clampedValue = Math.clamped(input.valueAsNumber, Number(input.min), Number(input.max));
+    const clampedValue = Math.clamp(input.valueAsNumber, Number(input.min), Number(input.max));
     this.assignments[key] = clampedValue - Number(input.dataset.initial);
     this.render();
   }
@@ -190,6 +190,14 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
 
     if ( (item.type !== "feat") || (item.system.type.value !== "feat") ) {
       ui.notifications.error("SW5E.AdvancementAbilityScoreImprovementFeatWarning", {localize: true});
+      return null;
+    }
+
+    // If a feat has a level pre-requisite, make sure it is less than or equal to current character level
+    if ( (item.system.prerequisites?.level ?? -Infinity) > this.advancement.actor.system.details.level ) {
+      ui.notifications.error(game.i18n.format("SW5E.AdvancementAbilityScoreImprovementFeatLevelWarning", {
+        level: item.system.prerequisites.level
+      }));
       return null;
     }
 

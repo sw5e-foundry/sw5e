@@ -5,6 +5,7 @@ import ActorTypeConfig from "./type-config.mjs";
  * An Actor sheet for NPC type characters in the SW5E system.
  */
 export default class ActorSheetDnD5e5eNPC extends ActorSheetDnD5e {
+  
   /** @inheritDoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -23,7 +24,10 @@ export default class ActorSheetDnD5e5eNPC extends ActorSheetDnD5e {
 
     // Challenge Rating
     const cr = parseFloat(context.system.details.cr ?? 0);
-    const crLabels = { 0: "0", 0.125: "1/8", 0.25: "1/4", 0.5: "1/2" };
+    const crLabels = {0: "0", 0.125: "1/8", 0.25: "1/4", 0.5: "1/2"};
+
+    // Class Powercasting
+    context.classPowercasting = Object.values(this.actor.classes).some(c => c.powercasting?.levels);
 
     return foundry.utils.mergeObject(context, {
       labels: {

@@ -59,8 +59,11 @@ export default class ActorSheetDnd5eCharacter extends ActorSheetDnD5e {
 
     // Categorize items as inventory, powerbook, features, and classes
     const inventory = {};
-    for (const type of ["weapon", "equipment", "consumable", "tool", "container", "loot"]) {
-      inventory[type] = { label: `${CONFIG.Item.typeLabels[type]}Pl`, items: [], dataset: { type } };
+    const inventoryTypes = Object.entries(CONFIG.Item.dataModels)
+      .filter(([, model]) => model.metadata?.inventoryItem)
+      .sort(([, lhs], [, rhs]) => (lhs.metadata.inventoryOrder - rhs.metadata.inventoryOrder));
+    for ( const [type] of inventoryTypes ) {
+      inventory[type] = {label: `${CONFIG.Item.typeLabels[type]}Pl`, items: [], dataset: {type}};
     }
 
     // Partition items by category
@@ -81,20 +84,17 @@ export default class ActorSheetDnd5eCharacter extends ActorSheetDnD5e {
         const { quantity, uses, recharge } = item.system;
 
         // Item details
-        const ctx = (context.itemContext[item.id] ??= {});
-        ctx.isStack = Number.isNumeric(quantity) && quantity !== 1;
-        ctx.attunement = {
-          [CONFIG.SW5E.attunementTypes.REQUIRED]: {
-            icon: "fa-sun",
-            cls: "not-attuned",
-            title: "SW5E.AttunementRequired"
-          },
-          [CONFIG.SW5E.attunementTypes.ATTUNED]: {
+      const ctx = context.itemContext[item.id] ??= {};
+      ctx.isStack = Number.isNumeric(quantity) && (quantity !== 1);
+      if ( item.system.attunement ) ctx.attunement = item.system.attuned ? {
             icon: "fa-sun",
             cls: "attuned",
             title: "SW5E.AttunementAttuned"
-          }
-        }[item.system.attunement];
+      } : {
+        icon: "fa-sun",
+        cls: "not-attuned",
+        title: CONFIG.SW5E.attunementTypes[item.system.attunement]
+      };
 
         // Prepare data needed to display expanded sections
         ctx.isExpanded = this._expanded.has(item.id);

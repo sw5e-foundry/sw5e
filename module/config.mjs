@@ -922,30 +922,30 @@ SW5E.creatureTypes = {
   beast: {
     label: "SW5E.CreatureBeast",
     plural: "SW5E.CreatureBeastPl",
-    icon: "icons/creatures/claws/claw-bear-paw-swipe-red.webp",
+    icon: "icons/creatures/claws/claw-bear-paw-swipe-red.webp"
   },
   construct: {
     label: "SW5E.CreatureConstruct",
     plural: "SW5E.CreatureConstructPl",
-    icon: "icons/creatures/magical/construct-stone-earth-gray.webp",
+    icon: "icons/creatures/magical/construct-stone-earth-gray.webp"
   },
   droid: {
     label: "SW5E.CreatureDroid",
-    plural: "SW5E.CreatureDroidPl",
+    plural: "SW5E.CreatureDroidPl"
   },
   force: {
     label: "SW5E.CreatureForceEntity",
-    plural: "SW5E.CreatureForceEntityPl",
+    plural: "SW5E.CreatureForceEntityPl"
   },
   humanoid: {
     label: "SW5E.CreatureHumanoid",
     plural: "SW5E.CreatureHumanoidPl",
-    icon: "icons/magic/unholy/strike-body-explode-disintegrate.webp",
+    icon: "icons/magic/unholy/strike-body-explode-disintegrate.webp"
   },
   plant: {
     label: "SW5E.CreaturePlant",
     plural: "SW5E.CreaturePlantPl",
-    icon: "icons/magic/nature/tree-animated-strike.webp",
+    icon: "icons/magic/nature/tree-animated-strike.webp"
   },
   undead: {
     label: "SW5E.CreatureUndead",
@@ -1351,7 +1351,7 @@ preLocalize("ammoTypes", { sort: true });
  */
 
 /**
-* Enumerate the valid consumable types which are recognized by the system.
+ * Enumerate the valid consumable types which are recognized by the system.
  * @enum {SubtypeTypeConfiguration}
  */
 SW5E.consumableTypes = {
@@ -1607,8 +1607,8 @@ for (const [key, type] of Object.entries(SW5E.featureTypes)) if ("subtypes" in t
  * @property {string} [abbreviation]        Localized abbreviation.
  * @property {string} [icon]                Icon that can be used in certain places to represent this property.
  * @property {string} [reference]           Reference to a rule page describing this property.
- * @property {number} [max]                 If type is a Number and has a maximum value 
- * @property {number} [min]                 If type is a Number and has a minimum value 
+ * @property {number} [max]                 If type is a Number and has a maximum value
+ * @property {number} [min]                 If type is a Number and has a minimum value
  * @property {boolean} [isPhysical]         Is this property one that can cause damage resistance bypasses?
  * @property {boolean} [isTag]              Is this power property a tag, rather than a component?
  * @property {boolean} [isCharacter=false]  Is this property one that can be on a character item?
@@ -2074,7 +2074,7 @@ SW5E.itemProperties = {
     label: "SW5E.Item.Property.Material",
     full: "SW5E.Item.Property.Material",
     type: "Boolean",
-    abbreviation: "SW5E.ComponentMaterialAbbr",
+    abbreviation: "SW5E.ComponentMaterialAbbr"
   },
   mgc: {
     label: "SW5E.Item.Property.Enhanced",
@@ -2096,7 +2096,7 @@ SW5E.itemProperties = {
     label: "SW5E.Item.Property.Somatic",
     full: "SW5E.Item.Property.Somatic",
     type: "Boolean",
-    abbreviation: "SW5E.ComponentSomaticAbbr",
+    abbreviation: "SW5E.ComponentSomaticAbbr"
   },
   stealthDisadvantage: {
     label: "SW5E.Item.Property.StealthDisadvantage"
@@ -2105,7 +2105,7 @@ SW5E.itemProperties = {
     label: "SW5E.Item.Property.Verbal",
     full: "SW5E.Item.Property.Verbal",
     type: "Boolean",
-    abbreviation: "SW5E.ComponentVerbalAbbr",
+    abbreviation: "SW5E.ComponentVerbalAbbr"
   },
   absorptive: {
     label: "SW5E.Item.Property.Absorptive",
@@ -2804,14 +2804,14 @@ preLocalize("modificationSlots", { keys: ["slot1", "slot2", "slot3", "slot4"] })
  */
 
 /**
-* Types of damage the can be caused by abilities.
-* @enum {DamageTypeConfiguration}
-*/
+ * Types of damage the can be caused by abilities.
+ * @enum {DamageTypeConfiguration}
+ */
 SW5E.damageTypes = {
   acid: {
     label: "SW5E.DamageAcid",
     icon: "systems/sw5e/icons/svg/damage/acid.svg",
-     color: new Color(0x839D50)
+    color: new Color(0x839D50)
   },
   cold: {
     label: "SW5E.DamageCold",
@@ -3461,14 +3461,14 @@ preLocalize("ssTypeDetails", { key: "name" });
 
 /**
  * Configuration data for power preparation modes.
-*
-* @typedef {object} PowerPreparationModeConfiguration
-* @property {string} label           Localized name of this power preparation type.
-* @property {boolean} [upcast]       Whether this preparation mode allows for upcasting.
-* @property {boolean} [atwills]     Whether this mode allows for atwills in a powerbook.
-* @property {number} [order]         The sort order of this mode in a powerbook.
-* @property {boolean} [prepares]     Whether this preparation mode prepares powers.
-*/
+ *
+ * @typedef {object} PowerPreparationModeConfiguration
+ * @property {string} label           Localized name of this power preparation type.
+ * @property {boolean} [upcast]       Whether this preparation mode allows for upcasting.
+ * @property {boolean} [atwills]     Whether this mode allows for atwills in a powerbook.
+ * @property {number} [order]         The sort order of this mode in a powerbook.
+ * @property {boolean} [prepares]     Whether this preparation mode prepares powers.
+ */
 
 /**
  * Various different ways a power can be prepared.
@@ -3544,9 +3544,9 @@ SW5E.powerUpcastModes = ["always", "prepared"];
  */
 
 /**
-* Different powercasting types and their progression.
-* @type {PowercastingTypeConfiguration}
-*/
+ * Different powercasting types and their progression.
+ * @type {PowercastingTypeConfiguration}
+ */
 SW5E.powercastingTypes = {
   leveled: {
     label: "SW5E.PowerProgLeveled",
@@ -3714,9 +3714,9 @@ SW5E.powerLimit = {
  */
 
 /**
-* Different powercasting subtypes.
-* @type {PowercastingSubtypeConfiguration}
-*/
+ * Different powercasting subtypes.
+ * @type {PowercastingSubtypeConfiguration}
+ */
 SW5E.powercastingSubtypes = {
   force: {
     label: "SW5E.Force",

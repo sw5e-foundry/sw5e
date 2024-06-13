@@ -323,9 +323,9 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
       case "shortRest":
         this.actor.shortRest({ advanceTime: true });
         break;
-      }
     }
-  
+  }
+
   /* -------------------------------------------- */
 
   /**
@@ -408,7 +408,7 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
    * @protected
    */
   async _onDropSingleItem(itemData) {
-    
+
     // Check to make sure items of this type are allowed on this actor
     if (this.constructor.unsupportedItemTypes.has(itemData.type)) {
       ui.notifications.warn(

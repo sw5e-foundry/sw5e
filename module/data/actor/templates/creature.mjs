@@ -71,30 +71,30 @@ export default class CreatureTemplate extends CommonTemplate {
         { label: "SW5E.Bonuses" }
       ),
       skills: new MappingField(new RollConfigField({
-          value: new foundry.data.fields.NumberField({
-            required: true,
-            nullable: false,
-            min: 0,
-            max: 6,
-            step: 0.5,
-            initial: 0,
-            label: "SW5E.ProficiencyLevel"
-          }),
-          ability: "dex",
-          bonuses: new foundry.data.fields.SchemaField(
-            {
-              check: new FormulaField({ required: true, label: "SW5E.SkillBonusCheck" }),
-              passive: new FormulaField({ required: true, label: "SW5E.SkillBonusPassive" })
-            },
-            { label: "SW5E.SkillBonuses" }
-          )
+        value: new foundry.data.fields.NumberField({
+          required: true,
+          nullable: false,
+          min: 0,
+          max: 6,
+          step: 0.5,
+          initial: 0,
+          label: "SW5E.ProficiencyLevel"
         }),
-        {
-          initialKeys: CONFIG.SW5E.skills,
-          initialValue: this._initialSkillValue,
-          initialKeysOnly: true,
-          label: "SW5E.Skills"
-        }
+        ability: "dex",
+        bonuses: new foundry.data.fields.SchemaField(
+          {
+            check: new FormulaField({ required: true, label: "SW5E.SkillBonusCheck" }),
+            passive: new FormulaField({ required: true, label: "SW5E.SkillBonusPassive" })
+          },
+          { label: "SW5E.SkillBonuses" }
+        )
+      }),
+      {
+        initialKeys: CONFIG.SW5E.skills,
+        initialValue: this._initialSkillValue,
+        initialKeysOnly: true,
+        label: "SW5E.Skills"
+      }
       ),
       tools: new MappingField(
         new RollConfigField({

@@ -958,9 +958,9 @@ async function rollAction(event) {
 
       const tokens = getSceneTargets();
       if ( !tokens.length ) {
-    ui.notifications.warn(game.i18n.localize("EDITOR.SW5E.Inline.NoActorWarning"));
-    return;
-  }
+        ui.notifications.warn(game.i18n.localize("EDITOR.SW5E.Inline.NoActorWarning"));
+        return;
+      }
 
       for ( const token of tokens ) {
         const actor = token.actor;
@@ -1006,7 +1006,7 @@ async function rollAction(event) {
     // TODO: Remove when v11 support is dropped.
     if ( game.release.generation < 12 ) chatData.type = CONST.CHAT_MESSAGE_TYPES.OTHER;
     return MessageClass.create(chatData);
-        }
+  }
 }
 
 /* -------------------------------------------- */

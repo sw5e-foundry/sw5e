@@ -10,8 +10,18 @@
     "out": "${workspaceRoot}\\"
   },
   "eslint.format.enable": true,
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "[handlebars]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  }
+  "editor.defaultFormatter": null,
+  "editor.formatOnPaste": true,
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "hbs"
+  ],
+  "json.format.enable": false,
+  "html.format.enable": false
 }

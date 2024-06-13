@@ -144,7 +144,7 @@ export default class ConsumableData extends ItemDataModel.mixin(
     return valid;
   }
 
-    /**
+  /**
    * Is this a starship item.
    * @type {boolean}
    */

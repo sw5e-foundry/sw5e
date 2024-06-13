@@ -502,7 +502,7 @@ export default class ActorSheetSW5eStarship extends ActorSheetSW5e {
     if (a.dataset.action === "clear") {
       const key = a.dataset.key;
       const deploy = this.actor.system.attributes.deployment[key];
-      if (deploy) for (const uuid of deploy.items ?? [ deploy.value ]) {
+      if (deploy) for (const uuid of deploy.items ?? [deploy.value]) {
         const actor = fromUuidSynchronous(uuid);
         this.actor.ssUndeployCrew(actor);
       }

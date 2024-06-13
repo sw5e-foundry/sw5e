@@ -30,8 +30,8 @@ export default class Award extends DialogMixin(FormApplication) {
    * @type {Actor5e[]}
    */
   get transferDestinations() {
-    if ( this.isPartyAward ) return this.object.system.transferDestinations ?? [];
-    if ( !game.user.isGM ) return [];
+    if (this.isPartyAward) return this.object.system.transferDestinations ?? [];
+    if (!game.user.isGM) return [];
     const primaryParty = game.settings.get("sw5e", "primaryParty")?.actor;
     return primaryParty
       ? [primaryParty, ...primaryParty.system.transferDestinations]
@@ -53,7 +53,7 @@ export default class Award extends DialogMixin(FormApplication) {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  getData(options={}) {
+  getData(options = {}) {
     const context = super.getData(options);
 
     context.CONFIG = CONFIG.SW5E;
@@ -116,8 +116,8 @@ export default class Award extends DialogMixin(FormApplication) {
   _validateForm() {
     const data = foundry.utils.expandObject(this._getSubmitData());
     let valid = true;
-    if ( !filteredKeys(data.amount ?? {}).length && !data.xp ) valid = false;
-    if ( !filteredKeys(data.destination ?? {}).length ) valid = false;
+    if (!filteredKeys(data.amount ?? {}).length && !data.xp) valid = false;
+    if (!filteredKeys(data.destination ?? {}).length) valid = false;
     this.form.querySelector('button[name="transfer"]').disabled = !valid;
   }
 
@@ -161,24 +161,24 @@ export default class Award extends DialogMixin(FormApplication) {
    * @param {Actor5e|Item5e} [config.origin]   Document from which to move the currency, if not a freeform award.
    * @param {Map<Actor5e|Item5e, object>} [config.results]  Results of the award operation.
    */
-  static async awardCurrency(amounts, destinations, { each=false, origin, results=new Map() }={}) {
-    if ( !destinations.length ) return;
+  static async awardCurrency(amounts, destinations, { each = false, origin, results = new Map() } = {}) {
+    if (!destinations.length) return;
     const originCurrency = origin ? foundry.utils.deepClone(origin.system.currency) : null;
 
-    for ( const k of Object.keys(amounts) ) {
-      if ( each ) amounts[k] = amounts[k] * destinations.length;
-      if ( origin ) amounts[k] = Math.min(amounts[k], originCurrency[k] ?? 0);
+    for (const k of Object.keys(amounts)) {
+      if (each) amounts[k] = amounts[k] * destinations.length;
+      if (origin) amounts[k] = Math.min(amounts[k], originCurrency[k] ?? 0);
     }
 
     let remainingDestinations = destinations.length;
-    for ( const destination of destinations ) {
+    for (const destination of destinations) {
       const destinationUpdates = {};
-      if ( !results.has(destination) ) results.set(destination, {});
+      if (!results.has(destination)) results.set(destination, {});
       const result = results.get(destination).currency ??= {};
 
-      for ( let [key, amount] of Object.entries(amounts) ) {
-        if ( !amount ) continue;
-        amount = Math.clamped(
+      for (let [key, amount] of Object.entries(amounts)) {
+        if (!amount) continue;
+        amount = Math.clamp(
           // Divide amount between remaining destinations
           Math.floor(amount / remainingDestinations),
           // Ensure negative amounts aren't more than is contained in destination
@@ -187,7 +187,7 @@ export default class Award extends DialogMixin(FormApplication) {
           originCurrency ? originCurrency[key] : Infinity
         );
         amounts[key] -= amount;
-        if ( originCurrency ) originCurrency[key] -= amount;
+        if (originCurrency) originCurrency[key] -= amount;
         destinationUpdates[`system.currency.${key}`] = destination.system.currency[key] + amount;
         result[key] = amount;
       }
@@ -196,7 +196,7 @@ export default class Award extends DialogMixin(FormApplication) {
       remainingDestinations -= 1;
     }
 
-    if ( origin ) await origin.update({"system.currency": originCurrency});
+    if (origin) await origin.update({ "system.currency": originCurrency });
   }
 
   /* -------------------------------------------- */
@@ -210,22 +210,22 @@ export default class Award extends DialogMixin(FormApplication) {
    * @param {Actor5e} [config.origin]  Group actor from which to transfer the XP.
    * @param {Map<Actor5e|Item5e, object>} [config.results]  Results of the award operation.
    */
-  static async awardXP(amount, destinations, { each=false, origin, results=new Map() }={}) {
+  static async awardXP(amount, destinations, { each = false, origin, results = new Map() } = {}) {
     destinations = destinations.filter(d => ["character", "group"].includes(d.type));
-    if ( !amount || !destinations.length ) return;
+    if (!amount || !destinations.length) return;
 
     let originUpdate = origin ? (origin.system.details.xp.value ?? 0) : Infinity;
-    if ( each ) amount = amount * destinations.length;
+    if (each) amount = amount * destinations.length;
     const perDestination = Math.floor(Math.min(amount, originUpdate) / destinations.length);
     originUpdate -= amount;
-    for ( const destination of destinations ) {
-      await destination.update({"system.details.xp.value": destination.system.details.xp.value + perDestination});
-      if ( !results.has(destination) ) results.set(destination, {});
+    for (const destination of destinations) {
+      await destination.update({ "system.details.xp.value": destination.system.details.xp.value + perDestination });
+      if (!results.has(destination)) results.set(destination, {});
       const result = results.get(destination);
       result.xp = perDestination;
     }
 
-    if ( Number.isFinite(originUpdate) ) await origin.update({"system.details.xp.value": originUpdate});
+    if (Number.isFinite(originUpdate)) await origin.update({ "system.details.xp.value": originUpdate });
   }
 
   /* -------------------------------------------- */
@@ -237,9 +237,9 @@ export default class Award extends DialogMixin(FormApplication) {
   static async displayAwardMessages(results) {
     const cls = getDocumentClass("ChatMessage");
     const messages = [];
-    for ( const [destination, result] of results ) {
+    for (const [destination, result] of results) {
       const entries = [];
-      for ( const [key, amount] of Object.entries(result.currency ?? {}) ) {
+      for (const [key, amount] of Object.entries(result.currency ?? {})) {
         const label = CONFIG.SW5E.currencies[key].label;
         entries.push(`
           <span class="award-entry">
@@ -247,12 +247,12 @@ export default class Award extends DialogMixin(FormApplication) {
           </span>
         `);
       }
-      if ( result.xp ) entries.push(`
+      if (result.xp) entries.push(`
         <span class="award-entry">
           ${formatNumber(result.xp)} ${game.i18n.localize("SW5E.ExperiencePointsAbbr")}
         </span>
       `);
-      if ( !entries.length ) continue;
+      if (!entries.length) continue;
 
       const content = game.i18n.format("SW5E.Award.Message", {
         name: destination.name, award: `<span class="sw5e2">${game.i18n.getListFormatter().format(entries)}</span>`
@@ -265,10 +265,10 @@ export default class Award extends DialogMixin(FormApplication) {
         whisper: whisper ? whisperTargets : []
       };
       // TODO: Remove when v11 support is dropped.
-      if ( game.release.generation < 12 ) messageData.type = CONST.CHAT_MESSAGE_TYPES.OTHER;
+      if (game.release.generation < 12) messageData.type = CONST.CHAT_MESSAGE_TYPES.OTHER;
       messages.push(messageData);
     }
-    if ( messages.length ) cls.createDocuments(messages);
+    if (messages.length) cls.createDocuments(messages);
   }
 
   /* -------------------------------------------- */
@@ -297,7 +297,7 @@ export default class Award extends DialogMixin(FormApplication) {
    * @returns {boolean|void}   Returns `false` to prevent the message from continuing to parse.
    */
   static chatMessage(message) {
-    if ( !this.COMMAND_PATTERN.test(message) ) return;
+    if (!this.COMMAND_PATTERN.test(message)) return;
     this.handleAward(message);
     return false;
   }
@@ -309,7 +309,7 @@ export default class Award extends DialogMixin(FormApplication) {
    * @param {string} message  Award command typed in chat.
    */
   static async handleAward(message) {
-    if ( !game.user.isGM ) {
+    if (!game.user.isGM) {
       ui.notifications.error("SW5E.Award.NotGMError", { localize: true });
       return;
     }
@@ -317,7 +317,7 @@ export default class Award extends DialogMixin(FormApplication) {
     try {
       const { currency, xp, party, each } = this.parseAwardCommand(message);
 
-      for ( const [key, formula] of Object.entries(currency) ) {
+      for (const [key, formula] of Object.entries(currency)) {
         const roll = new Roll(formula);
         await roll.evaluate();
         currency[key] = roll.total;
@@ -325,7 +325,7 @@ export default class Award extends DialogMixin(FormApplication) {
 
       // If the party command is set, a primary party is set, and the award isn't empty, skip the UI
       const primaryParty = game.settings.get("sw5e", "primaryParty")?.actor;
-      if ( party && primaryParty && (xp || filteredKeys(currency).length) ) {
+      if (party && primaryParty && (xp || filteredKeys(currency).length)) {
         const destinations = each ? primaryParty.system.playerCharacters : [primaryParty];
         const results = new Map();
         await this.awardCurrency(currency, destinations, { each, results });
@@ -339,7 +339,7 @@ export default class Award extends DialogMixin(FormApplication) {
         const app = new Award(null, { currency, xp, each, savedDestinations });
         app.render(true);
       }
-    } catch(err) {
+    } catch (err) {
       ui.notifications.warn(err.message);
     }
   }
@@ -359,24 +359,24 @@ export default class Award extends DialogMixin(FormApplication) {
     let party = false;
     let xp;
     const unrecognized = [];
-    for ( const part of command.split(" ") ) {
-      if ( !part ) continue;
+    for (const part of command.split(" ")) {
+      if (!part) continue;
       let [, amount, label] = part.match(this.VALUE_PATTERN) ?? [];
       label = label?.toLowerCase();
       try {
         new Roll(amount);
-        if ( label in CONFIG.SW5E.currencies ) currency[label] = amount;
-        else if ( label === "xp" ) xp = amount;
-        else if ( part === "each" ) each = true;
-        else if ( part === "party" ) party = true;
+        if (label in CONFIG.SW5E.currencies) currency[label] = amount;
+        else if (label === "xp") xp = Number(amount);
+        else if (part === "each") each = true;
+        else if (part === "party") party = true;
         else throw new Error();
-      } catch(err) {
+      } catch (err) {
         unrecognized.push(part);
       }
     }
 
     // Display warning about an unrecognized commands
-    if ( unrecognized.length ) throw new Error(game.i18n.format("SW5E.Award.UnrecognizedWarning", {
+    if (unrecognized.length) throw new Error(game.i18n.format("SW5E.Award.UnrecognizedWarning", {
       commands: game.i18n.getListFormatter().format(unrecognized.map(u => `"${u}"`))
     }));
 

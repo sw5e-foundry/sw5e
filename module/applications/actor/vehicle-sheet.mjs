@@ -97,7 +97,7 @@ export default class ActorSheetSW5eVehicle extends ActorSheetSW5e {
         label: game.i18n.localize("SW5E.HP"),
         css: "item-hp",
         property: "system.hp.value",
-      maxProperty: "system.hp.max",
+        maxProperty: "system.hp.max",
         editable: "Number"
       },
       {
@@ -195,7 +195,7 @@ export default class ActorSheetSW5eVehicle extends ActorSheetSW5e {
           {
             label: game.i18n.localize("SW5E.Weight"),
             css: "item-weight",
-          property: "system.weight.value",
+            property: "system.weight.value",
             editable: "Number"
           }
         ]

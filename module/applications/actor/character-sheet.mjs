@@ -91,7 +91,7 @@ export default class ActorSheetSW5eCharacter extends ActorSheetSW5e {
   /** @override */
   _prepareItems(context) {
 
-  //TODO: Look to see if DnD5e Character Sheet Item sorting can be used now
+    // TODO: Look to see if DnD5e Character Sheet Item sorting can be used now
     const categories = this._prepareItemCategories({
       splitActive: true,
       featureTypes: Object.fromEntries(
@@ -120,8 +120,8 @@ export default class ActorSheetSW5eCharacter extends ActorSheetSW5e {
           const delta = level - cls.system.levels;
           return { level, delta, disabled: delta > maxLevelDelta };
         });
-        ctx.prefixedImage = cls.img ? foundry.utils.getRoute(cls.img) : null;
-        arr.push(cls);
+      ctx.prefixedImage = cls.img ? foundry.utils.getRoute(cls.img) : null;
+      arr.push(cls);
       const identifier = cls.system.identifier || cls.name.slugify({ strict: true });
       const archetype = categories.class.archetype.items.findSplice(s => s.system.classIdentifier === identifier);
       if (archetype) arr.push(archetype);
@@ -350,7 +350,7 @@ export default class ActorSheetSW5eCharacter extends ActorSheetSW5e {
 
   /** @override */
   async _onDropSingleItem(itemData) {
-    
+
     // Increment the number of class levels a character instead of creating a new item
     if (itemData.type === "class") {
       const charLevel = this.actor.system.details.level;

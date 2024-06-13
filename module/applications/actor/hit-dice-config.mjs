@@ -30,11 +30,11 @@ export default class ActorHitDiceConfig extends BaseConfigSheet {
     return {
       classes: Array.from(classes).map(item => {
         return {
-              classItemId: item.id,
-              name: item.name,
-              diceDenom: item.system.hitDice,
-              currentHitDice: item.system.levels - item.system.hitDiceUsed,
-              maxHitDice: item.system.levels,
+          classItemId: item.id,
+          name: item.name,
+          diceDenom: item.system.hitDice,
+          currentHitDice: item.system.levels - item.system.hitDiceUsed,
+          maxHitDice: item.system.levels,
           canRoll: (item.system.levels - item.system.hitDiceUsed) > 0
         };
       }).sort((a, b) => parseInt(b.diceDenom.slice(1)) - parseInt(a.diceDenom.slice(1)))

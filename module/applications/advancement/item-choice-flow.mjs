@@ -142,7 +142,7 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
   _onChangeInput(event) {
     if ( event.target.type === "checkbox" ) {
       if ( event.target.checked ) this.selected.add(event.target.name);
-    else this.selected.delete(event.target.name);
+      else this.selected.delete(event.target.name);
     }
     else if ( event.target.type === "radio" ) this.replacement = event.target.value;
     else if ( event.target.name === "ability" ) this.ability = event.target.value;

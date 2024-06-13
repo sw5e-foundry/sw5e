@@ -116,7 +116,7 @@ export default class NPCData extends CreatureTemplate {
               required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.DeathSaveFailures"
             })
           }, {label: "SW5E.DeathSave"})
-          },
+        },
         { label: "SW5E.Attributes" }
       ),
       details: new foundry.data.fields.SchemaField(
@@ -374,7 +374,7 @@ export default class NPCData extends CreatureTemplate {
   /* -------------------------------------------- */
   /*  Data Preparation                            */
   /* -------------------------------------------- */
-  
+
   /** @inheritdoc */
   prepareBaseData() {
     this.details.level = 0;
@@ -411,7 +411,7 @@ export default class NPCData extends CreatureTemplate {
 
   /* -------------------------------------------- */
 
-  //TODO: update this from where it was pulled from
+  // TODO: update this from where it was pulled from
   /**
    * Prepare movement & senses values derived from species item.
    */
@@ -424,7 +424,7 @@ export default class NPCData extends CreatureTemplate {
 
   /* -------------------------------------------- */
 
-  //TODO: update this from where it was pulled from
+  // TODO: update this from where it was pulled from
   /** @inheritdoc */
   prepareDerivedData() {
     const rollData = this.getRollData({ deterministic: true });

@@ -84,17 +84,17 @@ export default class ActorSheetDnd5eCharacter extends ActorSheetDnD5e {
         const { quantity, uses, recharge } = item.system;
 
         // Item details
-      const ctx = context.itemContext[item.id] ??= {};
-      ctx.isStack = Number.isNumeric(quantity) && (quantity !== 1);
-      if ( item.system.attunement ) ctx.attunement = item.system.attuned ? {
-            icon: "fa-sun",
-            cls: "attuned",
-            title: "SW5E.AttunementAttuned"
-      } : {
-        icon: "fa-sun",
-        cls: "not-attuned",
-        title: CONFIG.SW5E.attunementTypes[item.system.attunement]
-      };
+        const ctx = context.itemContext[item.id] ??= {};
+        ctx.isStack = Number.isNumeric(quantity) && (quantity !== 1);
+        if ( item.system.attunement ) ctx.attunement = item.system.attuned ? {
+          icon: "fa-sun",
+          cls: "attuned",
+          title: "SW5E.AttunementAttuned"
+        } : {
+          icon: "fa-sun",
+          cls: "not-attuned",
+          title: CONFIG.SW5E.attunementTypes[item.system.attunement]
+        };
 
         // Prepare data needed to display expanded sections
         ctx.isExpanded = this._expanded.has(item.id);
@@ -179,8 +179,8 @@ export default class ActorSheetDnd5eCharacter extends ActorSheetDnD5e {
           const delta = level - cls.system.levels;
           return { level, delta, disabled: delta > maxLevelDelta };
         });
-        ctx.prefixedImage = cls.img ? foundry.utils.getRoute(cls.img) : null;
-        arr.push(cls);
+      ctx.prefixedImage = cls.img ? foundry.utils.getRoute(cls.img) : null;
+      arr.push(cls);
       const identifier = cls.system.identifier || cls.name.slugify({ strict: true });
       const archetype = archetypes.findSplice(s => s.system.classIdentifier === identifier);
       if (archetype) arr.push(archetype);
@@ -376,7 +376,7 @@ export default class ActorSheetDnd5eCharacter extends ActorSheetDnD5e {
 
   /** @override */
   async _onDropSingleItem(itemData) {
-    
+
     // Increment the number of class levels a character instead of creating a new item
     if (itemData.type === "class") {
       const charLevel = this.actor.system.details.level;

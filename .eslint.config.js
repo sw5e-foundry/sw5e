@@ -1,4 +1,4 @@
-{
+module.exports = {
   "env": {
     "browser": true,
     "es2021": true,
@@ -13,7 +13,7 @@
   "plugins": [
     "jsdoc"
   ],
-  "ignorePatterns": [ "module/applications/compendium/*.mjs", "module/applications/compendium/tabs/*.mjs" ],
+  "ignorePatterns": ["module/applications/compendium/*.mjs", "module/applications/compendium/tabs/*.mjs"],
   "rules": {
     "array-bracket-spacing": ["warn", "never"],
     "array-callback-return": "warn",
@@ -44,13 +44,13 @@
     "no-dupe-class-members": "warn",
     "no-dupe-keys": "warn",
     "no-duplicate-case": "warn",
-    "no-duplicate-imports": ["warn", {"includeExports": true}],
-    "no-empty": ["warn", {"allowEmptyCatch": true}],
+    "no-duplicate-imports": ["warn", { "includeExports": true }],
+    "no-empty": ["warn", { "allowEmptyCatch": true }],
     "no-empty-character-class": "warn",
     "no-empty-pattern": "warn",
     "no-func-assign": "warn",
     "no-global-assign": "warn",
-    "no-implicit-coercion": ["warn", {"allow": ["!!"]}],
+    "no-implicit-coercion": ["warn", { "allow": ["!!"] }],
     "no-implied-eval": "warn",
     "no-import-assign": "warn",
     "no-invalid-regexp": "warn",
@@ -85,13 +85,13 @@
     "no-unneeded-ternary": "warn",
     "no-unreachable": "warn",
     "no-unreachable-loop": "warn",
-    "no-unsafe-negation": ["warn", {"enforceForOrderingRelations":  true}],
-    "no-unsafe-optional-chaining": ["warn", {"disallowArithmeticOperators":  true}],
+    "no-unsafe-negation": ["warn", { "enforceForOrderingRelations": true }],
+    "no-unsafe-optional-chaining": ["warn", { "disallowArithmeticOperators": true }],
     "no-unused-expressions": "warn",
     "no-useless-backreference": "warn",
     "no-useless-call": "warn",
     "no-useless-catch": "warn",
-    "no-useless-computed-key": ["warn", {"enforceForClassMembers": true}],
+    "no-useless-computed-key": ["warn", { "enforceForClassMembers": true }],
     "no-useless-concat": "warn",
     "no-useless-constructor": "warn",
     "no-useless-rename": "warn",
@@ -106,22 +106,22 @@
     "rest-spread-spacing": ["warn", "never"],
     "semi-spacing": "warn",
     "semi-style": ["warn", "last"],
-    "space-unary-ops": ["warn", {"words": true, "nonwords": false}],
+    "space-unary-ops": ["warn", { "words": true, "nonwords": false }],
     "switch-colon-spacing": "warn",
     "symbol-description": "warn",
     "template-curly-spacing": ["warn", "never"],
     "unicode-bom": ["warn", "never"],
-    "use-isnan": ["warn", {"enforceForSwitchCase": true, "enforceForIndexOf": true}],
-    "valid-typeof": ["warn", {"requireStringLiterals": true}],
+    "use-isnan": ["warn", { "enforceForSwitchCase": true, "enforceForIndexOf": true }],
+    "valid-typeof": ["warn", { "requireStringLiterals": true }],
     "wrap-iife": ["warn", "inside"],
 
-    "arrow-parens": ["warn", "as-needed", {"requireForBlockBody": false}],
-    "capitalized-comments": ["warn", "always", {"ignoreConsecutiveComments": true}],
+    "arrow-parens": ["warn", "as-needed", { "requireForBlockBody": false }],
+    "capitalized-comments": ["warn", "always", { "ignoreConsecutiveComments": true }],
     "comma-spacing": "warn",
     "dot-notation": "warn",
-    "indent": ["warn", 2, {"SwitchCase": 1}],
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
     "key-spacing": "warn",
-    "keyword-spacing": ["warn", {"overrides": {"catch": {"before": true, "after": false}}}],
+    "keyword-spacing": ["warn", { "overrides": { "catch": { "before": true, "after": false } } }],
     "max-len": ["warn", {
       "code": 120,
       "ignoreTrailingComments": true,
@@ -129,22 +129,22 @@
       "ignoreStrings": true,
       "ignoreTemplateLiterals": true
     }],
-    "no-extra-boolean-cast": ["warn", {"enforceForLogicalOperands": true}],
+    "no-extra-boolean-cast": ["warn", { "enforceForLogicalOperands": true }],
     "no-extra-semi": "warn",
-    "no-multi-spaces": ["warn", {"ignoreEOLComments": true}],
+    "no-multi-spaces": ["warn", { "ignoreEOLComments": true }],
     "no-tabs": "warn",
     "no-throw-literal": "error",
     "no-trailing-spaces": "warn",
     "no-useless-escape": "warn",
-    "no-unused-vars": ["warn", {"args": "none"}],
+    "no-unused-vars": ["warn", { "args": "none" }],
     "nonblock-statement-body-position": ["warn", "beside"],
     "one-var": ["warn", "never"],
     "operator-linebreak": ["warn", "before", {
-      "overrides": {"=": "after", "+=": "after", "-=": "after"}
+      "overrides": { "=": "after", "+=": "after", "-=": "after" }
     }],
     "prefer-template": "warn",
-    "quote-props": ["warn", "as-needed", {"keywords": false}],
-    "quotes": ["warn", "double", {"avoidEscape": true, "allowTemplateLiterals": false}],
+    "quote-props": ["warn", "as-needed", { "keywords": false }],
+    "quotes": ["warn", "double", { "avoidEscape": true, "allowTemplateLiterals": false }],
     "semi": "warn",
     "space-before-blocks": ["warn", "always"],
     "space-before-function-paren": ["warn", {
@@ -209,4 +209,4 @@
       }
     }
   }
-}
+};

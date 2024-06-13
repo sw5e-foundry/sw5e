@@ -228,15 +228,15 @@ export default class Item5e extends SystemDocumentMixin(Item) {
 
   /* --------------------------------------------- */
 
-   /**
+  /**
    * Is this Item an activatable item?
    * @type {boolean}
    */
-   get isActive() {
+  get isActive() {
     return this.system.isActive ?? false;
   }
 
- /* -------------------------------------------- */
+  /* -------------------------------------------- */
 
   /**
    * Is this item any of the armor subtypes?
@@ -712,7 +712,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     else if (act?.type) {
       const isAttack = /\w\wak$/.test(this.system.actionType);
       this.labels.featType = game.i18n.localize(isAttack ? "SW5E.Attack" : "SW5E.Action");
-    } 
+    }
     else this.labels.featType = game.i18n.localize("SW5E.Passive");
   }
 
@@ -739,7 +739,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       else obj.vsm.push(abbr);
       return obj;
     },
-      { all: [], vsm: [], tags: [] }
+    { all: [], vsm: [], tags: [] }
     );
     this.labels.materials = this.system?.materials?.value ?? null;
   }
@@ -2002,7 +2002,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
         messageData: {
           "flags.sw5e": {
             targets: this.constructor._formatAttackTargets(),
-            roll: { type: "attack", itemId: this.id, itemUuid: this.uuid },
+            roll: { type: "attack", itemId: this.id, itemUuid: this.uuid }
           },
           speaker: ChatMessage.getSpeaker({ actor: this.actor })
         }
@@ -2566,7 +2566,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
             toolItemUuid: item.uuid
           });
           break;
-        }
+      }
 
     } catch(err) {
       Hooks.onError("Item5e._onChatCardAction", err, { log: "error", notify: "error" });
@@ -2671,14 +2671,14 @@ export default class Item5e extends SystemDocumentMixin(Item) {
   static _onChatCardToggleContent(event) {
     const header = event.currentTarget;
     if ( header.classList.contains("collapsible") && !event.target.closest(".collapsible-content.card-content") ) {
-    event.preventDefault();
-    header.classList.toggle("collapsed");
+      event.preventDefault();
+      header.classList.toggle("collapsed");
 
-    // Clear the height from the chat popout container so that it appropriately resizes.
-    const popout = header.closest(".chat-popout");
-    if ( popout ) popout.style.height = "";
+      // Clear the height from the chat popout container so that it appropriately resizes.
+      const popout = header.closest(".chat-popout");
+      if ( popout ) popout.style.height = "";
+    }
   }
-}
 
   /* -------------------------------------------- */
 

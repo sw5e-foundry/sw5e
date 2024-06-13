@@ -397,7 +397,7 @@ export default class ActorSheetSW5e extends ActorSheetMixin(ActorSheet) {
 
   /* -------------------------------------------- */
 
-  //TODO: This is blank in the DnD5e system, see if it's necessary or should be moved elsewhere
+  // TODO: This is blank in the DnD5e system, see if it's necessary or should be moved elsewhere
   /**
    * Prepare the data structure for items which appear on the actor sheet.
    * Each archetype overrides this method to implement type-specific logic.
@@ -1306,16 +1306,16 @@ export default class ActorSheetSW5e extends ActorSheetMixin(ActorSheet) {
     // Bypass normal creation flow for any items with advancement
     if ( this.actor.system.metadata?.supportsAdvancement && itemData.system.advancement?.length
       && !game.settings.get("sw5e", "disableAdvancements") ) {
-  // Ensure that this item isn't violating the singleton rule
-  const dataModel = CONFIG.Item.dataModels[itemData.type];
-  const singleton = dataModel?.metadata.singleton ?? false;
-    if ( singleton && this.actor.itemTypes[itemData.type].length ) {
-      ui.notifications.error(game.i18n.format("SW5E.ActorWarningSingleton", {
-        itemType: game.i18n.localize(CONFIG.Item.typeLabels[itemData.type]),
-        actorType: game.i18n.localize(CONFIG.Actor.typeLabels[this.actor.type])
-      }));
-      return false;
-    }
+      // Ensure that this item isn't violating the singleton rule
+      const dataModel = CONFIG.Item.dataModels[itemData.type];
+      const singleton = dataModel?.metadata.singleton ?? false;
+      if ( singleton && this.actor.itemTypes[itemData.type].length ) {
+        ui.notifications.error(game.i18n.format("SW5E.ActorWarningSingleton", {
+          itemType: game.i18n.localize(CONFIG.Item.typeLabels[itemData.type]),
+          actorType: game.i18n.localize(CONFIG.Actor.typeLabels[this.actor.type])
+        }));
+        return false;
+      }
 
       const manager = AdvancementManager.forNewItem(this.actor, itemData);
       if (manager.steps.length) {
@@ -1446,7 +1446,7 @@ export default class ActorSheetSW5e extends ActorSheetMixin(ActorSheet) {
     }
   }
 
-   /* -------------------------------------------- */
+  /* -------------------------------------------- */
 
   /**
    * Handle enabling editing for attunement maximum.

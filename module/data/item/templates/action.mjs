@@ -239,7 +239,7 @@ export default class ActionTemplate extends ItemDataModel {
       ammoThreshold = this.parent?.actor?.items.get(this.consume.target)?.system.critical.threshold ?? Infinity;
     }
     const threshold = Math.min(this.critical.threshold ?? Infinity, this._typeCriticalThreshold, ammoThreshold);
-    return threshold < Infinity ? threshold : this.baseCriticalThreshold;;
+    return threshold < Infinity ? threshold : this.baseCriticalThreshold;
   }
 
   /* -------------------------------------------- */

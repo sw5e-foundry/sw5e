@@ -78,7 +78,7 @@ export default class FiringArcTemplate extends MeasuredTemplate {
 
     // Draw the template and switch to the template layer
     this.draw();
-    // this.layer.activate();
+    // This.layer.activate();
     this.layer.preview.addChild(this);
 
     // Activate interactivity
@@ -98,7 +98,7 @@ export default class FiringArcTemplate extends MeasuredTemplate {
       this.#events = {
         cancel: this._onCancelPlacement.bind(this),
         resolve,
-        reject,
+        reject
       };
     });
   }

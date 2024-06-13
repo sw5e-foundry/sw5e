@@ -176,7 +176,7 @@ Hooks.once("init", function() {
 
   DocumentSheetConfig.unregisterSheet(Item, "core", ItemSheet);
   DocumentSheetConfig.registerSheet(Item, "sw5e", applications.item.ItemSheet5e, {
-/*    types: [
+    /*    Types: [
       "weapon",
       "equipment",
       "consumable",
@@ -353,7 +353,7 @@ function _configureConsumableAttributes() {
     "attributes.tech.points.value",
     "attributes.super.dice.value",
     // TODO SW5E: Check if this would work for consuming power dice
-    ...Object.keys(SW5E.ssModSystems).map(system => `attributes.power.${system.lower()}.value`),
+    ...Object.keys(SW5E.ssModSystems).map(system => `attributes.power.${system.lower()}.value`)
   ];
 }
 
@@ -577,8 +577,8 @@ Hooks.once("ready", async function() {
 
 Hooks.on("canvasInit", gameCanvas => {
   if ( game.release.generation < 12 ) {
-  gameCanvas.grid.diagonalRule = game.settings.get("sw5e", "diagonalMovement");
-  SquareGrid.prototype.measureDistances = canvas.measureDistances;
+    gameCanvas.grid.diagonalRule = game.settings.get("sw5e", "diagonalMovement");
+    SquareGrid.prototype.measureDistances = canvas.measureDistances;
   }
   CONFIG.Token.ringClass.pushToLoad(gameCanvas.loadTexturesOptions.additionalSources);
 });
@@ -684,7 +684,7 @@ Hooks.on("renderRollTableDirectory", (app, html, data) => {
 });
 // Remigrate button adapted from pf2e
 Hooks.on("renderSettings", async (_app, html) => {
-    if (game.user.hasRole("GAMEMASTER")) {
+  if (game.user.hasRole("GAMEMASTER")) {
     const remigrate = $("<div>").attr({ id: "sw5e-remigrate" });
     const shootButton = $('<button type="button">')
       .append(utils.fontAwesomeIcon("wrench"), game.i18n.localize("SW5E.Remigrate"))

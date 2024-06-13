@@ -230,7 +230,7 @@ export const migrateCompendium = async function(pack) {
       console.log(`Migrated ${documentName} document ${doc.name} in Compendium ${pack.collection}`);
     }
 
-      // Handle migration failures
+    // Handle migration failures
     catch(err) {
       err.message = `Failed sw5e system migration for document ${doc.name} in pack ${pack.collection}: ${err.message}`;
       console.error(err);
@@ -621,7 +621,7 @@ export function migrateRollTableData(table, migrationData) {
  */
 export const migrateSceneData = async function(scene, migrationData) {
   const tokens = await Promise.all(
-    scene.tokens.map(async (token) => {
+    scene.tokens.map(async token => {
       const t = token instanceof foundry.abstract.DataModel ? token.toObject() : token;
       const update = {};
       await _migrateTokenImage(t, update, migrationData);
@@ -629,9 +629,9 @@ export const migrateSceneData = async function(scene, migrationData) {
       if ( !foundry.utils.isEmpty(update) ) arr.push({ ...update, _id: t._id });
       return arr;
     }));
-    if ( tokens.length ) return { tokens };
-    return {};
-  };
+  if ( tokens.length ) return { tokens };
+  return {};
+};
 
 /* -------------------------------------------- */
 

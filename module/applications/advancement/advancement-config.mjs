@@ -223,7 +223,7 @@ export default class AdvancementConfig extends FormApplication {
       return null;
     }
 
-    await this.advancement.update({ [`configuration.${this.options.dropKeyPath}`]: [...existingItems, {uuid:item.uuid}] });
+    await this.advancement.update({ [`configuration.${this.options.dropKeyPath}`]: [...existingItems, {uuid: item.uuid}] });
   }
 
   /* -------------------------------------------- */

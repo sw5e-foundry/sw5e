@@ -5,7 +5,7 @@ import Advancement from "../documents/advancement/advancement.mjs";
  * `ObjectField` to prevent issues with custom advancement types that aren't currently loaded.
  */
 export class AdvancementField extends foundry.data.fields.ObjectField {
-  
+
   /**
    * Get the BaseAdvancement definition for the specified advancement type.
    * @param {string} type                    The Advancement type.

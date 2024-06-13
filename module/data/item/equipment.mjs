@@ -57,7 +57,7 @@ const { NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
  */
 export default class EquipmentData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
-  IdentifiableTemplate, 
+  IdentifiableTemplate,
   ItemTypeTemplate,
   PhysicalItemTemplate,
   EquippableItemTemplate,
@@ -80,7 +80,7 @@ export default class EquipmentData extends ItemDataModel.mixin(
           }),
           magicalBonus: new NumberField({min: 0, integer: true, label: "SW5E.MagicalBonus"}),
           dex: new NumberField({ required: true, integer: true, label: "SW5E.ItemEquipmentDexMod" })
-        },
+        }
       ),
       properties: new SetField(new StringField(), {
         label: "SW5E.ItemEquipmentProperties"
@@ -375,7 +375,7 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * @type {boolean}
    */
   get isStarshipItem() {
-    return (this.armor.type in CONFIG.SW5E.ssEquipmentTypes) || this.armor.type === "starship"
+    return (this.armor.type in CONFIG.SW5E.ssEquipmentTypes) || this.armor.type === "starship";
   }
 
   /* -------------------------------------------- */

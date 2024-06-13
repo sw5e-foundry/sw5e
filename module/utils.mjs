@@ -180,7 +180,7 @@ export function indexFromUuid(uuid) {
  */
 export function linkForUuid(uuid) {
   if ( game.release.generation < 12 ) {
-  return TextEditor._createContentLink(["", "UUID", uuid]).outerHTML;
+    return TextEditor._createContentLink(["", "UUID", uuid]).outerHTML;
   }
 
   // TODO: When v11 support is dropped we can make this method async and return to using TextEditor._createContentLink.

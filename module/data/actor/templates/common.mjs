@@ -150,7 +150,7 @@ export default class CommonTemplate extends ActorDataModel.mixin(CurrencyTemplat
   /*  Data Preparation                            */
   /* -------------------------------------------- */
 
-  //TODO: Edit this with where it was pulled
+  // TODO: Edit this with where it was pulled
   /**
    * Prepare modifiers and other values for abilities.
    * @param {object} [options={}]

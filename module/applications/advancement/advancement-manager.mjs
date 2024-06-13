@@ -455,7 +455,7 @@ export default class AdvancementManager extends Application {
    * @returns {number}       Working level.
    */
   static currentLevel(item, actor) {
-    // return item.system.levels ?? item.class?.system.levels ?? actor.system.details.level ?? 0;
+    // Return item.system.levels ?? item.class?.system.levels ?? actor.system.details.level ?? 0;
     return item.curAdvancementLevel;
   }
 

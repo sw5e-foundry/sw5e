@@ -130,7 +130,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    * @protected
    */
   static _cleanData(source, options) {
-    for ( const template of this._schemaTemplates ) {
+    for (const template of this._schemaTemplates) {
       template._cleanData(source, options);
     }
   }
@@ -141,26 +141,16 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   /** @inheritdoc */
   static *_initializationOrder() {
-    for ( const template of this._schemaTemplates ) {
-      for ( const entry of template._initializationOrder() ) {
+    for (const template of this._schemaTemplates) {
+      for (const entry of template._initializationOrder()) {
         entry[1] = this.schema.get(entry[0]);
         yield entry;
       }
     }
-    for ( const entry of this.schema.entries() ) {
-      if ( this._schemaTemplateFields.has(entry[0]) ) continue;
+    for (const entry of this.schema.entries()) {
+      if (this._schemaTemplateFields.has(entry[0])) continue;
       yield entry;
     }
-  }
-
-  /* -------------------------------------------- */
-  /*  Data Validation                             */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  validate(options = {}) {
-    if (this.constructor._enableV10Validation === false) return true;
-    return super.validate(options);
   }
 
   /* -------------------------------------------- */
@@ -178,8 +168,8 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    */
   async _preCreate(data, options, user) {
     const actor = this.parent.actor;
-    if ( (actor?.type !== "character") || !this.metadata?.singleton ) return;
-    if ( actor.itemTypes[data.type]?.length ) {
+    if ((actor?.type !== "character") || !this.metadata?.singleton) return;
+    if (actor.itemTypes[data.type]?.length) {
       ui.notifications.error(game.i18n.format("SW5E.ActorWarningSingleton", {
         itemType: game.i18n.localize(CONFIG.Item.typeLabels[data.type]),
         actorType: game.i18n.localize(CONFIG.Actor.typeLabels[actor.type])
@@ -190,6 +180,14 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   /* -------------------------------------------- */
   /*  Data Validation                             */
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  validate(options = {}) {
+    if (this.constructor._enableV10Validation === false) return true;
+    return super.validate(options);
+  }
+
   /* -------------------------------------------- */
 
   /** @inheritdoc */
@@ -207,7 +205,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    * @protected
    */
   static _validateJoint(data) {
-    for ( const template of this._schemaTemplates ) {
+    for (const template of this._schemaTemplates) {
       template._validateJoint(data);
     }
   }
@@ -230,7 +228,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    * @protected
    */
   static _migrateData(source) {
-    for ( const template of this._schemaTemplates ) {
+    for (const template of this._schemaTemplates) {
       template._migrateData(source);
     }
   }
@@ -252,7 +250,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    * @protected
    */
   static _shimData(data, options) {
-    for ( const template of this._schemaTemplates ) {
+    for (const template of this._schemaTemplates) {
       template._shimData(data, options);
     }
   }
@@ -267,13 +265,13 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    * @returns {typeof SystemDataModel}  Final prepared type.
    */
   static mixin(...templates) {
-    for ( const template of templates ) {
-      if ( !(template.prototype instanceof SystemDataModel) ) {
+    for (const template of templates) {
+      if (!(template.prototype instanceof SystemDataModel)) {
         throw new Error(`${template.name} is not a archetype of SystemDataModel`);
       }
     }
 
-    const Base = class extends this {};
+    const Base = class extends this { };
     Object.defineProperty(Base, "_schemaTemplates", {
       value: Object.seal([...this._schemaTemplates, ...templates]),
       writable: false,
@@ -313,7 +311,7 @@ export class ActorDataModel extends SystemDataModel {
   /** @type {ActorDataModelMetadata} */
   static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
     supportsAdvancement: false
-  }, {inplace: false}));
+  }, { inplace: false }));
 
   /* -------------------------------------------- */
   /*  Properties                                  */
@@ -325,9 +323,9 @@ export class ActorDataModel extends SystemDataModel {
    */
   get transferDestinations() {
     const primaryParty = game.settings.get("sw5e", "primaryParty")?.actor;
-    if ( !primaryParty?.system.members.ids.has(this.parent.id) ) return [];
+    if (!primaryParty?.system.members.ids.has(this.parent.id)) return [];
     const destinations = primaryParty.system.members.map(m => m.actor).filter(a => a.isOwner && a !== this.parent);
-    if ( primaryParty.isOwner ) destinations.unshift(primaryParty);
+    if (primaryParty.isOwner) destinations.unshift(primaryParty);
     return destinations;
   }
 
@@ -342,10 +340,10 @@ export class ActorDataModel extends SystemDataModel {
    *                                          either a die term or a flat term.
    * @returns {object}
    */
-  getRollData({ deterministic=false }={}) {
+  getRollData({ deterministic = false } = {}) {
     const data = { ...this };
     data.prof = new Proficiency(this.attributes?.prof ?? 0, 1);
-    if ( deterministic ) data.prof = data.prof.flat;
+    if (deterministic) data.prof = data.prof.flat;
     return data;
   }
 }
@@ -359,19 +357,38 @@ export class ItemDataModel extends SystemDataModel {
 
   /**
    * @typedef {SystemDataModelMetadata} ItemDataModelMetadata
-   * @property {boolean} singleton  Should only a single item of this type be allowed on an actor?
+   * @property {boolean} enchantable    Can this item be modified by enchantment effects?
+   * @property {boolean} inventoryItem  Should this item be listed with an actor's inventory?
+   * @property {number} inventoryOrder  Order this item appears in the actor's inventory, smaller numbers are earlier.
+   * @property {boolean} singleton      Should only a single item of this type be allowed on an actor?
    */
 
   /** @type {ItemDataModelMetadata} */
   static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+    enchantable: false,
+    inventoryItem: false,
+    inventoryOrder: Infinity,
     singleton: false
-  }, {inplace: false}));
+  }, { inplace: false }));
 
   /**
    * The handlebars template for rendering item tooltips.
    * @type {string}
    */
   static ITEM_TOOLTIP_TEMPLATE = "systems/sw5e/templates/items/parts/item-tooltip.hbs";
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  prepareBaseData() {
+    if (this.parent.isEmbedded) {
+      const sourceId = this.parent.flags.sw5e?.sourceId ?? this.parent._stats.compendiumSource
+        ?? this.parent.flags.core?.sourceId;
+      if (sourceId) this.parent.actor?.sourcedItems?.set(sourceId, this.parent);
+    }
+  }
 
   /* -------------------------------------------- */
   /*  Helpers                                     */
@@ -382,7 +399,7 @@ export class ItemDataModel extends SystemDataModel {
    * @param {EnrichmentOptions} [enrichmentOptions={}]  Options for text enrichment.
    * @returns {{content: string, classes: string[]}}
    */
-  async richTooltip(enrichmentOptions={}) {
+  async richTooltip(enrichmentOptions = {}) {
     return {
       content: await renderTemplate(
         this.constructor.ITEM_TOOLTIP_TEMPLATE, await this.getCardData(enrichmentOptions)
@@ -398,7 +415,7 @@ export class ItemDataModel extends SystemDataModel {
    * @param {EnrichmentOptions} enrichmentOptions  Options for text enrichment.
    * @returns {Promise<object>}
    */
-  async getCardData(enrichmentOptions={}) {
+  async getCardData(enrichmentOptions = {}) {
     const { name, type, img } = this.parent;
     let {
       price, weight, uses, identified, unidentified, description, school, materials, activation, properties
@@ -414,6 +431,7 @@ export class ItemDataModel extends SystemDataModel {
     const context = {
       name, type, img, price, weight, uses, school, materials, activation,
       config: CONFIG.SW5E,
+      controlHints: game.settings.get("sw5e", "controlHints"),
       labels: foundry.utils.deepClone(this.parent.labels),
       tags: this.parent.labels?.components?.tags,
       subtitle: subtitle.filterJoin(" &bull; "),
@@ -429,7 +447,7 @@ export class ItemDataModel extends SystemDataModel {
 
     context.properties = [];
 
-    if ( game.user.isGM || isIdentified ) {
+    if (game.user.isGM || isIdentified) {
       context.properties.push(
         ...this.cardProperties ?? [],
         ...this.activatedEffectCardProperties ?? [],
@@ -437,7 +455,7 @@ export class ItemDataModel extends SystemDataModel {
       );
     }
 
-    if ( context.labels.duration ) {
+    if (context.labels.duration) {
       context.labels.concentrationDuration = properties?.has("concentration")
         ? game.i18n.format("SW5E.ConcentrationDuration", {
           duration: context.labels.duration.toLocaleLowerCase(game.i18n.lang)
@@ -498,9 +516,8 @@ export class ItemDataModel extends SystemDataModel {
    *                                          either a die term or a flat term.
    * @returns {object}
    */
-  getRollData({ deterministic=false }={}) {
-    if ( !this.parent.actor ) return null;
-    const actorRollData = this.parent.actor.getRollData({ deterministic });
+  getRollData({ deterministic = false } = {}) {
+    const actorRollData = this.parent.actor?.getRollData({ deterministic }) ?? {};
     const data = { ...actorRollData, item: { ...this } };
     return data;
   }
@@ -513,8 +530,8 @@ export class ItemDataModel extends SystemDataModel {
  */
 export class SparseDataModel extends foundry.abstract.DataModel {
   /** @inheritdoc */
-  toObject(source=true) {
-    if ( !source ) return super.toObject(source);
+  toObject(source = true) {
+    if (!source) return super.toObject(source);
     const clone = foundry.utils.flattenObject(this._source);
     // Remove any undefined keys from the source data
     Object.keys(clone).filter(k => clone[k] === undefined).forEach(k => delete clone[k]);

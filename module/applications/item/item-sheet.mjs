@@ -1,3 +1,4 @@
+import ActiveEffect5e from "../../documents/active-effect.mjs";
 import * as Trait from "../../documents/actor/trait.mjs";
 import { filteredKeys, sortObjectEntries } from "../../utils.mjs";
 import ActorMovementConfig from "../actor/movement-config.mjs";
@@ -9,6 +10,7 @@ import Accordion from "../accordion.mjs";
 import EffectsElement from "../components/effects.mjs";
 import SourceConfig from "../source-config.mjs";
 import CheckboxSelect from "../actor/checkbox-select.mjs";
+import EnchantmentConfig from "./enchantment-config.mjs";
 import StartingEquipmentConfig from "./starting-equipment-config.mjs";
 import SummoningConfig from "./summoning-config.mjs";
 import Item5e from "../../documents/item.mjs";
@@ -90,7 +92,7 @@ export default class ItemSheet5e extends ItemSheet {
 
   /** @inheritDoc */
   async _render(force, options) {
-    if ( !this.editingDescriptionTarget ) this._accordions.forEach(accordion => accordion._saveCollapsedState());
+    if (!this.editingDescriptionTarget) this._accordions.forEach(accordion => accordion._saveCollapsedState());
     return super._render(force, options);
   }
 
@@ -168,8 +170,16 @@ export default class ItemSheet5e extends ItemSheet {
       forcecaster: item.system?.powercasting?.force !== "none",
       techcaster: item.system?.powercasting?.tech !== "none",
 
+      // Enchantment
+      appliedEnchantments: item.system.enchantment?.appliedEnchantments?.map(enchantment => ({
+        enchantment,
+        name: enchantment.parent._source.name,
+        actor: enchantment.parent.actor,
+        item: enchantment.parent
+      })),
+
       // Prepare Active Effects
-      effects: EffectsElement.prepareCategories(item.effects),
+      effects: EffectsElement.prepareCategories(item.effects, { parent: this.item }),
       elements: this.options.elements,
 
       concealDetails: !game.user.isGM && (this.document.system.identified === false),
@@ -178,14 +188,21 @@ export default class ItemSheet5e extends ItemSheet {
       propertiesList: item.propertiesList
     });
     context.abilityConsumptionTargets = this._getItemConsumptionTargets(item);
+    if (!item.isEmbedded && foundry.utils.isEmpty(context.abilityConsumptionTargets)) {
+      context.abilityConsumptionHint = (this.item.system.consume?.type === "attribute")
+        ? "SW5E.ConsumeHint.Attribute" : "SW5E.ConsumeHint.Item";
+    }
 
-    if ( ("properties" in item.system) && (item.type in CONFIG.SW5E.validProperties) ) {
+    if (("properties" in item.system) && (item.type in CONFIG.SW5E.validProperties)) {
       context.properties = item.system.validProperties.reduce((obj, k) => {
         const v = CONFIG.SW5E.itemProperties[k];
-        obj[k] = { label: v.label, selected: item.system.properties.has(k) };
+        obj[k] = {
+          label: v.label,
+          selected: item.system.properties.has(k)
+        };
         return obj;
       }, {});
-      if ( item.type !== "power" ) context.properties = sortObjectEntries(context.properties, "label");
+      if (item.type !== "power") context.properties = sortObjectEntries(context.properties, "label");
     }
 
     // Special handling for specific item types
@@ -195,7 +212,7 @@ export default class ItemSheet5e extends ItemSheet {
       case "consumable":
         const name = item.type === "feat" ? "feature" : item.type;
         const itemTypes = CONFIG.SW5E[`${name}Types`][item.system.type.value];
-        if ( itemTypes ) {
+        if (itemTypes) {
           context.itemType = itemTypes.label;
           context.itemSubtypes = itemTypes.subtypes;
         }
@@ -225,7 +242,7 @@ export default class ItemSheet5e extends ItemSheet {
         break;
       case "loot":
         const lootType = CONFIG.SW5E.lootTypes[item.system.type?.value];
-        if ( lootType ) {
+        if (lootType) {
           context.itemType = lootType.label;
           context.lootSubtypes = lootType.subtypes;
         }
@@ -265,7 +282,7 @@ export default class ItemSheet5e extends ItemSheet {
       atFlavorText: await TextEditor.enrichHTML(item.system.atFlavorText?.value, enrichmentOptions),
       traits: await TextEditor.enrichHTML(item.system.traits?.value, enrichmentOptions)
     };
-    if ( this.editingDescriptionTarget ) {
+    if (this.editingDescriptionTarget) {
       context.editingDescriptionTarget = this.editingDescriptionTarget;
       context.enriched.editing = await TextEditor.enrichHTML(
         foundry.utils.getProperty(context, this.editingDescriptionTarget), enrichmentOptions
@@ -335,7 +352,7 @@ export default class ItemSheet5e extends ItemSheet {
       ...CONFIG.SW5E.armorIds,
       ...CONFIG.SW5E.shieldIds
     } : CONFIG.SW5E[`${this.item.type}Ids`];
-    if ( baseIds === undefined ) return {};
+    if (baseIds === undefined) return {};
 
     const baseType = this.item.system.type.value;
 
@@ -349,7 +366,7 @@ export default class ItemSheet5e extends ItemSheet {
 
       if (!baseItem) continue;
 
-      if ( baseType !== baseItem?.system?.type?.value ) continue;
+      if (baseType !== baseItem?.system?.type?.value) continue;
       items[name] = baseItem.name.replace(/\s*\([^)]*\)/g, ""); // Remove '(Rapid)' and '(Burst)' tags from item names
     }
     return Object.fromEntries(Object.entries(items).sort((lhs, rhs) => lhs[1].localeCompare(rhs[1], game.i18n.lang)));
@@ -377,7 +394,7 @@ export default class ItemSheet5e extends ItemSheet {
     }
 
     const actor = this.item.actor;
-    if (!actor) return {};
+    if (!actor && (consume.type !== "hitDice")) return {};
 
     // Consume types reliant on actor
 
@@ -423,15 +440,16 @@ export default class ItemSheet5e extends ItemSheet {
     // Charges
     else if (consume.type === "charges") {
       return actor.items.reduce((obj, i) => {
+
         // Limited-use items
         const uses = i.system.uses || {};
         if (uses.per && uses.max) {
           const label = CONFIG.SW5E.limitedUsePeriods[uses.per]?.formula
-              ? ` (${game.i18n.format("SW5E.AbilityUseChargesLabel", { value: uses.value })})`
-              : ` (${game.i18n.format("SW5E.AbilityUseConsumableLabel", {
-                max: uses.max,
-                per: uses.per
-              })})`;
+            ? ` (${game.i18n.format("SW5E.AbilityUseChargesLabel", { value: uses.value })})`
+            : ` (${game.i18n.format("SW5E.AbilityUseConsumableLabel", {
+              max: uses.max,
+              per: uses.per
+            })})`;
           obj[i.id] = i.name + label;
         }
 
@@ -440,7 +458,8 @@ export default class ItemSheet5e extends ItemSheet {
         if (recharge.value) obj[i.id] = `${i.name} (${game.i18n.format("SW5E.Recharge")})`;
         return obj;
       }, {});
-    } else return {};
+    }
+    else return {};
   }
 
   /* -------------------------------------------- */
@@ -471,6 +490,28 @@ export default class ItemSheet5e extends ItemSheet {
   /* -------------------------------------------- */
 
   /**
+   * Retrieve the list of fields that are currently modified by Active Effects on the Item.
+   * @returns {string[]}
+   * @protected
+   */
+  _getItemOverrides() {
+    const overrides = Object.keys(foundry.utils.flattenObject(this.item.overrides ?? {}));
+    this.item.system.getItemOverrides?.(overrides);
+    if ("properties" in this.item.system) {
+      ActiveEffect5e.addOverriddenChoices(this.item, "system.properties", "system.properties", overrides);
+    }
+    if (("damage" in this.item.system) && foundry.utils.getProperty(this.item.overrides, "system.damage.parts")) {
+      overrides.push("damage-control");
+      Array.fromRange(2).forEach(index => overrides.push(
+        `system.damage.parts.${index}.0`, `system.damage.parts.${index}.1`
+      ));
+    }
+    return overrides;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Get the Array of item properties which are used in the small sidebar of the description tab.
    * @returns {string[]}   List of property labels to be shown.
    * @private
@@ -480,14 +521,14 @@ export default class ItemSheet5e extends ItemSheet {
     const labels = this.item.labels;
     switch (this.item.type) {
       case "consumable":
-        case "weapon":
-          if ( this.item.isMountable ) props.push(labels.armor);
-          const ip = CONFIG.SW5E.itemProperties;
-          const vp = CONFIG.SW5E.validProperties[this.item.type];
-          this.item.system.properties.forEach(k => {
-            if ( vp.has(k) ) props.push(ip[k].label);
-          });
-          break;
+      case "weapon":
+        if (this.item.isMountable) props.push(labels.armor);
+        const ip = CONFIG.SW5E.itemProperties;
+        const vp = CONFIG.SW5E.validProperties[this.item.type];
+        this.item.system.properties.forEach(k => {
+          if (vp.has(k)) props.push(ip[k].label);
+        });
+        break;
       case "equipment":
         props.push(CONFIG.SW5E.equipmentTypes[this.item.system.type.value]);
         if (this.item.isArmor || this.item.isMountable) props.push(labels.armor);
@@ -591,7 +632,7 @@ export default class ItemSheet5e extends ItemSheet {
         compact: true,
         destroyOnSave: true,
         onSave: () => {
-          this.saveEditor(name, {remove: true});
+          this.saveEditor(name, { remove: true });
           this.editingDescriptionTarget = null;
         }
       })
@@ -609,12 +650,14 @@ export default class ItemSheet5e extends ItemSheet {
 
     // Handle Damage array
     const damage = formData.system?.damage;
-    if (damage) damage.parts = Object.values(damage?.parts || {}).map(d => [d[0] || "", d[1] || ""]);
+    if (damage && !foundry.utils.getProperty(this.item.overrides, "system.damage.parts")) {
+      damage.parts = Object.values(damage?.parts || {}).map(d => [d[0] || "", d[1] || ""]);
+    }
 
     // Handle properties
-    if ( foundry.utils.hasProperty(formData, "system.properties") ) {
+    if (foundry.utils.hasProperty(formData, "system.properties")) {
       const keys = new Set(Object.keys(formData.system.properties));
-      const preserve = this.object.system.properties.difference(keys);
+      const preserve = new Set(this.item._source.system.properties ?? []).difference(keys);
       formData.system.properties = [...filteredKeys(formData.system.properties), ...preserve];
     }
 
@@ -689,15 +732,17 @@ export default class ItemSheet5e extends ItemSheet {
   /** @inheritdoc */
   activateListeners(html) {
     super.activateListeners(html);
-    if ( !this.editingDescriptionTarget ) this._accordions.forEach(accordion => accordion.bind(html[0]));
+    if (!this.editingDescriptionTarget) this._accordions.forEach(accordion => accordion.bind(html[0]));
     if (this.isEditable) {
       html.find(".config-button").click(this._onConfigMenu.bind(this));
       html.find(".damage-control").click(this._onDamageControl.bind(this));
+      html.find(".enchantment-button").click(this._onEnchantmentAction.bind(this));
       html.find(".advancement .item-control").click(event => {
         const t = event.currentTarget;
         if (t.dataset.action) this._onAdvancementAction(t, t.dataset.action);
       });
       html.find(".description-edit").click(event => {
+        if (event.currentTarget.ariaDisabled) return;
         this.editingDescriptionTarget = event.currentTarget.dataset.target;
         this.render();
       });
@@ -727,7 +772,20 @@ export default class ItemSheet5e extends ItemSheet {
       html.find(".weapon-configure-ammo").click(this._onWeaponConfigureAmmo.bind(this));
       html.find(".weapon-reload").click(this._onWeaponReload.bind(this));
       html.find(".weapon-select-ammo").change(this._onWeaponSelectAmmo.bind(this));
+      for (const override of this._getItemOverrides()) {
+        for (const element of html[0].querySelectorAll(`[name="${override}"]`)) {
+          element.disabled = true;
+          element.dataset.tooltip = "SW5E.Enchantment.Warning.Override";
+        }
+        for (const element of html[0].querySelectorAll(`[data-target="${override}"]`)) {
+          element.ariaDisabled = true;
+          element.dataset.tooltip = "SW5E.Enchantment.Warning.Override";
+        }
+        if (override === "damage-control") html[0].querySelectorAll(".damage-control").forEach(e => e.remove());
+      }
     }
+    html[0].querySelectorAll('[data-action="view"]').forEach(e => e.addEventListener("click", this._onView.bind(this)));
+
     // Advancement context menu
     const contextOptions = this._getAdvancementContextMenuOptions();
     /**
@@ -788,7 +846,10 @@ export default class ItemSheet5e extends ItemSheet {
     event.stopPropagation();
     const button = event.currentTarget;
     let app;
-    switch ( button.dataset.action ) {
+    switch (button.dataset.action) {
+      case "enchantment":
+        app = new EnchantmentConfig(this.item);
+        break;
       case "movement":
         app = new ActorMovementConfig(this.item, { keyPath: "system.movement" });
         break;
@@ -848,9 +909,41 @@ export default class ItemSheet5e extends ItemSheet {
 
   /* -------------------------------------------- */
 
+  /**
+   * Handle actions on entries in the enchanted items list.
+   * @param {PointerEvent} event  Triggering click event.
+   * @private
+   */
+  async _onEnchantmentAction(event) {
+    event.preventDefault();
+    const enchantment = fromUuidSync(event.currentTarget.closest("[data-enchantment-uuid]")?.dataset.enchantmentUuid);
+    if (!enchantment) return;
+    switch (event.currentTarget.dataset.action) {
+      case "removeEnchantment":
+        await enchantment.delete();
+        this.render();
+        break;
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle actions on a view sheet button.
+   * @param {PointerEvent} event  Triggering click event.
+   * @private
+   */
+  async _onView(event) {
+    event.preventDefault();
+    const doc = await fromUuid(event.currentTarget.dataset.uuid);
+    doc?.sheet.render(true);
+  }
+
+  /* -------------------------------------------- */
+
   /** @inheritdoc */
   _canDragStart(selector) {
-    if ( [".advancement-item", "[data-effect-id]"].includes(selector) ) return true;
+    if ([".advancement-item", "[data-effect-id]"].includes(selector)) return true;
     return this.isEditable;
   }
 
@@ -925,15 +1018,24 @@ export default class ItemSheet5e extends ItemSheet {
    */
   async _onDropActiveEffect(event, data) {
     const effect = await ActiveEffect.implementation.fromDropData(data);
-    if (!this.item.isOwner || !effect) return false;
-    if ( (this.item.uuid === effect.parent?.uuid) || (this.item.uuid === effect.origin) ) return false;
-    return ActiveEffect.create(
-      {
-        ...effect.toObject(),
-        origin: this.item.uuid
-      },
-      { parent: this.item }
-    );
+    if (!this.item.isOwner || !effect
+      || (this.item.uuid === effect.parent?.uuid)
+      || (this.item.uuid === effect.origin)) return false;
+    const effectData = effect.toObject();
+    let keepOrigin = false;
+
+    // Validate against the enchantment's restraints on the origin item
+    if (effect.getFlag("sw5e", "type") === "enchantment") {
+      const errors = effect.parent.system.enchantment?.canEnchant(this.item);
+      if (errors?.length) {
+        errors.forEach(err => ui.notifications.error(err.message));
+        return false;
+      }
+      effectData.origin ??= effect.parent.uuid;
+      keepOrigin = true;
+    }
+
+    return ActiveEffect.create(effectData, { parent: this.item, keepOrigin });
   }
 
   /* -------------------------------------------- */
@@ -959,7 +1061,7 @@ export default class ItemSheet5e extends ItemSheet {
    * @returns {Promise}
    */
   async _onDropAdvancement(event, data) {
-    if ( !this.item.system.advancement ) return;
+    if (!this.item.system.advancement) return;
 
     let advancements;
     let showDialog = false;
@@ -967,7 +1069,7 @@ export default class ItemSheet5e extends ItemSheet {
       advancements = [await fromUuid(data.uuid)];
     } else if (data.type === "Item") {
       const item = await Item.implementation.fromDropData(data);
-      if ( !item?.system.advancement ) return false;
+      if (!item?.system.advancement) return false;
       advancements = Object.values(item.advancement.byId);
       showDialog = true;
     } else {
@@ -1173,7 +1275,7 @@ export default class ItemSheet5e extends ItemSheet {
         return new advancement.constructor.metadata.apps.config(advancement).render(true);
       case "delete":
         if (this.item.actor?.system.metadata?.supportsAdvancement
-            && !game.settings.get("sw5e", "disableAdvancements")) {
+          && !game.settings.get("sw5e", "disableAdvancements")) {
           manager = AdvancementManager.forDeletedAdvancement(this.item.actor, this.item.id, id);
           if (manager.steps.length) return manager.render(true);
         }

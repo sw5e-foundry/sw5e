@@ -364,7 +364,7 @@ export default class StarshipData extends CommonTemplate {
 
   /** @inheritdoc */
   prepareBaseData() {
-    
+
     // Determine starship's proficiency bonus based on active deployed crew member
     this.attributes.prof = 0;
     const active = this.attributes.deployment.active;
@@ -477,7 +477,7 @@ export default class StarshipData extends CommonTemplate {
 
   /* -------------------------------------------- */
 
-  //TODO: Update this for starships
+  // TODO: Update this for starships
   /**
    * Prepare movement & senses values derived from species item.
    */
@@ -494,7 +494,7 @@ export default class StarshipData extends CommonTemplate {
 
   /* -------------------------------------------- */
 
-  //TODO: Update this for starships
+  // TODO: Update this for starships
   /**
    * Prepare remaining starship data.
    */
@@ -519,7 +519,7 @@ export default class StarshipData extends CommonTemplate {
       hspOptions.shieldBonus = (simplifyBonus(this.attributes.hp.bonuses.templevel, rollData) * this.details.tier)
         + simplifyBonus(this.attributes.hp.bonuses.tempoverall, rollData);
       hspOptions.shieldMod = this.abilities[CONFIG.SW5E.defaultAbilities.shieldPoints ?? "con"]?.mod ?? 0;
-      hspOptions.shieldCapMult = this.attributes.equip.shields.capMult
+      hspOptions.shieldCapMult = this.attributes.equip.shields.capMult;
     }
     AttributesFields.prepareHullShieldPoints.call(this, this.attributes.hp, hspOptions);
   }
@@ -527,8 +527,8 @@ export default class StarshipData extends CommonTemplate {
   /* -------------------------------------------- */
   /*  Helpers                                     */
   /* -------------------------------------------- */
-  
-  //TODO: Update this for starships
+
+  // TODO: Update this for starships
   /** @inheritdoc */
   getRollData({ deterministic=false }={}) {
     const data = super.getRollData({ deterministic });
@@ -589,7 +589,7 @@ export default class StarshipData extends CommonTemplate {
     const favorites = this.favorites.filter(f => f.id !== favoriteId);
     return this.parent.update({ "system.favorites": favorites });
   }
-    /* -------------------------------------------- */
+  /* -------------------------------------------- */
 
   /**
    * Get a list of all equipment of a certain type.
@@ -605,27 +605,27 @@ export default class StarshipData extends CommonTemplate {
 
 }
 
-  /* -------------------------------------------- */
+/* -------------------------------------------- */
 
-  /**
-   * Data structure for starship's attack bonuses.
-   *
-   * @typedef {object} AttackBonusesData
-   * @property {string} attack  Numeric or dice bonus to attack rolls.
-   * @property {string} damage  Numeric or dice bonus to damage rolls.
-   */
+/**
+ * Data structure for starship's attack bonuses.
+ *
+ * @typedef {object} AttackBonusesData
+ * @property {string} attack  Numeric or dice bonus to attack rolls.
+ * @property {string} damage  Numeric or dice bonus to damage rolls.
+ */
 
-  /**
-   * Produce the schema field for a simple trait.
-   * @param {object} schemaOptions  Options passed to the outer schema.
-   * @returns {AttackBonusesData}
-   */
-  function makeAttackBonuses(schemaOptions = {}) {
-    return new SchemaField(
-      {
-        attack: new FormulaField({ required: true, label: "SW5E.BonusAttack" }),
-        damage: new FormulaField({ required: true, label: "SW5E.BonusDamage" })
-      },
-      schemaOptions
-    );
-  }
+/**
+ * Produce the schema field for a simple trait.
+ * @param {object} schemaOptions  Options passed to the outer schema.
+ * @returns {AttackBonusesData}
+ */
+function makeAttackBonuses(schemaOptions = {}) {
+  return new SchemaField(
+    {
+      attack: new FormulaField({ required: true, label: "SW5E.BonusAttack" }),
+      damage: new FormulaField({ required: true, label: "SW5E.BonusDamage" })
+    },
+    schemaOptions
+  );
+}

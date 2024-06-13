@@ -84,11 +84,11 @@ export default class ActorSheetDnD5e extends ActorSheetMixin(ActorSheet) {
           237 + (Object.keys(CONFIG.SW5E.abilities).length * 70),
           240 + (Object.keys(CONFIG.SW5E.skills).length * 24)
         )),
-        elements: {
-          effects: "sw5e-effects",
-          inventory: "sw5e-inventory"
-        }
-      });
+      elements: {
+        effects: "sw5e-effects",
+        inventory: "sw5e-inventory"
+      }
+    });
   }
 
   /* -------------------------------------------- */

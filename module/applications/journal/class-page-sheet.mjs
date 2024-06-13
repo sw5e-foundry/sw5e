@@ -1,3 +1,4 @@
+import { linkForUuid } from "../../utils.mjs";
 import Proficiency from "../../documents/actor/proficiency.mjs";
 import * as Trait from "../../documents/actor/trait.mjs";
 import JournalEditor from "./journal-editor.mjs";
@@ -6,10 +7,13 @@ import JournalEditor from "./journal-editor.mjs";
  * Journal entry page that displays an automatically generated summary of a class along with additional description.
  */
 export default class JournalClassPageSheet extends JournalPageSheet {
+
   /** @inheritdoc */
   static get defaultOptions() {
     const options = foundry.utils.mergeObject(super.defaultOptions, {
       dragDrop: [{ dropSelector: ".drop-target" }],
+      height: "auto",
+      width: 500,
       submitOnChange: true
     });
     options.classes.push("class-journal");
@@ -17,10 +21,12 @@ export default class JournalClassPageSheet extends JournalPageSheet {
   }
 
   /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   get template() {
-    return `systems/sw5e/templates/journal/page-class-${this.isEditable ? "edit" : "view"}.hbs`;
+    return `systems/sw5e/templates/journal/page-${this.document.type}-${this.isEditable ? "edit" : "view"}.hbs`;
   }
 
   /* -------------------------------------------- */
@@ -30,15 +36,30 @@ export default class JournalClassPageSheet extends JournalPageSheet {
 
   /* -------------------------------------------- */
 
+  /**
+   * Whether this page represents a class or archetype.
+   * @type {string}
+   */
+  get type() {
+    return this.document.type;
+  }
+
+  /* -------------------------------------------- */
+  /*  Rendering                                   */
+  /* -------------------------------------------- */
+
   /** @inheritdoc */
   async getData(options) {
     const context = super.getData(options);
     context.system = context.document.system;
 
-    context.title = Object.fromEntries(Array.fromRange(4, 1).map(n => [`level${n}`, context.data.title.level + n - 1]));
+    context.title = Object.fromEntries(
+      Array.fromRange(4, 1).map(n => [`level${n}`, context.data.title.level + n - 1])
+    );
+    context.type = this.type;
 
     const linked = await fromUuid(this.document.system.item);
-    context.archetypes = await this._getArchetypes(this.document.system.archetypeItems);
+    context.archetypes = this.type === "class" ? await this._getArchetypes(this.document.system.archetypeItems) : null;
 
     if (!linked) return context;
     context.linked = {
@@ -53,7 +74,9 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     context.optionalTable = await this._getOptionalTable(linked);
     context.features = await this._getFeatures(linked);
     context.optionalFeatures = await this._getFeatures(linked, true);
-    context.archetypes?.sort((lhs, rhs) => lhs.name.localeCompare(rhs.name, game.i18n.lang));
+    if (context.archetypes?.length) context.archetypes?.sort((lhs, rhs) =>
+      lhs.name.localeCompare(rhs.name, game.i18n.lang)
+    );
 
     return context;
   }
@@ -81,13 +104,13 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     const makeTrait = type => {
       const advancement = traits.find(a => {
         const rep = a.representedTraits();
-        if ( (rep.size > 1) || (rep.first() !== type) ) return false;
+        if ((rep.size > 1) || (rep.first() !== type)) return false;
         return (a.classRestriction !== "secondary") && (a.level === 1);
       });
-      if ( !advancement ) return game.i18n.localize("None");
+      if (!advancement) return game.i18n.localize("None");
       return advancement.configuration.hint || Trait.localizedList(advancement.configuration);
     };
-    if ( traits.length ) {
+    if (traits.length) {
       advancement.traits = {
         armor: makeTrait("armor"),
         weapons: makeTrait("weapon"),
@@ -96,6 +119,8 @@ export default class JournalClassPageSheet extends JournalPageSheet {
         skills: makeTrait("skills")
       };
     }
+
+    advancement.equipment = item.system.startingEquipmentDescription;
 
     return advancement;
   }
@@ -160,8 +185,6 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     for (const progression of powerProgression) if (progression) cols.push(...progression.cols);
     if (scaleValues.length) cols.push({ class: "scale", span: scaleValues.length });
 
-    const makeLink = async uuid => (await fromUuid(uuid))?.toAnchor({ classes: ["content-link"] }).outerHTML;
-
     const rows = [];
     for (const level of Array.fromRange(CONFIG.SW5E.maxLevel - (initialLevel - 1), initialLevel)) {
       const features = [];
@@ -172,7 +195,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
             continue;
           case "ItemGrant":
             if (advancement.configuration.optional) continue;
-            features.push(...(await Promise.all(advancement.configuration.items.map(i => makeLink(i.uuid)))));
+            features.push(...await Promise.all(advancement.configuration.items.map(i => linkForUuid(i.uuid))));
             break;
         }
       }
@@ -253,8 +276,6 @@ export default class JournalClassPageSheet extends JournalPageSheet {
       { class: "features", span: 1 }
     ];
 
-    const makeLink = async uuid => (await fromUuid(uuid))?.toAnchor({ classes: ["content-link"] }).outerHTML;
-
     const rows = [];
     for (const level of Array.fromRange(CONFIG.SW5E.maxLevel, 1)) {
       const features = [];
@@ -262,7 +283,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
         switch (advancement.constructor.typeName) {
           case "ItemGrant":
             if (!advancement.configuration.optional) continue;
-            features.push(...(await Promise.all(advancement.configuration.items.map(i => makeLink(i.uuid)))));
+            features.push(...await Promise.all(advancement.configuration.items.map(i => linkForUuid(i.uuid))));
             break;
         }
       }
@@ -351,8 +372,6 @@ export default class JournalClassPageSheet extends JournalPageSheet {
   }
 
   /* -------------------------------------------- */
-  /*  Rendering                                   */
-  /* -------------------------------------------- */
 
   /** @inheritdoc */
   async _renderInner(...args) {
@@ -389,7 +408,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     const uuidToDelete = container?.dataset.itemUuid;
     if (!uuidToDelete) return;
     switch (container.dataset.itemType) {
-      case "class":
+      case "linked":
         await this.document.update({ "system.item": "" });
         return this.render();
       case "archetype":
@@ -422,8 +441,9 @@ export default class JournalClassPageSheet extends JournalPageSheet {
 
     if (data?.type !== "Item") return false;
     const item = await Item.implementation.fromDropData(data);
-    switch (item.type) {
-      case "class":
+    const type = this.type === item.type ? "linked" : item.type;
+    switch (type) {
+      case "linked":
         await this.document.update({ "system.item": item.uuid });
         return this.render();
       case "archetype":

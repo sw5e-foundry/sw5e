@@ -5,7 +5,7 @@ import ActorTypeConfig from "./type-config.mjs";
  * An Actor sheet for NPC type characters in the SW5E system.
  */
 export default class ActorSheetDnD5e5eNPC extends ActorSheetDnD5e {
-  
+
   /** @inheritDoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -76,7 +76,7 @@ export default class ActorSheetDnD5e5eNPC extends ActorSheetDnD5e {
         if ( item.type === "class" ) ctx.availableLevels = Array.fromRange(CONFIG.SW5E.maxLevel, 1).map(level => ({
           level, delta: level - item.system.levels, disabled: (level - item.system.levels) > maxLevelDelta
         }));
-          if (item.type === "power") arr[0].push(item);
+        if (item.type === "power") arr[0].push(item);
         else arr[1].push(item);
         return arr;
       },
@@ -166,7 +166,7 @@ export default class ActorSheetDnD5e5eNPC extends ActorSheetDnD5e {
 
   /** @inheritDoc */
   async _updateObject(event, formData) {
-    
+
     // Format NPC Challenge Rating
     const crs = { "1/8": 0.125, "1/4": 0.25, "1/2": 0.5 };
     let crv = "system.details.cr";

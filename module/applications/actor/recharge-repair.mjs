@@ -38,7 +38,7 @@ export default class RechargeRepairDialog extends Dialog {
   getData() {
     const context = super.getData();
     context.isGroup = this.actor.type === "group";
-    
+
     if ( foundry.utils.hasProperty(this.actor, "system.attributes.hulld") ) {
       // Determine Hull Dice
       context.availableHD = this.actor.itemTypes.starshipsize.reduce((hulld, item) => {

@@ -119,7 +119,7 @@ export default class ActorSheetSW5eNPC extends ActorSheetSW5e {
 
         // Item toggle state
         ctx.canToggle = false;
-  
+
         // Item Weight
         if ("weight" in item.system) ctx.totalWeight = ((item.system.quantity ?? 1) * item.system.weight).toNearest(0.1);
 
@@ -312,7 +312,7 @@ export default class ActorSheetSW5eNPC extends ActorSheetSW5e {
 
   /** @inheritDoc */
   async _updateObject(event, formData) {
-    
+
     // Format NPC Challenge Rating
     const crs = { "1/8": 0.125, "1/4": 0.25, "1/2": 0.5 };
     let crv = "system.details.cr";

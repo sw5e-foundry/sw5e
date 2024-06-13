@@ -1,3 +1,4 @@
+import HitDice from "../../documents/actor/hit-dice.mjs";
 import Proficiency from "../../documents/actor/proficiency.mjs";
 import { simplifyBonus } from "../../utils.mjs";
 import { FormulaField, LocalDocumentField } from "../fields.mjs";
@@ -68,7 +69,7 @@ export default class CharacterData extends CreatureTemplate {
   /** @inheritdoc */
   static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
     supportsAdvancement: true
-  }, {inplace: false}));
+  }, { inplace: false }));
 
   /* -------------------------------------------- */
 
@@ -256,18 +257,12 @@ export default class CharacterData extends CreatureTemplate {
 
   /** @inheritdoc */
   prepareBaseData() {
-    this.details.level = 0;
-    this.attributes.hd = 0;
+    this.attributes.hd = new HitDice(this.parent);
+    this.details.level = this.attributes.hd.max;
     this.attributes.attunement.value = 0;
     this.details.ranks = 0;
 
-    for ( const item of this.parent.items ) {
-      // Class levels & hit dice
-      if ( item.type === "class" ) {
-        const classLevels = parseInt(item.system.levels) || 1;
-        this.details.level += classLevels;
-        this.attributes.hd += classLevels - (parseInt(item.system.hitDiceUsed) || 0);
-      }
+    for (const item of this.parent.items) {
 
       // Determine character rank based on owned Deployment items
       if (item.type === "deployment") {
@@ -276,9 +271,7 @@ export default class CharacterData extends CreatureTemplate {
       }
 
       // Attuned items
-      else if ( item.system.attunement === CONFIG.SW5E.attunementTypes.ATTUNED ) {
-        this.attributes.attunement.value += 1;
-      }
+      if (item.system.attuned) this.attributes.attunement.value += 1;
     }
 
     // Character proficiency bonus
@@ -288,57 +281,59 @@ export default class CharacterData extends CreatureTemplate {
     const { xp, level } = this.details;
     xp.max = this.parent.getLevelExp(level || 1);
     xp.min = level ? this.parent.getLevelExp(level - 1) : 0;
-    if ( level >= CONFIG.SW5E.CHARACTER_EXP_LEVELS.length ) xp.pct = 100;
+    if (level >= CONFIG.SW5E.CHARACTER_EXP_LEVELS.length) xp.pct = 100;
     else {
       const required = xp.max - xp.min;
       const pct = Math.round((xp.value - xp.min) * 100 / required);
-      xp.pct = Math.clamped(pct, 0, 100);
+      xp.pct = Math.clamp(pct, 0, 100);
     }
 
     // Prestige required for next rank
     const { prestige, ranks } = this.details;
     prestige.max = this.parent.getRankExp(ranks || 1);
     prestige.min = ranks ? this.parent.getRankExp(ranks - 1) : 0;
-    if ( ranks >= CONFIG.SW5E.CHARACTER_PRESTIGE_RANKS.length ) prestige.pct = 100;
+    if (ranks >= CONFIG.SW5E.CHARACTER_PRESTIGE_RANKS.length) prestige.pct = 100;
     else {
       const required = prestige.max - prestige.min;
       const pct = Math.round((prestige.value - prestige.min) * 100 / required);
-      prestige.pct = Math.clamped(pct, 0, 100);
+      prestige.pct = Math.clamp(pct, 0, 100);
     }
-    
+
     AttributesFields.prepareBaseArmorClass.call(this);
+    AttributesFields.prepareBaseEncumbrance.call(this);
     AttributesFields.prepareBasePowercasting.call(this);
     AttributesFields.prepareBaseSuperiority.call(this);
   }
 
   /* -------------------------------------------- */
 
-  //TODO: Update this from where it was pulled
   /**
    * Prepare movement & senses values derived from species item.
    */
   prepareEmbeddedData() {
-    if ( this.details.species instanceof Item ) {
+    if (this.details.species instanceof Item) {
       AttributesFields.prepareSpecies.call(this, this.details.species);
       this.details.type = this.details.species.system.type;
     } else {
-      this.attributes.movement.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
-      this.attributes.senses.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
       this.details.type = new CreatureTypeField({ swarm: false }).initialize({ value: "humanoid" }, this);
     }
+    for (const key of Object.keys(CONFIG.SW5E.movementTypes)) this.attributes.movement[key] ??= 0;
+    for (const key of Object.keys(CONFIG.SW5E.senses)) this.attributes.senses[key] ??= 0;
+    this.attributes.movement.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
+    this.attributes.senses.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
   }
 
   /* -------------------------------------------- */
 
-  //TODO: Update this from where it was pulled
   /**
    * Prepare remaining character data.
    */
   prepareDerivedData() {
-    const rollData = this.getRollData({ deterministic: true });
+    const rollData = this.parent.getRollData({ deterministic: true });
     const { originalSaves } = this.parent.getOriginalStats();
 
     this.prepareAbilities({ rollData, originalSaves });
+    AttributesFields.prepareEncumbrance.call(this, rollData);
     AttributesFields.prepareExhaustionLevel.call(this);
     AttributesFields.prepareMovement.call(this);
     AttributesFields.prepareConcentration.call(this, rollData);
@@ -346,7 +341,7 @@ export default class CharacterData extends CreatureTemplate {
 
     // Hit Points
     const hpOptions = {};
-    if ( this.attributes.hp.max === null ) {
+    if (this.attributes.hp.max === null) {
       hpOptions.advancement = Object.values(this.parent.classes)
         .map(c => c.advancement.byType.HitPoints?.[0]).filter(a => a);
       hpOptions.bonus = (simplifyBonus(this.attributes.hp.bonuses.level, rollData) * this.details.level)
@@ -358,25 +353,6 @@ export default class CharacterData extends CreatureTemplate {
 
   /* -------------------------------------------- */
   /*  Helpers                                     */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  getRollData({ deterministic=false }={}) {
-    const data = super.getRollData({ deterministic });
-    data.classes = {};
-    for ( const [identifier, cls] of Object.entries(this.parent.classes) ) {
-      data.classes[identifier] = {...cls.system};
-      if ( cls.archetype ) data.classes[identifier].archetype = cls.archetype.system;
-    }
-
-    data.deployments = {};
-    for (const [identifier, dep] of Object.entries(this.parent.deployments)) {
-      data.deployments[identifier] = { ...dep.system };
-    }
-
-    return data;
-  }
-
   /* -------------------------------------------- */
 
   /**
@@ -398,16 +374,16 @@ export default class CharacterData extends CreatureTemplate {
    * @throws If the item intended to be favorited does not belong to this actor.
    */
   addFavorite(favorite) {
-    if ( this.hasFavorite(favorite.id) ) return Promise.resolve(this.parent);
+    if (this.hasFavorite(favorite.id)) return Promise.resolve(this.parent);
 
-    if ( favorite.id.startsWith(".") && fromUuidSync(favorite.id, { relative: this.parent }) === null ) {
+    if (favorite.id.startsWith(".") && fromUuidSync(favorite.id, { relative: this.parent }) === null) {
       // Assume that an ID starting with a "." is a relative ID.
       throw new Error(`The item with id ${favorite.id} is not owned by actor ${this.parent.id}`);
     }
 
     let maxSort = 0;
     const favorites = this.favorites.map(f => {
-      if ( f.sort > maxSort ) maxSort = f.sort;
+      if (f.sort > maxSort) maxSort = f.sort;
       return { ...f };
     });
     favorites.push({ ...favorite, sort: maxSort + CONST.SORT_INTEGER_DENSITY });
@@ -422,7 +398,7 @@ export default class CharacterData extends CreatureTemplate {
    * @returns {Promise<Actor5e>}
    */
   removeFavorite(favoriteId) {
-    if ( favoriteId.startsWith("resources.") ) return this.parent.update({ [`system.${favoriteId}.max`]: 0 });
+    if (favoriteId.startsWith("resources.")) return this.parent.update({ [`system.${favoriteId}.max`]: 0 });
     const favorites = this.favorites.filter(f => f.id !== favoriteId);
     return this.parent.update({ "system.favorites": favorites });
   }

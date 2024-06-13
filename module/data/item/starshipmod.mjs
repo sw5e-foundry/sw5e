@@ -29,9 +29,9 @@ const { NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
  * @property {string} grade.value          The grade of the modification.
  * @property {object} baseCost             The starship modification base cost information.
  * @property {number} baseCost.value       The base cost of the modification.
- * @property {object} free                 
- * @property {number} free.slot            
- * @property {object} free.suite           
+ * @property {object} free
+ * @property {number} free.slot
+ * @property {object} free.suite
  * @property {object} prerequisites        The starship modification prerequisite information.
  * @property {string} prerequisites.value  The prerequisite of the modification.
  */
@@ -66,7 +66,7 @@ export default class StarshipModData extends ItemDataModel.mixin(
             integer: true,
             initial: 0,
             label: "SW5E.ModGrade"
-          }),
+          })
         },
         { label: "SW5E.ModGrade" }
       ),

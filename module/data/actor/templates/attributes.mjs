@@ -352,7 +352,7 @@ export default class AttributesFields {
     }
   }
 
-    /* -------------------------------------------- */
+  /* -------------------------------------------- */
 
   /**
    * Prepare base data related to the superiority capabilities of the Actor.

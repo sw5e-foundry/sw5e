@@ -8,7 +8,7 @@ export default class TokenConfig5e extends TokenConfig {
   /** @inheritdoc */
   static get defaultOptions() {
     const options = super.defaultOptions;
-    if ( !game.settings.get("sw5e", "disableTokenRings") ) options.tabs.push({
+    options.tabs.push({
       navSelector: '.tabs[data-group="appearance"]', contentSelector: '.tab[data-tab="appearance"]', initial: "token"
     });
     return options;
@@ -27,7 +27,7 @@ export default class TokenConfig5e extends TokenConfig {
   /** @inheritDoc */
   async _render(...args) {
     await super._render(...args);
-    if ( !this.rendered ) return;
+    if (!this.rendered) return;
     await this._addTokenRingConfiguration(this.element[0]);
     this._prepareResourceLabels(this.element[0]);
   }
@@ -35,7 +35,7 @@ export default class TokenConfig5e extends TokenConfig {
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async getData(options={}) {
+  async getData(options = {}) {
     const context = await super.getData(options);
     const doc = this.preview ?? this.document;
     context.scale = Math.abs(doc._source.texture.scaleX);
@@ -51,7 +51,7 @@ export default class TokenConfig5e extends TokenConfig {
    * @protected
    */
   async _addTokenRingConfiguration(html) {
-    if ( game.settings.get("sw5e", "disableTokenRings") ) return;
+    if (game.release.generation > 11) return;
 
     const tab = html.querySelector('.tab[data-tab="appearance"]');
 
@@ -89,7 +89,7 @@ export default class TokenConfig5e extends TokenConfig {
     `);
 
     this._tabs.at(-1).bind(html);
-    if ( !this._minimized ) this.setPosition();
+    if (!this._minimized) this.setPosition();
   }
 
   /* -------------------------------------------- */
@@ -103,12 +103,14 @@ export default class TokenConfig5e extends TokenConfig {
     const actor = this.object?.actor;
     const items = actor?.items.reduce((arr, i) => {
       const { per, max } = i.system.uses ?? {};
-      if ( per && max ) arr.push([i.getRelativeUUID(actor), i.name]);
+      if (per && max) arr.push([i.getRelativeUUID(actor), i.name]);
       return arr;
     }, []) ?? [];
-    if ( items.length ) {
+    if (items.length) {
+      const group = game.i18n.localize("SW5E.ConsumeCharges");
       items.sort(([, a], [, b]) => a.localeCompare(b, game.i18n.lang));
-      attributes[game.i18n.localize("SW5E.ConsumeCharges")] = items.map(i => i[0]);
+      if (game.release.generation < 12) attributes[group] = items.map(i => i[0]);
+      else attributes.push(...items.map(([value, label]) => ({ group, value, label })));
     }
   }
 
@@ -122,14 +124,14 @@ export default class TokenConfig5e extends TokenConfig {
   _prepareResourceLabels(html) {
     const actor = this.object?.actor;
 
-    for ( const select of html.querySelectorAll("select.bar-attribute") ) {
+    for (const select of html.querySelectorAll("select.bar-attribute")) {
       select.querySelectorAll("optgroup").forEach(group => {
         const options = Array.from(group.querySelectorAll("option"));
 
         // Localize attribute paths.
         options.forEach(option => {
           const label = getHumanReadableAttributeLabel(option.value, { actor });
-          if ( label ) option.innerText = label;
+          if (label) option.innerText = label;
         });
 
         // Sort options by localized label.
@@ -142,13 +144,13 @@ export default class TokenConfig5e extends TokenConfig {
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _getSubmitData(updateData={}) {
+  _getSubmitData(updateData = {}) {
     const formData = super._getSubmitData(updateData);
 
     formData["flags.sw5e.tokenRing.effects"] = Object.keys(CONFIG.SW5E.tokenRings.effects).reduce((number, key) => {
       const checked = formData[`flags.sw5e.tokenRing.effects.${key}`];
       delete formData[`flags.sw5e.tokenRing.effects.${key}`];
-      if ( checked ) number |= CONFIG.Token.ringClass.effects[key];
+      if (checked) number |= CONFIG.Token.ringClass.effects[key];
       return number;
     }, 0x1);
 
@@ -159,11 +161,11 @@ export default class TokenConfig5e extends TokenConfig {
 
   /** @inheritDoc */
   _previewChanges(change) {
-    if ( change && (this.preview instanceof TokenDocument5e) ) {
+    if (change && (this.preview instanceof TokenDocument5e) && (game.release.generation < 12)) {
       const flags = foundry.utils.getProperty(foundry.utils.expandObject(change), "flags.sw5e.tokenRing") ?? {};
       const redraw = ("textures" in flags) || ("enabled" in flags);
-      if ( redraw ) this.preview.object.renderFlags.set({ redraw });
-      else this.preview.object.ring.configureVisuals({...flags});
+      if (redraw) this.preview.object.renderFlags.set({ redraw });
+      else this.preview.object.ring.configureVisuals({ ...flags });
     }
     super._previewChanges(change);
   }

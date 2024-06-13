@@ -78,10 +78,10 @@ export default class TokenRing {
     mesh ||= this.token.mesh;
 
     // Configure token ring textures and visuals
-    if ( this.enabled ) {
+    if (this.enabled) {
       const tokenRingFlag = this.token.document.getFlag("sw5e", "tokenRing");
-      this._configureTexture({mesh, ...tokenRingFlag});
-      this.configureVisuals({...tokenRingFlag});
+      this._configureTexture({ mesh, ...tokenRingFlag });
+      this.configureVisuals({ ...tokenRingFlag });
     }
 
     // Clear everything pertaining to token ring attributes
@@ -97,7 +97,7 @@ export default class TokenRing {
    * @param {TokenRingFlagData} parameters
    * @param {number} [parameters.scaleCorrection]   The scale correction value.
    */
-  configureNames({scaleCorrection}={}) {
+  configureNames({ scaleCorrection } = {}) {
     const size = Math.max(
       this.token.w * this.token.document.texture.scaleX ?? 1,
       this.token.h * this.token.document.texture.scaleY);
@@ -127,7 +127,7 @@ export default class TokenRing {
    * @param {object} [parameters.colors]    The colors object.
    * @param {number} [parameters.effects]   The effects value.
    */
-  configureVisuals({colors, effects}={}) {
+  configureVisuals({ colors, effects } = {}) {
     colors ??= {};
 
     // Caching the colors into the little endian format
@@ -151,18 +151,18 @@ export default class TokenRing {
    * @param {number} [parameters.scaleCorrection]           The scale correction value.
    * @protected
    */
-  _configureTexture({mesh, scaleCorrection}) {
+  _configureTexture({ mesh, scaleCorrection }) {
     mesh ||= this.token.mesh;
 
     // Should we replace the regular token texture with a custom subject texture?
     const subjectSrc = this.token.document.subjectPath;
-    if ( PIXI.Assets.cache.has(subjectSrc) ) {
+    if (PIXI.Assets.cache.has(subjectSrc)) {
       const subjectTexture = getTexture(subjectSrc);
-      if ( subjectTexture?.valid ) mesh.texture = subjectTexture;
+      if (subjectTexture?.valid) mesh.texture = subjectTexture;
     }
 
     // Assigning the assets' names
-    this.configureNames({scaleCorrection});
+    this.configureNames({ scaleCorrection });
   }
 
   /* -------------------------------------------- */
@@ -194,8 +194,8 @@ export default class TokenRing {
    * @param {CanvasAnimationOptions} animationOptions  Options to customize the animation.
    * @returns {Promise<boolean|void>}
    */
-  async flashColor(color, animationOptions={}) {
-    if ( !this.enabled || Number.isNaN(color) ) return;
+  async flashColor(color, animationOptions = {}) {
+    if (!this.enabled || Number.isNaN(color)) return;
 
     const originalColor = Color.from(foundry.utils.mergeObject(
       this.token.document.getFlag("sw5e", "tokenRing.colors") ?? {},
@@ -216,7 +216,7 @@ export default class TokenRing {
       ontick: (d, data) => {
         // Manually set the final value to the origin due to issue with the CanvasAnimation
         // See: https://github.com/foundryvtt/foundryvtt/issues/10364
-        if ( data.time >= data.duration ) this.ringColorLittleEndian = originalColor;
+        if (data.time >= data.duration) this.ringColorLittleEndian = originalColor;
       }
     }, animationOptions));
   }
@@ -228,11 +228,11 @@ export default class TokenRing {
    * @param {number} [spikePct=0.5]  Position on [0,1] where the spike occurs.
    * @returns {Function(number): number}
    */
-  static createSpikeEasing(spikePct=0.5) {
+  static createSpikeEasing(spikePct = 0.5) {
     const scaleStart = 1 / spikePct;
     const scaleEnd = 1 / (1 - spikePct);
     return pt => {
-      if ( pt < spikePct ) return CanvasAnimation.easeInCircle(pt * scaleStart);
+      if (pt < spikePct) return CanvasAnimation.easeInCircle(pt * scaleStart);
       else return 1 - CanvasAnimation.easeOutCircle(((pt - spikePct) * scaleEnd));
     };
   }
@@ -317,20 +317,18 @@ export default class TokenRing {
    * Initialize the Token Rings system, registering the batch plugin and patching PrimaryCanvasGroup#addToken.
    */
   static initialize() {
-    if ( this.enabled !== null ) throw new Error("TokenRings system already initialized.");
-
-    // Check client setting
-    this.#enabled = !(game.settings.get("sw5e", "disableTokenRings") ?? false);
-    if ( !this.enabled ) return;
+    if (game.release.generation > 11) return;
+    if (this.enabled !== null) throw new Error("TokenRings system already initialized.");
+    this.#enabled = true;
 
     // Configure subject paths.
-    for ( const module of game.modules ) {
+    for (const module of game.modules) {
       const mappings = module.flags?.tokenRingSubjectMappings ?? {};
-      if ( module.active ) Object.assign(this.subjectPaths, mappings);
+      if (module.active) Object.assign(this.subjectPaths, mappings);
     }
 
     this.tokenRingSamplerShader = CONFIG.SW5E.tokenRings.shaderClass;
-    if ( game.release.generation >= 12 ) {
+    if (game.release.generation >= 12) {
       PrimaryBaseSamplerShader.classPluginName = this.tokenRingSamplerShader.classPluginName;
     }
     this.tokenRingSamplerShader.registerPlugin();
@@ -356,9 +354,9 @@ export default class TokenRing {
    */
   static pushToLoad(additionalSources) {
     additionalSources.push(CONFIG.SW5E.tokenRings.spriteSheet);
-    for ( const tokenDocument of canvas.scene.tokens ) {
+    for (const tokenDocument of canvas.scene.tokens) {
       const subjectSrc = tokenDocument.subjectPath;
-      if ( tokenDocument.hasDynamicRing && subjectSrc ) additionalSources.push(subjectSrc);
+      if (tokenDocument.hasDynamicRing && subjectSrc) additionalSources.push(subjectSrc);
     }
   }
 
@@ -368,7 +366,7 @@ export default class TokenRing {
    * Create texture UVs for each asset into the token rings sprite sheet.
    */
   static createAssetsUVs() {
-    if ( !this.enabled ) return;
+    if (!this.enabled) return;
 
     const spritesheet = TextureLoader.loader.getCache(CONFIG.SW5E.tokenRings.spriteSheet);
     this.baseTexture = spritesheet.baseTexture;
@@ -376,9 +374,9 @@ export default class TokenRing {
     this.#ringData = [];
 
     const frames = Object.keys(spritesheet.data.frames || {});
-    for ( const asset of frames ) {
+    for (const asset of frames) {
       const assetTexture = PIXI.Assets.cache.get(asset);
-      if ( !assetTexture ) continue;
+      if (!assetTexture) continue;
 
       // Extracting texture UVs
       const frame = assetTexture.frame;
@@ -393,7 +391,7 @@ export default class TokenRing {
       };
 
       // Extracting dimensions
-      if ( asset.includes("-bkg") ) continue;
+      if (asset.includes("-bkg")) continue;
       const size = Math.max(assetTexture.height, assetTexture.width);
       this.#ringData.push({
         ringName: asset,
@@ -414,14 +412,14 @@ export default class TokenRing {
    * @param {number} [scaleCorrection=1]   The scale correction applied to UVs.
    * @returns {Float32Array}
    */
-  static getTextureUVs(name, scaleCorrection=1) {
-    if ( scaleCorrection === 1 ) return this.texturesData[name].UVs;
+  static getTextureUVs(name, scaleCorrection = 1) {
+    if (scaleCorrection === 1) return this.texturesData[name].UVs;
     const tUVs = this.texturesData[name].UVs;
     const c = this.texturesData[name].center;
     const UVs = new Float32Array(8);
-    for ( let i=0; i<8; i+=2 ) {
+    for (let i = 0; i < 8; i += 2) {
       UVs[i] = ((tUVs[i] - c.x) * scaleCorrection) + c.x;
-      UVs[i+1] = ((tUVs[i+1] - c.y) * scaleCorrection) + c.y;
+      UVs[i + 1] = ((tUVs[i + 1] - c.y) * scaleCorrection) + c.y;
     }
     return UVs;
   }
@@ -434,12 +432,12 @@ export default class TokenRing {
    * @returns {{bkgName: string, ringName: string}}
    */
   static getRingDataBySize(size) {
-    if ( !Number.isFinite(size) || !this.#ringData.length ) return { ringName: undefined, bkgName: undefined };
+    if (!Number.isFinite(size) || !this.#ringData.length) return { ringName: undefined, bkgName: undefined };
     const adjustedSize = size * 1.4;
 
     // Search in the sorted rings data
-    for ( const ring of this.#ringData ) {
-      if ( adjustedSize <= ring.size ) return { ringName: ring.ringName, bkgName: ring.bkgName };
+    for (const ring of this.#ringData) {
+      if (adjustedSize <= ring.size) return { ringName: ring.ringName, bkgName: ring.bkgName };
     }
 
     // No match? we are returning the biggest

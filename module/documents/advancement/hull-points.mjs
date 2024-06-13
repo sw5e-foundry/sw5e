@@ -63,7 +63,7 @@ export default class HullPointsAdvancement extends HitPointsAdvancement {
       return total + Math.max(this.valueForLevel(parseInt(level)) + (quant * mod), quant);
     }, 0);
   }
-  
+
   /* -------------------------------------------- */
   /*  Editing Methods                             */
   /* -------------------------------------------- */

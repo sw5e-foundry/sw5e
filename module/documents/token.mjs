@@ -209,8 +209,8 @@ export default class TokenDocument5e extends SystemFlagsMixin(TokenDocument) {
     if ( textureChange || tokenRingChange ) this.#subjectPath = null;
     super._onUpdate(data, options, userId);
   }
-   
-    /* -------------------------------------------- */
+
+  /* -------------------------------------------- */
   /*  Ring Animations                             */
   /* -------------------------------------------- */
 

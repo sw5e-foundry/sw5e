@@ -1,5 +1,5 @@
-import EffectsElement from "../applications/components/effects.mjs";
 import { FormulaField } from "../data/fields.mjs";
+import { EnchantmentData } from "../data/item/fields/enchantment-field.mjs";
 import { staticID } from "../utils.mjs";
 
 /**
@@ -21,7 +21,28 @@ export default class ActiveEffect5e extends ActiveEffect {
    * Additional key paths to properties added during base data preparation that should be treated as formula fields.
    * @type {Set<string>}
    */
-  static FORMULA_FIELDS = new Set(["system.attributes.ac.bonus"]);
+  static FORMULA_FIELDS = new Set([
+    "system.attributes.ac.bonus",
+    "system.attributes.encumbrance.bonuses.encumbered",
+    "system.attributes.encumbrance.bonuses.heavilyEncumbered",
+    "system.attributes.encumbrance.bonuses.maximum",
+    "system.attributes.encumbrance.bonuses.overall",
+    "system.attributes.encumbrance.multipliers.encumbered",
+    "system.attributes.encumbrance.multipliers.heavilyEncumbered",
+    "system.attributes.encumbrance.multipliers.maximum",
+    "system.attributes.encumbrance.multipliers.overall"
+  ]);
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this effect an enchantment on an item that accepts enchantment?
+   * @type {boolean}
+   */
+  get isAppliedEnchantment() {
+    return (this.getFlag("sw5e", "type") === "enchantment")
+      && !!this.origin && (this.origin !== this.parent.uuid);
+  }
 
   /* -------------------------------------------- */
 
@@ -38,7 +59,7 @@ export default class ActiveEffect5e extends ActiveEffect {
    * @returns {Promise<Actor5e|Item5e|null>}
    */
   async getSource() {
-    if ( (this.target instanceof sw5e.documents.Actor5e) && (this.parent instanceof sw5e.documents.Item5e) ) {
+    if ((this.target instanceof sw5e.documents.Actor5e) && (this.parent instanceof sw5e.documents.Item5e)) {
       return this.parent;
     }
     return fromUuid(this.origin);
@@ -56,25 +77,25 @@ export default class ActiveEffect5e extends ActiveEffect {
    * @throws    An error if there's not status effect in `CONFIG.statusEffects` with the given status ID,
    *            and if the status has implicit statuses but doesn't have a static _id.
    */
-  static async fromStatusEffect(statusId, options={}) {
+  static async fromStatusEffect(statusId, options = {}) {
     // TODO: This function has been copy & pasted from V12. Remove it once V11 support is dropped.
 
     const status = CONFIG.statusEffects.find(e => e.id === statusId);
-    if ( !status ) throw new Error(`Invalid status ID "${statusId}" provided to ActiveEffect.fromStatusEffect`);
-    if ( foundry.utils.isNewerVersion(game.version, 12) ) {
-      for ( const [oldKey, newKey] of Object.entries({label: "name", icon: "img"}) ) {
-        if ( !(newKey in status) && (oldKey in status) ) {
+    if (!status) throw new Error(`Invalid status ID "${statusId}" provided to ActiveEffect.fromStatusEffect`);
+    if (foundry.utils.isNewerVersion(game.version, 12)) {
+      for (const [oldKey, newKey] of Object.entries({ label: "name", icon: "img" })) {
+        if (!(newKey in status) && (oldKey in status)) {
           const msg = `StatusEffectConfig#${oldKey} has been deprecated in favor of StatusEffectConfig#${newKey}`;
-          foundry.utils.logCompatibilityWarning(msg, {since: 12, until: 14, once: true});
+          foundry.utils.logCompatibilityWarning(msg, { since: 12, until: 14, once: true });
         }
       }
     }
-    const {id, label, icon, hud, ...effectData} = foundry.utils.deepClone(status);
+    const { id, label, icon, hud, ...effectData } = foundry.utils.deepClone(status);
     effectData.name = game.i18n.localize(effectData.name ?? label);
-    if ( game.release.generation < 12 ) effectData.icon ??= icon;
+    if (game.release.generation < 12) effectData.icon ??= icon;
     else effectData.img ??= icon;
     effectData.statuses = Array.from(new Set([id, ...effectData.statuses ?? []]));
-    if ( (effectData.statuses.length > 1) && !status._id ) {
+    if ((effectData.statuses.length > 1) && !status._id) {
       throw new Error("Status effects with implicit statuses must have a static _id");
     }
     return ActiveEffect.implementation._fromStatusEffect(statusId, effectData, options);
@@ -83,12 +104,8 @@ export default class ActiveEffect5e extends ActiveEffect {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static async _fromStatusEffect(statusId, effectData, options) {
-    if ( !("description" in effectData) && effectData.reference ) {
-      const page = await fromUuid(effectData.reference);
-      effectData.description = page?.text.content ?? "";
-    }
-    delete effectData.reference;
+  static async _fromStatusEffect(statusId, { reference, ...effectData }, options) {
+    if (!("description" in effectData) && reference) effectData.description = `@Embed[${reference} inline]`;
     return super._fromStatusEffect?.(statusId, effectData, options) ?? new this(effectData, options);
   }
 
@@ -98,52 +115,59 @@ export default class ActiveEffect5e extends ActiveEffect {
 
   /** @inheritdoc */
   apply(actor, change) {
-    if ( change.key.startsWith("flags.sw5e.") ) change = this._prepareFlagChange(actor, change);
+    if (change.key.startsWith("flags.sw5e.")) change = this._prepareFlagChange(actor, change);
 
     // Determine type using DataField
-    let field = change.key.startsWith("system.") ? actor.system.schema.getField(change.key.slice(7)) : null;
+    let field = change.key.startsWith("system.")
+      ? actor.system.schema.getField(change.key.slice(7))
+      : actor.schema.getField(change.key);
 
     // Get the current value of the target field
     const current = foundry.utils.getProperty(actor, change.key) ?? null;
 
     const getTargetType = field => {
-      if ( (field instanceof FormulaField) || ActiveEffect5e.FORMULA_FIELDS.has(change.key) ) return "formula";
-      else if ( field instanceof foundry.data.fields.ArrayField ) return "Array";
-      else if ( field instanceof foundry.data.fields.ObjectField ) return "Object";
-      else if ( field instanceof foundry.data.fields.BooleanField ) return "boolean";
-      else if ( field instanceof foundry.data.fields.NumberField ) return "number";
-      else if ( field instanceof foundry.data.fields.StringField ) return "string";
+      if ((field instanceof FormulaField) || ActiveEffect5e.FORMULA_FIELDS.has(change.key)) return "formula";
+      else if (field instanceof foundry.data.fields.ArrayField) return "Array";
+      else if (field instanceof foundry.data.fields.ObjectField) return "Object";
+      else if (field instanceof foundry.data.fields.BooleanField) return "boolean";
+      else if (field instanceof foundry.data.fields.NumberField) return "number";
+      else if (field instanceof foundry.data.fields.StringField) return "string";
     };
 
     const targetType = getTargetType(field);
-    if ( !targetType ) return super.apply(actor, change);
+    if (!targetType) return super.apply(actor, change);
+    const modes = CONST.ACTIVE_EFFECT_MODES;
 
     // Special handling for FormulaField
-    if ( targetType === "formula" ) {
+    if (targetType === "formula") {
       const changes = {};
-      if ( !field ) field = new FormulaField({ deterministic: true });
+      if (!field) field = new FormulaField({ deterministic: true });
       const delta = field._cast(change.value).trim();
       this._applyFormulaField(actor, change, current, delta, changes);
       foundry.utils.mergeObject(actor, changes);
       return changes;
     }
 
+    else if ((targetType === "string") && (change.mode === modes.OVERRIDE) && change.value.includes("{}")) {
+      change = foundry.utils.deepClone(change);
+      change.value = change.value.replace("{}", current ?? "");
+    }
+
     let delta;
     try {
-      if ( targetType === "Array" ) {
+      if (targetType === "Array") {
         const innerType = getTargetType(field.element);
         delta = this._castArray(change.value, innerType);
       }
       else delta = this._castDelta(change.value, targetType);
-    } catch(err) {
+    } catch (err) {
       console.warn(`Actor [${actor.id}] | Unable to parse active effect change for ${change.key}: "${change.value}"`);
       return;
     }
 
     // Apply the change depending on the application mode
-    const modes = CONST.ACTIVE_EFFECT_MODES;
     const changes = {};
-    switch ( change.mode ) {
+    switch (change.mode) {
       case modes.ADD:
         this._applyAdd(actor, change, current, delta, changes);
         break;
@@ -178,26 +202,26 @@ export default class ActiveEffect5e extends ActiveEffect {
    * @param {object} changes                An object which accumulates changes to be applied
    */
   _applyFormulaField(actor, change, current, delta, changes) {
-    if ( !current || change.mode === CONST.ACTIVE_EFFECT_MODES.OVERRIDE ) {
+    if (!current || change.mode === CONST.ACTIVE_EFFECT_MODES.OVERRIDE) {
       this._applyOverride(actor, change, current, delta, changes);
       return;
     }
     const terms = (new Roll(current)).terms;
     let fn = "min";
-    switch ( change.mode ) {
+    switch (change.mode) {
       case CONST.ACTIVE_EFFECT_MODES.ADD:
         const operator = delta.startsWith("-") ? "-" : "+";
         delta = delta.replace(/^[+-]?/, "").trim();
         changes[change.key] = `${current} ${operator} ${delta}`;
         break;
       case CONST.ACTIVE_EFFECT_MODES.MULTIPLY:
-        if ( terms.length > 1 ) changes[change.key] = `(${current}) * ${delta}`;
+        if (terms.length > 1) changes[change.key] = `(${current}) * ${delta}`;
         else changes[change.key] = `${current} * ${delta}`;
         break;
       case CONST.ACTIVE_EFFECT_MODES.UPGRADE:
         fn = "max";
       case CONST.ACTIVE_EFFECT_MODES.DOWNGRADE:
-        if ( (terms.length === 1) && (terms[0].fn === fn) ) {
+        if ((terms.length === 1) && (terms[0].fn === fn)) {
           changes[change.key] = current.replace(/\)$/, `, ${delta})`);
         } else changes[change.key] = `${fn}(${current}, ${delta})`;
         break;
@@ -211,9 +235,14 @@ export default class ActiveEffect5e extends ActiveEffect {
 
   /** @inheritdoc */
   _applyAdd(actor, change, current, delta, changes) {
-    if ( current instanceof Set ) {
-      if ( Array.isArray(delta) ) delta.forEach(item => current.add(item));
-      else current.add(delta);
+    if (current instanceof Set) {
+      const handle = v => {
+        const neg = v.replace(/^\s*-\s*/, "");
+        if (neg !== v) current.delete(neg);
+        else current.add(v);
+      };
+      if (Array.isArray(delta)) delta.forEach(item => handle(item));
+      else handle(delta);
       return;
     }
     super._applyAdd(actor, change, current, delta, changes);
@@ -223,9 +252,9 @@ export default class ActiveEffect5e extends ActiveEffect {
 
   /** @inheritdoc */
   _applyOverride(actor, change, current, delta, changes) {
-    if ( current instanceof Set ) {
+    if (current instanceof Set) {
       current.clear();
-      if ( Array.isArray(delta) ) delta.forEach(item => current.add(item));
+      if (Array.isArray(delta)) delta.forEach(item => current.add(item));
       else current.add(delta);
       return;
     }
@@ -236,7 +265,7 @@ export default class ActiveEffect5e extends ActiveEffect {
 
   /** @inheritdoc */
   _applyUpgrade(actor, change, current, delta, changes) {
-    if ( current === null ) return this._applyOverride(actor, change, current, delta, changes);
+    if (current === null) return this._applyOverride(actor, change, current, delta, changes);
     return super._applyUpgrade(actor, change, current, delta, changes);
   }
 
@@ -278,7 +307,8 @@ export default class ActiveEffect5e extends ActiveEffect {
    */
   determineSuppression() {
     this.isSuppressed = false;
-    if ( this.parent instanceof sw5e.documents.Item5e ) this.isSuppressed = this.parent.areEffectsSuppressed;
+    if (this.getFlag("sw5e", "type") === "enchantment") return;
+    if (this.parent instanceof sw5e.documents.Item5e) this.isSuppressed = this.parent.areEffectsSuppressed;
   }
 
   /* -------------------------------------------- */
@@ -286,16 +316,16 @@ export default class ActiveEffect5e extends ActiveEffect {
   /** @override */
   getRelativeUUID(doc) {
     // TODO: Backport relative UUID fixes to accommodate descendant documents. Can be removed once v12 is the minimum.
-    if ( this.compendium && (this.compendium !== doc.compendium) ) return this.uuid;
-    if ( this.isEmbedded && (this.collection === doc.collection) ) return `.${this.id}`;
+    if (this.compendium && (this.compendium !== doc.compendium)) return this.uuid;
+    if (this.isEmbedded && (this.collection === doc.collection)) return `.${this.id}`;
     const parts = [this.documentName, this.id];
     let parent = this.parent;
-    while ( parent ) {
-      if ( parent === doc ) break;
+    while (parent) {
+      if (parent === doc) break;
       parts.unshift(parent.documentName, parent.id);
       parent = parent.parent;
     }
-    if ( parent === doc ) return `.${parts.join(".")}`;
+    if (parent === doc) return `.${parts.join(".")}`;
     return this.uuid;
   }
 
@@ -306,7 +336,8 @@ export default class ActiveEffect5e extends ActiveEffect {
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    if ( this.id === this.constructor.ID.EXHAUSTION ) this._prepareExhaustionLevel();
+    if (this.id === this.constructor.ID.EXHAUSTION) this._prepareExhaustionLevel();
+    if (this.isAppliedEnchantment) EnchantmentData.trackEnchantment(this.origin, this.uuid);
   }
 
   /* -------------------------------------------- */
@@ -318,67 +349,15 @@ export default class ActiveEffect5e extends ActiveEffect {
   _prepareExhaustionLevel() {
     const config = CONFIG.SW5E.conditionTypes.exhaustion;
     let level = this.getFlag("sw5e", "exhaustionLevel");
-    if ( !Number.isFinite(level) ) level = 1;
+    if (!Number.isFinite(level)) level = 1;
     // TODO: Remove when v11 support is dropped.
-    if ( game.release.version < 12 ) this.icon = this.constructor._getExhaustionImage(level);
+    if (game.release.version < 12) this.icon = this.constructor._getExhaustionImage(level);
     else this.img = this.constructor._getExhaustionImage(level);
     this.name = `${game.i18n.localize("SW5E.Exhaustion")} ${level}`;
-    if ( level >= config.levels ) {
+    if (level >= config.levels) {
       this.statuses.add("dead");
       CONFIG.SW5E.statusEffects.dead.statuses?.forEach(s => this.statuses.add(s));
     }
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  _onUpdate(data, options, userId) {
-    super._onUpdate(data, options, userId);
-    const originalLevel = foundry.utils.getProperty(options, "sw5e.originalExhaustion");
-    const newLevel = foundry.utils.getProperty(data, "flags.sw5e.exhaustionLevel");
-    const originalEncumbrance = foundry.utils.getProperty(options, "sw5e.originalEncumbrance");
-    const newEncumbrance = data.statuses?.[0];
-    const name = this.name;
-
-    // Display proper scrolling status effects for exhaustion
-    if ( (this.id === this.constructor.ID.EXHAUSTION) && Number.isFinite(newLevel) && Number.isFinite(originalLevel) ) {
-      if ( newLevel === originalLevel ) return;
-      // Temporarily set the name for the benefit of _displayScrollingTextStatus. We should improve this method to
-      // accept a name parameter instead.
-      if ( newLevel < originalLevel ) this.name = `Exhaustion ${originalLevel}`;
-      this._displayScrollingStatus(newLevel > originalLevel);
-      this.name = name;
-    }
-
-    // Display proper scrolling status effects for encumbrance
-    else if ( (this.id === this.constructor.ID.ENCUMBERED) && originalEncumbrance && newEncumbrance ) {
-      if ( newEncumbrance === originalEncumbrance ) return;
-      const increase = !originalEncumbrance || ((originalEncumbrance === "encumbered") && newEncumbrance)
-        || (newEncumbrance === "exceedingCarryingCapacity");
-      if ( !increase ) this.name = CONFIG.SW5E.encumbrance.effects[originalEncumbrance].name;
-      this._displayScrollingStatus(increase);
-      this.name = name;
-    }
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  async _preDelete(options, user) {
-    const dependents = this.getDependents();
-    if ( dependents.length && !game.users.activeGM ) {
-      ui.notifications.warn("SW5E.ConcentrationBreakWarning", { localize: true });
-      return false;
-    }
-    return super._preDelete(options, user);
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  _onDelete(options, userId) {
-    super._onDelete(options, userId);
-    if ( game.user === game.users.activeGM ) this.getDependents().forEach(e => e.delete());
   }
 
   /* -------------------------------------------- */
@@ -398,6 +377,162 @@ export default class ActiveEffect5e extends ActiveEffect {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * Create conditions that are applied separately from an effect.
+   * @returns {Promise<ActiveEffect5e[]|void>}      Created rider effects.
+   */
+  async createRiderConditions() {
+    const riders = new Set(this.statuses.reduce((acc, status) => {
+      const r = CONFIG.statusEffects.find(e => e.id === status)?.riders ?? [];
+      return acc.concat(r);
+    }, []));
+    if (!riders.size) return;
+
+    const createRider = async id => {
+      const existing = this.parent.effects.get(staticID(`sw5e${id}`));
+      if (existing) return;
+      const effect = await ActiveEffect.implementation.fromStatusEffect(id);
+      return ActiveEffect.implementation.create(effect, { parent: this.parent, keepId: true });
+    };
+
+    return Promise.all(Array.from(riders).map(createRider));
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Create additional effects that are applied separately from an enchantment.
+   */
+  async createRiderEnchantments() {
+    const origin = await fromUuid(this.origin);
+
+    // Create Effects
+    const riderEffects = (this.getFlag("sw5e", "enchantment.riders.effect") ?? []).map(id => {
+      const effectData = origin.effects.get(id)?.toObject();
+      if (effectData) {
+        delete effectData._id;
+        delete effectData.flags?.sw5e?.rider;
+        effectData.origin = this.origin;
+      }
+      return effectData;
+    });
+    const createdEffects = await this.parent.createEmbeddedDocuments("ActiveEffect", riderEffects.filter(e => e));
+
+    // Create Items
+    let createdItems = [];
+    if (this.parent.isEmbedded) {
+      const riderItems = await Promise.all((this.getFlag("sw5e", "enchantment.riders.item") ?? []).map(async uuid => {
+        const itemData = (await fromUuid(uuid))?.toObject();
+        if (itemData) {
+          delete itemData._id;
+          foundry.utils.setProperty(itemData, "flags.sw5e.enchantment", { origin: this.uuid });
+        }
+        return itemData;
+      }));
+      createdItems = await this.parent.actor.createEmbeddedDocuments("Item", riderItems.filter(i => i));
+    }
+
+    if (createdEffects.length || createdItems.length) this.addDependent(...createdEffects, ...createdItems);
+  }
+
+  /* -------------------------------------------- */
+  /*  Socket Event Handlers                       */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async _preCreate(data, options, user) {
+    if (await super._preCreate(data, options, user) === false) return false;
+    if (options.keepOrigin === false) this.updateSource({ origin: this.parent.uuid });
+
+    // Enchantments cannot be added directly to actors
+    if ((this.getFlag("sw5e", "type") === "enchantment") && (this.parent instanceof Actor)) {
+      ui.notifications.error("SW5E.Enchantment.Warning.NotOnActor", { localize: true });
+      return false;
+    }
+
+    if (this.isAppliedEnchantment) {
+      const origin = await fromUuid(this.origin);
+      const errors = origin?.system.enchantment?.canEnchant(this.parent);
+      if (errors?.length) {
+        errors.forEach(err => console.error(err));
+        return false;
+      }
+      this.updateSource({ disabled: false });
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  async _onCreate(data, options, userId) {
+    super._onCreate(data, options, userId);
+    if (userId === game.userId) {
+      if (this.active && (this.parent instanceof Actor)) await this.createRiderConditions();
+      if (this.isAppliedEnchantment) await this.createRiderEnchantments();
+    }
+    if (options.chatMessageOrigin) {
+      document.body.querySelectorAll(`[data-message-id="${options.chatMessageOrigin}"] enchantment-application`)
+        .forEach(element => element.buildItemList());
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  _onUpdate(data, options, userId) {
+    super._onUpdate(data, options, userId);
+    const originalLevel = foundry.utils.getProperty(options, "sw5e.originalExhaustion");
+    const newLevel = foundry.utils.getProperty(data, "flags.sw5e.exhaustionLevel");
+    const originalEncumbrance = foundry.utils.getProperty(options, "sw5e.originalEncumbrance");
+    const newEncumbrance = data.statuses?.[0];
+    const name = this.name;
+
+    // Display proper scrolling status effects for exhaustion
+    if ((this.id === this.constructor.ID.EXHAUSTION) && Number.isFinite(newLevel) && Number.isFinite(originalLevel)) {
+      if (newLevel === originalLevel) return;
+      // Temporarily set the name for the benefit of _displayScrollingTextStatus. We should improve this method to
+      // accept a name parameter instead.
+      if (newLevel < originalLevel) this.name = `Exhaustion ${originalLevel}`;
+      this._displayScrollingStatus(newLevel > originalLevel);
+      this.name = name;
+    }
+
+    // Display proper scrolling status effects for encumbrance
+    else if ((this.id === this.constructor.ID.ENCUMBERED) && originalEncumbrance && newEncumbrance) {
+      if (newEncumbrance === originalEncumbrance) return;
+      const increase = !originalEncumbrance || ((originalEncumbrance === "encumbered") && newEncumbrance)
+        || (newEncumbrance === "exceedingCarryingCapacity");
+      if (!increase) this.name = CONFIG.SW5E.encumbrance.effects[originalEncumbrance].name;
+      this._displayScrollingStatus(increase);
+      this.name = name;
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async _preDelete(options, user) {
+    const dependents = this.getDependents();
+    if (dependents.length && !game.users.activeGM) {
+      ui.notifications.warn("SW5E.ConcentrationBreakWarning", { localize: true });
+      return false;
+    }
+    return super._preDelete(options, user);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  _onDelete(options, userId) {
+    super._onDelete(options, userId);
+    if (game.user === game.users.activeGM) this.getDependents().forEach(e => e.delete());
+    if (this.isAppliedEnchantment) EnchantmentData.untrackEnchantment(this.origin, this.uuid);
+    document.body.querySelectorAll(`enchantment-application:has([data-enchantment-uuid="${this.uuid}"]`)
+      .forEach(element => element.buildItemList());
+  }
+
+  /* -------------------------------------------- */
   /*  Exhaustion and Concentration Handling       */
   /* -------------------------------------------- */
 
@@ -407,8 +542,8 @@ export default class ActiveEffect5e extends ActiveEffect {
    * @param {object} [data]     Additional data provided for the effect instance.
    * @returns {object}          Created data for the ActiveEffect.
    */
-  static createConcentrationEffectData(item, data={}) {
-    if ( !item.isEmbedded || !item.requiresConcentration ) {
+  static createConcentrationEffectData(item, data = {}) {
+    if (!item.isEmbedded || !item.requiresConcentration) {
       throw new Error("You may not begin concentrating on this item!");
     }
 
@@ -424,8 +559,9 @@ export default class ActiveEffect5e extends ActiveEffect {
       "flags.sw5e.itemData": item.actor.items.has(item.id) ? item.id : item.toObject(),
       origin: item.uuid,
       statuses: [statusEffect.id].concat(statusEffect.statuses ?? [])
-    }, data, {inplace: false});
+    }, data, { inplace: false });
     delete effectData.id;
+    if (item.type === "power") effectData["flags.sw5e.powerLevel"] = item.system.level;
 
     return effectData;
   }
@@ -451,7 +587,7 @@ export default class ActiveEffect5e extends ActiveEffect {
   static onTokenHUDRender(app, html) {
     const actor = app.object.actor;
     const level = foundry.utils.getProperty(actor, "system.attributes.exhaustion");
-    if ( Number.isFinite(level) && (level > 0) ) {
+    if (Number.isFinite(level) && (level > 0)) {
       const img = ActiveEffect5e._getExhaustionImage(level);
       html.find('[data-status-id="exhaustion"]').css({
         objectPosition: "-100px",
@@ -485,7 +621,7 @@ export default class ActiveEffect5e extends ActiveEffect {
     const dur = item.system.duration ?? {};
     const value = dur.value || 1;
 
-    switch ( dur.units ) {
+    switch (dur.units) {
       case "turn": return { turns: value };
       case "round": return { rounds: value };
       case "minute": return { seconds: value * 60 };
@@ -504,13 +640,14 @@ export default class ActiveEffect5e extends ActiveEffect {
    */
   static onClickTokenHUD(event) {
     const { target } = event;
-    if ( !target.classList?.contains("effect-control") ) return;
+    if (!target.classList?.contains("effect-control")) return;
 
     const actor = canvas.hud.token.object?.actor;
-    if ( !actor ) return;
+    if (!actor) return;
 
-    if ( target.dataset?.statusId === "exhaustion" ) ActiveEffect5e._manageExhaustion(event, actor);
-    else if ( target.dataset?.statusId === "concentrating" ) ActiveEffect5e._manageConcentration(event, actor);
+    const id = target.dataset?.statusId;
+    if (id === "exhaustion") ActiveEffect5e._manageExhaustion(event, actor);
+    else if (id === "concentrating") ActiveEffect5e._manageConcentration(event, actor);
   }
 
   /* -------------------------------------------- */
@@ -522,13 +659,13 @@ export default class ActiveEffect5e extends ActiveEffect {
    */
   static _manageExhaustion(event, actor) {
     let level = foundry.utils.getProperty(actor, "system.attributes.exhaustion");
-    if ( !Number.isFinite(level) ) return;
+    if (!Number.isFinite(level)) return;
     event.preventDefault();
     event.stopPropagation();
-    if ( event.button === 0 ) level++;
+    if (event.button === 0) level++;
     else level--;
     const max = CONFIG.SW5E.conditionTypes.exhaustion.levels;
-    actor.update({ "system.attributes.exhaustion": Math.clamped(level, 0, max) });
+    actor.update({ "system.attributes.exhaustion": Math.clamp(level, 0, max) });
   }
 
   /* -------------------------------------------- */
@@ -540,10 +677,10 @@ export default class ActiveEffect5e extends ActiveEffect {
    */
   static _manageConcentration(event, actor) {
     const { effects } = actor.concentration;
-    if ( effects.size < 1 ) return;
+    if (effects.size < 1) return;
     event.preventDefault();
     event.stopPropagation();
-    if ( effects.size === 1 ) {
+    if (effects.size === 1) {
       actor.endConcentration(effects.first());
       return;
     }
@@ -567,7 +704,7 @@ export default class ActiveEffect5e extends ActiveEffect {
       content: content,
       callback: ([html]) => {
         const source = new FormDataExtended(html.querySelector("FORM")).object.source;
-        if ( source ) actor.endConcentration(source);
+        if (source) actor.endConcentration(source);
       },
       rejectClose: false,
       title: game.i18n.localize("SW5E.Concentration"),
@@ -579,12 +716,12 @@ export default class ActiveEffect5e extends ActiveEffect {
 
   /**
    * Record another effect as a dependent of this one.
-   * @param {ActiveEffect5e} dependent  The dependent effect.
+   * @param {...ActiveEffect5e} dependent  One or more dependent effects.
    * @returns {Promise<ActiveEffect5e>}
    */
-  addDependent(dependent) {
+  addDependent(...dependent) {
     const dependents = this.getFlag("sw5e", "dependents") ?? [];
-    dependents.push({ uuid: dependent.uuid });
+    dependents.push(...dependent.map(d => ({ uuid: d.uuid })));
     return this.setFlag("sw5e", "dependents", dependents);
   }
 
@@ -592,71 +729,63 @@ export default class ActiveEffect5e extends ActiveEffect {
 
   /**
    * Retrieve a list of dependent effects.
-   * @returns {ActiveEffect5e[]}
+   * @returns {Array<ActiveEffect5e|Item5e>}
    */
   getDependents() {
     return (this.getFlag("sw5e", "dependents") || []).reduce((arr, { uuid }) => {
       const effect = fromUuidSync(uuid);
-      if ( effect ) arr.push(effect);
+      if (effect) arr.push(effect);
       return arr;
     }, []);
   }
 
   /* -------------------------------------------- */
-  /*  Deprecations                                */
+  /*  Helpers                                     */
   /* -------------------------------------------- */
 
   /**
-   * Manage Active Effect instances through the Actor Sheet via effect control buttons.
-   * @param {MouseEvent} event      The left-click event on the effect control
-   * @param {Actor5e|Item5e} owner  The owning document which manages this effect
-   * @returns {Promise|null}        Promise that resolves when the changes are complete.
-   * @deprecated since 3.0, targeted for removal in 3.2
+   * Helper method to add choices that have been overridden by an active effect. Used to determine what fields might
+   * need to be disabled because they are overridden by an active effect in a way not easily determined by looking at
+   * the `Document#overrides` data structure.
+   * @param {Actor5e|Item5e} doc  Document from which to determine the overrides.
+   * @param {string} prefix       The initial form prefix under which the choices are grouped.
+   * @param {string} path         Path in document data.
+   * @param {string[]} overrides  The list of fields that are currently modified by Active Effects. *Will be mutated.*
    */
-  static onManageActiveEffect(event, owner) {
-    foundry.utils.logCompatibilityWarning(
-      "ActiveEffects5e#onManageActiveEffect has been deprecated in favor of the new sw5e-effects element.",
-      { since: "SW5e 3.0", until: "SW5e 3.2" }
-    );
-    event.preventDefault();
-    const a = event.currentTarget;
-    const li = a.closest("li");
-    if ( li.dataset.parentId ) owner = owner.items.get(li.dataset.parentId);
-    const effect = li.dataset.effectId ? owner.effects.get(li.dataset.effectId) : null;
-    switch (a.dataset.action) {
-      case "create":
-        const isActor = owner instanceof Actor;
-        return owner.createEmbeddedDocuments("ActiveEffect", [
-          {
-            name: isActor ? game.i18n.localize("SW5E.EffectNew") : owner.name,
-            icon: isActor ? "icons/svg/aura.svg" : owner.img,
-            origin: owner.uuid,
-            "duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
-            disabled: li.dataset.effectType === "inactive"
-          }
-        ]);
-      case "edit":
-        return effect.sheet.render(true);
-      case "delete":
-        return effect.deleteDialog();
-      case "toggle":
-        return effect.update({ disabled: !effect.disabled });
-    }
+  static addOverriddenChoices(doc, prefix, path, overrides) {
+    const source = new Set(foundry.utils.getProperty(doc._source, path) ?? []);
+    const current = foundry.utils.getProperty(doc, path) ?? new Set();
+    const delta = current.symmetricDifference(source);
+    for (const choice of delta) overrides.push(`${prefix}.${choice}`);
   }
 
-  /* --------------------------------------------- */
+  /* -------------------------------------------- */
 
   /**
-   * Prepare the data structure for Active Effects which are currently applied to an Actor or Item.
-   * @param {ActiveEffect5e[]} effects  The array of Active Effect instances to prepare sheet data for
-   * @returns {object}                  Data for rendering
-   * @deprecated since 3.0, targeted for removal in 3.2
+   * Render a rich tooltip for this effect.
+   * @param {EnrichmentOptions} [enrichmentOptions={}]  Options for text enrichment.
+   * @returns {Promise<{content: string, classes: string[]}>}
    */
-  static prepareActiveEffectCategories(effects) {
-    foundry.utils.logCompatibilityWarning(
-      "ActiveEffects5e#prepareActiveEffectCategories has been deprecated in favor of EffectsElement#prepareCategories.",
-      { since: "SW5e 3.0", until: "SW5e 3.2" }
-    );
-    return EffectsElement.prepareCategories(effects);
+  async richTooltip(enrichmentOptions = {}) {
+    const properties = [];
+    if (this.isSuppressed) properties.push("SW5E.EffectType.Unavailable");
+    else if (this.disabled) properties.push("SW5E.EffectType.Inactive");
+    else if (this.isTemporary) properties.push("SW5E.EffectType.Temporary");
+    else properties.push("SW5E.EffectType.Passive");
+    if (this.getFlag("sw5e", "type") === "enchantment") properties.push("SW5E.Enchantment.Label");
+
+    return {
+      content: await renderTemplate(
+        "systems/sw5e/templates/effects/parts/effect-tooltip.hbs", {
+        effect: this,
+        description: await TextEditor.enrichHTML(this.description ?? "", {
+          async: true, relativeTo: this, ...enrichmentOptions
+        }),
+        durationParts: this.duration.remaining ? this.duration.label.split(", ") : [],
+        properties: properties.map(p => game.i18n.localize(p))
+      }
+      ),
+      classes: ["sw5e2", "sw5e-tooltip", "effect-tooltip"]
+    };
   }
 }

@@ -3,7 +3,10 @@ import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemTypeTemplate from "./templates/item-type.mjs";
+import { EnchantmentData } from "./fields/enchantment-field.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
+
+const { BooleanField, NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Feature items.
@@ -12,6 +15,8 @@ import ItemTypeField from "./fields/item-type-field.mjs";
  * @mixes ActivatedEffectTemplate
  * @mixes ActionTemplate
  *
+ * @property {object} prerequisites
+ * @property {number} prerequisites.level     Character or class level required to choose this feature.
  * @property {Set<string>} properties         General properties of a feature item.
  * @property {string} requirements            Actor details required to use this feature.
  * @property {object} recharge                Details on how a feature can roll for recharges.
@@ -28,47 +33,37 @@ export default class FeatData extends ItemDataModel.mixin(
   ActivatedEffectTemplate,
   ActionTemplate
 ) {
+
+  /** @override */
+  static LOCALIZATION_PREFIXES = ["SW5E.Enchantment", "SW5E.Prerequisites"];
+
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
-      type: new ItemTypeField({baseItem: false}, {label: "SW5E.ItemFeatureType"}),
-      properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+      type: new ItemTypeField({ baseItem: false }, { label: "SW5E.ItemFeatureType" }),
+      prerequisites: new SchemaField({
+        level: new NumberField({ integer: true, min: 0 })
+      }),
+      properties: new SetField(new StringField(), {
         label: "SW5E.ItemFeatureProperties"
       }),
-      requirements: new foundry.data.fields.StringField({ required: true, nullable: true, label: "SW5E.Requirements" }),
-      recharge: new foundry.data.fields.SchemaField(
-        {
-          value: new foundry.data.fields.NumberField({
-            required: true,
-            integer: true,
-            min: 1,
-            label: "SW5E.FeatureRechargeOn"
-          }),
-          charged: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.Charged" })
-        },
-        { label: "SW5E.FeatureActionRecharge" }
-      ),
+      requirements: new StringField({ required: true, nullable: true, label: "SW5E.Requirements" }),
+      recharge: new SchemaField({
+        value: new NumberField({
+          required: true, integer: true, min: 1, label: "SW5E.FeatureRechargeOn"
+        }),
+        charged: new BooleanField({ required: true, label: "SW5E.Charged" })
+      }, { label: "SW5E.FeatureActionRecharge" }),
       // Starship features
-      attributes: new foundry.data.fields.SchemaField({
-        speed: new foundry.data.fields.SchemaField(
-          {
-            space: new foundry.data.fields.NumberField({
-              required: true,
-              nullable: true,
-              integer: true,
-              initial: 300,
-              min: 0,
-              label: "SW5E.BaseSpaceSpeed"
-            }),
-            turn: new foundry.data.fields.NumberField({
-              required: true,
-              nullable: true,
-              integer: true,
-              initial: 250,
-              min: 0,
-              label: "SW5E.BaseTurnSpeed"
-            })
-          },
+      attributes: new SchemaField({
+        speed: new SchemaField({
+          space: new NumberField({
+            required: true, nullable: true, integer: true, initial: 300, min: 0, label: "SW5E.BaseSpaceSpeed"
+          }),
+          turn: new NumberField({
+            required: true, nullable: true, integer: true, initial: 250, min: 0, label: "SW5E.BaseTurnSpeed"
+          })
+        },
           { required: true }
         )
       })
@@ -81,13 +76,20 @@ export default class FeatData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   prepareDerivedData() {
-    if ( !this.type.value ) return;
-    const config = CONFIG.SW5E.featureTypes[this.type.value];
-    if ( config ) {
-      this.type.label = config.subtypes?.[this.type.subtype] ?? null;
-    } else {
-      this.type.label = game.i18n.localize(CONFIG.Item.typeLabels.feat);
+    super.prepareDerivedData();
+
+    if (this.type.value) {
+      const config = CONFIG.SW5E.featureTypes[this.type.value];
+      if (config) this.type.label = config.subtypes?.[this.type.subtype] ?? null;
+      else this.type.label = game.i18n.localize(CONFIG.Item.typeLabels.feat);
     }
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  prepareFinalData() {
+    this.prepareFinalActivatedEffectData();
   }
 
   /* -------------------------------------------- */
@@ -163,6 +165,17 @@ export default class FeatData extends ItemDataModel.mixin(
   /** @inheritdoc */
   get hasLimitedUses() {
     return this.isActive && (!!this.recharge.value || super.hasLimitedUses);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does this feature represent a group of individual enchantments (e.g. the "Infuse Item" feature stores data about
+   * all of the character's infusions).
+   * @type {boolean}
+   */
+  get isEnchantmentSource() {
+    return EnchantmentData.isEnchantmentSource(this);
   }
 
   /* -------------------------------------------- */

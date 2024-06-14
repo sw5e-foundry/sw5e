@@ -218,7 +218,7 @@ export default class VehicleData extends CommonTemplate {
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateSource(source) {
-    if ( source.details?.source && (foundry.utils.getType(source.details.source) !== "Object") ) {
+    if (source.details?.source && (foundry.utils.getType(source.details.source) !== "Object")) {
       source.details.source = { custom: source.details.source };
     }
   }
@@ -231,16 +231,21 @@ export default class VehicleData extends CommonTemplate {
   prepareBaseData() {
     this.attributes.prof = 0;
     AttributesFields.prepareBaseArmorClass.call(this);
+    AttributesFields.prepareBaseEncumbrance.call(this);
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
   prepareDerivedData() {
-    const rollData = this.getRollData({ deterministic: true });
+    const rollData = this.parent.getRollData({ deterministic: true });
     const { originalSaves } = this.parent.getOriginalStats();
 
     this.prepareAbilities({ rollData, originalSaves });
+    AttributesFields.prepareEncumbrance.call(this, rollData, {
+      validateItem: item =>
+        (item.flags.sw5e?.vehicleCargo === true) || !["weapon", "equipment"].includes(item.type)
+    });
     AttributesFields.prepareHitPoints.call(this, this.attributes.hp);
   }
 }

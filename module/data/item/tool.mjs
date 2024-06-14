@@ -6,6 +6,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
+import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 
 /**
  * Data definition for Tool items.
@@ -14,6 +15,7 @@ import ItemTypeField from "./fields/item-type-field.mjs";
  * @mixes IdentifiableTemplate
  * @mixes PhysicalItemTemplate
  * @mixes EquippableItemTemplate
+ * @mixes ActivatedEffectTemplate
  *
  * @property {string} ability     Default ability when this tool is being used.
  * @property {string} chatFlavor  Additional text added to chat when this tool is used.
@@ -21,25 +23,19 @@ import ItemTypeField from "./fields/item-type-field.mjs";
  * @property {string} bonus       Bonus formula added to tool rolls.
  */
 export default class ToolData extends ItemDataModel.mixin(
-  ItemDescriptionTemplate, IdentifiableTemplate, ItemTypeTemplate, PhysicalItemTemplate, EquippableItemTemplate
+  ItemDescriptionTemplate, IdentifiableTemplate, ItemTypeTemplate,
+  PhysicalItemTemplate, EquippableItemTemplate, ActivatedEffectTemplate
 ) {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
-      type: new ItemTypeField({subtype: false}, {label: "SW5E.ItemToolType"}),
+      type: new ItemTypeField({ subtype: false }, { label: "SW5E.ItemToolType" }),
       ability: new foundry.data.fields.StringField({
-        required: true,
-        blank: true,
-        label: "SW5E.DefaultAbilityCheck"
+        required: true, blank: true, label: "SW5E.DefaultAbilityCheck"
       }),
       chatFlavor: new foundry.data.fields.StringField({ required: true, label: "SW5E.ChatFlavor" }),
       proficient: new foundry.data.fields.NumberField({
-        required: true,
-        initial: null,
-        min: 0,
-        max: 5,
-        step: 0.5,
-        label: "SW5E.ItemToolProficiency"
+        required: true, initial: null, min: 0, max: 5, step: 0.5, label: "SW5E.ItemToolProficiency"
       }),
       properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
         label: "SW5E.ItemToolProperties"
@@ -47,6 +43,15 @@ export default class ToolData extends ItemDataModel.mixin(
       bonus: new FormulaField({ required: true, label: "SW5E.ItemToolBonus" })
     });
   }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+    enchantable: true,
+    inventoryItem: true,
+    inventoryOrder: 400
+  }, { inplace: false }));
 
   /* -------------------------------------------- */
   /*  Migrations                                  */
@@ -76,6 +81,13 @@ export default class ToolData extends ItemDataModel.mixin(
   prepareDerivedData() {
     super.prepareDerivedData();
     this.type.label = CONFIG.SW5E.toolTypes[this.type.value] ?? game.i18n.localize(CONFIG.Item.typeLabels.tool);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  prepareFinalData() {
+    this.prepareFinalEquippableData();
   }
 
   /* -------------------------------------------- */
@@ -127,10 +139,10 @@ export default class ToolData extends ItemDataModel.mixin(
    * @returns {number}
    */
   get proficiencyMultiplier() {
-    if ( Number.isFinite(this.proficient) ) return this.proficient;
+    if (Number.isFinite(this.proficient)) return this.proficient;
     const actor = this.parent.actor;
-    if ( !actor ) return 0;
-    if ( actor.type === "npc" ) return 1;
+    if (!actor) return 0;
+    if (actor.type === "npc") return 1;
     const baseItemProf = actor.system.tools?.[this.type.baseItem];
     const categoryProf = actor.system.tools?.[this.type.value];
     return Math.min(Math.max(baseItemProf?.value ?? 0, categoryProf?.value ?? 0), 2);

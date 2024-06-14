@@ -90,7 +90,6 @@ export default class PowerData extends ItemDataModel.mixin(
   /** @inheritdoc */
   static _migrateData(source) {
     super._migrateData(source);
-    PowerData.#migrateComponentData(source);
     PowerData.#migrateScaling(source);
   }
 
@@ -102,7 +101,7 @@ export default class PowerData extends ItemDataModel.mixin(
    */
   static _migrateComponentData(source) {
     const components = filteredKeys(source.system?.components ?? {});
-    if ( components.length ) {
+    if (components.length) {
       foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", components);
     }
   }
@@ -131,11 +130,18 @@ export default class PowerData extends ItemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async getCardData(enrichmentOptions={}) {
+  prepareFinalData() {
+    this.prepareFinalActivatedEffectData();
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async getCardData(enrichmentOptions = {}) {
     const context = await super.getCardData(enrichmentOptions);
     context.isPower = true;
     context.subtitle = [this.parent.labels.level, CONFIG.SW5E.powerSchools[this.school]?.label].filterJoin(" &bull; ");
-    if ( this.parent.labels.components.vsm ) context.tags = [this.parent.labels.components.vsm, ...context.tags];
+    if (this.parent.labels.components.vsm) context.tags = [this.parent.labels.components.vsm, ...context.tags];
     return context;
   }
 
@@ -174,14 +180,14 @@ export default class PowerData extends ItemDataModel.mixin(
     const abilities = this.parent?.actor?.system?.abilities;
     const attributes = this.parent?.actor?.system?.attributes;
     let school = this.school;
-    if ( game.settings.get("sw5e", "simplifiedForcecasting") && ["lgt", "drk", "univ"].includes(school) ) school = "univ";
+    if (game.settings.get("sw5e", "simplifiedForcecasting") && ["lgt", "drk", "univ"].includes(school)) school = "univ";
     return {
       lgt: attributes?.force?.override || "wis",
       drk: attributes?.force?.override || "cha",
       univ: attributes?.force?.override || (abilities.wis?.mod ?? 0) >= (abilities.cha?.mod ?? 0) ? "wis" : "cha",
       tec: attributes?.tech?.override || "int"
     }[school]
-    || attributes?.powercasting || "int";
+      || attributes?.powercasting || "int";
   }
 
   /* -------------------------------------------- */
@@ -199,23 +205,5 @@ export default class PowerData extends ItemDataModel.mixin(
    */
   get proficiencyMultiplier() {
     return 1;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Provide a backwards compatible getter for accessing `components`.
-   * @deprecated since v3.0.
-   * @type {object}
-   */
-  get components() {
-    foundry.utils.logCompatibilityWarning(
-      "The `system.components` property has been deprecated in favor of a standardized `system.properties` property.",
-      { since: "SW5e 3.0", until: "SW5e 3.2", once: true }
-    );
-    return this.properties.reduce((acc, p) => {
-      acc[p] = true;
-      return acc;
-    }, {});
   }
 }

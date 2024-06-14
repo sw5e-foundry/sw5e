@@ -21,9 +21,18 @@ export default class LootData extends ItemDataModel.mixin(
       properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
         label: "SW5E.ItemLootProperties"
       }),
-      type: new ItemTypeField({baseItem: false}, {label: "SW5E.ItemLootType"})
+      type: new ItemTypeField({ baseItem: false }, { label: "SW5E.ItemLootType" })
     });
   }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+    enchantable: true,
+    inventoryItem: true,
+    inventoryOrder: 600
+  }, { inplace: false }));
 
   /* -------------------------------------------- */
   /*  Data Preparation                            */
@@ -46,7 +55,7 @@ export default class LootData extends ItemDataModel.mixin(
   get chatProperties() {
     return [
       this.type.label,
-      this.weight ? `${this.weight} ${game.i18n.localize("SW5E.AbbreviationLbs")}` : null,
+      this.weight ? `${this.weight.value} ${game.i18n.localize("SW5E.AbbreviationLbs")}` : null,
       this.priceLabel
     ];
   }

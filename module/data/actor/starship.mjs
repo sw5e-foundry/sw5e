@@ -1,3 +1,5 @@
+import HullDice from "../../documents/actor/hull-dice.mjs";
+import ShieldDice from "../../documents/actor/shield-dice.mjs";
 import { simplifyBonus, fromUuidSynchronous } from "../../utils.mjs";
 import { FormulaField, MappingField, UUIDField, LocalDocumentField } from "../fields.mjs";
 import RollConfigField from "../shared/roll-config-field.mjs";
@@ -85,7 +87,7 @@ export default class StarshipData extends CommonTemplate {
   /** @inheritdoc */
   static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
     supportsAdvancement: true
-  }, {inplace: false}));
+  }, { inplace: false }));
 
   /* -------------------------------------------- */
 
@@ -288,7 +290,8 @@ export default class StarshipData extends CommonTemplate {
             required: true, fallback: true, label: "SW5E.StarshipSize"
           })
         },
-        { label: "SW5E.Details"
+        {
+          label: "SW5E.Details"
         }),
       skills: new MappingField(
         new RollConfigField({
@@ -398,12 +401,19 @@ export default class StarshipData extends CommonTemplate {
     this.attributes.fuel.cost = sizeData.fuelCost ?? 0;
     this.attributes.fuel.fuelCap = sizeData.fuelCap ?? 0;
 
+    this.attributes.hull = new HullDice(this.parent);
+    /* Make this data availble in HullDice
+
     const hullmax = (sizeData.hullDiceStart ?? 0) + ((hugeOrGrg ? 2 : 1) * tiers);
     this.attributes.hull = {
       die: sizeData.hullDice ?? "d1",
       dicemax: hullmax,
       dice: hullmax - parseInt(sizeData.hullDiceUsed ?? 0)
     };
+    */
+
+    this.attributes.shld = new ShieldDice(this.parent);
+    /* Make this data availble in ShieldDice
 
     const shldmax = (sizeData.shldDiceStart ?? 0) + ((hugeOrGrg ? 2 : 1) * tiers);
     this.attributes.shld = {
@@ -411,6 +421,7 @@ export default class StarshipData extends CommonTemplate {
       dicemax: shldmax,
       dice: shldmax - parseInt(sizeData.shldDiceUsed ?? 0)
     };
+    */
 
     this.attributes.mods = {
       cap: { max: sizeData.modBaseCap ?? 0 },
@@ -482,14 +493,16 @@ export default class StarshipData extends CommonTemplate {
    * Prepare movement & senses values derived from species item.
    */
   prepareEmbeddedData() {
-    if ( this.details.species instanceof Item ) {
+    if (this.details.species instanceof Item) {
       AttributesFields.prepareSpecies.call(this, this.details.species);
       this.details.type = this.details.species.system.type;
     } else {
-      this.attributes.movement.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
-      this.attributes.senses.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
       this.details.type = new CreatureTypeField({ swarm: false }).initialize({ value: "humanoid" }, this);
     }
+    for (const key of Object.keys(CONFIG.SW5E.movementTypes)) this.attributes.movement[key] ??= 0;
+    for (const key of Object.keys(CONFIG.SW5E.senses)) this.attributes.senses[key] ??= 0;
+    this.attributes.movement.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
+    this.attributes.senses.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
   }
 
   /* -------------------------------------------- */
@@ -499,7 +512,7 @@ export default class StarshipData extends CommonTemplate {
    * Prepare remaining starship data.
    */
   prepareDerivedData() {
-    const rollData = this.getRollData({ deterministic: true });
+    const rollData = this.parent.getRollData({ deterministic: true });
     const { originalSaves } = this.parent.getOriginalStats();
 
     this.prepareAbilities({ rollData, originalSaves });
@@ -508,7 +521,7 @@ export default class StarshipData extends CommonTemplate {
 
     // Hull/Shield Points
     const hspOptions = {};
-    if ( this.attributes.hp.max === null ) {
+    if (this.attributes.hp.max === null) {
       hspOptions.hullAdvancement = Object.values(this.parent.starshipsizes)
         .map(c => c.advancement.byType.hullPoints?.[0]).filter(a => a);
       hspOptions.hullBonus = (simplifyBonus(this.attributes.hp.bonuses.level, rollData) * this.details.tier)
@@ -526,20 +539,6 @@ export default class StarshipData extends CommonTemplate {
 
   /* -------------------------------------------- */
   /*  Helpers                                     */
-  /* -------------------------------------------- */
-
-  // TODO: Update this for starships
-  /** @inheritdoc */
-  getRollData({ deterministic=false }={}) {
-    const data = super.getRollData({ deterministic });
-    data.starships = {};
-    for (const [identifier, ss] of Object.entries(this.parent.starships)) {
-      data.starships[identifier] = { ...ss.system };
-    }
-
-    return data;
-  }
-
   /* -------------------------------------------- */
 
   /**
@@ -561,16 +560,16 @@ export default class StarshipData extends CommonTemplate {
    * @throws If the item intended to be favorited does not belong to this actor.
    */
   addFavorite(favorite) {
-    if ( this.hasFavorite(favorite.id) ) return Promise.resolve(this.parent);
+    if (this.hasFavorite(favorite.id)) return Promise.resolve(this.parent);
 
-    if ( favorite.id.startsWith(".") && fromUuidSync(favorite.id, { relative: this.parent }) === null ) {
+    if (favorite.id.startsWith(".") && fromUuidSync(favorite.id, { relative: this.parent }) === null) {
       // Assume that an ID starting with a "." is a relative ID.
       throw new Error(`The item with id ${favorite.id} is not owned by actor ${this.parent.id}`);
     }
 
     let maxSort = 0;
     const favorites = this.favorites.map(f => {
-      if ( f.sort > maxSort ) maxSort = f.sort;
+      if (f.sort > maxSort) maxSort = f.sort;
       return { ...f };
     });
     favorites.push({ ...favorite, sort: maxSort + CONST.SORT_INTEGER_DENSITY });
@@ -585,7 +584,7 @@ export default class StarshipData extends CommonTemplate {
    * @returns {Promise<Actor5e>}
    */
   removeFavorite(favoriteId) {
-    if ( favoriteId.startsWith("resources.") ) return this.parent.update({ [`system.${favoriteId}.max`]: 0 });
+    if (favoriteId.startsWith("resources.")) return this.parent.update({ [`system.${favoriteId}.max`]: 0 });
     const favorites = this.favorites.filter(f => f.id !== favoriteId);
     return this.parent.update({ "system.favorites": favorites });
   }

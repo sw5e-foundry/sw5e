@@ -8,6 +8,8 @@ import CreatureTemplate from "./templates/creature.mjs";
 import DetailsFields from "./templates/details.mjs";
 import TraitsFields from "./templates/traits.mjs";
 
+const { BooleanField, NumberField, SchemaField, StringField } = foundry.data.fields;
+
 /**
  * System data definition for NPCs.
  *
@@ -16,6 +18,8 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {number} attributes.ac.flat         Flat value used for flat or natural armor calculation.
  * @property {string} attributes.ac.calc         Name of one of the built-in formulas to use.
  * @property {string} attributes.ac.formula      Custom formula to use.
+ * @property {object} attributes.hd
+ * @property {number} attributes.hd.spent        Number of hit dice spent.
  * @property {object} attributes.hp
  * @property {number} attributes.hp.value        Current hit points.
  * @property {number} attributes.hp.max          Maximum allowed HP value.
@@ -53,7 +57,7 @@ export default class NPCData extends CreatureTemplate {
   /** @inheritdoc */
   static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
     supportsAdvancement: true
-  }, {inplace: false}));
+  }, { inplace: false }));
 
   /* -------------------------------------------- */
 
@@ -65,166 +69,84 @@ export default class NPCData extends CreatureTemplate {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
-      attributes: new foundry.data.fields.SchemaField(
-        {
-          ...AttributesFields.common,
-          ...AttributesFields.creature,
-          ac: new foundry.data.fields.SchemaField(
-            {
-              flat: new foundry.data.fields.NumberField({ integer: true, min: 0, label: "SW5E.ArmorClassFlat" }),
-              calc: new foundry.data.fields.StringField({ initial: "default", label: "SW5E.ArmorClassCalculation" }),
-              formula: new FormulaField({ deterministic: true, label: "SW5E.ArmorClassFormula" })
-            },
-            { label: "SW5E.ArmorClass" }
-          ),
-          hp: new foundry.data.fields.SchemaField(
-            {
-              value: new foundry.data.fields.NumberField({
-                nullable: false,
-                integer: true,
-                min: 0,
-                initial: 10,
-                label: "SW5E.HitPointsCurrent"
-              }),
-              max: new foundry.data.fields.NumberField({
-                nullable: false,
-                integer: true,
-                min: 0,
-                initial: 10,
-                label: "SW5E.HitPointsMax"
-              }),
-              temp: new foundry.data.fields.NumberField({
-                integer: true,
-                initial: 0,
-                min: 0,
-                label: "SW5E.HitPointsTemp"
-              }),
-              tempmax: new foundry.data.fields.NumberField({
-                integer: true,
-                initial: 0,
-                label: "SW5E.HitPointsTempMax"
-              }),
-              formula: new FormulaField({ required: true, label: "SW5E.HPFormula" })
-            },
-            { label: "SW5E.HitPoints" }
-          ),
-          death: new RollConfigField({
-            success: new foundry.data.fields.NumberField({
-              required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.DeathSaveSuccesses"
-            }),
-            failure: new foundry.data.fields.NumberField({
-              required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.DeathSaveFailures"
-            })
-          }, {label: "SW5E.DeathSave"})
-        },
-        { label: "SW5E.Attributes" }
-      ),
-      details: new foundry.data.fields.SchemaField(
-        {
-          ...DetailsFields.common,
-          ...DetailsFields.creature,
-          type: new CreatureTypeField(),
-          environment: new foundry.data.fields.StringField({ required: true, label: "SW5E.Environment" }),
-          cr: new foundry.data.fields.NumberField({
-            required: true,
-            nullable: false,
-            min: 0,
-            initial: 1,
-            label: "SW5E.ChallengeRating"
+      attributes: new SchemaField({
+        ...AttributesFields.common,
+        ...AttributesFields.creature,
+        ac: new SchemaField({
+          flat: new NumberField({ integer: true, min: 0, label: "SW5E.ArmorClassFlat" }),
+          calc: new StringField({ initial: "default", label: "SW5E.ArmorClassCalculation" }),
+          formula: new FormulaField({ deterministic: true, label: "SW5E.ArmorClassFormula" })
+        }, { label: "SW5E.ArmorClass" }),
+        hd: new SchemaField({
+          spent: new NumberField({ integer: true, min: 0, initial: 0 })
+        }, { label: "SW5E.HitDice" }),
+        hp: new SchemaField({
+          value: new NumberField({
+            nullable: false, integer: true, min: 0, initial: 10, label: "SW5E.HitPointsCurrent"
           }),
-          powerForceLevel: new foundry.data.fields.NumberField({
-            required: true,
-            nullable: false,
-            integer: true,
-            min: 0,
-            initial: 0,
-            label: "SW5E.ForcecasterLevel"
+          max: new NumberField({
+            nullable: false, integer: true, min: 0, initial: 10, label: "SW5E.HitPointsMax"
           }),
-          powerTechLevel: new foundry.data.fields.NumberField({
-            required: true,
-            nullable: false,
-            integer: true,
-            min: 0,
-            initial: 0,
-            label: "SW5E.TechcasterLevel"
+          temp: new NumberField({ integer: true, initial: 0, min: 0, label: "SW5E.HitPointsTemp" }),
+          tempmax: new NumberField({ integer: true, initial: 0, label: "SW5E.HitPointsTempMax" }),
+          formula: new FormulaField({ required: true, label: "SW5E.HPFormula" })
+        }, { label: "SW5E.HitPoints" }),
+        death: new RollConfigField({
+          success: new NumberField({
+            required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.DeathSaveSuccesses"
           }),
-          superiorityLevel: new foundry.data.fields.NumberField({
-            required: true,
-            nullable: false,
-            integer: true,
-            min: 0,
-            initial: 0,
-            label: "SW5E.SuperiorityLevel"
+          failure: new NumberField({
+            required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.DeathSaveFailures"
+          })
+        }, { label: "SW5E.DeathSave" })
+      }, { label: "SW5E.Attributes" }),
+      details: new SchemaField({
+        ...DetailsFields.common,
+        ...DetailsFields.creature,
+        type: new CreatureTypeField(),
+        environment: new StringField({ required: true, label: "SW5E.Environment" }),
+        cr: new NumberField({
+          required: true, nullable: false, min: 0, initial: 1, label: "SW5E.ChallengeRating"
+        }),
+        powerForceLevel: new NumberField({
+          required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.ForcecasterLevel"
+        }),
+        powerTechLevel: new NumberField({
+          required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.TechcasterLevel"
+        }),
+        superiorityLevel: new NumberField({
+          required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.SuperiorityLevel"
+        }),
+        source: new SourceField()
+      }, { label: "SW5E.Details" }),
+      resources: new SchemaField({
+        legact: new SchemaField({
+          value: new NumberField({
+            required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.LegActRemaining"
           }),
-          source: new SourceField()
-        },
-        { label: "SW5E.Details" }
-      ),
-      resources: new foundry.data.fields.SchemaField(
-        {
-          legact: new foundry.data.fields.SchemaField(
-            {
-              value: new foundry.data.fields.NumberField({
-                required: true,
-                nullable: false,
-                integer: true,
-                min: 0,
-                initial: 0,
-                label: "SW5E.LegActRemaining"
-              }),
-              max: new foundry.data.fields.NumberField({
-                required: true,
-                nullable: false,
-                integer: true,
-                min: 0,
-                initial: 0,
-                label: "SW5E.LegActMax"
-              })
-            },
-            { label: "SW5E.LegAct" }
-          ),
-          legres: new foundry.data.fields.SchemaField(
-            {
-              value: new foundry.data.fields.NumberField({
-                required: true,
-                nullable: false,
-                integer: true,
-                min: 0,
-                initial: 0,
-                label: "SW5E.LegResRemaining"
-              }),
-              max: new foundry.data.fields.NumberField({
-                required: true,
-                nullable: false,
-                integer: true,
-                min: 0,
-                initial: 0,
-                label: "SW5E.LegResMax"
-              })
-            },
-            { label: "SW5E.LegRes" }
-          ),
-          lair: new foundry.data.fields.SchemaField(
-            {
-              value: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.LairAct" }),
-              initiative: new foundry.data.fields.NumberField({
-                required: true,
-                integer: true,
-                label: "SW5E.LairActionInitiative"
-              })
-            },
-            { label: "SW5E.LairActionLabel" }
-          )
-        },
-        { label: "SW5E.Resources" }
-      ),
-      traits: new foundry.data.fields.SchemaField(
-        {
-          ...TraitsFields.common,
-          ...TraitsFields.creature
-        },
-        { label: "SW5E.Traits" }
-      )
+          max: new NumberField({
+            required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.LegActMax"
+          })
+        }, { label: "SW5E.LegAct" }),
+        legres: new SchemaField({
+          value: new NumberField({
+            required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.LegResRemaining"
+          }),
+          max: new NumberField({
+            required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.LegResMax"
+          })
+        }, { label: "SW5E.LegRes" }),
+        lair: new SchemaField({
+          value: new BooleanField({ required: true, label: "SW5E.LairAct" }),
+          initiative: new NumberField({
+            required: true, integer: true, label: "SW5E.LairActionInitiative"
+          })
+        }, { label: "SW5E.LairActionLabel" })
+      }, { label: "SW5E.Resources" }),
+      traits: new SchemaField({
+        ...TraitsFields.common,
+        ...TraitsFields.creature
+      }, { label: "SW5E.Traits" })
     });
   }
 
@@ -247,7 +169,7 @@ export default class NPCData extends CreatureTemplate {
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateSource(source) {
-    if ( source.details?.source && (foundry.utils.getType(source.details.source) !== "Object") ) {
+    if (source.details?.source && (foundry.utils.getType(source.details.source) !== "Object")) {
       source.details.source = { custom: source.details.source };
     }
   }
@@ -320,7 +242,7 @@ export default class NPCData extends CreatureTemplate {
       try {
         const roll = new Roll(ac.formula);
         Roll.safeEval(roll.formula);
-      } catch(e) {
+      } catch (e) {
         ac.formula = "";
       }
     }
@@ -354,13 +276,13 @@ export default class NPCData extends CreatureTemplate {
           source.details.powerTechLevel = level;
           break;
         case "guardian":
-          source.details.powerForceLevel = Math.ceil(level/2);
+          source.details.powerForceLevel = Math.ceil(level / 2);
           break;
         case "scout":
-          source.details.powerTechLevel = Math.ceil(level/2);
+          source.details.powerTechLevel = Math.ceil(level / 2);
           break;
         case "sentinel":
-          source.details.powerForceLevel = Math.ceil(3*level/4);
+          source.details.powerForceLevel = Math.ceil(3 * level / 4);
           break;
       }
       delete source.abilities.powercasting;
@@ -378,23 +300,28 @@ export default class NPCData extends CreatureTemplate {
   /** @inheritdoc */
   prepareBaseData() {
     this.details.level = 0;
+    this.attributes.attunement.value = 0;
 
-    for ( const item of this.parent.items ) {
+    // Determine hit dice denomination & max from hit points formula
+    const [, max, denomination] = this.attributes.hp.formula?.match(/(\d*)d(\d+)/i) ?? [];
+    this.attributes.hd.max = Number(max ?? 0);
+    this.attributes.hd.denomination = Number(denomination ?? CONFIG.SW5E.actorSizes[this.traits.size]?.hitDie ?? 4);
+
+    for (const item of this.parent.items) {
       // Class levels & hit dice
-      if ( item.type === "class" ) {
+      if (item.type === "class") {
         const classLevels = parseInt(item.system.levels) ?? 1;
         this.details.level += classLevels;
+        this.attributes.hd.max += classLevels;
       }
 
-      if ( item.type === "deployment" ) {
+      if (item.type === "deployment") {
         const deploymentRanks = parseInt(item.system.ranks) ?? 0;
         this.details.ranks += deploymentRanks;
       }
 
       // Attuned items
-      else if ( item.system.attunement === CONFIG.SW5E.attunementTypes.ATTUNED ) {
-        this.attributes.attunement.value += 1;
-      }
+      else if (item.system.attuned) this.attributes.attunement.value += 1;
     }
 
     // Kill Experience
@@ -407,34 +334,41 @@ export default class NPCData extends CreatureTemplate {
     AttributesFields.prepareBaseArmorClass.call(this);
     AttributesFields.prepareBasePowercasting.call(this);
     AttributesFields.prepareBaseSuperiority.call(this);
+    AttributesFields.prepareBaseEncumbrance.call(this);
   }
 
   /* -------------------------------------------- */
 
-  // TODO: update this from where it was pulled from
   /**
    * Prepare movement & senses values derived from species item.
    */
   prepareEmbeddedData() {
-    if ( this.details.species instanceof Item ) {
+    if (this.details.species instanceof Item) {
       AttributesFields.prepareSpecies.call(this, this.details.species, { force: true });
       this.details.type = this.details.species.system.type;
     }
+    for (const key of Object.keys(CONFIG.SW5E.movementTypes)) this.attributes.movement[key] ??= 0;
+    for (const key of Object.keys(CONFIG.SW5E.senses)) this.attributes.senses[key] ??= 0;
+    this.attributes.movement.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
+    this.attributes.senses.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
   }
 
   /* -------------------------------------------- */
 
-  // TODO: update this from where it was pulled from
   /** @inheritdoc */
   prepareDerivedData() {
-    const rollData = this.getRollData({ deterministic: true });
+    const rollData = this.parent.getRollData({ deterministic: true });
     const { originalSaves } = this.parent.getOriginalStats();
 
     this.prepareAbilities({ rollData, originalSaves });
+    AttributesFields.prepareEncumbrance.call(this, rollData);
     AttributesFields.prepareExhaustionLevel.call(this);
     AttributesFields.prepareMovement.call(this);
     AttributesFields.prepareConcentration.call(this, rollData);
     TraitsFields.prepareResistImmune.call(this);
+
+    // Hit Dice
+    this.attributes.hd.value = Math.max(0, this.attributes.hd.max - this.attributes.hd.spent);
 
     // Hit Points
     const hpOptions = {

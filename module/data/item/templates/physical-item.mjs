@@ -1,3 +1,4 @@
+import { convertWeight } from "../../../utils.mjs";
 import SystemDataModel from "../../abstract.mjs";
 
 /**
@@ -5,7 +6,9 @@ import SystemDataModel from "../../abstract.mjs";
  *
  * @property {string} container           Container within which this item is located.
  * @property {number} quantity            Number of items in a stack.
- * @property {number} weight              Item's weight in pounds or kilograms (depending on system setting).
+ * @property {object} weight
+ * @property {number} weight.value        Item's weight.
+ * @property {string} weight.units        Units used to measure the weight.
  * @property {object} price
  * @property {number} price.value         Item's cost in the specified denomination.
  * @property {string} price.denomination  Currency denomination used to determine price.
@@ -20,38 +23,25 @@ export default class PhysicalItemTemplate extends SystemDataModel {
         idOnly: true, label: "SW5E.Container"
       }),
       quantity: new foundry.data.fields.NumberField({
-        required: true,
-        nullable: false,
-        integer: true,
-        initial: 1,
-        min: 0,
-        label: "SW5E.Quantity"
+        required: true, nullable: false, integer: true, initial: 1, min: 0, label: "SW5E.Quantity"
       }),
-      weight: new foundry.data.fields.NumberField({
-        required: true,
-        nullable: false,
-        initial: 0,
-        min: 0,
-        label: "SW5E.Weight"
-      }),
-      price: new foundry.data.fields.SchemaField(
-        {
-          value: new foundry.data.fields.NumberField({
-            required: true,
-            nullable: false,
-            initial: 0,
-            min: 0,
-            label: "SW5E.Price"
-          }),
-          denomination: new foundry.data.fields.StringField({
-            required: true,
-            blank: false,
-            initial: "gc",
-            label: "SW5E.Currency"
-          })
-        },
-        { label: "SW5E.Price" }
-      ),
+      weight: new foundry.data.fields.SchemaField({
+        value: new foundry.data.fields.NumberField({
+          required: true, nullable: false, initial: 0, min: 0, label: "SW5E.Weight"
+        }),
+        units: new foundry.data.fields.StringField({
+          required: true, label: "SW5E.WeightUnit.Label",
+          initial: () => game.settings.get("sw5e", "metricWeightUnits") ? "kg" : "lb"
+        })
+      }, { label: "SW5E.Weight" }),
+      price: new foundry.data.fields.SchemaField({
+        value: new foundry.data.fields.NumberField({
+          required: true, nullable: false, initial: 0, min: 0, label: "SW5E.Price"
+        }),
+        denomination: new foundry.data.fields.StringField({
+          required: true, blank: false, initial: "gc", label: "SW5E.Currency"
+        })
+      }, { label: "SW5E.Price" }),
       rarity: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.Rarity" })
     };
   }
@@ -85,7 +75,7 @@ export default class PhysicalItemTemplate extends SystemDataModel {
    * @type {number}
    */
   get totalWeight() {
-    return this.quantity * this.weight;
+    return this.quantity * this.weight.value;
   }
 
   /* -------------------------------------------- */
@@ -122,21 +112,23 @@ export default class PhysicalItemTemplate extends SystemDataModel {
    */
   static #migrateRarity(source) {
     if (!("rarity" in source) || CONFIG.SW5E.itemRarity[source.rarity]) return;
-    source.rarity =
-      Object.keys(CONFIG.SW5E.itemRarity).find(
-        key => CONFIG.SW5E.itemRarity[key].toLowerCase() === source.rarity.toLowerCase()
-      ) ?? "";
+    source.rarity = Object.keys(CONFIG.SW5E.itemRarity).find(key =>
+      CONFIG.SW5E.itemRarity[key].toLowerCase() === source.rarity.toLowerCase()
+    ) ?? "";
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Convert null weights to 0.
+   * Migrate the item's weight from a single field to an object with units & convert null weights to 0.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateWeight(source) {
-    if (!("weight" in source)) return;
-    if (source.weight === null || source.weight === undefined) source.weight = 0;
+    if (!("weight" in source) || (foundry.utils.getType(source.weight) === "Object")) return;
+    source.weight = {
+      value: Number.isNumeric(source.weight) ? Number(source.weight) : 0,
+      units: game.settings.get("sw5e", "metricWeightUnits") ? "kg" : "lb"
+    };
   }
 
   /* -------------------------------------------- */
@@ -150,18 +142,18 @@ export default class PhysicalItemTemplate extends SystemDataModel {
    * @param {string} [options.formerContainer]  UUID of the former container if this item was moved.
    * @protected
    */
-  async _renderContainers({ formerContainer, ...rendering }={}) {
+  async _renderContainers({ formerContainer, ...rendering } = {}) {
     // Render this item's container & any containers it is within
     const parentContainers = await this.allContainers();
     parentContainers.forEach(c => c.sheet?.render(false, rendering));
 
     // Render the actor sheet, compendium, or sidebar
-    if ( this.parent.isEmbedded ) this.parent.actor.sheet?.render(false, rendering);
-    else if ( this.parent.pack ) game.packs.get(this.parent.pack).apps.forEach(a => a.render(false, rendering));
+    if (this.parent.isEmbedded) this.parent.actor.sheet?.render(false, rendering);
+    else if (this.parent.pack) game.packs.get(this.parent.pack).apps.forEach(a => a.render(false, rendering));
     else ui.sidebar.tabs.items.render(false, rendering);
 
     // Render former container if it was moved between containers
-    if ( formerContainer ) {
+    if (formerContainer) {
       const former = await fromUuid(formerContainer);
       former.render(false, rendering);
       former.system._renderContainers(rendering);
@@ -202,11 +194,24 @@ export default class PhysicalItemTemplate extends SystemDataModel {
     let container;
     let depth = 0;
     const containers = [];
-    while ( (container = await item.container) && (depth < PhysicalItemTemplate.MAX_DEPTH) ) {
+    while ((container = await item.container) && (depth < PhysicalItemTemplate.MAX_DEPTH)) {
       containers.push(container);
       item = container;
       depth++;
     }
     return containers;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Calculate the total weight and return it in specific units.
+   * @param {string} units  Units in which the weight should be returned.
+   * @returns {number|Promise<number>}
+   */
+  totalWeightIn(units) {
+    const weight = this.totalWeight;
+    if (weight instanceof Promise) return weight.then(w => convertWeight(w, this.weight.units, units));
+    return convertWeight(weight, this.weight.units, units);
   }
 }

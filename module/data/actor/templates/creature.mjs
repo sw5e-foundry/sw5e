@@ -89,12 +89,12 @@ export default class CreatureTemplate extends CommonTemplate {
           { label: "SW5E.SkillBonuses" }
         )
       }),
-      {
-        initialKeys: CONFIG.SW5E.skills,
-        initialValue: this._initialSkillValue,
-        initialKeysOnly: true,
-        label: "SW5E.Skills"
-      }
+        {
+          initialKeys: CONFIG.SW5E.skills,
+          initialValue: this._initialSkillValue,
+          initialKeysOnly: true,
+          label: "SW5E.Skills"
+        }
       ),
       tools: new MappingField(
         new RollConfigField({
@@ -238,6 +238,25 @@ export default class CreatureTemplate extends CommonTemplate {
         bonuses: { check: "" }
       };
     }
+  }
+
+  /* -------------------------------------------- */
+  /*  Helpers                                     */
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  getRollData({ deterministic = false } = {}) {
+    const data = super.getRollData({ deterministic });
+    data.classes = {};
+    for (const [identifier, cls] of Object.entries(this.parent.classes)) {
+      data.classes[identifier] = { ...cls.system };
+      if (cls.archetype) data.classes[identifier].archetype = cls.archetype.system;
+    }
+    data.starships = {};
+    for (const [identifier, ss] of Object.entries(this.parent.starships)) {
+      data.starships[identifier] = { ...ss.system };
+    }
+    return data;
   }
 }
 

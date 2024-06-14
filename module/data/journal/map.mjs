@@ -6,6 +6,8 @@ import MapLocationControlIcon from "../../canvas/map-location-control-icon.mjs";
  * @property {string} code  Code for the location marker on the map.
  */
 export default class MapLocationJournalPageData extends foundry.abstract.DataModel {
+
+  /** @inheritDoc */
   static defineSchema() {
     return {
       code: new foundry.data.fields.StringField()
@@ -20,7 +22,7 @@ export default class MapLocationJournalPageData extends foundry.abstract.DataMod
    * @returns {{ number: string, adjustment: number }|void}
    */
   adjustTOCNumbering(number) {
-    if ( !this.code ) return;
+    if (!this.code) return;
     return { number: this.code, adjustment: -1 };
   }
 
@@ -32,12 +34,12 @@ export default class MapLocationJournalPageData extends foundry.abstract.DataMod
    * @returns {PIXI.Container|void}
    */
   getControlIcon(options) {
-    if ( !this.code ) return;
+    if (!this.code) return;
     const style = foundry.utils.mergeObject(
       CONFIG.SW5E.mapLocationMarker.default,
       CONFIG.SW5E.mapLocationMarker[this.parent.getFlag("sw5e", "mapMarkerStyle")] ?? {},
-      {inplace: false}
+      { inplace: false }
     );
-    return new MapLocationControlIcon({code: this.code, ...options, ...style});
+    return new MapLocationControlIcon({ code: this.code, ...options, ...style });
   }
 }

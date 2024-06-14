@@ -1,5 +1,8 @@
+import { replaceFormulaData } from "../../../utils.mjs";
 import SystemDataModel from "../../abstract.mjs";
 import { FormulaField } from "../../fields.mjs";
+
+const { BooleanField, NumberField, SchemaField, StringField } = foundry.data.fields;
 
 /**
  * Data model template for items that can be used as some sort of action.
@@ -13,7 +16,7 @@ import { FormulaField } from "../../fields.mjs";
  * @property {string} duration.units        Time duration period as defined in `SW5E.timePeriods`.
  * @property {number} cover                 Amount of cover does this item affords to its crew on a vehicle.
  * @property {object} target                Effect's valid targets.
- * @property {number} target.value          Length or radius of target depending on targeting mode selected.
+ * @property {string} target.value          Length or radius of target depending on targeting mode selected.
  * @property {number} target.width          Width of line when line type is selected.
  * @property {string} target.units          Units used for value and width as defined in `SW5E.distanceUnits`.
  * @property {string} target.type           Targeting mode as defined in `SW5E.targetTypes`.
@@ -36,62 +39,40 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
-      activation: new foundry.data.fields.SchemaField(
-        {
-          type: new foundry.data.fields.StringField({required: true, blank: true, label: "SW5E.ItemActivationType"}),
-          cost: new foundry.data.fields.NumberField({required: true, label: "SW5E.ItemActivationCost"}),
-          condition: new foundry.data.fields.StringField({required: true, label: "SW5E.ItemActivationCondition"})
-        },
-        { label: "SW5E.ItemActivation" }
-      ),
-      duration: new foundry.data.fields.SchemaField(
-        {
-          value: new FormulaField({ required: true, deterministic: true, label: "SW5E.Duration" }),
-          units: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.DurationType" })
-        },
-        { label: "SW5E.Duration" }
-      ),
-      cover: new foundry.data.fields.NumberField({
-        required: true,
-        nullable: true,
-        min: 0,
-        max: 1,
-        label: "SW5E.Cover"
+      activation: new SchemaField({
+        type: new StringField({ required: true, blank: true, label: "SW5E.ItemActivationType" }),
+        cost: new NumberField({ required: true, label: "SW5E.ItemActivationCost" }),
+        condition: new StringField({ required: true, label: "SW5E.ItemActivationCondition" })
+      }, { label: "SW5E.ItemActivation" }),
+      duration: new SchemaField({
+        value: new FormulaField({ required: true, deterministic: true, label: "SW5E.Duration" }),
+        units: new StringField({ required: true, blank: true, label: "SW5E.DurationType" })
+      }, { label: "SW5E.Duration" }),
+      cover: new NumberField({
+        required: true, nullable: true, min: 0, max: 1, label: "SW5E.Cover"
       }),
-      crewed: new foundry.data.fields.BooleanField({ label: "SW5E.Crewed" }),
-      target: new foundry.data.fields.SchemaField(
-        {
-          value: new foundry.data.fields.NumberField({ required: true, min: 0, label: "SW5E.TargetValue" }),
-          width: new foundry.data.fields.NumberField({ required: true, min: 0, label: "SW5E.TargetWidth" }),
-          units: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.TargetUnits" }),
-          type: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.TargetType" }),
-          prompt: new foundry.data.fields.BooleanField({ initial: true, label: "SW5E.TemplatePrompt" })
-        },
-        { label: "SW5E.Target" }
-      ),
-      range: new foundry.data.fields.SchemaField(
-        {
-          value: new foundry.data.fields.NumberField({ required: true, min: 0, label: "SW5E.RangeNormal" }),
-          long: new foundry.data.fields.NumberField({ required: true, min: 0, label: "SW5E.RangeLong" }),
-          units: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.RangeUnits" })
-        },
-        { label: "SW5E.Range" }
-      ),
+      crewed: new BooleanField({ label: "SW5E.Crewed" }),
+      target: new SchemaField({
+        value: new FormulaField({ required: true, deterministic: true, label: "SW5E.TargetValue" }),
+        width: new NumberField({ required: true, min: 0, label: "SW5E.TargetWidth" }),
+        units: new StringField({ required: true, blank: true, label: "SW5E.TargetUnits" }),
+        type: new StringField({ required: true, blank: true, label: "SW5E.TargetType" }),
+        prompt: new BooleanField({ initial: true, label: "SW5E.TemplatePrompt" })
+      }, { label: "SW5E.Target" }),
+      range: new SchemaField({
+        value: new NumberField({ required: true, min: 0, label: "SW5E.RangeNormal" }),
+        long: new NumberField({ required: true, min: 0, label: "SW5E.RangeLong" }),
+        units: new StringField({ required: true, blank: true, label: "SW5E.RangeUnits" })
+      }, { label: "SW5E.Range" }),
       uses: new this.ItemUsesField({}, { label: "SW5E.LimitedUses" }),
-      consume: new foundry.data.fields.SchemaField(
-        {
-          type: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.ConsumeType" }),
-          target: new foundry.data.fields.StringField({
-            required: true,
-            nullable: true,
-            initial: null,
-            label: "SW5E.ConsumeTarget"
-          }),
-          amount: new foundry.data.fields.NumberField({ required: true, integer: true, label: "SW5E.ConsumeAmount" }),
-          scale: new foundry.data.fields.BooleanField({ label: "SW5E.ConsumeScaling" })
-        },
-        { label: "SW5E.ConsumeTitle" }
-      )
+      consume: new SchemaField({
+        type: new StringField({ required: true, blank: true, label: "SW5E.ConsumeType" }),
+        target: new StringField({
+          required: true, nullable: true, initial: null, label: "SW5E.ConsumeTarget"
+        }),
+        amount: new NumberField({ required: true, integer: true, label: "SW5E.ConsumeAmount" }),
+        scale: new BooleanField({ label: "SW5E.ConsumeScaling" })
+      }, { label: "SW5E.ConsumeTitle" })
     };
   }
 
@@ -101,32 +82,19 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
    * Extension of SchemaField used to track item uses.
    * @internal
    */
-  static ItemUsesField = class ItemUsesField extends foundry.data.fields.SchemaField {
+  static ItemUsesField = class ItemUsesField extends SchemaField {
     constructor(extraSchema, options) {
-      super(
-        SystemDataModel.mergeSchema(
-          {
-            value: new foundry.data.fields.NumberField({
-              required: true,
-              min: 0,
-              integer: true,
-              label: "SW5E.LimitedUsesAvailable"
-            }),
-            max: new FormulaField({ required: true, deterministic: true, label: "SW5E.LimitedUsesMax" }),
-            per: new foundry.data.fields.StringField({
-              required: true,
-              nullable: true,
-              blank: false,
-              initial: null,
-              label: "SW5E.LimitedUsesPer"
-            }),
-            recovery: new FormulaField({ required: true, label: "SW5E.RecoveryFormula" }),
-            prompt: new foundry.data.fields.BooleanField({ initial: true, label: "SW5E.LimitedUsesPrompt" })
-          },
-          extraSchema
-        ),
-        options
-      );
+      super(SystemDataModel.mergeSchema({
+        value: new NumberField({
+          required: true, min: 0, integer: true, label: "SW5E.LimitedUsesAvailable"
+        }),
+        max: new FormulaField({ required: true, deterministic: true, label: "SW5E.LimitedUsesMax" }),
+        per: new StringField({
+          required: true, nullable: true, blank: false, initial: null, label: "SW5E.LimitedUsesPer"
+        }),
+        recovery: new FormulaField({ required: true, label: "SW5E.RecoveryFormula" }),
+        prompt: new BooleanField({ initial: true, label: "SW5E.LimitedUsesPrompt" })
+      }, extraSchema), options);
     }
   };
 
@@ -143,7 +111,91 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
   }
 
   /* -------------------------------------------- */
-  /*  Migrations                                  */
+
+  /**
+   * Prepare activated effect data, should be called during `prepareFinalData` stage.
+   */
+  prepareFinalActivatedEffectData() {
+    // Initial data modifications
+    if (["inst", "perm"].includes(this.duration.units)) this.duration.value = null;
+    if ([null, "self"].includes(this.target.type)) this.target.value = this.target.units = null;
+    else if (this.target.units === "touch") this.target.value = null;
+    if ([null, "touch", "self"].includes(this.range.units)) this.range.value = this.range.long = null;
+
+    // Prepare duration, targets, and max uses formulas
+    const rollData = this.getRollData({ deterministic: true });
+    this._prepareFinalFormula("duration.value", { label: "SW5E.Duration", rollData });
+    this._prepareFinalFormula("target.value", { label: "SW5E.TargetValue", rollData });
+    this._prepareFinalFormula("uses.max", { label: "SW5E.UsesMax", rollData });
+
+    // Prepare labels
+    this.parent.labels ??= {};
+    this.parent.labels.duration = [this.duration.value, CONFIG.SW5E.timePeriods[this.duration.units]].filterJoin(" ");
+    this.parent.labels.activation = this.activation.type ? [
+      (this.activation.type in CONFIG.SW5E.staticAbilityActivationTypes) ? null : this.activation.cost,
+      CONFIG.SW5E.abilityActivationTypes[this.activation.type]
+    ].filterJoin(" ") : "";
+
+    if (this.hasTarget) {
+      const target = [this.target.value];
+      if (this.hasAreaTarget) {
+        if (this.target.units in CONFIG.SW5E.movementUnits) {
+          target.push(game.i18n.localize(`SW5E.Dist${this.target.units.capitalize()}Abbr`));
+        }
+        else target.push(CONFIG.SW5E.distanceUnits[this.target.units]);
+      }
+      target.push(CONFIG.SW5E.targetTypes[this.target.type]);
+      this.parent.labels.target = target.filterJoin(" ");
+    }
+
+    if (this.isActive && this.range.units) {
+      const range = [this.range.value, this.range.long ? `/ ${this.range.long}` : null];
+      if (this.range.units in CONFIG.SW5E.movementUnits) {
+        range.push(game.i18n.localize(`SW5E.Dist${this.range.units.capitalize()}Abbr`));
+      }
+      else range.push(CONFIG.SW5E.distanceUnits[this.range.units]);
+      this.parent.labels.range = range.filterJoin(" ");
+    } else this.parent.labels.range = game.i18n.localize("SW5E.None");
+
+    if (this.recharge) this.parent.labels.recharge = `${game.i18n.localize("SW5E.Recharge")} [${`${this.recharge.value}${parseInt(this.recharge.value) < 6 ? "+" : ""}`
+      }]`;
+
+    // Substitute source UUIDs in consumption targets
+    if (!this.parent.isEmbedded) return;
+    if (["ammo", "charges", "material"].includes(this.consume.type) && this.consume.target?.includes(".")) {
+      const item = this.parent.actor.sourcedItems?.get(this.consume.target);
+      if (item) this.consume.target = item.id;
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare a specific final formula, passing resolution errors to actor if available.
+   * @param {string} keyPath           Path within system data to where the property can be found.
+   * @param {object} options
+   * @param {string} options.label     Localizable name for the property to display in warnings.
+   * @param {object} options.rollData  Roll data to use to evaluate the formula.
+   */
+  _prepareFinalFormula(keyPath, { label, rollData }) {
+    const value = foundry.utils.getProperty(this, keyPath);
+    if (!value) return;
+    const property = game.i18n.localize(label);
+    try {
+      foundry.utils.setProperty(
+        this, keyPath, Roll.safeEval(replaceFormulaData(value, rollData, { item: this.parent, property }))
+      );
+    } catch (err) {
+      if (this.parent.isEmbedded) {
+        const message = game.i18n.format("SW5E.FormulaMalformedError", { property, name: this.parent.name });
+        this.parent.actor._preparationWarnings.push({ message, link: this.parent.uuid, type: "error" });
+        console.error(message, err);
+      }
+    }
+  }
+
+  /* -------------------------------------------- */
+  /*  Data Migration                              */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
@@ -181,22 +233,19 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
   static #migrateRanges(source) {
     if (!("range" in source)) return;
     source.range ??= {};
-    if (source.range.units === null) source.range.units = "";
-    if (typeof source.range.long === "number" && Number.isNaN(source.range.long)) source.range.long = null;
+    if (source.range.units === "none") source.range.units = "";
     if (typeof source.range.long === "string") {
       if (source.range.long === "") source.range.long = null;
       else if (Number.isNumeric(source.range.long)) source.range.long = Number(source.range.long);
     }
-    if (typeof source.range.value === "number" && Number.isNaN(source.range.value)) source.range.value = null;
-    if (typeof source.range.value === "string") {
-      if (source.range.value === "") {
-        source.range.value = null;
-        return;
-      }
-      const [value, long] = source.range.value.split("/");
-      if (Number.isNumeric(value)) source.range.value = Number(value);
-      if (Number.isNumeric(long)) source.range.long = Number(long);
+    if (typeof source.range.value !== "string") return;
+    if (source.range.value === "") {
+      source.range.value = null;
+      return;
     }
+    const [value, long] = source.range.value.split("/");
+    if (Number.isNumeric(value)) source.range.value = Number(value);
+    if (Number.isNumeric(long)) source.range.long = Number(long);
   }
 
   /* -------------------------------------------- */
@@ -226,8 +275,7 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
     if (!("target" in source)) return;
     source.target ??= {};
     if (source.target.value === "") source.target.value = null;
-    if (source.target.units === null) source.target.units = "";
-    if (source.target.type === null) source.target.type = "";
+    if (source.target.type === "none") source.target.type = "";
   }
 
   /* -------------------------------------------- */
@@ -255,7 +303,6 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
   static #migrateConsume(source) {
     if (!("consume" in source)) return;
     source.consume ??= {};
-    if (source.consume.type === null) source.consume.type = "";
     const amount = source.consume.amount;
     if (typeof amount === "string") {
       if (amount === "") source.consume.amount = null;
@@ -423,27 +470,4 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
   get isActive() {
     return !!this.activation.type;
   }
-
-  /* -------------------------------------------- */
-  /*  Deprecations                                */
-  /* -------------------------------------------- */
-
-  /**
-   * @deprecated since SW5e 3.0, available until SW5e 3.2
-   * @ignore
-   */
-  get activatedEffectChatProperties() {
-    foundry.utils.logCompatibilityWarning(
-      "ActivatedEffectTemplate#activatedEffectChatProperties is deprecated. "
-      + "Please use ActivatedEffectTemplate#activatedEffectCardProperties.",
-      { since: "SW5e 3.0", until: "SW5e 3.2", once: true }
-    );
-    return [
-      this.parent.labels.activation + (this.activation.condition ? ` (${this.activation.condition})` : ""),
-      this.parent.labels.target,
-      this.parent.labels.range,
-      this.parent.labels.duration
-    ];
-  }
-
 }

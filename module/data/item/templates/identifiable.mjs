@@ -16,10 +16,10 @@ export default class IdentifiableTemplate extends SystemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
-      identified: new BooleanField({required: true, initial: true, label: "SW5E.Identified"}),
+      identified: new BooleanField({ required: true, initial: true, label: "SW5E.Identified" }),
       unidentified: new SchemaField({
-        name: new StringField({label: "SW5E.NameUnidentified"}),
-        description: new HTMLField({label: "SW5E.DescriptionUnidentified"})
+        name: new StringField({ label: "SW5E.NameUnidentified" }),
+        description: new HTMLField({ label: "SW5E.DescriptionUnidentified" })
       })
     };
   }
@@ -41,8 +41,8 @@ export default class IdentifiableTemplate extends SystemDataModel {
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateUnidentified(source) {
-    if ( foundry.utils.hasProperty(source, "description.unidentified")
-      && !foundry.utils.getProperty(source, "unidentified.description") ) {
+    if (foundry.utils.hasProperty(source, "description.unidentified")
+      && !foundry.utils.getProperty(source, "unidentified.description")) {
       source.unidentified ??= {};
       source.unidentified.description = source.description.unidentified;
     }
@@ -54,21 +54,9 @@ export default class IdentifiableTemplate extends SystemDataModel {
 
   /** @inheritdoc */
   prepareDerivedData() {
-    if ( !this.identified && this.unidentified.name ) {
+    if (!this.identified && this.unidentified.name) {
       this.parent.name = this.unidentified.name;
     }
-
-    const description = this.unidentified.description ?? null;
-    Object.defineProperty(this.description, "unidentified", {
-      get() {
-        foundry.utils.logCompatibilityWarning(
-          "Item's unidentified description has moved to `system.unidentified.description`.",
-          { since: "SW5e 3.0", until: "SW5e 3.2" }
-        );
-        return description;
-      },
-      configurable: true
-    });
   }
 
   /* -------------------------------------------- */
@@ -86,37 +74,37 @@ export default class IdentifiableTemplate extends SystemDataModel {
    * @protected
    */
   async _preUpdate(changed, options, user) {
-    if ( !foundry.utils.hasProperty(changed, "system.identified") || changed.system.identified ) return;
+    if (!foundry.utils.hasProperty(changed, "system.identified") || changed.system.identified) return;
 
     const fetchName = !foundry.utils.getProperty(changed, "system.unidentified.name") && !this.unidentified.name;
     const fetchDesc = !foundry.utils.getProperty(changed, "system.unidentified.description")
       && !this.unidentified.description;
-    if ( !fetchName && !fetchDesc ) return;
+    if (!fetchName && !fetchDesc) return;
 
     let baseItemIdentifier;
-    if ( this.parent.type === "weapon" ) baseItemIdentifier = CONFIG.SW5E.weaponIds[this.type.baseItem];
-    else if ( this.parent.type === "tool" ) baseItemIdentifier = CONFIG.SW5E.toolIds[this.type.baseItem];
-    else if ( this.parent.type === "equipment" ) {
-      if ( this.type.value === "shield" ) baseItemIdentifier = CONFIG.SW5E.shieldIds[this.type.baseItem];
+    if (this.parent.type === "weapon") baseItemIdentifier = CONFIG.SW5E.weaponIds[this.type.baseItem];
+    else if (this.parent.type === "tool") baseItemIdentifier = CONFIG.SW5E.toolIds[this.type.baseItem];
+    else if (this.parent.type === "equipment") {
+      if (this.type.value === "shield") baseItemIdentifier = CONFIG.SW5E.shieldIds[this.type.baseItem];
       else baseItemIdentifier = CONFIG.SW5E.armorIds[this.type.baseItem];
     }
     const baseItem = await Trait.getBaseItem(baseItemIdentifier ?? "", { fullItem: fetchDesc });
 
     // If a base item is set, fetch that and use its name/description
-    if ( baseItem ) {
-      if ( fetchName ) {
+    if (baseItem) {
+      if (fetchName) {
         foundry.utils.setProperty(changed, "system.unidentified.name", game.i18n.format(
           "SW5E.Unidentified.DefaultName", { name: baseItem.name }
         ));
       }
-      if ( fetchDesc ) {
+      if (fetchDesc) {
         foundry.utils.setProperty(changed, "system.unidentified.description", baseItem.system.description.value);
       }
       return;
     }
 
     // Otherwise, set the name to match the item type
-    if ( fetchName ) foundry.utils.setProperty(changed, "system.unidentified.name", game.i18n.format(
+    if (fetchName) foundry.utils.setProperty(changed, "system.unidentified.name", game.i18n.format(
       "SW5E.Unidentified.DefaultName", { name: game.i18n.localize(CONFIG.Item.typeLabels[this.parent.type]) }
     ));
   }

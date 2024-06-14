@@ -1,5 +1,6 @@
 import { ItemDataModel } from "../../abstract.mjs";
 import { FormulaField } from "../../fields.mjs";
+import { default as EnchantmentField, EnchantmentData } from "../fields/enchantment-field.mjs";
 import SummonsField from "../fields/summons-field.mjs";
 
 const { ArrayField, BooleanField, NumberField, SchemaField, StringField } = foundry.data.fields;
@@ -7,23 +8,24 @@ const { ArrayField, BooleanField, NumberField, SchemaField, StringField } = foun
 /**
  * Data model template for item actions.
  *
- * @property {string} ability             Ability score to use when determining modifier.
- * @property {string} actionType          Action type as defined in `SW5E.itemActionTypes`.
- * @property {object} attack              Information how attacks are handled.
- * @property {string} attack.bonus        Numeric or dice bonus to attack rolls.
- * @property {boolean} attack.flat        Is the attack bonus the only bonus to attack rolls?
- * @property {string} chatFlavor          Extra text displayed in chat.
- * @property {object} critical            Information on how critical hits are handled.
- * @property {number} critical.threshold  Minimum number on the dice to roll a critical hit.
- * @property {string} critical.damage     Extra damage on critical hit.
- * @property {object} damage              Item damage formulas.
- * @property {string[][]} damage.parts    Array of damage formula and types.
- * @property {string} damage.versatile    Special versatile damage formula.
- * @property {string} formula             Other roll formula.
- * @property {object} save                Item saving throw data.
- * @property {string} save.ability        Ability required for the save.
- * @property {number} save.dc             Custom saving throw value.
- * @property {string} save.scaling        Method for automatically determining saving throw DC.
+ * @property {string} ability               Ability score to use when determining modifier.
+ * @property {string} actionType            Action type as defined in `SW5E.itemActionTypes`.
+ * @property {object} attack                Information how attacks are handled.
+ * @property {string} attack.bonus          Numeric or dice bonus to attack rolls.
+ * @property {boolean} attack.flat          Is the attack bonus the only bonus to attack rolls?
+ * @property {string} chatFlavor            Extra text displayed in chat.
+ * @property {object} critical              Information on how critical hits are handled.
+ * @property {number} critical.threshold    Minimum number on the dice to roll a critical hit.
+ * @property {string} critical.damage       Extra damage on critical hit.
+ * @property {object} damage                Item damage formulas.
+ * @property {string[][]} damage.parts      Array of damage formula and types.
+ * @property {string} damage.versatile      Special versatile damage formula.
+ * @property {EnchantmentData} enchantment  Enchantment configuration associated with this type.
+ * @property {string} formula               Other roll formula.
+ * @property {object} save                  Item saving throw data.
+ * @property {string} save.ability          Ability required for the save.
+ * @property {number} save.dc               Custom saving throw value.
+ * @property {string} save.scaling          Method for automatically determining saving throw DC.
  * @property {SummonsData} summons
  * @mixin
  */
@@ -31,62 +33,30 @@ export default class ActionTemplate extends ItemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
-      ability: new StringField({
-        required: true,
-        nullable: true,
-        initial: null,
-        label: "SW5E.AbilityModifier"
-      }),
-      actionType: new StringField({
-        required: true,
-        nullable: true,
-        initial: null,
-        label: "SW5E.ItemActionType"
-      }),
+      ability: new StringField({ required: true, nullable: true, initial: null, label: "SW5E.AbilityModifier" }),
+      actionType: new StringField({ required: true, nullable: true, initial: null, label: "SW5E.ItemActionType" }),
       attack: new SchemaField({
-        bonus: new FormulaField({required: true, label: "SW5E.ItemAttackBonus"}),
-        flat: new BooleanField({label: "SW5E.ItemAttackFlat"})
+        bonus: new FormulaField({ required: true, label: "SW5E.ItemAttackBonus" }),
+        flat: new BooleanField({ label: "SW5E.ItemAttackFlat" })
       }),
       chatFlavor: new StringField({ required: true, label: "SW5E.ChatFlavor" }),
       critical: new SchemaField({
         threshold: new NumberField({
-          required: true,
-          integer: true,
-          initial: null,
-          positive: true,
-          label: "SW5E.ItemCritThreshold"
+          required: true, integer: true, initial: null, positive: true, label: "SW5E.ItemCritThreshold"
         }),
         damage: new FormulaField({ required: true, label: "SW5E.ItemCritExtraDamage" })
       }),
-      damage: new SchemaField(
-        {
-          parts: new ArrayField(
-            new ArrayField(new StringField({ nullable: true })),
-            { required: true }
-          ),
-          versatile: new FormulaField({ required: true, label: "SW5E.VersatileDamage" })
-        },
-        { label: "SW5E.Damage" }
-      ),
+      damage: new SchemaField({
+        parts: new ArrayField(new ArrayField(new StringField({ nullable: true })), { required: true }),
+        versatile: new FormulaField({ required: true, label: "SW5E.VersatileDamage" })
+      }, { label: "SW5E.Damage" }),
+      enchantment: new EnchantmentField(),
       formula: new FormulaField({ required: true, label: "SW5E.OtherFormula" }),
-      save: new SchemaField(
-        {
-          ability: new StringField({ required: true, blank: true, label: "SW5E.Ability" }),
-          dc: new NumberField({
-            required: true,
-            min: 0,
-            integer: true,
-            label: "SW5E.AbbreviationDC"
-          }),
-          scaling: new StringField({
-            required: true,
-            blank: false,
-            initial: "power",
-            label: "SW5E.ScalingFormula"
-          })
-        },
-        { label: "SW5E.SavingThrow" }
-      ),
+      save: new SchemaField({
+        ability: new StringField({ required: true, blank: true, label: "SW5E.Ability" }),
+        dc: new NumberField({ required: true, min: 0, integer: true, label: "SW5E.AbbreviationDC" }),
+        scaling: new StringField({ required: true, blank: false, initial: "power", label: "SW5E.ScalingFormula" })
+      }, { label: "SW5E.SavingThrow" }),
       summons: new SummonsField()
     };
   }
@@ -102,7 +72,6 @@ export default class ActionTemplate extends ItemDataModel {
     ActionTemplate.#migrateAttack(source);
     ActionTemplate.#migrateCritical(source);
     ActionTemplate.#migrateSave(source);
-    ActionTemplate.#migrateDamage(source);
   }
 
   /* -------------------------------------------- */
@@ -122,11 +91,11 @@ export default class ActionTemplate extends ItemDataModel {
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateAttack(source) {
-    if ( "attackBonus" in source ) {
+    if ("attackBonus" in source) {
       source.attack ??= {};
       source.attack.bonus ??= source.attackBonus;
     }
-    if ( [0, "0", null].includes(source.attack?.bonus) ) source.attack.bonus = "";
+    if ([0, "0", null].includes(source.attack?.bonus)) source.attack.bonus = "";
   }
 
   /* -------------------------------------------- */
@@ -162,18 +131,6 @@ export default class ActionTemplate extends ItemDataModel {
   }
 
   /* -------------------------------------------- */
-
-  /**
-   * Migrate damage parts.
-   * @param {object} source  The candidate source data from which the model will be constructed.
-   */
-  static #migrateDamage(source) {
-    if (!("damage" in source)) return;
-    source.damage ??= {};
-    source.damage.parts ??= [];
-  }
-
-  /* -------------------------------------------- */
   /*  Getters                                     */
   /* -------------------------------------------- */
 
@@ -182,7 +139,7 @@ export default class ActionTemplate extends ItemDataModel {
    * @type {string|null}
    */
   get abilityMod() {
-    if ( this.ability === "none" ) return null;
+    if (this.ability === "none") return null;
     return (
       this.ability
       || this._typeAbilityMod
@@ -233,9 +190,9 @@ export default class ActionTemplate extends ItemDataModel {
    * @type {number|null}
    */
   get criticalThreshold() {
-    if ( !this.hasAttack ) return null;
+    if (!this.hasAttack) return null;
     let ammoThreshold = Infinity;
-    if ( this.hasAmmo ) {
+    if (this.hasAmmo) {
       ammoThreshold = this.parent?.actor?.items.get(this.consume.target)?.system.critical.threshold ?? Infinity;
     }
     const threshold = Math.min(this.critical.threshold ?? Infinity, this._typeCriticalThreshold, ammoThreshold);
@@ -317,6 +274,16 @@ export default class ActionTemplate extends ItemDataModel {
   /* -------------------------------------------- */
 
   /**
+   * Can this item enchant other items?
+   * @type {boolean}
+   */
+  get isEnchantment() {
+    return EnchantmentData.isEnchantment(this);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Does the Item provide an amount of healing instead of conventional damage?
    * @type {boolean}
    */
@@ -342,7 +309,7 @@ export default class ActionTemplate extends ItemDataModel {
   getRollData(options) {
     const data = super.getRollData(options);
     const key = this.abilityMod;
-    if ( data && key && ("abilities" in data) ) {
+    if (data && key && ("abilities" in data)) {
       const ability = data.abilities[key];
       data.mod = ability?.mod ?? 0;
     }

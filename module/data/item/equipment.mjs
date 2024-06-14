@@ -69,7 +69,7 @@ export default class EquipmentData extends ItemDataModel.mixin(
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
-      type: new ItemTypeField({value: "light", subtype: false}, {label: "SW5E.ItemEquipmentType"}),
+      type: new ItemTypeField({ value: "light", subtype: false }, { label: "SW5E.ItemEquipmentType" }),
       armor: new SchemaField(
         {
           value: new foundry.data.fields.NumberField({
@@ -78,7 +78,7 @@ export default class EquipmentData extends ItemDataModel.mixin(
             min: 0,
             label: "SW5E.ArmorClass"
           }),
-          magicalBonus: new NumberField({min: 0, integer: true, label: "SW5E.MagicalBonus"}),
+          magicalBonus: new NumberField({ min: 0, integer: true, label: "SW5E.MagicalBonus" }),
           dex: new NumberField({ required: true, integer: true, label: "SW5E.ItemEquipmentDexMod" })
         }
       ),
@@ -185,6 +185,15 @@ export default class EquipmentData extends ItemDataModel.mixin(
   }
 
   /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+    enchantable: true,
+    inventoryItem: true,
+    inventoryOrder: 200
+  }, { inplace: false }));
+
+  /* -------------------------------------------- */
   /*  Migrations                                  */
   /* -------------------------------------------- */
 
@@ -222,8 +231,8 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateType(source) {
-    if ( !("type" in source) ) return;
-    if ( source.type.value === "bonus" ) source.type.value = "trinket";
+    if (!("type" in source)) return;
+    if (source.type.value === "bonus") source.type.value = "trinket";
   }
 
   /* -------------------------------------------- */
@@ -263,7 +272,7 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static _migrateStealth(source) {
-    if ( foundry.utils.getProperty(source, "system.stealth") === true ) {
+    if (foundry.utils.getProperty(source, "system.stealth") === true) {
       foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", ["stealthDisadvantage"]);
     }
   }
@@ -275,7 +284,7 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateProficient(source) {
-    if ( typeof source.proficient === "boolean" ) source.proficient = Number(source.proficient);
+    if (typeof source.proficient === "boolean") source.proficient = Number(source.proficient);
   }
 
   /* -------------------------------------------- */
@@ -288,6 +297,14 @@ export default class EquipmentData extends ItemDataModel.mixin(
     this.armor.value = (this._source.armor.value ?? 0) + (this.magicAvailable ? (this.armor.magicalBonus ?? 0) : 0);
     this.type.label = CONFIG.SW5E.equipmentTypes[this.type.value]
       ?? game.i18n.localize(CONFIG.Item.typeLabels.equipment);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  prepareFinalData() {
+    this.prepareFinalActivatedEffectData();
+    this.prepareFinalEquippableData();
   }
 
   /* -------------------------------------------- */
@@ -357,10 +374,10 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * @returns {number}
    */
   get proficiencyMultiplier() {
-    if ( Number.isFinite(this.proficient) ) return this.proficient;
+    if (Number.isFinite(this.proficient)) return this.proficient;
     const actor = this.parent.actor;
-    if ( !actor ) return 0;
-    if ( actor.type === "npc" ) return 1; // NPCs are always considered proficient with any armor in their stat block.
+    if (!actor) return 0;
+    if (actor.type === "npc") return 1; // NPCs are always considered proficient with any armor in their stat block.
     const config = CONFIG.SW5E.armorProficienciesMap;
     const itemProf = config[this.type.value];
     const actorProfs = actor.system.traits?.armorProf?.value ?? new Set();
@@ -376,20 +393,5 @@ export default class EquipmentData extends ItemDataModel.mixin(
    */
   get isStarshipItem() {
     return (this.armor.type in CONFIG.SW5E.ssEquipmentTypes) || this.armor.type === "starship";
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Does this armor impose disadvantage on stealth checks?
-   * @type {boolean}
-   * @deprecated since SW5e 3.0, available until SW5e 3.2
-   */
-  get stealth() {
-    foundry.utils.logCompatibilityWarning(
-      "The `system.stealth` value on equipment has migrated to the 'stealthDisadvantage' property.",
-      { since: "SW5e 3.0", until: "SW5e 3.2" }
-    );
-    return this.properties.has("stealthDisadvantage");
   }
 }

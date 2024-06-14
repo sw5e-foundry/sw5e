@@ -51,8 +51,8 @@ export default class WeaponData extends ItemDataModel.mixin(
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
-      type: new ItemTypeField({value: "simpleM", subtype: false}, {label: "SW5E.ItemWeaponType"}),
-      magicalBonus: new NumberField({min: 0, integer: true, label: "SW5E.MagicalBonus"}),
+      type: new ItemTypeField({ value: "simpleM", subtype: false }, { label: "SW5E.ItemWeaponType" }),
+      magicalBonus: new NumberField({ min: 0, integer: true, label: "SW5E.MagicalBonus" }),
       weaponClass: new StringField({
         required: true,
         blank: true,
@@ -79,7 +79,7 @@ export default class WeaponData extends ItemDataModel.mixin(
         },
         {}
       ),
-      properties: new SetField(new StringField(), {label: "SW5E.ItemWeaponProperties"}),
+      properties: new SetField(new StringField(), { label: "SW5E.ItemWeaponProperties" }),
       proficient: new NumberField({
         required: true,
         min: 0,
@@ -95,6 +95,15 @@ export default class WeaponData extends ItemDataModel.mixin(
       })
     });
   }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+    enchantable: true,
+    inventoryItem: true,
+    inventoryOrder: 100
+  }, { inplace: false }));
 
   /* -------------------------------------------- */
   /*  Data Migrations                             */
@@ -114,7 +123,7 @@ export default class WeaponData extends ItemDataModel.mixin(
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migratePropertiesData(source) {
-    if ( foundry.utils.getType(source.properties) !== "Object" ) return;
+    if (foundry.utils.getType(source.properties) !== "Object") return;
     source.properties = filteredKeys(source.properties);
   }
 
@@ -136,6 +145,14 @@ export default class WeaponData extends ItemDataModel.mixin(
   prepareDerivedData() {
     super.prepareDerivedData();
     this.type.label = CONFIG.SW5E.weaponTypes[this.type.value] ?? game.i18n.localize(CONFIG.Item.typeLabels.weapon);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  prepareFinalData() {
+    this.prepareFinalActivatedEffectData();
+    this.prepareFinalEquippableData();
   }
 
   /* -------------------------------------------- */
@@ -180,14 +197,9 @@ export default class WeaponData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   get _typeAbilityMod() {
-    if (["simpleB", "martialB"].includes(this.type.value)) return "dex";
-
-    const abilities = this.parent?.actor?.system.abilities;
-    if (this.properties.has("fin") && abilities) {
-      return (abilities.dex?.mod ?? 0) >= (abilities.str?.mod ?? 0) ? "dex" : "str";
-    }
-
-    return null;
+    const { str, dex } = this.parent?.actor?.system.abilities ?? {};
+    if (this.properties.has("fin") && str && dex) return (dex.mod > str.mod) ? "dex" : "str";
+    return { simpleM: "str", martialM: "str", simpleB: "dex", martialB: "dex" }[this.type.value] ?? null;
   }
 
   /* -------------------------------------------- */
@@ -242,11 +254,11 @@ export default class WeaponData extends ItemDataModel.mixin(
    * @returns {number}
    */
   get proficiencyMultiplier() {
-    if ( Number.isFinite(this.proficient) ) return this.proficient;
+    if (Number.isFinite(this.proficient)) return this.proficient;
     const actor = this.parent.actor;
-    if ( !actor ) return 0;
+    if (!actor) return 0;
     // NPCs and Starships are always considered proficient with any weapon in their stat block.
-    if ( actor.type === "npc" || this.isStarshipWeapon ) return 1;
+    if (actor.type === "npc" || this.isStarshipWeapon) return 1;
     const config = CONFIG.SW5E.weaponProficienciesMap;
     const itemProf = config[this.type.value];
     const actorProfs = actor.system.traits?.weaponProf?.value ?? new Set();

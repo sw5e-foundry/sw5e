@@ -27,7 +27,7 @@ export default class ContainerData extends ItemDataModel.mixin(
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
-      quantity: new foundry.data.fields.NumberField({min: 1, max: 1}),
+      quantity: new foundry.data.fields.NumberField({ min: 1, max: 1 }),
       properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
         label: "SW5E.ItemContainerProperties"
       }),
@@ -51,6 +51,15 @@ export default class ContainerData extends ItemDataModel.mixin(
   }
 
   /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+    enchantable: true,
+    inventoryItem: true,
+    inventoryOrder: 500
+  }, { inplace: false }));
+
+  /* -------------------------------------------- */
   /*  Data Migrations                             */
   /* -------------------------------------------- */
 
@@ -67,7 +76,7 @@ export default class ContainerData extends ItemDataModel.mixin(
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static _migrateWeightlessData(source) {
-    if ( foundry.utils.getProperty(source, "system.capacity.weightless") === true ) {
+    if (foundry.utils.getProperty(source, "system.capacity.weightless") === true) {
       foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", ["weightlessContents"]);
     }
   }
@@ -86,19 +95,9 @@ export default class ContainerData extends ItemDataModel.mixin(
   /*  Data Preparation                            */
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
-  prepareDerivedData() {
-    const system = this;
-    Object.defineProperty(this.capacity, "weightless", {
-      get() {
-        foundry.utils.logCompatibilityWarning(
-          "The `system.capacity.weightless` value on containers has migrated to the 'weightlessContents' property.",
-          { since: "SW5e 3.0", until: "SW5e 3.2" }
-        );
-        return system.properties.has("weightlessContents");
-      },
-      configurable: true
-    });
+  /** @inheritDoc */
+  prepareFinalData() {
+    this.prepareFinalEquippableData();
   }
 
   /* -------------------------------------------- */
@@ -107,7 +106,7 @@ export default class ContainerData extends ItemDataModel.mixin(
   async getFavoriteData() {
     const data = super.getFavoriteData();
     const capacity = await this.computeCapacity();
-    if ( Number.isFinite(capacity.max) ) return foundry.utils.mergeObject(await data, { uses: capacity });
+    if (Number.isFinite(capacity.max)) return foundry.utils.mergeObject(await data, { uses: capacity });
     return await data;
   }
 
@@ -120,19 +119,19 @@ export default class ContainerData extends ItemDataModel.mixin(
    * @type {Collection<Item5e>|Promise<Collection<Item5e>>}
    */
   get contents() {
-    if ( !this.parent ) return new foundry.utils.Collection();
+    if (!this.parent) return new foundry.utils.Collection();
 
     // If in a compendium, fetch using getDocuments and return a promise
-    if ( this.parent.pack && !this.parent.isEmbedded ) {
+    if (this.parent.pack && !this.parent.isEmbedded) {
       const pack = game.packs.get(this.parent.pack);
-      return pack.getDocuments({system: { container: this.parent.id }}).then(d =>
+      return pack.getDocuments({ system: { container: this.parent.id } }).then(d =>
         new foundry.utils.Collection(d.map(d => [d.id, d]))
       );
     }
 
     // Otherwise use local document collection
     return (this.parent.isEmbedded ? this.parent.actor.items : game.items).reduce((collection, item) => {
-      if ( item.system.container === this.parent.id ) collection.set(item.id, item);
+      if (item.system.container === this.parent.id) collection.set(item.id, item);
       return collection;
     }, new foundry.utils.Collection());
   }
@@ -144,12 +143,12 @@ export default class ContainerData extends ItemDataModel.mixin(
    * @type {Collection<Item5e>|Promise<Collection<Item5e>>}
    */
   get allContainedItems() {
-    if ( !this.parent ) return new foundry.utils.Collection();
-    if ( this.parent.pack ) return this.#allContainedItems();
+    if (!this.parent) return new foundry.utils.Collection();
+    if (this.parent.pack) return this.#allContainedItems();
 
     return this.contents.reduce((collection, item) => {
       collection.set(item.id, item);
-      if ( item.type === "container" ) item.system.allContainedItems.forEach(i => collection.set(i.id, i));
+      if (item.type === "container") item.system.allContainedItems.forEach(i => collection.set(i.id, i));
       return collection;
     }, new foundry.utils.Collection());
   }
@@ -163,7 +162,7 @@ export default class ContainerData extends ItemDataModel.mixin(
     return (await this.contents).reduce(async (promise, item) => {
       const collection = await promise;
       collection.set(item.id, item);
-      if ( item.type === "container" ) (await item.system.allContainedItems).forEach(i => collection.set(i.id, i));
+      if (item.type === "container") (await item.system.allContainedItems).forEach(i => collection.set(i.id, i));
       return collection;
     }, new foundry.utils.Collection());
   }
@@ -176,8 +175,8 @@ export default class ContainerData extends ItemDataModel.mixin(
    * @returns {Item5e|Promise<Item5e>}  Item if found.
    */
   getContainedItem(id) {
-    if ( this.parent?.isEmbedded ) return this.parent.actor.items.get(id);
-    if ( this.parent?.pack ) return game.packs.get(this.parent.pack)?.getDocument(id);
+    if (this.parent?.isEmbedded) return this.parent.actor.items.get(id);
+    if (this.parent?.pack) return game.packs.get(this.parent.pack)?.getDocument(id);
     return game.items.get(id);
   }
 
@@ -191,7 +190,7 @@ export default class ContainerData extends ItemDataModel.mixin(
   get contentsCount() {
     const reducer = (count, item) => count + item.system.quantity;
     const items = this.allContainedItems;
-    if ( items instanceof Promise ) return items.then(items => items.reduce(reducer, 0));
+    if (items instanceof Promise) return items.then(items => items.reduce(reducer, 0));
     return items.reduce(reducer, 0);
   }
 
@@ -202,8 +201,10 @@ export default class ContainerData extends ItemDataModel.mixin(
    * @type {number|Promise<number>}
    */
   get contentsWeight() {
-    if ( this.parent?.pack && !this.parent?.isEmbedded ) return this.#contentsWeight();
-    return this.contents.reduce((weight, item) => weight + item.system.totalWeight, this.currencyWeight);
+    if (this.parent?.pack && !this.parent?.isEmbedded) return this.#contentsWeight();
+    return this.contents.reduce((weight, item) =>
+      weight + item.system.totalWeightIn(this.weight.units), this.currencyWeight
+    );
   }
 
   /**
@@ -212,7 +213,9 @@ export default class ContainerData extends ItemDataModel.mixin(
    */
   async #contentsWeight() {
     const contents = await this.contents;
-    return contents.reduce(async (weight, item) => await weight + await item.system.totalWeight, this.currencyWeight);
+    return contents.reduce(async (weight, item) =>
+      await weight + await item.system.totalWeightIn(this.weight.units), this.currencyWeight
+    );
   }
 
   /* -------------------------------------------- */
@@ -222,10 +225,10 @@ export default class ContainerData extends ItemDataModel.mixin(
    * @type {number|Promise<number>}
    */
   get totalWeight() {
-    if ( this.properties.has("weightlessContents") ) return this.weight;
+    if (this.properties.has("weightlessContents")) return this.weight.value;
     const containedWeight = this.contentsWeight;
-    if ( containedWeight instanceof Promise ) return containedWeight.then(c => this.weight + c);
-    return this.weight + containedWeight;
+    if (containedWeight instanceof Promise) return containedWeight.then(c => this.weight.value + c);
+    return this.weight.value + containedWeight;
   }
 
   /* -------------------------------------------- */
@@ -245,14 +248,14 @@ export default class ContainerData extends ItemDataModel.mixin(
   async computeCapacity() {
     const { value, type } = this.capacity;
     const context = { max: value ?? Infinity };
-    if ( type === "weight" ) {
+    if (type === "weight") {
       context.value = await this.contentsWeight;
       context.units = game.i18n.localize("SW5E.AbbreviationLbs");
     } else {
       context.value = await this.contentsCount;
       context.units = game.i18n.localize("SW5E.ItemContainerCapacityItems");
     }
-    context.pct = Math.clamped(context.max ? (context.value / context.max) * 100 : 0, 0, 100);
+    context.pct = Math.clamp(context.max ? (context.value / context.max) * 100 : 0, 0, 100);
     return context;
   }
 
@@ -263,7 +266,7 @@ export default class ContainerData extends ItemDataModel.mixin(
   /** @inheritdoc */
   async _onUpdate(changed, options, userId) {
     // Keep contents folder synchronized with container
-    if ( (game.user.id === userId) && foundry.utils.hasProperty(changed, "folder") ) {
+    if ((game.user.id === userId) && foundry.utils.hasProperty(changed, "folder")) {
       const contents = await this.contents;
       await Item.updateDocuments(contents.map(c => ({ _id: c.id, folder: changed.folder })), {
         parent: this.parent.parent, pack: this.parent.pack, ...options, render: false

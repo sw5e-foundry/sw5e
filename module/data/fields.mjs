@@ -13,7 +13,7 @@ export class AdvancementField extends foundry.data.fields.ObjectField {
    */
   getModelForType(type) {
     let config = CONFIG.SW5E.advancementTypes[type];
-    if ( config?.prototype instanceof Advancement ) {
+    if (config?.prototype instanceof Advancement) {
       foundry.utils.logCompatibilityWarning(
         "Advancement type configuration changed into an object with `documentClass` defining the advancement class.",
         { since: "SW5e 3.1", until: "SW5e 3.3", once: true }
@@ -52,7 +52,7 @@ export class AdvancementField extends foundry.data.fields.ObjectField {
    */
   migrateSource(sourceData, fieldData) {
     const cls = this.getModelForType(fieldData.type);
-    if ( cls ) cls.migrateDataSafe(fieldData);
+    if (cls) cls.migrateDataSafe(fieldData);
   }
 }
 
@@ -128,7 +128,7 @@ export class AdvancementDataField extends foundry.data.fields.ObjectField {
    */
   migrateSource(sourceData, fieldData) {
     const cls = this.getModel();
-    if ( cls ) cls.migrateDataSafe(fieldData);
+    if (cls) cls.migrateDataSafe(fieldData);
   }
 }
 
@@ -158,11 +158,11 @@ export class FormulaField extends foundry.data.fields.StringField {
 
   /** @inheritdoc */
   _validateType(value) {
+    Roll.validate(value);
     if (this.options.deterministic) {
       const roll = new Roll(value);
       if (!roll.isDeterministic) throw new Error("must not contain dice terms");
-      Roll.safeEval(roll.formula);
-    } else Roll.validate(value);
+    }
     super._validateType(value);
   }
 }
@@ -209,8 +209,8 @@ export class UUIDField extends foundry.data.fields.StringField {
  * @param {LocalDocumentFieldOptions} options  Options which configure the behavior of the field.
  */
 export class LocalDocumentField extends foundry.data.fields.DocumentIdField {
-  constructor(model, options={}) {
-    if ( !foundry.utils.isSubclass(model, foundry.abstract.DataModel) ) {
+  constructor(model, options = {}) {
+    if (!foundry.utils.isSubclass(model, foundry.abstract.DataModel)) {
       throw new Error("A ForeignDocumentField must specify a DataModel subclass as its type");
     }
 
@@ -242,8 +242,8 @@ export class LocalDocumentField extends foundry.data.fields.DocumentIdField {
 
   /** @override */
   _cast(value) {
-    if ( typeof value === "string" ) return value;
-    if ( (value instanceof this.model) ) return value._id;
+    if (typeof value === "string") return value;
+    if ((value instanceof this.model)) return value._id;
     throw new Error(`The value provided to a LocalDocumentField must be a ${this.model.name} instance.`);
   }
 
@@ -251,19 +251,19 @@ export class LocalDocumentField extends foundry.data.fields.DocumentIdField {
 
   /** @inheritdoc */
   _validateType(value) {
-    if ( !this.options.fallback ) super._validateType(value);
+    if (!this.options.fallback) super._validateType(value);
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  initialize(value, model, options={}) {
-    if ( this.idOnly ) return this.options.fallback || foundry.data.validators.isValidId(value) ? value : null;
+  initialize(value, model, options = {}) {
+    if (this.idOnly) return this.options.fallback || foundry.data.validators.isValidId(value) ? value : null;
     const collection = model.parent?.[this.model.metadata.collection];
     return () => {
       const document = collection?.get(value);
-      if ( !document ) return this.options.fallback ? value : null;
-      if ( this.options.fallback ) Object.defineProperty(document, "toString", {
+      if (!document) return this.options.fallback ? value : null;
+      if (this.options.fallback) Object.defineProperty(document, "toString", {
         value: () => document.name,
         configurable: true,
         enumerable: false
@@ -372,7 +372,7 @@ export class MappingField extends foundry.data.fields.ObjectField {
   _validateType(value, options = {}) {
     if (foundry.utils.getType(value) !== "Object") throw new Error("must be an Object");
     const errors = this._validateValues(value, options);
-    if (!foundry.utils.isEmpty(errors)) throw new foundry.data.fields.ModelValidationError(errors);
+    if (!foundry.utils.isEmpty(errors)) throw new foundry.data.validation.DataModelValidationError(errors);
   }
 
   /* -------------------------------------------- */

@@ -1,8 +1,10 @@
 import { formatNumber, getSceneTargets, simplifyBonus } from "./utils.mjs";
 import Award from "./applications/award.mjs";
+import JournalPowerListPageSheet from "./applications/journal/powers-page-sheet.mjs";
 import { damageRoll } from "./dice/_module.mjs";
 import * as Trait from "./documents/actor/trait.mjs";
 import Item5e from "./documents/item.mjs";
+import { rollItem } from "./documents/macro.mjs";
 
 const slugify = value => value?.slugify().replaceAll("-", "");
 
@@ -11,22 +13,23 @@ const slugify = value => value?.slugify().replaceAll("-", "");
  */
 export function registerCustomEnrichers() {
   CONFIG.TextEditor.enrichers.push({
-    pattern: /\[\[\/(?<type>award|check|damage|save|skill|tool) (?<config>[^\]]+)]](?:{(?<label>[^}]+)})?/gi,
+    pattern:
+      /\[\[\/(?<type>award|check|damage|healing|item|save|skill|tool) (?<config>[^\]]+)]](?:{(?<label>[^}]+)})?/gi,
     enricher: enrichString
   },
-  {
-    pattern: /\[\[(?<type>lookup) (?<config>[^\]]+)]](?:{(?<label>[^}]+)})?/gi,
-    enricher: enrichString
-  },
-  {
-    pattern: /&(?<type>Reference)\[(?<config>[^\]]+)](?:{(?<label>[^}]+)})?/gi,
-    enricher: enrichString
-  },
-  {
-    // TODO: Remove when v11 support is dropped
-    pattern: /@(?<type>Embed)\[(?<config>[^\]]+)](?:{(?<label>[^}]+)})?/gi,
-    enricher: enrichString
-  });
+    {
+      pattern: /\[\[(?<type>lookup) (?<config>[^\]]+)]](?:{(?<label>[^}]+)})?/gi,
+      enricher: enrichString
+    },
+    {
+      pattern: /&(?<type>Reference)\[(?<config>[^\]]+)](?:{(?<label>[^}]+)})?/gi,
+      enricher: enrichString
+    },
+    {
+      // TODO: Remove when v11 support is dropped
+      pattern: /@(?<type>Embed)\[(?<config>[^\]]+)](?:{(?<label>[^}]+)})?/gi,
+      enricher: enrichString
+    });
 
   document.body.addEventListener("click", applyAction);
   document.body.addEventListener("click", awardAction);
@@ -46,8 +49,9 @@ async function enrichString(match, options) {
   let { type, config, label } = match.groups;
   config = parseConfig(config);
   config._input = match[0];
-  switch ( type.toLowerCase() ) {
+  switch (type.toLowerCase()) {
     case "award": return enrichAward(config, label, options);
+    case "healing": config._isHealing = true;
     case "damage": return enrichDamage(config, label, options);
     case "check":
     case "skill":
@@ -55,6 +59,7 @@ async function enrichString(match, options) {
     case "lookup": return enrichLookup(config, label, options);
     case "save": return enrichSave(config, label, options);
     case "embed": return enrichEmbed(config, label, options);
+    case "item": return enrichItem(config, label, options);
     case "reference": return enrichReference(config, label, options);
   }
   return null;
@@ -69,13 +74,13 @@ async function enrichString(match, options) {
  */
 function parseConfig(match) {
   const config = { _config: match, values: [] };
-  for ( const part of match.match(/(?:[^\s"]+|"[^"]*")+/g) ) {
-    if ( !part ) continue;
+  for (const part of match.match(/(?:[^\s"]+|"[^"]*")+/g)) {
+    if (!part) continue;
     const [key, value] = part.split("=");
     const valueLower = value?.toLowerCase();
-    if ( value === undefined ) config.values.push(key.replace(/(^"|"$)/g, ""));
-    else if ( ["true", "false"].includes(valueLower) ) config[key] = valueLower === "true";
-    else if ( Number.isNumeric(value) ) config[key] = Number(value);
+    if (value === undefined) config.values.push(key.replace(/(^"|"$)/g, ""));
+    else if (["true", "false"].includes(valueLower)) config[key] = valueLower === "true";
+    else if (Number.isNumeric(value)) config[key] = Number(value);
     else config[key] = value.replace(/(^"|"$)/g, "");
   }
   return config;
@@ -97,7 +102,7 @@ async function enrichAward(config, label, options) {
   let parsed;
   try {
     parsed = Award.parseAwardCommand(command);
-  } catch(err) {
+  } catch (err) {
     console.warn(err.message);
     return null;
   }
@@ -107,7 +112,7 @@ async function enrichAward(config, label, options) {
   block.dataset.awardCommand = command;
 
   const entries = [];
-  for ( let [key, amount] of Object.entries(parsed.currency) ) {
+  for (let [key, amount] of Object.entries(parsed.currency)) {
     const label = CONFIG.SW5E.currencies[key].label;
     amount = Number.isNumeric(amount) ? formatNumber(amount) : amount;
     entries.push(`
@@ -116,14 +121,14 @@ async function enrichAward(config, label, options) {
       </span>
     `);
   }
-  if ( parsed.xp ) entries.push(`
+  if (parsed.xp) entries.push(`
     <span class="award-entry">
       ${formatNumber(parsed.xp)} ${game.i18n.localize("SW5E.ExperiencePointsAbbr")}
     </span>
   `);
 
   let award = game.i18n.getListFormatter({ type: "unit" }).format(entries);
-  if ( parsed.each ) award = game.i18n.format("EDITOR.SW5E.Inline.AwardEach", { award });
+  if (parsed.each) award = game.i18n.format("EDITOR.SW5E.Inline.AwardEach", { award });
 
   block.innerHTML += `
     ${award}
@@ -194,50 +199,50 @@ async function enrichAward(config, label, options) {
  * ```
  */
 async function enrichCheck(config, label, options) {
-  for ( let value of config.values ) {
+  for (let value of config.values) {
     value = foundry.utils.getType(value) === "string" ? slugify(value) : value;
-    if ( value in CONFIG.SW5E.enrichmentLookup.abilities ) config.ability = value;
-    else if ( value in CONFIG.SW5E.enrichmentLookup.skills ) config.skill = value;
-    else if ( value in CONFIG.SW5E.enrichmentLookup.tools ) config.tool = value;
-    else if ( Number.isNumeric(value) ) config.dc = Number(value);
+    if (value in CONFIG.SW5E.enrichmentLookup.abilities) config.ability = value;
+    else if (value in CONFIG.SW5E.enrichmentLookup.skills) config.skill = value;
+    else if (value in CONFIG.SW5E.enrichmentLookup.tools) config.tool = value;
+    else if (Number.isNumeric(value)) config.dc = Number(value);
     else config[value] = true;
   }
 
   let invalid = false;
 
   const skillConfig = CONFIG.SW5E.enrichmentLookup.skills[slugify(config.skill)];
-  if ( config.skill && !skillConfig ) {
+  if (config.skill && !skillConfig) {
     console.warn(`Skill ${config.skill} not found while enriching ${config._input}.`);
     invalid = true;
-  } else if ( config.skill && !config.ability ) {
+  } else if (config.skill && !config.ability) {
     config.ability = skillConfig.ability;
   }
-  if ( skillConfig?.key ) config.skill = skillConfig.key;
+  if (skillConfig?.key) config.skill = skillConfig.key;
 
   const toolUUID = CONFIG.SW5E.enrichmentLookup.tools[slugify(config.tool)];
   const toolIndex = toolUUID ? Trait.getBaseItem(toolUUID, { indexOnly: true }) : null;
-  if ( config.tool && !toolIndex ) {
+  if (config.tool && !toolIndex) {
     console.warn(`Tool ${config.tool} not found while enriching ${config._input}.`);
     invalid = true;
   }
 
   let abilityConfig = CONFIG.SW5E.enrichmentLookup.abilities[slugify(config.ability)];
-  if ( config.ability && !abilityConfig ) {
+  if (config.ability && !abilityConfig) {
     console.warn(`Ability ${config.ability} not found while enriching ${config._input}.`);
     invalid = true;
-  } else if ( !abilityConfig ) {
+  } else if (!abilityConfig) {
     console.warn(`No ability provided while enriching check ${config._input}.`);
     invalid = true;
   }
-  if ( abilityConfig?.key ) config.ability = abilityConfig.key;
+  if (abilityConfig?.key) config.ability = abilityConfig.key;
 
-  if ( config.dc && !Number.isNumeric(config.dc) ) config.dc = simplifyBonus(config.dc, options.rollData ?? {});
+  if (config.dc && !Number.isNumeric(config.dc)) config.dc = simplifyBonus(config.dc, options.rollData ?? {});
 
-  if ( invalid ) return null;
+  if (invalid) return null;
 
   const type = config.skill ? "skill" : config.tool ? "tool" : "check";
   config = { type, ...config };
-  if ( !label ) label = createRollLabel(config);
+  if (!label) label = createRollLabel(config);
   return config.passive ? createPassiveTag(label, config) : createRollLink(label, config);
 }
 
@@ -269,23 +274,23 @@ async function enrichCheck(config, label, options) {
  * ```
  */
 async function enrichSave(config, label, options) {
-  for ( const value of config.values ) {
-    if ( value in CONFIG.SW5E.enrichmentLookup.abilities ) config.ability = value;
-    else if ( Number.isNumeric(value) ) config.dc = Number(value);
+  for (const value of config.values) {
+    if (value in CONFIG.SW5E.enrichmentLookup.abilities) config.ability = value;
+    else if (Number.isNumeric(value)) config.dc = Number(value);
     else config[value] = true;
   }
 
   const abilityConfig = CONFIG.SW5E.enrichmentLookup.abilities[config.ability];
-  if ( !abilityConfig ) {
+  if (!abilityConfig) {
     console.warn(`Ability ${config.ability} not found while enriching ${config._input}.`);
     return null;
   }
-  if ( abilityConfig?.key ) config.ability = abilityConfig.key;
+  if (abilityConfig?.key) config.ability = abilityConfig.key;
 
-  if ( config.dc && !Number.isNumeric(config.dc) ) config.dc = simplifyBonus(config.dc, options.rollData ?? {});
+  if (config.dc && !Number.isNumeric(config.dc)) config.dc = simplifyBonus(config.dc, options.rollData ?? {});
 
   config = { type: "save", ...config };
-  if ( !label ) label = createRollLabel(config);
+  if (!label) label = createRollLabel(config);
   return createRollLink(label, config);
 }
 
@@ -326,35 +331,47 @@ async function enrichSave(config, label, options) {
  *   <i class="fa-solid fa-dice-d20"></i> 8d4dl
  * </a> force
  * ````
+ *
+ * @example Create a healing link:
+ * ```[[/healing 2d6]]``` or ```[[/damage 2d6 healing]]```
+ * becomes
+ * ```html
+ * <a class="roll-action" data-type="damage" data-formula="2d6" data-damage-type="healing">
+ *   <i class="fa-solid fa-dice-d20"></i> 2d6
+ * </a> healing
+ * ```
  */
 async function enrichDamage(config, label, options) {
   const formulaParts = [];
-  if ( config.formula ) formulaParts.push(config.formula);
-  for ( const value of config.values ) {
-    if ( value in CONFIG.SW5E.damageTypes ) config.type = value;
-    else if ( value === "average" ) config.average = true;
+  if (config.formula) formulaParts.push(config.formula);
+  for (const value of config.values) {
+    if (value in CONFIG.SW5E.damageTypes) config.type = value;
+    else if (value in CONFIG.SW5E.healingTypes) config.type = value;
+    else if (value === "average") config.average = true;
+    else if (value === "temp") config.type = "temphp";
     else formulaParts.push(value);
   }
   config.formula = Roll.defaultImplementation.replaceFormulaData(formulaParts.join(" "), options.rollData ?? {});
-  if ( !config.formula ) return null;
-  config.damageType = config.type;
+  if (!config.formula) return null;
+  config.damageType = config.type ?? (config._isHealing ? "healing" : null);
   config.type = "damage";
 
-  if ( label ) return createRollLink(label, config);
+  if (label) return createRollLink(label, config);
 
+  const typeConfig = CONFIG.SW5E.damageTypes[config.damageType] ?? CONFIG.SW5E.healingTypes[config.damageType];
   const localizationData = {
     formula: createRollLink(config.formula, config).outerHTML,
-    type: game.i18n.localize(CONFIG.SW5E.damageTypes[config.damageType]?.label ?? "").toLowerCase()
+    type: game.i18n.localize(typeConfig?.label ?? "").toLowerCase()
   };
 
   let localizationType = "Short";
-  if ( config.average ) {
+  if (config.average) {
     localizationType = "Long";
-    if ( config.average === true ) {
+    if (config.average === true) {
       const minRoll = Roll.create(config.formula).evaluate({ minimize: true, async: true });
       const maxRoll = Roll.create(config.formula).evaluate({ maximize: true, async: true });
-      localizationData.average = Math.floor((await minRoll.total + await maxRoll.total) / 2);
-    } else if ( Number.isNumeric(config.average) ) {
+      localizationData.average = Math.floor(((await minRoll).total + (await maxRoll).total) / 2);
+    } else if (Number.isNumeric(config.average)) {
       localizationData.average = config.average;
     }
   }
@@ -381,31 +398,33 @@ const MAX_EMBED_DEPTH = 5;
  */
 async function enrichEmbed(config, label, options) {
   options._embedDepth ??= 0;
-  if ( options._embedDepth > MAX_EMBED_DEPTH ) {
+  if (options._embedDepth > MAX_EMBED_DEPTH) {
     console.warn(
       `Embed enrichers are restricted to ${MAX_EMBED_DEPTH} levels deep. ${config._input} cannot be enriched fully.`
     );
     return null;
   }
 
-  for ( const value of config.values ) {
-    if ( config.uuid ) break;
+  for (const value of config.values) {
+    if (config.uuid) break;
     try {
       const parsed = foundry.utils.parseUuid(value);
-      if ( parsed.documentId ) config.uuid = value;
-    } catch(err) {}
+      if (parsed.documentId) config.uuid = value;
+    } catch (err) { }
   }
 
   config.doc = await fromUuid(config.uuid, { relative: options.relativeTo });
-  if ( config.doc instanceof JournalEntryPage ) {
-    switch ( config.doc.type ) {
+  if (config.doc instanceof JournalEntryPage) {
+    switch (config.doc.type) {
       case "image": return embedImagePage(config, label, options);
       case "text":
+      case "map":
       case "rule": return embedTextPage(config, label, options);
+      case "powers": return embedPowerList(config, label, options);
     }
   }
-  else if ( config.doc instanceof RollTable ) return embedRollTable(config, label, options);
-  else if ( (config.doc instanceof Actor) || (config.doc instanceof Item) ) {
+  else if (config.doc instanceof RollTable) return embedRollTable(config, label, options);
+  else if ((config.doc instanceof Actor) || (config.doc instanceof Item)) {
     return embedDocument(config, label, options);
   }
   return null;
@@ -430,7 +449,7 @@ async function embedDocument(config, label, options) {
       ? "system.description.value"
       : "system.unidentified.description";
   const description = foundry.utils.getProperty(config.doc, keyPath);
-  if ( description === undefined ) return null;
+  if (description === undefined) return null;
 
   const enriched = await TextEditor.enrichHTML(description, options);
   return wrapEmbeddedText(enriched, config, label, options);
@@ -471,14 +490,18 @@ function embedImagePage(config, label, options) {
   const caption = label || config.doc.image.caption || config.doc.name;
 
   const figure = document.createElement("figure");
-  if ( config.classes ) figure.className = config.classes;
+  if (config.classes) figure.className = config.classes;
   figure.classList.add("content-embed");
   figure.innerHTML = `<img src="${config.doc.src}" alt="${config.alt || caption}">`;
 
-  if ( showCaption || showCite ) {
+  if (showCaption || showCite) {
     const figcaption = document.createElement("figcaption");
-    if ( showCaption ) figcaption.innerHTML += `<strong class="embed-caption">${caption}</strong>`;
-    if ( showCite ) figcaption.innerHTML += `<cite>${config.doc.toAnchor().outerHTML}</cite>`;
+    if (showCaption) figcaption.innerHTML += `<strong class="embed-caption">${caption}</strong>`;
+    if (showCite) {
+      const citeLink = config.doc.toAnchor();
+      if (game.release.generation < 12) citeLink.setAttribute("draggable", true);
+      figcaption.innerHTML += `<cite>${citeLink.outerHTML}</cite>`;
+    }
     figure.insertAdjacentElement("beforeend", figcaption);
   }
   return figure;
@@ -548,20 +571,20 @@ async function embedRollTable(config, label, options) {
   `;
 
   const getDocAnchor = (doc, resultData) => {
-    if ( doc ) return doc.toAnchor().outerHTML;
+    if (doc) return doc.toAnchor().outerHTML;
 
     // No doc found, create a broken anchor.
     return `<a class="content-link broken"><i class="fas fa-unlink"></i>${resultData.text || game.i18n.localize("Unknown")}</a>`;
   };
 
   const tbody = table.querySelector("tbody");
-  for ( const data of results ) {
+  for (const data of results) {
     const { range, type, text, documentCollection, documentId } = data;
     const row = document.createElement("tr");
     const [lo, hi] = range;
     row.innerHTML += `<td>${lo === hi ? lo : `${lo}&mdash;${hi}`}</td>`;
     let result;
-    switch ( type ) {
+    switch (type) {
       case CONST.TABLE_RESULT_TYPES.TEXT: result = await TextEditor.enrichHTML(text, options); break;
       case CONST.TABLE_RESULT_TYPES.DOCUMENT: {
         const doc = CONFIG[documentCollection]?.collection.instance?.get(documentId);
@@ -579,9 +602,9 @@ async function embedRollTable(config, label, options) {
     tbody.append(row);
   }
 
-  if ( config.inline ) {
+  if (config.inline) {
     const section = document.createElement("section");
-    if ( config.classes ) section.className = config.classes;
+    if (config.classes) section.className = config.classes;
     section.classList.add("content-embed");
     section.append(table);
     return section;
@@ -591,12 +614,12 @@ async function embedRollTable(config, label, options) {
   const showCite = config.cite !== false;
   const figure = document.createElement("figure");
   figure.append(table);
-  if ( config.classes ) figure.className = config.classes;
+  if (config.classes) figure.className = config.classes;
   figure.classList.add("content-embed");
-  if ( showCaption || showCite ) {
+  if (showCaption || showCite) {
     const figcaption = document.createElement("figcaption");
-    if ( showCaption ) {
-      if ( label ) figcaption.innerHTML += `<strong class="embed-caption">${label}</strong>`;
+    if (showCaption) {
+      if (label) figcaption.innerHTML += `<strong class="embed-caption">${label}</strong>`;
       else {
         const description = await TextEditor.enrichHTML(config.doc.description, options);
         const container = document.createElement("div");
@@ -605,10 +628,34 @@ async function embedRollTable(config, label, options) {
         figcaption.append(container);
       }
     }
-    if ( showCite ) figcaption.innerHTML += `<cite>${config.doc.toAnchor().outerHTML}</cite>`;
+    if (showCite) figcaption.innerHTML += `<cite>${config.doc.toAnchor().outerHTML}</cite>`;
     figure.append(figcaption);
   }
   return figure;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Embed a power list.
+ * @param {object} config              Configuration data.
+ * @param {string} label               Optional label to use as the table caption.
+ * @param {EnrichmentOptions} options  Options provided to customize text enrichment.
+ * @returns {Promise<HTMLElement|null>}
+ */
+async function embedPowerList(config, label, options) {
+  for (const value of config.values) {
+    if (value === "table") config.table = true;
+    else if (value in JournalPowerListPageSheet.GROUPING_MODES) config.grouping = value;
+  }
+  if (config.table) config.grouping = "level";
+
+  const sheet = new JournalPowerListPageSheet(config.doc, {
+    editable: false, displayAsTable: config.table, embedRendering: true, grouping: config.grouping
+  });
+  const rendered = await sheet._renderInner(await sheet.getData());
+  config.classes = `powers ${config.classes ?? ""}`;
+  return wrapEmbeddedText(rendered[0].innerHTML, config, label, options);
 }
 
 /* -------------------------------------------- */
@@ -622,9 +669,9 @@ async function embedRollTable(config, label, options) {
  * @returns {Promise<HTMLElement>}
  */
 function wrapEmbeddedText(enriched, config, label, options) {
-  if ( config.inline ) {
+  if (config.inline) {
     const section = document.createElement("section");
-    if ( config.classes ) section.className = config.classes;
+    if (config.classes) section.className = config.classes;
     section.classList.add("content-embed");
     section.innerHTML = enriched;
     return section;
@@ -636,12 +683,16 @@ function wrapEmbeddedText(enriched, config, label, options) {
   const figure = document.createElement("figure");
   figure.innerHTML = enriched;
 
-  if ( config.classes ) figure.className = config.classes;
+  if (config.classes) figure.className = config.classes;
   figure.classList.add("content-embed");
-  if ( showCaption || showCite ) {
+  if (showCaption || showCite) {
     const figcaption = document.createElement("figcaption");
-    if ( showCaption ) figcaption.innerHTML += `<strong class="embed-caption">${caption}</strong>`;
-    if ( showCite ) figcaption.innerHTML += `<cite>${config.doc.toAnchor().outerHTML}</cite>`;
+    if (showCaption) figcaption.innerHTML += `<strong class="embed-caption">${caption}</strong>`;
+    if (showCite) {
+      const citeLink = config.doc.toAnchor();
+      if (game.release.generation < 12) citeLink.setAttribute("draggable", true);
+      figcaption.innerHTML += `<cite>${citeLink.outerHTML}</cite>`;
+    }
     figure.insertAdjacentElement("beforeend", figcaption);
   }
 
@@ -669,29 +720,29 @@ function wrapEmbeddedText(enriched, config, label, options) {
 function enrichLookup(config, fallback, options) {
   let keyPath = config.path;
   let style = config.style;
-  for ( const value of config.values ) {
-    if ( value === "capitalize" ) style ??= "capitalize";
-    else if ( value === "lowercase" ) style ??= "lowercase";
-    else if ( value === "uppercase" ) style ??= "uppercase";
-    else if ( value.startsWith("@") ) keyPath ??= value;
+  for (const value of config.values) {
+    if (value === "capitalize") style ??= "capitalize";
+    else if (value === "lowercase") style ??= "lowercase";
+    else if (value === "uppercase") style ??= "uppercase";
+    else if (value.startsWith("@")) keyPath ??= value;
   }
 
-  if ( !keyPath ) {
+  if (!keyPath) {
     console.warn(`Lookup path must be defined to enrich ${config._input}.`);
     return null;
   }
 
   const data = options.relativeTo?.getRollData();
   let value = foundry.utils.getProperty(data, keyPath.substring(1)) ?? fallback;
-  if ( value && style ) {
-    if ( style === "capitalize" ) value = value.capitalize();
-    else if ( style === "lowercase" ) value = value.toLowerCase();
-    else if ( style === "uppercase" ) value = value.toUpperCase();
+  if (value && style) {
+    if (style === "capitalize") value = value.capitalize();
+    else if (style === "lowercase") value = value.toLowerCase();
+    else if (style === "uppercase") value = value.toUpperCase();
   }
 
   const span = document.createElement("span");
   span.classList.add("lookup-value");
-  if ( !value ) span.classList.add("not-found");
+  if (!value) span.classList.add("not-found");
   span.innerText = value ?? keyPath;
   return span;
 }
@@ -729,30 +780,30 @@ async function enrichReference(config, label, options) {
   let source;
   let isCondition = "condition" in config;
   const type = Object.keys(config).find(k => k in CONFIG.SW5E.ruleTypes);
-  if ( type ) {
+  if (type) {
     key = slugify(config[type]);
     source = foundry.utils.getProperty(CONFIG.SW5E, CONFIG.SW5E.ruleTypes[type].references)?.[key];
-  } else if ( config.values.length ) {
+  } else if (config.values.length) {
     key = slugify(config.values.join(""));
-    for ( const [type, { references }] of Object.entries(CONFIG.SW5E.ruleTypes) ) {
+    for (const [type, { references }] of Object.entries(CONFIG.SW5E.ruleTypes)) {
       source = foundry.utils.getProperty(CONFIG.SW5E, references)[key];
-      if ( source ) {
-        if ( type === "condition" ) isCondition = true;
+      if (source) {
+        if (type === "condition") isCondition = true;
         break;
       }
     }
   }
-  if ( !source ) {
+  if (!source) {
     console.warn(`No valid rule found while enriching ${config._input}.`);
     return null;
   }
   const uuid = foundry.utils.getType(source) === "Object" ? source.reference : source;
-  if ( !uuid ) return null;
+  if (!uuid) return null;
   const doc = await fromUuid(uuid);
   const span = document.createElement("span");
   span.classList.add("reference-link");
   span.append(doc.toAnchor({ name: label || doc.name }));
-  if ( isCondition ) {
+  if (isCondition && (config.apply !== false)) {
     const apply = document.createElement("a");
     apply.classList.add("enricher-action");
     apply.dataset.action = "apply";
@@ -770,14 +821,94 @@ async function enrichReference(config, label, options) {
 /* -------------------------------------------- */
 
 /**
+ * Enrich an item use link to roll an item on the selected token.
+ * @param {string[]} config              Configuration data.
+ * @param {string} [label]               Optional label to replace default text.
+ * @param {EnrichmentOptions} options  Options provided to customize text enrichment.
+ * @returns {Promise<HTMLElement|null>}  An HTML link if the item link could be built, otherwise null.
+ *
+ * @example Use an item from a Name:
+ * ```[[/item Heavy Crossbow]]```
+ * becomes
+ * ```html
+ * <a class="roll-action" data-type="item" data-roll-item-name="Heavy Crossbow">
+ *   <i class="fa-solid fa-dice-d20"></i> Heavy Crossbow
+ * </a>
+ * ```
+ *
+ * @example Use an Item from a UUID:
+ * ```[[/item Actor.M4eX4Mu5IHCr3TMf.Item.amUUCouL69OK1GZU]]```
+ * becomes
+ * ```html
+ * <a class="roll-action" data-type="item" data-roll-item-uuid="Actor.M4eX4Mu5IHCr3TMf.Item.amUUCouL69OK1GZU">
+ *   <i class="fa-solid fa-dice-d20"></i> Bite
+ * </a>
+ * ```
+ *
+ * @example Use an Item from an ID:
+ * ```[[/item amUUCouL69OK1GZU]]```
+ * becomes
+ * ```html
+ * <a class="roll-action" data-type="item" data-roll-item-uuid="Actor.M4eX4Mu5IHCr3TMf.Item.amUUCouL69OK1GZU">
+ *   <i class="fa-solid fa-dice-d20"></i> Bite
+ * </a>
+ * ```
+ */
+async function enrichItem(config, label, options) {
+  const givenItem = config.values.join(" ");
+  // If config is a UUID
+  const itemUuidMatch = givenItem.match(
+    /^(?<synthid>Scene\.\w{16}\.Token\.\w{16}\.)?(?<actorid>Actor\.\w{16})(?<itemid>\.?Item(?<relativeId>\.\w{16}))$/
+  );
+  if (itemUuidMatch) {
+    const ownerActor = itemUuidMatch.groups.actorid.trim();
+    if (!label) {
+      const item = await fromUuid(givenItem);
+      if (!item) {
+        console.warn(`Item not found while enriching ${givenItem}.`);
+        return null;
+      }
+      label = item.name;
+    }
+    return createRollLink(label, { type: "item", rollItemActor: ownerActor, rollItemUuid: givenItem });
+  }
+
+  let foundItem;
+  const foundActor = options.relativeTo instanceof Item
+    ? options.relativeTo.parent
+    : options.relativeTo instanceof Actor ? options.relativeTo : null;
+
+  // If config is an Item ID
+  if (/^\w{16}$/.test(givenItem) && foundActor) foundItem = foundActor.items.get(givenItem);
+
+  // If config is a relative UUID
+  if (givenItem.startsWith(".")) {
+    try {
+      foundItem = await fromUuid(givenItem, { relative: options.relativeTo });
+    } catch { return null; }
+  }
+
+  if (foundItem) {
+    if (!label) label = foundItem.name;
+    return createRollLink(label, { type: "item", rollItemUuid: foundItem.uuid });
+  }
+
+  // Finally, if config is an item name
+  if (!label) label = givenItem;
+  return createRollLink(label, { type: "item", rollItemActor: foundActor?.uuid, rollItemName: givenItem });
+}
+
+/* -------------------------------------------- */
+
+/**
  * Add a dataset object to the provided element.
  * @param {HTMLElement} element  Element to modify.
  * @param {object} dataset       Data properties to add.
  * @private
  */
 function _addDataset(element, dataset) {
-  for ( const [key, value] of Object.entries(dataset) ) {
-    if ( !["_config", "_input", "values"].includes(key) && value ) element.dataset[key] = value;
+  for (const [key, value] of Object.entries(dataset)) {
+    if (!key.startsWith("_") && (key !== "values") && value) element.dataset[key] = value;
   }
 }
 
@@ -818,35 +949,35 @@ export function createRollLabel(config) {
   const showDC = config.dc && !config.hideDC;
 
   let label;
-  switch ( config.type ) {
+  switch (config.type) {
     case "check":
     case "skill":
     case "tool":
-      if ( ability && (skill || tool) ) {
+      if (ability && (skill || tool)) {
         label = game.i18n.format("EDITOR.SW5E.Inline.SpecificCheck", { ability, type: skill ?? tool });
       } else {
         label = ability;
       }
-      if ( config.passive ) {
+      if (config.passive) {
         label = game.i18n.format(`EDITOR.SW5E.Inline.DCPassive${longSuffix}`, { dc: config.dc, check: label });
       } else {
-        if ( showDC ) label = game.i18n.format("EDITOR.SW5E.Inline.DC", { dc: config.dc, check: label });
+        if (showDC) label = game.i18n.format("EDITOR.SW5E.Inline.DC", { dc: config.dc, check: label });
         label = game.i18n.format(`EDITOR.SW5E.Inline.Check${longSuffix}`, { check: label });
       }
       break;
     case "concentration":
     case "save":
-      if ( config.type === "save" ) label = ability;
+      if (config.type === "save") label = ability;
       else label = `${game.i18n.localize("SW5E.Concentration")} ${ability ? `(${abbreviation})` : ""}`;
-      if ( showDC ) label = game.i18n.format("EDITOR.SW5E.Inline.DC", { dc: config.dc, check: label });
+      if (showDC) label = game.i18n.format("EDITOR.SW5E.Inline.DC", { dc: config.dc, check: label });
       label = game.i18n.format(`EDITOR.SW5E.Inline.Save${longSuffix}`, { save: label });
       break;
     default:
       return "";
   }
 
-  if ( config.icon ) {
-    switch ( config.type ) {
+  if (config.icon) {
+    switch (config.type) {
       case "check":
       case "skill":
         label = `<i class="sw5e-icon" data-src="systems/sw5e/icons/svg/ability-score-improvement.svg"></i>${label}`;
@@ -884,7 +1015,7 @@ function createRollLink(label, dataset) {
   span.insertAdjacentElement("afterbegin", link);
 
   // Add chat request link for GMs
-  if ( game.user.isGM && (dataset.type !== "damage") ) {
+  if (game.user.isGM && (dataset.type !== "damage") && (dataset.type !== "item")) {
     const gmLink = document.createElement("a");
     gmLink.classList.add("enricher-action");
     gmLink.dataset.action = "request";
@@ -910,9 +1041,9 @@ async function applyAction(event) {
   const target = event.target.closest('[data-action="apply"][data-status]');
   const status = target?.dataset.status;
   const effect = CONFIG.statusEffects.find(e => e.id === status);
-  if ( !effect ) return;
+  if (!effect) return;
   event.stopPropagation();
-  for ( const token of canvas.tokens.controlled ) await token.toggleEffect(effect);
+  for (const token of canvas.tokens.controlled) await token.toggleEffect(effect);
 }
 
 /* -------------------------------------------- */
@@ -925,7 +1056,7 @@ async function applyAction(event) {
 async function awardAction(event) {
   const target = event.target.closest('[data-action="awardRequest"]');
   const command = target?.closest("[data-award-command]")?.dataset.awardCommand;
-  if ( !command ) return;
+  if (!command) return;
   event.stopPropagation();
   Award.handleAward(command);
 }
@@ -939,44 +1070,45 @@ async function awardAction(event) {
  */
 async function rollAction(event) {
   const target = event.target.closest('.roll-link, [data-action="rollRequest"], [data-action="concentration"]');
-  if ( !target ) return;
+  if (!target) return;
   event.stopPropagation();
 
   const { type, ability, skill, tool, dc } = target.dataset;
   const options = { event };
-  if ( dc ) options.targetValue = dc;
+  if (dc) options.targetValue = dc;
 
   const action = event.target.closest("a")?.dataset.action ?? "roll";
 
   // Direct roll
-  if ( (action === "roll") || !game.user.isGM ) {
+  if ((action === "roll") || !game.user.isGM) {
     target.disabled = true;
     try {
-      switch ( type ) {
+      switch (type) {
         case "damage": return await rollDamage(event);
+        case "item": return await useItem(target.dataset);
       }
 
       const tokens = getSceneTargets();
-      if ( !tokens.length ) {
-        ui.notifications.warn(game.i18n.localize("EDITOR.SW5E.Inline.NoActorWarning"));
+      if (!tokens.length) {
+        ui.notifications.warn("EDITOR.SW5E.Inline.Warning.NoActor", { localize: true });
         return;
       }
 
-      for ( const token of tokens ) {
+      for (const token of tokens) {
         const actor = token.actor;
-        switch ( type ) {
+        switch (type) {
           case "check":
             await actor.rollAbilityTest(ability, options);
             break;
           case "concentration":
-            if ( ability in CONFIG.SW5E.abilities ) options.ability = ability;
+            if (ability in CONFIG.SW5E.abilities) options.ability = ability;
             await actor.rollConcentration(options);
             break;
           case "save":
             await actor.rollAbilitySave(ability, options);
             break;
           case "skill":
-            if ( ability ) options.ability = ability;
+            if (ability) options.ability = ability;
             await actor.rollSkill(skill, options);
             break;
           case "tool":
@@ -1001,10 +1133,10 @@ async function rollAction(event) {
         dataset: { ...target.dataset, action: "rollRequest" }
       }),
       flavor: game.i18n.localize("EDITOR.SW5E.Inline.RollRequest"),
-      speaker: MessageClass.getSpeaker({user: game.user})
+      speaker: MessageClass.getSpeaker({ user: game.user })
     };
     // TODO: Remove when v11 support is dropped.
-    if ( game.release.generation < 12 ) chatData.type = CONST.CHAT_MESSAGE_TYPES.OTHER;
+    if (game.release.generation < 12) chatData.type = CONST.CHAT_MESSAGE_TYPES.OTHER;
     return MessageClass.create(chatData);
   }
 }
@@ -1020,25 +1152,70 @@ async function rollDamage(event) {
   const target = event.target.closest(".roll-link");
   const { formula, damageType } = target.dataset;
 
-  const title = game.i18n.localize("SW5E.DamageRoll");
+  const isHealing = damageType in CONFIG.SW5E.healingTypes;
+  const title = game.i18n.localize(`SW5E.${isHealing ? "Healing" : "Damage"}Roll`);
   const rollConfig = {
     rollConfigs: [{
       parts: [formula],
       type: damageType
     }],
-    flavor: `${title} (${game.i18n.localize(CONFIG.SW5E.damageTypes[damageType]?.label ?? damageType)})`,
+    flavor: title,
     event,
     title,
     messageData: {
       "flags.sw5e": {
         targets: Item5e._formatAttackTargets(),
-        roll: {type: "damage"}
+        roll: { type: "damage" }
       },
       speaker: ChatMessage.implementation.getSpeaker()
     }
   };
 
-  if ( Hooks.call("sw5e.preRollDamage", undefined, rollConfig) === false ) return;
+  if (Hooks.call("sw5e.preRollDamage", undefined, rollConfig) === false) return;
   const roll = await damageRoll(rollConfig);
-  if ( roll ) Hooks.callAll("sw5e.rollDamage", undefined, roll);
+  if (roll) Hooks.callAll("sw5e.rollDamage", undefined, roll);
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Use an Item from an Item enricher.
+ * @param {object} [options]
+ * @param {string} [options.rollItemUuid]   Lookup the Item by UUID.
+ * @param {string} [options.rollItemName]   Lookup the Item by name.
+ * @param {string} [options.rollItemActor]  The UUID of a specific Actor that should use the Item.
+ * @returns {Promise}
+ */
+async function useItem({ rollItemUuid, rollItemName, rollItemActor } = {}) {
+  // If UUID is provided, always roll that item directly
+  if (rollItemUuid) return (await fromUuid(rollItemUuid))?.use();
+
+  if (!rollItemName) return;
+  const actor = rollItemActor ? await fromUuid(rollItemActor) : null;
+
+  // If no actor is specified or player isn't owner, fall back to the macro rolling logic
+  if (!actor?.isOwner) return rollItem(rollItemName);
+  const token = canvas.tokens.controlled[0];
+
+  // If a token is controlled, and it has an item with the correct name, activate it
+  let item = token?.actor.items.getName(rollItemName);
+
+  // Otherwise check the specified actor for the item
+  if (!item) {
+    item = actor.items.getName(rollItemName);
+
+    // Display a warning to indicate the item wasn't rolled from the controlled actor
+    if (item && canvas.tokens.controlled.length) ui.notifications.warn(
+      game.i18n.format("MACRO.5eMissingTargetWarn", {
+        actor: token.name, name: rollItemName, type: game.i18n.localize("DOCUMENT.Item")
+      })
+    );
+  }
+
+  if (item) return item.use();
+
+  // If no item could be found at all, display a warning
+  ui.notifications.warn(game.i18n.format("EDITOR.SW5E.Inline.Warning.NoItemOnActor", {
+    actor: actor.name, name: rollItemName, type: game.i18n.localize("DOCUMENT.Item")
+  }));
 }

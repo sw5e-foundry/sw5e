@@ -219,6 +219,21 @@ export function registerSystemSettings() {
     }
   });
 
+  // Collapse Chat Card Trays
+  game.settings.register("sw5e", "autoCollapseChatTrays", {
+    name: "SETTINGS.SW5E.COLLAPSETRAYS.Name",
+    hint: "SETTINGS.SW5E.COLLAPSETRAYS.Hint",
+    scope: "client",
+    config: true,
+    default: "older",
+    type: String,
+    choices: {
+      never: "SETTINGS.SW5E.COLLAPSETRAYS.Never",
+      older: "SETTINGS.SW5E.COLLAPSETRAYS.Older",
+      always: "SETTINGS.SW5E.COLLAPSETRAYS.Always"
+    }
+  });
+
   // Allow Polymorphing
   game.settings.register("sw5e", "allowPolymorphing", {
     name: "SETTINGS.5eAllowPolymorphingN",
@@ -393,15 +408,14 @@ export function registerSystemSettings() {
     onChange: s => ui.actors.render()
   });
 
-  // Token Rings
-  game.settings.register("sw5e", "disableTokenRings", {
-    name: "SETTINGS.5eTokenRings.Name",
-    hint: "SETTINGS.5eTokenRings.Hint",
+  // Control hints
+  game.settings.register("sw5e", "controlHints", {
+    name: "SW5E.Controls.Name",
+    hint: "SW5E.Controls.Hint",
     scope: "client",
     config: true,
     type: Boolean,
-    default: false,
-    requiresReload: true
+    default: true
   });
 }
 
@@ -426,7 +440,7 @@ export function registerDeferredSettings() {
     name: "SETTINGS.SW5E.THEME.Name",
     hint: "SETTINGS.SW5E.THEME.Hint",
     scope: "client",
-    config: true,
+    config: game.release.generation < 12,
     default: "",
     type: String,
     choices: {
@@ -443,6 +457,18 @@ export function registerDeferredSettings() {
   matchMedia("(prefers-contrast: more)").addEventListener("change", () => {
     setTheme(document.body, game.settings.get("sw5e", "theme"));
   });
+
+  // Hook into core color scheme setting.
+  if (game.release.generation > 11) {
+    const setting = game.settings.settings.get("core.colorScheme");
+    const { onChange } = setting ?? {};
+    if (onChange) setting.onChange = s => {
+      onChange();
+      setTheme(document.body, s);
+    };
+    setTheme(document.body, game.settings.get("core", "colorScheme"));
+  }
+  else setTheme(document.body, game.settings.get("sw5e", "theme"));
 }
 
 /* -------------------------------------------- */
@@ -453,22 +479,22 @@ export function registerDeferredSettings() {
  * @param {string} [theme=""]    Theme key to set.
  * @param {string[]} [flags=[]]  Additional theming flags to set.
  */
-export function setTheme(element, theme="", flags=new Set()) {
+export function setTheme(element, theme = "", flags = new Set()) {
   element.className = element.className.replace(/\bsw5e-(theme|flag)-[\w-]+\b/g, "");
 
   // Primary Theme
-  if ( !theme && (element === document.body) ) {
-    if ( matchMedia("(prefers-color-scheme: dark)").matches ) theme = "dark";
-    if ( matchMedia("(prefers-color-scheme: light)").matches ) theme = "light";
+  if (!theme && (element === document.body)) {
+    if (matchMedia("(prefers-color-scheme: dark)").matches) theme = "dark";
+    if (matchMedia("(prefers-color-scheme: light)").matches) theme = "light";
   }
-  if ( theme ) {
+  if (theme) {
     element.classList.add(`sw5e-theme-${theme.slugify()}`);
     element.dataset.theme = theme;
   }
   else delete element.dataset.theme;
 
   // Additional Flags
-  if ( (element === document.body) && matchMedia("(prefers-contrast: more)").matches ) flags.add("high-contrast");
-  for ( const flag of flags ) element.classList.add(`sw5e-flag-${flag.slugify()}`);
+  if ((element === document.body) && matchMedia("(prefers-contrast: more)").matches) flags.add("high-contrast");
+  for (const flag of flags) element.classList.add(`sw5e-flag-${flag.slugify()}`);
   element.dataset.themeFlags = Array.from(flags).join(" ");
 }

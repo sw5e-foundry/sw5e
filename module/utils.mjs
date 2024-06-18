@@ -66,14 +66,47 @@ export function isValidDieModifier(mod) {
  */
 export function parseInputDelta(input, target) {
   let value = input.value;
-  if ( ["+", "-"].includes(value[0]) ) {
+  if (["+", "-"].includes(value[0])) {
     const delta = parseFloat(value);
     value = Number(foundry.utils.getProperty(target, input.dataset.name ?? input.name)) + delta;
   }
-  else if ( value[0] === "=" ) value = Number(value.slice(1));
-  if ( Number.isNaN(value) ) return;
+  else if (value[0] === "=") value = Number(value.slice(1));
+  if (Number.isNaN(value)) return;
   input.value = value;
   return value;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Replace referenced data attributes in the roll formula with values from the provided data.
+ * If the attribute is not found in the provided data, display a warning on the actor.
+ * @param {string} formula           The original formula within which to replace.
+ * @param {object} data              The data object which provides replacements.
+ * @param {object} [options={}]
+ * @param {Item5e} [options.item]      Item for which the value is being prepared.
+ * @param {string} [options.property]  Name of the property to which this formula belongs.
+ * @returns {string}                 Formula with replaced data.
+ */
+export function replaceFormulaData(formula, data, { item, property } = {}) {
+  const dataRgx = new RegExp(/@([a-z.0-9_-]+)/gi);
+  const missingReferences = new Set();
+  formula = formula.replace(dataRgx, (match, term) => {
+    let value = foundry.utils.getProperty(data, term);
+    if (value == null) {
+      missingReferences.add(match);
+      return "0";
+    }
+    return String(value).trim();
+  });
+  if ((missingReferences.size > 0) && item.parent && property) {
+    const listFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "conjunction" });
+    const message = game.i18n.format("SW5E.FormulaMissingReferenceWarn", {
+      property, name: item.name, references: listFormatter.format(missingReferences)
+    });
+    item.parent._preparationWarnings.push({ message, link: item.uuid, type: "warning" });
+  }
+  return formula;
 }
 
 /* -------------------------------------------- */
@@ -91,7 +124,7 @@ export function simplifyBonus(bonus, data = {}) {
   try {
     const roll = new Roll(bonus, data);
     return roll.isDeterministic ? Roll.safeEval(roll.formula) : 0;
-  } catch(error) {
+  } catch (error) {
     console.error(error);
     return 0;
   }
@@ -107,7 +140,7 @@ export function simplifyBonus(bonus, data = {}) {
  * @returns {string}
  */
 export function staticID(id) {
-  if ( id.length >= 16 ) return id.substring(0, 16);
+  if (id.length >= 16) return id.substring(0, 16);
   return id.padEnd(16, "0");
 }
 
@@ -137,8 +170,8 @@ export function filteredKeys(obj, filter) {
 export function sortObjectEntries(obj, sortKey) {
   let sorted = Object.entries(obj);
   const sort = (lhs, rhs) => foundry.utils.getType(lhs) === "string" ? lhs.localeCompare(rhs, game.i18n.lang) : lhs - rhs;
-  if ( foundry.utils.getType(sortKey) === "function" ) sorted = sorted.sort((lhs, rhs) => sortKey(lhs[1], rhs[1]));
-  else if ( sortKey ) sorted = sorted.sort((lhs, rhs) => sort(lhs[1][sortKey], rhs[1][sortKey]));
+  if (foundry.utils.getType(sortKey) === "function") sorted = sorted.sort((lhs, rhs) => sortKey(lhs[1], rhs[1]));
+  else if (sortKey) sorted = sorted.sort((lhs, rhs) => sort(lhs[1][sortKey], rhs[1][sortKey]));
   else sorted = sorted.sort((lhs, rhs) => sort(lhs[1], rhs[1]));
   return Object.fromEntries(sorted);
 }
@@ -175,27 +208,25 @@ export function indexFromUuid(uuid) {
 
 /**
  * Creates an HTML document link for the provided UUID.
- * @param {string} uuid  UUID for which to produce the link.
- * @returns {string}     Link to the item or empty string if item wasn't found.
+ * Try to build links to compendium content synchronously to avoid DB lookups.
+ * @param {string} uuid               UUID for which to produce the link.
+ * @param {object} [options]
+ * @param {string} [options.tooltip]  Tooltip to add to the link.
+ * @returns {string}                  Link to the item or empty string if item wasn't found.
  */
-export function linkForUuid(uuid) {
-  if ( game.release.generation < 12 ) {
-    return TextEditor._createContentLink(["", "UUID", uuid]).outerHTML;
+export function linkForUuid(uuid, { tooltip } = {}) {
+  let doc = fromUuidSync(uuid);
+  if (!doc) return "";
+  if (uuid.startsWith("Compendium.") && !(doc instanceof foundry.abstract.Document)) {
+    const { collection } = foundry.utils.parseUuid(uuid);
+    const cls = collection.documentClass;
+    // Minimal "shell" of a document using index data
+    doc = new cls(foundry.utils.deepClone(doc), { pack: collection.metadata.id });
   }
-
-  // TODO: When v11 support is dropped we can make this method async and return to using TextEditor._createContentLink.
-  if ( uuid.startsWith("Compendium.") ) {
-    let [, scope, pack, documentName, id] = uuid.split(".");
-    if ( !CONST.PRIMARY_DOCUMENT_TYPES.includes(documentName) ) id = documentName;
-    const data = {
-      classes: ["content-link"],
-      attrs: { draggable: "true" }
-    };
-    TextEditor._createLegacyContentLink("Compendium", [scope, pack, id].join("."), "", data);
-    data.dataset.link = "";
-    return TextEditor.createAnchor(data).outerHTML;
-  }
-  return fromUuidSync(uuid).toAnchor().outerHTML;
+  const a = doc.toAnchor();
+  if (tooltip) a.dataset.tooltip = tooltip;
+  if (game.release.generation < 12) a.setAttribute("draggable", true);
+  return a.outerHTML;
 }
 
 /* -------------------------------------------- */
@@ -208,8 +239,29 @@ export function linkForUuid(uuid) {
  */
 export function getSceneTargets() {
   let targets = canvas.tokens.controlled.filter(t => t.actor);
-  if ( !targets.length && game.user.character ) targets = game.user.character.getActiveTokens();
+  if (!targets.length && game.user.character) targets = game.user.character.getActiveTokens();
   return targets;
+}
+
+/* -------------------------------------------- */
+/*  Conversions                                 */
+/* -------------------------------------------- */
+
+/**
+ * Convert the provided weight to another unit.
+ * @param {number} value  The weight being converted.
+ * @param {string} from   The initial units.
+ * @param {string} to     The final units.
+ * @returns {number}      Weight in the specified units.
+ */
+export function convertWeight(value, from, to) {
+  if (from === to) return value;
+  const message = unit => `Weight unit ${unit} not defined in CONFIG.SW5E.weightUnits`;
+  if (!CONFIG.SW5E.weightUnits[from]) throw new Error(message(from));
+  if (!CONFIG.SW5E.weightUnits[to]) throw new Error(message(to));
+  return value
+    * CONFIG.SW5E.weightUnits[from].conversion
+    / CONFIG.SW5E.weightUnits[to].conversion;
 }
 
 /* -------------------------------------------- */
@@ -357,7 +409,7 @@ export async function preloadHandlebarsTemplates() {
  */
 function dataset(object, options) {
   const entries = [];
-  for ( let [key, value] of Object.entries(object ?? {}) ) {
+  for (let [key, value] of Object.entries(object ?? {})) {
     key = key.replace(/[A-Z]+(?![a-z])|[A-Z]/g, (a, b) => (b ? "-" : "") + a.toLowerCase());
     entries.push(`data-${key}="${value}"`);
   }
@@ -388,14 +440,14 @@ function groupedSelectOptions(choices, options) {
 
   // Create an option
   const option = (name, label, chosen) => {
-    if ( localize ) label = game.i18n.localize(label);
+    if (localize) label = game.i18n.localize(label);
     html += `<option value="${name}" ${chosen ? "selected" : ""}>${label}</option>`;
   };
 
   // Create a group
   const group = category => {
     let label = category[labelAttr];
-    if ( localize ) game.i18n.localize(label);
+    if (localize) game.i18n.localize(label);
     html += `<optgroup label="${label}">`;
     children(category[childrenAttr]);
     html += "</optgroup>";
@@ -403,15 +455,15 @@ function groupedSelectOptions(choices, options) {
 
   // Add children
   const children = children => {
-    for ( let [name, child] of Object.entries(children) ) {
-      if ( child[childrenAttr] ) group(child);
+    for (let [name, child] of Object.entries(children)) {
+      if (child[childrenAttr]) group(child);
       else option(name, child[labelAttr], child[chosenAttr] ?? false);
     }
   };
 
   // Create the options
   let html = "";
-  if ( blank !== null ) option("", blank);
+  if (blank !== null) option("", blank);
   children(choices);
   return new Handlebars.SafeString(html);
 }
@@ -447,7 +499,7 @@ function itemContext(context, options) {
  */
 function concealSection(conceal, options) {
   let content = options.fn(this);
-  if ( !conceal ) return content;
+  if (!conceal) return content;
 
   content = `<div inert>
     ${content}
@@ -472,7 +524,7 @@ export function registerHandlebarsHelpers() {
     "sw5e-concealSection": concealSection,
     "sw5e-dataset": dataset,
     "sw5e-groupedSelectOptions": groupedSelectOptions,
-    "sw5e-linkForUuid": linkForUuid,
+    "sw5e-linkForUuid": (uuid, options) => linkForUuid(uuid, options.hash),
     "sw5e-itemContext": itemContext,
     "sw5e-numberFormat": (context, options) => formatNumber(context, options.hash),
     "sw5e-textFormat": formatText
@@ -514,7 +566,7 @@ export function preLocalize(configKeyPath, { key, keys = [], sort = false } = {}
 export function performPreLocalization(config) {
   for (const [keyPath, settings] of Object.entries(_preLocalizationRegistrations)) {
     const target = foundry.utils.getProperty(config, keyPath);
-    if ( !target ) continue;
+    if (!target) continue;
     _localizeObject(target, settings.keys);
     if (settings.sort) foundry.utils.setProperty(config, keyPath, sortObjectEntries(target, settings.keys[0]));
   }
@@ -555,7 +607,7 @@ function _localizeObject(obj, keys) {
 
     for (const key of keys) {
       const value = foundry.utils.getProperty(v, key);
-      if ( !value ) continue;
+      if (!value) continue;
       foundry.utils.setProperty(v, key, game.i18n.localize(value));
     }
   }
@@ -578,67 +630,67 @@ const _attributeLabelCache = new Map();
  * @param {Actor5e} [options.actor]  An optional reference actor.
  * @returns {string|void}
  */
-export function getHumanReadableAttributeLabel(attr, { actor }={}) {
+export function getHumanReadableAttributeLabel(attr, { actor } = {}) {
   // Check any actor-specific names first.
-  if ( attr.startsWith("resources.") && actor ) {
+  if (attr.startsWith("resources.") && actor) {
     const resource = foundry.utils.getProperty(actor, `system.${attr}`);
-    if ( resource.label ) return resource.label;
+    if (resource.label) return resource.label;
   }
 
-  if ( (attr === "details.xp.value") && (actor?.type === "npc") ) {
+  if ((attr === "details.xp.value") && (actor?.type === "npc")) {
     return game.i18n.localize("SW5E.ExperiencePointsValue");
   }
 
-  if ( attr.startsWith(".") && actor ) {
+  if (attr.startsWith(".") && actor) {
     const item = fromUuidSync(attr, { relative: actor });
     return item?.name ?? attr;
   }
 
   // Check if the attribute is already in cache.
   let label = _attributeLabelCache.get(attr);
-  if ( label ) return label;
+  if (label) return label;
 
   // Derived fields.
-  if ( attr === "attributes.init.total" ) label = "SW5E.InitiativeBonus";
-  else if ( attr === "attributes.ac.value" ) label = "SW5E.ArmorClass";
-  else if ( attr === "attributes.powerdc" ) label = "SW5E.PowerDC";
+  if (attr === "attributes.init.total") label = "SW5E.InitiativeBonus";
+  else if (attr === "attributes.ac.value") label = "SW5E.ArmorClass";
+  else if (attr === "attributes.powerdc") label = "SW5E.PowerDC";
 
   // Abilities.
-  else if ( attr.startsWith("abilities.") ) {
+  else if (attr.startsWith("abilities.")) {
     const [, key] = attr.split(".");
     label = game.i18n.format("SW5E.AbilityScoreL", { ability: CONFIG.SW5E.abilities[key].label });
   }
 
   // Skills.
-  else if ( attr.startsWith("skills.") ) {
+  else if (attr.startsWith("skills.")) {
     const [, key] = attr.split(".");
     label = game.i18n.format("SW5E.SkillPassiveScore", { skill: CONFIG.SW5E.skills[key].label });
   }
 
   // Power slots.
-  else if ( attr.startsWith("powers.") ) {
+  else if (attr.startsWith("powers.")) {
     const [, key] = attr.split(".");
-    if ( key === "pact" ) label = "SW5E.PowerSlotsPact";
+    if (!/power\d+/.test(key)) label = `SW5E.PowerSlots${key.capitalize()}`;
     else {
-      const plurals = new Intl.PluralRules(game.i18n.lang, {type: "ordinal"});
+      const plurals = new Intl.PluralRules(game.i18n.lang, { type: "ordinal" });
       const level = Number(key.slice(5));
       label = game.i18n.format(`SW5E.PowerSlotsN.${plurals.select(level)}`, { n: level });
     }
   }
 
   // Attempt to find the attribute in a data model.
-  if ( !label ) {
+  if (!label) {
     const { CharacterData, NPCData, VehicleData, GroupData } = sw5e.dataModels.actor;
-    for ( const model of [CharacterData, NPCData, VehicleData, GroupData] ) {
+    for (const model of [CharacterData, NPCData, VehicleData, GroupData]) {
       const field = model.schema.getField(attr);
-      if ( field ) {
+      if (field) {
         label = field.label;
         break;
       }
     }
   }
 
-  if ( label ) {
+  if (label) {
     label = game.i18n.localize(label);
     _attributeLabelCache.set(attr, label);
   }
@@ -711,6 +763,7 @@ function _synchronizeActorPowers(actor, powersMap) {
     const { preparation, uses, save } = power.toObject().system;
     Object.assign(powerData.system, { preparation, uses });
     powerData.system.save.dc = save.dc;
+    foundry.utils.setProperty(powerData, "_stats.compendiumSource", source.uuid);
     foundry.utils.setProperty(powerData, "flags.core.sourceId", source.uuid);
 
     // Record powers to be deleted and created

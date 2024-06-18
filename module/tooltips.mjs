@@ -43,13 +43,13 @@ export default class Tooltips5e {
   _onMutation(mutationList) {
     let isActive = false;
     const tooltip = this.tooltip;
-    for ( const { type, attributeName, oldValue } of mutationList ) {
-      if ( (type === "attributes") && (attributeName === "class") ) {
+    for (const { type, attributeName, oldValue } of mutationList) {
+      if ((type === "attributes") && (attributeName === "class")) {
         const difference = new Set(tooltip.classList).difference(new Set(oldValue?.split(" ")));
-        if ( difference.has("active") ) isActive = true;
+        if (difference.has("active")) isActive = true;
       }
     }
-    if ( isActive ) this._onTooltipActivate();
+    if (isActive) this._onTooltipActivate();
   }
 
   /* -------------------------------------------- */
@@ -61,7 +61,7 @@ export default class Tooltips5e {
    */
   async _onTooltipActivate() {
     // General content links
-    if ( game.tooltip.element?.classList.contains("content-link") ) {
+    if (game.tooltip.element?.classList.contains("content-link")) {
       const doc = await fromUuid(game.tooltip.element.dataset.uuid);
       return this._onHoverContentLink(doc);
     }
@@ -69,14 +69,14 @@ export default class Tooltips5e {
     const loading = this.tooltip.querySelector(".loading");
 
     // Sheet-specific tooltips
-    if ( loading?.dataset.uuid ) {
+    if (loading?.dataset.uuid) {
       const doc = await fromUuid(loading.dataset.uuid);
-      if ( doc instanceof sw5e.documents.Actor5e ) return this._onHoverActor(doc);
+      if (doc instanceof sw5e.documents.Actor5e) return this._onHoverActor(doc);
       return this._onHoverContentLink(doc);
     }
 
     // Passive checks
-    else if ( loading?.dataset.passive !== undefined ) {
+    else if (loading?.dataset.passive !== undefined) {
       const { skill, ability, dc } = game.tooltip.element?.dataset ?? {};
       return this._onHoverPassive(skill, ability, dc);
     }
@@ -91,7 +91,7 @@ export default class Tooltips5e {
    */
   async _onHoverActor(actor) {
     const { attribution, attributionCaption } = game.tooltip.element.dataset;
-    if ( !attribution ) return;
+    if (!attribution) return;
     this.tooltip.innerHTML = await actor.getAttributionData(attribution, { title: attributionCaption });
   }
 
@@ -103,8 +103,8 @@ export default class Tooltips5e {
    * @protected
    */
   async _onHoverContentLink(doc) {
-    if ( !doc.system?.richTooltip ) return;
-    const { content, classes } = await doc.system.richTooltip();
+    const { content, classes } = await (doc.richTooltip?.() ?? doc.system?.richTooltip?.() ?? {});
+    if (!content) return;
     this.tooltip.innerHTML = content;
     classes?.forEach(c => this.tooltip.classList.add(c));
     const { tooltipDirection } = game.tooltip.element.dataset;
@@ -126,7 +126,7 @@ export default class Tooltips5e {
     const abilityConfig = CONFIG.SW5E.abilities[ability ?? skillConfig.ability];
 
     let label;
-    if ( skillConfig ) {
+    if (skillConfig) {
       label = game.i18n.format("SW5E.SkillPassiveSpecificHint", { skill: skillConfig.label, ability: abilityConfig.label });
     } else {
       // If no skill was provided, we're doing a passive ability check.
@@ -135,31 +135,31 @@ export default class Tooltips5e {
     }
 
     const party = game.settings.get("sw5e", "primaryParty")?.actor;
-    if ( !party ) {
+    if (!party) {
       this.tooltip.innerHTML = label;
       return;
     }
 
     const context = { label, party: [] };
-    for ( const member of party.system.members ) {
+    for (const member of party.system.members) {
       const systemData = member.actor?.system;
       let passive;
-      if ( skill && (!ability || (ability === skillConfig.ability)) ) {
+      if (skill && (!ability || (ability === skillConfig.ability))) {
         // Default passive skill check
         passive = systemData?.skills?.[skill]?.passive;
-      } else if ( skill ) {
+      } else if (skill) {
         // Passive ability check with custom ability
         const customSkillData = member.actor?._prepareSkill(skill, { ability });
         passive = customSkillData.passive;
       } else {
         // Passive ability check
         const abilityMod = systemData?.abilities?.[ability]?.mod;
-        if ( abilityMod !== undefined ) passive = 10 + abilityMod;
+        if (abilityMod !== undefined) passive = 10 + abilityMod;
       }
 
-      if ( !passive ) continue;
+      if (!passive) continue;
       const data = { name: member.actor.name, img: member.actor.img, passive };
-      if ( dc !== undefined ) data.status = passive >= dc ? "success" : "failure";
+      if (dc !== undefined) data.status = passive >= dc ? "success" : "failure";
       context.party.push(data);
     }
 
@@ -172,28 +172,36 @@ export default class Tooltips5e {
 
   /**
    * Position a tooltip after rendering.
-   * @param {string} [direction="LEFT"]  The direction to position the tooltip.
+   * @param {string} [direction]  The direction to position the tooltip.
    * @protected
    */
-  _positionItemTooltip(direction=TooltipManager.TOOLTIP_DIRECTIONS.LEFT) {
-    const tooltip = this.tooltip;
-    const { clientWidth, clientHeight } = document.documentElement;
-    const tooltipBox = tooltip.getBoundingClientRect();
-    const targetBox = game.tooltip.element.getBoundingClientRect();
-    const maxTop = clientHeight - tooltipBox.height;
-    const top = Math.min(maxTop, targetBox.bottom - ((targetBox.height + tooltipBox.height) / 2));
-    const left = targetBox.left - tooltipBox.width - game.tooltip.constructor.TOOLTIP_MARGIN_PX;
-    const right = targetBox.right + game.tooltip.constructor.TOOLTIP_MARGIN_PX;
-    const { RIGHT, LEFT } = TooltipManager.TOOLTIP_DIRECTIONS;
-    if ( (direction === LEFT) && (left < 0) ) direction = RIGHT;
-    else if ( (direction === RIGHT) && (right + targetBox.width > clientWidth) ) direction = LEFT;
-    tooltip.style.top = `${Math.max(0, top)}px`;
-    tooltip.style.right = "";
-    if ( direction === RIGHT ) tooltip.style.left = `${Math.min(right, clientWidth - tooltipBox.width)}px`;
-    else tooltip.style.left = `${Math.max(0, left)}px`;
+  _positionItemTooltip(direction) {
+    if (!direction) {
+      direction = TooltipManager.TOOLTIP_DIRECTIONS.LEFT;
+      game.tooltip._setAnchor(direction);
+    }
+
+    const pos = this.tooltip.getBoundingClientRect();
+    const dirs = TooltipManager.TOOLTIP_DIRECTIONS;
+    switch (direction) {
+      case dirs.UP:
+        if (pos.y - TooltipManager.TOOLTIP_MARGIN_PX <= 0) direction = dirs.DOWN;
+        break;
+      case dirs.DOWN:
+        if (pos.y + this.tooltip.offsetHeight > window.innerHeight) direction = dirs.UP;
+        break;
+      case dirs.LEFT:
+        if (pos.x - TooltipManager.TOOLTIP_MARGIN_PX <= 0) direction = dirs.RIGHT;
+        break;
+      case dirs.RIGHT:
+        if (pos.x + this.tooltip.offsetWidth > window.innerWith) direction = dirs.LEFT;
+        break;
+    }
+
+    game.tooltip._setAnchor(direction);
 
     // Set overflowing styles for item tooltips.
-    if ( tooltip.classList.contains("item-tooltip") ) {
+    if (tooltip.classList.contains("item-tooltip")) {
       const description = tooltip.querySelector(".description");
       description?.classList.toggle("overflowing", description.clientHeight < description.scrollHeight);
     }
@@ -209,7 +217,7 @@ export default class Tooltips5e {
    */
   static activateListeners() {
     document.addEventListener("pointerdown", event => {
-      if ( (event.button === 1) && event.target.closest(".locked-tooltip") ) {
+      if ((event.button === 1) && event.target.closest(".locked-tooltip")) {
         event.preventDefault();
       }
     }, { capture: true });

@@ -135,6 +135,10 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
       (this.activation.type in CONFIG.SW5E.staticAbilityActivationTypes) ? null : this.activation.cost,
       CONFIG.SW5E.abilityActivationTypes[this.activation.type]
     ].filterJoin(" ") : "";
+    this.parent.labels.activationShort = this.activation.type ? [
+      (this.activation.type in CONFIG.SW5E.staticAbilityActivationTypes) ? null : this.activation.cost,
+      CONFIG.SW5E.abilityActivationTypes[this.activation.type].split(" ")[0]
+    ].filterJoin(" ") : "";
 
     if (this.hasTarget) {
       const target = [this.target.value];

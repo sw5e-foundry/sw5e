@@ -9,21 +9,21 @@ export async function create5eMacro(dropData, slot) {
   switch (dropData.type) {
     case "Item":
       const itemData = await Item.implementation.fromDropData(dropData);
-      if ( !itemData ) {
-        ui.notifications.warn("MACRO.5eUnownedWarn", {localize: true});
+      if (!itemData) {
+        ui.notifications.warn("MACRO.5eUnownedWarn", { localize: true });
         return null;
       }
       foundry.utils.mergeObject(macroData, {
         name: itemData.name,
         img: itemData.img,
-        command: `sw5e.documents.macro.rollItem("${itemData.name}")`,
+        command: `sw5e.documents.macro.rollItem("${itemData._source.name}")`,
         flags: { "sw5e.itemMacro": true }
       });
       break;
     case "ActiveEffect":
       const effectData = await ActiveEffect.implementation.fromDropData(dropData);
-      if ( !effectData ) {
-        ui.notifications.warn("MACRO.5eUnownedWarn", {localize: true});
+      if (!effectData) {
+        ui.notifications.warn("MACRO.5eUnownedWarn", { localize: true });
         return null;
       }
       foundry.utils.mergeObject(macroData, {
@@ -57,15 +57,15 @@ function getMacroTarget(name, documentType) {
   const speaker = ChatMessage.getSpeaker();
   if (speaker.token) actor = game.actors.tokens[speaker.token];
   actor ??= game.actors.get(speaker.actor);
-  if ( !actor ) {
-    ui.notifications.warn("MACRO.5eNoActorSelected", {localize: true});
+  if (!actor) {
+    ui.notifications.warn("MACRO.5eNoActorSelected", { localize: true });
     return null;
   }
 
   const collection = (documentType === "Item") ? actor.items : Array.from(actor.allApplicableEffects());
 
   // Find item in collection
-  const documents = collection.filter(i => i.name === name);
+  const documents = collection.filter(i => i._source.name === name);
   const type = game.i18n.localize(`DOCUMENT.${documentType}`);
   if (documents.length === 0) {
     ui.notifications.warn(game.i18n.format("MACRO.5eMissingTargetWarn", { actor: actor.name, type, name }));

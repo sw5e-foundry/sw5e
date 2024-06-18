@@ -30,7 +30,7 @@ function _innerLabel(data, config) {
  */
 export function actorKeyPath(trait) {
   const traitConfig = CONFIG.SW5E.traits[trait];
-  if ( traitConfig.actorKeyPath ) return traitConfig.actorKeyPath;
+  if (traitConfig.actorKeyPath) return traitConfig.actorKeyPath;
   return `system.traits.${trait}`;
 }
 
@@ -45,18 +45,18 @@ export function actorKeyPath(trait) {
 export async function actorValues(actor, trait) {
   const keyPath = actorKeyPath(trait);
   const data = foundry.utils.getProperty(actor, keyPath);
-  if ( !data ) return {};
+  if (!data) return {};
   const values = {};
-  const traitChoices = await choices(trait, {prefixed: true});
+  const traitChoices = await choices(trait, { prefixed: true });
 
   const setValue = (k, v) => {
     const result = traitChoices.find(k);
-    if ( result ) values[result[0]] = v;
+    if (result) values[result[0]] = v;
   };
 
-  if ( ["skills", "tool"].includes(trait) ) {
+  if (["skills", "tool"].includes(trait)) {
     Object.entries(data).forEach(([k, d]) => setValue(k, d.value));
-  } else if ( trait === "saves" ) {
+  } else if (trait === "saves") {
     Object.entries(data).forEach(([k, d]) => setValue(k, d.proficient));
   } else {
     data.value.forEach(v => setValue(v, 1));
@@ -75,16 +75,16 @@ export async function actorValues(actor, trait) {
  */
 export function changeKeyPath(key, trait) {
   const split = key.split(":");
-  if ( !trait ) trait = split.shift();
+  if (!trait) trait = split.shift();
 
   const traitConfig = CONFIG.SW5E.traits[trait];
-  if ( !traitConfig ) return;
+  if (!traitConfig) return;
 
   let keyPath = actorKeyPath(trait);
 
-  if ( trait === "saves" ) {
+  if (trait === "saves") {
     return `${keyPath}.${split.pop()}.proficient`;
-  } else if ( ["skills", "tool"].includes(trait) ) {
+  } else if (["skills", "tool"].includes(trait)) {
     return `${keyPath}.${split.pop()}.value`;
   } else {
     return `${keyPath}.value`;
@@ -104,18 +104,18 @@ export async function categories(trait) {
   const traitConfig = CONFIG.SW5E.traits[trait];
   const config = foundry.utils.deepClone(CONFIG.SW5E[traitConfig.configKey ?? trait]);
 
-  for ( const key of Object.keys(config) ) {
-    if ( foundry.utils.getType(config[key]) !== "Object" ) config[key] = { label: config[key] };
-    if ( traitConfig.children?.[key] ) {
+  for (const key of Object.keys(config)) {
+    if (foundry.utils.getType(config[key]) !== "Object") config[key] = { label: config[key] };
+    if (traitConfig.children?.[key]) {
       const children = config[key].children ??= {};
-      for ( const [childKey, value] of Object.entries(CONFIG.SW5E[traitConfig.children[key]]) ) {
-        if ( foundry.utils.getType(value) !== "Object" ) children[childKey] = { label: value };
+      for (const [childKey, value] of Object.entries(CONFIG.SW5E[traitConfig.children[key]])) {
+        if (foundry.utils.getType(value) !== "Object") children[childKey] = { label: value };
         else children[childKey] = { ...value };
       }
     }
   }
 
-  if ( traitConfig.subtypes ) {
+  if (traitConfig.subtypes) {
     const map = CONFIG.SW5E[`${trait}ProficienciesMap`];
 
     // Merge all ID lists together
@@ -131,15 +131,15 @@ export async function categories(trait) {
     }));
 
     // Sort base items as children of categories based on subtypes
-    for ( const [key, index] of baseItems ) {
-      if ( !index ) continue;
+    for (const [key, index] of baseItems) {
+      if (!index) continue;
 
       // Get the proper subtype, using proficiency map if needed
       let type = index.system.type.value;
-      if ( map?.[type] ) type = map[type];
+      if (map?.[type]) type = map[type];
 
       // No category for this type, add at top level
-      if ( !config[type] ) config[key] = { label: index.name };
+      if (!config[type]) config[key] = { label: index.name };
 
       // Add as child of appropriate category
       else {
@@ -163,14 +163,14 @@ export async function categories(trait) {
  * @param {boolean} [options.any=false]       Should the "Any" option be added to each category?
  * @returns {Promise<SelectChoices>}          Object mapping proficiency ids to choice objects.
  */
-export async function choices(trait, { chosen=new Set(), prefixed=false, any=false }={}) {
+export async function choices(trait, { chosen = new Set(), prefixed = false, any = false } = {}) {
   const traitConfig = CONFIG.SW5E.traits[trait];
-  if ( !traitConfig ) return new SelectChoices();
-  if ( foundry.utils.getType(chosen) === "Array" ) chosen = new Set(chosen);
+  if (!traitConfig) return new SelectChoices();
+  if (foundry.utils.getType(chosen) === "Array") chosen = new Set(chosen);
   const categoryData = await categories(trait);
 
   let result = {};
-  if ( prefixed && any ) {
+  if (prefixed && any) {
     const key = `${trait}:*`;
     result[key] = {
       label: keyLabel(key).titleCase(),
@@ -178,18 +178,18 @@ export async function choices(trait, { chosen=new Set(), prefixed=false, any=fal
     };
   }
 
-  const prepareCategory = (key, data, result, prefix, topLevel=false) => {
+  const prepareCategory = (key, data, result, prefix, topLevel = false) => {
     let label = _innerLabel(data, traitConfig);
-    if ( !label ) label = key;
-    if ( prefixed ) key = `${prefix}:${key}`;
+    if (!label) label = key;
+    if (prefixed) key = `${prefix}:${key}`;
     result[key] = {
       label: game.i18n.localize(label),
       chosen: chosen.has(key),
       sorting: topLevel ? traitConfig.sortCategories === true : true
     };
-    if ( data.children ) {
+    if (data.children) {
       const children = result[key].children = {};
-      if ( prefixed && any ) {
+      if (prefixed && any) {
         const anyKey = `${key}:*`;
         children[anyKey] = {
           label: keyLabel(anyKey).titleCase(),
@@ -214,16 +214,16 @@ export async function choices(trait, { chosen=new Set(), prefixed=false, any=fal
  * @returns {Promise<SelectChoices>}
  */
 export async function mixedChoices(keys) {
-  if ( !keys.size ) return new SelectChoices();
+  if (!keys.size) return new SelectChoices();
   const types = {};
-  for ( const key of keys ) {
+  for (const key of keys) {
     const split = key.split(":");
     const trait = split.shift();
     const selectChoices = (await choices(trait, { prefixed: true })).filter(new Set([key]));
     types[trait] ??= { label: traitLabel(trait), children: new SelectChoices() };
     types[trait].children.merge(selectChoices);
   }
-  if ( Object.keys(types).length > 1 ) return new SelectChoices(types);
+  if (Object.keys(types).length > 1) return new SelectChoices(types);
   return Object.values(types)[0].children;
 }
 
@@ -242,39 +242,39 @@ export async function mixedChoices(keys) {
  * @returns {Promise<Item5e>|object}     Promise for a `Document` if `indexOnly` is false & `fullItem` is true,
  *                                       otherwise else a simple object containing the minimal index data.
  */
-export function getBaseItem(identifier, { indexOnly=false, fullItem=false }={}) {
+export function getBaseItem(identifier, { indexOnly = false, fullItem = false } = {}) {
   const uuid = getBaseItemUUID(identifier);
   const { collection, documentId: id } = foundry.utils.parseUuid(uuid);
   const pack = collection?.metadata.id;
 
   // Full Item5e document required, always async.
-  if ( fullItem && !indexOnly ) return collection?.getDocument(id);
+  if (fullItem && !indexOnly) return collection?.getDocument(id);
 
   const cache = _cachedIndices[pack];
   const loading = cache instanceof Promise;
 
   // Return extended index if cached, otherwise normal index, guaranteed to never be async.
-  if ( indexOnly ) {
+  if (indexOnly) {
     const index = collection?.index.get(id);
     return loading ? index : cache?.[id] ?? index;
   }
 
   // Returned cached version of extended index if available.
-  if ( loading ) return cache.then(() => _cachedIndices[pack][id]);
-  else if ( cache ) return cache[id];
-  if ( !collection ) return;
+  if (loading) return cache.then(() => _cachedIndices[pack][id]);
+  else if (cache) return cache[id];
+  if (!collection) return;
 
   // Build the extended index and return a promise for the data
   const fields = traitIndexFields();
   const promise = collection.getIndex({ fields }).then(index => {
     const store = index.reduce((obj, entry) => {
-      for ( const field of fields ) {
+      for (const field of fields) {
         const val = foundry.utils.getProperty(entry, field);
-        if ( (field !== "system.type.value") && (val !== undefined) ) {
+        if ((field !== "system.type.value") && (val !== undefined)) {
           foundry.utils.setProperty(entry, "system.type.value", val);
           foundry.utils.logCompatibilityWarning(
             `The '${field}' property has been deprecated in favor of a standardized \`system.type.value\` property.`,
-            { since: "SW5e 3.0", until: "SW5e 3.2", once: true }
+            { since: "SW5e 3.0", until: "SW5e 3.4", once: true }
           );
         }
       }
@@ -296,11 +296,11 @@ export function getBaseItem(identifier, { indexOnly=false, fullItem=false }={}) 
  * @returns {string}
  */
 export function getBaseItemUUID(identifier) {
-  if ( identifier.startsWith("Compendium.") ) return identifier;
+  if (identifier.startsWith("Compendium.")) return identifier;
   let pack = CONFIG.SW5E.sourcePacks.ITEMS;
   let [scope, collection, id] = identifier.split(".");
-  if ( scope && collection ) pack = `${scope}.${collection}`;
-  if ( !id ) id = identifier;
+  if (scope && collection) pack = `${scope}.${collection}`;
+  if (!id) id = identifier;
   return `Compendium.${pack}.Item.${id}`;
 }
 
@@ -313,8 +313,8 @@ export function getBaseItemUUID(identifier) {
  */
 export function traitIndexFields() {
   const fields = ["system.type.value"];
-  for ( const traitConfig of Object.values(CONFIG.SW5E.traits) ) {
-    if ( !traitConfig.subtypes ) continue;
+  for (const traitConfig of Object.values(CONFIG.SW5E.traits)) {
+    if (!traitConfig.subtypes) continue;
     fields.push(`system.${traitConfig.subtypes.keyPath}`);
   }
   return fields;
@@ -334,7 +334,7 @@ export function traitIndexFields() {
 export function traitLabel(trait, count) {
   const traitConfig = CONFIG.SW5E.traits[trait];
   const pluralRule = (count !== undefined) ? new Intl.PluralRules(game.i18n.lang).select(count) : "other";
-  if ( !traitConfig ) return game.i18n.localize(`SW5E.TraitGenericPlural.${pluralRule}`);
+  if (!traitConfig) return game.i18n.localize(`SW5E.TraitGenericPlural.${pluralRule}`);
   return game.i18n.localize(`${traitConfig.labels.localization}.${pluralRule}`);
 }
 
@@ -384,8 +384,8 @@ export function traitLabel(trait, count) {
  * keyLabel("weapon:simple:shortsword");
  * keyLabel("shortsword", { trait: "weapon" });
  */
-export function keyLabel(key, config={}) {
-  if ( foundry.utils.getType(config) === "string" ) {
+export function keyLabel(key, config = {}) {
+  if (foundry.utils.getType(config) === "string") {
     foundry.utils.logCompatibilityWarning(
       "Trait.keyLabel(trait, key) is now Trait.keyLabel(key, { trait }).",
       { since: "SW5e 2.4", until: "SW5e 3.1" }
@@ -399,26 +399,25 @@ export function keyLabel(key, config={}) {
   let parts = key.split(":");
   const pluralRules = new Intl.PluralRules(game.i18n.lang);
 
-  if ( !trait ) trait = parts.shift();
+  if (!trait) trait = parts.shift();
   const traitConfig = CONFIG.SW5E.traits[trait];
-  if ( !traitConfig ) return key;
+  if (!traitConfig) return key;
   const traitData = CONFIG.SW5E[traitConfig.configKey ?? trait] ?? {};
-  let categoryLabel = game.i18n.localize(`${traitConfig.labels.localization}.${
-    pluralRules.select(count ?? 1)}`);
+  let categoryLabel = game.i18n.localize(`${traitConfig.labels.localization}.${pluralRules.select(count ?? 1)}`);
 
   // Trait (e.g. "Tool Proficiency")
   const lastKey = parts.pop();
-  if ( !lastKey ) return categoryLabel;
+  if (!lastKey) return categoryLabel;
 
   // Wildcards (e.g. "Artisan's Tools", "any Artisan's Tools", "any 2 Artisan's Tools", or "2 other Artisan's Tools")
-  if ( lastKey === "*" ) {
+  if (lastKey === "*") {
     let type;
-    if ( parts.length ) {
+    if (parts.length) {
       let category = traitData;
       do {
         category = (category.children ?? category)[parts.shift()];
-        if ( !category ) return key;
-      } while ( parts.length );
+        if (!category) return key;
+      } while (parts.length);
       type = _innerLabel(category, traitConfig);
     } else type = categoryLabel.toLowerCase();
     const localization = `SW5E.TraitConfigChoose${final ? "Other" : `Any${count ? "Counted" : "Uncounted"}`}`;
@@ -428,30 +427,30 @@ export function keyLabel(key, config={}) {
   else {
     // Category (e.g. "Gaming Sets")
     const category = traitData[lastKey];
-    if ( category ) return _innerLabel(category, traitConfig);
+    if (category) return _innerLabel(category, traitConfig);
 
     // Child (e.g. "Land Vehicle")
-    for ( const childrenKey of Object.values(traitConfig.children ?? {}) ) {
+    for (const childrenKey of Object.values(traitConfig.children ?? {})) {
       const childLabel = CONFIG.SW5E[childrenKey]?.[lastKey];
-      if ( childLabel ) return childLabel;
+      if (childLabel) return childLabel;
     }
 
     // Base item (e.g. "Shortsword")
-    for ( const idsKey of traitConfig.subtypes?.ids ?? [] ) {
+    for (const idsKey of traitConfig.subtypes?.ids ?? []) {
       const baseItemId = CONFIG.SW5E[idsKey]?.[lastKey];
-      if ( !baseItemId ) continue;
+      if (!baseItemId) continue;
       const index = getBaseItem(baseItemId, { indexOnly: true });
-      if ( index ) return index.name;
+      if (index) return index.name;
       break;
     }
 
     // Explicit categories (e.g. languages)
     const searchCategory = (data, key) => {
-      for ( const [k, v] of Object.entries(data) ) {
-        if ( k === key ) return v;
-        if ( v.children ) {
+      for (const [k, v] of Object.entries(data)) {
+        if (k === key) return v;
+        if (v.children) {
           const result = searchCategory(v.children, key);
-          if ( result ) return result;
+          if (result) return result;
         }
       }
     };
@@ -496,11 +495,11 @@ export function keyLabel(key, config={}) {
  * choiceLabel({ count: 2, pool: new Set(["tool:thief", "skills:*"]) });
  *
  */
-export function choiceLabel(choice, { only=false, final=false }={}) {
-  if ( !choice.pool.size ) return "";
+export function choiceLabel(choice, { only = false, final = false } = {}) {
+  if (!choice.pool.size) return "";
 
   // Single entry in pool (e.g. "any three skill proficiencies" or "three other skill proficiencies")
-  if ( choice.pool.size === 1 ) {
+  if (choice.pool.size === 1) {
     return keyLabel(choice.pool.first(), {
       count: (choice.count > 1 || !only) ? choice.count : null, final: final && !only
     });
@@ -509,7 +508,7 @@ export function choiceLabel(choice, { only=false, final=false }={}) {
   const listFormatter = new Intl.ListFormat(game.i18n.lang, { type: "disjunction" });
 
   // Singular count (e.g. "any skill", "Thieves Tools or any skill", or "Thieves' Tools or any artisan tool")
-  if ( (choice.count === 1) && only ) {
+  if ((choice.count === 1) && only) {
     return listFormatter.format(choice.pool.map(key => keyLabel(key)));
   }
 
@@ -542,16 +541,16 @@ export function choiceLabel(choice, { only=false, final=false }={}) {
  * // Returns "Choose any skill proficiency"
  * localizedList({ choices: [{ count: 1, pool: new Set(["skills:*"])}] });
  */
-export function localizedList({ grants=new Set(), choices=[] }) {
+export function localizedList({ grants = new Set(), choices = [] }) {
   const sections = Array.from(grants).map(g => keyLabel(g));
 
-  for ( const [index, choice] of choices.entries() ) {
+  for (const [index, choice] of choices.entries()) {
     const final = index === choices.length - 1;
     sections.push(choiceLabel(choice, { final, only: !grants.size && choices.length === 1 }));
   }
 
   const listFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "conjunction" });
-  if ( !sections.length || grants.size ) return listFormatter.format(sections);
+  if (!sections.length || grants.size) return listFormatter.format(sections);
   return game.i18n.format("SW5E.TraitConfigChooseWrapper", {
     choices: listFormatter.format(sections)
   });

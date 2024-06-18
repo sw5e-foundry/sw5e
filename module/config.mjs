@@ -108,14 +108,14 @@ SW5E.defaultAbilities = {
 
 Object.defineProperties(SW5E, {
   hitPointsAbility: {
-    get: function() {
+    get: function () {
       foundry.utils.logCompatibilityWarning(
         "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hitPoints.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
       );
       return SW5E.defaultAbilities.hitPoints;
     },
-    set: function(value) {
+    set: function (value) {
       foundry.utils.logCompatibilityWarning(
         "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hitPoints.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
@@ -124,14 +124,14 @@ Object.defineProperties(SW5E, {
     }
   },
   hullPointsAbility: {
-    get: function() {
+    get: function () {
       foundry.utils.logCompatibilityWarning(
         "SW5E.hullPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hullPoints.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
       );
       return SW5E.defaultAbilities.hullPoints;
     },
-    set: function(value) {
+    set: function (value) {
       foundry.utils.logCompatibilityWarning(
         "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hullPoints.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
@@ -140,14 +140,14 @@ Object.defineProperties(SW5E, {
     }
   },
   shieldPointsAbility: {
-    get: function() {
+    get: function () {
       foundry.utils.logCompatibilityWarning(
         "SW5E.shieldPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.shieldPoints.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
       );
       return SW5E.defaultAbilities.shieldPoints;
     },
-    set: function(value) {
+    set: function (value) {
       foundry.utils.logCompatibilityWarning(
         "SW5E.shieldPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.shieldPoints.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
@@ -156,14 +156,14 @@ Object.defineProperties(SW5E, {
     }
   },
   initiativeAbility: {
-    get: function() {
+    get: function () {
       foundry.utils.logCompatibilityWarning(
         "SW5E.initiativeAbility has been deprecated and is now accessible through SW5E.defaultAbilities.initiative.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
       );
       return SW5E.defaultAbilities.initiative;
     },
-    set: function(value) {
+    set: function (value) {
       foundry.utils.logCompatibilityWarning(
         "SW5E.initiativeAbility has been deprecated and is now accessible through SW5E.defaultAbilities.initiative.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
@@ -3480,6 +3480,16 @@ SW5E.powerPreparationModes = {
     upcast: true,
     prepares: true
   },
+  force: {
+    label: "SW5e.PowerPrepForce",
+    upcast: true,
+    prepares: true
+  },
+  tech: {
+    label: "SW5e.PowerPrepTech",
+    upcast: true,
+    prepares: true
+  },
   always: {
     label: "SW5E.PowerPrepAlways",
     upcast: true,
@@ -3519,28 +3529,20 @@ SW5E.powerUpcastModes = ["always", "prepared"];
  * @property {string} label                               Localized label.
  * @property {string} img                                 Image used when rendered as a favorite on the sheet.
  * @property {Object<string, PowercastingProgressionConfiguration>} [progression]  Any progression modes for this type.
+ * @property {boolean} [shortRest]                        Are these power slots/points additionally restored on a short rest?
  */
 
 /**
  * Configuration data for a powercasting progression mode.
  *
  * @typedef {object} PowercastingProgressionConfiguration
- * @property {string} label             Localized label.
- * @property {number} powerPointsBase   The number of base force/tech points available to each class per level
+ * @property {string} label                       Localized label.
+ * @property {number} powerPointsBase             The number of base power points available to each class per level
  * @property {number[]} powerMaxLevel[classLevel] The max level of a known/overpowered power available to each class per level
- * @property {number} powerLimit        The first level for which you can only cast once per long rest
- * @property {number} [divisor=1]       Value by which the class levels are divided to determine powercasting level.
- * @property {boolean} [roundUp=false]  Should fractional values should be rounded up by default?
- * @property {Object<string, PowercastingSubtypeProgressionConfiguration>} [subtype]  Any progression modes for this subtype.
- */
-
-/**
- * Configuration data for a powercasting subtype progression mode.
- *
- * @typedef {object} PowercastingSubtypeProgressionConfiguration
- * @property {string} label                        Localized label.
- * @property {number[]} powersKnown[classLevel]    The max number of known powers available to each class per level
- * @property {boolean} [shortRest]                 Are these power slots additionally restored on a short rest?
+ * @property {number} powerLimit                  The first level for which you can only cast once per long rest
+ * @property {number} [divisor=1]                 Value by which the class levels are divided to determine powercasting level.
+ * @property {boolean} [roundUp=false]            Should fractional values should be rounded up by default?
+ * @property {number[]} powersKnown[classLevel]   The max number of known powers available to each class per level
  */
 
 /**
@@ -3573,7 +3575,7 @@ SW5E.powercastingTypes = {
         powerPointsBase: 3,
         powerMaxLevel: [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7],
         powerLimit: 5,
-        divisor: 4/3,
+        divisor: 4 / 3,
         force: {
           label: "SW5E.Force",
           powersKnown: [0, 7, 9, 11, 13, 15, 17, 18, 19, 21, 22, 24, 25, 26, 28, 29, 30, 32, 33, 34, 35]
@@ -3618,6 +3620,85 @@ SW5E.powercastingTypes = {
         }
       }
     }
+  },
+  force: {
+    label: "SW5E.PowerProgForceLeveled",
+    img: "systems/sw5e/icons/power-tiers/{id}.webp",
+    progression: {
+      full: {
+        label: "SW5E.PowerProgFull",
+        powerPointsBase: 4,
+        powerMaxLevel: [0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
+        powerLimit: 6,
+        divisor: 1,
+        powersKnown: [0, 9, 11, 13, 15, 17, 19, 21, 23, 25, 26, 28, 29, 31, 32, 34, 35, 37, 38, 39, 40]
+      },
+      "3/4": {
+        label: "SW5E.PowerProg3/4",
+        powerPointsBase: 3,
+        powerMaxLevel: [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7],
+        powerLimit: 5,
+        divisor: 4 / 3,
+        powersKnown: [0, 7, 9, 11, 13, 15, 17, 18, 19, 21, 22, 24, 25, 26, 28, 29, 30, 32, 33, 34, 35]
+      },
+      half: {
+        label: "SW5E.PowerProgHalf",
+        powerPointsBase: 2,
+        powerMaxLevel: [0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5],
+        powerLimit: 4,
+        divisor: 2,
+        powersKnown: [0, 5, 7, 9, 10, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25, 27, 28, 29, 30]
+      },
+      arch: {
+        label: "SW5E.PowerProgArch",
+        powerPointsBase: 1,
+        powerMaxLevel: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4],
+        powerLimit: 4,
+        divisor: 1,
+        roundUp: true,
+        powersKnown: [0, 0, 0, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25]
+      }
+    }
+  },
+  tech: {
+    label: "SW5E.PowerProgTechLeveled",
+    img: "systems/sw5e/icons/power-tiers/{id}.webp",
+    progression: {
+      full: {
+        label: "SW5E.PowerProgFull",
+        powerPointsBase: 4,
+        powerMaxLevel: [0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
+        powerLimit: 6,
+        divisor: 1,
+        powersKnown: [0, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+      },
+      "3/4": {
+        label: "SW5E.PowerProg3/4",
+        powerPointsBase: 3,
+        powerMaxLevel: [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7],
+        powerLimit: 5,
+        divisor: 4 / 3,
+        powersKnown: [0, 0, 0, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
+      },
+      half: {
+        label: "SW5E.PowerProgHalf",
+        powerPointsBase: 2,
+        powerMaxLevel: [0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5],
+        powerLimit: 4,
+        divisor: 2,
+        powersKnown: [0, 0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+      },
+      arch: {
+        label: "SW5E.PowerProgArch",
+        powerPointsBase: 1,
+        powerMaxLevel: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4],
+        powerLimit: 4,
+        divisor: 1,
+        roundUp: true,
+        powersKnown: [0, 0, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      }
+    },
+    shortRest: true
   }
 };
 preLocalize("powercastingTypes", { key: "label", sort: true });
@@ -6663,7 +6744,7 @@ let _enrichmentLookup;
 Object.defineProperty(SW5E, "enrichmentLookup", {
   get() {
     const slugify = value => value?.slugify().replaceAll("-", "");
-    if ( !_enrichmentLookup ) {
+    if (!_enrichmentLookup) {
       _enrichmentLookup = {
         abilities: foundry.utils.deepClone(SW5E.abilities),
         skills: foundry.utils.deepClone(SW5E.skills),
@@ -6702,8 +6783,8 @@ function patchConfig(key, fallbackKey, options) {
   }
 
   Object.values(SW5E[key]).forEach(o => {
-    if ( foundry.utils.getType(o) !== "Object" ) return;
-    Object.defineProperty(o, "toString", {value: toString});
+    if (foundry.utils.getType(o) !== "Object") return;
+    Object.defineProperty(o, "toString", { value: toString });
   });
 }
 

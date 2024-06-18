@@ -41,6 +41,7 @@ export default class HitPointsAdvancement extends Advancement {
    * @returns {string}
    */
   get hitDie() {
+    if (this.actor?.type === "npc") return `d${this.actor.system.attributes.hd.denomination}`;
     return this.item.system.hitDice;
   }
 
@@ -93,7 +94,7 @@ export default class HitPointsAdvancement extends Advancement {
    * @param {number} [quant]      Quantity of dice at provided level.
    * @returns {number|null}       Hit points for level or null if none have been taken.
    */
-  static valueForLevel(data, hitDieValue, level, quant=1) {
+  static valueForLevel(data, hitDieValue, level, quant = 1) {
     const value = data[level];
     if (!value) return null;
 

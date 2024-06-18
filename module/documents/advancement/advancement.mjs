@@ -186,10 +186,10 @@ export default class Advancement extends BaseAdvancement {
    * @protected
    */
   _preCreate(data) {
-    if ( !["class", "archetype"].includes(this.item.type)
+    if (!["class", "archetype"].includes(this.item.type)
       || foundry.utils.hasProperty(data, "level")
-      || this.constructor.metadata.multiLevel ) return;
-    this.updateSource({level: 1});
+      || this.constructor.metadata.multiLevel) return;
+    this.updateSource({ level: 1 });
   }
 
   /* -------------------------------------------- */
@@ -317,7 +317,7 @@ export default class Advancement extends BaseAdvancement {
    * @param {object} data    Data from the advancement form.
    * @abstract
    */
-  async apply(level, data) {}
+  async apply(level, data) { }
 
   /* -------------------------------------------- */
 
@@ -328,7 +328,7 @@ export default class Advancement extends BaseAdvancement {
    * @param {object} data   Data from `Advancement#reverse` needed to restore this advancement.
    * @abstract
    */
-  async restore(level, data) {}
+  async restore(level, data) { }
 
   /* -------------------------------------------- */
 
@@ -338,5 +338,23 @@ export default class Advancement extends BaseAdvancement {
    * @returns {object}      Data that can be passed to the `Advancement#restore` method to restore this reversal.
    * @abstract
    */
-  async reverse(level) {}
+  async reverse(level) { }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Fetch an item and create a clone with the proper flags.
+   * @param {string} uuid  UUID of the item to fetch.
+   * @param {string} [id]  Optional ID to use instead of a random one.
+   * @returns {object|null}
+   */
+  async createItemData(uuid, id) {
+    const source = await fromUuid(uuid);
+    if (!source) return null;
+    return source.clone({
+      _id: id ?? foundry.utils.randomID(),
+      "flags.sw5e.sourceId": uuid,
+      "flags.sw5e.advancementOrigin": `${this.item.id}.${this.id}`
+    }, { keepId: true }).toObject();
+  }
 }

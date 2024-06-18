@@ -2744,12 +2744,12 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
      * A hook event that fires after a hit die has been rolled for an Actor, but before updates have been performed.
      * @function sw5e.rollHitDie
      * @memberof hookEvents
-     * @param {Actor5e} actor         Actor for which the hit die has been rolled.
-     * @param {Roll} roll             The resulting roll.
+     * @param {Actor5e} actor           Actor for which the hit die has been rolled.
+     * @param {Roll} roll               The resulting roll.
      * @param {object} updates
-     * @param {object} updates.actor  Updates that will be applied to the actor.
-     * @param {object} updates.class  Updates that will be applied to the class.
-     * @returns {boolean}             Explicitly return `false` to prevent updates from being performed.
+     * @param {object} updates.actor    Updates that will be applied to the actor.
+     * @param {object} [updates.class]  Updates that will be applied to the class.
+     * @returns {boolean}               Explicitly return `false` to prevent updates from being performed.
      */
     if (Hooks.call("sw5e.rollHitDie", this, roll, updates) === false) return roll;
 
@@ -2772,35 +2772,26 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {Promise<attribDieRoll|null>}  The created Roll instance, or null if no hull die was rolled
    */
   async rollHullDie(denomination, numDice = "1", keep = "", options = {}) {
-    // If no denomination was provided, choose the first available
     let sship = null;
     const hullMult = ["huge", "grg"].includes(this.system.traits.size) ? 2 : 1;
+
+    // If no denomination was provided, choose the first available
     if (!denomination) {
-      sship = this.itemTypes.starshipsize.find(
-        s => s.system.hullDiceUsed < (s.system.tier * hullMult) + s.system.hullDiceStart
-      );
+      sship = this.system.attributes.hulld.starships.find(s => s.system.hullDiceUsed < (s.system.tier * hullMult) + s.system.hullDiceStart);
       if (!sship) return null;
       denomination = sship.system.hullDice;
     }
+
     // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
-    else sship = this.items.find(i => {
-      return (
-        i.system.hullDice === denomination
-        && (i.system.hullDiceUsed || 0) < (i.system.tier * hullMult || 0) + i.system.hullDiceStart
-      );
+    else sship = this.system.attributes.hulld.starships.find(i => {
+      return (i.system.hullDice === denomination) && ((i.system.hullDiceUsed || 0) < (i.system.tier * hullMult || 0) + i.system.hullDiceStart)
     });
 
     // If no starship is available, display an error notification
     if (!sship) {
-      ui.notifications.error(
-        game.i18n.format("SW5E.HullDiceWarn", {
-          name: this.name,
-          formula: denomination
-        })
-      );
+      ui.notifications.error(game.i18n.format("SW5E.HullDiceWarn", { name: this.name, formula: denomination }));
       return null;
     }
-
 
     // Prepare roll data
     if (options.fastForward === undefined) options.fastForward = !options.dialog;
@@ -2842,21 +2833,20 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     const hp = this.system.attributes.hp;
     const dhp = Math.min(Math.max(0, hp.max) - hp.value, roll.total);
-    const updates = {
-      actor: { "system.attributes.hp.value": hp.value + dhp },
-      starship: { "system.hullDiceUsed": sship.system.hullDiceUsed + 1 }
-    };
+    const updates = { actor: { "system.attributes.hp.value": hp.value + dhp } };
+    if (sship) updates.starship = { "system.hullDiceUsed": sship.system.hullDiceUsed + 1 };
+    else updates.actor["system.attributes.hulld.spent"] = this.system.attributes.hulld.spent + 1;
 
     /**
      * A hook event that fires after a hull die has been rolled for an Actor, but before updates have been performed.
      * @function sw5e.rollHullDie
      * @memberof hookEvents
-     * @param {Actor5e} actor            Actor for which the hull die has been rolled.
-     * @param {AttribDieRoll} roll       The resulting roll.
+     * @param {Actor5e} actor              Actor for which the hull die has been rolled.
+     * @param {AttribDieRoll} roll         The resulting roll.
      * @param {object} updates
-     * @param {object} updates.actor     Updates that will be applied to the actor.
-     * @param {object} updates.starship  Updates that will be applied to the starship size.
-     * @returns {boolean}                Explicitly return `false` to prevent updates from being performed.
+     * @param {object} updates.actor       Updates that will be applied to the actor.
+     * @param {object} [updates.starship]  Updates that will be applied to the starship size.
+     * @returns {boolean}                  Explicitly return `false` to prevent updates from being performed.
      */
     if (Hooks.call("sw5e.rollHullDie", this, roll, updates) === false) return roll;
 
@@ -2919,15 +2909,13 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     let sship = null;
     const shldMult = ["huge", "grg"].includes(this.system.traits.size) ? 2 : 1;
     if (!denomination) {
-      sship = this.itemTypes.starshipsize.find(
-        i => (i.system.shldDiceUsed || 0) < (i.system.tier * shldMult || 0) + i.system.shldDiceStart
-      );
+      sship = this.itemTypes.starships.find(s => (s.system.shldDiceUsed || 0) < (s.system.tier * shldMult || 0) + s.system.shldDiceStart);
       if (!sship) return result;
       denomination = sship.system.shldDice;
     }
     // Otherwise locate a starship (if any) which has an available shield die of the requested denomination
     else {
-      sship = this.itemTypes.starshipsize.find(i => {
+      sship = this.itemTypes.starships.find(i => {
         return (
           i.system.shldDice === denomination
           && (i.system.shldDiceUsed || 0) < (i.system.tier * shldMult || 0) + i.system.shldDiceStart
@@ -3001,10 +2989,10 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const dsp = Math.min(Math.max(0, hp.tempmax) - hp.temp, roll.total);
     result.sp = dsp;
 
-    const updates = {
-      actor: { "system.attributes.hp.temp": hp.temp + dsp },
-      starship: { "system.shldDiceUsed": sship.system.shldDiceUsed + 1 }
-    };
+    const updates = { actor: { "system.attributes.hp.temp": hp.temp + dsp } };
+    if (sship) updates.starship = { "system.shldDiceUsed": sship.system.shldDiceUsed + 1 };
+    else updates.actor["system.attributes.shldd.spent"] = this.system.attributes.shldd.spent + 1;
+
     result.actorUpdates = updates.actor;
     result.itemUpdates = [{ ...updates.starship, _id: sship.id }];
 
@@ -3012,12 +3000,12 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
      * A hook event that fires after a shield die has been rolled for an Actor, but before updates have been performed.
      * @function sw5e.rollShieldDie
      * @memberof hookEvents
-     * @param {Actor5e} actor            Actor for which the shield die has been rolled.
-     * @param {AttribDieRoll} roll       The resulting roll.
+     * @param {Actor5e} actor              Actor for which the shield die has been rolled.
+     * @param {AttribDieRoll} roll         The resulting roll.
      * @param {object} updates
-     * @param {object} updates.actor     Updates that will be applied to the actor.
-     * @param {object} updates.starship  Updates that will be applied to the starship size.
-     * @returns {boolean}                Explicitly return `false` to prevent updates from being performed.
+     * @param {object} updates.actor       Updates that will be applied to the actor.
+     * @param {object} [updates.starship]  Updates that will be applied to the starship size.
+     * @returns {boolean}                  Explicitly return `false` to prevent updates from being performed.
      */
     if (Hooks.call("sw5e.rollShieldDie", this, roll, updates) === false) return result;
 
@@ -3830,7 +3818,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     else max = Math.max(0, hp.effectiveMax);
     updates["system.attributes.hp.value"] = max;
     if (recoverTemp) updates["system.attributes.hp.temp"] = 0;
-    return { updates, hitPointsRecovered: max - hp.value };
+    return { updates, hitPointsRecovered: Math.max(0, max - hp.value) };
   }
 
   /* -------------------------------------------- */
@@ -3856,18 +3844,34 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /* -------------------------------------------- */
 
   /**
-   * Recovers power points and slots.
+   * Recovers expended power points and slots.
    * @param {object} [options]
-   * @param {boolean} [options.recoverTechPowers=true]    Recover all tech power points and slots.
-   * @param {boolean} [options.recoverForcePowers=true]   Recover all force power points and slots.
-   * @returns {object}                                  Updates to the actor.
+   * @param {boolean} [options.recoverShort=true]  Recover all power points and slots that return on short rests.
+   * @param {boolean} [options.recoverLong=true]   Recover all power points and slots that return on long rest.
+   * @returns {object}                             Updates to the actor.
    * @protected
    */
-  _getRestPowerRecovery({ recoverTechPowers = true, recoverForcePowers = true } = {}) {
-    const powers = this.system.powers ?? {};
+  _getRestPowerRecovery({ recoverShort = true, recoverLong = true } = {}) {
+    const powers = this.system.powers;
     let updates = {};
+    if (!powers) return updates;
 
-    if (recoverTechPowers) {
+    // TODO: See if we can use the following code for recovering slots if we switch to new powercasting types in config
+    /*
+        Object.entries(CONFIG.SW5E.powerPreparationModes).forEach(([k, v]) => {
+      const isSR = CONFIG.SW5E.powercastingTypes[k === "prepared" ? "leveled" : k]?.shortRest;
+      if ( v.upcast && ((recoverShort && isSR) || recoverLong) ) {
+        if ( k === "prepared" ) {
+          Object.entries(powers).forEach(([m, n]) => {
+            if ( /^power\d+/.test(m) && n.level ) updates[`system.powers.${m}.value`] = n.max;
+          });
+        }
+        else if ( k !== "always" ) updates[`system.powers.${k}.value`] = powers[k].max;
+      }
+    });
+    */
+
+    if (recoverShort) {
       updates["system.attributes.tech.points.value"] = this.system.attributes.tech.points.max;
       updates["system.attributes.tech.points.temp"] = 0;
       updates["system.attributes.tech.points.tempmax"] = 0;
@@ -3877,7 +3881,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       }
     }
 
-    if (recoverForcePowers) {
+    if (recoverLong) {
       updates["system.attributes.force.points.value"] = this.system.attributes.force.points.max;
       updates["system.attributes.force.points.temp"] = 0;
       updates["system.attributes.force.points.tempmax"] = 0;
@@ -3917,26 +3921,19 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @protected
    */
   _getRestHitDiceRecovery({ maxHitDice } = {}) {
-    // Determine the number of hit dice which may be recovered
-    if (maxHitDice === undefined) maxHitDice = Math.max(Math.round(this.system.details.level / 2), 1);
-
-    // Sort classes which can recover HD, assuming players prefer recovering larger HD first.
-    const sortedClasses = Object.values(this.classes).sort((a, b) => {
-      return (parseInt(b.system.hitDice.slice(1)) || 0) - (parseInt(a.system.hitDice.slice(1)) || 0);
-    });
-
-    // Update hit dice usage
-    let updates = [];
-    let hitDiceRecovered = 0;
-    for (let item of sortedClasses) {
-      const hitDiceUsed = item.system.hitDiceUsed;
-      if (hitDiceRecovered < maxHitDice && hitDiceUsed > 0) {
-        let delta = Math.min(hitDiceUsed || 0, maxHitDice - hitDiceRecovered);
-        hitDiceRecovered += delta;
-        updates.push({ _id: item.id, "system.hitDiceUsed": hitDiceUsed - delta });
-      }
+    // Handle simpler HD recovery for NPCs
+    if (this.type === "npc") {
+      const hd = this.system.attributes.hd;
+      const recovered = Math.min(
+        Math.max(1, Math.floor(hd.max * 0.5)), hd.spent, maxHitDice ?? Infinity
+      );
+      return {
+        actorUpdates: { "system.attributes.hd.spent": hd.spent - recovered },
+        hitDiceRecovered: recovered
+      };
     }
-    return { updates, hitDiceRecovered };
+
+    return this.system.attributes.hd.createHitDiceUpdates({ maxHitDice });
   }
 
   /* -------------------------------------------- */
@@ -4068,7 +4065,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if (Hooks.call("sw5e.preRechargeRepair", this, config) === false) return;
 
     // Take note of the initial hull points and number of hull dice the Actor has
-    const hd0 = foundry.utils.getProperty(this, "system.attributes.hull.dice");
+    const hd0 = foundry.utils.getProperty(this, "system.attributes.hulld.value");
     const hp0 = foundry.utils.getProperty(this, "system.attributes.hp.value");
     const regenShld = !foundry.utils.getProperty(this, "system.attributes.shld.depleted");
 
@@ -4098,7 +4095,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if (!config.dialog && config.autoHD) await this.autoSpendHullDice({ threshold: config.autoHDThreshold });
 
     // Return the rest result
-    const dhd = foundry.utils.getProperty(this, "system.attributes.hull.dice") - hd0;
+    const dhd = foundry.utils.getProperty(this, "system.attributes.hulld.value") - hd0;
     const dhp = foundry.utils.getProperty(this, "system.attributes.hp.value") - hp0;
     return this._repair(config, { regenShld, dhd, dhp });
   }
@@ -4233,13 +4230,15 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // TODO: Turn gritty realism into the SW5e longer repairs variant rule https://sw5e.com/rules/variantRules/Longer%20Repairs
     let powerDiceUpdates = {};
     let hullPointsRecovered = 0;
-    let hullPointUpdates = {};
+    let hullPointActorUpdates = {};
     let hullDiceRecovered = 0;
-    let hullDiceUpdates = [];
+    let hullDiceActorUpdates = {};
+    let hullDiceItemUpdates = [];
     let shldPointsRecovered = 0;
-    let shldPointUpdates = {};
+    let shldPointActorUpdates = {};
     let shldDiceRecovered = 0;
-    let shldDiceUpdates = [];
+    let shldDiceActorUpdates = {};
+    let shldDiceItemUpdates = [];
     const rolls = [];
     const refittingRepair = config.type === "refitting";
     const newDay = config.newDay === true;
@@ -4249,14 +4248,14 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     // Recover hit points & hit dice on refitting repair
     if (refittingRepair) {
-      ({ updates: hullPointUpdates, hullPointsRecovered } = this._getRepairHullPointRecovery());
-      ({ updates: hullDiceUpdates, hullDiceRecovered } = this._getRepairHullDiceRecovery());
+      ({ updates: hullPointActorUpdates, hullPointsRecovered } = this._getRepairHullPointRecovery());
+      ({ updates: hullDiceItemUpdates, actorUpdates: hullDiceActorUpdates, hullDiceRecovered } = this._getRepairHullDiceRecovery());
       result.resetShields = true;
     }
 
     if (result.resetShields) {
-      ({ updates: shldPointUpdates, shldPointsRecovered } = this._getRepairShieldPointRecovery());
-      ({ updates: shldDiceUpdates, shldDiceRecovered } = this._getRepairShieldDiceRecovery());
+      ({ updates: shldPointActorUpdates, shldPointsRecovered } = this._getRepairShieldPointRecovery());
+      ({ updates: shldDiceItemUpdates, actorUpdates: shldDiceActorUpdates, shldDiceRecovered } = this._getRepairShieldDiceRecovery());
     }
 
     // Figure out the repair of the changes
@@ -4267,12 +4266,14 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       shp: shldPointsRecovered,
       updateData: {
         ...powerDiceUpdates,
-        ...hullPointUpdates,
-        ...shldPointUpdates
+        ...(hullDiceActorUpdates ?? {}),
+        ...hullPointActorUpdates,
+        ...(shldDiceActorUpdates ?? {}),
+        ...shldPointActorUpdates
       },
       updateItems: [
-        ...hullDiceUpdates,
-        ...shldDiceUpdates,
+        ...(hullDiceItemUpdates ?? []),
+        ...(shldDiceItemUpdates ?? []),
         ...(await this._getRepairItemUsesRecovery({
           recoverRefittingRepairUses: refittingRepair,
           recoverDailyUses: newDay,
@@ -4427,7 +4428,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   async autoSpendHullDice({ threshold = 3 } = {}) {
     const hp = this.system.attributes.hp;
-    const max = MAth.max(0, hp.max);
+    const max = Math.max(0, hp.max);
     let diceRolled = 0;
     while (this.system.attributes.hp.value + threshold <= max) {
       const r = await this.rollHullDie();
@@ -4452,7 +4453,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     updates["system.attributes.hp.value"] = max;
 
-    return { updates, hullPointsRecovered: max - hp.value };
+    return { updates, hullPointsRecovered: Math.max(0, max - hp.value) };
   }
 
   /* -------------------------------------------- */
@@ -4471,7 +4472,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     updates["system.attributes.hp.temp"] = tempMax;
     updates["system.attributes.shld.depleted"] = false;
 
-    return { updates, shldPointsRecovered: tempMax - hp.temp };
+    return { updates, shldPointsRecovered: Math.max(0, tempMax - hp.temp) };
   }
 
   /* -------------------------------------------- */
@@ -4485,30 +4486,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @protected
    */
   _getRepairHullDiceRecovery({ maxHullDice } = {}) {
-    // Determine the number of hull dice which may be recovered
-    if (maxHullDice === undefined) maxHullDice = this.system.attributes.hull.dicemax;
-
-    // Sort starship sizes which can recover HD, assuming players prefer recovering larger HD first.
-    const sortedStarships = Object.values(this.starships).sort((a, b) => {
-      return (parseInt(b.system.hullDice.slice(1)) || 0) - (parseInt(a.system.hullDice.slice(1)) || 0);
-    });
-
-    // Update hull dice usage
-    let updates = [];
-    let hullDiceRecovered = 0;
-    for (let item of sortedStarships) {
-      const hullDiceUsed = item.system.hullDiceUsed;
-      if (hullDiceRecovered < maxHullDice && hullDiceUsed > 0) {
-        let delta = Math.min(hullDiceUsed || 0, maxHullDice - hullDiceRecovered);
-        hullDiceRecovered += delta;
-        updates.push({
-          _id: item.id,
-          "system.hullDiceUsed": hullDiceUsed - delta
-        });
-      }
-    }
-
-    return { updates, hullDiceRecovered };
+    return this.system.attributes.hulld.createHullDiceUpdates({ maxHullDice });
   }
 
   /* -------------------------------------------- */
@@ -4520,30 +4498,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @protected
    */
   _getRepairShieldDiceRecovery() {
-    // Determine the number of shield dice which may be recovered
-    const maxShldDice = this.system.attributes.shld.dicemax;
-
-    // Sort starship sizes which can recover SD, assuming players prefer recovering larger SD first.
-    const sortedStarships = Object.values(this.starships).sort((a, b) => {
-      return (parseInt(b.system.shldDice.slice(1)) || 0) - (parseInt(a.system.shldDice.slice(1)) || 0);
-    });
-
-    // Update shield dice usage
-    let updates = [];
-    let shldDiceRecovered = 0;
-    for (let item of sortedStarships) {
-      const shldDiceUsed = item.system.shldDiceUsed;
-      if (shldDiceRecovered < maxShldDice && shldDiceUsed > 0) {
-        let delta = Math.min(shldDiceUsed || 0, maxShldDice - shldDiceRecovered);
-        shldDiceRecovered += delta;
-        updates.push({
-          _id: item.id,
-          "system.shldDiceUsed": shldDiceUsed - delta
-        });
-      }
-    }
-
-    return { updates, shldDiceRecovered };
+    return this.system.attributes.shldd.createShieldDiceUpdates({ maxShieldDice });
   }
 
   /* -------------------------------------------- */
@@ -4628,7 +4583,6 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         }
       }
     }
-
     return updates;
   }
 
@@ -5528,6 +5482,17 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /* -------------------------------------------- */
 
   /** @inheritDoc */
+  _onDelete(options, userId) {
+    super._onDelete(options, userId);
+
+    const origin = this.getFlag("sw5e", "summon.origin");
+    // TODO: Replace with parseUuid once V11 support is dropped
+    if (origin) SummonsData.untrackSummon(origin.split(".Item.")[0], this.uuid);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
   async _onCreateDescendantDocuments(parent, collection, documents, data, options, userId) {
     if ((userId === game.userId) && (collection === "items")) await this.updateEncumbrance(options);
     super._onCreateDescendantDocuments(parent, collection, documents, data, options, userId);
@@ -5608,8 +5573,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const fill = CONFIG.SW5E.tokenHPColors[key];
 
     for (const token of tokens) {
-      if (!token.object?.visible || !token.object?.renderable) continue;
-      token.flashRing(key);
+      if (!token.object?.visible || token.isSecret) continue;
+      if (token.hasDynamicRing) token.flashRing(key);
       const t = token.object;
       canvas.interface.createScrollingText(t.center, value.signedString(), {
         anchor: CONST.TEXT_ANCHOR_POINTS.TOP,

@@ -307,6 +307,7 @@ export default class AttributesFields {
    * @this {CharacterData|NPCData}
    */
   static prepareBasePowercasting() {
+    // TODO: Update this with newer powerPrepModes and powerCastingTypes in config, may remove the need to fmax/tmax etc. and bring us more inline with dnd5e
 
     const isNPC = this.type === "npc";
 

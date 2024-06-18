@@ -98,15 +98,15 @@ export default class ActorSheetSW5eStarship extends ActorSheetSW5e {
     const labels = super._getLabels();
 
     labels.hullDice = game.i18n.format("SW5E.HullDiceFull", {
-      cur: this.actor.system.attributes.hull.dice,
-      max: this.actor.system.attributes.hull.dicemax,
-      die: this.actor.system.attributes.hull.die
+      cur: this.actor.system.attributes.hulld.value,
+      max: this.actor.system.attributes.hulld.max,
+      die: this.actor.system.attributes.hulld.sizes.size
     });
 
     labels.shieldDice = game.i18n.format("SW5E.ShieldDiceFull", {
-      cur: this.actor.system.attributes.shld.dice,
-      max: this.actor.system.attributes.shld.dicemax,
-      die: this.actor.system.attributes.shld.die
+      cur: this.actor.system.attributes.shldd.value,
+      max: this.actor.system.attributes.shldd.max,
+      die: this.actor.system.attributes.shldd.sizes.size
     });
 
     return labels;
@@ -333,7 +333,7 @@ export default class ActorSheetSW5eStarship extends ActorSheetSW5e {
       try {
         item.firingArcTemplate = sw5e.canvas.FiringArcTemplate.fromItem(item);
         item.firingArcTemplate?.drawPreview();
-      } catch(err) {
+      } catch (err) {
         Hooks.onError("ActorSheet5eStarship._onMouseOverItem", err, {
           msg: game.i18n.localize("SW5E.PlaceTemplateError"),
           log: "error",
@@ -621,7 +621,7 @@ export default class ActorSheetSW5eStarship extends ActorSheetSW5e {
     if (!sourceActor) return;
 
     if (!CONFIG.SW5E.ssDeployableTypes.includes(sourceActor.type)) {
-      ui.notifications.warn( game.i18n.format("SW5E.DeploymentInvalidActorType", {
+      ui.notifications.warn(game.i18n.format("SW5E.DeploymentInvalidActorType", {
         actorType: game.i18n.localize(CONFIG.Actor.typeLabels[sourceActor.type])
       }));
       return null;

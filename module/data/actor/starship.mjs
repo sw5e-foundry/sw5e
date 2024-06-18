@@ -376,7 +376,6 @@ export default class StarshipData extends CommonTemplate {
 
     // Determine Starship size-based properties based on owned Starship item
     const sizeData = this.itemTypes.starshipsize[0]?.system ?? {};
-    const hugeOrGrg = ["huge", "grg"].includes(sizeData.size);
     const tiers = parseInt(sizeData.tier ?? 0);
 
     this.traits.size = sizeData.size ?? "med"; // Needs to be the short code
@@ -401,27 +400,8 @@ export default class StarshipData extends CommonTemplate {
     this.attributes.fuel.cost = sizeData.fuelCost ?? 0;
     this.attributes.fuel.fuelCap = sizeData.fuelCap ?? 0;
 
-    this.attributes.hull = new HullDice(this.parent);
-    /* Make this data availble in HullDice
-
-    const hullmax = (sizeData.hullDiceStart ?? 0) + ((hugeOrGrg ? 2 : 1) * tiers);
-    this.attributes.hull = {
-      die: sizeData.hullDice ?? "d1",
-      dicemax: hullmax,
-      dice: hullmax - parseInt(sizeData.hullDiceUsed ?? 0)
-    };
-    */
-
-    this.attributes.shld = new ShieldDice(this.parent);
-    /* Make this data availble in ShieldDice
-
-    const shldmax = (sizeData.shldDiceStart ?? 0) + ((hugeOrGrg ? 2 : 1) * tiers);
-    this.attributes.shld = {
-      die: sizeData.shldDice ?? "d1",
-      dicemax: shldmax,
-      dice: shldmax - parseInt(sizeData.shldDiceUsed ?? 0)
-    };
-    */
+    this.attributes.hulld = new HullDice(this.parent);
+    this.attributes.shldd = new ShieldDice(this.parent);
 
     this.attributes.mods = {
       cap: { max: sizeData.modBaseCap ?? 0 },

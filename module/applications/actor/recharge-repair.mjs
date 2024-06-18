@@ -39,9 +39,9 @@ export default class RechargeRepairDialog extends Dialog {
     const context = super.getData();
     context.isGroup = this.actor.type === "group";
 
-    if ( foundry.utils.hasProperty(this.actor, "system.attributes.hulld") ) {
+    if (foundry.utils.hasProperty(this.actor, "system.attributes.hulld")) {
       // Determine Hull Dice
-      context.availableHD = this.actor.itemTypes.starshipsize.reduce((hulld, item) => {
+      context.availableHullD = this.actor.itemTypes.starshipsize.reduce((hulld, item) => {
         const { tier, size, hullDice, hullDiceStart, hullDiceUsed } = item.system;
         const denom = hullDice ?? "d6";
         const hugeOrGrg = ["huge", "grg"].includes(size);
@@ -52,7 +52,7 @@ export default class RechargeRepairDialog extends Dialog {
         hulld[denom] = denom in hulld ? hulld[denom] + available : available;
         return hulld;
       }, {});
-      context.canRoll = this.actor.system.attributes.hull.dice > 0;
+      context.canRoll = this.actor.system.attributes.hulld.value > 0;
       context.denomination = this._denom;
     }
 

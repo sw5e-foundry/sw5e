@@ -134,11 +134,16 @@
 
             {{#unless system.isMountable}}
             {{#unless isStarshipItem}}
-            <div class="form-group">
+            <div class="form-group input-select">
                 <label>{{localize "SW5E.Attunement"}}</label>
-                <select name="system.attunement" data-dtype="Number">
-                    {{selectOptions config.attunements selected=system.attunement}}
-                </select>
+                <div class="form-fields">
+                    <input type="checkbox" name="system.attuned" {{ checked system.attuned }} {{ disabled (not
+                        system.attunement) }} data-tooltip="SW5E.Attuned" aria-label="{{ localize 'SW5E.Attuned' }}">
+                    <select name="system.attunement">
+                        {{selectOptions config.attunementTypes selected=system.attunement
+                        blank=(localize "SW5E.AttunementNone")}}
+                    </select>
+                </div>
             </div>
 
             <div class="form-group">
@@ -171,7 +176,8 @@
                 <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
                 {{#each properties}}
                 <label class="checkbox">
-                    <input type="checkbox" name="system.properties.{{@key}}" {{checked selected}}> {{ label }}
+                    <input type="checkbox" name="system.properties.{{ @key }}" {{ checked selected }}>
+                    {{ label }}
                 </label>
                 {{/each}}
             </div>

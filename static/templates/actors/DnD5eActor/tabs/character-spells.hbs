@@ -36,8 +36,8 @@
 <{{ elements.inventory }} class="inventory-element" v2>
 
     {{!-- Searching & Filtering --}}
-    <item-list-controls for="powerbook" label="{{ localize " SW5E.PowersSearch" }}" sort="toggle" collection="items"
-        keep-empty>
+    <item-list-controls for="powerbook" label="{{ localize " SW5E.PowersSearch" }}" sort="multi" sort-modes="apm"
+        collection="items" keep-empty>
         <datalist>
             <option value="action">{{ localize "SW5E.Action" }}</option>
             <option value="bonus">{{ localize "SW5E.BonusAction" }}</option>
@@ -66,9 +66,10 @@
                 <div class="item-header item-range">{{ localize "SW5E.PowerHeader.Range" }}</div>
                 <div class="item-header item-target">{{ localize "SW5E.PowerHeader.Target" }}</div>
                 <div class="item-header item-roll">{{ localize "SW5E.PowerHeader.Roll" }}</div>
+                <div class="item-header item-uses power-uses">{{ localize "SW5E.Uses" }}</div>
                 <div class="item-header item-formula">{{ localize "SW5E.PowerHeader.Formula" }}</div>
                 <div class="item-header item-controls"></div>
-                {{#if (and usesSlots editable)}}
+                {{#if (and usesSlots @root.editable)}}
                 <a class="config-button" data-action="powerSlots" data-tooltip="SW5E.PowerSlotsConfig"
                     aria-label="{{ localize " SW5E.PowerSlotsConfig" }}">
                     <i class="fas fa-cog"></i>
@@ -95,7 +96,9 @@
 
                 {{!-- Powers --}}
                 <li class="item" data-item-id="{{ item.id }}" data-entry-id="{{ item.id }}"
-                    data-item-name="{{ item.name }}" data-item-sort="{{ item.sort }}">
+                    data-item-level="{{ item.system.level }}" data-item-name="{{ item.name }}"
+                    data-item-sort="{{ item.sort }}" data-item-preparation-mode="{{ item.system.preparation.mode }}"
+                    data-item-preparation-prepared="{{ item.system.preparation.prepared }}">
 
                     {{!-- Power Name --}}
                     <div class="item-name item-action item-tooltip {{ @root.rollableClass }}" role="button"
@@ -107,7 +110,14 @@
                         <img class="item-image gold-icon" src="{{ item.img }}" alt="{{ item.name }}">
                         <div class="name name-stacked">
                             <span class="title">{{ item.name }}</span>
-                            <span class="subtitle">{{ item.labels.components.vsm }}</span>
+                            <span class="subtitle">
+                                {{ item.labels.components.vsm }}
+                                {{#if ctx.hasUses}}
+                                <span class="subtitle-uses">
+                                    — {{ item.system.uses.value }} &sol; {{ item.system.uses.max }}
+                                </span>
+                                {{/if}}
+                            </span>
                         </div>
                         <div class="tags">
                             {{#each item.labels.components.all}}
@@ -165,6 +175,16 @@
                             </span>
                             <span class="value">{{ item.system.save.dc }}</span>
                         </div>
+                        {{/if}}
+                    </div>
+
+                    {{!-- Power Uses --}}
+                    <div class="item-detail item-uses power-uses {{#unless ctx.hasUses}}empty{{/unless}}">
+                        {{#if ctx.hasUses}}
+                        <input type="text" value="{{ item.system.uses.value }}" placeholder="0" data-dtype="Number"
+                            data-name="system.uses.value" inputmode="numeric" pattern="[+=\-]?\d*">
+                        <span class="separator">&sol;</span>
+                        <span class="max">{{ item.system.uses.max }}</span>
                         {{/if}}
                     </div>
 

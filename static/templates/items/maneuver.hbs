@@ -6,7 +6,7 @@
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ManeuverName' }}" />
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ManeuverName' }}">
             </h1>
 
             <div class="item-subtitle">
@@ -20,7 +20,7 @@
                 </li>
                 <li>
                     <input type="text" name="system.requirements" value="{{system.requirements}}"
-                        placeholder="{{ localize 'SW5E.Requirements' }}" />
+                        placeholder="{{ localize 'SW5E.Requirements' }}">
                 </li>
                 <li>
                     {{> "sw5e.item-source"}}
@@ -40,7 +40,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "sw5e.item-description"}}
+        {{> "sw5e.item-description" }}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -50,35 +50,80 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.ManeuverType" }}</label>
                 <select name="system.type.value">
-                    {{selectOptions config.featureTypes selected=system.type.value blank="" labelAttr="label"}}
+                    {{ selectOptions config.featureTypes selected=system.type.value blank="" labelAttr="label" }}
                 </select>
             </div>
 
             {{#if itemSubtypes}}
             <div class="form-group">
                 <label>
-                    {{localize "SW5E.ItemFeatureSubtype" category=(lookup (lookup config.featureTypes system.type.value)
-                    "label")}}
+                    {{ localize "SW5E.ItemFeatureSubtype"
+                    category=(lookup (lookup config.featureTypes system.type.value) "label") }}
                 </label>
                 <select name="system.type.subtype">
-                    {{selectOptions itemSubtypes selected=system.type.subtype blank=""}}
+                    {{ selectOptions itemSubtypes selected=system.type.subtype blank="" }}
                 </select>
             </div>
             {{/if}}
+
             {{!-- Feature Properties --}}
             <div class="feature-properties form-group stacked">
                 <label>{{ localize "SW5E.ItemFeatureProperties" }}</label>
                 {{#each properties}}
                 <label class="checkbox">
-                    <input type="checkbox" name="system.properties.{{@key}}" {{checked selected}}> {{ label }}
+                    <input type="checkbox" name="system.properties.{{ @key }}" {{ checked selected }}> {{ label }}
                 </label>
                 {{/each}}
             </div>
+
+            <h3 class="form-header">{{ localize "SW5E.Prerequisites.Header" }}</h3>
+
+            <div class="form-group">
+                <label>{{ localize "SW5E.Prerequisites.FIELDS.prerequisites.level.label" }}</label>
+                {{ numberInput system.prerequisites.level name="system.prerequisites.level" step=1 }}
+                <p class="hint">{{ localize "SW5E.Prerequisites.FIELDS.prerequisites.level.hint" }}</p>
+            </div>
+
+            {{#if system.isEnchantmentSource}}
+            <h3 class="form-header">{{ localize "SW5E.Enchantment.Label" }}</h3>
+
+            <div class="form-group">
+                <label>{{ localize "SW5E.Enchantment.FIELDS.enchantment.items.max.label" }}</label>
+                <input type="text" name="system.enchantment.items.max" value="{{ source.enchantment.items.max }}">
+                <p class="hint">{{ localize "SW5E.Enchantment.FIELDS.enchantment.items.max.hint" }}</p>
+            </div>
+
+            <div class="form-group">
+                <label>{{ localize "SW5E.Enchantment.FIELDS.enchantment.items.period.label" }}</label>
+                <select name="system.enchantment.items.period">
+                    {{ selectOptions config.enchantmentPeriods selected=system.enchantment.items.period
+                    labelAttr="label" blank=(localize "SW5E.UsesPeriods.Never") }}
+                </select>
+                <p class="hint">{{ localize "SW5E.Enchantment.FIELDS.enchantment.items.period.hint" }}</p>
+            </div>
+
+            {{/if}}
 
             <h3 class="form-header">{{ localize "SW5E.FeatureUsage" }}</h3>
 
             {{!-- Item Activation Template --}}
             {{> "sw5e.item-activation"}}
+
+            {{!-- Recharge Requirement --}}
+            {{#if system.activation.type}}
+            <div class="form-group recharge">
+                <label>{{ localize "SW5E.FeatureActionRecharge" }}</label>
+                <div class="form-fields">
+                    <span>{{ localize "SW5E.FeatureRechargeOn" }}</span>
+                    {{numberInput system.recharge.value name="system.recharge.value"
+                    placeholder=(localize "SW5E.FeatureRechargeResult")}}
+                    <label class="checkbox">
+                        {{ localize "SW5E.Charged" }}
+                        <input type="checkbox" name="system.recharge.charged" {{checked system.recharge.charged}}>
+                    </label>
+                </div>
+            </div>
+            {{/if}}
 
             <h3 class="form-header">{{ localize "SW5E.ManeuverAttack" }}</h3>
 

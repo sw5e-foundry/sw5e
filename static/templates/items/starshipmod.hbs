@@ -1,19 +1,35 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
         <div class="composed-icon profile">
             {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}" />{{/if}}
-            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
+            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img">
             {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}" />{{/if}}
         </div>
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+                {{#if system.identified}}
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}">
+                {{else}}
+                <input name="system.unidentified.name" type="text" value="{{system.unidentified.name}}"
+                    placeholder="{{ localize 'SW5E.NameUnidentified' }}">
+                {{/if}}
             </h1>
 
             <div class="item-subtitle">
                 <h4 class="item-type">{{itemType}}</h4>
+                <label class="identified">
+                    <input type="checkbox" name="system.identified" {{checked system.identified}}>
+                    {{#if system.identified}}
+                    {{ localize "SW5E.Identified" }}
+                    {{#if editable}}<i class="fa-solid fa-toggle-on"></i>{{/if}}
+                    {{else}}
+                    {{ localize "SW5E.Unidentified.Title" }}
+                    {{#if editable}}<i class="fa-solid fa-toggle-off"></i>{{/if}}
+                    {{/if}}
+                </label>
                 <span class="item-status">{{itemStatus}}</span>
             </div>
 

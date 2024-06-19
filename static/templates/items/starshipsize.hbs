@@ -56,11 +56,12 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.Identifier" }}</label>
                 <div class="form-fields">
-                    <input type="text" name="system.identifier" value="{{system.identifier}}"
-                        placeholder="{{item.identifier}}">
+                    <input type="text" name="system.identifier" value="{{ system.identifier }}"
+                        placeholder="{{ item.identifier }}">
                 </div>
                 <p class="hint">
-                    {{{localize "SW5E.StarshipIdentifierHint" identifier=item.identifier}}}
+                    {{{ localize "SW5E.StarshipIdentifierHint" identifier=item.identifier }}}
+                    {{ localize "SW5E.IdentifierError" }}
                 </p>
             </div>
             {{#each config.ssTypeDetails as |detail id|}}

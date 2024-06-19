@@ -4,17 +4,32 @@
     <header class="sheet-header flexrow">
         <div class="composed-icon profile">
             {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}" />{{/if}}
-            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
+            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img">
             {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}" />{{/if}}
         </div>
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+                {{#if system.identified}}
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}">
+                {{else}}
+                <input name="system.unidentified.name" type="text" value="{{system.unidentified.name}}"
+                    placeholder="{{ localize 'SW5E.NameUnidentified' }}">
+                {{/if}}
             </h1>
 
             <div class="item-subtitle">
                 <h4 class="item-type">{{itemType}}</h4>
+                <label class="identified">
+                    <input type="checkbox" name="system.identified" {{checked system.identified}}>
+                    {{#if system.identified}}
+                    {{ localize "SW5E.Identified" }}
+                    {{#if editable}}<i class="fa-solid fa-toggle-on"></i>{{/if}}
+                    {{else}}
+                    {{ localize "SW5E.Unidentified.Title" }}
+                    {{#if editable}}<i class="fa-solid fa-toggle-off"></i>{{/if}}
+                    {{/if}}
+                </label>
                 <span class="item-status">{{itemStatus}}</span>
             </div>
 
@@ -23,9 +38,13 @@
                     {{ localize (lookup config.modificationTypes system.modificationType) }}
                 </li>
                 <li>
-                    <select name="system.rarity">
+                    {{#if concealDetails}}
+                    <span>{{ localize "SW5E.Unidentified.Title" }}</span>
+                    {{else}}
+                    <select name="system.rarity" {{~#if concealDetails}} inert{{/if}}>
                         {{selectOptions config.itemRarity selected=system.rarity blank=""}}
                     </select>
+                    {{/if}}
                 </li>
                 <li>
                     {{> "sw5e.item-source"}}
@@ -45,17 +64,19 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "sw5e.item-description"}}
+        {{> "sw5e.item-description" }}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
+            {{#sw5e-concealSection concealDetails}}
+
             <h3 class="form-header">{{ localize "SW5E.ItemModificationDetails" }}</h3>
 
             {{!-- Modification Type --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemModificationType" }}</label>
                 <select name="system.modificationType">
-                    {{selectOptions config.modificationTypes selected=system.modificationType}}
+                    {{ selectOptions config.modificationTypes selected=system.modificationType }}
                 </select>
             </div>
 
@@ -65,7 +86,7 @@
                 <label>{{ localize "SW5E.ItemModificationSlot" }}</label>
                 <select name="system.modificationSlot">
                     {{#with (lookup config.modificationSlots system.modificationType) as |modSlots| }}
-                    {{selectOptions modSlots selected=../system.modificationSlot}}
+                    {{ selectOptions modSlots selected=../system.modificationSlot }}
                     {{/with}}
                 </select>
                 {{/if}}
@@ -76,19 +97,12 @@
             <h3 class="form-header">{{ localize "SW5E.ItemModificationPropertyPl" }}</h3>
             <div class="form-group stacked item-properties">
                 <label>{{ localize "SW5E.ItemProperties" }}</label>
-                {{#each propertiesList as |property key|}} {{#if (eq property.type "Boolean")}}
-                <label class="checkbox" data-tooltip="{{property.desc}}">
-                    <input class="tristate-checkbox" type="checkbox" name="system.properties.{{key}}" {{checked (lookup
-                        ../system.properties key)}} />{{ localize property.name }}
+                {{#each properties}}
+                <label class="checkbox">
+                    <input type="checkbox" name="system.properties.{{ @key }}" {{ checked selected }}>
+                    {{ label }}
                 </label>
-                {{/if}} {{/each}}
-
-                {{#each propertiesList as |property key|}} {{#if (eq property.type "Number")}}
-                <label class="number" data-tooltip="{{property.desc}}">
-                    {{ localize property.name }}<input type="text" name="system.properties.{{key}}"
-                        value="{{lookup ../system.properties key}}" data-dtype="Number">
-                </label>
-                {{/if}} {{/each}}
+                {{/each}}
             </div>
             {{/if}}
 
@@ -132,19 +146,30 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.ArmorClassBonus" }}</label>
                 <div class="form-fields">
-                    <input type="text" name="system.armor.value" value="{{system.armor.value}}" data-dtype="Number"
-                        placeholder="{{ localize 'SW5E.None' }}" />
+                    {{ numberInput source.armor.value name="system.armor.value" step="1" }}
                 </div>
             </div>
 
+            {{#if properties.mgc.selected}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.MagicalBonus" }}</label>
+                <div class="form-fields">
+                    {{ numberInput system.armor.magicalBonus name="system.armor.magicalBonus"
+                    min="0" step="1" placeholder="0" }}
+                </div>
+            </div>
+            {{/if}}
+            {{/if}}
+
+            {{#if hasDexModifier}}
             {{!-- Dexterity Modifier --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemEquipmentDexMod" }}</label>
                 <div class="form-fields">
-                    <input type="text" name="system.armor.dex" value="{{system.armor.dex}}" data-dtype="Number"
-                        placeholder="{{ localize 'SW5E.Unchanged' }}" />
+                    {{numberInput system.armor.dex name="system.armor.dex" placeholder=(localize "SW5E.Unlimited")}}
                 </div>
             </div>
+            {{/if}}
 
             {{!-- Required Strength --}}
             <div class="form-group">
@@ -154,14 +179,6 @@
                         placeholder="{{ localize 'SW5E.Unchanged' }}" />
                 </div>
             </div>
-
-            {{!-- Stealth Disadvantage --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemEquipmentStealthDisav" }}</label>
-                <input class="tristate-checkbox" type="checkbox" name="system.stealth" value="1" {{checked
-                    system.stealth}} />
-            </div>
-            {{/if}}
         </div>
 
         {{!-- Effects Tab --}}

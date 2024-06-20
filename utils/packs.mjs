@@ -45,7 +45,10 @@ const DB_CACHE = {};
  */
 function cleanPackEntry(data, { clearSourceId = true } = {}) {
   if (data.ownership) data.ownership = { default: 0 };
-  if (clearSourceId) delete data.flags?.core?.sourceId;
+  if (clearSourceId) {
+    delete data._stats?.compendiumSource;
+    delete data.flags?.core?.sourceId;
+  }
   if (typeof data.folder === "string") data.folder = null;
   delete data.system?.consume?.ammount;
   delete data.flags?.importSource;
@@ -186,7 +189,7 @@ async function compilePacks() {
     .readdirSync(PACK_SRC, { withFileTypes: true })
     .filter(file => file.isDirectory() && (!packName || packName === file.name));
 
-  for ( const folder of folders ) {
+  for (const folder of folders) {
     const src = path.join(PACK_SRC, folder.name);
     const dest = path.join(PACK_DEST, nedb ? `${folder.name}.db` : `${folder.name}/`);
     logger.info(`Compiling pack ${folder.name}`);
@@ -242,17 +245,17 @@ function transformName(entry, packName) {
 function checkChanges(entry, packName, dest) {
   const outputPath = (dest + "/" + transformName(entry, packName)).replace(/\\/g, "/");
   if (fs.existsSync(outputPath)) {
-    const oldEntry = JSON.parse(fs.readFileSync(outputPath, { encoding: "utf8"}));
+    const oldEntry = JSON.parse(fs.readFileSync(outputPath, { encoding: "utf8" }));
     // Do not update item if only changes are flags, stats, or advancement ids
     if (oldEntry._stats && entry._stats) oldEntry._stats = entry._stats;
     if (oldEntry.flags?.["sw5e-importer"] && entry.flags?.["sw5e-importer"]) oldEntry.flags["sw5e-importer"] = entry.flags["sw5e-importer"];
     if (oldEntry.system?.advancement && entry.system?.advancement) {
       const length = Math.min(oldEntry.system.advancement.length, entry.system.advancement.length);
-      for (let i=0; i<length; i++) oldEntry.system.advancement[i]._id = entry.system.advancement[i]._id;
+      for (let i = 0; i < length; i++) oldEntry.system.advancement[i]._id = entry.system.advancement[i]._id;
     }
     if (oldEntry.items && entry.items) {
       const length = Math.min(oldEntry.items.length, entry.items.length);
-      for (let i=0; i<length; i++) {
+      for (let i = 0; i < length; i++) {
         const oldItem = oldEntry.items[i];
         const newItem = entry.items[i];
         if (oldItem.flags?.["sw5e-importer"] && newItem.flags?.["sw5e-importer"]) oldItem.flags["sw5e-importer"] = newItem.flags["sw5e-importer"];
@@ -283,21 +286,23 @@ async function extractPacks() {
 
   // Determine which source packs to process.
   const packs = fs.readdirSync(PACK_DEST, { withFileTypes: true }).filter(file => {
-    if ( !file.isFile() || (path.extname(file.name) !== ".db") ) return false;
+    if (!file.isFile() || (path.extname(file.name) !== ".db")) return false;
     return !packName || (packName === path.basename(file.name, ".db"));
   });
 
-  for ( const pack of packs ) {
+  for (const pack of packs) {
     const packName = path.basename(pack.name, ".db");
     const packInfo = system.packs.find(p => p.name === packName);
     const src = path.join(PACK_DEST, nedb ? pack.name : packName);
     const dest = path.join(PACK_SRC, packName);
     logger.info(`Extracting pack ${pack.name}`);
-    await extractPack(src, dest, { nedb, log: false, documentType: packInfo.type, transformEntry: entry => {
-      if ( entryName && (entryName !== entry.name.toLowerCase()) ) return false;
-      cleanPackEntry(entry);
-      if ( !checkChanges(entry, packName, dest) ) return false;
-    }, transformName: entry => { return transformName(entry, packName)} });
+    await extractPack(src, dest, {
+      nedb, log: false, documentType: packInfo.type, transformEntry: entry => {
+        if (entryName && (entryName !== entry.name.toLowerCase())) return false;
+        cleanPackEntry(entry);
+        if (!checkChanges(entry, packName, dest)) return false;
+      }, transformName: entry => { return transformName(entry, packName) }
+    });
   }
 }
 export const extract = extractPacks;

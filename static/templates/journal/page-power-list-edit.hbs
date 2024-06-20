@@ -1,0 +1,75 @@
+<form class="{{ cssClass }}" autocomplete="off">
+    <div class="left flexcol">
+        {{> journalEntryPageHeader }}
+    
+        <div class="form-group">
+            <label>{{ localize "JOURNALENTRYPAGE.SW5E.PowerList.Type.Label" }}</label>
+            <div class="form-fields">
+                <select name="system.type">
+                    {{ selectOptions CONFIG.powerListTypes selected=system.type }}
+                </select>
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <label>{{ localize "SW5E.Identifier" }}</label>
+            <div class="form-fields">
+                <input type="text" name="system.identifier" value="{{system.identifier}}">
+            </div>
+            <p class="hint">{{ localize "JOURNALENTRYPAGE.SW5E.PowerList.IdentifierHint" }}
+        </div>
+    
+        <div class="form-group">
+            <label>{{ localize "JOURNALENTRYPAGE.SW5E.PowerList.Grouping.Label" }}</label>
+            <div class="form-fields">
+                <select name="system.grouping">
+                    {{ selectOptions GROUPING_MODES selected=system.grouping localize=true }}
+                </select>
+            </div>
+            <p class="hint">
+                {{ localize "JOURNALENTRYPAGE.SW5E.PowerList.Grouping.Hint" }}
+            </p>
+        </div>
+    
+        <div class="form-group">
+            <label>{{ localize "SW5E.Description" }}</label>
+        </div>
+    
+        {{ editor description target="system.description.value" button=false editable=editable
+           engine="prosemirror" collaborate=false }}
+    </div>
+
+    <div class="right power-list">
+        <h3 class="flexrow">
+            {{ localize "ITEM.TypePowerPl" }}
+            <a data-action="add-unlinked" data-tooltip="JOURNALENTRYPAGE.SW5E.PowerList.UnlinkedPowers.Add"
+               aria-label="{{ localize 'JOURNALENTRYPAGE.SW5E.PowerList.UnlinkedPowers.Add' }}">
+                <i class="fa-solid fa-plus" inert></i>
+            </a>
+        </h3>
+        <ol class="items-list">
+            {{#each powers}}
+            <li class="item flexrow" data-item-uuid="{{ power.uuid }}" data-unlinked-id="{{ unlinked._id }}">
+                <div class="item-name">{{{ display }}}</div>
+                <div class="item-controls flexrow">
+                    {{#if unlinked}}
+                    <a class="item-control" data-action="edit-unlinked"
+                       data-tooltip="JOURNALENTRYPAGE.SW5E.PowerList.UnlinkedPowers.Edit"
+                       aria-label="{{ localize 'JOURNALENTRYPAGE.SW5E.PowerList.UnlinkedPowers.Edit' }}">
+                        <i class="fa-solid fa-cog" inert></i>
+                    </a>
+                    {{/if}}
+                    <a class="item-control" data-action="delete" data-tooltip="SW5E.ItemDelete"
+                       aria-label="{{ localize 'SW5E.ItemDelete' }}">
+                        <i class="fa-solid fa-trash" inert></i>
+                    </a>
+                </div>
+            </li>
+            {{else}}
+            <li class="empty">
+                {{ localize "JOURNALENTRYPAGE.SW5E.PowerList.DropHint" }}
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+</form>

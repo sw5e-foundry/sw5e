@@ -1,10 +1,9 @@
-import TraitAdvancement from "../../documents/advancement/trait.mjs";
 import { ItemDataModel } from "../abstract.mjs";
-import { AdvancementField, FormulaField, IdentifierField } from "../fields.mjs";
+import { AdvancementField, IdentifierField } from "../fields.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import StartingEquipmentTemplate from "./templates/starting-equipment.mjs";
 
-const { ArrayField, NumberField, SchemaField, StringField } = foundry.data.fields;
+const { ArrayField, NumberField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Starship Size items.

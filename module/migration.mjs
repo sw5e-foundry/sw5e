@@ -860,6 +860,7 @@ function _migrateActorTraits( actorData, updateData ) {
  * Update an Power Item's data based on compendium
  * @param {object} item    The data object for an item
  * @param {object} updateData
+ * @returns {object} updateData
  * @private
  */
 async function _migrateItemPower( item, updateData ) {

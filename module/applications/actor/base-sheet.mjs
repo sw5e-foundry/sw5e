@@ -512,7 +512,7 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
   _prepareItemsCategorized( context, categories ) {
     const config = categories.config;
     for ( const item of context.items ) {
-      const { quantity, uses, recharge, equipped } = item.system;
+      const { /* Quantity, uses, recharge,*/ equipped } = item.system;
 
       // Item context
       const ctx = context.itemContext[item.id] ??= {};
@@ -562,7 +562,7 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
   }
 
   _prepareItemContext( item, ctx={} ) {
-    const { quantity, uses, recharge, equipped } = item.system;
+    const { quantity, uses, recharge } = item.system;
 
     // Item details
     ctx.isStack = Number.isNumeric( quantity ) && quantity !== 1;
@@ -1369,7 +1369,7 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
     // Case 1: Drop an at-will.
     if ( itemData.system.level === 0 ) {
       const modes = CONFIG.SW5E.powerPreparationModes;
-      if ( modes[preparationMode]?.at-wills ) {
+      if ( modes[preparationMode]?.["at-wills"] ) {
         prep.mode = "prepared";
       } else if ( !preparationMode ) {
         const isCaster = this.document.system.details.powerLevel || progs.size;

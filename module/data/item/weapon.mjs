@@ -10,7 +10,6 @@ import ItemTypeTemplate from "./templates/item-type.mjs";
 import MountableTemplate from "./templates/mountable.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
 import ModdableTemplate from "./templates/moddable.mjs";
-import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
 
 const { NumberField, SetField, StringField, SchemaField, ArrayField } = foundry.data.fields;
 
@@ -51,7 +50,7 @@ export default class WeaponData extends ItemDataModel.mixin(
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
-      type: new ItemTypeField( { value: "simpleM", subtype: false }, { label: "SW5E.ItemWeaponType" } ),
+      type: new ItemTypeField( { value: "simpleM", baseItem: false }, { label: "SW5E.ItemWeaponType" } ),
       magicalBonus: new NumberField( { min: 0, integer: true, label: "SW5E.MagicalBonus" } ),
       weaponClass: new StringField( {
         required: true,

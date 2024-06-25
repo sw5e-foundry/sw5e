@@ -1,4 +1,3 @@
-import { MappingField } from "../fields.mjs";
 import { ItemDataModel } from "../abstract.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
@@ -7,9 +6,8 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
-import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
 
-const { NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
+const { SchemaField, SetField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Equipment items.
@@ -38,16 +36,7 @@ export default class ModificationData extends ItemDataModel.mixin(
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
-      modificationType: new StringField( {
-        required: true,
-        initial: "vibroweapon",
-        label: "SW5E.ItemModificationType"
-      } ),
-      modificationSlot: new StringField( {
-        required: true,
-        initial: "slot1",
-        label: "SW5E.ItemModificationSlot"
-      } ),
+      type: new ItemTypeField( { value: "vibroweapon", subtype: true }, { label: "SW5E.ItemModificationType" } ),
       modifying: new SchemaField(
         {
           id: new ForeignDocumentField( foundry.documents.BaseItem, { idOnly: true } ),
@@ -55,26 +44,7 @@ export default class ModificationData extends ItemDataModel.mixin(
         },
         {}
       ),
-      properties: makeItemProperties(
-        {
-          ...CONFIG.SW5E.weaponProperties,
-          ...CONFIG.SW5E.castingProperties,
-          ...CONFIG.SW5E.equipmentProperties
-        },
-        {
-          required: true,
-          extraFields: {
-            indeterminate: new MappingField( new foundry.data.fields.BooleanField( { initial: true } ), {
-              required: true,
-              initialKeys: {
-                ...CONFIG.SW5E.weaponProperties,
-                ...CONFIG.SW5E.castingProperties,
-                ...CONFIG.SW5E.equipmentProperties
-              }
-            } )
-          }
-        }
-      )
+      properties: new SetField( new StringField(), { label: "SW5E.ItemProperties" } )
     } );
   }
 
@@ -82,13 +52,8 @@ export default class ModificationData extends ItemDataModel.mixin(
   /*  Migrations                                  */
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
-  static _migrateData( source ) {
-    super._migrateData( source );
-    migrateItemProperties( source.properties, {
-      ...CONFIG.SW5E.weaponProperties,
-      ...CONFIG.SW5E.castingProperties,
-      ...CONFIG.SW5E.equipmentProperties
-    } );
-  }
+  // /** @inheritdoc */
+  // static _migrateData( source ) {
+  //   super._migrateData( source );
+  // }
 }

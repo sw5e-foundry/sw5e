@@ -683,21 +683,21 @@ Hooks.on( "renderRollTableDirectory", ( app, html, data ) => {
   setFolderBackground( html );
 } );
 // Remigrate button adapted from pf2e
-Hooks.on("renderSettings", async (_app, html) => {
+Hooks.on( "renderSettings", async ( _app, html ) => {
   const elements = [];
 
-  if (game.user.hasRole("GAMEMASTER")) {
-    const remigrate = $("<div>").attr({ id: "sw5e-remigrate" });
-    const shootButton = $('<button type="button">')
-      .append(utils.fontAwesomeIcon("wrench"), game.i18n.localize("SW5E.Remigrate"))
-      .on("click", ev => migrations.migrateWorld(ev.ctrlKey));
-    remigrate.append(shootButton);
+  if ( game.user.hasRole( "GAMEMASTER" ) ) {
+    const remigrate = $( "<div>" ).attr( { id: "sw5e-remigrate" } );
+    const shootButton = $( '<button type="button">' )
+      .append( utils.fontAwesomeIcon( "wrench" ), game.i18n.localize( "SW5E.Remigrate" ) )
+      .on( "click", ev => migrations.migrateWorld( ev.ctrlKey ) );
+    remigrate.append( shootButton );
 
-    elements.push(remigrate);
+    elements.push( remigrate );
   }
 
-  $("#settings-documentation").after(elements);
-});
+  $( "#settings-documentation" ).after( elements );
+} );
 
 Hooks.on( "targetToken", canvas.Token5e.onTargetToken );
 

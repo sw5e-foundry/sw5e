@@ -34,9 +34,9 @@ export default class FiringArcTemplate extends MeasuredTemplate {
    */
   static fromItem( item, options={} ) {
     const token = options.token ?? item.actor?.sheet?.token;
-    if ( !token ) return;
+    if ( !token ) return null;
     const arc = CONFIG.SW5E.weaponFiringArcs[item.system.firingArc];
-    if ( !arc?.shape ) return;
+    if ( !arc?.shape ) return null;
 
     const canvasUnit = canvas.dimensions.size;
     const halfShipSize = ( token.width * canvasUnit ) / 2;

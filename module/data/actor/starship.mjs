@@ -74,7 +74,6 @@ const { SchemaField, NumberField, StringField, BooleanField, ArrayField, Integer
  * @property {Item5e|string} details.starshipsize              Starships's size item or name.
  * @property {Object<string, SkillData>} skills                Starship's skills.
  * @property {object} traits
- * @property {ActorFavorites5e[]} favorites               The character's favorites.
  * @property {SimpleTraitData} traits.ci                       Condition immunities.
  * @property {DamageTraitData} traits.di                       Hull Damage immunities.
  * @property {DamageTraitData} traits.dr                       Hull Damage resistances.
@@ -82,6 +81,7 @@ const { SchemaField, NumberField, StringField, BooleanField, ArrayField, Integer
  * @property {DamageTraitData} traits.sdi                      Shield Damage immunities.
  * @property {DamageTraitData} traits.sdr                      Shield Damage resistances.
  * @property {DamageTraitData} traits.sdv                      Shield Damage vulnerabilities.
+ * @property {ActorFavorites5e[]} favorites               The character's favorites.
  */
 export default class StarshipData extends CommonTemplate {
   /** @inheritdoc */

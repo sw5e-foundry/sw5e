@@ -1,4 +1,3 @@
-import { MappingField } from "../fields.mjs";
 import { ItemDataModel } from "../abstract.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
@@ -8,9 +7,8 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
-import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
 
-const { NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
+const { SchemaField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Starship Modification items.
@@ -47,16 +45,7 @@ export default class StarshipModData extends ItemDataModel.mixin(
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
-      system: new SchemaField(
-        {
-          value: new StringField( {
-            required: true,
-            initial: "",
-            label: "SW5E.ModSystem"
-          } )
-        },
-        { label: "SW5E.ModSystem" }
-      ),
+      type: new ItemTypeField( { baseItem: false }, { label: "SW5E.ModSystem" } ),
       grade: new SchemaField(
         {
           value: new NumberField( {
@@ -120,7 +109,7 @@ export default class StarshipModData extends ItemDataModel.mixin(
    * @type {string[]}
    */
   get chatProperties() {
-    return [CONFIG.SW5E.ssModSystems[this.system.value]];
+    return [CONFIG.SW5E.ssModSystems[this.type.value]];
   }
 
   /**

@@ -10,7 +10,6 @@ import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import MountableTemplate from "./templates/mountable.mjs";
 import ModdableTemplate from "./templates/moddable.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
-import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
 
 
 const { NumberField, SchemaField, SetField, StringField } = foundry.data.fields;

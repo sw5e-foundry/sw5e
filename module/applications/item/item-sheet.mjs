@@ -1214,7 +1214,10 @@ export default class ItemSheet5e extends ItemSheet {
               content: game.i18n.localize( "SW5E.WeaponAmmoConfirmEjectContent" ),
               defaultYes: true
             } );
-            if ( !confirm ) return await wpn?.update( { "system.ammo.target": oldAmmoID } );
+            if ( !confirm ) {
+              await wpn?.update( { "system.ammo.target": oldAmmoID } );
+              return;
+            }
           }
           break;
       }

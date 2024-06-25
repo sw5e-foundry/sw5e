@@ -1209,9 +1209,9 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
     }
     let item = this;
     const is = item.system;
-    const actor = this.actor;
+    // Const actor = this.actor;
     const as = item.actor.system;
-    const starship = actor.getStarship();
+    // Const starship = actor.getStarship();
 
     // Ensure the options object is ready
     options = foundry.utils.mergeObject(

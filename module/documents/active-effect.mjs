@@ -90,7 +90,7 @@ export default class ActiveEffect5e extends ActiveEffect {
         }
       }
     }
-    const { id, label, icon, hud, ...effectData } = foundry.utils.deepClone( status );
+    const { id, label, icon, /* Hud,*/ ...effectData } = foundry.utils.deepClone( status );
     effectData.name = game.i18n.localize( effectData.name ?? label );
     if ( game.release.generation < 12 ) effectData.icon ??= icon;
     else effectData.img ??= icon;

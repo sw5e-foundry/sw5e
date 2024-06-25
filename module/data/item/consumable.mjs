@@ -25,7 +25,6 @@ const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields
  * @property {Set<string>} properties    Ammunition properties.
  * @property {object} uses
  * @property {boolean} uses.autoDestroy  Should this item be destroyed when it runs out of uses.
- * @property {object} properties         Mapping of various weapon property booleans and numbers.
  */
 export default class ConsumableData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,

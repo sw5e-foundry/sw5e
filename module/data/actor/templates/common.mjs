@@ -167,7 +167,7 @@ export default class CommonTemplate extends ActorDataModel.mixin( CurrencyTempla
       if ( flags.diamondSoul ) abl.proficient = 1;  // Diamond Soul is proficient in all saves
       abl.mod = Math.floor( ( abl.value - 10 ) / 2 );
 
-      const isRA = this.parent._isRemarkableAthlete( id );
+      const isRA = this.parent._getCharacterFlag("remarkableAthlete", { ability: id });
       abl.checkProf = new Proficiency( prof, ( isRA || flags.jackOfAllTrades ) ? 0.5 : 0, !isRA );
       const saveBonusAbl = simplifyBonus( abl.bonuses?.save, rollData );
       abl.saveBonus = saveBonusAbl + saveBonus;

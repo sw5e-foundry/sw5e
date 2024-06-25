@@ -77,7 +77,7 @@
                 <h3 class="item-name">{{localize section.label}}</h3>
 
                 {{#if ../owner}}
-                <a class="item-control item-create" data-action="itemCreate" data-tooltip="SW5E.ItemCreate" {{#each
+                <a class="item-control item-action" data-action="create" data-tooltip="SW5E.ItemCreate" {{#each
                     section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
                     <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
                 </a>

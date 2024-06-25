@@ -342,7 +342,7 @@ export default class AttributesFields {
       }
     } else {
       // Translate the list of classes into force and tech power-casting progression
-      for ( const cls of this.itemTypes.class ) {
+      for ( const cls of this.itemTypes?.class ?? [] ) {
         const cd = cls.system;
         const ad = cls?.archetype?.system;
         const levels = cd.levels;
@@ -384,7 +384,7 @@ export default class AttributesFields {
       }
 
       // Calculate known powers
-      for ( const pwr of this.itemTypes.power ) {
+      for ( const pwr of this.itemTypes?.power ?? [] ) {
         if ( pwr?.system?.preparation?.mode === "innate" || pwr?.system?.components?.freeLearn ) continue;
         const school = pwr?.system?.school;
         if ( ["lgt", "uni", "drk"].includes( school ) ) charProgression.force.powersKnownCur++;
@@ -449,10 +449,10 @@ export default class AttributesFields {
    */
   static prepareBaseSuperiority() {
     if ( this.type === "vehicle" || this.type === "starship" ) return;
-    const superiority = this.attributes.super;
+    const superiority = this.attributes?.super ?? {};
 
     // Determine superiority level based on class items
-    let { level, levels, known, dice } = this.itemTypes.class.reduce(
+    let { level, levels, known, dice } = this.itemTypes?.class?.reduce(
       ( obj, cls ) => {
         const cd = cls?.system;
         const ad = cls?.archetype?.system;
@@ -473,7 +473,7 @@ export default class AttributesFields {
         return obj;
       },
       { level: 0, levels: 0, known: 0, dice: 0 }
-    );
+    ) ?? { level: 0, levels: 0, known: 0, dice: 0 };
 
     level = Math.round( Math.max( Math.min( level, CONFIG.SW5E.maxLevel ), 0 ) );
     levels = Math.round( Math.max( Math.min( levels, CONFIG.SW5E.maxLevel ), 0 ) );
@@ -481,7 +481,7 @@ export default class AttributesFields {
     // Calculate derived values
     superiority.level = level;
     superiority.known ??= {};
-    superiority.known.value = this.itemTypes.maneuver.length;
+    superiority.known.value = this.itemTypes?.maneuver?.length ?? 0;
     superiority.known.max = known;
     superiority.dice.max ??= dice;
     superiority.die = CONFIG.SW5E.superiorityDieSizeProgression[levels];

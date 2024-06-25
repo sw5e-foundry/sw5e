@@ -79,7 +79,7 @@ export default class EquippableItemTemplate extends SystemDataModel {
     return [
       this.attunement === "required" ? CONFIG.SW5E.attunementTypes.required : null,
       game.i18n.localize( this.equipped ? "SW5E.Equipped" : "SW5E.Unequipped" ),
-      ( "proficient" in this ) ? CONFIG.SW5E.proficiencyLevels[this.prof?.multiplier || 0] : null
+      ( "proficient" in this ) ? CONFIG.SW5E.proficiencyLevels[this.prof?.multiplier || 0].label : null
     ];
   }
 

@@ -1916,6 +1916,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
    */
   async rollAttack( options = {} ) {
     const flags = this.actor.flags.sw5e ?? {};
+    const target = [...game.user?.targets ?? []][0]?.actor;
     if ( !this.hasAttack ) throw new Error( "You may not place an Attack Roll with this Item." );
     let title = `${this.name} - ${game.i18n.localize( "SW5E.AttackRoll" )}`;
 
@@ -2506,7 +2507,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
         case "attack":
           await item.rollAttack( {
             event: event,
-            powerLevel: powerlevel,
+            powerLevel: powerLevel,
             attackItemUuid: item.uuid
           } );
           break;

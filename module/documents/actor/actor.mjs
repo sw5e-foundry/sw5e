@@ -547,7 +547,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     let roundDown = true;
 
     // Remarkable Athlete
-    if (this._isRemarkableAthlete(skillData.ability) && (skillData.value < 0.5)) {
+    if (this._getCharacterFlag("remarkableAthlete", { ability: skillData.ability }) && (skillData.value < 0.5)) {
       skillData.value = 0.5;
       roundDown = false;
     }
@@ -597,7 +597,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       let roundDown = true;
 
       // Remarkable Athlete.
-      if (this._isRemarkableAthlete(tool.ability) && (tool.value < 0.5)) {
+      if (this._getCharacterFlag("remarkableAthlete", { ability: tool.ability }) && (tool.value < 0.5)) {
         tool.value = 0.5;
         roundDown = false;
       }
@@ -4259,7 +4259,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Figure out the repair of the changes
-    const result = {
+    foundry.utils.mergeObject(result, {
       dhd: (result.dhd ?? 0) + hullDiceRecovered,
       dhp: (result.dhp ?? 0) + hullPointsRecovered,
       shd: shldDiceRecovered,
@@ -4281,7 +4281,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         }))
       ],
       newDay
-    };
+    });
     result.rolls = rolls;
 
     /**
@@ -5515,21 +5515,6 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       await this._clearFavorites(documents);
     }
     super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Follow-up actions taken after a set of embedded Documents in this parent Document are updated.
-   * @param {string} embeddedName   The name of the embedded Document type
-   * @param {Document[]} documents  An Array of updated Documents
-   * @param {object[]} result       An Array of incremental data objects
-   * @param {object} options        Options which modified the update operation
-   * @param {string} userId         The ID of the User who triggered the operation
-   * @memberof ClientDocumentMixin#
-   */
-  _onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
-    super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
 
     const starship = this.getStarship();
     if (starship) {

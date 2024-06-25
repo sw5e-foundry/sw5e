@@ -353,7 +353,7 @@ function _configureConsumableAttributes() {
     "attributes.tech.points.value",
     "attributes.super.dice.value",
     // TODO SW5E: Check if this would work for consuming power dice
-    ...Object.keys( SW5E.ssModSystems ).map( system => `attributes.power.${system.lower()}.value` )
+    ...Object.keys( SW5E.ssModSystems ).map( system => `attributes.power.${system.toLowerCase()}.value` )
   ];
 }
 
@@ -683,19 +683,21 @@ Hooks.on( "renderRollTableDirectory", ( app, html, data ) => {
   setFolderBackground( html );
 } );
 // Remigrate button adapted from pf2e
-Hooks.on( "renderSettings", async ( _app, html ) => {
-  if ( game.user.hasRole( "GAMEMASTER" ) ) {
-    const remigrate = $( "<div>" ).attr( { id: "sw5e-remigrate" } );
-    const shootButton = $( '<button type="button">' )
-      .append( utils.fontAwesomeIcon( "wrench" ), game.i18n.localize( "SW5E.Remigrate" ) )
-      .on( "click", ev => migrations.migrateWorld( ev.ctrlKey ) );
-    remigrate.append( shootButton );
+Hooks.on("renderSettings", async (_app, html) => {
+  const elements = [];
 
-    elements.push( remigrate );
+  if (game.user.hasRole("GAMEMASTER")) {
+    const remigrate = $("<div>").attr({ id: "sw5e-remigrate" });
+    const shootButton = $('<button type="button">')
+      .append(utils.fontAwesomeIcon("wrench"), game.i18n.localize("SW5E.Remigrate"))
+      .on("click", ev => migrations.migrateWorld(ev.ctrlKey));
+    remigrate.append(shootButton);
+
+    elements.push(remigrate);
   }
 
-  $( "#settings-documentation" ).after( elements );
-} );
+  $("#settings-documentation").after(elements);
+});
 
 Hooks.on( "targetToken", canvas.Token5e.onTargetToken );
 

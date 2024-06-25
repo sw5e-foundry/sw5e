@@ -217,7 +217,7 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin( HTM
     const input = this.#shadowRoot.querySelector( "input" );
     input.setAttribute( "value", this.#value );
     this.#internals.ariaValueNow = this.#value;
-    this.#internals.ariaValueText = CONFIG.SW5E.proficiencyLevels[this.#value];
+    this.#internals.ariaValueText = CONFIG.SW5E.proficiencyLevels[this.#value].label;
     this.#internals.setFormValue( this.#value );
   }
 

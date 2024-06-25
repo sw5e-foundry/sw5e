@@ -17,7 +17,6 @@ export { default as ActorAbilityConfig } from "./ability-config.mjs";
 export {default as ActorArmorConfig} from "./armor-config.mjs";
 export {default as ActorConcentrationConfig} from "./concentration-config.mjs";
 export { default as AllocatePowerDiceDialog } from "./allocate-power-dice.mjs";
-export { default as ActorArmorConfig } from "./armor-config.mjs";
 export { default as CheckboxSelectDialog } from "./checkbox-select.mjs";
 export {default as DamageModificationConfig} from "./damage-modification-config.mjs";
 export { default as ExpendPowerDiceDialog } from "./expend-power-dice.mjs";

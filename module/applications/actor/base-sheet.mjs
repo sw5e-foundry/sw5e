@@ -78,8 +78,8 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
   static get defaultOptions() {
     return foundry.utils.mergeObject( super.defaultOptions, {
       scrollY: [
-        "sw5e-inventory .group-list",
-        "sw5e-cargo .group-list",
+        "sw5e-inventory .inventory-list",
+        "sw5e-cargo .inventory-list",
         "sw5e-effects .effects-list",
         ".center-pane"
       ],
@@ -177,7 +177,7 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
     // Ability Scores
     for ( const [a, abl] of Object.entries( context.abilities ) ) {
       abl.icon = this._getProficiencyIcon( abl.proficient );
-      abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient];
+      abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient].label;
       abl.label = CONFIG.SW5E.abilities[a]?.label;
       abl.baseProf = source.system.abilities[a]?.proficient ?? 0;
     }
@@ -193,7 +193,7 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
       for ( const [key, entry] of Object.entries( context[prop] ) ) {
         entry.abbreviation = CONFIG.SW5E.abilities[entry.ability]?.abbreviation;
         entry.icon = this._getProficiencyIcon( entry.value );
-        entry.hover = CONFIG.SW5E.proficiencyLevels[entry.value];
+        entry.hover = CONFIG.SW5E.proficiencyLevels[entry.value].label;
         entry.label =
           ( prop === "skills" )
             ? context.isStarship
@@ -586,9 +586,6 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
     ctx.isDepleted = ctx.isOnCooldown && ctx.hasUses && ( uses.value > 0 );
     ctx.hasTarget = item.hasAreaTarget || item.hasIndividualTarget;
 
-    // Item toggle state
-    this._prepareItemToggleState( item, ctx );
-
     // Item Weight
     if ( "weight" in item.system ) ctx.totalWeight = ( ( item.system.quantity ?? 1 ) * item.system.weight ).toNearest( 0.1 );
 
@@ -899,7 +896,8 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
 
       // Owned Item management
       html.find( ".item-collapse" ).click( this._onItemCollapse.bind( this ) );
-      html.find( ".item-reload input" ).click( ev => ev.target.select() ).change( this._onUsesChange.bind( this ) );
+      // TODO SW5E: check if this is still necessary for weapon reload to work
+      // html.find( ".item-reload input" ).click( ev => ev.target.select() ).change( this._onUsesChange.bind( this ) );
       html.find( ".weapon-select-ammo" ).change( event => {
         event.preventDefault();
         const itemId = event.currentTarget.closest( ".item" ).dataset.itemId;

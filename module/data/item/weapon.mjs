@@ -12,7 +12,7 @@ import ItemTypeField from "./fields/item-type-field.mjs";
 import ModdableTemplate from "./templates/moddable.mjs";
 import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
 
-const { NumberField, SetField, StringField } = foundry.data.fields;
+const { NumberField, SetField, StringField, SchemaField, ArrayField } = foundry.data.fields;
 
 /**
  * Data definition for Weapon items.

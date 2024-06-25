@@ -9,7 +9,7 @@ import CreatureTemplate from "./templates/creature.mjs";
 import DetailsFields from "./templates/details.mjs";
 import TraitsFields from "./templates/traits.mjs";
 
-const { SchemaField, NumberField, StringField, BooleanField, ArrayField, IntegerSortField } = foundry.data.fields;
+const { SchemaField, NumberField, StringField, BooleanField, ArrayField, IntegerSortField, HTMLField } = foundry.data.fields;
 
 /**
  * @typedef {object} ActorFavorites5e

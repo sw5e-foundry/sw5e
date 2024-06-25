@@ -240,13 +240,6 @@ export default class ItemSheet5e extends ItemSheet {
       case "power":
         context.powerComponents = { ...CONFIG.SW5E.powerComponents, ...CONFIG.SW5E.powerTags };
         break;
-      case "loot":
-        const lootType = CONFIG.SW5E.lootTypes[item.system.type?.value];
-        if ( lootType ) {
-          context.itemType = lootType.label;
-          context.lootSubtypes = lootType.subtypes;
-        }
-        break;
       case "weapon":
         const wpnType = item.system.weaponType;
         const weaponType = CONFIG.SW5E.weaponTypes[wpnType];
@@ -482,7 +475,7 @@ export default class ItemSheet5e extends ItemSheet {
       case "power":
         return CONFIG.SW5E.powerPreparationModes[this.item.system.preparation.mode]?.label;
       case "tool":
-        return CONFIG.SW5E.proficiencyLevels[this.item.system.prof?.multiplier || 0];
+        return CONFIG.SW5E.proficiencyLevels[this.item.system.prof?.multiplier || 0].label;
     }
     return null;
   }

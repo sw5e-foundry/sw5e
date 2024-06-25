@@ -105,8 +105,8 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
 
   /** @override */
   get template() {
-    if ( !game.user.isGM && this.actor.limited ) return "systems/sw5e/templates/actors/DnD5e/limited-sheet-2.hbs";
-    return "systems/sw5e/templates/actors/DnD5e/character-sheet-2.hbs";
+    if ( !game.user.isGM && this.actor.limited ) return "systems/sw5e/templates/actors/DnD5eActor/limited-sheet-2.hbs";
+    return "systems/sw5e/templates/actors/DnD5eActor/character-sheet-2.hbs";
   }
 
   /* -------------------------------------------- */
@@ -285,7 +285,7 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
     for ( let ability of Object.values( context.abilities ) ) {
       ability = context.saves[ability.key] = { ...ability };
       ability.class = this.constructor.PROFICIENCY_CLASSES[context.editable ? ability.baseProf : ability.proficient];
-      ability.hover = CONFIG.SW5E.proficiencyLevels[ability.proficient];
+      ability.hover = CONFIG.SW5E.proficiencyLevels[ability.proficient].label;
       ability.sign = Math.sign( ability.save ) < 0 ? "-" : "+";
       ability.mod = Math.abs( ability.save );
     }

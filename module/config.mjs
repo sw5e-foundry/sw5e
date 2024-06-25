@@ -2503,7 +2503,7 @@ SW5E.validProperties = {
     "steadfast",
     "versatileEquipment",
     "absorbing",
-    "acessing",
+    "accessing",
     "amplifying",
     "bolstering",
     "constitution",
@@ -2522,7 +2522,7 @@ SW5E.validProperties = {
     "repelling",
     "storing",
     "surging",
-    "sithering",
+    "withering",
     "stealthDisadvantage"
   ] ),
   feat: new Set( [
@@ -2584,7 +2584,7 @@ SW5E.validProperties = {
     "conRq",
     "explosive",
     "homing",
-    "ionizong",
+    "ionizing",
     "melt",
     "overheat",
     "power",
@@ -4980,10 +4980,10 @@ SW5E.castingProperties = {
     desc: "SW5E.Item.Property.AbsorbingDesc",
     type: "Number"
   },
-  c_Acessing: {
-    name: "SW5E.Item.Property.Acessing",
-    full: "SW5E.Item.Property.AcessingFull",
-    desc: "SW5E.Item.Property.AcessingDesc",
+  c_Accessing: {
+    name: "SW5E.Item.Property.Accessing",
+    full: "SW5E.Item.Property.AccessingFull",
+    desc: "SW5E.Item.Property.AccessingDesc",
     type: "Number"
   },
   c_Amplifying: {

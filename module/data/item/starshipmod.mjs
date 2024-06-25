@@ -20,9 +20,6 @@ const { SchemaField, StringField } = foundry.data.fields;
  * @mixes ActivatedEffectTemplate
  * @mixes ActionTemplate
  *
- * @property {string} modificationType      Modification type as defined in `SW5E.modificationTypes`. * @property {object} armor               Armor details and equipment type information.
- * @property {object} system               The starship modification system information.
- * @property {string} system.value         The starship system being modified.
  * @property {object} grade                The starship modification grade information.
  * @property {string} grade.value          The grade of the modification.
  * @property {object} baseCost             The starship modification base cost information.

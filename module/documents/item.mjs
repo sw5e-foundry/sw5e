@@ -554,16 +554,16 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
    * @type {object|null}
    */
   get propertiesList() {
-    if ( this.type === "weapon" || ( this.type === "consumable" && this.system.consumableType === "ammo" ) ) {
+    if ( this.type === "weapon" || ( this.type === "consumable" && this.system.type.value === "ammo" ) ) {
       if ( this.isStarshipItem ) return CONFIG.SW5E.weaponFullStarshipProperties;
       else return CONFIG.SW5E.weaponFullCharacterProperties;
     } else if ( this.type === "equipment" ) {
       if ( this.isArmor ) return CONFIG.SW5E.armorProperties;
-      if ( this.system.armor.type in CONFIG.SW5E.castingEquipmentTypes ) return CONFIG.SW5E.castingProperties;
+      if ( this.system.type.value in CONFIG.SW5E.castingEquipmentTypes ) return CONFIG.SW5E.castingProperties;
     } else if ( this.type === "modification" ) {
-      if ( this.system.modificationType in CONFIG.SW5E.modificationTypesWeapon ) return CONFIG.SW5E.weaponProperties;
-      if ( this.system.modificationType in CONFIG.SW5E.modificationTypesEquipment ) return CONFIG.SW5E.armorProperties;
-      if ( this.system.modificationType in CONFIG.SW5E.modificationTypesCasting ) return CONFIG.SW5E.castingProperties;
+      if ( this.system.type.value in CONFIG.SW5E.modificationTypesWeapon ) return CONFIG.SW5E.weaponProperties;
+      if ( this.system.type.value in CONFIG.SW5E.modificationTypesEquipment ) return CONFIG.SW5E.armorProperties;
+      if ( this.system.type.value in CONFIG.SW5E.modificationTypesCasting ) return CONFIG.SW5E.castingProperties;
     }
     return null;
   }
@@ -577,11 +577,11 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
   get modificationsType() {
     if ( this.type === "equipment" ) {
       if ( this.isArmor ) return "armor";
-      if ( this.system.armor?.type in CONFIG.SW5E.miscEquipmentTypes ) return this.system.armor?.type;
+      if ( this.system.type?.value in CONFIG.SW5E.miscEquipmentTypes ) return this.system.type.value;
     } else if ( this.type === "weapon" ) {
-      if ( this.system.weaponType?.endsWith( "LW" ) ) return "lightweapon";
-      if ( this.system.weaponType?.endsWith( "VW" ) ) return "vibroweapon";
-      if ( this.system.weaponType?.endsWith( "B" ) ) return "blaster";
+      if ( this.system.type.value?.endsWith( "LW" ) ) return "lightweapon";
+      if ( this.system.type.value?.endsWith( "VW" ) ) return "vibroweapon";
+      if ( this.system.type.value?.endsWith( "B" ) ) return "blaster";
       return "vibroweapon";
     }
     return null;
@@ -821,7 +821,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
    * @protected
    */
   _prepareStarshipMod() {
-    const defaultBaseCost = CONFIG.SW5E.ssModSystemsBaseCost[this.system.system.value.toLowerCase()];
+    const defaultBaseCost = CONFIG.SW5E.ssModSystemsBaseCost[this.system.type.value.toLowerCase()];
     const baseCost = this.system?.baseCost?.value ?? defaultBaseCost;
     const sizeMult = this.actor?.itemTypes?.starshipsize?.[0]?.system?.modCostMult;
     const gradeMult = Number.isNumeric( this.system.grade.value ) ? this.system.grade.value || 1 : 1;
@@ -1052,7 +1052,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
     const rollData = this.getRollData();
 
     // Use wisdom on attack rolls for starship weapons, unless an item specific ability is set
-    if ( rollData && !this.system.ability && ( this.system.weaponType ?? "" ).search( "(starship)" ) !== -1 ) rollData.mod = rollData.abilities.wis?.mod;
+    if ( rollData && !this.system.ability && ( this.system.type.value ?? "" ).search( "(starship)" ) !== -1 ) rollData.mod = rollData.abilities.wis?.mod;
 
     // Define Roll bonuses
     const parts = [];
@@ -3043,7 +3043,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
       if ( isNPCorSS ) {
         updates["system.proficient"] = true; // NPCs and Starships automatically have equipment proficiency
       } else {
-        const armorProf = CONFIG.SW5E.armorProficienciesMap[this.system.armor?.type]; // Player characters check proficiency
+        const armorProf = CONFIG.SW5E.armorProficienciesMap[this.system.type.value]; // Player characters check proficiency
         const actorArmorProfs = this.parent.system.traits?.armorProf?.value || new Set();
         updates["system.proficient"] =
           armorProf === true || actorArmorProfs.has( armorProf ) || actorArmorProfs.has( this.system.baseItem );
@@ -3120,10 +3120,10 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
     const updates = [];
 
     if ( ammo ) {
-      if ( !wpnSysData.ammo.types.includes( ammoSysData.ammoType ) ) return;
+      if ( !wpnSysData.ammo.types.includes( ammoSysData.type.subtype ) ) return;
       if ( ammoSysData.quantity <= 0 ) return;
 
-      switch ( ammoSysData.ammoType ) {
+      switch ( ammoSysData.type.subtype ) {
         case "cartridge":
         case "dart":
         case "missile":
@@ -3596,22 +3596,22 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
       return null;
     }
 
-    if ( !( modSysData.modificationType in CONFIG.SW5E.modificationTypes ) ) {
+    if ( !( modSysData.type.value in CONFIG.SW5E.modificationTypes ) ) {
       ui.notifications.warn(
         game.i18n.format( "SW5E.ErrorModUnrecognizedType", {
           name: mod.name,
-          type: modSysData.modificationType
+          type: modSysData.type.value
         } )
       );
       return null;
     }
 
-    const modType = modSysData.modificationType === "augment" ? "augment" : "mod";
-    if ( modType === "mod" && modificationsType !== modSysData.modificationType ) {
+    const modType = modSysData.type.value === "augment" ? "augment" : "mod";
+    if ( modType === "mod" && modificationsType !== modSysData.type.value ) {
       ui.notifications.warn(
         game.i18n.format( "SW5E.ErrorModWrongType", {
           modName: mod.name,
-          modType: modSysData.modificationType,
+          modType: modSysData.type.value,
           itemName: item.name,
           itemType: modificationsType
         } )

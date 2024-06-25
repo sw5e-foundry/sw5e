@@ -391,6 +391,6 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * @type {boolean}
    */
   get isStarshipItem() {
-    return ( this.armor.type in CONFIG.SW5E.ssEquipmentTypes ) || this.armor.type === "starship";
+    return ( this.type.value in CONFIG.SW5E.ssEquipmentTypes ) || this.type.value === "starship";
   }
 }

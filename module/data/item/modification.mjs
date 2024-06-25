@@ -19,8 +19,6 @@ const { SchemaField, SetField, StringField } = foundry.data.fields;
  * @mixes ActivatedEffectTemplate
  * @mixes ActionTemplate
  *
- * @property {string} modificationType      Modification type as defined in `SW5E.modificationTypes`.
- * @property {string} modificationSlot      Modification slot as defined in `SW5E.modificationSlots`.
  * @property {object} modifying
  * @property {string} modifying.id          Id of the item this modification is applied to.
  * @property {boolean} modifying.disabled   Is this modification disabled?

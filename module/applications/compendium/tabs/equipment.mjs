@@ -51,15 +51,16 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
         equipment: "system.properties"
       };
       const category = {
-        consumable: "system.consumableType",
-        equipment: "system.armor.type",
-        modification: "system.modificationType",
-        starshipmod: "system.system.value",
-        tool: "system.toolType",
-        weapon: "system.weaponType"
+        consumable: "system.type.value",
+        equipment: "system.type.value",
+        modification: "system.type.value",
+        starshipmod: "system.type.value",
+        tool: "system.type.value",
+        weapon: "system.type.value"
       };
       const subcategory = {
-        consumable: "system.ammoType",
+        consumable: "system.type.subtype",
+        modification: "system.type.subtype",
         starshipmod: "system.grade.value",
         weapon: "system.weaponClass",
       };
@@ -116,7 +117,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
               value: (itemData.type in subcategory) ? foundry.utils.getProperty(itemData, subcategory[itemData.type]) : null
             };
             if (itemData.type === "starshipmod" && [null,undefined].includes(itemData.system.baseCost?.value)) {
-              const baseCost = CONFIG.SW5E.ssModSystemsBaseCost[itemData.system.system.value.toLowerCase()];
+              const baseCost = CONFIG.SW5E.ssModSystemsBaseCost[itemData.system.type.value.toLowerCase()];
               const gradeMult = Number.isNumeric(itemData.system.grade?.value) ? itemData.system.grade?.value || 1 : 1;
               itemData.system.baseCost = { value: baseCost * gradeMult };
             }

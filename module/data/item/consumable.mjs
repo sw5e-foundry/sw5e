@@ -165,6 +165,6 @@ export default class ConsumableData extends ItemDataModel.mixin(
    * @type {boolean}
    */
   get isStarshipItem() {
-    return this.consumableType === "ammo" && ( this.ammoType in CONFIG.SW5E.ammoStarshipTypes );
+    return this.type.value === "ammo" && ( this.type.subtype in CONFIG.SW5E.ammoStarshipTypes );
   }
 }

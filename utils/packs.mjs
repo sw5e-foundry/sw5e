@@ -340,14 +340,8 @@ function _getSubfolderName(data, pack) {
       // foundry type
       if (["adventuringgear", "enhanceditems"].includes(pack)) parts.add(data.type);
       // item type
-      parts.add(data.system?.armor?.type);
-      parts.add(data.system?.consumableType);
-      parts.add(data.system?.weaponType);
-      parts.add(data.system?.modificationType);
-      parts.add(data.system?.type?.value);
-      parts.add(data.system?.system?.value.toLowerCase());
+      parts.add(data.system?.type?.value?.toLowerCase());
       // item subtype
-      parts.add(data.system?.ammoType);
       parts.add(data.system?.type?.subtype);
 
       parts.delete(undefined);
@@ -391,7 +385,7 @@ function _getSubfolderName(data, pack) {
       return data.system.details.type.value;
     // other
     case "monstertraits":
-      return data.system?.weaponType ?? data.system?.type?.value ?? data.type;
+      return data.system?.type?.value ?? data.type;
 
     default:
       return "";

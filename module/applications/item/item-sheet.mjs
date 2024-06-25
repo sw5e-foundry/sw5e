@@ -104,8 +104,8 @@ export default class ItemSheet5e extends ItemSheet {
     const item = context.item;
     const source = item.toObject();
 
-    let armorType;
-    let wpnType;
+    let itemType = item.system.type.value;
+    let itemSubtype = item.system.type.subtype;
     let isAmmo;
     let isRanged;
 
@@ -148,20 +148,17 @@ export default class ItemSheet5e extends ItemSheet {
       hasDexModifier: item.isArmor && ( item.system.type.value !== "shield" ),
 
       // Item Type
-      armorType: ( armorType = item.system?.armor?.type ?? "" ),
-      wpnType: ( wpnType = item.system?.weaponType ?? "" ),
-      isAmmo: ( isAmmo = item.system?.consumableType === "ammo" ),
-      ammoType: isAmmo ? item.system?.ammoType ?? "" : "",
-      isRanged: ( isRanged = ["simpleB", "martialB", "exoticB"].includes( wpnType ) ),
-      isMelee: ( !isRanged && !isAmmo && ( wpnType in CONFIG.SW5E.weaponStandardTypes ) ),
+      isAmmo: ( isAmmo = item.system?.type?.value === "ammo" ),
+      isRanged: ( isRanged = ["simpleB", "martialB", "exoticB"].includes( itemType ) ),
+      isMelee: ( !isRanged && !isAmmo && ( itemType in CONFIG.SW5E.weaponStandardTypes ) ),
 
       // Starship Items
       isStarshipItem: item.isStarshipItem,
-      isStarshipArmor: armorType === "starship",
-      isStarshipShield: armorType === "ssshield",
-      isStarshipHyperdrive: armorType === "hyper",
-      isStarshipPowerCoupling: armorType === "powerc",
-      isStarshipReactor: armorType === "reactor",
+      isStarshipArmor: itemType === "starship",
+      isStarshipShield: itemType === "ssshield",
+      isStarshipHyperdrive: itemType === "hyper",
+      isStarshipPowerCoupling: itemType === "powerc",
+      isStarshipReactor: itemType === "reactor",
 
       // Advancement
       advancement: this._getItemAdvancement( item ),
@@ -230,22 +227,20 @@ export default class ItemSheet5e extends ItemSheet {
         };
         break;
       case "modification":
-        context.isEquipMod = item.system.modificationType in CONFIG.SW5E.modificationTypesEquipment;
-        context.isWpnMod = item.system.modificationType in CONFIG.SW5E.modificationTypesWeapon;
-        context.isCastMod = item.system.modificationType in CONFIG.SW5E.modificationTypesCasting;
-        context.isCreatureMod = item.system.modificationType in CONFIG.SW5E.modificationTypesCreature;
-        context.isAugment = item.system.modificationType === "augment";
+        context.isEquipMod = item.system.type.value in CONFIG.SW5E.modificationTypesEquipment;
+        context.isWpnMod = item.system.type.value in CONFIG.SW5E.modificationTypesWeapon;
+        context.isCastMod = item.system.type.value in CONFIG.SW5E.modificationTypesCasting;
+        context.isCreatureMod = item.system.type.value in CONFIG.SW5E.modificationTypesCreature;
+        context.isAugment = item.system.type.value === "augment";
         context.usesSlot = !( context.isCreatureMod || context.isAugment );
         break;
       case "power":
         context.powerComponents = { ...CONFIG.SW5E.powerComponents, ...CONFIG.SW5E.powerTags };
         break;
       case "weapon":
-        const wpnType = item.system.weaponType;
-        const weaponType = CONFIG.SW5E.weaponTypes[wpnType];
-        if ( weaponType ) {
-          context.itemType = weaponType;
-        }
+        const weaponType = item.system.type.value;
+        const typeConfig = CONFIG.SW5E.weaponTypes[weaponType];
+        if ( typeConfig ) context.itemType = typeConfig;
         context = this._getWeaponReloadProperties( context );
         break;
       case "starshipsize":
@@ -576,28 +571,28 @@ export default class ItemSheet5e extends ItemSheet {
    * @private
    */
   _getWeaponReloadProperties( ctx = {} ) {
-    const itemSysdata = this.item.system;
+    const wpn = this.item.system;
     const actor = this.item.actor;
 
-    if ( !( "ammo" in itemSysdata ) ) return ctx;
+    if ( !( "ammo" in wpn ) ) return ctx;
 
-    ctx.hasReload = !!itemSysdata.ammo?.max;
+    ctx.hasReload = !!wpn.ammo.max;
     if ( ctx.hasReload ) {
-      ctx.reloadUsesAmmo = itemSysdata.ammo?.types?.length;
+      ctx.reloadUsesAmmo = wpn.ammo.types?.length;
       if ( actor && ctx.reloadUsesAmmo ) {
-        ctx.reloadAmmo = actor.itemTypes.consumable.reduce( ( ammo, i ) => {
-          if ( i.system.consumableType === "ammo" && itemSysdata.ammo?.types.includes( i.system.ammoType ) ) {
-            ammo[i.id] = `${i.name} (${i.system.quantity})`;
+        ctx.reloadAmmo = actor.itemTypes.consumable.reduce( ( list, ammo ) => {
+          if ( ammo.system.type.value === "ammo" && wpn.list?.types.includes( ammo.system.type.subtype ) ) {
+            list[ammo.id] = `${ammo.name} (${ammo.system.quantity})`;
           }
-          return ammo;
+          return list;
         }, {} );
         if ( actor.type === "npc" && !game.settings.get( "sw5e", "npcConsumeAmmo" ) ) ctx.reloadDisabled = false;
       } else {
         ctx.reloadAmmo = {};
-        ctx.reloadDisabled = ctx.reloadUsesAmmo && !itemSysdata.ammo.target;
+        ctx.reloadDisabled = ctx.reloadUsesAmmo && !wpn.ammo.target;
       }
-      ctx.reloadFull = itemSysdata.ammo?.value === itemSysdata.ammo?.max || ctx.reloadDisabled;
-      if ( itemSysdata.properties?.ovr ) {
+      ctx.reloadFull = wpn.ammo.value === wpn.ammo.max || ctx.reloadDisabled;
+      if ( wpn.properties?.ovr ) {
         ctx.reloadActLabel = "SW5E.WeaponCoolDown";
         ctx.reloadLabel = "SW5E.WeaponOverheat";
       } else {
@@ -1192,7 +1187,7 @@ export default class ItemSheet5e extends ItemSheet {
 
     if ( oldAmmo && oldLoad !== 0 ) {
       const ammoUpdates = {};
-      switch ( oldAmmoSysdata?.ammoType ) {
+      switch ( oldAmmoSysdata?.type.subtype ) {
         case "cartridge":
         case "dart":
         case "missile":
@@ -1239,7 +1234,7 @@ export default class ItemSheet5e extends ItemSheet {
     const target = this.item.system?.ammo?.target;
     if ( target ) {
       const ammo = this.item.actor?.items?.get( target );
-      if ( ammo ) disabled.push( ammo.system.ammoType );
+      if ( ammo ) disabled.push( ammo.system.type.subtype );
     }
     const result = await CheckboxSelect.checkboxSelect( {
       title: game.i18n.localize( "SW5E.WeaponAmmoConfigureTitle" ),

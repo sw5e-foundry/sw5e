@@ -35,8 +35,8 @@
 
             <ul class="summary flexrow">
                 <li>
-                    <select name="system.system.value">
-                        {{selectOptions config.ssModSystems selected=system.system.value}}
+                    <select name="system.type.value">
+                        {{selectOptions config.ssModSystems selected=system.type.value}}
                     </select>
                 </li>
                 <li>
@@ -84,7 +84,7 @@
                     <input type="checkbox" name="system.free.slot" {{checked system.free.slot}} /> {{ localize
                     "SW5E.ModFreeSlot"}}
                 </label>
-                {{#if (eq system.system.value "Suite")}}
+                {{#if (eq system.type.value "Suite")}}
                 <label class="checkbox">
                     <input type="checkbox" name="system.free.suite" {{checked system.free.suite}} /> {{ localize
                     "SW5E.ModFreeSuite"}}

@@ -35,7 +35,7 @@
 
             <ul class="summary flexrow">
                 <li style="flex-basis: 80px;">
-                    {{ localize (lookup config.modificationTypes system.modificationType) }}
+                    {{ localize (lookup config.modificationTypes system.type.value) }}
                 </li>
                 <li>
                     {{#if concealDetails}}
@@ -75,8 +75,8 @@
             {{!-- Modification Type --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemModificationType" }}</label>
-                <select name="system.modificationType">
-                    {{ selectOptions config.modificationTypes selected=system.modificationType }}
+                <select name="system.type.value">
+                    {{ selectOptions config.modificationTypes selected=system.type.value }}
                 </select>
             </div>
 
@@ -85,7 +85,7 @@
                 {{#if usesSlot}}
                 <label>{{ localize "SW5E.ItemModificationSlot" }}</label>
                 <select name="system.modificationSlot">
-                    {{#with (lookup config.modificationSlots system.modificationType) as |modSlots| }}
+                    {{#with (lookup config.modificationSlots system.type.value) as |modSlots| }}
                     {{ selectOptions modSlots selected=../system.modificationSlot }}
                     {{/with}}
                 </select>

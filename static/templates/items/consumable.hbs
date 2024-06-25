@@ -102,12 +102,12 @@
             {{#if isAmmo }}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemAmmoType" }}</label>
-                <select name="system.ammoType">
+                <select name="system.type.subtype">
                     <optgroup label="{{ localize 'SW5E.StandardAmmo' }}">
-                        {{selectOptions config.ammoStandardTypes selected=system.ammoType}}
+                        {{selectOptions config.ammoStandardTypes selected=system.type.subtype}}
                     </optgroup>
                     <optgroup label="{{ localize 'SW5E.StarshipAmmo' }}">
-                        {{selectOptions config.ammoStarshipTypes selected=system.ammoType}}
+                        {{selectOptions config.ammoStarshipTypes selected=system.type.subtype}}
                     </optgroup>
                 </select>
             </div>

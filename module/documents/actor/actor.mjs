@@ -120,10 +120,10 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     return ( this._focuses = this.items
       .filter( item =>
         item.type === "equipment"
-        && Object.values( CONFIG.SW5E.powerFocus ).includes( item.system.armor.type )
+        && Object.values( CONFIG.SW5E.powerFocus ).includes( item.system.type.value )
         && item.system.equipped
       ).reduce( ( obj, focus ) => {
-        const type = focus.system.armor.type;
+        const type = focus.system.type.value;
         if ( obj[type] !== undefined ) this._preparationWarnings.push( {
           message: game.i18n.format( "SW5E.WarnMultiplePowercastingFocus", { type } ),
           type: "warning"
@@ -941,7 +941,7 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     // Prepare Suites
     attr.mods.suite.max += ( sizeData.modMaxSuitesMult ?? 1 ) * abl.con.mod;
     attr.mods.suite.value = this.itemTypes.starshipmod.filter(
-      i => i.system.equipped && !i.system.free.suite && i.system.system.value === "Suite"
+      i => i.system.equipped && !i.system.free.suite && i.system.type.value === "Suite"
     ).length;
 
     // Prepare Hardpoints
@@ -1744,9 +1744,7 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     // Prepare roll data.
     const tool = this.system.tools[toolId];
     const toolItem = await Trait.getBaseItem( CONFIG.SW5E.toolIds[toolId] );
-    console.debug( "toolItem", toolItem );
-    const toolType = toolItem.system.toolType;
-    console.debug( "toolType", toolType );
+    const toolType = toolItem.system.type.value;
     const ability = this.system.abilities[options.ability || ( tool?.ability ?? "int" )];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
     const parts = ["@mod", "@abilityCheckBonus"];
@@ -2020,7 +2018,7 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     const itemData = item ? {
       isForcePower: item.system.school in CONFIG.SW5E.powerSchoolsForce,
       isTechPower: item.system.school in CONFIG.SW5E.powerSchoolsTech,
-      isPoison: item.system.consumableType === "poison",
+      isPoison: item.type == "consumable" && item.system.type.value === "poison",
       damageTypes: ( item?.system?.damage?.parts ?? [] ).reduce( ( ( set, part ) => {
         if ( part[1] ) set.add( part[1] );
         return set;

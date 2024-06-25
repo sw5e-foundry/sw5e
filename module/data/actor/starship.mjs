@@ -578,7 +578,7 @@ export default class StarshipData extends CommonTemplate {
    */
   getEquipment( type, { equipped = false } = {} ) {
     return this.itemTypes.equipment.filter(
-      item => type === item.system.armor.type && ( !equipped || item.system.equipped )
+      item => type === item.system.type.value && ( !equipped || item.system.equipped )
     );
   }
 

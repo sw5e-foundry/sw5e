@@ -1019,7 +1019,7 @@ async function _migrateItemModificationData( item, updateData, migrationData ) {
       if ( !mod_data?.uuid ) continue;
       const mod = migrationData.modifications.find( m => m.uuid === mod_data.uuid );
       if ( !mod ) continue;
-      const modType = mod.system.modificationType === "augment" ? "augment" : "mod";
+      const modType = mod.system.type.value === "augment" ? "augment" : "mod";
 
       const sysdata = mod.toObject();
       delete sysdata._id;

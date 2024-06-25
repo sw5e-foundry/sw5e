@@ -104,8 +104,8 @@ export default class ItemSheet5e extends ItemSheet {
     const item = context.item;
     const source = item.toObject();
 
-    let itemType = item.system.type.value;
-    let itemSubtype = item.system.type.subtype;
+    let itemType = item.system.type?.value;
+    let itemSubtype = item.system.type?.subtype;
     let isAmmo;
     let isRanged;
 

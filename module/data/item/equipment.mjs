@@ -204,7 +204,6 @@ export default class EquipmentData extends ItemDataModel.mixin(
     EquipmentData.#migrateStrength( source );
     EquipmentData.#migrateProficient( source );
     EquipmentData.#migrateStarshipData( source );
-    migrateItemProperties( source.properties, CONFIG.SW5E.equipmentProperties );
   }
 
   /* -------------------------------------------- */

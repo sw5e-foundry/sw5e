@@ -11,14 +11,14 @@ import { simplifyBonus } from "../../utils.mjs";
 export default class ShieldPointsAdvancement extends HitPointsAdvancement {
   /** @inheritdoc */
   static get metadata() {
-    return foundry.utils.mergeObject(super.metadata, {
-      title: game.i18n.localize("SW5E.AdvancementShieldPointsTitle"),
-      hint: game.i18n.localize("SW5E.AdvancementShieldPointsHint"),
+    return foundry.utils.mergeObject( super.metadata, {
+      title: game.i18n.localize( "SW5E.AdvancementShieldPointsTitle" ),
+      hint: game.i18n.localize( "SW5E.AdvancementShieldPointsHint" ),
       apps: {
         config: ShieldPointsConfig,
         flow: ShieldPointsFlow
       }
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -27,7 +27,7 @@ export default class ShieldPointsAdvancement extends HitPointsAdvancement {
 
   /** @inheritdoc */
   get levels() {
-    return Array.fromRange(this.item.maxAdvancementLevel + 1).slice(0);
+    return Array.fromRange( this.item.maxAdvancementLevel + 1 ).slice( 0 );
   }
 
   /* -------------------------------------------- */
@@ -44,24 +44,24 @@ export default class ShieldPointsAdvancement extends HitPointsAdvancement {
   /*  Display Methods                             */
   /* -------------------------------------------- */
 
-  quantForLevel(level) {
-    return (level === 0) ? this.item.system?.shldDiceStart : ["huge", "gargantuan"].includes(this.item.system.identifier) ? 2 : 1;
+  quantForLevel( level ) {
+    return ( level === 0 ) ? this.item.system?.shldDiceStart : ["huge", "gargantuan"].includes( this.item.system.identifier ) ? 2 : 1;
   }
 
   /** @inheritdoc */
-  valueForLevel(level) {
-    const quant = this.quantForLevel(level);
-    return this.constructor.valueForLevel(this.value, this.hitDieValue, level, quant);
+  valueForLevel( level ) {
+    const quant = this.quantForLevel( level );
+    return this.constructor.valueForLevel( this.value, this.hitDieValue, level, quant );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  getAdjustedTotal(mod) {
-    return Object.keys(this.value).reduce((total, level) => {
-      const quant = this.quantForLevel(level);
-      return total + Math.max(this.valueForLevel(parseInt(level)) + (quant * mod), quant);
-    }, 0);
+  getAdjustedTotal( mod ) {
+    return Object.keys( this.value ).reduce( ( total, level ) => {
+      const quant = this.quantForLevel( level );
+      return total + Math.max( this.valueForLevel( parseInt( level ) ) + ( quant * mod ), quant );
+    }, 0 );
   }
 
   /* -------------------------------------------- */
@@ -69,7 +69,7 @@ export default class ShieldPointsAdvancement extends HitPointsAdvancement {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static availableForItem(item) {
+  static availableForItem( item ) {
     return !item.advancement.byType.ShieldPoints?.length;
   }
 
@@ -82,36 +82,36 @@ export default class ShieldPointsAdvancement extends HitPointsAdvancement {
    * @param {number} value  Shield points taken at a given level.
    * @returns {number}      Shield points adjusted with ability modifier and per-level bonuses.
    */
-  #getApplicableValue(value) {
+  #getApplicableValue( value ) {
     const abilityId = CONFIG.SW5E.defaultAbilities.shieldPoints || "str";
-    value = Math.max(value + (this.actor.system.abilities[abilityId]?.mod ?? 0), 1);
-    value += simplifyBonus(this.actor.system.attributes.hp.bonuses?.templevel, this.actor.getRollData());
+    value = Math.max( value + ( this.actor.system.abilities[abilityId]?.mod ?? 0 ), 1 );
+    value += simplifyBonus( this.actor.system.attributes.hp.bonuses?.templevel, this.actor.getRollData() );
     return value;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  apply(level, data) {
-    let value = this.constructor.valueForLevel(data, this.hitDieValue, level);
-    if (value === undefined) return;
-    this.actor.updateSource({
-      "system.attributes.hp.temp": this.actor.system.attributes.hp.temp + this.#getApplicableValue(value)
-    });
-    this.updateSource({ value: data });
+  apply( level, data ) {
+    let value = this.constructor.valueForLevel( data, this.hitDieValue, level );
+    if ( value === undefined ) return;
+    this.actor.updateSource( {
+      "system.attributes.hp.temp": this.actor.system.attributes.hp.temp + this.#getApplicableValue( value )
+    } );
+    this.updateSource( { value: data } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  reverse(level) {
-    let value = this.valueForLevel(level);
-    if (value === undefined) return;
-    this.actor.updateSource({
-      "system.attributes.hp.temp": this.actor.system.attributes.hp.temp - this.#getApplicableValue(value)
-    });
+  reverse( level ) {
+    let value = this.valueForLevel( level );
+    if ( value === undefined ) return;
+    this.actor.updateSource( {
+      "system.attributes.hp.temp": this.actor.system.attributes.hp.temp - this.#getApplicableValue( value )
+    } );
     const source = { [level]: this.value[level] };
-    this.updateSource({ [`value.-=${level}`]: null });
+    this.updateSource( { [`value.-=${level}`]: null } );
     return source;
   }
 }

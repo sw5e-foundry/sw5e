@@ -7,7 +7,7 @@ export default class ActorTypeConfig extends DocumentSheet {
 
   /** @inheritdoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       classes: ["sw5e", "actor-type", "trait-selector"],
       template: "systems/sw5e/templates/apps/actor-type.hbs",
       width: 280,
@@ -18,14 +18,14 @@ export default class ActorTypeConfig extends DocumentSheet {
       maximum: null,
       sheetConfig: false,
       keyPath: "system.details.type"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
   get title() {
-    return `${game.i18n.localize("SW5E.CreatureTypeTitle")}: ${this.object.name}`;
+    return `${game.i18n.localize( "SW5E.CreatureTypeTitle" )}: ${this.object.name}`;
   }
 
   /* -------------------------------------------- */
@@ -49,10 +49,10 @@ export default class ActorTypeConfig extends DocumentSheet {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  getData(options = {}) {
+  getData( options = {} ) {
     // Get current value or new default
-    let attr = foundry.utils.getProperty(this.object, this.options.keyPath);
-    if (foundry.utils.getType(attr) !== "Object") attr = {
+    let attr = foundry.utils.getProperty( this.object, this.options.keyPath );
+    if ( foundry.utils.getType( attr ) !== "Object" ) attr = {
       value: attr in CONFIG.SW5E.creatureTypes ? attr : "humanoid",
       subtype: "",
       swarm: "",
@@ -61,9 +61,9 @@ export default class ActorTypeConfig extends DocumentSheet {
 
     // Populate choices
     const types = {};
-    for (let [k, v] of Object.entries(CONFIG.SW5E.creatureTypes)) {
+    for ( let [k, v] of Object.entries( CONFIG.SW5E.creatureTypes ) ) {
       types[k] = {
-        label: game.i18n.localize(v.label),
+        label: game.i18n.localize( v.label ),
         chosen: attr.value === k
       };
     }
@@ -73,29 +73,29 @@ export default class ActorTypeConfig extends DocumentSheet {
       types: types,
       custom: {
         value: attr.custom,
-        label: game.i18n.localize("SW5E.CreatureTypeSelectorCustom"),
+        label: game.i18n.localize( "SW5E.CreatureTypeSelectorCustom" ),
         chosen: attr.value === "custom"
       },
-      showCustom: Object.hasOwn(attr, "custom"),
-      showSwarm: Object.hasOwn(attr, "swarm"),
+      showCustom: Object.hasOwn( attr, "custom" ),
+      showSwarm: Object.hasOwn( attr, "swarm" ),
       subtype: attr.subtype,
       swarm: attr.swarm,
-      sizes: Array.from(Object.entries(CONFIG.SW5E.actorSizes))
+      sizes: Array.from( Object.entries( CONFIG.SW5E.actorSizes ) )
         .reverse()
-        .reduce((obj, [key, { label }]) => {
+        .reduce( ( obj, [key, { label }] ) => {
           obj[key] = label;
           return obj;
-        }, {}),
-      preview: Actor5e.formatCreatureType(attr) || "–"
+        }, {} ),
+      preview: Actor5e.formatCreatureType( attr ) || "–"
     };
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  async _updateObject(event, formData) {
-    const typeObject = foundry.utils.expandObject(formData);
-    return this.object.update({[this.options.keyPath]: typeObject});
+  async _updateObject( event, formData ) {
+    const typeObject = foundry.utils.expandObject( formData );
+    return this.object.update( {[this.options.keyPath]: typeObject} );
   }
 
   /* -------------------------------------------- */
@@ -103,27 +103,27 @@ export default class ActorTypeConfig extends DocumentSheet {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  activateListeners(html) {
-    super.activateListeners(html);
-    html.find("input[name='custom']").focusin(this._onCustomFieldFocused.bind(this));
+  activateListeners( html ) {
+    super.activateListeners( html );
+    html.find( "input[name='custom']" ).focusin( this._onCustomFieldFocused.bind( this ) );
 
-    const overrides = Object.keys(foundry.utils.flattenObject(this.actor.overrides || {}));
-    if ( overrides.some(k => k.startsWith("system.details.type.")) ) {
+    const overrides = Object.keys( foundry.utils.flattenObject( this.actor.overrides || {} ) );
+    if ( overrides.some( k => k.startsWith( "system.details.type." ) ) ) {
       // Disable editing any type field if one of them is overridden by an Active Effect.
-      html.find("input, select").each((i, el) => {
+      html.find( "input, select" ).each( ( i, el ) => {
         el.disabled = true;
         el.dataset.tooltip = "SW5E.ActiveEffectOverrideWarning";
-      });
+      } );
     }
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _onChangeInput(event) {
-    super._onChangeInput(event);
-    const typeObject = foundry.utils.expandObject(this._getSubmitData());
-    this.form.preview.value = Actor5e.formatCreatureType(typeObject) || "—";
+  _onChangeInput( event ) {
+    super._onChangeInput( event );
+    const typeObject = foundry.utils.expandObject( this._getSubmitData() );
+    this.form.preview.value = Actor5e.formatCreatureType( typeObject ) || "—";
   }
 
   /* -------------------------------------------- */
@@ -133,8 +133,8 @@ export default class ActorTypeConfig extends DocumentSheet {
    * @param {FocusEvent} event      The original focusin event
    * @private
    */
-  _onCustomFieldFocused(event) {
-    this.form.querySelector("input[name='value'][value='custom']").checked = true;
-    this._onChangeInput(event);
+  _onCustomFieldFocused( event ) {
+    this.form.querySelector( "input[name='value'][value='custom']" ).checked = true;
+    this._onChangeInput( event );
   }
 }

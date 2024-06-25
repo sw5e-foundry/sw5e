@@ -16,10 +16,10 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
-      description: new SchemaField({
-        value: new HTMLField({ required: true, nullable: true, label: "SW5E.Description" }),
-        chat: new HTMLField({ required: true, nullable: true, label: "SW5E.DescriptionChat" })
-      }),
+      description: new SchemaField( {
+        value: new HTMLField( { required: true, nullable: true, label: "SW5E.Description" } ),
+        chat: new HTMLField( { required: true, nullable: true, label: "SW5E.DescriptionChat" } )
+      } ),
       source: new SourceField()
     };
   }
@@ -29,9 +29,9 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    ItemDescriptionTemplate.#migrateSource(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    ItemDescriptionTemplate.#migrateSource( source );
   }
 
   /* -------------------------------------------- */
@@ -40,8 +40,8 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
    * Convert source string into custom object.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateSource(source) {
-    if ( ("source" in source) && (foundry.utils.getType(source.source) !== "Object") ) {
+  static #migrateSource( source ) {
+    if ( ( "source" in source ) && ( foundry.utils.getType( source.source ) !== "Object" ) ) {
       source.source = { custom: source.source };
     }
   }
@@ -55,6 +55,6 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
    * @returns {Set<string>}
    */
   get validProperties() {
-    return new Set(CONFIG.SW5E.validProperties[this.parent.type] ?? []);
+    return new Set( CONFIG.SW5E.validProperties[this.parent.type] ?? [] );
   }
 }

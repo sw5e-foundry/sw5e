@@ -27,10 +27,10 @@ export default class AttributesFields {
    */
   static get common() {
     return {
-      init: new RollConfigField({
+      init: new RollConfigField( {
         ability: "",
-        bonus: new FormulaField({ required: true, label: "SW5E.InitiativeBonus" })
-      }, { label: "SW5E.Initiative" }),
+        bonus: new FormulaField( { required: true, label: "SW5E.InitiativeBonus" } )
+      }, { label: "SW5E.Initiative" } ),
       movement: new MovementField()
     };
   }
@@ -93,64 +93,64 @@ export default class AttributesFields {
     return {
       attunement: new foundry.data.fields.SchemaField(
         {
-          max: new foundry.data.fields.NumberField({
+          max: new foundry.data.fields.NumberField( {
             required: true,
             nullable: false,
             integer: true,
             min: 0,
             initial: 3,
             label: "SW5E.AttunementMax"
-          })
+          } )
         },
         { label: "SW5E.Attunement" }
       ),
       senses: new SensesField(),
-      forcecasting: new foundry.data.fields.StringField({
+      forcecasting: new foundry.data.fields.StringField( {
         required: true, blank: true, initial: "wis", label: "SW5E.ForcePowerAbility"
-      }),
+      } ),
       force: new foundry.data.fields.SchemaField(
-        { points: makePointsResource({ label: "SW5E.ForcePoint", hasTemp: true }) },
+        { points: makePointsResource( { label: "SW5E.ForcePoint", hasTemp: true } ) },
         { label: "SW5E.ForceCasting" }
       ),
-      techcasting: new foundry.data.fields.StringField({
+      techcasting: new foundry.data.fields.StringField( {
         required: true, blank: true, initial: "int", label: "SW5E.TechPowerAbility"
-      }),
+      } ),
       tech: new foundry.data.fields.SchemaField(
-        { points: makePointsResource({ label: "SW5E.TechPoint", hasTemp: true }) },
+        { points: makePointsResource( { label: "SW5E.TechPoint", hasTemp: true } ) },
         { label: "SW5E.TechCasting" }
       ),
       super: new foundry.data.fields.SchemaField(
         {
-          die: new foundry.data.fields.NumberField({
+          die: new foundry.data.fields.NumberField( {
             nullable: true,
             integer: true,
             min: 0,
             initial: null,
             label: "SW5E.SuperiorityDieOverride"
-          }),
-          dice: makePointsResource({ label: "SW5E.SuperDice" })
+          } ),
+          dice: makePointsResource( { label: "SW5E.SuperDice" } )
         },
         { label: "SW5E.Superiority" }
       ),
       deployed: new foundry.data.fields.SchemaField(
         {
-          uuid: new UUIDField({ label: "SW5E.DeployedStarship", nullable: true }),
-          deployments: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+          uuid: new UUIDField( { label: "SW5E.DeployedStarship", nullable: true } ),
+          deployments: new foundry.data.fields.SetField( new foundry.data.fields.StringField(), {
             label: "SW5E.DeployedPositions"
-          })
+          } )
         },
         { label: "SW5E.Deployed" }
       ),
-      exhaustion: new foundry.data.fields.NumberField({
+      exhaustion: new foundry.data.fields.NumberField( {
         required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.Exhaustion"
-      }),
-      concentration: new RollConfigField({
+      } ),
+      concentration: new RollConfigField( {
         ability: "",
-        bonuses: new foundry.data.fields.SchemaField({
-          save: new FormulaField({ required: true, label: "SW5E.SaveBonus" })
-        }),
-        limit: new foundry.data.fields.NumberField({ integer: true, min: 0, initial: 1, label: "SW5E.AttrConcentration.Limit" })
-      }, { label: "SW5E.Concentration" })
+        bonuses: new foundry.data.fields.SchemaField( {
+          save: new FormulaField( { required: true, label: "SW5E.SaveBonus" } )
+        } ),
+        limit: new foundry.data.fields.NumberField( { integer: true, min: 0, initial: 1, label: "SW5E.AttrConcentration.Limit" } )
+      }, { label: "SW5E.Concentration" } )
     };
   }
 
@@ -163,10 +163,10 @@ export default class AttributesFields {
    * @param {object} source  The source attributes object.
    * @internal
    */
-  static _migrateInitiative(source) {
+  static _migrateInitiative( source ) {
     const init = source?.init;
-    if (!init?.value || typeof init?.bonus === "string") return;
-    if (init.bonus) init.bonus += init.value < 0 ? ` - ${init.value * -1}` : ` + ${init.value}`;
+    if ( !init?.value || typeof init?.bonus === "string" ) return;
+    if ( init.bonus ) init.bonus += init.value < 0 ? ` - ${init.value * -1}` : ` + ${init.value}`;
     else init.bonus = `${init.value}`;
   }
 
@@ -208,12 +208,12 @@ export default class AttributesFields {
    * @this {CharacterData|NPCData}
    * @param {object} rollData  The Actor's roll data.
    */
-  static prepareConcentration(rollData) {
+  static prepareConcentration( rollData ) {
     const { concentration } = this.attributes;
     const abilityId = concentration.ability || CONFIG.SW5E.defaultAbilities.concentration;
     const ability = this.abilities?.[abilityId] || {};
-    const bonus = simplifyBonus(concentration.bonuses.save, rollData);
-    concentration.save = (ability.save ?? 0) + bonus;
+    const bonus = simplifyBonus( concentration.bonuses.save, rollData );
+    concentration.save = ( ability.save ?? 0 ) + bonus;
   }
 
   /* -------------------------------------------- */
@@ -225,22 +225,22 @@ export default class AttributesFields {
    * @param { object } [options]
    * @param { Function } [options.validateItem]  Determine whether an item's weight should count toward encumbrance.
    */
-  static prepareEncumbrance(rollData, { validateItem } = {}) {
+  static prepareEncumbrance( rollData, { validateItem } = {} ) {
     const config = CONFIG.SW5E.encumbrance;
     const encumbrance = this.attributes.encumbrance ??= {};
     const baseUnits = CONFIG.SW5E.encumbrance.baseUnits[this.parent.type]
       ?? CONFIG.SW5E.encumbrance.baseUnits.default;
-    const unitSystem = game.settings.get("sw5e", "metricWeightUnits") ? "metric" : "imperial";
+    const unitSystem = game.settings.get( "sw5e", "metricWeightUnits" ) ? "metric" : "imperial";
 
     // Get the total weight from items
     let weight = this.parent.items
-      .filter(item => !item.container && (validateItem?.(item) ?? true))
-      .reduce((weight, item) => weight + (item.system.totalWeightIn?.(baseUnits[unitSystem]) ?? 0), 0);
+      .filter( item => !item.container && ( validateItem?.( item ) ?? true ) )
+      .reduce( ( weight, item ) => weight + ( item.system.totalWeightIn?.( baseUnits[unitSystem] ) ?? 0 ), 0 );
 
     // [Optional] add Currency Weight (for non-transformed actors)
     const currency = this.currency;
-    if (game.settings.get("sw5e", "currencyWeight") && currency) {
-      const numCoins = Object.values(currency).reduce((val, denom) => val + Math.max(denom, 0), 0);
+    if ( game.settings.get( "sw5e", "currencyWeight" ) && currency ) {
+      const numCoins = Object.values( currency ).reduce( ( val, denom ) => val + Math.max( denom, 0 ), 0 );
       const currencyPerWeight = config.currencyPerWeight[unitSystem];
       weight += convertWeight(
         numCoins / currencyPerWeight,
@@ -250,40 +250,40 @@ export default class AttributesFields {
     }
 
     // Determine the Encumbrance size class
-    const keys = Object.keys(CONFIG.SW5E.actorSizes);
-    const index = keys.findIndex(k => k === this.traits.size);
+    const keys = Object.keys( CONFIG.SW5E.actorSizes );
+    const index = keys.findIndex( k => k === this.traits.size );
     const sizeConfig = CONFIG.SW5E.actorSizes[
-      keys[this.parent.flags.sw5e?.powerfulBuild ? Math.min(index + 1, keys.length - 1) : index]
+      keys[this.parent.flags.sw5e?.powerfulBuild ? Math.min( index + 1, keys.length - 1 ) : index]
     ];
     const sizeMod = sizeConfig?.capacityMultiplier ?? sizeConfig?.token ?? 1;
     let maximumMultiplier;
 
     const calculateThreshold = threshold => {
       let base = this.abilities.str?.value ?? 10;
-      const bonus = simplifyBonus(encumbrance.bonuses?.[threshold], rollData)
-        + simplifyBonus(encumbrance.bonuses?.overall, rollData);
-      let multiplier = simplifyBonus(encumbrance.multipliers[threshold], rollData)
-        * simplifyBonus(encumbrance.multipliers.overall, rollData);
-      if (threshold === "maximum") maximumMultiplier = multiplier;
-      if (this.parent.type === "vehicle") base = this.attributes.capacity.cargo;
-      else multiplier *= (config.threshold[threshold]?.[unitSystem] ?? 1) * sizeMod;
-      return (base * multiplier).toNearest(0.1) + bonus;
+      const bonus = simplifyBonus( encumbrance.bonuses?.[threshold], rollData )
+        + simplifyBonus( encumbrance.bonuses?.overall, rollData );
+      let multiplier = simplifyBonus( encumbrance.multipliers[threshold], rollData )
+        * simplifyBonus( encumbrance.multipliers.overall, rollData );
+      if ( threshold === "maximum" ) maximumMultiplier = multiplier;
+      if ( this.parent.type === "vehicle" ) base = this.attributes.capacity.cargo;
+      else multiplier *= ( config.threshold[threshold]?.[unitSystem] ?? 1 ) * sizeMod;
+      return ( base * multiplier ).toNearest( 0.1 ) + bonus;
     };
 
     // Populate final Encumbrance values
-    encumbrance.value = weight.toNearest(0.1);
+    encumbrance.value = weight.toNearest( 0.1 );
     encumbrance.thresholds = {
-      encumbered: calculateThreshold("encumbered"),
-      heavilyEncumbered: calculateThreshold("heavilyEncumbered"),
-      maximum: calculateThreshold("maximum")
+      encumbered: calculateThreshold( "encumbered" ),
+      heavilyEncumbered: calculateThreshold( "heavilyEncumbered" ),
+      maximum: calculateThreshold( "maximum" )
     };
     encumbrance.max = encumbrance.thresholds.maximum;
-    encumbrance.mod = (sizeMod * maximumMultiplier).toNearest(0.1);
+    encumbrance.mod = ( sizeMod * maximumMultiplier ).toNearest( 0.1 );
     encumbrance.stops = {
-      encumbered: Math.clamp((encumbrance.thresholds.encumbered * 100) / encumbrance.max, 0, 100),
-      heavilyEncumbered: Math.clamp((encumbrance.thresholds.heavilyEncumbered * 100) / encumbrance.max, 0, 100)
+      encumbered: Math.clamp( ( encumbrance.thresholds.encumbered * 100 ) / encumbrance.max, 0, 100 ),
+      heavilyEncumbered: Math.clamp( ( encumbrance.thresholds.heavilyEncumbered * 100 ) / encumbrance.max, 0, 100 )
     };
-    encumbrance.pct = Math.clamp((encumbrance.value * 100) / encumbrance.max, 0, 100);
+    encumbrance.pct = Math.clamp( ( encumbrance.value * 100 ) / encumbrance.max, 0, 100 );
     encumbrance.encumbered = encumbrance.value > encumbrance.heavilyEncumbered;
   }
 
@@ -294,9 +294,9 @@ export default class AttributesFields {
    * @this {CharacterData|NPCData}
    */
   static prepareExhaustionLevel() {
-    const exhaustion = this.parent.effects.get(ActiveEffect5e.ID.EXHAUSTION);
-    const level = exhaustion?.getFlag("sw5e", "exhaustionLevel");
-    this.attributes.exhaustion = Number.isFinite(level) ? level : 0;
+    const exhaustion = this.parent.effects.get( ActiveEffect5e.ID.EXHAUSTION );
+    const level = exhaustion?.getFlag( "sw5e", "exhaustionLevel" );
+    this.attributes.exhaustion = Number.isFinite( level ) ? level : 0;
   }
 
   /* -------------------------------------------- */
@@ -312,10 +312,10 @@ export default class AttributesFields {
     const isNPC = this.type === "npc";
 
     // Prepare base progression data
-    const charProgression = ["force", "tech"].reduce((obj, castType) => {
+    const charProgression = ["force", "tech"].reduce( ( obj, castType ) => {
       obj[castType] = {
         castType,
-        prefix: castType.slice(0, 1),
+        prefix: castType.slice( 0, 1 ),
         powersKnownCur: 0,
         powersKnownMax: 0,
         points: 0,
@@ -327,12 +327,12 @@ export default class AttributesFields {
         attributeOverride: null
       };
       return obj;
-    }, {});
+    }, {} );
 
-    if (isNPC) {
-      for (const progression of Object.values(charProgression)) {
+    if ( isNPC ) {
+      for ( const progression of Object.values( charProgression ) ) {
         const level = this.system?.details?.[`power${progression.castType.capitalize()}Level`];
-        if (level) {
+        if ( level ) {
           progression.classes = 1;
           progression.points = level * CONFIG.SW5E.powerPointsBase.full;
           progression.casterLevel = level;
@@ -342,41 +342,41 @@ export default class AttributesFields {
       }
     } else {
       // Translate the list of classes into force and tech power-casting progression
-      for (const cls of this.itemTypes.class) {
+      for ( const cls of this.itemTypes.class ) {
         const cd = cls.system;
         const ad = cls?.archetype?.system;
         const levels = cd.levels;
-        if (levels < 1) continue;
-        for (const progression of Object.values(charProgression)) {
+        if ( levels < 1 ) continue;
+        for ( const progression of Object.values( charProgression ) ) {
           const castType = progression.castType;
 
           let prog = ad?.powercasting?.[castType] ?? "none";
-          if (prog === "none") prog = cd?.powercasting?.[castType] ?? "none";
+          if ( prog === "none" ) prog = cd?.powercasting?.[castType] ?? "none";
 
-          if (!(prog in CONFIG.SW5E.powerProgression) || prog === "none") continue;
-          if (prog === "half" && castType === "tech" && levels < 2) continue; // Tech half-casters only get techcasting at lvl 2
+          if ( !( prog in CONFIG.SW5E.powerProgression ) || prog === "none" ) continue;
+          if ( prog === "half" && castType === "tech" && levels < 2 ) continue; // Tech half-casters only get techcasting at lvl 2
 
-          for (let d of [ad, cd]) {
+          for ( let d of [ad, cd] ) {
             let override = d?.powercasting?.[`${castType}Override`];
-            if (override in CONFIG.SW5E.abilities) {
-              if (progression.override) this._preparationWarnings.push({
-                message: game.i18n.localize("SW5E.WarnMultiplePowercastingOverride"),
+            if ( override in CONFIG.SW5E.abilities ) {
+              if ( progression.override ) this._preparationWarnings.push( {
+                message: game.i18n.localize( "SW5E.WarnMultiplePowercastingOverride" ),
                 type: "warning"
-              });
+              } );
               progression.override = override;
             }
           }
 
           const known = CONFIG.SW5E.powersKnown[castType][prog][levels];
           const points = levels * CONFIG.SW5E.powerPointsBase[prog];
-          const casterLevel = levels * (CONFIG.SW5E.powerMaxLevel[prog][20] / 9);
+          const casterLevel = levels * ( CONFIG.SW5E.powerMaxLevel[prog][20] / 9 );
 
           progression.classes++;
           progression.powersKnownMax += known;
           progression.points += points;
           progression.casterLevel += casterLevel;
 
-          if (levels > progression.maxClassLevel) {
+          if ( levels > progression.maxClassLevel ) {
             progression.maxClassLevel = levels;
             progression.maxClassProg = prog;
           }
@@ -384,28 +384,28 @@ export default class AttributesFields {
       }
 
       // Calculate known powers
-      for (const pwr of this.itemTypes.power) {
-        if (pwr?.system?.preparation?.mode === "innate" || pwr?.system?.components?.freeLearn) continue;
+      for ( const pwr of this.itemTypes.power ) {
+        if ( pwr?.system?.preparation?.mode === "innate" || pwr?.system?.components?.freeLearn ) continue;
         const school = pwr?.system?.school;
-        if (["lgt", "uni", "drk"].includes(school)) charProgression.force.powersKnownCur++;
-        if ("tec" === school) charProgression.tech.powersKnownCur++;
+        if ( ["lgt", "uni", "drk"].includes( school ) ) charProgression.force.powersKnownCur++;
+        if ( "tec" === school ) charProgression.tech.powersKnownCur++;
       }
 
       charProgression.tech.points /= 2;
     }
 
     // Apply progression data
-    for (const progression of Object.values(charProgression)) {
+    for ( const progression of Object.values( charProgression ) ) {
       // 'Round Appropriately'
-      progression.points = Math.round(progression.points);
-      progression.casterLevel = Math.round(progression.casterLevel);
+      progression.points = Math.round( progression.points );
+      progression.casterLevel = Math.round( progression.casterLevel );
 
       // What level is considered 'high level casting'
       progression.limit = CONFIG.SW5E.powerLimit[progression.maxClassProg];
 
       // What is the maximum power level you can cast
-      if (progression.classes) {
-        if (progression.classes === 1) {
+      if ( progression.classes ) {
+        if ( progression.classes === 1 ) {
           progression.maxPowerLevel = CONFIG.SW5E.powerMaxLevel[progression.maxClassProg][progression.maxClassLevel];
         } else {
           progression.maxPowerLevel = CONFIG.SW5E.powerMaxLevel.full[progression.casterLevel];
@@ -419,13 +419,13 @@ export default class AttributesFields {
 
       // Set the 'power slots'
       const powers = this.powers;
-      for (const level of Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1)) {
+      for ( const level of Array.fromRange( Object.keys( CONFIG.SW5E.powerLevels ).length - 1, 1 ) ) {
         const slot = powers[`power${level}`] ??= { [pval]: 0 };
 
-        slot[pmax] = (level > progression.maxPowerLevel) ? 0 : ((level >= progression.limit) ? 1 : 1000);
+        slot[pmax] = ( level > progression.maxPowerLevel ) ? 0 : ( ( level >= progression.limit ) ? 1 : 1000 );
 
-        if (isNPC) slot[pval] = slot[pmax];
-        else slot[pval] = Math.min(parseInt(slot[pval] ?? slot.value ?? slot[pmax]), slot[pmax]);
+        if ( isNPC ) slot[pval] = slot[pmax];
+        else slot[pval] = Math.min( parseInt( slot[pval] ?? slot.value ?? slot[pmax] ), slot[pmax] );
       }
 
       // Apply the calculated values to the sheet
@@ -448,26 +448,26 @@ export default class AttributesFields {
    * @this {CharacterData|NPCData}
    */
   static prepareBaseSuperiority() {
-    if (this.type === "vehicle" || this.type === "starship") return;
+    if ( this.type === "vehicle" || this.type === "starship" ) return;
     const superiority = this.attributes.super;
 
     // Determine superiority level based on class items
     let { level, levels, known, dice } = this.itemTypes.class.reduce(
-      (obj, cls) => {
+      ( obj, cls ) => {
         const cd = cls?.system;
         const ad = cls?.archetype?.system;
 
         const cp = cd?.superiority?.progression ?? 0;
         const ap = ad?.superiority?.progression ?? 0;
 
-        const progression = Math.max(cp, ap);
+        const progression = Math.max( cp, ap );
         const levels = cd?.levels ?? 1;
 
-        if (progression) {
+        if ( progression ) {
           obj.level += levels * progression;
           obj.levels += levels;
-          obj.known += CONFIG.SW5E.maneuversKnownProgression[Math.round(levels * progression)];
-          obj.dice += Math.round(CONFIG.SW5E.superiorityDiceQuantProgression[levels] * progression);
+          obj.known += CONFIG.SW5E.maneuversKnownProgression[Math.round( levels * progression )];
+          obj.dice += Math.round( CONFIG.SW5E.superiorityDiceQuantProgression[levels] * progression );
         }
 
         return obj;
@@ -475,8 +475,8 @@ export default class AttributesFields {
       { level: 0, levels: 0, known: 0, dice: 0 }
     );
 
-    level = Math.round(Math.max(Math.min(level, CONFIG.SW5E.maxLevel), 0));
-    levels = Math.round(Math.max(Math.min(levels, CONFIG.SW5E.maxLevel), 0));
+    level = Math.round( Math.max( Math.min( level, CONFIG.SW5E.maxLevel ), 0 ) );
+    levels = Math.round( Math.max( Math.min( levels, CONFIG.SW5E.maxLevel ), 0 ) );
 
     // Calculate derived values
     superiority.level = level;
@@ -500,15 +500,15 @@ export default class AttributesFields {
    * @param {number} [options.mod=0]    Modifier for the ability to add to hit points from advancement.
    * @this {ActorDataModel}
    */
-  static prepareHitPoints(hp, { advancement = [], mod = 0, bonus = 0 } = {}) {
-    const base = advancement.reduce((total, advancement) => total + advancement.getAdjustedTotal(mod), 0);
-    hp.max = (hp.max ?? 0) + base + bonus;
-    if (this.parent.hasConditionEffect("halfHealth")) hp.max = Math.floor(hp.max * 0.5);
+  static prepareHitPoints( hp, { advancement = [], mod = 0, bonus = 0 } = {} ) {
+    const base = advancement.reduce( ( total, advancement ) => total + advancement.getAdjustedTotal( mod ), 0 );
+    hp.max = ( hp.max ?? 0 ) + base + bonus;
+    if ( this.parent.hasConditionEffect( "halfHealth" ) ) hp.max = Math.floor( hp.max * 0.5 );
 
-    hp.effectiveMax = hp.max + (hp.tempmax ?? 0);
-    hp.value = Math.min(hp.value, hp.effectiveMax);
+    hp.effectiveMax = hp.max + ( hp.tempmax ?? 0 );
+    hp.value = Math.min( hp.value, hp.effectiveMax );
     hp.damage = hp.effectiveMax - hp.value;
-    hp.pct = Math.clamp(hp.effectiveMax ? (hp.value / hp.effectiveMax) * 100 : 0, 0, 100);
+    hp.pct = Math.clamp( hp.effectiveMax ? ( hp.value / hp.effectiveMax ) * 100 : 0, 0, 100 );
   }
 
   /* -------------------------------------------- */
@@ -526,16 +526,16 @@ export default class AttributesFields {
    * @param {number} [options.shieldCapMult=1]                          Multiplier for the shield points based on equipment.
    * @this {ActorDataModel}
    */
-  static prepareHullShieldPoints(hp, { hullAdvancement = [], shieldAdvancement = [], hullMod = 0, shieldMod = 0, hullBonus = 0, shieldBonus = 0, shieldCapMult = 1 } = {}) {
-    const hullBase = hullAdvancement.reduce((total, hullAdvancement) => total + hullAdvancement.getAdjustedTotal(hullMod), 0);
-    hp.max = (hp.max ?? 0) + hullBase + hullBonus;
-    const shieldBase = shieldAdvancement.reduce((total, shieldAdvancement) => total + Math.round(shieldAdvancement.getAdjustedTotal(shieldMod) * shieldCapMult), 0);
-    hp.tempmax = (hp.tempmax ?? 0) + shieldBase + shieldBonus;
+  static prepareHullShieldPoints( hp, { hullAdvancement = [], shieldAdvancement = [], hullMod = 0, shieldMod = 0, hullBonus = 0, shieldBonus = 0, shieldCapMult = 1 } = {} ) {
+    const hullBase = hullAdvancement.reduce( ( total, hullAdvancement ) => total + hullAdvancement.getAdjustedTotal( hullMod ), 0 );
+    hp.max = ( hp.max ?? 0 ) + hullBase + hullBonus;
+    const shieldBase = shieldAdvancement.reduce( ( total, shieldAdvancement ) => total + Math.round( shieldAdvancement.getAdjustedTotal( shieldMod ) * shieldCapMult ), 0 );
+    hp.tempmax = ( hp.tempmax ?? 0 ) + shieldBase + shieldBonus;
 
-    hp.effectiveMax = hp.max + (hp.tempmax ?? 0);
-    hp.value = Math.min(hp.value, hp.effectiveMax);
+    hp.effectiveMax = hp.max + ( hp.tempmax ?? 0 );
+    hp.value = Math.min( hp.value, hp.effectiveMax );
     hp.damage = hp.effectiveMax - hp.value;
-    hp.pct = Math.clamp(hp.effectiveMax ? (hp.value / hp.effectiveMax) * 100 : 0, 0, 100);
+    hp.pct = Math.clamp( hp.effectiveMax ? ( hp.value / hp.effectiveMax ) * 100 : 0, 0, 100 );
   }
 
   /* -------------------------------------------- */
@@ -546,25 +546,25 @@ export default class AttributesFields {
    */
   static prepareMovement() {
     const statuses = this.parent.statuses;
-    const noMovement = this.parent.hasConditionEffect("noMovement");
-    const halfMovement = this.parent.hasConditionEffect("halfMovement");
-    const encumbered = statuses.has("encumbered");
-    const heavilyEncumbered = statuses.has("heavilyEncumbered");
-    const exceedingCarryingCapacity = statuses.has("exceedingCarryingCapacity");
-    const crawl = this.parent.hasConditionEffect("crawl");
+    const noMovement = this.parent.hasConditionEffect( "noMovement" );
+    const halfMovement = this.parent.hasConditionEffect( "halfMovement" );
+    const encumbered = statuses.has( "encumbered" );
+    const heavilyEncumbered = statuses.has( "heavilyEncumbered" );
+    const exceedingCarryingCapacity = statuses.has( "exceedingCarryingCapacity" );
+    const crawl = this.parent.hasConditionEffect( "crawl" );
     const units = this.attributes.movement.units;
-    for (const type in CONFIG.SW5E.movementTypes) {
+    for ( const type in CONFIG.SW5E.movementTypes ) {
       let speed = this.attributes.movement[type];
-      if (noMovement || (crawl && (type !== "walk"))) speed = 0;
+      if ( noMovement || ( crawl && ( type !== "walk" ) ) ) speed = 0;
       else {
-        if (halfMovement) speed *= 0.5;
-        if (heavilyEncumbered) {
-          speed = Math.max(0, speed - (CONFIG.SW5E.encumbrance.speedReduction.heavilyEncumbered[units] ?? 0));
-        } else if (encumbered) {
-          speed = Math.max(0, speed - (CONFIG.SW5E.encumbrance.speedReduction.encumbered[units] ?? 0));
+        if ( halfMovement ) speed *= 0.5;
+        if ( heavilyEncumbered ) {
+          speed = Math.max( 0, speed - ( CONFIG.SW5E.encumbrance.speedReduction.heavilyEncumbered[units] ?? 0 ) );
+        } else if ( encumbered ) {
+          speed = Math.max( 0, speed - ( CONFIG.SW5E.encumbrance.speedReduction.encumbered[units] ?? 0 ) );
         }
-        if (exceedingCarryingCapacity) {
-          speed = Math.min(speed, CONFIG.SW5E.encumbrance.speedReduction.exceedingCarryingCapacity[units] ?? 0);
+        if ( exceedingCarryingCapacity ) {
+          speed = Math.min( speed, CONFIG.SW5E.encumbrance.speedReduction.exceedingCarryingCapacity[units] ?? 0 );
         }
       }
       this.attributes.movement[type] = speed;
@@ -581,21 +581,21 @@ export default class AttributesFields {
    * @param {boolean} [options.force=false]  Override any values on the actor.
    * @this {CharacterData|NPCData}
    */
-  static prepareSpecies(species, { force = false } = {}) {
-    for (const key of Object.keys(CONFIG.SW5E.movementTypes)) {
-      if (!species.system.movement[key] || (!force && (this.attributes.movement[key] !== null))) continue;
+  static prepareSpecies( species, { force = false } = {} ) {
+    for ( const key of Object.keys( CONFIG.SW5E.movementTypes ) ) {
+      if ( !species.system.movement[key] || ( !force && ( this.attributes.movement[key] !== null ) ) ) continue;
       this.attributes.movement[key] = species.system.movement[key];
     }
-    if (species.system.movement.hover) this.attributes.movement.hover = true;
-    if (force && species.system.movement.units) this.attributes.movement.units = species.system.movement.units;
+    if ( species.system.movement.hover ) this.attributes.movement.hover = true;
+    if ( force && species.system.movement.units ) this.attributes.movement.units = species.system.movement.units;
     else this.attributes.movement.units ??= species.system.movement.units;
 
-    for (const key of Object.keys(CONFIG.SW5E.senses)) {
-      if (!species.system.senses[key] || (!force && (this.attributes.senses[key] !== null))) continue;
+    for ( const key of Object.keys( CONFIG.SW5E.senses ) ) {
+      if ( !species.system.senses[key] || ( !force && ( this.attributes.senses[key] !== null ) ) ) continue;
       this.attributes.senses[key] = species.system.senses[key];
     }
-    this.attributes.senses.special = [this.attributes.senses.special, species.system.senses.special].filterJoin(";");
-    if (force && species.system.senses.units) this.attributes.senses.units = species.system.senses.units;
+    this.attributes.senses.special = [this.attributes.senses.special, species.system.senses.special].filterJoin( ";" );
+    if ( force && species.system.senses.units ) this.attributes.senses.units = species.system.senses.units;
     else this.attributes.senses.units ??= species.system.senses.units;
   }
 }
@@ -605,38 +605,38 @@ export default class AttributesFields {
  * @param {object} [schemaOptions]    Options passed to the outer schema.
  * @returns {PowerCastingData}
  */
-function makePointsResource(schemaOptions = {}) {
+function makePointsResource( schemaOptions = {} ) {
   const baseLabel = schemaOptions.label;
   const schemaObj = {
-    value: new foundry.data.fields.NumberField({
+    value: new foundry.data.fields.NumberField( {
       nullable: false,
       integer: true,
       min: 0,
       initial: 0,
       label: `${baseLabel}Current`
-    }),
-    max: new foundry.data.fields.NumberField({
+    } ),
+    max: new foundry.data.fields.NumberField( {
       nullable: true,
       integer: true,
       min: 0,
       initial: null,
       label: `${baseLabel}Override`
-    }),
-    bonuses: new foundry.data.fields.SchemaField({
-      level: new FormulaField({ deterministic: true, label: `${baseLabel}BonusLevel` }),
-      overall: new FormulaField({ deterministic: true, label: `${baseLabel}BonusOverall` })
-    })
+    } ),
+    bonuses: new foundry.data.fields.SchemaField( {
+      level: new FormulaField( { deterministic: true, label: `${baseLabel}BonusLevel` } ),
+      overall: new FormulaField( { deterministic: true, label: `${baseLabel}BonusOverall` } )
+    } )
   };
-  if (schemaOptions.hasTemp) schemaObj.temp = new foundry.data.fields.NumberField({
+  if ( schemaOptions.hasTemp ) schemaObj.temp = new foundry.data.fields.NumberField( {
     integer: true,
     initial: 0,
     min: 0,
     label: `${baseLabel}Temp`
-  });
-  if (schemaOptions.hasTempMax) schemaObj.tempmax = new foundry.data.fields.NumberField({
+  } );
+  if ( schemaOptions.hasTempMax ) schemaObj.tempmax = new foundry.data.fields.NumberField( {
     integer: true,
     initial: 0,
     label: `${baseLabel}TempMax`
-  });
-  return new foundry.data.fields.SchemaField(schemaObj, schemaOptions);
+  } );
+  return new foundry.data.fields.SchemaField( schemaObj, schemaOptions );
 }

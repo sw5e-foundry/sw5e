@@ -54,22 +54,22 @@ export default class DamageApplicationElement extends ChatTrayElement {
    */
   get targetingMode() {
     if ( this.targetSourceControl.hidden ) return "selected";
-    return this.targetSourceControl.querySelector('[aria-pressed="true"]')?.dataset.mode ?? "targeted";
+    return this.targetSourceControl.querySelector( '[aria-pressed="true"]' )?.dataset.mode ?? "targeted";
   }
 
-  set targetingMode(mode) {
+  set targetingMode( mode ) {
     if ( this.targetSourceControl.hidden ) mode = "selected";
-    const toPress = this.targetSourceControl.querySelector(`[data-mode="${mode}"]`);
-    const currentlyPressed = this.targetSourceControl.querySelector('[aria-pressed="true"]');
+    const toPress = this.targetSourceControl.querySelector( `[data-mode="${mode}"]` );
+    const currentlyPressed = this.targetSourceControl.querySelector( '[aria-pressed="true"]' );
     if ( currentlyPressed ) currentlyPressed.ariaPressed = false;
     toPress.ariaPressed = true;
 
     this.buildTargetsList();
-    if ( (mode === "targeted") && (this.selectedTokensHook !== null) ) {
-      Hooks.off("controlToken", this.selectedTokensHook);
+    if ( ( mode === "targeted" ) && ( this.selectedTokensHook !== null ) ) {
+      Hooks.off( "controlToken", this.selectedTokensHook );
       this.selectedTokensHook = null;
-    } else if ( (mode === "selected") && (this.selectedTokensHook === null) ) {
-      this.selectedTokensHook = Hooks.on("controlToken", foundry.utils.debounce(() => this.buildTargetsList(), 50));
+    } else if ( ( mode === "selected" ) && ( this.selectedTokensHook === null ) ) {
+      this.selectedTokensHook = Hooks.on( "controlToken", foundry.utils.debounce( () => this.buildTargetsList(), 50 ) );
     }
   }
 
@@ -94,9 +94,9 @@ export default class DamageApplicationElement extends ChatTrayElement {
    * @param {string} uuid  UUID of the targeted token.
    * @returns {DamageApplicationOptions}
    */
-  getTargetOptions(uuid) {
-    if ( !this.#targetOptions.has(uuid) ) this.#targetOptions.set(uuid, { multiplier: 1 });
-    return this.#targetOptions.get(uuid);
+  getTargetOptions( uuid ) {
+    if ( !this.#targetOptions.has( uuid ) ) this.#targetOptions.set( uuid, { multiplier: 1 } );
+    return this.#targetOptions.get( uuid );
   }
 
   /* -------------------------------------------- */
@@ -113,49 +113,49 @@ export default class DamageApplicationElement extends ChatTrayElement {
 
   connectedCallback() {
     // Fetch the associated chat message
-    const messageId = this.closest("[data-message-id]")?.dataset.messageId;
-    this.chatMessage = game.messages.get(messageId);
+    const messageId = this.closest( "[data-message-id]" )?.dataset.messageId;
+    this.chatMessage = game.messages.get( messageId );
     if ( !this.chatMessage ) return;
 
     // Build the frame HTML only once
     if ( !this.targetList ) {
-      const div = document.createElement("div");
-      div.classList.add("card-tray", "damage-tray", "collapsible");
-      if ( !this.open ) div.classList.add("collapsed");
+      const div = document.createElement( "div" );
+      div.classList.add( "card-tray", "damage-tray", "collapsible" );
+      if ( !this.open ) div.classList.add( "collapsed" );
       div.innerHTML = `
         <label class="roboto-upper">
           <i class="fa-solid fa-heart-crack"></i>
-          <span>${game.i18n.localize("SW5E.Apply")}</span>
+          <span>${game.i18n.localize( "SW5E.Apply" )}</span>
           <i class="fa-solid fa-caret-down"></i>
         </label>
         <div class="collapsible-content">
           <div class="wrapper">
             <div class="target-source-control">
               <button type="button" class="unbutton" data-mode="targeted" aria-pressed="false">
-                <i class="fa-solid fa-bullseye" inert></i> ${game.i18n.localize("SW5E.Tokens.Targeted")}
+                <i class="fa-solid fa-bullseye" inert></i> ${game.i18n.localize( "SW5E.Tokens.Targeted" )}
               </button>
               <button type="button" class="unbutton" data-mode="selected" aria-pressed="false">
-                <i class="fa-solid fa-expand" inert></i> ${game.i18n.localize("SW5E.Tokens.Selected")}
+                <i class="fa-solid fa-expand" inert></i> ${game.i18n.localize( "SW5E.Tokens.Selected" )}
               </button>
             </div>
             <ul class="targets unlist"></ul>
             <button class="apply-damage" type="button" data-action="applyDamage">
               <i class="fa-solid fa-reply-all fa-flip-horizontal" inert></i>
-              ${game.i18n.localize("SW5E.Apply")}
+              ${game.i18n.localize( "SW5E.Apply" )}
             </button>
           </div>
         </div>
       `;
-      this.replaceChildren(div);
-      this.applyButton = div.querySelector(".apply-damage");
-      this.applyButton.addEventListener("click", this._onApplyDamage.bind(this));
-      this.targetList = div.querySelector(".targets");
-      this.targetSourceControl = this.querySelector(".target-source-control");
-      this.targetSourceControl.querySelectorAll("button").forEach(b =>
-        b.addEventListener("click", this._onChangeTargetMode.bind(this))
+      this.replaceChildren( div );
+      this.applyButton = div.querySelector( ".apply-damage" );
+      this.applyButton.addEventListener( "click", this._onApplyDamage.bind( this ) );
+      this.targetList = div.querySelector( ".targets" );
+      this.targetSourceControl = this.querySelector( ".target-source-control" );
+      this.targetSourceControl.querySelectorAll( "button" ).forEach( b =>
+        b.addEventListener( "click", this._onChangeTargetMode.bind( this ) )
       );
-      if ( !this.chatMessage.getFlag("sw5e", "targets")?.length ) this.targetSourceControl.hidden = true;
-      div.addEventListener("click", this._handleClickHeader.bind(this));
+      if ( !this.chatMessage.getFlag( "sw5e", "targets" )?.length ) this.targetSourceControl.hidden = true;
+      div.addEventListener( "click", this._handleClickHeader.bind( this ) );
     }
 
     this.targetingMode = this.targetSourceControl.hidden ? "selected" : "targeted";
@@ -170,20 +170,20 @@ export default class DamageApplicationElement extends ChatTrayElement {
     let targetedTokens;
     switch ( this.targetingMode ) {
       case "targeted":
-        targetedTokens = (this.chatMessage.getFlag("sw5e", "targets") ?? []).map(t => t.uuid);
+        targetedTokens = ( this.chatMessage.getFlag( "sw5e", "targets" ) ?? [] ).map( t => t.uuid );
         break;
       case "selected":
-        targetedTokens = canvas.tokens?.controlled?.map(t => t.actor?.uuid) ?? [];
+        targetedTokens = canvas.tokens?.controlled?.map( t => t.actor?.uuid ) ?? [];
         break;
     }
-    targetedTokens = Array.from(new Set(targetedTokens));
-    const targets = targetedTokens.map(t => this.buildTargetListEntry(t)).filter(t => t);
-    if ( targets.length ) this.targetList.replaceChildren(...targets);
+    targetedTokens = Array.from( new Set( targetedTokens ) );
+    const targets = targetedTokens.map( t => this.buildTargetListEntry( t ) ).filter( t => t );
+    if ( targets.length ) this.targetList.replaceChildren( ...targets );
     else {
-      const li = document.createElement("li");
-      li.classList.add("none");
-      li.innerText = game.i18n.localize(`SW5E.Tokens.None${this.targetingMode.capitalize()}`);
-      this.targetList.replaceChildren(li);
+      const li = document.createElement( "li" );
+      li.classList.add( "none" );
+      li.innerText = game.i18n.localize( `SW5E.Tokens.None${this.targetingMode.capitalize()}` );
+      this.targetList.replaceChildren( li );
     }
   }
 
@@ -194,25 +194,25 @@ export default class DamageApplicationElement extends ChatTrayElement {
    * @param {string} uuid  UUID of the token represented by this entry.
    * @returns {HTMLLIElement|void}
    */
-  buildTargetListEntry(uuid) {
-    const token = fromUuidSync(uuid);
+  buildTargetListEntry( uuid ) {
+    const token = fromUuidSync( uuid );
     if ( !token?.isOwner ) return;
 
     // Calculate damage to apply
-    const targetOptions = this.getTargetOptions(uuid);
-    const { temp, total, active } = this.calculateDamage(token, targetOptions);
+    const targetOptions = this.getTargetOptions( uuid );
+    const { temp, total, active } = this.calculateDamage( token, targetOptions );
 
     const types = [];
-    for ( const [change, values] of Object.entries(active) ) {
+    for ( const [change, values] of Object.entries( active ) ) {
       for ( const type of values ) {
         const config = CONFIG.SW5E.damageTypes[type] ?? CONFIG.SW5E.healingTypes[type];
         if ( !config ) continue;
         const data = { type, change, icon: config.icon };
-        types.push(data);
+        types.push( data );
       }
     }
-    const changeSources = types.reduce((acc, {type, change, icon}) => {
-      const { label, pressed } = this.getChangeSourceOptions(type, change, targetOptions);
+    const changeSources = types.reduce( ( acc, {type, change, icon} ) => {
+      const { label, pressed } = this.getChangeSourceOptions( type, change, targetOptions );
       acc += `
         <button class="change-source unbutton" type="button" data-type="${type}" data-change="${change}"
                 data-tooltip="${label}" aria-label="${label}" aria-pressed="${pressed}">
@@ -222,10 +222,10 @@ export default class DamageApplicationElement extends ChatTrayElement {
         </button>
       `;
       return acc;
-    }, "");
+    }, "" );
 
-    const li = document.createElement("li");
-    li.classList.add("target");
+    const li = document.createElement( "li" );
+    li.classList.add( "target" );
     li.dataset.targetUuid = uuid;
     li.innerHTML = `
       <img class="gold-icon" alt="${token.name}" src="${token.img}">
@@ -242,19 +242,19 @@ export default class DamageApplicationElement extends ChatTrayElement {
       <menu class="damage-multipliers unlist"></menu>
     `;
 
-    const menu = li.querySelector("menu");
+    const menu = li.querySelector( "menu" );
     for ( const [value, display] of MULTIPLIERS ) {
-      const entry = document.createElement("li");
+      const entry = document.createElement( "li" );
       entry.innerHTML = `
         <button class="multiplier-button" type="button" value="${value}">
           <span>${display}</span>
         </button>
       `;
-      menu.append(entry);
+      menu.append( entry );
     }
 
-    this.refreshListEntry(token, li, targetOptions);
-    li.addEventListener("click", this._onChangeOptions.bind(this));
+    this.refreshListEntry( token, li, targetOptions );
+    li.addEventListener( "click", this._onChangeOptions.bind( this ) );
 
     return li;
   }
@@ -267,8 +267,8 @@ export default class DamageApplicationElement extends ChatTrayElement {
    * @param {DamageApplicationOptions} options
    * @returns {{temp: number, total: number, active: Record<string, Set<string>>}}
    */
-  calculateDamage(actor, options) {
-    const damages = actor.calculateDamage(this.damages, options);
+  calculateDamage( actor, options ) {
+    const damages = actor.calculateDamage( this.damages, options );
 
     let temp = 0;
     let total = 0;
@@ -276,24 +276,24 @@ export default class DamageApplicationElement extends ChatTrayElement {
     for ( const damage of damages ) {
       if ( damage.type === "temphp" ) temp += damage.value;
       else total += damage.value;
-      if ( damage.active.modification ) active.modification.add(damage.type);
-      if ( damage.active.resistance ) active.resistance.add(damage.type);
-      if ( damage.active.vulnerability ) active.vulnerability.add(damage.type);
-      if ( damage.active.immunity ) active.immunity.add(damage.type);
+      if ( damage.active.modification ) active.modification.add( damage.type );
+      if ( damage.active.resistance ) active.resistance.add( damage.type );
+      if ( damage.active.vulnerability ) active.vulnerability.add( damage.type );
+      if ( damage.active.immunity ) active.immunity.add( damage.type );
     }
-    temp = Math.floor(Math.max(0, temp));
-    total = total > 0 ? Math.floor(total) : Math.ceil(total);
+    temp = Math.floor( Math.max( 0, temp ) );
+    total = total > 0 ? Math.floor( total ) : Math.ceil( total );
 
     // Add values from options to prevent active changes from being lost when re-rendering target list
     const union = t => {
-      if ( foundry.utils.getType(options.ignore?.[t]) === "Set" ) active[t] = active[t].union(options.ignore[t]);
+      if ( foundry.utils.getType( options.ignore?.[t] ) === "Set" ) active[t] = active[t].union( options.ignore[t] );
     };
-    union("modification");
-    union("resistance");
-    union("vulnerability");
-    union("immunity");
-    if ( foundry.utils.getType(options.downgrade) === "Set" ) {
-      active.immunity = active.immunity.union(options.downgrade);
+    union( "modification" );
+    union( "resistance" );
+    union( "vulnerability" );
+    union( "immunity" );
+    if ( foundry.utils.getType( options.downgrade ) === "Set" ) {
+      active.immunity = active.immunity.union( options.downgrade );
     }
 
     return { temp, total, active };
@@ -308,16 +308,16 @@ export default class DamageApplicationElement extends ChatTrayElement {
    * @param {DamageApplicationOptions} options  Options object from which to determine final values.
    * @returns {{label: string, pressed: string}}
    */
-  getChangeSourceOptions(type, change, options) {
+  getChangeSourceOptions( type, change, options ) {
     let mode = "active";
-    if ( options.ignore?.[change]?.has(type) ) mode = "ignore";
-    else if ( (change === "immunity") && options.downgrade?.has(type) ) mode = "downgrade";
+    if ( options.ignore?.[change]?.has( type ) ) mode = "ignore";
+    else if ( ( change === "immunity" ) && options.downgrade?.has( type ) ) mode = "downgrade";
 
-    let label = game.i18n.format(`SW5E.DamageApplication.Change.${change.capitalize()}`, {
+    let label = game.i18n.format( `SW5E.DamageApplication.Change.${change.capitalize()}`, {
       type: CONFIG.SW5E.damageTypes[type]?.label ?? CONFIG.SW5E.healingTypes[type]?.label
-    });
-    if ( mode === "ignore" ) label = game.i18n.format("SW5E.DamageApplication.Ignoring", { source: label });
-    if ( mode === "downgrade" ) label = game.i18n.format("SW5E.DamageApplication.Downgrading", { source: label });
+    } );
+    if ( mode === "ignore" ) label = game.i18n.format( "SW5E.DamageApplication.Ignoring", { source: label } );
+    if ( mode === "downgrade" ) label = game.i18n.format( "SW5E.DamageApplication.Downgrading", { source: label } );
 
     return { label, pressed: mode === "active" ? "false" : mode === "ignore" ? "true" : "mixed" };
   }
@@ -330,27 +330,27 @@ export default class DamageApplicationElement extends ChatTrayElement {
    * @param {HTMLLiElement} entry
    * @param {DamageApplicationOptions} options
    */
-  refreshListEntry(token, entry, options) {
-    const { temp, total } = this.calculateDamage(token, options);
-    const calculatedDamage = entry.querySelector(".calculated.damage");
-    calculatedDamage.innerText = formatNumber(-total, { signDisplay: "exceptZero" });
-    calculatedDamage.classList.toggle("healing", total < 0);
+  refreshListEntry( token, entry, options ) {
+    const { temp, total } = this.calculateDamage( token, options );
+    const calculatedDamage = entry.querySelector( ".calculated.damage" );
+    calculatedDamage.innerText = formatNumber( -total, { signDisplay: "exceptZero" } );
+    calculatedDamage.classList.toggle( "healing", total < 0 );
     calculatedDamage.dataset.tooltip = `SW5E.${total < 0 ? "Healing" : "Damage"}`;
     calculatedDamage.hidden = !total && !!temp;
-    const calculatedTemp = entry.querySelector(".calculated.temp");
+    const calculatedTemp = entry.querySelector( ".calculated.temp" );
     calculatedTemp.innerText = temp;
     calculatedTemp.hidden = !temp;
 
-    const pressedMultiplier = entry.querySelector('.multiplier-button[aria-pressed="true"]');
-    if ( Number(pressedMultiplier?.dataset.multiplier) !== options.multiplier ) {
+    const pressedMultiplier = entry.querySelector( '.multiplier-button[aria-pressed="true"]' );
+    if ( Number( pressedMultiplier?.dataset.multiplier ) !== options.multiplier ) {
       if ( pressedMultiplier ) pressedMultiplier.ariaPressed = false;
-      const toPress = entry.querySelector(`[value="${options.multiplier}"]`);
+      const toPress = entry.querySelector( `[value="${options.multiplier}"]` );
       if ( toPress ) toPress.ariaPressed = true;
     }
 
-    for ( const element of entry.querySelectorAll(".change-source") ) {
+    for ( const element of entry.querySelectorAll( ".change-source" ) ) {
       const { type, change } = element.dataset;
-      const { label, pressed } = this.getChangeSourceOptions(type, change, options);
+      const { label, pressed } = this.getChangeSourceOptions( type, change, options );
       element.dataset.tooltip = label;
       element.ariaLabel = label;
       element.ariaPressed = pressed;
@@ -365,12 +365,12 @@ export default class DamageApplicationElement extends ChatTrayElement {
    * Handle clicking the apply damage button.
    * @param {PointerEvent} event  Triggering click event.
    */
-  async _onApplyDamage(event) {
+  async _onApplyDamage( event ) {
     event.preventDefault();
-    for ( const target of this.targetList.querySelectorAll("[data-target-uuid]") ) {
-      const token = fromUuidSync(target.dataset.targetUuid);
-      const options = this.getTargetOptions(target.dataset.targetUuid);
-      await token?.applyDamage(this.damages, options);
+    for ( const target of this.targetList.querySelectorAll( "[data-target-uuid]" ) ) {
+      const token = fromUuidSync( target.dataset.targetUuid );
+      const options = this.getTargetOptions( target.dataset.targetUuid );
+      await token?.applyDamage( this.damages, options );
     }
     this.open = false;
   }
@@ -381,46 +381,46 @@ export default class DamageApplicationElement extends ChatTrayElement {
    * Handle clicking a multiplier button or resistance toggle.
    * @param {PointerEvent} event  Triggering click event.
    */
-  async _onChangeOptions(event) {
+  async _onChangeOptions( event ) {
     event.preventDefault();
-    const button = event.target.closest("button");
-    const uuid = event.target.closest("[data-target-uuid]")?.dataset.targetUuid;
+    const button = event.target.closest( "button" );
+    const uuid = event.target.closest( "[data-target-uuid]" )?.dataset.targetUuid;
     if ( !uuid || !button ) return;
 
-    const options = this.getTargetOptions(uuid);
+    const options = this.getTargetOptions( uuid );
 
     // Set multiplier
-    if ( button.classList.contains("multiplier-button") ) {
-      options.multiplier = Number(button.value);
+    if ( button.classList.contains( "multiplier-button" ) ) {
+      options.multiplier = Number( button.value );
     }
 
     // Set imm/res/vul ignore & downgrade
-    else if ( button.classList.contains("change-source") ) {
+    else if ( button.classList.contains( "change-source" ) ) {
       const { type, change } = button.dataset;
       if ( change === "immunity" ) {
-        if ( options.ignore?.immunity?.has(type) ) {
-          options.ignore.immunity.delete(type);
+        if ( options.ignore?.immunity?.has( type ) ) {
+          options.ignore.immunity.delete( type );
           options.downgrade ??= new Set();
-          options.downgrade.add(type);
-        } else if ( options.downgrade?.has(type) ) {
-          options.downgrade.delete(type);
+          options.downgrade.add( type );
+        } else if ( options.downgrade?.has( type ) ) {
+          options.downgrade.delete( type );
         } else {
           options.ignore ??= {};
           options.ignore[change] ??= new Set();
-          options.ignore[change].add(type);
+          options.ignore[change].add( type );
         }
       }
-      else if ( options.ignore?.[change]?.has(type) ) options.ignore[change].delete(type);
+      else if ( options.ignore?.[change]?.has( type ) ) options.ignore[change].delete( type );
       else {
         options.ignore ??= {};
         options.ignore[change] ??= new Set();
-        options.ignore[change].add(type);
+        options.ignore[change].add( type );
       }
     }
 
-    const token = fromUuidSync(uuid);
-    const entry = this.targetList.querySelector(`[data-target-uuid="${token.uuid}"]`);
-    this.refreshListEntry(token, entry, options);
+    const token = fromUuidSync( uuid );
+    const entry = this.targetList.querySelector( `[data-target-uuid="${token.uuid}"]` );
+    this.refreshListEntry( token, entry, options );
   }
 
   /* -------------------------------------------- */
@@ -429,7 +429,7 @@ export default class DamageApplicationElement extends ChatTrayElement {
    * Handle clicking on the target mode buttons.
    * @param {PointerEvent} event  Triggering click event.
    */
-  async _onChangeTargetMode(event) {
+  async _onChangeTargetMode( event ) {
     event.preventDefault();
     this.targetingMode = event.currentTarget.dataset.mode;
   }

@@ -7,9 +7,9 @@ export default class ItemGrantFlow extends AdvancementFlow {
 
   /** @inheritdoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       template: "systems/sw5e/templates/advancement/item-grant-flow.hbs"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -20,18 +20,18 @@ export default class ItemGrantFlow extends AdvancementFlow {
    */
   async getContext() {
     const config = this.advancement.configuration;
-    const added = this.retainedData?.items.map(i => foundry.utils.getProperty(i, "flags.sw5e.sourceId"))
+    const added = this.retainedData?.items.map( i => foundry.utils.getProperty( i, "flags.sw5e.sourceId" ) )
       ?? this.advancement.value.added;
-    const checked = new Set(Object.values(added ?? {}));
+    const checked = new Set( Object.values( added ?? {} ) );
     return {
       optional: this.advancement.configuration.optional,
-      items: config.items.map(i => {
-        const item = foundry.utils.deepClone(fromUuidSync(i.uuid));
+      items: config.items.map( i => {
+        const item = foundry.utils.deepClone( fromUuidSync( i.uuid ) );
         if ( !item ) return null;
-        item.checked = added ? checked.has(item.uuid) : (config.optional && !i.optional);
+        item.checked = added ? checked.has( item.uuid ) : ( config.optional && !i.optional );
         item.optional = config.optional || i.optional;
         return item;
-      }, []).filter(i => i),
+      }, [] ).filter( i => i ),
       abilities: this.getSelectAbilities()
     };
   }
@@ -39,8 +39,8 @@ export default class ItemGrantFlow extends AdvancementFlow {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  async getData(options = {}) {
-    return foundry.utils.mergeObject(super.getData(options), await this.getContext());
+  async getData( options = {} ) {
+    return foundry.utils.mergeObject( super.getData( options ), await this.getContext() );
   }
 
   /* -------------------------------------------- */
@@ -52,10 +52,10 @@ export default class ItemGrantFlow extends AdvancementFlow {
   getSelectAbilities() {
     const config = this.advancement.configuration;
     return {
-      options: config.power?.ability.size > 1 ? config.power.ability.reduce((obj, k) => {
+      options: config.power?.ability.size > 1 ? config.power.ability.reduce( ( obj, k ) => {
         obj[k] = CONFIG.SW5E.abilities[k]?.label;
         return obj;
-      }, {}) : null,
+      }, {} ) : null,
       selected: this.ability ?? this.retainedData?.ability ?? this.advancement.value.ability
         ?? config.power?.ability.first()
     };
@@ -64,9 +64,9 @@ export default class ItemGrantFlow extends AdvancementFlow {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  activateListeners(html) {
-    super.activateListeners(html);
-    html.find("a[data-uuid]").click(this._onClickFeature.bind(this));
+  activateListeners( html ) {
+    super.activateListeners( html );
+    html.find( "a[data-uuid]" ).click( this._onClickFeature.bind( this ) );
   }
 
   /* -------------------------------------------- */
@@ -76,21 +76,21 @@ export default class ItemGrantFlow extends AdvancementFlow {
    * @param {MouseEvent} event  The triggering event.
    * @protected
    */
-  async _onClickFeature(event) {
+  async _onClickFeature( event ) {
     event.preventDefault();
     const uuid = event.currentTarget.dataset.uuid;
-    const item = await fromUuid(uuid);
-    item?.sheet.render(true);
+    const item = await fromUuid( uuid );
+    item?.sheet.render( true );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  async _updateObject(event, formData) {
-    const retainedData = this.retainedData?.items.reduce((obj, i) => {
-      obj[foundry.utils.getProperty(i, "flags.sw5e.sourceId")] = i;
+  async _updateObject( event, formData ) {
+    const retainedData = this.retainedData?.items.reduce( ( obj, i ) => {
+      obj[foundry.utils.getProperty( i, "flags.sw5e.sourceId" )] = i;
       return obj;
-    }, {});
-    await this.advancement.apply(this.level, formData, retainedData);
+    }, {} );
+    await this.advancement.apply( this.level, formData, retainedData );
   }
 }

@@ -29,20 +29,20 @@ export default class UserSystemFlags extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
       awardDestinations: new SetField(
-        new ForeignDocumentField(foundry.documents.BaseActor, { idOnly: true }), { required: false }
+        new ForeignDocumentField( foundry.documents.BaseActor, { idOnly: true } ), { required: false }
       ),
-      creation: new SchemaField({
-        scrollExplanation: new StringField({ initial: "reference" })
-      }),
-      sheetPrefs: new MappingField(new SchemaField({
-        width: new NumberField({ integer: true, positive: true }),
-        height: new NumberField({ integer: true, positive: true }),
-        tabs: new MappingField(new SchemaField({
-          collapseSidebar: new BooleanField({ required: false }),
-          group: new BooleanField({ required: false, initial: true }),
-          sort: new StringField({ required: false, initial: "m", choices: [...foundry.documents.BaseFolder.SORTING_MODES, "p"] })
-        }))
-      }))
+      creation: new SchemaField( {
+        scrollExplanation: new StringField( { initial: "reference" } )
+      } ),
+      sheetPrefs: new MappingField( new SchemaField( {
+        width: new NumberField( { integer: true, positive: true } ),
+        height: new NumberField( { integer: true, positive: true } ),
+        tabs: new MappingField( new SchemaField( {
+          collapseSidebar: new BooleanField( { required: false } ),
+          group: new BooleanField( { required: false, initial: true } ),
+          sort: new StringField( { required: false, initial: "m", choices: [...foundry.documents.BaseFolder.SORTING_MODES, "p"] } )
+        } ) )
+      } ) )
     };
   }
 }

@@ -52,17 +52,17 @@ globalThis.dnd5e = globalThis.sw5e;
 // Keep on while testing new SW5e build
 CONFIG.debug.hooks = false;
 
-Hooks.once("init", function() {
-  globalThis.sw5e = game.sw5e = Object.assign(game.system, globalThis.sw5e);
-  console.log(`SW5e | Initializing the SW5e Game System - Version ${sw5e.version}\n${SW5E.ASCII}`);
+Hooks.once( "init", function() {
+  globalThis.sw5e = game.sw5e = Object.assign( game.system, globalThis.sw5e );
+  console.log( `SW5e | Initializing the SW5e Game System - Version ${sw5e.version}\n${SW5E.ASCII}` );
 
   // TODO: Remove when v11 support is dropped.
-  CONFIG.compatibility.excludePatterns.push(/filePicker|select/);
-  CONFIG.compatibility.excludePatterns.push(/foundry\.dice\.terms/);
+  CONFIG.compatibility.excludePatterns.push( /filePicker|select/ );
+  CONFIG.compatibility.excludePatterns.push( /foundry\.dice\.terms/ );
   CONFIG.compatibility.excludePatterns.push(
     /aggregateDamageRoll|configureDamage|preprocessFormula|simplifyRollFormula/
   );
-  CONFIG.compatibility.excludePatterns.push(/core\.sourceId/);
+  CONFIG.compatibility.excludePatterns.push( /core\.sourceId/ );
   if ( game.release.generation < 12 ) Math.clamp = Math.clamped;
 
   // Record Configuration Values
@@ -74,7 +74,7 @@ Hooks.once("init", function() {
   CONFIG.Combat.documentClass = documents.Combat5e;
   CONFIG.Combatant.documentClass = documents.Combatant5e;
   CONFIG.Item.collection = dataModels.collection.Items5e;
-  CONFIG.Item.compendiumIndexFields.push("system.container");
+  CONFIG.Item.compendiumIndexFields.push( "system.container" );
   CONFIG.Item.documentClass = documents.Item5e;
   CONFIG.Token.documentClass = documents.TokenDocument5e;
   CONFIG.Token.objectClass = canvas.Token5e;
@@ -95,11 +95,11 @@ Hooks.once("init", function() {
   game.dnd5e = game.sw5e;
   CONFIG.DND5E = CONFIG.SW5E;
   // Add 'spell' equivalent of 'power' config for module compatibility
-  for (const [power, val] of Object.entries(CONFIG.SW5E).filter(
-    ([k]) => k.search(/power(?!die|routing|coupling)/i) !== -1
-  )) {
-    const spell = power.replace(/power/g, "spell").replace(/Power/g, "Spell");
-    if (CONFIG.SW5E[spell] !== undefined) console.warn(`CONFIG.SW5E.${spell} is already defined`);
+  for ( const [power, val] of Object.entries( CONFIG.SW5E ).filter(
+    ( [k] ) => k.search( /power(?!die|routing|coupling)/i ) !== -1
+  ) ) {
+    const spell = power.replace( /power/g, "spell" ).replace( /Power/g, "Spell" );
+    if ( CONFIG.SW5E[spell] !== undefined ) console.warn( `CONFIG.SW5E.${spell} is already defined` );
     else CONFIG.SW5E[spell] = val;
   }
 
@@ -116,13 +116,13 @@ Hooks.once("init", function() {
   _configureStatusEffects();
 
   // Remove honor & sanity from configuration if they aren't enabled
-  if (!game.settings.get("sw5e", "honorScore")) delete SW5E.abilities.hon;
-  if (!game.settings.get("sw5e", "sanityScore")) delete SW5E.abilities.san;
+  if ( !game.settings.get( "sw5e", "honorScore" ) ) delete SW5E.abilities.hon;
+  if ( !game.settings.get( "sw5e", "sanityScore" ) ) delete SW5E.abilities.san;
 
   // Register Roll Extensions
-  CONFIG.Dice.rolls.push(dice.D20Roll);
-  CONFIG.Dice.rolls.push(dice.DamageRoll);
-  CONFIG.Dice.rolls.push(dice.AttribDieRoll);
+  CONFIG.Dice.rolls.push( dice.D20Roll );
+  CONFIG.Dice.rolls.push( dice.DamageRoll );
+  CONFIG.Dice.rolls.push( dice.AttribDieRoll );
 
   // Hook up system data types
   CONFIG.Actor.dataModels = dataModels.actor.config;
@@ -133,49 +133,49 @@ Hooks.once("init", function() {
   _configureFonts();
 
   // Register sheet application classes
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("sw5e", applications.actor.ActorSheetSW5eCharacter, {
+  Actors.unregisterSheet( "core", ActorSheet );
+  Actors.registerSheet( "sw5e", applications.actor.ActorSheetSW5eCharacter, {
     types: ["character"],
     makeDefault: true,
     label: "SW5E.SheetSWClassCharacter"
-  });
-  Actors.registerSheet("sw5e", applications.actor.ActorSheetDnD5eCharacter, {
+  } );
+  Actors.registerSheet( "sw5e", applications.actor.ActorSheetDnD5eCharacter, {
     types: ["character"],
     label: "SW5E.SheetDnDClassCharacterLegacy"
-  });
-  DocumentSheetConfig.registerSheet(Actor, "sw5e", applications.actor.ActorSheetDnD5eCharacter2, {
+  } );
+  DocumentSheetConfig.registerSheet( Actor, "sw5e", applications.actor.ActorSheetDnD5eCharacter2, {
     types: ["character"],
     makeDefault: false,
     label: "SW5E.SheetDnDClassCharacter"
-  });
-  Actors.registerSheet("sw5e", applications.actor.ActorSheetSW5eNPC, {
+  } );
+  Actors.registerSheet( "sw5e", applications.actor.ActorSheetSW5eNPC, {
     types: ["npc"],
     makeDefault: true,
     label: "SW5E.SheetSWClassNPC"
-  });
-  Actors.registerSheet("sw5e", applications.actor.ActorSheetDnD5eNPC, {
+  } );
+  Actors.registerSheet( "sw5e", applications.actor.ActorSheetDnD5eNPC, {
     types: ["npc"],
     makeDefault: false,
     label: "SW5E.SheetDnDClassNPC"
-  });
-  Actors.registerSheet("sw5e", applications.actor.ActorSheetSW5eStarship, {
+  } );
+  Actors.registerSheet( "sw5e", applications.actor.ActorSheetSW5eStarship, {
     types: ["starship"],
     makeDefault: true,
     label: "SW5E.SheetClassStarship"
-  });
-  Actors.registerSheet("sw5e", applications.actor.ActorSheetSW5eVehicle, {
+  } );
+  Actors.registerSheet( "sw5e", applications.actor.ActorSheetSW5eVehicle, {
     types: ["vehicle"],
     makeDefault: true,
     label: "SW5E.SheetClassVehicle"
-  });
-  Actors.registerSheet("sw5e", applications.actor.GroupActorSheet, {
+  } );
+  Actors.registerSheet( "sw5e", applications.actor.GroupActorSheet, {
     types: ["group"],
     makeDefault: true,
     label: "SW5E.SheetClassGroup"
-  });
+  } );
 
-  DocumentSheetConfig.unregisterSheet(Item, "core", ItemSheet);
-  DocumentSheetConfig.registerSheet(Item, "sw5e", applications.item.ItemSheet5e, {
+  DocumentSheetConfig.unregisterSheet( Item, "core", ItemSheet );
+  DocumentSheetConfig.registerSheet( Item, "sw5e", applications.item.ItemSheet5e, {
     /*    Types: [
       "weapon",
       "equipment",
@@ -206,40 +206,40 @@ Hooks.once("init", function() {
     ],*/
     makeDefault: true,
     label: "SW5E.SheetClassItem"
-  });
-  DocumentSheetConfig.unregisterSheet(Item, "sw5e", applications.item.ItemSheet5e, { types: ["container"] });
-  DocumentSheetConfig.registerSheet(Item, "sw5e", applications.item.ContainerSheet, {
+  } );
+  DocumentSheetConfig.unregisterSheet( Item, "sw5e", applications.item.ItemSheet5e, { types: ["container"] } );
+  DocumentSheetConfig.registerSheet( Item, "sw5e", applications.item.ContainerSheet, {
     makeDefault: true,
     types: ["container"],
     label: "SW5E.SheetClassContainer"
-  });
+  } );
 
-  DocumentSheetConfig.registerSheet(JournalEntry, "sw5e", applications.journal.JournalSheet5e, {
+  DocumentSheetConfig.registerSheet( JournalEntry, "sw5e", applications.journal.JournalSheet5e, {
     makeDefault: true,
     label: "SW5E.SheetClassJournalEntry"
-  });
-  DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalClassPageSheet, {
+  } );
+  DocumentSheetConfig.registerSheet( JournalEntryPage, "sw5e", applications.journal.JournalClassPageSheet, {
     label: "SW5E.SheetClassClassSummary",
     types: ["class", "archetype"]
-  });
-  DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalMapLocationPageSheet, {
+  } );
+  DocumentSheetConfig.registerSheet( JournalEntryPage, "sw5e", applications.journal.JournalMapLocationPageSheet, {
     label: "SW5E.SheetClassMapLocation",
     types: ["map"]
-  });
-  DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalRulePageSheet, {
+  } );
+  DocumentSheetConfig.registerSheet( JournalEntryPage, "sw5e", applications.journal.JournalRulePageSheet, {
     label: "SW5E.SheetClassRule",
     types: ["rule"]
-  });
-  DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalPowerListPageSheet, {
+  } );
+  DocumentSheetConfig.registerSheet( JournalEntryPage, "sw5e", applications.journal.JournalPowerListPageSheet, {
     label: "SW5E.SheetClassPowerList",
     types: ["powers"]
-  });
+  } );
 
   CONFIG.Token.prototypeSheetClass = applications.TokenConfig5e;
-  DocumentSheetConfig.unregisterSheet(TokenDocument, "core", TokenConfig);
-  DocumentSheetConfig.registerSheet(TokenDocument, "sw5e", applications.TokenConfig5e, {
+  DocumentSheetConfig.unregisterSheet( TokenDocument, "core", TokenConfig );
+  DocumentSheetConfig.registerSheet( TokenDocument, "sw5e", applications.TokenConfig5e, {
     label: "SW5E.SheetClassToken"
-  });
+  } );
 
   // Preload Handlebars helpers & partials
   utils.registerHandlebarsHelpers();
@@ -249,13 +249,13 @@ Hooks.once("init", function() {
   enrichers.registerCustomEnrichers();
 
   // Register Babele stuff
-  if (typeof Babele !== "undefined") {
-    Babele.get().setSystemTranslationsDir("babele");
+  if ( typeof Babele !== "undefined" ) {
+    Babele.get().setSystemTranslationsDir( "babele" );
   }
 
   // Exhaustion handling
   documents.ActiveEffect5e.registerHUDListeners();
-});
+} );
 
 /* -------------------------------------------- */
 
@@ -267,16 +267,16 @@ function _configureTrackableAttributes() {
   const common = {
     bar: [],
     value: [
-      ...Object.keys(SW5E.abilities).map(ability => `abilities.${ability}.value`),
-      ...Object.keys(SW5E.movementTypes).map(movement => `attributes.movement.${movement}`),
+      ...Object.keys( SW5E.abilities ).map( ability => `abilities.${ability}.value` ),
+      ...Object.keys( SW5E.movementTypes ).map( movement => `attributes.movement.${movement}` ),
       "attributes.ac.value", "attributes.init.total"
     ]
   };
 
-  const altPowers = Object.entries(SW5E.powerPreparationModes).reduce((acc, [k, v]) => {
-    if ( !["prepared", "always"].includes(k) && v.upcast ) acc.push(`powers.${k}`);
+  const altPowers = Object.entries( SW5E.powerPreparationModes ).reduce( ( acc, [k, v] ) => {
+    if ( !["prepared", "always"].includes( k ) && v.upcast ) acc.push( `powers.${k}` );
     return acc;
-  }, []);
+  }, [] );
 
   const creature = {
     bar: [
@@ -285,12 +285,12 @@ function _configureTrackableAttributes() {
       "attributes.force.points.value",
       "attributes.tech.points.value",
       ...altPowers,
-      ...Array.fromRange(Object.keys(SW5E.powerLevels).length - 1, 1).map(l => `powers.power${l}`)
+      ...Array.fromRange( Object.keys( SW5E.powerLevels ).length - 1, 1 ).map( l => `powers.power${l}` )
     ],
     value: [
       ...common.value,
-      ...Object.keys(SW5E.skills).map(skill => `skills.${skill}.passive`),
-      ...Object.keys(SW5E.senses).map(sense => `attributes.senses.${sense}`),
+      ...Object.keys( SW5E.skills ).map( skill => `skills.${skill}.passive` ),
+      ...Object.keys( SW5E.senses ).map( sense => `attributes.senses.${sense}` ),
       "attributes.powerdc"
     ]
   };
@@ -316,8 +316,8 @@ function _configureTrackableAttributes() {
       bar: [...creature.bar, "resources.primary", "resources.secondary", "resources.tertiary"],
       value: [
         ...common.value,
-        ...Object.keys(SW5E.starshipSkills).map(skill => `skills.${skill}.passive`),
-        ...Object.keys(SW5E.powerDieSlots).map(slot => `attributes.power.${slot}.value`),
+        ...Object.keys( SW5E.starshipSkills ).map( skill => `skills.${skill}.passive` ),
+        ...Object.keys( SW5E.powerDieSlots ).map( slot => `attributes.power.${slot}.value` ),
         "attributes.fuel.value"
       ]
     }
@@ -331,19 +331,19 @@ function _configureTrackableAttributes() {
  * @internal
  */
 function _configureConsumableAttributes() {
-  const altPowers = Object.entries(SW5E.powerPreparationModes).reduce((acc, [k, v]) => {
-    if ( !["prepared", "always"].includes(k) && v.upcast ) acc.push(`powers.${k}.value`);
+  const altPowers = Object.entries( SW5E.powerPreparationModes ).reduce( ( acc, [k, v] ) => {
+    if ( !["prepared", "always"].includes( k ) && v.upcast ) acc.push( `powers.${k}.value` );
     return acc;
-  }, []);
+  }, [] );
 
   CONFIG.SW5E.consumableResources = [
-    ...Object.keys(SW5E.abilities).map(ability => `abilities.${ability}.value`),
+    ...Object.keys( SW5E.abilities ).map( ability => `abilities.${ability}.value` ),
     "attributes.ac.flat",
     "attributes.hp.value",
     "attributes.hp.temp", // Added for consuming starship shield points
-    ...Object.keys(SW5E.senses).map(sense => `attributes.senses.${sense}`),
-    ...Object.keys(SW5E.movementTypes).map(type => `attributes.movement.${type}`),
-    ...Object.keys(SW5E.currencies).map(denom => `currency.${denom}`),
+    ...Object.keys( SW5E.senses ).map( sense => `attributes.senses.${sense}` ),
+    ...Object.keys( SW5E.movementTypes ).map( type => `attributes.movement.${type}` ),
+    ...Object.keys( SW5E.currencies ).map( denom => `currency.${denom}` ),
     "details.xp.value",
     "resources.primary.value", "resources.secondary.value", "resources.tertiary.value",
     "resources.legact.value", "resources.legres.value",
@@ -353,7 +353,7 @@ function _configureConsumableAttributes() {
     "attributes.tech.points.value",
     "attributes.super.dice.value",
     // TODO SW5E: Check if this would work for consuming power dice
-    ...Object.keys(SW5E.ssModSystems).map(system => `attributes.power.${system.lower()}.value`)
+    ...Object.keys( SW5E.ssModSystems ).map( system => `attributes.power.${system.lower()}.value` )
   ];
 }
 
@@ -363,7 +363,7 @@ function _configureConsumableAttributes() {
  * Configure additional system fonts.
  */
 function _configureFonts() {
-  Object.assign(CONFIG.fontDefinitions, {
+  Object.assign( CONFIG.fontDefinitions, {
     Roboto: {
       editor: true,
       fonts: [
@@ -446,7 +446,7 @@ function _configureFonts() {
         { urls: ["systems/sw5e/fonts/RussoOne.ttf"] }
       ]
     }
-  });
+  } );
 }
 
 /* -------------------------------------------- */
@@ -455,26 +455,26 @@ function _configureFonts() {
  * Configure system status effects.
  */
 function _configureStatusEffects() {
-  const addEffect = (effects, {special, ...data}) => {
-    data = foundry.utils.deepClone(data);
-    data._id = utils.staticID(`sw5e${data.id}`);
-    if ( foundry.utils.isNewerVersion(game.version, 12) ) {
+  const addEffect = ( effects, {special, ...data} ) => {
+    data = foundry.utils.deepClone( data );
+    data._id = utils.staticID( `sw5e${data.id}` );
+    if ( foundry.utils.isNewerVersion( game.version, 12 ) ) {
       data.img = data.icon ?? data.img;
       delete data.icon;
     }
-    effects.push(data);
+    effects.push( data );
     if ( special ) CONFIG.specialStatusEffects[special] = data.id;
   };
-  CONFIG.statusEffects = Object.entries(CONFIG.SW5E.statusEffects).reduce((arr, [id, data]) => {
-    const original = CONFIG.statusEffects.find(s => s.id === id);
-    addEffect(arr, foundry.utils.mergeObject(original ?? {}, { id, ...data }, { inplace: false }));
+  CONFIG.statusEffects = Object.entries( CONFIG.SW5E.statusEffects ).reduce( ( arr, [id, data] ) => {
+    const original = CONFIG.statusEffects.find( s => s.id === id );
+    addEffect( arr, foundry.utils.mergeObject( original ?? {}, { id, ...data }, { inplace: false } ) );
     return arr;
-  }, []);
-  for ( const [id, {label: name, ...data}] of Object.entries(CONFIG.SW5E.conditionTypes) ) {
-    addEffect(CONFIG.statusEffects, { id, name, ...data });
+  }, [] );
+  for ( const [id, {label: name, ...data}] of Object.entries( CONFIG.SW5E.conditionTypes ) ) {
+    addEffect( CONFIG.statusEffects, { id, name, ...data } );
   }
-  for ( const [id, data] of Object.entries(CONFIG.SW5E.encumbrance.effects) ) {
-    addEffect(CONFIG.statusEffects, { id, ...data, hud: false });
+  for ( const [id, data] of Object.entries( CONFIG.SW5E.encumbrance.effects ) ) {
+    addEffect( CONFIG.statusEffects, { id, ...data, hud: false } );
   }
 }
 
@@ -485,12 +485,12 @@ function _configureStatusEffects() {
 /**
  * Prepare attribute lists.
  */
-Hooks.once("setup", function() {
+Hooks.once( "setup", function() {
   // Configure trackable & consumable attributes.
   _configureTrackableAttributes();
   _configureConsumableAttributes();
 
-  CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
+  CONFIG.SW5E.trackableAttributes = expandAttributeList( CONFIG.SW5E.trackableAttributes );
   game.sw5e.moduleArt.registerModuleArt();
   Tooltips5e.activateListeners();
   game.sw5e.tooltips.observe();
@@ -500,19 +500,19 @@ Hooks.once("setup", function() {
 
   // Apply table of contents compendium style if specified in flags
   game.packs
-    .filter(p => p.metadata.flags?.display === "table-of-contents")
-    .forEach(p => p.applicationClass = applications.journal.TableOfContentsCompendium);
+    .filter( p => p.metadata.flags?.display === "table-of-contents" )
+    .forEach( p => p.applicationClass = applications.journal.TableOfContentsCompendium );
 
   // Apply custom item compendium
-  game.packs.filter(p => p.metadata.type === "Item")
-    .forEach(p => p.applicationClass = applications.item.ItemCompendium5e);
+  game.packs.filter( p => p.metadata.type === "Item" )
+    .forEach( p => p.applicationClass = applications.item.ItemCompendium5e );
 
   // Configure token rings
   CONFIG.SW5E.tokenRings.shaderClass ??= canvas.TokenRingSamplerShaderV11;
   CONFIG.Token.ringClass.initialize();
-  let theme = `${game.settings.get("sw5e", "colorTheme")}-theme`;
-  document.body.classList.add(theme);
-});
+  let theme = `${game.settings.get( "sw5e", "colorTheme" )}-theme`;
+  document.body.classList.add( theme );
+} );
 
 /* --------------------------------------------- */
 
@@ -521,11 +521,11 @@ Hooks.once("setup", function() {
  * @param {string[]} attributes  The initial attributes configuration.
  * @returns {object}  The expanded object structure.
  */
-function expandAttributeList(attributes) {
-  return attributes.reduce((obj, attr) => {
-    foundry.utils.setProperty(obj, attr, true);
+function expandAttributeList( attributes ) {
+  return attributes.reduce( ( obj, attr ) => {
+    foundry.utils.setProperty( obj, attr, true );
     return obj;
-  }, {});
+  }, {} );
 }
 
 /* --------------------------------------------- */
@@ -533,7 +533,7 @@ function expandAttributeList(attributes) {
 /**
  * Perform one-time pre-localization and sorting of some configuration objects
  */
-Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.SW5E));
+Hooks.once( "i18nInit", () => utils.performPreLocalization( CONFIG.SW5E ) );
 
 /* -------------------------------------------- */
 /*  Foundry VTT Ready                           */
@@ -542,25 +542,25 @@ Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.SW5E));
 /**
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
-Hooks.once("ready", async function() {
+Hooks.once( "ready", async function() {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => {
-    if (["Item", "ActiveEffect"].includes(data.type)) {
-      documents.macro.create5eMacro(data, slot);
+  Hooks.on( "hotbarDrop", ( bar, data, slot ) => {
+    if ( ["Item", "ActiveEffect"].includes( data.type ) ) {
+      documents.macro.create5eMacro( data, slot );
       return false;
     }
-  });
+  } );
 
   // Determine whether a system migration is required and feasible
   if ( !game.user.isGM ) return;
-  const cv = game.settings.get("sw5e", "systemMigrationVersion") || game.world.flags.sw5e?.version;
+  const cv = game.settings.get( "sw5e", "systemMigrationVersion" ) || game.world.flags.sw5e?.version;
   const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
-  if ( !cv && totalDocuments === 0 ) return game.settings.set("sw5e", "systemMigrationVersion", game.system.version);
-  if ( cv && !foundry.utils.isNewerVersion(game.system.flags.needsMigrationVersion, cv) ) return;
+  if ( !cv && totalDocuments === 0 ) return game.settings.set( "sw5e", "systemMigrationVersion", game.system.version );
+  if ( cv && !foundry.utils.isNewerVersion( game.system.flags.needsMigrationVersion, cv ) ) return;
 
   // Perform the migration
-  if ( cv && foundry.utils.isNewerVersion(game.system.flags.compatibleMigrationVersion, cv) ) {
-    ui.notifications.error("MIGRATION.5eVersionTooOldWarning", {localize: true, permanent: true});
+  if ( cv && foundry.utils.isNewerVersion( game.system.flags.compatibleMigrationVersion, cv ) ) {
+    ui.notifications.error( "MIGRATION.5eVersionTooOldWarning", {localize: true, permanent: true} );
   }
   migrations.migrateWorld();
 
@@ -568,172 +568,172 @@ Hooks.once("ready", async function() {
   game.sw5e.compendiumBrowser = new applications.compendium.CompendiumBrowser();
 
   // Make deprecated item types unavailable to create
-  game.documentTypes.Item = game.documentTypes.Item.filter(t => !CONFIG.SW5E.deprecatedItemTypes.includes(t));
-});
+  game.documentTypes.Item = game.documentTypes.Item.filter( t => !CONFIG.SW5E.deprecatedItemTypes.includes( t ) );
+} );
 
 /* -------------------------------------------- */
 /*  Canvas Initialization                       */
 /* -------------------------------------------- */
 
-Hooks.on("canvasInit", gameCanvas => {
+Hooks.on( "canvasInit", gameCanvas => {
   if ( game.release.generation < 12 ) {
-    gameCanvas.grid.diagonalRule = game.settings.get("sw5e", "diagonalMovement");
+    gameCanvas.grid.diagonalRule = game.settings.get( "sw5e", "diagonalMovement" );
     SquareGrid.prototype.measureDistances = canvas.measureDistances;
   }
-  CONFIG.Token.ringClass.pushToLoad(gameCanvas.loadTexturesOptions.additionalSources);
-});
+  CONFIG.Token.ringClass.pushToLoad( gameCanvas.loadTexturesOptions.additionalSources );
+} );
 
 /* -------------------------------------------- */
 /*  Canvas Draw                                 */
 /* -------------------------------------------- */
 
-Hooks.on("canvasDraw", gameCanvas => {
+Hooks.on( "canvasDraw", gameCanvas => {
   // The sprite sheet has been loaded now, we can create the uvs for each texture
   CONFIG.Token.ringClass.createAssetsUVs();
-});
+} );
 
 /* -------------------------------------------- */
 /*  System Styling                              */
 /* -------------------------------------------- */
 
-Hooks.on("renderSettings", (app, [html]) => {
-  const details = html.querySelector("#game-details");
-  const pip = details.querySelector(".system-info .update");
-  details.querySelector(".system").remove();
+Hooks.on( "renderSettings", ( app, [html] ) => {
+  const details = html.querySelector( "#game-details" );
+  const pip = details.querySelector( ".system-info .update" );
+  details.querySelector( ".system" ).remove();
 
-  const heading = document.createElement("div");
-  heading.classList.add("sw5e2", "sidebar-heading");
+  const heading = document.createElement( "div" );
+  heading.classList.add( "sw5e2", "sidebar-heading" );
   heading.innerHTML = `
-    <h2>${game.i18n.localize("WORLD.GameSystem")}</h2>
+    <h2>${game.i18n.localize( "WORLD.GameSystem" )}</h2>
     <ul class="links">
       <li>
         <a href="https://github.com/sw5e-foundry/sw5e/releases/latest" target="_blank">
-          ${game.i18n.localize("SW5E.Notes")}
+          ${game.i18n.localize( "SW5E.Notes" )}
         </a>
       </li>
       <li>
-        <a href="https://github.com/sw5e-foundry/sw5e/issues" target="_blank">${game.i18n.localize("SW5E.Issues")}</a>
+        <a href="https://github.com/sw5e-foundry/sw5e/issues" target="_blank">${game.i18n.localize( "SW5E.Issues" )}</a>
       </li>
       <li>
-        <a href="https://github.com/sw5e-foundry/sw5e/wiki" target="_blank">${game.i18n.localize("SW5E.Wiki")}</a>
+        <a href="https://github.com/sw5e-foundry/sw5e/wiki" target="_blank">${game.i18n.localize( "SW5E.Wiki" )}</a>
       </li>
       <li>
         <a href="https://discord.com/channels/727847839631278110/812443835980447774" target="_blank">
-          ${game.i18n.localize("SW5E.Discord")}
+          ${game.i18n.localize( "SW5E.Discord" )}
         </a>
       </li>
     </ul>
   `;
-  details.insertAdjacentElement("afterend", heading);
+  details.insertAdjacentElement( "afterend", heading );
 
-  const badge = document.createElement("div");
-  badge.classList.add("sw5e2", "system-badge");
+  const badge = document.createElement( "div" );
+  badge.classList.add( "sw5e2", "system-badge" );
   badge.innerHTML = `
     <img src="systems/sw5e/ui/SW5e-logo.svg" data-tooltip="${sw5e.title}" alt="${sw5e.title}">
     <span class="system-info">${sw5e.version}</span>
   `;
-  if ( pip ) badge.querySelector(".system-info").insertAdjacentElement("beforeend", pip);
-  heading.insertAdjacentElement("afterend", badge);
-});
+  if ( pip ) badge.querySelector( ".system-info" ).insertAdjacentElement( "beforeend", pip );
+  heading.insertAdjacentElement( "afterend", badge );
+} );
 
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
 
-Hooks.on("renderChatPopout", documents.ChatMessage5e.onRenderChatPopout);
-Hooks.on("getChatLogEntryContext", documents.ChatMessage5e.addChatMessageContextOptions);
+Hooks.on( "renderChatPopout", documents.ChatMessage5e.onRenderChatPopout );
+Hooks.on( "getChatLogEntryContext", documents.ChatMessage5e.addChatMessageContextOptions );
 
-Hooks.on("renderChatLog", (app, html, data) => {
-  documents.Item5e.chatListeners(html);
-  documents.ChatMessage5e.onRenderChatLog(html);
-});
-Hooks.on("renderChatPopout", (app, html, data) => documents.Item5e.chatListeners(html));
+Hooks.on( "renderChatLog", ( app, html, data ) => {
+  documents.Item5e.chatListeners( html );
+  documents.ChatMessage5e.onRenderChatLog( html );
+} );
+Hooks.on( "renderChatPopout", ( app, html, data ) => documents.Item5e.chatListeners( html ) );
 
-Hooks.on("chatMessage", (app, message, data) => applications.Award.chatMessage(message));
+Hooks.on( "chatMessage", ( app, message, data ) => applications.Award.chatMessage( message ) );
 
-Hooks.on("renderActorDirectory", (app, html, data) => {
-  documents.Actor5e.onRenderActorDirectory(html);
-  setFolderBackground(html);
-  CharacterImporter.addImportButton(html);
-  DisplayCR(html);
-});
-Hooks.on("getActorDirectoryEntryContext", documents.Actor5e.addDirectoryContextOptions);
+Hooks.on( "renderActorDirectory", ( app, html, data ) => {
+  documents.Actor5e.onRenderActorDirectory( html );
+  setFolderBackground( html );
+  CharacterImporter.addImportButton( html );
+  DisplayCR( html );
+} );
+Hooks.on( "getActorDirectoryEntryContext", documents.Actor5e.addDirectoryContextOptions );
 
-Hooks.on("renderSceneDirectory", (app, html, data) => {
+Hooks.on( "renderSceneDirectory", ( app, html, data ) => {
   // Console.log(html.find("header.folder-header"));
-  setFolderBackground(html);
-});
+  setFolderBackground( html );
+} );
 
-Hooks.on("renderCompendium", (compendium, html, data) => {
-  DisplayCR(html, compendium);
-});
-Hooks.on("getCompendiumEntryContext", documents.Item5e.addCompendiumContextOptions);
+Hooks.on( "renderCompendium", ( compendium, html, data ) => {
+  DisplayCR( html, compendium );
+} );
+Hooks.on( "getCompendiumEntryContext", documents.Item5e.addCompendiumContextOptions );
 
-Hooks.on("renderItemDirectory", (app, html, data) => {
-  setFolderBackground(html);
-});
-Hooks.on("getItemDirectoryEntryContext", documents.Item5e.addDirectoryContextOptions);
+Hooks.on( "renderItemDirectory", ( app, html, data ) => {
+  setFolderBackground( html );
+} );
+Hooks.on( "getItemDirectoryEntryContext", documents.Item5e.addDirectoryContextOptions );
 
-Hooks.on("renderJournalDirectory", (app, html, data) => {
-  setFolderBackground(html);
-});
-Hooks.on("renderJournalPageSheet", applications.journal.JournalSheet5e.onRenderJournalPageSheet);
+Hooks.on( "renderJournalDirectory", ( app, html, data ) => {
+  setFolderBackground( html );
+} );
+Hooks.on( "renderJournalPageSheet", applications.journal.JournalSheet5e.onRenderJournalPageSheet );
 
-Hooks.on("renderRollTableDirectory", (app, html, data) => {
-  setFolderBackground(html);
-});
+Hooks.on( "renderRollTableDirectory", ( app, html, data ) => {
+  setFolderBackground( html );
+} );
 // Remigrate button adapted from pf2e
-Hooks.on("renderSettings", async (_app, html) => {
-  if (game.user.hasRole("GAMEMASTER")) {
-    const remigrate = $("<div>").attr({ id: "sw5e-remigrate" });
-    const shootButton = $('<button type="button">')
-      .append(utils.fontAwesomeIcon("wrench"), game.i18n.localize("SW5E.Remigrate"))
-      .on("click", ev => migrations.migrateWorld(ev.ctrlKey));
-    remigrate.append(shootButton);
+Hooks.on( "renderSettings", async ( _app, html ) => {
+  if ( game.user.hasRole( "GAMEMASTER" ) ) {
+    const remigrate = $( "<div>" ).attr( { id: "sw5e-remigrate" } );
+    const shootButton = $( '<button type="button">' )
+      .append( utils.fontAwesomeIcon( "wrench" ), game.i18n.localize( "SW5E.Remigrate" ) )
+      .on( "click", ev => migrations.migrateWorld( ev.ctrlKey ) );
+    remigrate.append( shootButton );
 
-    elements.push(remigrate);
+    elements.push( remigrate );
   }
 
-  $("#settings-documentation").after(elements);
-});
+  $( "#settings-documentation" ).after( elements );
+} );
 
-Hooks.on("targetToken", canvas.Token5e.onTargetToken);
+Hooks.on( "targetToken", canvas.Token5e.onTargetToken );
 
-Hooks.on("ActorSheetSW5eCharacter", (app, html, data) => {
-  console.log("renderSwaltSheet");
-});
+Hooks.on( "ActorSheetSW5eCharacter", ( app, html, data ) => {
+  console.log( "renderSwaltSheet" );
+} );
 
-Handlebars.registerHelper("round", function(value) {
-  return Math.floor(value);
-});
+Handlebars.registerHelper( "round", function( value ) {
+  return Math.floor( value );
+} );
 
-Handlebars.registerHelper("debug", function(value) {
-  console.log(value);
+Handlebars.registerHelper( "debug", function( value ) {
+  console.log( value );
   return value;
-});
+} );
 
-Handlebars.registerHelper("isUndefined", function(value) {
+Handlebars.registerHelper( "isUndefined", function( value ) {
   return value === undefined;
-});
+} );
 
-Handlebars.registerHelper("isNull", function(value) {
+Handlebars.registerHelper( "isNull", function( value ) {
   return value === null;
-});
+} );
 
-Handlebars.registerHelper("json", function(value) {
-  return JSON.stringify(value);
-});
+Handlebars.registerHelper( "json", function( value ) {
+  return JSON.stringify( value );
+} );
 
 /**
  * Sets folder background color
  * @param {jQuery} html
  */
-function setFolderBackground(html) {
-  html.find("header.folder-header").each(function() {
-    let bgColor = $(this).css("background-color");
-    if (bgColor === undefined) bgColor = "rgb(255,255,255)";
-    $(this).closest("li").css("background-color", bgColor);
-  });
+function setFolderBackground( html ) {
+  html.find( "header.folder-header" ).each( function() {
+    let bgColor = $( this ).css( "background-color" );
+    if ( bgColor === undefined ) bgColor = "rgb(255,255,255)";
+    $( this ).closest( "li" ).css( "background-color", bgColor );
+  } );
 }
 
 /* -------------------------------------------- */

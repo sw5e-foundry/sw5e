@@ -21,8 +21,8 @@ export default class MapLocationJournalPageData extends foundry.abstract.DataMod
    * @param {number} number  Current position number.
    * @returns {{ number: string, adjustment: number }|void}
    */
-  adjustTOCNumbering(number) {
-    if (!this.code) return;
+  adjustTOCNumbering( number ) {
+    if ( !this.code ) return;
     return { number: this.code, adjustment: -1 };
   }
 
@@ -33,13 +33,13 @@ export default class MapLocationJournalPageData extends foundry.abstract.DataMod
    * @param {object} options  Options passed through to ControlIcon construction.
    * @returns {PIXI.Container|void}
    */
-  getControlIcon(options) {
-    if (!this.code) return;
+  getControlIcon( options ) {
+    if ( !this.code ) return;
     const style = foundry.utils.mergeObject(
       CONFIG.SW5E.mapLocationMarker.default,
-      CONFIG.SW5E.mapLocationMarker[this.parent.getFlag("sw5e", "mapMarkerStyle")] ?? {},
+      CONFIG.SW5E.mapLocationMarker[this.parent.getFlag( "sw5e", "mapMarkerStyle" )] ?? {},
       { inplace: false }
     );
-    return new MapLocationControlIcon({ code: this.code, ...options, ...style });
+    return new MapLocationControlIcon( { code: this.code, ...options, ...style } );
   }
 }

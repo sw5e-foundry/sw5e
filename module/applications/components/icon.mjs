@@ -3,12 +3,12 @@ import AdoptedStyleSheetMixin from "./adopted-stylesheet-mixin.mjs";
 /**
  * Custom element for displaying SVG icons that are cached and can be styled.
  */
-export default class IconElement extends AdoptedStyleSheetMixin(HTMLElement) {
+export default class IconElement extends AdoptedStyleSheetMixin( HTMLElement ) {
   constructor() {
     super();
     this.#internals = this.attachInternals();
     this.#internals.role = "img";
-    this.#shadowRoot = this.attachShadow({ mode: "closed" });
+    this.#shadowRoot = this.attachShadow( { mode: "closed" } );
   }
 
   /** @inheritDoc */
@@ -48,17 +48,17 @@ export default class IconElement extends AdoptedStyleSheetMixin(HTMLElement) {
    * @type {string}
    */
   get src() {
-    return this.getAttribute("src");
+    return this.getAttribute( "src" );
   }
 
-  set src(src) {
-    this.setAttribute("src", src);
+  set src( src ) {
+    this.setAttribute( "src", src );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _adoptStyleSheet(sheet) {
+  _adoptStyleSheet( sheet ) {
     this.#shadowRoot.adoptedStyleSheets = [sheet];
   }
 
@@ -66,17 +66,17 @@ export default class IconElement extends AdoptedStyleSheetMixin(HTMLElement) {
 
   /** @inheritDoc */
   connectedCallback() {
-    this._adoptStyleSheet(this._getStyleSheet());
+    this._adoptStyleSheet( this._getStyleSheet() );
     const insertElement = element => {
       if ( !element ) return;
-      const clone = element.cloneNode(true);
-      this.#shadowRoot.replaceChildren(clone);
+      const clone = element.cloneNode( true );
+      this.#shadowRoot.replaceChildren( clone );
     };
 
     // Insert element immediately if already available, otherwise wait for fetch
-    const element = this.constructor.fetch(this.src);
-    if ( element instanceof Promise ) element.then(insertElement);
-    else insertElement(element);
+    const element = this.constructor.fetch( this.src );
+    if ( element instanceof Promise ) element.then( insertElement );
+    else insertElement( element );
   }
 
   /* -------------------------------------------- */
@@ -86,16 +86,16 @@ export default class IconElement extends AdoptedStyleSheetMixin(HTMLElement) {
    * @param {string} src                        Path of the SVG file to retrieve.
    * @returns {SVGElement|Promise<SVGElement>}  Promise if the element is not cached, otherwise the element directly.
    */
-  static fetch(src) {
-    if ( !this.#svgCache.has(src) ) this.#svgCache.set(src, fetch(src)
-      .then(b => b.text())
-      .then(t => {
-        const temp = document.createElement("div");
+  static fetch( src ) {
+    if ( !this.#svgCache.has( src ) ) this.#svgCache.set( src, fetch( src )
+      .then( b => b.text() )
+      .then( t => {
+        const temp = document.createElement( "div" );
         temp.innerHTML = t;
-        const svg = temp.querySelector("svg");
-        this.#svgCache.set(src, svg);
+        const svg = temp.querySelector( "svg" );
+        this.#svgCache.set( src, svg );
         return svg;
-      }));
-    return this.#svgCache.get(src);
+      } ) );
+    return this.#svgCache.get( src );
   }
 }

@@ -12,13 +12,13 @@ export default class CurrencyTemplate extends SystemDataModel {
   static defineSchema() {
     return {
       currency: new MappingField(
-        new foundry.data.fields.NumberField({
+        new foundry.data.fields.NumberField( {
           required: true,
           nullable: false,
           integer: true,
           min: 0,
           initial: 0
-        }),
+        } ),
         { initialKeys: CONFIG.SW5E.currencies, initialKeysOnly: true, label: "SW5E.Currency" }
       )
     };
@@ -33,9 +33,9 @@ export default class CurrencyTemplate extends SystemDataModel {
    * @returns {number}
    */
   get currencyWeight() {
-    if ( !game.settings.get("sw5e", "currencyWeight") ) return 0;
-    const count = Object.values(this.currency).reduce((count, value) => count + value, 0);
-    const currencyPerWeight = game.settings.get("sw5e", "metricWeightUnits")
+    if ( !game.settings.get( "sw5e", "currencyWeight" ) ) return 0;
+    const count = Object.values( this.currency ).reduce( ( count, value ) => count + value, 0 );
+    const currencyPerWeight = game.settings.get( "sw5e", "metricWeightUnits" )
       ? CONFIG.SW5E.encumbrance.currencyPerWeight.metric
       : CONFIG.SW5E.encumbrance.currencyPerWeight.imperial;
     return count / currencyPerWeight;
@@ -44,9 +44,9 @@ export default class CurrencyTemplate extends SystemDataModel {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    CurrencyTemplate.#migrateCurrencyData(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    CurrencyTemplate.#migrateCurrencyData( source );
   }
 
   /* -------------------------------------------- */
@@ -55,14 +55,14 @@ export default class CurrencyTemplate extends SystemDataModel {
    * Migrate the actor currency field.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateCurrencyData(source) {
-    if (source.currency === undefined) return;
+  static #migrateCurrencyData( source ) {
+    if ( source.currency === undefined ) return;
     // If currency if for some reason null, set it to default values
-    if (source.currency === null) source.currency = { gc: 0 };
+    if ( source.currency === null ) source.currency = { gc: 0 };
     // If the actor has a numeric currency, then it has not been migrated yet.
-    else if (Number.isNumeric(source.currency)) source.currency = { gc: source.currency };
+    else if ( Number.isNumeric( source.currency ) ) source.currency = { gc: source.currency };
     // If currency is an object, remove all but galactic credit
-    else if (foundry.utils.getType(source.currency) === "Object") {
+    else if ( foundry.utils.getType( source.currency ) === "Object" ) {
       const gc = source.currency.gc ?? source.currency.cr ?? 0;
       source.currency = { gc: gc };
     }

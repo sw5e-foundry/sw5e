@@ -90,7 +90,7 @@ SW5E.abilities = {
     improvement: false
   }
 };
-preLocalize("abilities", { keys: ["label", "abbreviation"] });
+preLocalize( "abilities", { keys: ["label", "abbreviation"] } );
 
 /**
  * Configure which ability score is used as the default modifier for initiative rolls,
@@ -106,16 +106,16 @@ SW5E.defaultAbilities = {
   concentration: "con"
 };
 
-Object.defineProperties(SW5E, {
+Object.defineProperties( SW5E, {
   hitPointsAbility: {
-    get: function () {
+    get: function() {
       foundry.utils.logCompatibilityWarning(
         "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hitPoints.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
       );
       return SW5E.defaultAbilities.hitPoints;
     },
-    set: function (value) {
+    set: function( value ) {
       foundry.utils.logCompatibilityWarning(
         "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hitPoints.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
@@ -124,14 +124,14 @@ Object.defineProperties(SW5E, {
     }
   },
   hullPointsAbility: {
-    get: function () {
+    get: function() {
       foundry.utils.logCompatibilityWarning(
         "SW5E.hullPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hullPoints.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
       );
       return SW5E.defaultAbilities.hullPoints;
     },
-    set: function (value) {
+    set: function( value ) {
       foundry.utils.logCompatibilityWarning(
         "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hullPoints.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
@@ -140,14 +140,14 @@ Object.defineProperties(SW5E, {
     }
   },
   shieldPointsAbility: {
-    get: function () {
+    get: function() {
       foundry.utils.logCompatibilityWarning(
         "SW5E.shieldPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.shieldPoints.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
       );
       return SW5E.defaultAbilities.shieldPoints;
     },
-    set: function (value) {
+    set: function( value ) {
       foundry.utils.logCompatibilityWarning(
         "SW5E.shieldPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.shieldPoints.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
@@ -156,14 +156,14 @@ Object.defineProperties(SW5E, {
     }
   },
   initiativeAbility: {
-    get: function () {
+    get: function() {
       foundry.utils.logCompatibilityWarning(
         "SW5E.initiativeAbility has been deprecated and is now accessible through SW5E.defaultAbilities.initiative.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
       );
       return SW5E.defaultAbilities.initiative;
     },
-    set: function (value) {
+    set: function( value ) {
       foundry.utils.logCompatibilityWarning(
         "SW5E.initiativeAbility has been deprecated and is now accessible through SW5E.defaultAbilities.initiative.",
         { since: "SW5e 3.1", until: "SW5e 3.3" }
@@ -171,7 +171,7 @@ Object.defineProperties(SW5E, {
       SW5E.defaultAbilities.initiative = value;
     }
   }
-});
+} );
 
 /* -------------------------------------------- */
 
@@ -209,7 +209,7 @@ SW5E.skills = {
   sur: { label: "SW5E.SkillSur", ability: "wis", fullKey: "survival" },
   tec: { label: "SW5E.SkillTec", ability: "int", fullKey: "technology" }
 };
-preLocalize("skills", { key: "label", sort: true });
+preLocalize( "skills", { key: "label", sort: true } );
 
 /**
  * The set of skills which can be trained on starships with their default ability scores.
@@ -231,7 +231,7 @@ SW5E.starshipSkills = {
   scn: { label: "SW5E.StarshipSkillScn", ability: "wis", fullKey: "scan" },
   swn: { label: "SW5E.StarshipSkillSwn", ability: "cha", fullKey: "swindle" }
 };
-preLocalize("starshipSkills", { key: "label", sort: true });
+preLocalize( "starshipSkills", { key: "label", sort: true } );
 
 /**
  * The set of skills which can be trained by characters or starships with their default ability scores.
@@ -259,7 +259,7 @@ SW5E.alignments = {
   nd: "SW5E.AlignmentND",
   cd: "SW5E.AlignmentCD"
 };
-preLocalize("alignments");
+preLocalize( "alignments" );
 
 /* -------------------------------------------- */
 
@@ -271,7 +271,7 @@ SW5E.attunementTypes = {
   required: "SW5E.AttunementRequired",
   optional: "SW5E.AttunementOptional"
 };
-preLocalize("attunementTypes");
+preLocalize( "attunementTypes" );
 
 /**
  * An enumeration of item attunement states.
@@ -283,7 +283,7 @@ SW5E.attunements = {
   1: "SW5E.AttunementRequired",
   2: "SW5E.AttunementAttuned"
 };
-preLocalize("attunements");
+preLocalize( "attunements" );
 
 /* -------------------------------------------- */
 
@@ -304,7 +304,7 @@ SW5E.weaponProficiencies = {
   slw: "SW5E.WeaponSimpleLightweaponProficiency",
   svb: "SW5E.WeaponSimpleVibroweaponProficiency"
 };
-preLocalize("weaponProficiencies");
+preLocalize( "weaponProficiencies" );
 
 /**
  * A mapping between `SW5E.weaponTypes` and `SW5E.weaponProficiencies` that
@@ -602,7 +602,7 @@ SW5E.toolTypes = {
   game: "SW5E.ToolGamingSet",
   music: "SW5E.ToolMusicalInstrument"
 };
-preLocalize("toolTypes", { sort: true });
+preLocalize( "toolTypes", { sort: true } );
 
 /**
  * The categories of tool proficiencies that a character can gain.
@@ -613,7 +613,7 @@ SW5E.toolProficiencies = {
   ...SW5E.toolTypes,
   vehicle: "SW5E.ToolVehicle"
 };
-preLocalize("toolProficiencies", { sort: true });
+preLocalize( "toolProficiencies", { sort: true } );
 
 /**
  * The basic tool types in sw5e. This enables specific tool proficiencies or
@@ -675,7 +675,7 @@ SW5E.toolIds = {
   drum: "sw5e.musicalinstruments.sryr7sQ5IeUny6cd",
   fanfar: "sw5e.musicalinstruments.wASdyFsdQEJHhXeC"
 };
-preLocalize("toolIds");
+preLocalize( "toolIds" );
 
 /* -------------------------------------------- */
 
@@ -692,7 +692,7 @@ SW5E.scalarTimePeriods = {
   month: "SW5E.TimeMonth",
   year: "SW5E.TimeYear"
 };
-preLocalize("scalarTimePeriods");
+preLocalize( "scalarTimePeriods" );
 
 /* -------------------------------------------- */
 
@@ -705,7 +705,7 @@ SW5E.permanentTimePeriods = {
   dstr: "SW5E.TimeDispTrig",
   perm: "SW5E.TimePerm"
 };
-preLocalize("permanentTimePeriods");
+preLocalize( "permanentTimePeriods" );
 
 /* -------------------------------------------- */
 
@@ -717,7 +717,7 @@ SW5E.specialTimePeriods = {
   inst: "SW5E.TimeInst",
   spec: "SW5E.Special"
 };
-preLocalize("specialTimePeriods");
+preLocalize( "specialTimePeriods" );
 
 /* -------------------------------------------- */
 
@@ -730,7 +730,7 @@ SW5E.timePeriods = {
   ...SW5E.permanentTimePeriods,
   ...SW5E.scalarTimePeriods
 };
-preLocalize("timePeriods");
+preLocalize( "timePeriods" );
 
 /* -------------------------------------------- */
 
@@ -760,7 +760,7 @@ SW5E.abilityActivationTypes = {
   lair: "SW5E.LairActionLabel",
   crew: "SW5E.VehicleCrewAction"
 };
-preLocalize("abilityActivationTypes");
+preLocalize( "abilityActivationTypes" );
 
 /* -------------------------------------------- */
 
@@ -776,7 +776,7 @@ SW5E.abilityConsumptionTypes = {
   charges: "SW5E.ConsumeCharges",
   powerdice: "SW5E.PowerDiePl"
 };
-preLocalize("abilityConsumptionTypes", { sort: true });
+preLocalize( "abilityConsumptionTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -836,7 +836,7 @@ SW5E.actorSizes = {
     capacityMultiplier: 8
   }
 };
-preLocalize("actorSizes", { keys: ["label", "abbreviation"] });
+preLocalize( "actorSizes", { keys: ["label", "abbreviation"] } );
 
 /* -------------------------------------------- */
 /*  Canvas                                      */
@@ -954,7 +954,7 @@ SW5E.creatureTypes = {
     detectAlignment: true
   }
 };
-preLocalize("creatureTypes", { keys: ["label", "plural"], sort: true });
+preLocalize( "creatureTypes", { keys: ["label", "plural"], sort: true } );
 
 /* -------------------------------------------- */
 
@@ -968,7 +968,7 @@ SW5E.itemActionTypesAttack = {
   mpak: "SW5E.ActionMPAK",
   rpak: "SW5E.ActionRPAK"
 };
-preLocalize("itemActionTypesAttack");
+preLocalize( "itemActionTypesAttack" );
 
 /* -------------------------------------------- */
 
@@ -986,7 +986,7 @@ SW5E.itemActionTypes = {
   util: "SW5E.ActionUtil",
   other: "SW5E.ActionOther"
 };
-preLocalize("itemActionTypes");
+preLocalize( "itemActionTypes" );
 
 /* -------------------------------------------- */
 
@@ -998,7 +998,7 @@ SW5E.itemCapacityTypes = {
   items: "SW5E.ItemContainerCapacityItems",
   weight: "SW5E.ItemContainerCapacityWeight"
 };
-preLocalize("itemCapacityTypes", { sort: true });
+preLocalize( "itemCapacityTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1014,7 +1014,7 @@ SW5E.itemRarity = {
   legendary: "SW5E.ItemRarityLegendary",
   artifact: "SW5E.ItemRarityArtifact"
 };
-preLocalize("itemRarity");
+preLocalize( "itemRarity" );
 
 /* -------------------------------------------- */
 
@@ -1081,8 +1081,8 @@ SW5E.limitedUsePeriods = {
     formula: true
   }
 };
-preLocalize("limitedUsePeriods", { keys: ["label", "abbreviation"] });
-patchConfig("limitedUsePeriods", "label", { since: "SW5e 3.1", until: "SW5e 3.3" });
+preLocalize( "limitedUsePeriods", { keys: ["label", "abbreviation"] } );
+patchConfig( "limitedUsePeriods", "label", { since: "SW5e 3.1", until: "SW5e 3.3" } );
 
 /* -------------------------------------------- */
 
@@ -1101,7 +1101,7 @@ SW5E.enchantmentPeriods = {
     label: "SW5E.UsesPeriods.AtWill"
   }
 };
-preLocalize("enchantmentPeriods", { key: "label" });
+preLocalize( "enchantmentPeriods", { key: "label" } );
 
 /* -------------------------------------------- */
 
@@ -1117,7 +1117,7 @@ SW5E.armorTypes = {
   starship: "SW5E.EquipmentStarshipArmor",
   shield: "SW5E.EquipmentShield"
 };
-preLocalize("armorTypes");
+preLocalize( "armorTypes" );
 
 /* -------------------------------------------- */
 
@@ -1129,7 +1129,7 @@ SW5E.castingEquipmentTypes = {
   wristpad: "SW5E.EquipmentWristpad",
   focusgenerator: "SW5E.EquipmentFocusGenerator"
 };
-preLocalize("castingEquipmentTypes", { sort: true });
+preLocalize( "castingEquipmentTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1143,7 +1143,7 @@ SW5E.miscEquipmentTypes = {
   vehicle: "SW5E.EquipmentVehicle",
   ...SW5E.castingEquipmentTypes
 };
-preLocalize("miscEquipmentTypes", { sort: true });
+preLocalize( "miscEquipmentTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1157,7 +1157,7 @@ SW5E.ssEquipmentTypes = {
   reactor: "SW5E.EquipmentReactor",
   ssshield: "SW5E.EquipmentStarshipShield"
 };
-preLocalize("ssEquipmentTypes", { sort: true });
+preLocalize( "ssEquipmentTypes", { sort: true } );
 
 /**
  * The set of equipment types for armor, clothing, and other objects which can be worn by the character.
@@ -1168,7 +1168,7 @@ SW5E.equipmentTypes = {
   ...SW5E.ssEquipmentTypes,
   ...SW5E.armorTypes
 };
-preLocalize("equipmentTypes", { sort: true });
+preLocalize( "equipmentTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1182,7 +1182,7 @@ SW5E.vehicleTypes = {
   space: "SW5E.VehicleTypeSpace",
   water: "SW5E.VehicleTypeWater"
 };
-preLocalize("vehicleTypes", { sort: true });
+preLocalize( "vehicleTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1196,7 +1196,7 @@ SW5E.armorProficiencies = {
   hvy: "SW5E.ArmorHeavyProficiency",
   shl: "SW5E.EquipmentShieldProficiency"
 };
-preLocalize("armorProficiencies");
+preLocalize( "armorProficiencies" );
 
 /**
  * A mapping between `SW5E.equipmentTypes` and `SW5E.armorProficiencies` that
@@ -1229,7 +1229,7 @@ SW5E.armorIds = {
   assaultarmor: "sw5e.armor.GO4yvhWLgLTrU0xb",
   heavyexoskeleton: "sw5e.armor.ggFMzbQrwkGZCoaQ"
 };
-preLocalize("armorIds");
+preLocalize( "armorIds" );
 
 /**
  * The basic shield types in sw5e. This enables specific shield proficiencies,
@@ -1245,7 +1245,7 @@ SW5E.shieldIds = {
   mediumphysicalshield: "sw5e.armor.4vGeVWgLIUfN9YiB",
   heavyphysicalshield: "sw5e.armor.KvzKRKNWATwdzxjz"
 };
-preLocalize("shieldIds");
+preLocalize( "shieldIds" );
 
 /**
  * Common armor class calculations.
@@ -1288,7 +1288,7 @@ SW5E.armorClasses = {
     label: "SW5E.ArmorClassCustom"
   }
 };
-preLocalize("armorClasses", { key: "label" });
+preLocalize( "armorClasses", { key: "label" } );
 
 /* -------------------------------------------- */
 
@@ -1312,7 +1312,7 @@ SW5E.ammoStandardTypes = {
   snare: "SW5E.AmmoSnare",
   torpedo: "SW5E.AmmoTorpedo"
 };
-preLocalize("ammoStandardTypes", { sort: true });
+preLocalize( "ammoStandardTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1326,7 +1326,7 @@ SW5E.ammoStarshipTypes = {
   sstorpedo: "SW5E.AmmoSsTorpedo",
   ssbomb: "SW5E.AmmoSsBomb"
 };
-preLocalize("ammoStarshipTypes", { sort: true });
+preLocalize( "ammoStarshipTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1338,7 +1338,7 @@ SW5E.ammoTypes = {
   ...SW5E.ammoStandardTypes,
   ...SW5E.ammoStarshipTypes
 };
-preLocalize("ammoTypes", { sort: true });
+preLocalize( "ammoTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1392,8 +1392,8 @@ SW5E.consumableTypes = {
     label: "SW5E.ConsumableTechnology"
   }
 };
-preLocalize("consumableTypes", { key: "label", sort: true });
-preLocalize("consumableTypes.ammo.subtypes", { sort: true });
+preLocalize( "consumableTypes", { key: "label", sort: true } );
+preLocalize( "consumableTypes.ammo.subtypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1449,7 +1449,7 @@ SW5E.focusTypes = {
     }
   }
 };
-preLocalize("focusTypes", { key: "label" });
+preLocalize( "focusTypes", { key: "label" } );
 
 /* -------------------------------------------- */
 
@@ -1493,7 +1493,7 @@ SW5E.featLikeItemsMigration = {
 /*
  * List of deprecated item types
  */
-SW5E.deprecatedItemTypes = [...Object.keys(SW5E.featLikeItemsMigration), "starship"];
+SW5E.deprecatedItemTypes = [...Object.keys( SW5E.featLikeItemsMigration ), "starship"];
 
 /**
  * Categorization of all item types.
@@ -1592,8 +1592,8 @@ SW5E.featureTypes = {
     mental: "SW5E.ManeuverTypeMental"
   }
 };
-preLocalize("featureTypes", { key: "label" });
-for (const [key, type] of Object.entries(SW5E.featureTypes)) if ("subtypes" in type) preLocalize(`featureTypes.${key}.subtypes`, { sort: true });
+preLocalize( "featureTypes", { key: "label" } );
+for ( const [key, type] of Object.entries( SW5E.featureTypes ) ) if ( "subtypes" in type ) preLocalize( `featureTypes.${key}.subtypes`, { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -2453,7 +2453,7 @@ SW5E.itemProperties = {
     label: "SW5E.Item.Property.WeightlessContents"
   }
 };
-preLocalize("itemProperties", { keys: ["label", "abbreviation"], sort: true });
+preLocalize( "itemProperties", { keys: ["label", "abbreviation"], sort: true } );
 
 /* -------------------------------------------- */
 
@@ -2462,14 +2462,14 @@ preLocalize("itemProperties", { keys: ["label", "abbreviation"], sort: true });
  * @enum {object}
  */
 SW5E.validProperties = {
-  consumable: new Set([
+  consumable: new Set( [
     "mgc"
-  ]),
-  container: new Set([
+  ] ),
+  container: new Set( [
     "mgc",
     "weightlessContents"
-  ]),
-  equipment: new Set([
+  ] ),
+  equipment: new Set( [
     "concentration",
     "mgc",
     "absorptive",
@@ -2524,15 +2524,15 @@ SW5E.validProperties = {
     "surging",
     "sithering",
     "stealthDisadvantage"
-  ]),
-  feat: new Set([
+  ] ),
+  feat: new Set( [
     "concentration",
     "mgc"
-  ]),
-  loot: new Set([
+  ] ),
+  loot: new Set( [
     "mgc"
-  ]),
-  weapon: new Set([
+  ] ),
+  weapon: new Set( [
     "mgc",
     "auto",
     "burst",
@@ -2590,18 +2590,18 @@ SW5E.validProperties = {
     "power",
     "saturate",
     "zone"
-  ]),
-  power: new Set([
+  ] ),
+  power: new Set( [
     "vocal",
     "somatic",
     "material",
     "concentration",
     "ritual"
-  ]),
-  tool: new Set([
+  ] ),
+  tool: new Set( [
     "concentration",
     "mgc"
-  ])
+  ] )
 };
 
 /* -------------------------------------------- */
@@ -2640,7 +2640,7 @@ SW5E.lootTypes = {
     label: "SW5E.Loot.Treasure"
   }
 };
-preLocalize("lootTypes", { key: "label" });
+preLocalize( "lootTypes", { key: "label" } );
 
 /* -------------------------------------------- */
 
@@ -2662,7 +2662,7 @@ SW5E.currencies = {
     conversion: 1
   }
 };
-preLocalize("currencies", { keys: ["label", "abbreviation"] });
+preLocalize( "currencies", { keys: ["label", "abbreviation"] } );
 
 /* -------------------------------------------- */
 /*  Modifications                               */
@@ -2676,7 +2676,7 @@ SW5E.chassisTypes = {
   chassis: "SW5E.ItemChassisChassis",
   engineer: "SW5E.ItemChassisEngineer"
 };
-preLocalize("chassisTypes", { sort: true });
+preLocalize( "chassisTypes", { sort: true } );
 
 /**
  * The number of base augment slots based on chassis rarity.
@@ -2700,26 +2700,26 @@ SW5E.modificationTypesEquipment = {
   clothing: "SW5E.ModTypeClothing",
   shield: "SW5E.ModTypeShield"
 };
-preLocalize("modificationTypesEquipment", { sort: true });
+preLocalize( "modificationTypesEquipment", { sort: true } );
 
 SW5E.modificationTypesWeapon = {
   blaster: "SW5E.ModTypeBlaster",
   lightweapon: "SW5E.ModTypeLightweapon",
   vibroweapon: "SW5E.ModTypeVibroweapon"
 };
-preLocalize("modificationTypesWeapon", { sort: true });
+preLocalize( "modificationTypesWeapon", { sort: true } );
 
 SW5E.modificationTypesCasting = {
   focusgenerator: "SW5E.ModTypeFocusgenerator",
   wristpad: "SW5E.ModTypeWristpad"
 };
-preLocalize("modificationTypesCasting", { sort: true });
+preLocalize( "modificationTypesCasting", { sort: true } );
 
 SW5E.modificationTypesCreature = {
   cybernetic: "SW5E.ModTypeCybernetic",
   droidcustomization: "SW5E.ModTypeDroidCustomization"
 };
-preLocalize("modificationTypesCreature", { sort: true });
+preLocalize( "modificationTypesCreature", { sort: true } );
 
 SW5E.modificationTypes = {
   ...SW5E.modificationTypesEquipment,
@@ -2728,7 +2728,7 @@ SW5E.modificationTypes = {
   ...SW5E.modificationTypesCreature,
   augment: "SW5E.ModTypeAugment"
 };
-preLocalize("modificationTypes");
+preLocalize( "modificationTypes" );
 
 /* -------------------------------------------- */
 
@@ -2786,7 +2786,7 @@ SW5E.modificationSlots = {
     slot4: "SW5E.ModSlotDataport"
   }
 };
-preLocalize("modificationSlots", { keys: ["slot1", "slot2", "slot3", "slot4"] });
+preLocalize( "modificationSlots", { keys: ["slot1", "slot2", "slot3", "slot4"] } );
 
 /* -------------------------------------------- */
 /*  Damage Types                                */
@@ -2811,12 +2811,12 @@ SW5E.damageTypes = {
   acid: {
     label: "SW5E.DamageAcid",
     icon: "systems/sw5e/icons/svg/damage/acid.svg",
-    color: new Color(0x839D50)
+    color: new Color( 0x839D50 )
   },
   cold: {
     label: "SW5E.DamageCold",
     icon: "systems/sw5e/icons/svg/damage/cold.svg",
-    color: new Color(0xADD8E6)
+    color: new Color( 0xADD8E6 )
   },
   energy: {
     label: "SW5E.DamageEnergy"
@@ -2824,12 +2824,12 @@ SW5E.damageTypes = {
   fire: {
     label: "SW5E.DamageFire",
     icon: "systems/sw5e/icons/svg/damage/fire.svg",
-    color: new Color(0xFF4500)
+    color: new Color( 0xFF4500 )
   },
   force: {
     label: "SW5E.DamageForce",
     icon: "systems/sw5e/icons/svg/damage/force.svg",
-    color: new Color(0x800080)
+    color: new Color( 0x800080 )
   },
   ion: {
     label: "SW5E.DamageIon"
@@ -2840,28 +2840,28 @@ SW5E.damageTypes = {
   lightning: {
     label: "SW5E.DamageLightning",
     icon: "systems/sw5e/icons/svg/damage/lightning.svg",
-    color: new Color(0x1E90FF)
+    color: new Color( 0x1E90FF )
   },
   necrotic: {
     label: "SW5E.DamageNecrotic",
     icon: "systems/sw5e/icons/svg/damage/necrotic.svg",
-    color: new Color(0x006400)
+    color: new Color( 0x006400 )
   },
   poison: {
     label: "SW5E.DamagePoison",
     icon: "systems/sw5e/icons/svg/damage/poison.svg",
-    color: new Color(0x8A2BE2)
+    color: new Color( 0x8A2BE2 )
   },
   psychic: {
     label: "SW5E.DamagePsychic",
     icon: "systems/sw5e/icons/svg/damage/psychic.svg",
-    color: new Color(0xFF1493)
+    color: new Color( 0xFF1493 )
   },
   sonic: {
     label: "SW5E.DamageSonic"
   }
 };
-preLocalize("damageTypes", { keys: ["label"], sort: true });
+preLocalize( "damageTypes", { keys: ["label"], sort: true } );
 
 
 /**
@@ -2872,15 +2872,15 @@ SW5E.healingTypes = {
   healing: {
     label: "SW5E.Healing",
     icon: "systems/sw5e/icons/svg/damage/healing.svg",
-    color: new Color(0x46C252)
+    color: new Color( 0x46C252 )
   },
   temphp: {
     label: "SW5E.HealingTemp",
     icon: "systems/sw5e/icons/svg/damage/temphp.svg",
-    color: new Color(0x4B66DE)
+    color: new Color( 0x4B66DE )
   }
 };
-preLocalize("healingTypes", { keys: ["label"] });
+preLocalize( "healingTypes", { keys: ["label"] } );
 
 /* -------------------------------------------- */
 /*  Movement                                    */
@@ -2902,7 +2902,7 @@ SW5E.movementTypes = {
   turn: "SW5E.MovementTurn",
   walk: "SW5E.MovementWalk"
 };
-preLocalize("movementTypes", { sort: true });
+preLocalize( "movementTypes", { sort: true } );
 
 /* -------------------------------------------- */
 /*  Measurement                                 */
@@ -2919,7 +2919,7 @@ SW5E.movementUnits = {
   m: "SW5E.DistM",
   km: "SW5E.DistKm"
 };
-preLocalize("movementUnits");
+preLocalize( "movementUnits" );
 
 /* -------------------------------------------- */
 
@@ -2933,7 +2933,7 @@ SW5E.rangeTypes = {
   spec: "SW5E.Special",
   any: "SW5E.DistAny"
 };
-preLocalize("rangeTypes");
+preLocalize( "rangeTypes" );
 
 /* -------------------------------------------- */
 
@@ -2946,7 +2946,7 @@ SW5E.distanceUnits = {
   ...SW5E.movementUnits,
   ...SW5E.rangeTypes
 };
-preLocalize("distanceUnits");
+preLocalize( "distanceUnits" );
 
 /* -------------------------------------------- */
 
@@ -2990,7 +2990,7 @@ SW5E.weightUnits = {
     type: "metric"
   }
 };
-preLocalize("weightUnits", { keys: ["label", "abbreviation"] });
+preLocalize( "weightUnits", { keys: ["label", "abbreviation"] } );
 
 /* -------------------------------------------- */
 
@@ -3071,7 +3071,7 @@ SW5E.encumbrance = {
     }
   }
 };
-preLocalize("encumbrance.effects", { key: "name" });
+preLocalize( "encumbrance.effects", { key: "name" } );
 
 /* -------------------------------------------- */
 /*  Targeting                                   */
@@ -3095,7 +3095,7 @@ SW5E.individualTargetTypes = {
   starship: "SW5E.TargetStarship",
   weapon: "SW5E.TargetWeapon"
 };
-preLocalize("individualTargetTypes");
+preLocalize( "individualTargetTypes" );
 
 /* -------------------------------------------- */
 
@@ -3146,7 +3146,7 @@ SW5E.areaTargetTypes = {
     template: "ray"
   }
 };
-preLocalize("areaTargetTypes", { key: "label", sort: true });
+preLocalize( "areaTargetTypes", { key: "label", sort: true } );
 
 /* -------------------------------------------- */
 
@@ -3156,9 +3156,9 @@ preLocalize("areaTargetTypes", { key: "label", sort: true });
  */
 SW5E.targetTypes = {
   ...SW5E.individualTargetTypes,
-  ...Object.fromEntries(Object.entries(SW5E.areaTargetTypes).map(([k, v]) => [k, v.label]))
+  ...Object.fromEntries( Object.entries( SW5E.areaTargetTypes ).map( ( [k, v] ) => [k, v.label] ) )
 };
-preLocalize("targetTypes", { sort: true });
+preLocalize( "targetTypes", { sort: true } );
 
 /* -------------------------------------------- */
 /*  Hit Dice                                    */
@@ -3257,7 +3257,7 @@ SW5E.senses = {
   tremorsense: "SW5E.SenseTremorsense",
   truesight: "SW5E.SenseTruesight"
 };
-preLocalize("senses", { sort: true });
+preLocalize( "senses", { sort: true } );
 
 /* -------------------------------------------- */
 /*  Starships                                   */
@@ -3283,7 +3283,7 @@ SW5E.powerDieSlots = {
   shields: "SW5E.PowerDieSlotShields",
   weapons: "SW5E.PowerDieSlotWeapons"
 };
-preLocalize("powerDieSlots");
+preLocalize( "powerDieSlots" );
 
 /* -------------------------------------------- */
 
@@ -3296,7 +3296,7 @@ SW5E.powerRoutingOpts = {
   shields: "SW5E.PowerRoutingShields",
   weapons: "SW5E.PowerRoutingWeapons"
 };
-preLocalize("powerRoutingOpts", { sort: true });
+preLocalize( "powerRoutingOpts", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -3321,7 +3321,7 @@ SW5E.powerRoutingEffects = {
     negative: "SW5E.PowerRoutingWeaponsNegative"
   }
 };
-preLocalize("powerRoutingEffects", { keys: ["positive", "neutral", "negative"] });
+preLocalize( "powerRoutingEffects", { keys: ["positive", "neutral", "negative"] } );
 
 /* -------------------------------------------- */
 
@@ -3336,7 +3336,7 @@ SW5E.ssModSystems = {
   Universal: "SW5E.ModSystemUniversal",
   Weapon: "SW5E.ModSystemWeapon"
 };
-preLocalize("ssModSystems", { sort: true });
+preLocalize( "ssModSystems", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -3371,7 +3371,7 @@ SW5E.ssCrewStationTypes = {
   crew: "SW5E.CrewStationTypeCrew",
   passenger: "SW5E.CrewStationTypePassenger"
 };
-preLocalize("ssCrewStationTypes", { sort: true });
+preLocalize( "ssCrewStationTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -3384,7 +3384,7 @@ SW5E.ssCrewStationTypesPlural = {
   crew: "SW5E.CrewStationTypeCrewPl",
   passenger: "SW5E.CrewStationTypePassengerPl"
 };
-preLocalize("ssCrewStationTypesPlural", { sort: true });
+preLocalize( "ssCrewStationTypesPlural", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -3453,7 +3453,7 @@ SW5E.ssTypeDetails = {
   fuelCap: { name: "SW5E.FuelCapacity" },
   foodCap: { name: "SW5E.FoodCap" }
 };
-preLocalize("ssTypeDetails", { key: "name" });
+preLocalize( "ssTypeDetails", { key: "name" } );
 
 /* -------------------------------------------- */
 /*  Powercasting                                */
@@ -3508,8 +3508,8 @@ SW5E.powerPreparationModes = {
     order: -10
   }
 };
-preLocalize("powerPreparationModes", { key: "label" });
-patchConfig("powerPreparationModes", "label", { since: "SW5e 3.1", until: "SW5e 3.3" });
+preLocalize( "powerPreparationModes", { key: "label" } );
+patchConfig( "powerPreparationModes", "label", { since: "SW5e 3.1", until: "SW5e 3.3" } );
 
 /* -------------------------------------------- */
 
@@ -3670,7 +3670,7 @@ SW5E.powercastingTypes = {
         powerMaxLevel: [0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
         powerLimit: 6,
         divisor: 1,
-        powersKnown: [0, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+        powersKnown: [0, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
       },
       "3/4": {
         label: "SW5E.PowerProg3/4",
@@ -3678,7 +3678,7 @@ SW5E.powercastingTypes = {
         powerMaxLevel: [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7],
         powerLimit: 5,
         divisor: 4 / 3,
-        powersKnown: [0, 0, 0, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
+        powersKnown: [0, 0, 0, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
       },
       half: {
         label: "SW5E.PowerProgHalf",
@@ -3686,7 +3686,7 @@ SW5E.powercastingTypes = {
         powerMaxLevel: [0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5],
         powerLimit: 4,
         divisor: 2,
-        powersKnown: [0, 0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+        powersKnown: [0, 0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
       },
       arch: {
         label: "SW5E.PowerProgArch",
@@ -3695,14 +3695,14 @@ SW5E.powercastingTypes = {
         powerLimit: 4,
         divisor: 1,
         roundUp: true,
-        powersKnown: [0, 0, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        powersKnown: [0, 0, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
       }
     },
     shortRest: true
   }
 };
-preLocalize("powercastingTypes", { key: "label", sort: true });
-preLocalize("powercastingTypes.leveled.progression", { key: "label" });
+preLocalize( "powercastingTypes", { key: "label", sort: true } );
+preLocalize( "powercastingTypes.leveled.progression", { key: "label" } );
 
 /* -------------------------------------------- */
 
@@ -3717,7 +3717,7 @@ SW5E.powerProgression = {
   half: "SW5E.PowerProgHalf",
   arch: "SW5E.PowerProgArch"
 };
-preLocalize("powerProgression", { key: "label" });
+preLocalize( "powerProgression", { key: "label" } );
 
 /* -------------------------------------------- */
 
@@ -3812,7 +3812,7 @@ SW5E.powercastingSubtypes = {
     powerFocusBonus: "surging"
   }
 };
-preLocalize("powercastingSubtypes", { key: "label", sort: true });
+preLocalize( "powercastingSubtypes", { key: "label", sort: true } );
 
 /* -------------------------------------------- */
 
@@ -3867,7 +3867,7 @@ SW5E.powerLevels = {
   8: "SW5E.PowerLevel8",
   9: "SW5E.PowerLevel9"
 };
-preLocalize("powerLevels");
+preLocalize( "powerLevels" );
 
 /* -------------------------------------------- */
 
@@ -3880,7 +3880,7 @@ SW5E.powerScalingModes = {
   atwill: "SW5E.PowerAtWill",
   level: "SW5E.PowerLevel"
 };
-preLocalize("powerScalingModes", { sort: true });
+preLocalize( "powerScalingModes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -3912,7 +3912,7 @@ SW5E.powerComponents = {
     abbr: "SW5E.ComponentMaterialAbbr"
   }
 };
-preLocalize("powerComponents", { keys: ["label", "abbr"] });
+preLocalize( "powerComponents", { keys: ["label", "abbr"] } );
 
 /* -------------------------------------------- */
 
@@ -3948,7 +3948,7 @@ SW5E.powerTags = {
     icon: "systems/sw5e/icons/svg/items/power.svg"
   }
 };
-preLocalize("powerTags", { keys: ["label", "abbr"] });
+preLocalize( "powerTags", { keys: ["label", "abbr"] } );
 
 /* -------------------------------------------- */
 
@@ -3980,7 +3980,7 @@ SW5E.powerSchoolsForce = {
     fullKey: "dark"
   }
 };
-preLocalize("powerSchoolsForce", { key: "label", sort: true });
+preLocalize( "powerSchoolsForce", { key: "label", sort: true } );
 
 /* -------------------------------------------- */
 
@@ -3994,7 +3994,7 @@ SW5E.powerSchoolsTech = {
     fullKey: "tech"
   }
 };
-preLocalize("powerSchoolsTech", { key: "label", sort: true });
+preLocalize( "powerSchoolsTech", { key: "label", sort: true } );
 
 /* -------------------------------------------- */
 
@@ -4010,7 +4010,7 @@ SW5E.powerSchools = {
     fullKey: "enhanced"
   }
 };
-preLocalize("powerSchools", { key: "label", sort: true });
+preLocalize( "powerSchools", { key: "label", sort: true } );
 
 /* -------------------------------------------- */
 
@@ -4025,7 +4025,7 @@ SW5E.powerListTypes = {
   species: "ITEM.TypeSpecies",
   other: "JOURNALENTRYPAGE.SW5E.PowerList.Type.Other"
 };
-preLocalize("powerListTypes");
+preLocalize( "powerListTypes" );
 
 /* -------------------------------------------- */
 
@@ -4062,7 +4062,7 @@ SW5E.maneuverTypes = {
   physical: "SW5E.ManeuverTypePhysical",
   mental: "SW5E.ManeuverTypeMental"
 };
-preLocalize("maneuverTypes");
+preLocalize( "maneuverTypes" );
 
 /**
  * Enumerate the denominations of superiority dice which can apply to characters in the SW5E system
@@ -4081,7 +4081,7 @@ SW5E.superiorityProgression = {
   0.5: "SW5E.Half",
   1: "SW5E.Full"
 };
-preLocalize("superiorityProgression");
+preLocalize( "superiorityProgression" );
 
 /**
  * The max number of superiority dice available per superiority level
@@ -4146,7 +4146,7 @@ SW5E.weaponStandardTypes = {
   simpleLW: "SW5E.WeaponSimpleLW",
   simpleVW: "SW5E.WeaponSimpleVW"
 };
-preLocalize("weaponStandardTypes");
+preLocalize( "weaponStandardTypes" );
 
 /**
  * The set of types which a starship weapon item can take.
@@ -4158,7 +4158,7 @@ SW5E.weaponStarshipTypes = {
   "tertiary (starship)": "SW5E.WeaponTertiarySW",
   "quaternary (starship)": "SW5E.WeaponQuaternarySW"
 };
-preLocalize("weaponStarshipTypes");
+preLocalize( "weaponStarshipTypes" );
 
 /**
  * The set of types which a weapon item can take.
@@ -4168,7 +4168,7 @@ SW5E.weaponTypes = {
   ...SW5E.weaponStandardTypes,
   ...SW5E.weaponStarshipTypes
 };
-preLocalize("weaponTypes");
+preLocalize( "weaponTypes" );
 
 /**
  * The set of weapon size flags which can exist on a starship weapon.
@@ -4182,7 +4182,7 @@ SW5E.weaponSizes = {
   huge: "SW5E.SizeHuge",
   grg: "SW5E.SizeGargantuan"
 };
-preLocalize("weaponSizes");
+preLocalize( "weaponSizes" );
 
 /**
  * The set of melee weapon classifications.
@@ -4194,7 +4194,7 @@ SW5E.meleeWeaponClasses = {
   polearm: "SW5E.WeaponClassPolearm",
   trip: "SW5E.WeaponClassTrip"
 };
-preLocalize("meleeWeaponClasses");
+preLocalize( "meleeWeaponClasses" );
 
 /**
  * The set of ranged weapon classifications.
@@ -4206,7 +4206,7 @@ SW5E.rangedWeaponClasses = {
   rifle: "SW5E.WeaponClassRifle",
   sidearm: "SW5E.WeaponClassSidearm"
 };
-preLocalize("rangedWeaponClasses");
+preLocalize( "rangedWeaponClasses" );
 
 /**
  * The set of weapon classifications.
@@ -4216,7 +4216,7 @@ SW5E.weaponClasses = {
   ...SW5E.meleeWeaponClasses,
   ...SW5E.rangedWeaponClasses
 };
-preLocalize("weaponClasses");
+preLocalize( "weaponClasses" );
 
 /**
  * The set of firing arcs for starship weapons.
@@ -4256,7 +4256,7 @@ SW5E.weaponFiringArcs = {
     label: "SW5E.FiringArcBroadside"
   }
 };
-preLocalize("weaponFiringArcs", { keys: ["label"], sort: false });
+preLocalize( "weaponFiringArcs", { keys: ["label"], sort: false } );
 
 /* -------------------------------------------- */
 
@@ -4280,7 +4280,7 @@ SW5E.physicalWeaponProperties = {
     type: "Boolean"
   }
 };
-preLocalize("physicalWeaponProperties", { keys: ["name", "full", "desc"] });
+preLocalize( "physicalWeaponProperties", { keys: ["name", "full", "desc"] } );
 
 /**
  * The set of weapon property flags which can exist on any weapon.
@@ -4385,7 +4385,7 @@ SW5E.weaponCommonProperties = {
     max: 3
   }
 };
-preLocalize("weaponCommonProperties", { keys: ["name", "full", "desc"] });
+preLocalize( "weaponCommonProperties", { keys: ["name", "full", "desc"] } );
 
 /**
  * The set of weapon property flags which can exist only on a character (non-starship) weapon.
@@ -4621,7 +4621,7 @@ SW5E.weaponCharacterProperties = {
     type: "Boolean"
   }
 };
-preLocalize("weaponCharacterProperties", { keys: ["name", "full", "desc"] });
+preLocalize( "weaponCharacterProperties", { keys: ["name", "full", "desc"] } );
 
 /**
  * The set of weapon property flags which can exist only on a starship weapon.
@@ -4693,7 +4693,7 @@ SW5E.weaponStarshipProperties = {
     type: "Boolean"
   }
 };
-preLocalize("weaponStarshipProperties", { keys: ["name", "full", "desc"] });
+preLocalize( "weaponStarshipProperties", { keys: ["name", "full", "desc"] } );
 
 /* -------------------------------------------- */
 
@@ -4961,7 +4961,7 @@ SW5E.armorProperties = {
     type: "Number"
   }
 };
-preLocalize("armorProperties", { keys: ["name", "full", "desc"] });
+preLocalize( "armorProperties", { keys: ["name", "full", "desc"] } );
 
 /**
  * The set of casting property flags which can exist on any casting focus.
@@ -5101,7 +5101,7 @@ SW5E.castingProperties = {
     type: "Number"
   }
 };
-preLocalize("castingProperties", { keys: ["name", "full", "desc"] });
+preLocalize( "castingProperties", { keys: ["name", "full", "desc"] } );
 
 /**
  * The set of equipment property flags which can exist on an equipment.
@@ -5155,7 +5155,7 @@ SW5E.polymorphSettings = {
   keepVision: "SW5E.PolymorphKeepVision",
   keepSelf: "SW5E.PolymorphKeepSelf"
 };
-preLocalize("polymorphSettings", { sort: true });
+preLocalize( "polymorphSettings", { sort: true } );
 
 /**
  * Settings to configure how actors are effects are merged when polymorphing is applied.
@@ -5171,7 +5171,7 @@ SW5E.polymorphEffectSettings = {
   keepClassAE: "SW5E.PolymorphKeepClassAE",
   keepBackgroundAE: "SW5E.PolymorphKeepBackgroundAE"
 };
-preLocalize("polymorphEffectSettings", { sort: true });
+preLocalize( "polymorphEffectSettings", { sort: true } );
 
 /**
  * Settings to configure how actors are merged when preset polymorphing is applied.
@@ -5208,7 +5208,7 @@ SW5E.transformationPresets = {
     }
   }
 };
-preLocalize("transformationPresets", { sort: true, keys: ["label"] });
+preLocalize( "transformationPresets", { sort: true, keys: ["label"] } );
 
 /* -------------------------------------------- */
 
@@ -5261,14 +5261,14 @@ SW5E.proficiencyLevels = {
     sort: "6"
   }
 };
-preLocalize("proficiencyLevels", { key: "label" });
+preLocalize( "proficiencyLevels", { key: "label" } );
 
-SW5E.proficiencyLevelsOrdered = Object.keys(SW5E.proficiencyLevels)
-  .map(p => Number(p))
-  .sort((a, b) => a - b);
+SW5E.proficiencyLevelsOrdered = Object.keys( SW5E.proficiencyLevels )
+  .map( p => Number( p ) )
+  .sort( ( a, b ) => a - b );
 
-SW5E.proficiencyLevelsLabels = Object.fromEntries(Object.entries(SW5E.proficiencyLevels).map(([k, v]) => [k, v.label]));
-preLocalize("proficiencyLevelsLabels");
+SW5E.proficiencyLevelsLabels = Object.fromEntries( Object.entries( SW5E.proficiencyLevels ).map( ( [k, v] ) => [k, v.label] ) );
+preLocalize( "proficiencyLevelsLabels" );
 
 /* -------------------------------------------- */
 
@@ -5280,7 +5280,7 @@ SW5E.weaponAndArmorProficiencyLevels = {
   0: "SW5E.NotProficient",
   1: "SW5E.Proficient"
 };
-preLocalize("weaponAndArmorProficiencyLevels");
+preLocalize( "weaponAndArmorProficiencyLevels" );
 
 /* -------------------------------------------- */
 
@@ -5295,7 +5295,7 @@ SW5E.cover = {
   0.75: "SW5E.CoverThreeQuarters",
   1: "SW5E.CoverTotal"
 };
-preLocalize("cover");
+preLocalize( "cover" );
 
 /* -------------------------------------------- */
 
@@ -5472,7 +5472,7 @@ SW5E.conditionTypes = {
     label: "SW5E.ConWeakened"
   }
 };
-preLocalize("conditionTypes", { key: "label", sort: true });
+preLocalize( "conditionTypes", { key: "label", sort: true } );
 
 /* -------------------------------------------- */
 
@@ -5482,10 +5482,10 @@ preLocalize("conditionTypes", { key: "label", sort: true });
  * @enum {object}
  */
 SW5E.conditionEffects = {
-  noMovement: new Set(["exhaustion-5", "grappled", "paralyzed", "petrified", "restrained", "stunned", "unconscious"]),
-  halfMovement: new Set(["exhaustion-2"]),
-  crawl: new Set(["prone", "exceedingCarryingCapacity"]),
-  halfHealth: new Set(["exhaustion-4"])
+  noMovement: new Set( ["exhaustion-5", "grappled", "paralyzed", "petrified", "restrained", "stunned", "unconscious"] ),
+  halfMovement: new Set( ["exhaustion-2"] ),
+  crawl: new Set( ["prone", "exceedingCarryingCapacity"] ),
+  halfHealth: new Set( ["exhaustion-4"] )
 };
 
 /* -------------------------------------------- */
@@ -5673,10 +5673,10 @@ SW5E.languages = {
     children: {}
   }
 };
-preLocalize("languages", { key: "label" });
-preLocalize("languages.standard.children", { key: "label", sort: true });
-preLocalize("languages.exotic.children", { key: "label", sort: true });
-patchConfig("languages", "label", { since: "SW5e 2.4", until: "SW5e 3.1" });
+preLocalize( "languages", { key: "label" } );
+preLocalize( "languages.standard.children", { key: "label", sort: true } );
+preLocalize( "languages.exotic.children", { key: "label", sort: true } );
+patchConfig( "languages", "label", { since: "SW5e 2.4", until: "SW5e 3.1" } );
 
 /* -------------------------------------------- */
 
@@ -5900,7 +5900,7 @@ SW5E.traits = {
     configKey: "conditionTypes"
   }
 };
-preLocalize("traits", { key: "labels.title" });
+preLocalize( "traits", { key: "labels.title" } );
 
 /* -------------------------------------------- */
 
@@ -5927,7 +5927,7 @@ SW5E.traitModes = {
   }
   // TODO SW5E: Mastery proficiencies?
 };
-preLocalize("traitModes", { keys: ["label", "hint"] });
+preLocalize( "traitModes", { keys: ["label", "hint"] } );
 
 /* -------------------------------------------- */
 
@@ -5945,7 +5945,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.itemActionTypesAttack ).map( ( key => [
     `advantage.attack.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Attack.${key}.Name`,
@@ -5953,8 +5953,8 @@ SW5E.midiFlags = {
       midiClone: true,
       type: Boolean
     }
-  ]))),
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
+  ] ) ) ),
+  ...Object.fromEntries( Object.keys( SW5E.abilities ).map( ( key => [
     `advantage.attack.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Attack.${key}.Name`,
@@ -5962,14 +5962,14 @@ SW5E.midiFlags = {
       midiClone: true,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
   "grants.advantage.attack.all": {
     name: "SW5E.CharacterFlags.Grants.Advantage.Attack.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.itemActionTypesAttack ).map( ( key => [
     `grants.advantage.attack.${key}`,
     {
       name: `SW5E.CharacterFlags.Grants.Advantage.Attack.${key}.Name`,
@@ -5977,7 +5977,7 @@ SW5E.midiFlags = {
       midiClone: true,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
 
   // Critical
   // "critical.all": {
@@ -6054,7 +6054,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.abilities ).map( ( key => [
     `advantage.ability.check.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Check.${key}.Name`,
@@ -6062,7 +6062,7 @@ SW5E.midiFlags = {
       midiClone: true,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
 
   // Skill Checks
   "advantage.skill.all": {
@@ -6071,7 +6071,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.allSkills).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.allSkills ).map( ( key => [
     `advantage.skill.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Skill.${key}.Name`,
@@ -6079,7 +6079,7 @@ SW5E.midiFlags = {
       midiClone: true,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
 
   // Tool Checks
   "advantage.tool.all": {
@@ -6088,7 +6088,7 @@ SW5E.midiFlags = {
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.toolTypes).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.toolTypes ).map( ( key => [
     `advantage.tool.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Tool.${key}.Name`,
@@ -6096,7 +6096,7 @@ SW5E.midiFlags = {
       midiClone: false,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
 
   // Saving Throws
   "advantage.ability.save.all": {
@@ -6105,7 +6105,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.abilities ).map( ( key => [
     `advantage.ability.save.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.${key}.Name`,
@@ -6113,14 +6113,14 @@ SW5E.midiFlags = {
       midiClone: true,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
   "advantage.ability.save.dmg.all": {
     name: "SW5E.CharacterFlags.Advantage.Ability.Save.Dmg.all.Name",
     section: "midiFlags",
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.damageTypes).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.damageTypes ).map( ( key => [
     `advantage.ability.save.dmg.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.Dmg.${key}.Name`,
@@ -6128,14 +6128,14 @@ SW5E.midiFlags = {
       midiClone: false,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
   "advantage.ability.save.tech.all": {
     name: "SW5E.CharacterFlags.Advantage.Ability.Save.Tech.all.Name",
     section: "midiFlags",
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.abilities ).map( ( key => [
     `advantage.ability.save.tech.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.Tech.${key}.Name`,
@@ -6143,14 +6143,14 @@ SW5E.midiFlags = {
       midiClone: false,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
   "advantage.ability.save.force.all": {
     name: "SW5E.CharacterFlags.Advantage.Ability.Save.Force.all.Name",
     section: "midiFlags",
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.abilities ).map( ( key => [
     `advantage.ability.save.force.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.Force.${key}.Name`,
@@ -6158,7 +6158,7 @@ SW5E.midiFlags = {
       midiClone: false,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
   "advantage.deathSave": {
     name: "SW5E.CharacterFlags.Advantage.DeathSave.Name",
     section: "midiFlags",
@@ -6166,24 +6166,24 @@ SW5E.midiFlags = {
     type: Boolean
   }
 };
-for (const [id, flag] of Object.entries(SW5E.midiFlags)) {
-  if (!(id.startsWith("advantage") || id.startsWith("grants.advantage"))) continue;
-  SW5E.midiFlags[id.replace("advantage", "disadvantage")] = {
-    name: flag.name.replace("Advantage", "Disadvantage"),
+for ( const [id, flag] of Object.entries( SW5E.midiFlags ) ) {
+  if ( !( id.startsWith( "advantage" ) || id.startsWith( "grants.advantage" ) ) ) continue;
+  SW5E.midiFlags[id.replace( "advantage", "disadvantage" )] = {
+    name: flag.name.replace( "Advantage", "Disadvantage" ),
     section: flag.section,
     midiClone: flag.midiClone,
     type: flag.type
   };
 }
-for (const [id, flag] of Object.entries(SW5E.midiFlags)) {
+for ( const [id, flag] of Object.entries( SW5E.midiFlags ) ) {
   SW5E.midiFlags[`situational.${id}`] = {
-    name: flag.name.replace("CharacterFlags", "CharacterFlags.Situational"),
+    name: flag.name.replace( "CharacterFlags", "CharacterFlags.Situational" ),
     section: flag.section,
     midiClone: false,
     type: flag.type
   };
 }
-preLocalize("midiFlags", { keys: ["name", "condition", "section"] });
+preLocalize( "midiFlags", { keys: ["name", "condition", "section"] } );
 
 /**
  * Special character flags.
@@ -6363,13 +6363,13 @@ SW5E.characterFlags = {
     placeholder: 1
   }
 };
-preLocalize("characterFlags", { keys: ["name", "hint", "condition", "section"] });
+preLocalize( "characterFlags", { keys: ["name", "hint", "condition", "section"] } );
 
 /**
  * Flags allowed on actors. Any flags not in the list may be deleted during a migration.
  * @type {string[]}
  */
-SW5E.allowedActorFlags = ["isPolymorphed", "originalActor", "dataVersion"].concat(Object.keys(SW5E.characterFlags));
+SW5E.allowedActorFlags = ["isPolymorphed", "originalActor", "dataVersion"].concat( Object.keys( SW5E.characterFlags ) );
 
 /* -------------------------------------------- */
 
@@ -6381,7 +6381,7 @@ SW5E.groupTypes = {
   party: "SW5E.Group.TypeParty",
   encounter: "SW5E.Group.TypeEncounter"
 };
-preLocalize("groupTypes");
+preLocalize( "groupTypes" );
 
 /* -------------------------------------------- */
 
@@ -6403,39 +6403,39 @@ const _ALL_ITEM_TYPES = ["background", "class", "species", "archetype", "deploym
 SW5E.advancementTypes = {
   AbilityScoreImprovement: {
     documentClass: advancement.AbilityScoreImprovementAdvancement,
-    validItemTypes: new Set(["background", "class", "species", "starshipsize"])
+    validItemTypes: new Set( ["background", "class", "species", "starshipsize"] )
   },
   HitPoints: {
     documentClass: advancement.HitPointsAdvancement,
-    validItemTypes: new Set(["class"])
+    validItemTypes: new Set( ["class"] )
   },
   HullPoints: {
     documentClass: advancement.HullPointsAdvancement,
-    validItemTypes: new Set(["starshipsize"])
+    validItemTypes: new Set( ["starshipsize"] )
   },
   ShieldPoints: {
     documentClass: advancement.ShieldPointsAdvancement,
-    validItemTypes: new Set(["starshipsize"])
+    validItemTypes: new Set( ["starshipsize"] )
   },
   ItemChoice: {
     documentClass: advancement.ItemChoiceAdvancement,
-    validItemTypes: new Set(_ALL_ITEM_TYPES)
+    validItemTypes: new Set( _ALL_ITEM_TYPES )
   },
   ItemGrant: {
     documentClass: advancement.ItemGrantAdvancement,
-    validItemTypes: new Set(_ALL_ITEM_TYPES)
+    validItemTypes: new Set( _ALL_ITEM_TYPES )
   },
   ScaleValue: {
     documentClass: advancement.ScaleValueAdvancement,
-    validItemTypes: new Set(_ALL_ITEM_TYPES)
+    validItemTypes: new Set( _ALL_ITEM_TYPES )
   },
   Size: {
     documentClass: advancement.SizeAdvancement,
-    validItemTypes: new Set(["species", "starshipsize"])
+    validItemTypes: new Set( ["species", "starshipsize"] )
   },
   Trait: {
     documentClass: advancement.TraitAdvancement,
-    validItemTypes: new Set(_ALL_ITEM_TYPES)
+    validItemTypes: new Set( _ALL_ITEM_TYPES )
   }
 };
 
@@ -6520,7 +6520,7 @@ SW5E.ruleTypes = {
     references: "itemProperties"
   }
 };
-preLocalize("ruleTypes", { key: "label" });
+preLocalize( "ruleTypes", { key: "label" } );
 
 /* -------------------------------------------- */
 
@@ -6703,7 +6703,7 @@ SW5E.tokenRings = {
   spriteSheet: "systems/sw5e/tokens/composite/token-rings.json",
   shaderClass: null
 };
-preLocalize("tokenRings.effects");
+preLocalize( "tokenRings.effects" );
 
 /* -------------------------------------------- */
 /*  Sources                                     */
@@ -6720,7 +6720,7 @@ SW5E.sourceBooks = {
   WH: "SOURCE.BOOK.WH",
   EC: "SOURCE.BOOK.EC"
 };
-preLocalize("sourceBooks", { sort: true });
+preLocalize( "sourceBooks", { sort: true } );
 
 /* -------------------------------------------- */
 /*  Themes                                      */
@@ -6734,34 +6734,34 @@ SW5E.themes = {
   light: "SHEETS.SW5E.THEME.Light",
   dark: "SHEETS.SW5E.THEME.Dark"
 };
-preLocalize("themes");
+preLocalize( "themes" );
 
 /* -------------------------------------------- */
 /*  Enrichment                                  */
 /* -------------------------------------------- */
 
 let _enrichmentLookup;
-Object.defineProperty(SW5E, "enrichmentLookup", {
+Object.defineProperty( SW5E, "enrichmentLookup", {
   get() {
-    const slugify = value => value?.slugify().replaceAll("-", "");
-    if (!_enrichmentLookup) {
+    const slugify = value => value?.slugify().replaceAll( "-", "" );
+    if ( !_enrichmentLookup ) {
       _enrichmentLookup = {
-        abilities: foundry.utils.deepClone(SW5E.abilities),
-        skills: foundry.utils.deepClone(SW5E.skills),
-        powerSchools: foundry.utils.deepClone(SW5E.powerSchools),
-        tools: foundry.utils.deepClone(SW5E.toolIds)
+        abilities: foundry.utils.deepClone( SW5E.abilities ),
+        skills: foundry.utils.deepClone( SW5E.skills ),
+        powerSchools: foundry.utils.deepClone( SW5E.powerSchools ),
+        tools: foundry.utils.deepClone( SW5E.toolIds )
       };
-      const addFullKeys = key => Object.entries(SW5E[key]).forEach(([k, v]) =>
-        _enrichmentLookup[key][slugify(v.fullKey)] = { ...v, key: k }
+      const addFullKeys = key => Object.entries( SW5E[key] ).forEach( ( [k, v] ) =>
+        _enrichmentLookup[key][slugify( v.fullKey )] = { ...v, key: k }
       );
-      addFullKeys("abilities");
-      addFullKeys("skills");
-      addFullKeys("powerSchools");
+      addFullKeys( "abilities" );
+      addFullKeys( "skills" );
+      addFullKeys( "powerSchools" );
     }
     return _enrichmentLookup;
   },
   enumerable: true
-});
+} );
 
 /* -------------------------------------------- */
 
@@ -6772,20 +6772,20 @@ Object.defineProperty(SW5E, "enrichmentLookup", {
  * @param {string} fallbackKey  Key within the new config object from which to get the fallback value.
  * @param {object} [options]    Additional options passed through to logCompatibilityWarning.
  */
-function patchConfig(key, fallbackKey, options) {
+function patchConfig( key, fallbackKey, options ) {
   /** @override */
   function toString() {
     const message =
       `The value of CONFIG.SW5E.${key} has been changed to an object.`
       + ` The former value can be acccessed from .${fallbackKey}.`;
-    foundry.utils.logCompatibilityWarning(message, options);
+    foundry.utils.logCompatibilityWarning( message, options );
     return this[fallbackKey];
   }
 
-  Object.values(SW5E[key]).forEach(o => {
-    if (foundry.utils.getType(o) !== "Object") return;
-    Object.defineProperty(o, "toString", { value: toString });
-  });
+  Object.values( SW5E[key] ).forEach( o => {
+    if ( foundry.utils.getType( o ) !== "Object" ) return;
+    Object.defineProperty( o, "toString", { value: toString } );
+  } );
 }
 
 /* -------------------------------------------- */

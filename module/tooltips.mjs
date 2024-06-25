@@ -17,7 +17,7 @@ export default class Tooltips5e {
    * @type {HTMLElement}
    */
   get tooltip() {
-    return document.getElementById("tooltip");
+    return document.getElementById( "tooltip" );
   }
 
   /* -------------------------------------------- */
@@ -29,8 +29,8 @@ export default class Tooltips5e {
    */
   observe() {
     this.#observer?.disconnect();
-    this.#observer = new MutationObserver(this._onMutation.bind(this));
-    this.#observer.observe(this.tooltip, { attributeFilter: ["class"], attributeOldValue: true });
+    this.#observer = new MutationObserver( this._onMutation.bind( this ) );
+    this.#observer.observe( this.tooltip, { attributeFilter: ["class"], attributeOldValue: true } );
   }
 
   /* -------------------------------------------- */
@@ -40,16 +40,16 @@ export default class Tooltips5e {
    * @param {MutationRecord[]} mutationList  The list of changes.
    * @protected
    */
-  _onMutation(mutationList) {
+  _onMutation( mutationList ) {
     let isActive = false;
     const tooltip = this.tooltip;
-    for (const { type, attributeName, oldValue } of mutationList) {
-      if ((type === "attributes") && (attributeName === "class")) {
-        const difference = new Set(tooltip.classList).difference(new Set(oldValue?.split(" ")));
-        if (difference.has("active")) isActive = true;
+    for ( const { type, attributeName, oldValue } of mutationList ) {
+      if ( ( type === "attributes" ) && ( attributeName === "class" ) ) {
+        const difference = new Set( tooltip.classList ).difference( new Set( oldValue?.split( " " ) ) );
+        if ( difference.has( "active" ) ) isActive = true;
       }
     }
-    if (isActive) this._onTooltipActivate();
+    if ( isActive ) this._onTooltipActivate();
   }
 
   /* -------------------------------------------- */
@@ -61,24 +61,24 @@ export default class Tooltips5e {
    */
   async _onTooltipActivate() {
     // General content links
-    if (game.tooltip.element?.classList.contains("content-link")) {
-      const doc = await fromUuid(game.tooltip.element.dataset.uuid);
-      return this._onHoverContentLink(doc);
+    if ( game.tooltip.element?.classList.contains( "content-link" ) ) {
+      const doc = await fromUuid( game.tooltip.element.dataset.uuid );
+      return this._onHoverContentLink( doc );
     }
 
-    const loading = this.tooltip.querySelector(".loading");
+    const loading = this.tooltip.querySelector( ".loading" );
 
     // Sheet-specific tooltips
-    if (loading?.dataset.uuid) {
-      const doc = await fromUuid(loading.dataset.uuid);
-      if (doc instanceof sw5e.documents.Actor5e) return this._onHoverActor(doc);
-      return this._onHoverContentLink(doc);
+    if ( loading?.dataset.uuid ) {
+      const doc = await fromUuid( loading.dataset.uuid );
+      if ( doc instanceof sw5e.documents.Actor5e ) return this._onHoverActor( doc );
+      return this._onHoverContentLink( doc );
     }
 
     // Passive checks
-    else if (loading?.dataset.passive !== undefined) {
+    else if ( loading?.dataset.passive !== undefined ) {
       const { skill, ability, dc } = game.tooltip.element?.dataset ?? {};
-      return this._onHoverPassive(skill, ability, dc);
+      return this._onHoverPassive( skill, ability, dc );
     }
   }
 
@@ -89,10 +89,10 @@ export default class Tooltips5e {
    * @param {Actor5e} actor  The actor.
    * @protected
    */
-  async _onHoverActor(actor) {
+  async _onHoverActor( actor ) {
     const { attribution, attributionCaption } = game.tooltip.element.dataset;
-    if (!attribution) return;
-    this.tooltip.innerHTML = await actor.getAttributionData(attribution, { title: attributionCaption });
+    if ( !attribution ) return;
+    this.tooltip.innerHTML = await actor.getAttributionData( attribution, { title: attributionCaption } );
   }
 
   /* -------------------------------------------- */
@@ -102,13 +102,13 @@ export default class Tooltips5e {
    * @param {Document} doc  The document linked by the content link.
    * @protected
    */
-  async _onHoverContentLink(doc) {
-    const { content, classes } = await (doc.richTooltip?.() ?? doc.system?.richTooltip?.() ?? {});
-    if (!content) return;
+  async _onHoverContentLink( doc ) {
+    const { content, classes } = await ( doc.richTooltip?.() ?? doc.system?.richTooltip?.() ?? {} );
+    if ( !content ) return;
     this.tooltip.innerHTML = content;
-    classes?.forEach(c => this.tooltip.classList.add(c));
+    classes?.forEach( c => this.tooltip.classList.add( c ) );
     const { tooltipDirection } = game.tooltip.element.dataset;
-    requestAnimationFrame(() => this._positionItemTooltip(tooltipDirection));
+    requestAnimationFrame( () => this._positionItemTooltip( tooltipDirection ) );
   }
 
   /* -------------------------------------------- */
@@ -121,51 +121,51 @@ export default class Tooltips5e {
    * @param {number} [dc]        DC against which to compare party values.
    * @protected
    */
-  async _onHoverPassive(skill, ability, dc) {
+  async _onHoverPassive( skill, ability, dc ) {
     const skillConfig = CONFIG.SW5E.skills[skill];
     const abilityConfig = CONFIG.SW5E.abilities[ability ?? skillConfig.ability];
 
     let label;
-    if (skillConfig) {
-      label = game.i18n.format("SW5E.SkillPassiveSpecificHint", { skill: skillConfig.label, ability: abilityConfig.label });
+    if ( skillConfig ) {
+      label = game.i18n.format( "SW5E.SkillPassiveSpecificHint", { skill: skillConfig.label, ability: abilityConfig.label } );
     } else {
       // If no skill was provided, we're doing a passive ability check.
       // This isn't technically a thing in the rules, but we can support it anyway if people want to use it.
-      label = game.i18n.format("SW5E.SkillPassiveHint", { skill: abilityConfig.label });
+      label = game.i18n.format( "SW5E.SkillPassiveHint", { skill: abilityConfig.label } );
     }
 
-    const party = game.settings.get("sw5e", "primaryParty")?.actor;
-    if (!party) {
+    const party = game.settings.get( "sw5e", "primaryParty" )?.actor;
+    if ( !party ) {
       this.tooltip.innerHTML = label;
       return;
     }
 
     const context = { label, party: [] };
-    for (const member of party.system.members) {
+    for ( const member of party.system.members ) {
       const systemData = member.actor?.system;
       let passive;
-      if (skill && (!ability || (ability === skillConfig.ability))) {
+      if ( skill && ( !ability || ( ability === skillConfig.ability ) ) ) {
         // Default passive skill check
         passive = systemData?.skills?.[skill]?.passive;
-      } else if (skill) {
+      } else if ( skill ) {
         // Passive ability check with custom ability
-        const customSkillData = member.actor?._prepareSkill(skill, { ability });
+        const customSkillData = member.actor?._prepareSkill( skill, { ability } );
         passive = customSkillData.passive;
       } else {
         // Passive ability check
         const abilityMod = systemData?.abilities?.[ability]?.mod;
-        if (abilityMod !== undefined) passive = 10 + abilityMod;
+        if ( abilityMod !== undefined ) passive = 10 + abilityMod;
       }
 
-      if (!passive) continue;
+      if ( !passive ) continue;
       const data = { name: member.actor.name, img: member.actor.img, passive };
-      if (dc !== undefined) data.status = passive >= dc ? "success" : "failure";
-      context.party.push(data);
+      if ( dc !== undefined ) data.status = passive >= dc ? "success" : "failure";
+      context.party.push( data );
     }
 
-    this.tooltip.classList.add("sw5e-tooltip", "passive-tooltip");
-    this.tooltip.innerHTML = await renderTemplate("systems/sw5e/templates/journal/passive-tooltip.hbs", context);
-    game.tooltip._setAnchor(TooltipManager.TOOLTIP_DIRECTIONS.DOWN);
+    this.tooltip.classList.add( "sw5e-tooltip", "passive-tooltip" );
+    this.tooltip.innerHTML = await renderTemplate( "systems/sw5e/templates/journal/passive-tooltip.hbs", context );
+    game.tooltip._setAnchor( TooltipManager.TOOLTIP_DIRECTIONS.DOWN );
   }
 
   /* -------------------------------------------- */
@@ -175,35 +175,35 @@ export default class Tooltips5e {
    * @param {string} [direction]  The direction to position the tooltip.
    * @protected
    */
-  _positionItemTooltip(direction) {
-    if (!direction) {
+  _positionItemTooltip( direction ) {
+    if ( !direction ) {
       direction = TooltipManager.TOOLTIP_DIRECTIONS.LEFT;
-      game.tooltip._setAnchor(direction);
+      game.tooltip._setAnchor( direction );
     }
 
     const pos = this.tooltip.getBoundingClientRect();
     const dirs = TooltipManager.TOOLTIP_DIRECTIONS;
-    switch (direction) {
+    switch ( direction ) {
       case dirs.UP:
-        if (pos.y - TooltipManager.TOOLTIP_MARGIN_PX <= 0) direction = dirs.DOWN;
+        if ( pos.y - TooltipManager.TOOLTIP_MARGIN_PX <= 0 ) direction = dirs.DOWN;
         break;
       case dirs.DOWN:
-        if (pos.y + this.tooltip.offsetHeight > window.innerHeight) direction = dirs.UP;
+        if ( pos.y + this.tooltip.offsetHeight > window.innerHeight ) direction = dirs.UP;
         break;
       case dirs.LEFT:
-        if (pos.x - TooltipManager.TOOLTIP_MARGIN_PX <= 0) direction = dirs.RIGHT;
+        if ( pos.x - TooltipManager.TOOLTIP_MARGIN_PX <= 0 ) direction = dirs.RIGHT;
         break;
       case dirs.RIGHT:
-        if (pos.x + this.tooltip.offsetWidth > window.innerWith) direction = dirs.LEFT;
+        if ( pos.x + this.tooltip.offsetWidth > window.innerWith ) direction = dirs.LEFT;
         break;
     }
 
-    game.tooltip._setAnchor(direction);
+    game.tooltip._setAnchor( direction );
 
     // Set overflowing styles for item tooltips.
-    if (tooltip.classList.contains("item-tooltip")) {
-      const description = tooltip.querySelector(".description");
-      description?.classList.toggle("overflowing", description.clientHeight < description.scrollHeight);
+    if ( tooltip.classList.contains( "item-tooltip" ) ) {
+      const description = tooltip.querySelector( ".description" );
+      description?.classList.toggle( "overflowing", description.clientHeight < description.scrollHeight );
     }
   }
 
@@ -216,10 +216,10 @@ export default class Tooltips5e {
    * another tooltip.
    */
   static activateListeners() {
-    document.addEventListener("pointerdown", event => {
-      if ((event.button === 1) && event.target.closest(".locked-tooltip")) {
+    document.addEventListener( "pointerdown", event => {
+      if ( ( event.button === 1 ) && event.target.closest( ".locked-tooltip" ) ) {
         event.preventDefault();
       }
-    }, { capture: true });
+    }, { capture: true } );
   }
 }

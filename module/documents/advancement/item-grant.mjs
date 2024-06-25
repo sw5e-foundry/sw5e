@@ -12,19 +12,19 @@ export default class ItemGrantAdvancement extends Advancement {
 
   /** @inheritdoc */
   static get metadata() {
-    return foundry.utils.mergeObject(super.metadata, {
+    return foundry.utils.mergeObject( super.metadata, {
       dataModels: {
         configuration: ItemGrantConfigurationData
       },
       order: 40,
       icon: "systems/sw5e/icons/svg/item-grant.svg",
-      title: game.i18n.localize("SW5E.AdvancementItemGrantTitle"),
-      hint: game.i18n.localize("SW5E.AdvancementItemGrantHint"),
+      title: game.i18n.localize( "SW5E.AdvancementItemGrantTitle" ),
+      hint: game.i18n.localize( "SW5E.AdvancementItemGrantHint" ),
       apps: {
         config: ItemGrantConfig,
         flow: ItemGrantFlow
       }
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -33,7 +33,7 @@ export default class ItemGrantAdvancement extends Advancement {
    * The item types that are supported in Item Grant.
    * @type {Set<string>}
    */
-  static VALID_TYPES = new Set([
+  static VALID_TYPES = new Set( [
     "feat",
     "power",
     "consumable",
@@ -44,33 +44,33 @@ export default class ItemGrantAdvancement extends Advancement {
     "modification",
     "tool",
     "weapon"
-  ]);
+  ] );
 
   /* -------------------------------------------- */
   /*  Display Methods                             */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  configuredForLevel(level) {
-    return !foundry.utils.isEmpty(this.value);
+  configuredForLevel( level ) {
+    return !foundry.utils.isEmpty( this.value );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  summaryForLevel(level, { configMode = false } = {}) {
+  summaryForLevel( level, { configMode = false } = {} ) {
     // Link to compendium items
-    if (!this.value.added || configMode) return this.configuration.items.filter(i => fromUuidSync(i.uuid))
-      .reduce((html, i) => html + sw5e.utils.linkForUuid(i.uuid), "");
+    if ( !this.value.added || configMode ) return this.configuration.items.filter( i => fromUuidSync( i.uuid ) )
+      .reduce( ( html, i ) => html + sw5e.utils.linkForUuid( i.uuid ), "" );
 
     // Link to items on the actor
     else {
-      return Object.keys(this.value.added)
-        .map(id => {
-          const item = this.actor.items.get(id);
-          return item?.toAnchor({ classes: ["content-link"] }).outerHTML ?? "";
-        })
-        .join("");
+      return Object.keys( this.value.added )
+        .map( id => {
+          const item = this.actor.items.get( id );
+          return item?.toAnchor( { classes: ["content-link"] } ).outerHTML ?? "";
+        } )
+        .join( "" );
     }
   }
 
@@ -83,7 +83,7 @@ export default class ItemGrantAdvancement extends Advancement {
    * @param {number} level  Level being advanced.
    * @returns {string}
    */
-  storagePath(level) {
+  storagePath( level ) {
     return "value.added";
   }
 
@@ -97,29 +97,29 @@ export default class ItemGrantAdvancement extends Advancement {
    *                                    fetching new data from the source.
    * @returns {object}
    */
-  async apply(level, data, retainedData = {}) {
+  async apply( level, data, retainedData = {} ) {
     const items = [];
     const updates = {};
-    const powerChanges = this.configuration.power?.getPowerChanges({
+    const powerChanges = this.configuration.power?.getPowerChanges( {
       ability: data.ability ?? this.retainedData?.ability ?? this.value?.ability
-    }) ?? {};
-    for (const uuid of filteredKeys(data)) {
+    } ) ?? {};
+    for ( const uuid of filteredKeys( data ) ) {
       let itemData = retainedData[uuid];
-      if (!itemData) {
-        itemData = await this.createItemData(uuid);
-        if (!itemData) continue;
+      if ( !itemData ) {
+        itemData = await this.createItemData( uuid );
+        if ( !itemData ) continue;
       }
-      if (itemData.type === "power") foundry.utils.mergeObject(itemData, powerChanges);
+      if ( itemData.type === "power" ) foundry.utils.mergeObject( itemData, powerChanges );
 
-      items.push(itemData);
+      items.push( itemData );
       updates[itemData._id] = uuid;
     }
-    if (items.length) {
-      this.actor.updateSource({ items });
-      this.updateSource({
+    if ( items.length ) {
+      this.actor.updateSource( { items } );
+      this.updateSource( {
         "value.ability": data.ability,
-        [this.storagePath(level)]: updates
-      });
+        [this.storagePath( level )]: updates
+      } );
     }
     return updates;
   }
@@ -127,30 +127,30 @@ export default class ItemGrantAdvancement extends Advancement {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  restore(level, data) {
+  restore( level, data ) {
     const updates = {};
-    for (const item of data.items) {
-      this.actor.updateSource({ items: [item] });
+    for ( const item of data.items ) {
+      this.actor.updateSource( { items: [item] } );
       updates[item._id] = item.flags.sw5e.sourceId;
     }
-    this.updateSource({
+    this.updateSource( {
       "value.ability": data.ability,
-      [this.storagePath(level)]: updates
-    });
+      [this.storagePath( level )]: updates
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  reverse(level) {
+  reverse( level ) {
     const items = [];
-    const keyPath = this.storagePath(level);
-    for (const id of Object.keys(foundry.utils.getProperty(this, keyPath) ?? {})) {
-      const item = this.actor.items.get(id);
-      if (item) items.push(item.toObject());
-      this.actor.items.delete(id);
+    const keyPath = this.storagePath( level );
+    for ( const id of Object.keys( foundry.utils.getProperty( this, keyPath ) ?? {} ) ) {
+      const item = this.actor.items.get( id );
+      if ( item ) items.push( item.toObject() );
+      this.actor.items.delete( id );
     }
-    this.updateSource({ [keyPath.replace(/\.([\w\d]+)$/, ".-=$1")]: null });
+    this.updateSource( { [keyPath.replace( /\.([\w\d]+)$/, ".-=$1" )]: null } );
     return { ability: this.value?.ability, items };
   }
 
@@ -164,10 +164,10 @@ export default class ItemGrantAdvancement extends Advancement {
    * @returns {boolean}                     Is this type valid?
    * @throws An error if the item is invalid and strict is `true`.
    */
-  _validateItemType(item, { strict = true } = {}) {
-    if (this.constructor.VALID_TYPES.has(item.type)) return true;
-    const type = game.i18n.localize(CONFIG.Item.typeLabels[item.type]);
-    if (strict) throw new Error(game.i18n.format("SW5E.AdvancementItemTypeInvalidWarning", { type }));
+  _validateItemType( item, { strict = true } = {} ) {
+    if ( this.constructor.VALID_TYPES.has( item.type ) ) return true;
+    const type = game.i18n.localize( CONFIG.Item.typeLabels[item.type] );
+    if ( strict ) throw new Error( game.i18n.format( "SW5E.AdvancementItemTypeInvalidWarning", { type } ) );
     return false;
   }
 }

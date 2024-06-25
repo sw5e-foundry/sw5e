@@ -21,16 +21,16 @@ export default class ItemGrantConfigurationData extends foundry.abstract.DataMod
   /** @inheritDoc */
   static defineSchema() {
     return {
-      items: new ArrayField(new SchemaField({
+      items: new ArrayField( new SchemaField( {
         uuid: new StringField(),
-        optional: new BooleanField({ label: "SW5E.AdvancementItemGrantOptional" })
-      }), { required: true, label: "DOCUMENT.Items" }),
-      optional: new BooleanField({
+        optional: new BooleanField( { label: "SW5E.AdvancementItemGrantOptional" } )
+      } ), { required: true, label: "DOCUMENT.Items" } ),
+      optional: new BooleanField( {
         required: true, label: "SW5E.AdvancementItemGrantOptional", hint: "SW5E.AdvancementItemGrantOptionalHint"
-      }),
-      power: new EmbeddedDataField(PowerConfigurationData, {
+      } ),
+      power: new EmbeddedDataField( PowerConfigurationData, {
         required: true, nullable: true, initial: null
-      })
+      } )
     };
   }
 
@@ -39,9 +39,9 @@ export default class ItemGrantConfigurationData extends foundry.abstract.DataMod
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  static migrateData(source) {
-    if ("items" in source) {
-      source.items = source.items.map(i => foundry.utils.getType(i) === "string" ? { uuid: i } : i);
+  static migrateData( source ) {
+    if ( "items" in source ) {
+      source.items = source.items.map( i => foundry.utils.getType( i ) === "string" ? { uuid: i } : i );
     }
     return source;
   }

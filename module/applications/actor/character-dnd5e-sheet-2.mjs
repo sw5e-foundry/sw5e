@@ -10,17 +10,17 @@ import ActorSheetDnD5eCharacter from "./character-dnd5e-sheet.mjs";
  * An Actor sheet for player character type actors.
  */
 export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter {
-  constructor(object, options={}) {
+  constructor( object, options={} ) {
     const key = `character${object.limited ? ":limited" : ""}`;
-    const { width, height } = game.user.getFlag("sw5e", `sheetPrefs.${key}`) ?? {};
-    if ( width && !("width" in options) ) options.width = width;
-    if ( height && !("height" in options) ) options.height = height;
-    super(object, options);
+    const { width, height } = game.user.getFlag( "sw5e", `sheetPrefs.${key}` ) ?? {};
+    if ( width && !( "width" in options ) ) options.width = width;
+    if ( height && !( "height" in options ) ) options.height = height;
+    super( object, options );
   }
 
   /** @inheritDoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       classes: ["sw5e2", "sheet", "actor", "character"],
       tabs: [{ navSelector: ".tabs", contentSelector: ".tab-body", initial: "details" }],
       dragDrop: [
@@ -36,7 +36,7 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
       width: 800,
       height: 1000,
       resizable: true
-    });
+    } );
   }
 
   /**
@@ -114,60 +114,60 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
   /** @inheritDoc */
   async _renderOuter() {
     const html = await super._renderOuter();
-    const header = html[0].querySelector(".window-header");
+    const header = html[0].querySelector( ".window-header" );
 
     // Add edit <-> play slide toggle.
     if ( this.isEditable ) {
-      const toggle = document.createElement("slide-toggle");
+      const toggle = document.createElement( "slide-toggle" );
       toggle.checked = this._mode === this.constructor.MODES.EDIT;
-      toggle.classList.add("mode-slider");
+      toggle.classList.add( "mode-slider" );
       toggle.dataset.tooltip = "SW5E.SheetModeEdit";
-      toggle.setAttribute("aria-label", game.i18n.localize("SW5E.SheetModeEdit"));
-      toggle.addEventListener("change", this._onChangeSheetMode.bind(this));
-      toggle.addEventListener("dblclick", event => event.stopPropagation());
-      header.insertAdjacentElement("afterbegin", toggle);
+      toggle.setAttribute( "aria-label", game.i18n.localize( "SW5E.SheetModeEdit" ) );
+      toggle.addEventListener( "change", this._onChangeSheetMode.bind( this ) );
+      toggle.addEventListener( "dblclick", event => event.stopPropagation() );
+      header.insertAdjacentElement( "afterbegin", toggle );
     }
 
     // Adjust header buttons.
-    header.querySelectorAll(".header-button").forEach(btn => {
-      const label = btn.querySelector(":scope > i").nextSibling;
+    header.querySelectorAll( ".header-button" ).forEach( btn => {
+      const label = btn.querySelector( ":scope > i" ).nextSibling;
       btn.dataset.tooltip = label.textContent;
-      btn.setAttribute("aria-label", label.textContent);
+      btn.setAttribute( "aria-label", label.textContent );
       label.remove();
-    });
+    } );
 
-    const idLink = header.querySelector(".document-id-link");
+    const idLink = header.querySelector( ".document-id-link" );
     if ( idLink ) {
-      const firstButton = header.querySelector(".header-button");
-      firstButton?.insertAdjacentElement("beforebegin", idLink);
+      const firstButton = header.querySelector( ".header-button" );
+      firstButton?.insertAdjacentElement( "beforebegin", idLink );
     }
 
     if ( !game.user.isGM && this.actor.limited ) {
-      html[0].classList.add("limited");
+      html[0].classList.add( "limited" );
       return html;
     }
 
     // Render tabs.
-    const nav = document.createElement("nav");
-    nav.classList.add("tabs");
+    const nav = document.createElement( "nav" );
+    nav.classList.add( "tabs" );
     nav.dataset.group = "primary";
-    nav.append(...this.constructor.TABS.map(({ tab, label, icon, svg }) => {
-      const item = document.createElement("a");
-      item.classList.add("item", "control");
+    nav.append( ...this.constructor.TABS.map( ( { tab, label, icon, svg } ) => {
+      const item = document.createElement( "a" );
+      item.classList.add( "item", "control" );
       item.dataset.group = "primary";
       item.dataset.tab = tab;
       item.dataset.tooltip = label;
-      item.setAttribute("aria-label", label);
+      item.setAttribute( "aria-label", label );
       if ( icon ) item.innerHTML = `<i class="${icon}"></i>`;
       else if ( svg ) item.innerHTML = `<sw5e-icon src="systems/sw5e/icons/svg/${svg}.svg"></sw5e-icon>`;
       return item;
-    }));
-    html[0].insertAdjacentElement("afterbegin", nav);
-    this._tabs = this.options.tabs.map(t => {
-      t.callback = this._onChangeTab.bind(this);
+    } ) );
+    html[0].insertAdjacentElement( "afterbegin", nav );
+    this._tabs = this.options.tabs.map( t => {
+      t.callback = this._onChangeTab.bind( this );
       if ( this._tabs?.[0]?.active !== t.initial ) t.initial = this._tabs?.[0]?.active ?? t.initial;
-      return new Tabs5e(t);
-    });
+      return new Tabs5e( t );
+    } );
 
     // Set theme
     // TODO: Re-enable this when we support V12 only
@@ -179,27 +179,27 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async _render(force=false, options={}) {
-    await super._render(force, options);
+  async _render( force=false, options={} ) {
+    await super._render( force, options );
     if ( !this.rendered ) return;
     const context = options.renderContext ?? options.action;
     const data = options.renderData ?? options.data;
-    const isUpdate = (context === "update") || (context === "updateActor");
-    const hp = foundry.utils.getProperty(data ?? {}, "system.attributes.hp.value");
-    if ( isUpdate && (hp === 0) ) this._toggleDeathTray(true);
+    const isUpdate = ( context === "update" ) || ( context === "updateActor" );
+    const hp = foundry.utils.getProperty( data ?? {}, "system.attributes.hp.value" );
+    if ( isUpdate && ( hp === 0 ) ) this._toggleDeathTray( true );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async getData(options) {
+  async getData( options ) {
     this._concentration = this.actor.concentration; // Cache concentration so it's not called for every item.
-    const context = await super.getData(options);
-    context.editable = this.isEditable && (this._mode === this.constructor.MODES.EDIT);
+    const context = await super.getData( options );
+    context.editable = this.isEditable && ( this._mode === this.constructor.MODES.EDIT );
     context.cssClass = context.editable ? "editable" : this.isEditable ? "interactable" : "locked";
-    const activeTab = (game.user.isGM || !this.actor.limited) ? this._tabs?.[0]?.active ?? "details" : "biography";
+    const activeTab = ( game.user.isGM || !this.actor.limited ) ? this._tabs?.[0]?.active ?? "details" : "biography";
     context.cssClass += ` tab-${activeTab}`;
-    const sidebarCollapsed = game.user.getFlag("sw5e", `sheetPrefs.character.tabs.${activeTab}.collapseSidebar`);
+    const sidebarCollapsed = game.user.getFlag( "sw5e", `sheetPrefs.character.tabs.${activeTab}.collapseSidebar` );
     if ( sidebarCollapsed ) {
       context.cssClass += " collapsed";
       context.sidebarCollapsed = true;
@@ -207,12 +207,12 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
     const { attributes, details, traits } = this.actor.system;
 
     // Class
-    context.labels.class = Object.values(this.actor.classes).sort((a, b) => {
+    context.labels.class = Object.values( this.actor.classes ).sort( ( a, b ) => {
       return b.system.levels - a.system.levels;
-    }).map(c => `${c.name} ${c.system.levels}`).join(" / ");
+    } ).map( c => `${c.name} ${c.system.levels}` ).join( " / " );
 
     // Portrait
-    const showTokenPortrait = this.actor.getFlag("sw5e", "showTokenPortrait") === true;
+    const showTokenPortrait = this.actor.getFlag( "sw5e", "showTokenPortrait" ) === true;
     const token = this.actor.isToken ? this.actor.token : this.actor.prototypeToken;
     context.portrait = {
       token: showTokenPortrait,
@@ -223,80 +223,80 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
 
     // Exhaustion
     const max = CONFIG.SW5E.conditionTypes.exhaustion.levels;
-    context.exhaustion = Array.fromRange(max, 1).reduce((acc, n) => {
-      const label = game.i18n.format("SW5E.ExhaustionLevel", { n });
+    context.exhaustion = Array.fromRange( max, 1 ).reduce( ( acc, n ) => {
+      const label = game.i18n.format( "SW5E.ExhaustionLevel", { n } );
       const classes = ["pip"];
       const filled = attributes.exhaustion >= n;
-      if ( filled ) classes.push("filled");
-      if ( n === max ) classes.push("death");
-      const pip = { n, label, filled, tooltip: label, classes: classes.join(" ") };
+      if ( filled ) classes.push( "filled" );
+      if ( n === max ) classes.push( "death" );
+      const pip = { n, label, filled, tooltip: label, classes: classes.join( " " ) };
 
-      if ( n <= max / 2 ) acc.left.push(pip);
-      else acc.right.push(pip);
+      if ( n <= max / 2 ) acc.left.push( pip );
+      else acc.right.push( pip );
       return acc;
-    }, { left: [], right: [] });
+    }, { left: [], right: [] } );
 
     // Speed
-    context.speed = Object.entries(CONFIG.SW5E.movementTypes).reduce((obj, [k, label]) => {
+    context.speed = Object.entries( CONFIG.SW5E.movementTypes ).reduce( ( obj, [k, label] ) => {
       const value = attributes.movement[k];
-      if ( value > obj.value ) Object.assign(obj, { value, label });
+      if ( value > obj.value ) Object.assign( obj, { value, label } );
       return obj;
-    }, { value: 0, label: CONFIG.SW5E.movementTypes.walk });
+    }, { value: 0, label: CONFIG.SW5E.movementTypes.walk } );
 
     // Hit Dice
     context.hd = attributes.hd;
 
     // Death Saves
-    const plurals = new Intl.PluralRules(game.i18n.lang, { type: "ordinal" });
+    const plurals = new Intl.PluralRules( game.i18n.lang, { type: "ordinal" } );
     context.death = { open: this._deathTrayOpen };
-    ["success", "failure"].forEach(deathSave => {
+    ["success", "failure"].forEach( deathSave => {
       context.death[deathSave] = [];
       for ( let i = 1; i < 4; i++ ) {
         const n = deathSave === "failure" ? i : 4 - i;
         const i18nKey = `SW5E.DeathSave${deathSave.titleCase()}Label`;
         const filled = attributes.death[deathSave] >= n;
         const classes = ["pip"];
-        if ( filled ) classes.push("filled");
-        if ( deathSave === "failure" ) classes.push("failure");
-        context.death[deathSave].push({
+        if ( filled ) classes.push( "filled" );
+        if ( deathSave === "failure" ) classes.push( "failure" );
+        context.death[deathSave].push( {
           n, filled,
           tooltip: i18nKey,
-          label: game.i18n.localize(`${i18nKey}N.${plurals.select(n)}`),
-          classes: classes.join(" ")
-        });
+          label: game.i18n.localize( `${i18nKey}N.${plurals.select( n )}` ),
+          classes: classes.join( " " )
+        } );
       }
-    });
+    } );
 
     // Ability Scores
-    context.abilityRows = Object.entries(context.abilities).reduce((obj, [k, ability]) => {
+    context.abilityRows = Object.entries( context.abilities ).reduce( ( obj, [k, ability] ) => {
       ability.key = k;
       ability.abbr = CONFIG.SW5E.abilities[k]?.abbreviation ?? "";
-      ability.sign = Math.sign(ability.mod) < 0 ? "-" : "+";
-      ability.mod = Math.abs(ability.mod);
+      ability.sign = Math.sign( ability.mod ) < 0 ? "-" : "+";
+      ability.mod = Math.abs( ability.mod );
       ability.baseValue = context.source.abilities[k]?.value ?? 0;
-      if ( obj.bottom.length > 5 ) obj.top.push(ability);
-      else obj.bottom.push(ability);
+      if ( obj.bottom.length > 5 ) obj.top.push( ability );
+      else obj.bottom.push( ability );
       return obj;
-    }, { top: [], bottom: [] });
-    context.abilityRows.optional = Object.keys(CONFIG.SW5E.abilities).length - 6;
+    }, { top: [], bottom: [] } );
+    context.abilityRows.optional = Object.keys( CONFIG.SW5E.abilities ).length - 6;
 
     // Saving Throws
     context.saves = {};
-    for ( let ability of Object.values(context.abilities) ) {
+    for ( let ability of Object.values( context.abilities ) ) {
       ability = context.saves[ability.key] = { ...ability };
       ability.class = this.constructor.PROFICIENCY_CLASSES[context.editable ? ability.baseProf : ability.proficient];
       ability.hover = CONFIG.SW5E.proficiencyLevels[ability.proficient];
-      ability.sign = Math.sign(ability.save) < 0 ? "-" : "+";
-      ability.mod = Math.abs(ability.save);
+      ability.sign = Math.sign( ability.save ) < 0 ? "-" : "+";
+      ability.mod = Math.abs( ability.save );
     }
 
-    if ( this.actor.statuses.has(CONFIG.specialStatusEffects.CONCENTRATING) || context.editable ) {
+    if ( this.actor.statuses.has( CONFIG.specialStatusEffects.CONCENTRATING ) || context.editable ) {
       context.saves.concentration = {
         isConcentration: true,
         class: "colspan concentration",
-        label: game.i18n.localize("SW5E.Concentration"),
-        abbr: game.i18n.localize("SW5E.Concentration"),
-        mod: Math.abs(attributes.concentration.save),
+        label: game.i18n.localize( "SW5E.Concentration" ),
+        abbr: game.i18n.localize( "SW5E.Concentration" ),
+        mod: Math.abs( attributes.concentration.save ),
         sign: attributes.concentration.save < 0 ? "-" : "+"
       };
     }
@@ -309,12 +309,12 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
     };
 
     // Skills & Tools
-    for ( const [key, entry] of Object.entries(context.skills).concat(Object.entries(context.tools)) ) {
+    for ( const [key, entry] of Object.entries( context.skills ).concat( Object.entries( context.tools ) ) ) {
       entry.class = this.constructor.PROFICIENCY_CLASSES[context.editable ? entry.baseValue : entry.value];
-      entry.sign = Math.sign(entry.total) < 0 ? "-" : "+";
-      entry.mod = Math.abs(entry.total);
+      entry.sign = Math.sign( entry.total ) < 0 ? "-" : "+";
+      entry.mod = Math.abs( entry.total );
       if ( key in CONFIG.SW5E.skills ) entry.reference = CONFIG.SW5E.skills[key].reference;
-      else if ( key in CONFIG.SW5E.toolIds ) entry.reference = Trait.getBaseItemUUID(CONFIG.SW5E.toolIds[key]);
+      else if ( key in CONFIG.SW5E.toolIds ) entry.reference = Trait.getBaseItemUUID( CONFIG.SW5E.toolIds[key] );
     }
 
     // Character Background
@@ -332,37 +332,37 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
     if ( details.background instanceof sw5e.documents.Item5e ) context.background = details.background;
 
     // Senses
-    context.senses = Object.entries(CONFIG.SW5E.senses).reduce((obj, [k, label]) => {
+    context.senses = Object.entries( CONFIG.SW5E.senses ).reduce( ( obj, [k, label] ) => {
       const value = attributes.senses[k];
       if ( value ) obj[k] = { label, value };
       return obj;
-    }, {});
+    }, {} );
 
-    if ( attributes.senses.special ) attributes.senses.special.split(";").forEach((v, i) => {
+    if ( attributes.senses.special ) attributes.senses.special.split( ";" ).forEach( ( v, i ) => {
       context.senses[`custom${i + 1}`] = { label: v.trim() };
-    });
-    if ( foundry.utils.isEmpty(context.senses) ) delete context.senses;
+    } );
+    if ( foundry.utils.isEmpty( context.senses ) ) delete context.senses;
 
     // Powercasting
     context.powercasting = [];
-    const mpak = simplifyBonus(this.actor.system.bonuses.mpak.attack, context.rollData);
-    const rpak = simplifyBonus(this.actor.system.bonuses.rpak.attack, context.rollData);
+    const mpak = simplifyBonus( this.actor.system.bonuses.mpak.attack, context.rollData );
+    const rpak = simplifyBonus( this.actor.system.bonuses.rpak.attack, context.rollData );
 
-    for ( const item of Object.values(this.actor.classes).sort((a, b) => b.system.levels - a.system.levels) ) {
+    for ( const item of Object.values( this.actor.classes ).sort( ( a, b ) => b.system.levels - a.system.levels ) ) {
       const sc = item.powercasting;
-      if ( !sc?.progression || (sc.progression === "none") ) continue;
+      if ( !sc?.progression || ( sc.progression === "none" ) ) continue;
       const ability = this.actor.system.abilities[sc.ability];
       const mod = ability?.mod ?? 0;
       const attackBonus = mpak === rpak ? mpak : 0;
       const attack = mod + this.actor.system.attributes.prof + attackBonus;
       const name = item.system.powercasting.progression === sc.progression ? item.name : item.archetype?.name;
-      context.powercasting.push({
-        label: game.i18n.format("SW5E.PowercastingClass", { class: name }),
-        ability: { sign: Math.sign(mod) < 0 ? "-" : "+", value: Math.abs(mod), ability: sc.ability },
-        attack: { sign: Math.sign(attack) < 0 ? "-" : "+", value: Math.abs(attack) },
+      context.powercasting.push( {
+        label: game.i18n.format( "SW5E.PowercastingClass", { class: name } ),
+        ability: { sign: Math.sign( mod ) < 0 ? "-" : "+", value: Math.abs( mod ), ability: sc.ability },
+        attack: { sign: Math.sign( attack ) < 0 ? "-" : "+", value: Math.abs( attack ) },
         primary: this.actor.system.attributes.powercasting === sc.ability,
         save: ability?.dc ?? 0
-      });
+      } );
     }
 
     // Containers
@@ -373,42 +373,42 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
 
     // Effects & Conditions
     const conditionIds = new Set();
-    context.conditions = Object.entries(CONFIG.SW5E.conditionTypes).reduce((arr, [k, c]) => {
+    context.conditions = Object.entries( CONFIG.SW5E.conditionTypes ).reduce( ( arr, [k, c] ) => {
       if ( c.pseudo ) return arr; // Filter out pseudo-conditions.
       const { label: name, icon, reference } = c;
-      const id = staticID(`sw5e${k}`);
-      conditionIds.add(id);
-      const existing = this.actor.effects.get(id);
+      const id = staticID( `sw5e${k}` );
+      conditionIds.add( id );
+      const existing = this.actor.effects.get( id );
       const { disabled, img } = existing ?? {};
-      arr.push({
+      arr.push( {
         name, reference,
         id: k,
         icon: img ?? icon,
         disabled: existing ? disabled : true
-      });
+      } );
       return arr;
-    }, []);
+    }, [] );
 
-    for ( const category of Object.values(context.effects) ) {
-      category.effects = await category.effects.reduce(async (arr, effect) => {
+    for ( const category of Object.values( context.effects ) ) {
+      category.effects = await category.effects.reduce( async ( arr, effect ) => {
         effect.updateDuration();
-        if ( conditionIds.has(effect.id) && !effect.duration.remaining ) return arr;
+        if ( conditionIds.has( effect.id ) && !effect.duration.remaining ) return arr;
         const { id, name, img, disabled, duration } = effect;
-        const toggleable = !this._concentration?.effects.has(effect);
+        const toggleable = !this._concentration?.effects.has( effect );
         let source = await effect.getSource();
         // If the source is an ActiveEffect from another Actor, note the source as that Actor instead.
-        if ( (source instanceof sw5e.documents.ActiveEffect5e) && (source.target !== this.object) ) {
+        if ( ( source instanceof sw5e.documents.ActiveEffect5e ) && ( source.target !== this.object ) ) {
           source = source.target;
         }
         arr = await arr;
-        arr.push({
+        arr.push( {
           id, name, img, disabled, duration, source, toggleable,
           parentId: effect.target === effect.parent ? null : effect.parent.id,
-          durationParts: duration.remaining ? duration.label.split(", ") : [],
+          durationParts: duration.remaining ? duration.label.split( ", " ) : [],
           hasTooltip: source instanceof sw5e.documents.Item5e
-        });
+        } );
         return arr;
-      }, []);
+      }, [] );
     }
 
     context.effects.suppressed.info = context.effects.suppressed.info[0];
@@ -416,16 +416,16 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
     // Characteristics
     context.characteristics = [
       "alignment", "eyes", "height", "faith", "hair", "weight", "gender", "skin", "age"
-    ].map(k => {
+    ].map( k => {
       const fields = CharacterData.schema.fields.details.fields;
       const field = fields[k];
       const name = `system.details.${k}`;
-      return { name, label: field.label, value: foundry.utils.getProperty(this.actor, name) ?? "" };
-    });
+      return { name, label: field.label, value: foundry.utils.getProperty( this.actor, name ) ?? "" };
+    } );
 
     // Favorites
     context.favorites = await this._prepareFavorites();
-    context.favorites.sort((a, b) => a.sort - b.sort);
+    context.favorites.sort( ( a, b ) => a.sort - b.sort );
 
     return context;
   }
@@ -444,49 +444,49 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
   /** @override */
   _prepareTraits() {
     const traits = {};
-    for ( const [trait, config] of Object.entries(CONFIG.SW5E.traits) ) {
+    for ( const [trait, config] of Object.entries( CONFIG.SW5E.traits ) ) {
       const key = config.actorKeyPath ?? `system.traits.${trait}`;
-      const data = foundry.utils.deepClone(foundry.utils.getProperty(this.actor, key));
+      const data = foundry.utils.deepClone( foundry.utils.getProperty( this.actor, key ) );
       if ( !data ) continue;
       let values = data.value;
       if ( !values ) values = [];
-      else if ( values instanceof Set ) values = Array.from(values);
-      else if ( !Array.isArray(values) ) values = [values];
-      values = values.map(key => {
-        const value = { label: Trait.keyLabel(key, { trait }) ?? key };
+      else if ( values instanceof Set ) values = Array.from( values );
+      else if ( !Array.isArray( values ) ) values = [values];
+      values = values.map( key => {
+        const value = { label: Trait.keyLabel( key, { trait } ) ?? key };
         const icons = value.icons = [];
-        if ( data.bypasses?.size && CONFIG.SW5E.damageTypes[key]?.isPhysical ) icons.push(...data.bypasses);
+        if ( data.bypasses?.size && CONFIG.SW5E.damageTypes[key]?.isPhysical ) icons.push( ...data.bypasses );
         return value;
-      });
-      if ( data.custom ) data.custom.split(";").forEach(v => values.push({ label: v.trim() }));
+      } );
+      if ( data.custom ) data.custom.split( ";" ).forEach( v => values.push( { label: v.trim() } ) );
       if ( values.length ) traits[trait] = values;
     }
     // If petrified, display "All Damage" instead of all damage types separately
-    if ( this.document.hasConditionEffect("petrification") ) {
-      traits.dr = [{ label: game.i18n.localize("SW5E.DamageAll") }];
+    if ( this.document.hasConditionEffect( "petrification" ) ) {
+      traits.dr = [{ label: game.i18n.localize( "SW5E.DamageAll" ) }];
     }
     // Combine damage & condition immunities in play mode.
-    if ( (this._mode === this.constructor.MODES.PLAY) && traits.ci ) {
+    if ( ( this._mode === this.constructor.MODES.PLAY ) && traits.ci ) {
       traits.di ??= [];
-      traits.di.push(...traits.ci);
+      traits.di.push( ...traits.ci );
       delete traits.ci;
     }
 
     // Prepare damage modifications
     const dm = this.actor.system.traits?.dm;
     if ( dm ) {
-      const rollData = this.actor.getRollData({ deterministic: true });
-      const values = Object.entries(dm.amount).map(([k, v]) => {
-        const total = simplifyBonus(v, rollData);
+      const rollData = this.actor.getRollData( { deterministic: true } );
+      const values = Object.entries( dm.amount ).map( ( [k, v] ) => {
+        const total = simplifyBonus( v, rollData );
         if ( !total ) return null;
         const value = {
-          label: `${CONFIG.SW5E.damageTypes[k]?.label ?? k} ${formatNumber(total, { signDisplay: "always" })}`,
+          label: `${CONFIG.SW5E.damageTypes[k]?.label ?? k} ${formatNumber( total, { signDisplay: "always" } )}`,
           color: total > 0 ? "maroon" : "green"
         };
         const icons = value.icons = [];
-        if ( dm.bypasses.size && CONFIG.SW5E.damageTypes[k]?.isPhysical ) icons.push(...dm.bypasses);
+        if ( dm.bypasses.size && CONFIG.SW5E.damageTypes[k]?.isPhysical ) icons.push( ...dm.bypasses );
         return value;
-      }).filter(f => f);
+      } ).filter( f => f );
       if ( values.length ) traits.dm = values;
     }
 
@@ -496,63 +496,63 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _prepareItems(context) {
-    super._prepareItems(context);
+  _prepareItems( context ) {
+    super._prepareItems( context );
     context.containers = context.inventory
-      .findSplice(entry => entry.dataset.type === "container")
-      ?.items?.sort((a, b) => a.sort - b.sort);
-    context.inventory = context.inventory.filter(entry => entry.items.length);
-    context.inventory.push({ label: "SW5E.Contents", items: [], dataset: { type: "all" } });
+      .findSplice( entry => entry.dataset.type === "container" )
+      ?.items?.sort( ( a, b ) => a.sort - b.sort );
+    context.inventory = context.inventory.filter( entry => entry.items.length );
+    context.inventory.push( { label: "SW5E.Contents", items: [], dataset: { type: "all" } } );
 
     // Remove species & background as they are shown on the details tab instead.
-    context.features = context.features.filter(f => (f.dataset.type !== "background") && (f.dataset.type !== "species"));
-    context.features.forEach(f => {
+    context.features = context.features.filter( f => ( f.dataset.type !== "background" ) && ( f.dataset.type !== "species" ) );
+    context.features.forEach( f => {
       if ( f.hasActions ) f.dataset.type = "active";
       else f.dataset.type = "passive";
-    });
+    } );
 
     // Add extra categories for features grouping.
-    Object.values(this.actor.classes ?? {}).sort((a, b) => b.system.levels - a.system.levels).forEach(cls => {
-      context.features.push({
-        label: game.i18n.format("SW5E.FeaturesClass", { class: cls.name }),
+    Object.values( this.actor.classes ?? {} ).sort( ( a, b ) => b.system.levels - a.system.levels ).forEach( cls => {
+      context.features.push( {
+        label: game.i18n.format( "SW5E.FeaturesClass", { class: cls.name } ),
         items: [],
         dataset: { type: cls.identifier }
-      });
-    });
+      } );
+    } );
 
     if ( this.actor.system.details.species instanceof sw5e.documents.Item5e ) {
-      context.features.push({ label: "SW5E.FeaturesSpecies", items: [], dataset: { type: "species" } });
+      context.features.push( { label: "SW5E.FeaturesSpecies", items: [], dataset: { type: "species" } } );
     }
 
     if ( this.actor.system.details.background instanceof sw5e.documents.Item5e ) {
-      context.features.push({ label: "SW5E.FeaturesBackground", items: [], dataset: { type: "background" } });
+      context.features.push( { label: "SW5E.FeaturesBackground", items: [], dataset: { type: "background" } } );
     }
 
-    context.features.push({ label: "SW5E.FeaturesOther", items: [], dataset: { type: "other" } });
-    context.classes = context.features.findSplice(f => f.isClass)?.items;
+    context.features.push( { label: "SW5E.FeaturesOther", items: [], dataset: { type: "other" } } );
+    context.classes = context.features.findSplice( f => f.isClass )?.items;
 
     // Power slots
-    const plurals = new Intl.PluralRules(game.i18n.lang, { type: "ordinal" });
-    context.powerbook.forEach(section => {
+    const plurals = new Intl.PluralRules( game.i18n.lang, { type: "ordinal" } );
+    context.powerbook.forEach( section => {
       if ( !section.usesSlots ) return;
-      const powers = foundry.utils.getProperty(this.actor.system.powers, section.prop);
+      const powers = foundry.utils.getProperty( this.actor.system.powers, section.prop );
       const max = powers.override ?? powers.max ?? 0;
-      section.pips = Array.fromRange(max, 1).map(n => {
+      section.pips = Array.fromRange( max, 1 ).map( n => {
         const filled = powers.value >= n;
         const label = filled
-          ? game.i18n.format(`SW5E.PowerSlotN.${plurals.select(n)}`, { n })
-          : game.i18n.localize("SW5E.PowerSlotExpended");
+          ? game.i18n.format( `SW5E.PowerSlotN.${plurals.select( n )}`, { n } )
+          : game.i18n.localize( "SW5E.PowerSlotExpended" );
         const classes = ["pip"];
-        if ( filled ) classes.push("filled");
-        return { n, label, filled, tooltip: label, classes: classes.join(" ") };
-      });
-    });
+        if ( filled ) classes.push( "filled" );
+        return { n, label, filled, tooltip: label, classes: classes.join( " " ) };
+      } );
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  _prepareItem(item, ctx) {
+  _prepareItem( item, ctx ) {
     const { system } = item;
 
     // Powers
@@ -568,27 +568,27 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
         hour: "SW5E.TimeHourAbbr",
         day: "SW5E.TimeDayAbbr"
       }[system.activation.type];
-      ctx.activation = cost && abbr ? `${cost}${game.i18n.localize(abbr)}` : item.labels.activation;
+      ctx.activation = cost && abbr ? `${cost}${game.i18n.localize( abbr )}` : item.labels.activation;
 
       // Range
       const units = system.range?.units;
-      if ( units && (units !== "none") ) {
+      if ( units && ( units !== "none" ) ) {
         if ( units in CONFIG.SW5E.movementUnits ) {
           ctx.range = {
             distance: true,
             value: system.range.value,
-            unit: game.i18n.localize(`SW5E.Dist${units.capitalize()}Abbr`)
+            unit: game.i18n.localize( `SW5E.Dist${units.capitalize()}Abbr` )
           };
         }
         else ctx.range = { distance: false };
       }
 
       // To Hit
-      const toHit = parseInt(item.labels.modifier);
-      if ( item.hasAttack && !isNaN(toHit) ) {
+      const toHit = parseInt( item.labels.modifier );
+      if ( item.hasAttack && !isNaN( toHit ) ) {
         ctx.toHit = {
-          sign: Math.sign(toHit) < 0 ? "-" : "+",
-          abs: Math.abs(toHit)
+          sign: Math.sign( toHit ) < 0 ? "-" : "+",
+          abs: Math.abs( toHit )
         };
       }
 
@@ -607,7 +607,7 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
             ? CONFIG.SW5E.powerPreparationModes.always.label
             : prepared
               ? CONFIG.SW5E.powerPreparationModes.prepared.label
-              : game.i18n.localize("SW5E.PowerUnprepared")
+              : game.i18n.localize( "SW5E.PowerUnprepared" )
         };
       }
       else ctx.preparation = { applicable: false };
@@ -636,62 +636,62 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
       else ctx.equip = { applicable: false };
 
       // Subtitles
-      ctx.subtitle = [system.type?.label, item.isActive ? item.labels.activation : null].filterJoin(" &bull; ");
+      ctx.subtitle = [system.type?.label, item.isActive ? item.labels.activation : null].filterJoin( " &bull; " );
     }
 
     // Concentration
-    if ( this._concentration.items.has(item) ) ctx.concentration = true;
+    if ( this._concentration.items.has( item ) ) ctx.concentration = true;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  activateListeners(html) {
-    super.activateListeners(html);
-    html.find(".pips[data-prop]").on("click", this._onTogglePip.bind(this));
-    html.find(".death-tab").on("click", () => this._toggleDeathTray());
-    html.find("[data-action]").on("click", this._onAction.bind(this));
-    html.find("[data-item-id][data-action]").on("click", this._onItemAction.bind(this));
-    html.find(".rollable:is(.saving-throw, .ability-check)").on("click", this._onRollAbility.bind(this));
-    html.find("proficiency-cycle").on("change", this._onChangeInput.bind(this));
-    html.find(".sidebar .collapser").on("click", this._onToggleSidebar.bind(this));
-    this.form.querySelectorAll(".item-tooltip").forEach(this._applyItemTooltips.bind(this));
-    this.form.querySelectorAll("[data-reference-tooltip]").forEach(this._applyReferenceTooltips.bind(this));
+  activateListeners( html ) {
+    super.activateListeners( html );
+    html.find( ".pips[data-prop]" ).on( "click", this._onTogglePip.bind( this ) );
+    html.find( ".death-tab" ).on( "click", () => this._toggleDeathTray() );
+    html.find( "[data-action]" ).on( "click", this._onAction.bind( this ) );
+    html.find( "[data-item-id][data-action]" ).on( "click", this._onItemAction.bind( this ) );
+    html.find( ".rollable:is(.saving-throw, .ability-check)" ).on( "click", this._onRollAbility.bind( this ) );
+    html.find( "proficiency-cycle" ).on( "change", this._onChangeInput.bind( this ) );
+    html.find( ".sidebar .collapser" ).on( "click", this._onToggleSidebar.bind( this ) );
+    this.form.querySelectorAll( ".item-tooltip" ).forEach( this._applyItemTooltips.bind( this ) );
+    this.form.querySelectorAll( "[data-reference-tooltip]" ).forEach( this._applyReferenceTooltips.bind( this ) );
 
     // Prevent default middle-click scrolling when locking a tooltip.
-    this.form.addEventListener("pointerdown", event => {
-      if ( (event.button === 1) && document.getElementById("tooltip")?.classList.contains("active") ) {
+    this.form.addEventListener( "pointerdown", event => {
+      if ( ( event.button === 1 ) && document.getElementById( "tooltip" )?.classList.contains( "active" ) ) {
         event.preventDefault();
       }
-    });
+    } );
 
     // Apply special context menus for items outside inventory elements
-    const featuresElement = html[0].querySelector(`[data-tab="features"] ${this.options.elements.inventory}`);
-    if ( featuresElement ) new ContextMenu5e(html, ".pills-lg [data-item-id]", [], {
-      onOpen: (...args) => featuresElement._onOpenContextMenu(...args)
-    });
+    const featuresElement = html[0].querySelector( `[data-tab="features"] ${this.options.elements.inventory}` );
+    if ( featuresElement ) new ContextMenu5e( html, ".pills-lg [data-item-id]", [], {
+      onOpen: ( ...args ) => featuresElement._onOpenContextMenu( ...args )
+    } );
 
     if ( this.isEditable ) {
-      html.find(".meter > .hit-points").on("click", event => this._toggleEditHP(event, true));
-      html.find(".meter > .hit-points > input").on("blur", event => this._toggleEditHP(event, false));
-      html.find(".create-child").on("click", this._onCreateChild.bind(this));
+      html.find( ".meter > .hit-points" ).on( "click", event => this._toggleEditHP( event, true ) );
+      html.find( ".meter > .hit-points > input" ).on( "blur", event => this._toggleEditHP( event, false ) );
+      html.find( ".create-child" ).on( "click", this._onCreateChild.bind( this ) );
     }
 
     // Edit mode only.
     if ( this._mode === this.constructor.MODES.EDIT ) {
-      html.find(".tab.details .item-action").on("click", this._onItemAction.bind(this));
+      html.find( ".tab.details .item-action" ).on( "click", this._onItemAction.bind( this ) );
     }
 
     // Play mode only.
     else {
-      html.find(".portrait").on("click", this._onShowPortrait.bind(this));
+      html.find( ".portrait" ).on( "click", this._onShowPortrait.bind( this ) );
     }
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  _disableOverriddenFields(html) {
+  _disableOverriddenFields( html ) {
     // When in edit mode, field values will be the base value, rather than the derived value, so it should not be
     // necessary to disable them anymore.
   }
@@ -699,71 +699,71 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
   /* -------------------------------------------- */
 
   /** @override */
-  _getSubmitData(updateData={}) {
+  _getSubmitData( updateData={} ) {
     // Skip over ActorSheet#_getSubmitData to allow for editing overridden values.
-    return FormApplication.prototype._getSubmitData.call(this, updateData);
+    return FormApplication.prototype._getSubmitData.call( this, updateData );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _disableFields(form) {
-    super._disableFields(form);
-    form.querySelectorAll(".interface-only").forEach(input => input.disabled = false);
+  _disableFields( form ) {
+    super._disableFields( form );
+    form.querySelectorAll( ".interface-only" ).forEach( input => input.disabled = false );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _onChangeTab(event, tabs, active) {
-    super._onChangeTab(event, tabs, active);
-    this.form.className = this.form.className.replace(/tab-\w+/g, "");
-    this.form.classList.add(`tab-${active}`);
-    const sidebarCollapsed = game.user.getFlag("sw5e", `sheetPrefs.character.tabs.${active}.collapseSidebar`);
-    if ( sidebarCollapsed !== undefined ) this._toggleSidebar(sidebarCollapsed);
-    const createChild = this.form.querySelector(".create-child");
-    createChild.setAttribute("aria-label", game.i18n.format("SIDEBAR.Create", {
-      type: game.i18n.localize(`DOCUMENT.${active === "effects" ? "ActiveEffect" : "Item"}`)
-    }));
+  _onChangeTab( event, tabs, active ) {
+    super._onChangeTab( event, tabs, active );
+    this.form.className = this.form.className.replace( /tab-\w+/g, "" );
+    this.form.classList.add( `tab-${active}` );
+    const sidebarCollapsed = game.user.getFlag( "sw5e", `sheetPrefs.character.tabs.${active}.collapseSidebar` );
+    if ( sidebarCollapsed !== undefined ) this._toggleSidebar( sidebarCollapsed );
+    const createChild = this.form.querySelector( ".create-child" );
+    createChild.setAttribute( "aria-label", game.i18n.format( "SIDEBAR.Create", {
+      type: game.i18n.localize( `DOCUMENT.${active === "effects" ? "ActiveEffect" : "Item"}` )
+    } ) );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async activateEditor(name, options={}, initialContent="") {
+  async activateEditor( name, options={}, initialContent="" ) {
     options.relativeLinks = true;
     options.plugins = {
-      menu: ProseMirror.ProseMirrorMenu.build(ProseMirror.defaultSchema, {
+      menu: ProseMirror.ProseMirrorMenu.build( ProseMirror.defaultSchema, {
         compact: true,
         destroyOnSave: false,
-        onSave: () => this.saveEditor(name, { remove: false })
-      })
+        onSave: () => this.saveEditor( name, { remove: false } )
+      } )
     };
-    return super.activateEditor(name, options, initialContent);
+    return super.activateEditor( name, options, initialContent );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _onDragStart(event) {
+  _onDragStart( event ) {
     // Add another deferred deactivation to catch the second pointerenter event that seems to be fired on Firefox.
-    requestAnimationFrame(() => game.tooltip.deactivate());
+    requestAnimationFrame( () => game.tooltip.deactivate() );
     game.tooltip.deactivate();
 
     const modes = CONFIG.SW5E.powerPreparationModes;
 
-    const { key } = event.target.closest("[data-key]")?.dataset ?? {};
-    const { level, preparationMode } = event.target.closest("[data-level]")?.dataset ?? {};
-    const isSlots = event.target.closest("[data-favorite-id]") || event.target.classList.contains("power-header");
+    const { key } = event.target.closest( "[data-key]" )?.dataset ?? {};
+    const { level, preparationMode } = event.target.closest( "[data-level]" )?.dataset ?? {};
+    const isSlots = event.target.closest( "[data-favorite-id]" ) || event.target.classList.contains( "power-header" );
     let type;
     if ( key in CONFIG.SW5E.skills ) type = "skill";
     else if ( key in CONFIG.SW5E.toolIds ) type = "tool";
-    else if ( modes[preparationMode]?.upcast && (level !== "0") && isSlots ) type = "slots";
-    if ( !type ) return super._onDragStart(event);
+    else if ( modes[preparationMode]?.upcast && ( level !== "0" ) && isSlots ) type = "slots";
+    if ( !type ) return super._onDragStart( event );
     const dragData = { sw5e: { action: "favorite", type } };
-    if ( type === "slots" ) dragData.sw5e.id = (preparationMode === "prepared") ? `power${level}` : preparationMode;
+    if ( type === "slots" ) dragData.sw5e.id = ( preparationMode === "prepared" ) ? `power${level}` : preparationMode;
     else dragData.sw5e.id = key;
-    event.dataTransfer.setData("application/json", JSON.stringify(dragData));
+    event.dataTransfer.setData( "application/json", JSON.stringify( dragData ) );
   }
 
   /* -------------------------------------------- */
@@ -773,12 +773,12 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @param {Event} event  The triggering event.
    * @protected
    */
-  async _onChangeSheetMode(event) {
+  async _onChangeSheetMode( event ) {
     const { MODES } = this.constructor;
     const toggle = event.currentTarget;
-    const label = game.i18n.localize(`SW5E.SheetMode${toggle.checked ? "Play" : "Edit"}`);
+    const label = game.i18n.localize( `SW5E.SheetMode${toggle.checked ? "Play" : "Edit"}` );
     toggle.dataset.tooltip = label;
-    toggle.setAttribute("aria-label", label);
+    toggle.setAttribute( "aria-label", label );
     this._mode = toggle.checked ? MODES.EDIT : MODES.PLAY;
     await this.submit();
     this.render();
@@ -792,14 +792,14 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @returns {Promise<Actor5e>|void}
    * @protected
    */
-  _onTogglePip(event) {
-    const n = Number(event.target.closest("[data-n]")?.dataset.n);
-    if ( !n || isNaN(n) ) return;
+  _onTogglePip( event ) {
+    const n = Number( event.target.closest( "[data-n]" )?.dataset.n );
+    if ( !n || isNaN( n ) ) return;
     const prop = event.currentTarget.dataset.prop;
-    let value = foundry.utils.getProperty(this.actor, prop);
+    let value = foundry.utils.getProperty( this.actor, prop );
     if ( value === n ) value--;
     else value = n;
-    return this.actor.update({ [prop]: value });
+    return this.actor.update( { [prop]: value } );
   }
 
   /* -------------------------------------------- */
@@ -810,10 +810,10 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @param {boolean} edit        Whether to toggle to the edit state.
    * @protected
    */
-  _toggleEditHP(event, edit) {
-    const target = event.currentTarget.closest(".hit-points");
-    const label = target.querySelector(":scope > .label");
-    const input = target.querySelector(":scope > input");
+  _toggleEditHP( event, edit ) {
+    const target = event.currentTarget.closest( ".hit-points" );
+    const label = target.querySelector( ":scope > .label" );
+    const input = target.querySelector( ":scope > input" );
     label.hidden = edit;
     input.hidden = !edit;
     if ( edit ) input.focus();
@@ -826,13 +826,13 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @param {boolean} [open]  Force a particular open state.
    * @protected
    */
-  _toggleDeathTray(open) {
-    const tray = this.form.querySelector(".death-tray");
-    const tab = tray.querySelector(".death-tab");
-    tray.classList.toggle("open", open);
-    this._deathTrayOpen = tray.classList.contains("open");
+  _toggleDeathTray( open ) {
+    const tray = this.form.querySelector( ".death-tray" );
+    const tab = tray.querySelector( ".death-tab" );
+    tray.classList.toggle( "open", open );
+    this._deathTrayOpen = tray.classList.contains( "open" );
     tab.dataset.tooltip = `SW5E.DeathSave${this._deathTrayOpen ? "Hide" : "Show"}`;
-    tab.setAttribute("aria-label", game.i18n.localize(tab.dataset.tooltip));
+    tab.setAttribute( "aria-label", game.i18n.localize( tab.dataset.tooltip ) );
   }
 
   /* -------------------------------------------- */
@@ -844,7 +844,7 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
   _onToggleSidebar() {
     const collapsed = this._toggleSidebar();
     const activeTab = this._tabs?.[0]?.active ?? "details";
-    game.user.setFlag("sw5e", `sheetPrefs.character.tabs.${activeTab}.collapseSidebar`, collapsed);
+    game.user.setFlag( "sw5e", `sheetPrefs.character.tabs.${activeTab}.collapseSidebar`, collapsed );
   }
 
   /* -------------------------------------------- */
@@ -855,15 +855,15 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @returns {boolean}            The new collapsed state.
    * @protected
    */
-  _toggleSidebar(collapsed) {
-    this.form.classList.toggle("collapsed", collapsed);
-    collapsed = this.form.classList.contains("collapsed");
-    const collapser = this.form.querySelector(".sidebar .collapser");
-    const icon = collapser.querySelector("i");
+  _toggleSidebar( collapsed ) {
+    this.form.classList.toggle( "collapsed", collapsed );
+    collapsed = this.form.classList.contains( "collapsed" );
+    const collapser = this.form.querySelector( ".sidebar .collapser" );
+    const icon = collapser.querySelector( "i" );
     collapser.dataset.tooltip = `JOURNAL.View${collapsed ? "Expand" : "Collapse"}`;
-    collapser.setAttribute("aria-label", game.i18n.localize(collapser.dataset.tooltip));
-    icon.classList.remove("fa-caret-left", "fa-caret-right");
-    icon.classList.add(`fa-caret-${collapsed ? "right" : "left"}`);
+    collapser.setAttribute( "aria-label", game.i18n.localize( collapser.dataset.tooltip ) );
+    icon.classList.remove( "fa-caret-left", "fa-caret-right" );
+    icon.classList.add( `fa-caret-${collapsed ? "right" : "left"}` );
     return collapsed;
   }
 
@@ -874,10 +874,10 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @protected
    */
   _onShowPortrait() {
-    const showTokenPortrait = this.actor.getFlag("sw5e", "showTokenPortrait") === true;
+    const showTokenPortrait = this.actor.getFlag( "sw5e", "showTokenPortrait" ) === true;
     const token = this.actor.isToken ? this.actor.token : this.actor.prototypeToken;
     const img = showTokenPortrait ? token.texture.src : this.actor.img;
-    new ImagePopout(img, { title: this.actor.name, uuid: this.actor.uuid }).render(true);
+    new ImagePopout( img, { title: this.actor.name, uuid: this.actor.uuid } ).render( true );
   }
 
   /* -------------------------------------------- */
@@ -887,37 +887,37 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @param {PointerEvent} event  The triggering event.
    * @protected
    */
-  _onAction(event) {
+  _onAction( event ) {
     const target = event.currentTarget;
     switch ( target.dataset.action ) {
-      case "findItem": this._onFindItem(target.dataset.itemType); break;
-      case "removeFavorite": this._onRemoveFavorite(event); break;
-      case "powercasting": this._onTogglePowercasting(event); break;
+      case "findItem": this._onFindItem( target.dataset.itemType ); break;
+      case "removeFavorite": this._onRemoveFavorite( event ); break;
+      case "powercasting": this._onTogglePowercasting( event ); break;
       case "toggleInspiration": this._onToggleInspiration(); break;
-      case "useFavorite": this._onUseFavorite(event); break;
+      case "useFavorite": this._onUseFavorite( event ); break;
     }
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _onChangeInput(event) {
+  _onChangeInput( event ) {
     const { name } = event.target.dataset;
-    const { itemId } = event.target.closest("[data-item-id]")?.dataset ?? {};
-    const item = this.actor.items.get(itemId);
-    if ( event.target.closest(".favorites") && name && item ) return item.update({ [name]: event.target.value });
-    return super._onChangeInput(event);
+    const { itemId } = event.target.closest( "[data-item-id]" )?.dataset ?? {};
+    const item = this.actor.items.get( itemId );
+    if ( event.target.closest( ".favorites" ) && name && item ) return item.update( { [name]: event.target.value } );
+    return super._onChangeInput( event );
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  _onConfigureSheet(event) {
+  _onConfigureSheet( event ) {
     event.preventDefault();
-    new SheetConfig5e(this.document, {
+    new SheetConfig5e( this.document, {
       top: this.position.top + 40,
-      left: this.position.left + ((this.position.width - DocumentSheet.defaultOptions.width) / 2)
-    }).render(true);
+      left: this.position.left + ( ( this.position.width - DocumentSheet.defaultOptions.width ) / 2 )
+    } ).render( true );
   }
 
   /* -------------------------------------------- */
@@ -930,30 +930,30 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
   _onCreateChild() {
     const activeTab = this._tabs?.[0]?.active ?? "details";
 
-    if ( activeTab === "effects" ) return ActiveEffect.implementation.create({
-      name: game.i18n.localize("SW5E.EffectNew"),
+    if ( activeTab === "effects" ) return ActiveEffect.implementation.create( {
+      name: game.i18n.localize( "SW5E.EffectNew" ),
       icon: "icons/svg/aura.svg"
-    }, { parent: this.actor, renderSheet: true });
+    }, { parent: this.actor, renderSheet: true } );
 
-    if ( activeTab === "powers" ) return Item.implementation.create({
-      name: game.i18n.format("DOCUMENT.New", { type: game.i18n.format(CONFIG.Item.typeLabels.power) }),
+    if ( activeTab === "powers" ) return Item.implementation.create( {
+      name: game.i18n.format( "DOCUMENT.New", { type: game.i18n.format( CONFIG.Item.typeLabels.power ) } ),
       type: "power",
-      img: Item.implementation.getDefaultArtwork({ type: "power" })?.img ?? Item.implementation.DEFAULT_ICON
-    }, { parent: this.actor, renderSheet: true });
+      img: Item.implementation.getDefaultArtwork( { type: "power" } )?.img ?? Item.implementation.DEFAULT_ICON
+    }, { parent: this.actor, renderSheet: true } );
 
     let types = {
       inventory: ["weapon", "equipment", "consumable", "tool", "container", "loot"],
       features: ["feat", "species", "background", "class", "archetype"]
     }[activeTab] ?? [];
 
-    types = types.filter(type => {
+    types = types.filter( type => {
       const model = CONFIG.Item.dataModels[type];
       return !model.metadata?.singleton || !this.actor.itemTypes[type].length;
-    });
+    } );
 
-    if ( types.length ) return Item.implementation.createDialog({}, {
+    if ( types.length ) return Item.implementation.createDialog( {}, {
       parent: this.actor, pack: this.actor.pack, types
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -963,11 +963,11 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @param {string} type  The item type.
    * @protected
    */
-  _onFindItem(type) {
+  _onFindItem( type ) {
     switch ( type ) {
-      case "class": game.packs.get(CONFIG.SW5E.sourcePacks.CLASSES)?.render(true); break;
-      case "species": game.packs.get(CONFIG.SW5E.sourcePacks.SPECIES)?.render(true); break;
-      case "background": game.packs.get(CONFIG.SW5E.sourcePacks.BACKGROUNDS)?.render(true); break;
+      case "class": game.packs.get( CONFIG.SW5E.sourcePacks.CLASSES )?.render( true ); break;
+      case "species": game.packs.get( CONFIG.SW5E.sourcePacks.SPECIES )?.render( true ); break;
+      case "background": game.packs.get( CONFIG.SW5E.sourcePacks.BACKGROUNDS )?.render( true ); break;
     }
   }
 
@@ -978,7 +978,7 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @protected
    */
   _onToggleInspiration() {
-    this.actor.update({ "system.attributes.inspiration": !this.actor.system.attributes.inspiration });
+    this.actor.update( { "system.attributes.inspiration": !this.actor.system.attributes.inspiration } );
   }
 
   /* -------------------------------------------- */
@@ -988,9 +988,9 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @param {PointerEvent} event  The triggering event.
    * @protected
    */
-  _onTogglePowercasting(event) {
-    const ability = event.currentTarget.closest("[data-ability]")?.dataset.ability;
-    this.actor.update({ "system.attributes.powercasting": ability });
+  _onTogglePowercasting( event ) {
+    const ability = event.currentTarget.closest( "[data-ability]" )?.dataset.ability;
+    this.actor.update( { "system.attributes.powercasting": ability } );
   }
 
   /* -------------------------------------------- */
@@ -1000,17 +1000,17 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @param {HTMLElement} element  The tooltipped element.
    * @protected
    */
-  _applyItemTooltips(element) {
+  _applyItemTooltips( element ) {
     if ( "tooltip" in element.dataset ) return;
-    const target = element.closest("[data-item-id], [data-effect-id], [data-uuid]");
+    const target = element.closest( "[data-item-id], [data-effect-id], [data-uuid]" );
     let uuid = target.dataset.uuid;
     if ( !uuid && target.dataset.itemId ) {
-      const item = this.actor.items.get(target.dataset.itemId);
+      const item = this.actor.items.get( target.dataset.itemId );
       uuid = item?.uuid;
     } else if ( !uuid && target.dataset.effectId ) {
       const { effectId, parentId } = target.dataset;
-      const collection = parentId ? this.actor.items.get(parentId).effects : this.actor.effects;
-      uuid = collection.get(effectId)?.uuid;
+      const collection = parentId ? this.actor.items.get( parentId ).effects : this.actor.effects;
+      uuid = collection.get( effectId )?.uuid;
     }
     if ( !uuid ) return;
     element.dataset.tooltip = `
@@ -1027,7 +1027,7 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @param {HTMLElement} element  The tooltipped element.
    * @protected
    */
-  _applyReferenceTooltips(element) {
+  _applyReferenceTooltips( element ) {
     if ( "tooltip" in element.dataset ) return;
     const uuid = element.dataset.referenceTooltip;
     element.dataset.tooltip = `
@@ -1042,16 +1042,16 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @param {PointerEvent} event  The triggering event.
    * @protected
    */
-  _onItemAction(event) {
-    if ( event.target.closest("select") ) return;
+  _onItemAction( event ) {
+    if ( event.target.closest( "select" ) ) return;
     event.preventDefault();
     event.stopPropagation();
-    const itemId = event.currentTarget.closest("[data-item-id]")?.dataset.itemId;
+    const itemId = event.currentTarget.closest( "[data-item-id]" )?.dataset.itemId;
     const action = event.currentTarget.dataset.action;
-    const item = this.actor.items.get(itemId);
+    const item = this.actor.items.get( itemId );
 
     switch ( action ) {
-      case "edit": item?.sheet.render(true); break;
+      case "edit": item?.sheet.render( true ); break;
       case "delete": item?.deleteDialog(); break;
     }
   }
@@ -1063,28 +1063,28 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @param {PointerEvent} event  The triggering event.
    * @protected
    */
-  _onRollAbility(event) {
-    const abilityId = event.currentTarget.closest("[data-ability]").dataset.ability;
-    const isSavingThrow = event.currentTarget.classList.contains("saving-throw");
-    if ( abilityId === "concentration" ) this.actor.rollConcentration({ event });
-    else if ( isSavingThrow ) this.actor.rollAbilitySave(abilityId, { event });
-    else this.actor.rollAbilityTest(abilityId, { event });
+  _onRollAbility( event ) {
+    const abilityId = event.currentTarget.closest( "[data-ability]" ).dataset.ability;
+    const isSavingThrow = event.currentTarget.classList.contains( "saving-throw" );
+    if ( abilityId === "concentration" ) this.actor.rollConcentration( { event } );
+    else if ( isSavingThrow ) this.actor.rollAbilitySave( abilityId, { event } );
+    else this.actor.rollAbilityTest( abilityId, { event } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _onResize(event) {
-    super._onResize(event);
+  _onResize( event ) {
+    super._onResize( event );
     const { width, height } = this.position;
     const key = `character${this.actor.limited ? ":limited": ""}`;
-    game.user.setFlag("sw5e", `sheetPrefs.${key}`, { width, height });
+    game.user.setFlag( "sw5e", `sheetPrefs.${key}`, { width, height } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _filterItem(item) {
+  _filterItem( item ) {
     if ( item.type === "container" ) return true;
   }
 
@@ -1093,41 +1093,41 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async _onDrop(event) {
-    if ( !event.target.closest(".favorites") ) return super._onDrop(event);
-    const dragData = event.dataTransfer.getData("application/json");
-    if ( !dragData ) return super._onDrop(event);
+  async _onDrop( event ) {
+    if ( !event.target.closest( ".favorites" ) ) return super._onDrop( event );
+    const dragData = event.dataTransfer.getData( "application/json" );
+    if ( !dragData ) return super._onDrop( event );
     let data;
     try {
-      data = JSON.parse(dragData);
-    } catch(e) {
-      console.error(e);
+      data = JSON.parse( dragData );
+    } catch( e ) {
+      console.error( e );
       return;
     }
     const { action, type, id } = data.sw5e ?? {};
-    if ( action === "favorite" ) return this._onDropFavorite(event, { type, id });
+    if ( action === "favorite" ) return this._onDropFavorite( event, { type, id } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async _onDropItem(event, data) {
-    if ( !event.target.closest(".favorites") ) return super._onDropItem(event, data);
-    const item = await Item.implementation.fromDropData(data);
-    if ( item?.parent !== this.actor ) return super._onDropItem(event, data);
-    const uuid = item.getRelativeUUID(this.actor);
-    return this._onDropFavorite(event, { type: "item", id: uuid });
+  async _onDropItem( event, data ) {
+    if ( !event.target.closest( ".favorites" ) ) return super._onDropItem( event, data );
+    const item = await Item.implementation.fromDropData( data );
+    if ( item?.parent !== this.actor ) return super._onDropItem( event, data );
+    const uuid = item.getRelativeUUID( this.actor );
+    return this._onDropFavorite( event, { type: "item", id: uuid } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async _onDropActiveEffect(event, data) {
-    if ( !event.target.closest(".favorites") ) return super._onDropActiveEffect(event, data);
-    const effect = await ActiveEffect.implementation.fromDropData(data);
-    if ( effect.target !== this.actor ) return super._onDropActiveEffect(event, data);
-    const uuid = effect.getRelativeUUID(this.actor);
-    return this._onDropFavorite(event, { type: "effect", id: uuid });
+  async _onDropActiveEffect( event, data ) {
+    if ( !event.target.closest( ".favorites" ) ) return super._onDropActiveEffect( event, data );
+    const effect = await ActiveEffect.implementation.fromDropData( data );
+    if ( effect.target !== this.actor ) return super._onDropActiveEffect( event, data );
+    const uuid = effect.getRelativeUUID( this.actor );
+    return this._onDropFavorite( event, { type: "effect", id: uuid } );
   }
 
   /* -------------------------------------------- */
@@ -1139,9 +1139,9 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @returns {Promise<Actor5e>|void}
    * @protected
    */
-  _onDropFavorite(event, favorite) {
-    if ( this.actor.system.hasFavorite(favorite.id) ) return this._onSortFavorites(event, favorite.id);
-    return this.actor.system.addFavorite(favorite);
+  _onDropFavorite( event, favorite ) {
+    if ( this.actor.system.hasFavorite( favorite.id ) ) return this._onSortFavorites( event, favorite.id );
+    return this.actor.system.addFavorite( favorite );
   }
 
   /* -------------------------------------------- */
@@ -1152,10 +1152,10 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @returns {Promise<Actor5e>|void}
    * @protected
    */
-  _onRemoveFavorite(event) {
-    const { favoriteId } = event.currentTarget.closest("[data-favorite-id]")?.dataset ?? {};
+  _onRemoveFavorite( event ) {
+    const { favoriteId } = event.currentTarget.closest( "[data-favorite-id]" )?.dataset ?? {};
     if ( !favoriteId ) return;
-    return this.actor.system.removeFavorite(favoriteId);
+    return this.actor.system.removeFavorite( favoriteId );
   }
 
   /* -------------------------------------------- */
@@ -1167,25 +1167,25 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @returns {Promise<Actor5e>|void}
    * @protected
    */
-  _onSortFavorites(event, srcId) {
-    const dropTarget = event.target.closest("[data-favorite-id]");
+  _onSortFavorites( event, srcId ) {
+    const dropTarget = event.target.closest( "[data-favorite-id]" );
     if ( !dropTarget ) return;
     let source;
     let target;
     const targetId = dropTarget.dataset.favoriteId;
     if ( srcId === targetId ) return;
-    const siblings = this.actor.system.favorites.filter(f => {
+    const siblings = this.actor.system.favorites.filter( f => {
       if ( f.id === targetId ) target = f;
       else if ( f.id === srcId ) source = f;
       return f.id !== srcId;
-    });
-    const updates = SortingHelpers.performIntegerSort(source, { target, siblings });
-    const favorites = this.actor.system.favorites.reduce((map, f) => map.set(f.id, { ...f }), new Map());
+    } );
+    const updates = SortingHelpers.performIntegerSort( source, { target, siblings } );
+    const favorites = this.actor.system.favorites.reduce( ( map, f ) => map.set( f.id, { ...f } ), new Map() );
     for ( const { target, update } of updates ) {
-      const favorite = favorites.get(target.id);
-      foundry.utils.mergeObject(favorite, update);
+      const favorite = favorites.get( target.id );
+      foundry.utils.mergeObject( favorite, update );
     }
-    return this.actor.update({ "system.favorites": Array.from(favorites.values()) });
+    return this.actor.update( { "system.favorites": Array.from( favorites.values() ) } );
   }
 
   /* -------------------------------------------- */
@@ -1196,12 +1196,12 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @returns {Promise|void}
    * @protected
    */
-  async _onUseFavorite(event) {
+  async _onUseFavorite( event ) {
     if ( !this.isEditable ) return;
-    const { favoriteId } = event.currentTarget.closest("[data-favorite-id]").dataset;
-    const favorite = await fromUuid(favoriteId, { relative: this.actor });
-    if ( favorite instanceof sw5e.documents.Item5e ) return favorite.use({}, { event });
-    if ( favorite instanceof sw5e.documents.ActiveEffect5e ) return favorite.update({ disabled: !favorite.disabled });
+    const { favoriteId } = event.currentTarget.closest( "[data-favorite-id]" ).dataset;
+    const favorite = await fromUuid( favoriteId, { relative: this.actor } );
+    if ( favorite instanceof sw5e.documents.Item5e ) return favorite.use( {}, { event } );
+    if ( favorite instanceof sw5e.documents.ActiveEffect5e ) return favorite.update( { disabled: !favorite.disabled } );
   }
 
   /* -------------------------------------------- */
@@ -1213,10 +1213,10 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    */
   async _prepareFavorites() {
     // Legacy resources
-    const resources = Object.entries(this.actor.system.resources).reduce((arr, [k, r]) => {
+    const resources = Object.entries( this.actor.system.resources ).reduce( ( arr, [k, r] ) => {
       const { value, max, sr, lr, label } = r;
       const source = this.actor._source.system.resources[k];
-      if ( label && max ) arr.push({
+      if ( label && max ) arr.push( {
         id: `resources.${k}`,
         type: "resource",
         img: "icons/svg/upgrade.svg",
@@ -1224,23 +1224,23 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
         css: "uses",
         title: label,
         subtitle: [
-          sr ? game.i18n.localize("SW5E.AbbreviationSR") : null,
-          lr ? game.i18n.localize("SW5E.AbbreviationLR") : null
-        ].filterJoin(" &bull; ")
-      });
+          sr ? game.i18n.localize( "SW5E.AbbreviationSR" ) : null,
+          lr ? game.i18n.localize( "SW5E.AbbreviationLR" ) : null
+        ].filterJoin( " &bull; " )
+      } );
       return arr;
-    }, []);
+    }, [] );
 
-    return resources.concat(await this.actor.system.favorites.reduce(async (arr, f) => {
+    return resources.concat( await this.actor.system.favorites.reduce( async ( arr, f ) => {
       const { id, type, sort } = f;
-      const favorite = await fromUuid(id, { relative: this.actor });
-      if ( !favorite && ((type === "item") || (type === "effect")) ) return arr;
+      const favorite = await fromUuid( id, { relative: this.actor } );
+      if ( !favorite && ( ( type === "item" ) || ( type === "effect" ) ) ) return arr;
       arr = await arr;
 
       let data;
       if ( type === "item" ) data = await favorite.system.getFavoriteData();
       else if ( type === "effect" ) data = await favorite.getFavoriteData();
-      else data = await this._getFavoriteData(type, id);
+      else data = await this._getFavoriteData( type, id );
       if ( !data ) return arr;
       let {
         img, title, subtitle, value, uses, quantity, modifier, passive,
@@ -1249,42 +1249,42 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
 
       const css = [];
       if ( uses ) {
-        css.push("uses");
-        uses.value = Math.round(uses.value);
+        css.push( "uses" );
+        uses.value = Math.round( uses.value );
       }
-      else if ( modifier !== undefined ) css.push("modifier");
-      else if ( save?.dc ) css.push("save");
-      else if ( value !== undefined ) css.push("value");
+      else if ( modifier !== undefined ) css.push( "modifier" );
+      else if ( save?.dc ) css.push( "save" );
+      else if ( value !== undefined ) css.push( "value" );
 
-      if ( toggle === false ) css.push("disabled");
-      if ( uses?.max > 100 ) css.push("uses-sm");
+      if ( toggle === false ) css.push( "disabled" );
+      if ( uses?.max > 100 ) css.push( "uses-sm" );
       if ( modifier !== undefined ) {
-        const value = Number(modifier.replace?.(/\s+/g, "") ?? modifier);
-        if ( !isNaN(value) ) modifier = { abs: Math.abs(value), sign: value < 0 ? "-" : "+" };
+        const value = Number( modifier.replace?.( /\s+/g, "" ) ?? modifier );
+        if ( !isNaN( value ) ) modifier = { abs: Math.abs( value ), sign: value < 0 ? "-" : "+" };
       }
 
       const rollableClass = [];
-      if ( this.isEditable && (type !== "slots") ) rollableClass.push("rollable");
-      if ( type === "skill" ) rollableClass.push("skill-name");
-      else if ( type === "tool" ) rollableClass.push("tool-name");
+      if ( this.isEditable && ( type !== "slots" ) ) rollableClass.push( "rollable" );
+      if ( type === "skill" ) rollableClass.push( "skill-name" );
+      else if ( type === "tool" ) rollableClass.push( "tool-name" );
 
-      if ( suppressed ) subtitle = game.i18n.localize("SW5E.Suppressed");
-      arr.push({
+      if ( suppressed ) subtitle = game.i18n.localize( "SW5E.Suppressed" );
+      arr.push( {
         id, img, type, title, value, uses, sort, save, modifier, passive, range, reference, suppressed, level,
         itemId: type === "item" ? favorite.id : null,
         effectId: type === "effect" ? favorite.id : null,
-        parentId: (type === "effect") && (favorite.parent !== favorite.target) ? favorite.parent.id: null,
-        preparationMode: (type === "slots") ? (/power\d+/.test(id) ? "prepared" : id) : null,
-        key: (type === "skill") || (type === "tool") ? id : null,
+        parentId: ( type === "effect" ) && ( favorite.parent !== favorite.target ) ? favorite.parent.id: null,
+        preparationMode: ( type === "slots" ) ? ( /power\d+/.test( id ) ? "prepared" : id ) : null,
+        key: ( type === "skill" ) || ( type === "tool" ) ? id : null,
         toggle: toggle === undefined ? null : { applicable: true, value: toggle },
         quantity: quantity > 1 ? quantity : "",
-        rollableClass: rollableClass.filterJoin(" "),
-        css: css.filterJoin(" "),
+        rollableClass: rollableClass.filterJoin( " " ),
+        css: css.filterJoin( " " ),
         bareName: type === "slots",
-        subtitle: Array.isArray(subtitle) ? subtitle.filterJoin(" &bull; ") : subtitle
-      });
+        subtitle: Array.isArray( subtitle ) ? subtitle.filterJoin( " &bull; " ) : subtitle
+      } );
       return arr;
-    }, []));
+    }, [] ) );
   }
 
   /* -------------------------------------------- */
@@ -1296,28 +1296,28 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
    * @returns {Promise<FavoriteData5e|void>}
    * @protected
    */
-  async _getFavoriteData(type, id) {
+  async _getFavoriteData( type, id ) {
     // Power slots
     if ( type === "slots" ) {
       const { value, max, level } = this.actor.system.powers[id] ?? {};
       const uses = { value, max, name: `system.powers.${id}.value` };
-      if ( !/power\d+/.test(id) ) return {
+      if ( !/power\d+/.test( id ) ) return {
         uses, level,
-        title: game.i18n.localize(`SW5E.PowerSlots${id.capitalize()}`),
+        title: game.i18n.localize( `SW5E.PowerSlots${id.capitalize()}` ),
         subtitle: [
-          game.i18n.localize(`SW5E.PowerLevel${level}`),
-          game.i18n.localize(`SW5E.Abbreviation${CONFIG.SW5E.powercastingTypes[id]?.shortRest ? "SR" : "LR"}`)
+          game.i18n.localize( `SW5E.PowerLevel${level}` ),
+          game.i18n.localize( `SW5E.Abbreviation${CONFIG.SW5E.powercastingTypes[id]?.shortRest ? "SR" : "LR"}` )
         ],
         img: CONFIG.SW5E.powercastingTypes[id]?.img || CONFIG.SW5E.powercastingTypes.pact.img
       };
 
-      const plurals = new Intl.PluralRules(game.i18n.lang, { type: "ordinal" });
+      const plurals = new Intl.PluralRules( game.i18n.lang, { type: "ordinal" } );
       const isSR = CONFIG.SW5E.powercastingTypes.leveled.shortRest;
       return {
         uses, level,
-        title: game.i18n.format(`SW5E.PowerSlotsN.${plurals.select(level)}`, { n: level }),
-        subtitle: game.i18n.localize(`SW5E.Abbreviation${isSR ? "SR" : "LR"}`),
-        img: CONFIG.SW5E.powercastingTypes.leveled.img.replace("{id}", id)
+        title: game.i18n.format( `SW5E.PowerSlotsN.${plurals.select( level )}`, { n: level } ),
+        subtitle: game.i18n.localize( `SW5E.Abbreviation${isSR ? "SR" : "LR"}` ),
+        img: CONFIG.SW5E.powercastingTypes.leveled.img.replace( "{id}", id )
       };
     }
 
@@ -1326,17 +1326,17 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
       const data = this.actor.system[`${type}s`]?.[id];
       if ( !data ) return;
       const { total, ability, passive } = data ?? {};
-      const subtitle = game.i18n.format("SW5E.AbilityPromptTitle", {
+      const subtitle = game.i18n.format( "SW5E.AbilityPromptTitle", {
         ability: CONFIG.SW5E.abilities[ability].label
-      });
+      } );
       let img;
       let title;
       let reference;
       if ( type === "tool" ) {
-        reference = Trait.getBaseItemUUID(CONFIG.SW5E.toolIds[id]);
-        ({ img, name: title } = Trait.getBaseItem(reference, { indexOnly: true }));
+        reference = Trait.getBaseItemUUID( CONFIG.SW5E.toolIds[id] );
+        ( { img, name: title } = Trait.getBaseItem( reference, { indexOnly: true } ) );
       }
-      else if ( type === "skill" ) ({ icon: img, label: title, reference } = CONFIG.SW5E.skills[id]);
+      else if ( type === "skill" ) ( { icon: img, label: title, reference } = CONFIG.SW5E.skills[id] );
       return { img, title, subtitle, modifier: total, passive, reference };
     }
   }

@@ -11,7 +11,7 @@ export default class SlideToggleElement extends HTMLElement {
     super();
     this.#internals = this.attachInternals();
     this.#internals.role = "switch";
-    this.#internals.ariaChecked = this.hasAttribute("checked") ? "true" : "false";
+    this.#internals.ariaChecked = this.hasAttribute( "checked" ) ? "true" : "false";
   }
 
   /**
@@ -35,11 +35,11 @@ export default class SlideToggleElement extends HTMLElement {
    * @type {string}
    */
   get name() {
-    return this.getAttribute("name");
+    return this.getAttribute( "name" );
   }
 
-  set name(value) {
-    this.setAttribute("name", value);
+  set name( value ) {
+    this.setAttribute( "name", value );
   }
 
   /* -------------------------------------------- */
@@ -49,12 +49,12 @@ export default class SlideToggleElement extends HTMLElement {
    * @type {boolean}
    */
   get checked() {
-    return this.hasAttribute("checked");
+    return this.hasAttribute( "checked" );
   }
 
-  set checked(value) {
-    if ( typeof value !== "boolean" ) throw new Error("Slide toggle checked state must be a boolean.");
-    this.toggleAttribute("checked", value);
+  set checked( value ) {
+    if ( typeof value !== "boolean" ) throw new Error( "Slide toggle checked state must be a boolean." );
+    this.toggleAttribute( "checked", value );
     this.#internals.ariaChecked = `${value}`;
   }
 
@@ -65,11 +65,11 @@ export default class SlideToggleElement extends HTMLElement {
    * @type {string}
    */
   get value() {
-    return this.getAttribute("value") || "on";
+    return this.getAttribute( "value" ) || "on";
   }
 
-  set value(value) {
-    this.setAttribute("value", value);
+  set value( value ) {
+    this.setAttribute( "value", value );
   }
 
   /* -------------------------------------------- */
@@ -90,7 +90,7 @@ export default class SlideToggleElement extends HTMLElement {
    */
   connectedCallback() {
     this.replaceChildren();
-    this.append(...this._buildElements());
+    this.append( ...this._buildElements() );
     this._activateListeners();
   }
 
@@ -102,11 +102,11 @@ export default class SlideToggleElement extends HTMLElement {
    * @protected
    */
   _buildElements() {
-    const track = document.createElement("div");
-    track.classList.add("slide-toggle-track");
-    const thumb = document.createElement("div");
-    thumb.classList.add("slide-toggle-thumb");
-    track.append(thumb);
+    const track = document.createElement( "div" );
+    track.classList.add( "slide-toggle-track" );
+    const thumb = document.createElement( "div" );
+    thumb.classList.add( "slide-toggle-thumb" );
+    track.append( thumb );
     return [track];
   }
 
@@ -124,7 +124,7 @@ export default class SlideToggleElement extends HTMLElement {
    */
   _activateListeners() {
     if ( this.#listenersAdded ) return;
-    this.addEventListener("click", this._onToggle.bind(this));
+    this.addEventListener( "click", this._onToggle.bind( this ) );
     this.#listenersAdded = true;
   }
 
@@ -135,8 +135,8 @@ export default class SlideToggleElement extends HTMLElement {
    * @param {PointerEvent} event  The triggering event.
    * @protected
    */
-  _onToggle(event) {
+  _onToggle( event ) {
     this.checked = !this.checked;
-    this.dispatchEvent(new Event("change"));
+    this.dispatchEvent( new Event( "change" ) );
   }
 }

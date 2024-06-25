@@ -9,22 +9,22 @@ export default class BaseConfigSheet extends DocumentSheet {
 
   /** @inheritDoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       sheetConfig: false
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  activateListeners(html) {
-    super.activateListeners(html);
-    if (this.isEditable) {
-      for (const override of this._getActorOverrides()) {
-        html.find(`input[name="${override}"],select[name="${override}"]`).each((i, el) => {
+  activateListeners( html ) {
+    super.activateListeners( html );
+    if ( this.isEditable ) {
+      for ( const override of this._getActorOverrides() ) {
+        html.find( `input[name="${override}"],select[name="${override}"]` ).each( ( i, el ) => {
           el.disabled = true;
           el.dataset.tooltip = "SW5E.ActiveEffectOverrideWarning";
-        });
+        } );
       }
     }
   }
@@ -37,7 +37,7 @@ export default class BaseConfigSheet extends DocumentSheet {
    * @protected
    */
   _getActorOverrides() {
-    return Object.keys(foundry.utils.flattenObject(this.object.overrides || {}));
+    return Object.keys( foundry.utils.flattenObject( this.object.overrides || {} ) );
   }
 
   /* -------------------------------------------- */
@@ -49,7 +49,7 @@ export default class BaseConfigSheet extends DocumentSheet {
    * @param {string[]} overrides  The list of fields that are currently modified by Active Effects. *Will be mutated.*
    * @internal
    */
-  _addOverriddenChoices(prefix, path, overrides) {
-    ActiveEffect5e.addOverriddenChoices(this.document, prefix, path, overrides);
+  _addOverriddenChoices( prefix, path, overrides ) {
+    ActiveEffect5e.addOverriddenChoices( this.document, prefix, path, overrides );
   }
 }

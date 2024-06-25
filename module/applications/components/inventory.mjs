@@ -8,48 +8,48 @@ import ContextMenu5e from "../context-menu.mjs";
  */
 export default class InventoryElement extends HTMLElement {
   connectedCallback() {
-    this.#app = ui.windows[this.closest(".app")?.dataset.appid];
+    this.#app = ui.windows[this.closest( ".app" )?.dataset.appid];
 
     this._initializeFilterLists();
 
     if ( !this.canUse ) {
-      for ( const element of this.querySelectorAll('[data-action="use"]') ) {
+      for ( const element of this.querySelectorAll( '[data-action="use"]' ) ) {
         element.dataset.action = null;
-        element.closest(".rollable")?.classList.remove("rollable");
+        element.closest( ".rollable" )?.classList.remove( "rollable" );
       }
     }
 
-    for ( const input of this.querySelectorAll('input[type="number"]') ) {
-      input.addEventListener("change", this._onChangeInput.bind(this));
+    for ( const input of this.querySelectorAll( 'input[type="number"]' ) ) {
+      input.addEventListener( "change", this._onChangeInput.bind( this ) );
     }
 
-    for ( const input of this.querySelectorAll('input[inputmode="numeric"]') ) {
-      input.addEventListener("change", this._onChangeInputDelta.bind(this));
+    for ( const input of this.querySelectorAll( 'input[inputmode="numeric"]' ) ) {
+      input.addEventListener( "change", this._onChangeInputDelta.bind( this ) );
     }
 
-    for ( const button of this.querySelectorAll(".adjustment-button") ) {
-      button.addEventListener("click", this._onAdjustInput.bind(this));
+    for ( const button of this.querySelectorAll( ".adjustment-button" ) ) {
+      button.addEventListener( "click", this._onAdjustInput.bind( this ) );
     }
 
-    for ( const control of this.querySelectorAll(".item-action[data-action]") ) {
-      control.addEventListener("click", event => {
-        this._onAction(event.currentTarget, event.currentTarget.dataset.action);
-      });
+    for ( const control of this.querySelectorAll( ".item-action[data-action]" ) ) {
+      control.addEventListener( "click", event => {
+        this._onAction( event.currentTarget, event.currentTarget.dataset.action );
+      } );
     }
 
-    for ( const control of this.querySelectorAll("[data-context-menu]") ) {
-      control.addEventListener("click", event => {
+    for ( const control of this.querySelectorAll( "[data-context-menu]" ) ) {
+      control.addEventListener( "click", event => {
         event.preventDefault();
         event.stopPropagation();
         const { clientX, clientY } = event;
-        event.currentTarget.closest("[data-item-id]").dispatchEvent(new PointerEvent("contextmenu", {
+        event.currentTarget.closest( "[data-item-id]" ).dispatchEvent( new PointerEvent( "contextmenu", {
           view: window, bubbles: true, cancelable: true, clientX, clientY
-        }));
-      });
+        } ) );
+      } );
     }
 
-    const MenuCls = this.hasAttribute("v2") ? ContextMenu5e : ContextMenu;
-    new MenuCls(this, "[data-item-id]", [], {onOpen: this._onOpenContextMenu.bind(this)});
+    const MenuCls = this.hasAttribute( "v2" ) ? ContextMenu5e : ContextMenu;
+    new MenuCls( this, "[data-item-id]", [], {onOpen: this._onOpenContextMenu.bind( this )} );
   }
 
   /* -------------------------------------------- */
@@ -59,7 +59,7 @@ export default class InventoryElement extends HTMLElement {
    * @protected
    */
   _initializeFilterLists() {
-    const filterLists = this.querySelectorAll(".filter-list");
+    const filterLists = this.querySelectorAll( ".filter-list" );
     if ( !this._app._filters || !filterLists.length ) return;
 
     // Activate the set of filters which are currently applied
@@ -67,18 +67,18 @@ export default class InventoryElement extends HTMLElement {
       const state = this._app._filters[list.dataset.filter];
       if ( !state ) continue;
       const set = state.properties;
-      const filters = list.querySelectorAll(".filter-item");
+      const filters = list.querySelectorAll( ".filter-item" );
       for ( const filter of filters ) {
-        if ( set.has(filter.dataset.filter) ) filter.classList.add("active");
-        filter.addEventListener("click", () => {
+        if ( set.has( filter.dataset.filter ) ) filter.classList.add( "active" );
+        filter.addEventListener( "click", () => {
           const f = filter.dataset.filter;
-          if ( set.has(f) ) set.delete(f);
-          else set.add(f);
-          filter.classList.toggle("active", set.has(f));
-          this._applyFilters(state);
-        });
+          if ( set.has( f ) ) set.delete( f );
+          else set.add( f );
+          filter.classList.toggle( "active", set.has( f ) );
+          this._applyFilters( state );
+        } );
       }
-      this._applyFilters(state);
+      this._applyFilters( state );
     }
   }
 
@@ -90,14 +90,14 @@ export default class InventoryElement extends HTMLElement {
    * @param {FilterState5e} state  The filter state to apply.
    * @protected
    */
-  _applyFilters(state) {
-    let items = this._app._filterItems?.(this._app.object.items, state.properties);
+  _applyFilters( state ) {
+    let items = this._app._filterItems?.( this._app.object.items, state.properties );
     if ( !items ) return;
     const elementMap = {};
-    this.querySelectorAll(".inventory-list .item-list .item").forEach(el => {
+    this.querySelectorAll( ".inventory-list .item-list .item" ).forEach( el => {
       elementMap[el.dataset.itemId] = el;
       el.hidden = true;
-    });
+    } );
     for ( const item of items ) {
       const el = elementMap[item.id];
       if ( el ) el.hidden = false;
@@ -128,7 +128,7 @@ export default class InventoryElement extends HTMLElement {
    * @type {boolean}
    */
   get canUse() {
-    return !(!this.actor || !this.actor.isOwner || this.actor.pack);
+    return !( !this.actor || !this.actor.isOwner || this.actor.pack );
   }
 
   /* -------------------------------------------- */
@@ -161,9 +161,9 @@ export default class InventoryElement extends HTMLElement {
    * @param {string} id
    * @returns {Item5e|Promise<Item5e>}
    */
-  getItem(id) {
-    if ( this.document.type === "container" ) return this.document.system.getContainedItem(id);
-    return this.document.items.get(id);
+  getItem( id ) {
+    if ( this.document.type === "container" ) return this.document.system.getContainedItem( id );
+    return this.document.items.get( id );
   }
 
   /* -------------------------------------------- */
@@ -176,100 +176,100 @@ export default class InventoryElement extends HTMLElement {
    * @returns {ContextMenuEntry[]}  An array of context menu options offered for the Item.
    * @protected
    */
-  _getContextOptions(item) {
+  _getContextOptions( item ) {
     // Standard Options
     const options = [
       {
         name: "SW5E.ContextMenuActionEdit",
         icon: "<i class='fas fa-edit fa-fw'></i>",
         condition: () => item.isOwner,
-        callback: li => this._onAction(li[0], "edit")
+        callback: li => this._onAction( li[0], "edit" )
       },
       {
         name: "SW5E.ItemView",
         icon: '<i class="fas fa-eye"></i>',
         condition: () => !item.isOwner,
-        callback: li => this._onAction(li[0], "view")
+        callback: li => this._onAction( li[0], "view" )
       },
       {
         name: "SW5E.ContextMenuActionDuplicate",
         icon: "<i class='fas fa-copy fa-fw'></i>",
-        condition: () => !item.system.metadata?.singleton && !["class", "archetype"].includes(item.type) && item.isOwner,
-        callback: li => this._onAction(li[0], "duplicate")
+        condition: () => !item.system.metadata?.singleton && !["class", "archetype"].includes( item.type ) && item.isOwner,
+        callback: li => this._onAction( li[0], "duplicate" )
       },
       {
         name: "SW5E.ContextMenuActionDelete",
         icon: "<i class='fas fa-trash fa-fw'></i>",
         condition: () => item.isOwner,
-        callback: li => this._onAction(li[0], "delete")
+        callback: li => this._onAction( li[0], "delete" )
       },
       {
         name: "SW5E.Scroll.CreateScroll",
         icon: '<i class="fa-solid fa-scroll"></i>',
-        callback: async li => Item5e.create(await Item5e.createScrollFromPower(item), { parent: this.actor }),
-        condition: li => (item.type === "power") && this.actor?.isOwner,
+        callback: async li => Item5e.create( await Item5e.createScrollFromPower( item ), { parent: this.actor } ),
+        condition: li => ( item.type === "power" ) && this.actor?.isOwner,
         group: "action"
       },
       {
         name: "SW5E.ConcentrationBreak",
         icon: '<sw5e-icon src="systems/sw5e/icons/svg/break-concentration.svg"></sw5e-icon>',
-        condition: () => this.actor.concentration?.items.has(item),
-        callback: () => this.actor.endConcentration(item),
+        condition: () => this.actor.concentration?.items.has( item ),
+        callback: () => this.actor.endConcentration( item ),
         group: "state"
       }
     ];
 
-    if ( !this.actor || (this.actor.type === "group") ) return options;
+    if ( !this.actor || ( this.actor.type === "group" ) ) return options;
 
     // Toggle Attunement State
     if ( item.system.attunement ) {
-      options.push({
+      options.push( {
         name: item.system.attuned ? "SW5E.ContextMenuActionUnattune" : "SW5E.ContextMenuActionAttune",
         icon: "<i class='fas fa-sun fa-fw'></i>",
         condition: () => item.isOwner,
-        callback: li => this._onAction(li[0], "attune"),
+        callback: li => this._onAction( li[0], "attune" ),
         group: "state"
-      });
+      } );
     }
 
     // Toggle Equipped State
-    if ( "equipped" in item.system ) options.push({
+    if ( "equipped" in item.system ) options.push( {
       name: item.system.equipped ? "SW5E.ContextMenuActionUnequip" : "SW5E.ContextMenuActionEquip",
       icon: "<i class='fas fa-shield-alt fa-fw'></i>",
       condition: () => item.isOwner,
-      callback: li => this._onAction(li[0], "equip"),
+      callback: li => this._onAction( li[0], "equip" ),
       group: "state"
-    });
+    } );
 
     // Toggle Prepared State
-    else if ( ("preparation" in item.system) && (item.system.preparation?.mode === "prepared") ) options.push({
+    else if ( ( "preparation" in item.system ) && ( item.system.preparation?.mode === "prepared" ) ) options.push( {
       name: item.system?.preparation?.prepared ? "SW5E.ContextMenuActionUnprepare" : "SW5E.ContextMenuActionPrepare",
       icon: "<i class='fas fa-sun fa-fw'></i>",
       condition: () => item.isOwner,
-      callback: li => this._onAction(li[0], "prepare"),
+      callback: li => this._onAction( li[0], "prepare" ),
       group: "state"
-    });
+    } );
 
     // Identification
-    if ( "identified" in item.system ) options.push({
+    if ( "identified" in item.system ) options.push( {
       name: "SW5E.Identify",
       icon: '<i class="fas fa-magnifying-glass"></i>',
       condition: () => item.isOwner && !item.system.identified,
-      callback: () => item.update({ "system.identified": true }),
+      callback: () => item.update( { "system.identified": true } ),
       group: "state"
-    });
+    } );
 
     // Toggle Favorite State
-    if ( ("favorites" in this.actor.system) ) {
-      const uuid = item.getRelativeUUID(this.actor);
-      const isFavorited = this.actor.system.hasFavorite(uuid);
-      options.push({
+    if ( ( "favorites" in this.actor.system ) ) {
+      const uuid = item.getRelativeUUID( this.actor );
+      const isFavorited = this.actor.system.hasFavorite( uuid );
+      options.push( {
         name: isFavorited ? "SW5E.FavoriteRemove" : "SW5E.Favorite",
         icon: "<i class='fas fa-star fa-fw'></i>",
         condition: () => item.isOwner,
-        callback: li => this._onAction(li[0], isFavorited ? "unfavorite" : "favorite"),
+        callback: li => this._onAction( li[0], isFavorited ? "unfavorite" : "favorite" ),
         group: "state"
-      });
+      } );
     }
 
     return options;
@@ -283,19 +283,19 @@ export default class InventoryElement extends HTMLElement {
    * @returns {Promise}
    * @protected
    */
-  async _onChangeInput(event) {
-    const itemId = event.target.closest("[data-item-id]")?.dataset.itemId;
+  async _onChangeInput( event ) {
+    const itemId = event.target.closest( "[data-item-id]" )?.dataset.itemId;
     if ( !itemId ) return;
 
     event.stopImmediatePropagation();
-    const item = await this.getItem(itemId);
-    const min = event.target.min !== "" ? Number(event.target.min) : -Infinity;
-    const max = event.target.max !== "" ? Number(event.target.max) : Infinity;
-    const value = Math.clamp(event.target.valueAsNumber, min, max);
-    if ( !item || Number.isNaN(value) ) return;
+    const item = await this.getItem( itemId );
+    const min = event.target.min !== "" ? Number( event.target.min ) : -Infinity;
+    const max = event.target.max !== "" ? Number( event.target.max ) : Infinity;
+    const value = Math.clamp( event.target.valueAsNumber, min, max );
+    if ( !item || Number.isNaN( value ) ) return;
 
     event.target.value = value;
-    item.update({[event.target.dataset.name]: value});
+    item.update( {[event.target.dataset.name]: value} );
   }
 
   /* -------------------------------------------- */
@@ -305,15 +305,15 @@ export default class InventoryElement extends HTMLElement {
    * @param {Event} event  Triggering event.
    * @protected
    */
-  async _onChangeInputDelta(event) {
+  async _onChangeInputDelta( event ) {
     // If this is already handled by the parent sheet, skip.
     if ( this.#app?._onChangeInputDelta ) return;
     const input = event.target;
-    const itemId = input.closest("[data-item-id]")?.dataset.itemId;
-    const item = await this.getItem(itemId);
+    const itemId = input.closest( "[data-item-id]" )?.dataset.itemId;
+    const item = await this.getItem( itemId );
     if ( !item ) return;
-    const result = parseInputDelta(input, item);
-    if ( result !== undefined ) item.update({ [input.dataset.name]: result });
+    const result = parseInputDelta( input, item );
+    if ( result !== undefined ) item.update( { [input.dataset.name]: result } );
   }
 
   /* -------------------------------------------- */
@@ -323,17 +323,17 @@ export default class InventoryElement extends HTMLElement {
    * @param {PointerEvent} event  The triggering event.
    * @protected
    */
-  _onAdjustInput(event) {
+  _onAdjustInput( event ) {
     const button = event.currentTarget;
     const { action } = button.dataset;
-    const input = button.parentElement.querySelector("input");
-    const min = input.min ? Number(input.min) : -Infinity;
-    const max = input.max ? Number(input.max) : Infinity;
-    let value = Number(input.value);
-    if ( isNaN(value) ) return;
+    const input = button.parentElement.querySelector( "input" );
+    const min = input.min ? Number( input.min ) : -Infinity;
+    const max = input.max ? Number( input.max ) : Infinity;
+    let value = Number( input.value );
+    if ( isNaN( value ) ) return;
     value += action === "increase" ? 1 : -1;
-    input.value = Math.clamp(value, min, max);
-    input.dispatchEvent(new Event("change"));
+    input.value = Math.clamp( value, min, max );
+    input.dispatchEvent( new Event( "change" ) );
   }
 
   /* -------------------------------------------- */
@@ -345,49 +345,49 @@ export default class InventoryElement extends HTMLElement {
    * @returns {Promise}
    * @protected
    */
-  async _onAction(target, action) {
-    const event = new CustomEvent("inventory", {
+  async _onAction( target, action ) {
+    const event = new CustomEvent( "inventory", {
       bubbles: true,
       cancelable: true,
       detail: action
-    });
-    if ( target.dispatchEvent(event) === false ) return;
+    } );
+    if ( target.dispatchEvent( event ) === false ) return;
 
-    const itemId = target.closest("[data-item-id]")?.dataset.itemId;
-    const item = await this.getItem(itemId);
-    if ( !["create", "currency"].includes(action) && !item ) return;
+    const itemId = target.closest( "[data-item-id]" )?.dataset.itemId;
+    const item = await this.getItem( itemId );
+    if ( !["create", "currency"].includes( action ) && !item ) return;
 
     switch ( action ) {
       case "attune":
-        return item.update({"system.attuned": !item.system.attuned});
+        return item.update( {"system.attuned": !item.system.attuned} );
       case "create":
         if ( this.document.type === "container" ) return;
-        return this._onCreate(target);
+        return this._onCreate( target );
       case "crew":
-        return item.update({"system.crewed": !item.system.crewed});
+        return item.update( {"system.crewed": !item.system.crewed} );
       case "currency":
-        return new CurrencyManager(this.document).render(true);
+        return new CurrencyManager( this.document ).render( true );
       case "delete":
         return item.deleteDialog();
       case "duplicate":
-        return item.clone({name: game.i18n.format("DOCUMENT.CopyOf", {name: item.name})}, {save: true});
+        return item.clone( {name: game.i18n.format( "DOCUMENT.CopyOf", {name: item.name} )}, {save: true} );
       case "edit":
       case "view":
-        return item.sheet.render(true);
+        return item.sheet.render( true );
       case "equip":
-        return item.update({"system.equipped": !item.system.equipped});
+        return item.update( {"system.equipped": !item.system.equipped} );
       case "expand":
-        return this._onExpand(target, item);
+        return this._onExpand( target, item );
       case "favorite":
-        return this.actor.system.addFavorite({type: "item", id: item.getRelativeUUID(this.actor)});
+        return this.actor.system.addFavorite( {type: "item", id: item.getRelativeUUID( this.actor )} );
       case "prepare":
-        return item.update({"system.preparation.prepared": !item.system.preparation?.prepared});
+        return item.update( {"system.preparation.prepared": !item.system.preparation?.prepared} );
       case "recharge":
         return item.rollRecharge();
       case "unfavorite":
-        return this.actor.system.removeFavorite(item.getRelativeUUID(this.actor));
+        return this.actor.system.removeFavorite( item.getRelativeUUID( this.actor ) );
       case "use":
-        return item.use({}, { event });
+        return item.use( {}, { event } );
     }
   }
 
@@ -398,25 +398,25 @@ export default class InventoryElement extends HTMLElement {
    * @param {HTMLElement} target  Button or context menu entry that triggered this action.
    * @returns {Promise<Item5e>}
    */
-  async _onCreate(target) {
-    const { type, ...dataset } = (target.closest(".powerbook-header") ?? target).dataset;
+  async _onCreate( target ) {
+    const { type, ...dataset } = ( target.closest( ".powerbook-header" ) ?? target ).dataset;
     delete dataset.action;
     delete dataset.tooltip;
 
     // Check to make sure the newly created class doesn't take player over level cap
-    if ( type === "class" && (this.actor.system.details.level + 1 > CONFIG.SW5E.maxLevel) ) {
-      const err = game.i18n.format("SW5E.MaxCharacterLevelExceededWarn", {max: CONFIG.SW5E.maxLevel});
-      ui.notifications.error(err);
+    if ( type === "class" && ( this.actor.system.details.level + 1 > CONFIG.SW5E.maxLevel ) ) {
+      const err = game.i18n.format( "SW5E.MaxCharacterLevelExceededWarn", {max: CONFIG.SW5E.maxLevel} );
+      ui.notifications.error( err );
       return null;
     }
 
     const itemData = {
-      name: game.i18n.format("SW5E.ItemNew", {type: game.i18n.localize(CONFIG.Item.typeLabels[type])}),
+      name: game.i18n.format( "SW5E.ItemNew", {type: game.i18n.localize( CONFIG.Item.typeLabels[type] )} ),
       type,
-      system: foundry.utils.expandObject({ ...dataset })
+      system: foundry.utils.expandObject( { ...dataset } )
     };
     delete itemData.system.type;
-    return this.actor.createEmbeddedDocuments("Item", [itemData]);
+    return this.actor.createEmbeddedDocuments( "Item", [itemData] );
   }
 
   /* -------------------------------------------- */
@@ -426,19 +426,19 @@ export default class InventoryElement extends HTMLElement {
    * @param {HTMLElement} target  Button or context menu entry that triggered this action.
    * @param {Item5e} item         Item to being expanded or collapsed.
    */
-  async _onExpand(target, item) {
-    const li = target.closest("[data-item-id]");
-    if ( this._app._expanded.has(item.id) ) {
-      const summary = $(li.querySelector(".item-summary"));
-      summary.slideUp(200, () => summary.remove());
-      this._app._expanded.delete(item.id);
+  async _onExpand( target, item ) {
+    const li = target.closest( "[data-item-id]" );
+    if ( this._app._expanded.has( item.id ) ) {
+      const summary = $( li.querySelector( ".item-summary" ) );
+      summary.slideUp( 200, () => summary.remove() );
+      this._app._expanded.delete( item.id );
     } else {
       const enrichment = {secrets: this.document.isOwner};
-      const chatData = item.system.getCardData ? item.system.getCardData(enrichment) : item.getChatData(enrichment);
-      const summary = $(await renderTemplate("systems/sw5e/templates/items/parts/item-summary.hbs", await chatData));
-      $(li).append(summary.hide());
-      summary.slideDown(200);
-      this._app._expanded.add(item.id);
+      const chatData = item.system.getCardData ? item.system.getCardData( enrichment ) : item.getChatData( enrichment );
+      const summary = $( await renderTemplate( "systems/sw5e/templates/items/parts/item-summary.hbs", await chatData ) );
+      $( li ).append( summary.hide() );
+      summary.slideDown( 200 );
+      this._app._expanded.add( item.id );
     }
   }
 
@@ -449,11 +449,11 @@ export default class InventoryElement extends HTMLElement {
    * @param {HTMLElement} element  The element the context menu was triggered on.
    * @protected
    */
-  _onOpenContextMenu(element) {
-    const item = this.getItem(element.closest("[data-item-id]")?.dataset.itemId);
+  _onOpenContextMenu( element ) {
+    const item = this.getItem( element.closest( "[data-item-id]" )?.dataset.itemId );
     // Parts of ContextMenu doesn't play well with promises, so don't show menus for containers in packs
-    if ( !item || (item instanceof Promise) ) return;
-    ui.context.menuItems = this._getContextOptions(item);
-    Hooks.call("sw5e.getItemContextOptions", item, ui.context.menuItems);
+    if ( !item || ( item instanceof Promise ) ) return;
+    ui.context.menuItems = this._getContextOptions( item );
+    Hooks.call( "sw5e.getItemContextOptions", item, ui.context.menuItems );
   }
 }

@@ -19,22 +19,22 @@ export default Base => class extends Base {
   /** @inheritDoc */
   prepareData() {
     super.prepareData();
-    if ( ("sw5e" in this.flags) && this._systemFlagsDataModel ) {
-      this.flags.sw5e = new this._systemFlagsDataModel(this._source.flags.sw5e, { parent: this });
+    if ( ( "sw5e" in this.flags ) && this._systemFlagsDataModel ) {
+      this.flags.sw5e = new this._systemFlagsDataModel( this._source.flags.sw5e, { parent: this } );
     }
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async setFlag(scope, key, value) {
-    if ( (scope === "sw5e") && this._systemFlagsDataModel ) {
+  async setFlag( scope, key, value ) {
+    if ( ( scope === "sw5e" ) && this._systemFlagsDataModel ) {
       let diff;
-      const changes = foundry.utils.expandObject({ [key]: value });
-      if ( this.flags.sw5e ) diff = this.flags.sw5e.updateSource(changes, { dryRun: true });
-      else diff = new this._systemFlagsDataModel(changes, { parent: this }).toObject();
-      return this.update({ flags: { sw5e: diff } });
+      const changes = foundry.utils.expandObject( { [key]: value } );
+      if ( this.flags.sw5e ) diff = this.flags.sw5e.updateSource( changes, { dryRun: true } );
+      else diff = new this._systemFlagsDataModel( changes, { parent: this } ).toObject();
+      return this.update( { flags: { sw5e: diff } } );
     }
-    return super.setFlag(scope, key, value);
+    return super.setFlag( scope, key, value );
   }
 };

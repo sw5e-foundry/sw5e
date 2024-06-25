@@ -20,52 +20,52 @@ import CurrencyTemplate from "../../shared/currency.mjs";
  * @property {Object<string, AbilityData>} abilities  Actor's abilities.
  * @mixin
  */
-export default class CommonTemplate extends ActorDataModel.mixin(CurrencyTemplate) {
+export default class CommonTemplate extends ActorDataModel.mixin( CurrencyTemplate ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
+    return this.mergeSchema( super.defineSchema(), {
       abilities: new MappingField(
-        new foundry.data.fields.SchemaField({
-          value: new foundry.data.fields.NumberField({
+        new foundry.data.fields.SchemaField( {
+          value: new foundry.data.fields.NumberField( {
             required: true,
             nullable: false,
             integer: true,
             min: 0,
             initial: 10,
             label: "SW5E.AbilityScore"
-          }),
-          proficient: new foundry.data.fields.NumberField({
+          } ),
+          proficient: new foundry.data.fields.NumberField( {
             required: true,
             min: 0,
             max: 5,
             step: 0.5,
             initial: 0,
             label: "SW5E.ProficiencyLevel"
-          }),
-          max: new foundry.data.fields.NumberField({
+          } ),
+          max: new foundry.data.fields.NumberField( {
             required: true,
             integer: true,
             nullable: true,
             min: 0,
             initial: null,
             label: "SW5E.AbilityScoreMax"
-          }),
+          } ),
           bonuses: new foundry.data.fields.SchemaField(
             {
-              check: new FormulaField({ required: true, label: "SW5E.AbilityCheckBonus" }),
-              save: new FormulaField({ required: true, label: "SW5E.SaveBonus" })
+              check: new FormulaField( { required: true, label: "SW5E.AbilityCheckBonus" } ),
+              save: new FormulaField( { required: true, label: "SW5E.SaveBonus" } )
             },
             { label: "SW5E.AbilityBonuses" }
           )
-        }),
+        } ),
         {
           initialKeys: CONFIG.SW5E.abilities,
-          initialValue: this._initialAbilityValue.bind(this),
+          initialValue: this._initialAbilityValue.bind( this ),
           initialKeysOnly: true,
           label: "SW5E.Abilities"
         }
       )
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -78,11 +78,11 @@ export default class CommonTemplate extends ActorDataModel.mixin(CurrencyTemplat
    * @returns {object}         Initial ability object.
    * @private
    */
-  static _initialAbilityValue(key, initial, existing) {
+  static _initialAbilityValue( key, initial, existing ) {
     const config = CONFIG.SW5E.abilities[key];
-    if (config) {
+    if ( config ) {
       let defaultValue = config.defaults?.[this._systemType] ?? initial.value;
-      if (typeof defaultValue === "string") defaultValue = existing?.[defaultValue]?.value ?? initial.value;
+      if ( typeof defaultValue === "string" ) defaultValue = existing?.[defaultValue]?.value ?? initial.value;
       initial.value = defaultValue;
     }
     return initial;
@@ -93,10 +93,10 @@ export default class CommonTemplate extends ActorDataModel.mixin(CurrencyTemplat
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    CommonTemplate.#migrateACData(source);
-    CommonTemplate.#migrateMovementData(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    CommonTemplate.#migrateACData( source );
+    CommonTemplate.#migrateMovementData( source );
   }
 
   /* -------------------------------------------- */
@@ -105,28 +105,28 @@ export default class CommonTemplate extends ActorDataModel.mixin(CurrencyTemplat
    * Migrate the actor ac.value to new ac.flat override field.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateACData(source) {
-    if (!source.attributes?.ac) return;
+  static #migrateACData( source ) {
+    if ( !source.attributes?.ac ) return;
     const ac = source.attributes.ac;
 
     // If the actor has a numeric ac.value, then their AC has not been migrated to the auto-calculation schema yet.
-    if (Number.isNumeric(ac.value)) {
-      ac.flat = parseInt(ac.value);
+    if ( Number.isNumeric( ac.value ) ) {
+      ac.flat = parseInt( ac.value );
       ac.calc = this._systemType === "npc" ? "natural" : "flat";
       return;
     }
 
     // Migrate ac.base in custom formulas to ac.armor
-    if (typeof ac.formula === "string" && ac.formula.includes("@attributes.ac.base")) {
-      ac.formula = ac.formula.replaceAll("@attributes.ac.base", "@attributes.ac.armor");
+    if ( typeof ac.formula === "string" && ac.formula.includes( "@attributes.ac.base" ) ) {
+      ac.formula = ac.formula.replaceAll( "@attributes.ac.base", "@attributes.ac.armor" );
     }
 
     // Remove invalid AC formula strings.
-    if (ac?.formula) {
+    if ( ac?.formula ) {
       try {
-        const roll = new Roll(ac.formula);
-        Roll.safeEval(roll.formula);
-      } catch(e) {
+        const roll = new Roll( ac.formula );
+        Roll.safeEval( roll.formula );
+      } catch( e ) {
         ac.formula = "";
       }
     }
@@ -138,12 +138,12 @@ export default class CommonTemplate extends ActorDataModel.mixin(CurrencyTemplat
    * Migrate the actor speed string to movement object.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateMovementData(source) {
+  static #migrateMovementData( source ) {
     const original = source.attributes?.speed?.value ?? source.attributes?.speed;
-    if (typeof original !== "string" || source.attributes.movement?.walk !== undefined) return;
+    if ( typeof original !== "string" || source.attributes.movement?.walk !== undefined ) return;
     source.attributes.movement ??= {};
-    const s = original.split(" ");
-    if (s.length > 0) source.attributes.movement.walk = Number.isNumeric(s[0]) ? parseInt(s[0]) : 0;
+    const s = original.split( " " );
+    if ( s.length > 0 ) source.attributes.movement.walk = Number.isNumeric( s[0] ) ? parseInt( s[0] ) : 0;
   }
 
   /* -------------------------------------------- */
@@ -157,33 +157,33 @@ export default class CommonTemplate extends ActorDataModel.mixin(CurrencyTemplat
    * @param {object} [options.rollData={}]    Roll data used to calculate bonuses.
    * @param {object} [options.originalSaves]  Original ability data for transformed actors.
    */
-  prepareAbilities({ rollData={}, originalSaves }={}) {
+  prepareAbilities( { rollData={}, originalSaves }={} ) {
     const flags = this.parent.flags.sw5e ?? {};
     const prof = this.attributes?.prof ?? 0;
-    const checkBonus = simplifyBonus(this.bonuses?.abilities?.check, rollData);
-    const saveBonus = simplifyBonus(this.bonuses?.abilities?.save, rollData);
-    const dcBonus = simplifyBonus(this.bonuses?.power?.dc, rollData);
-    for ( const [id, abl] of Object.entries(this.abilities) ) {
+    const checkBonus = simplifyBonus( this.bonuses?.abilities?.check, rollData );
+    const saveBonus = simplifyBonus( this.bonuses?.abilities?.save, rollData );
+    const dcBonus = simplifyBonus( this.bonuses?.power?.dc, rollData );
+    for ( const [id, abl] of Object.entries( this.abilities ) ) {
       if ( flags.diamondSoul ) abl.proficient = 1;  // Diamond Soul is proficient in all saves
-      abl.mod = Math.floor((abl.value - 10) / 2);
+      abl.mod = Math.floor( ( abl.value - 10 ) / 2 );
 
-      const isRA = this.parent._isRemarkableAthlete(id);
-      abl.checkProf = new Proficiency(prof, (isRA || flags.jackOfAllTrades) ? 0.5 : 0, !isRA);
-      const saveBonusAbl = simplifyBonus(abl.bonuses?.save, rollData);
+      const isRA = this.parent._isRemarkableAthlete( id );
+      abl.checkProf = new Proficiency( prof, ( isRA || flags.jackOfAllTrades ) ? 0.5 : 0, !isRA );
+      const saveBonusAbl = simplifyBonus( abl.bonuses?.save, rollData );
       abl.saveBonus = saveBonusAbl + saveBonus;
 
-      abl.saveProf = new Proficiency(prof, abl.proficient);
-      const checkBonusAbl = simplifyBonus(abl.bonuses?.check, rollData);
+      abl.saveProf = new Proficiency( prof, abl.proficient );
+      const checkBonusAbl = simplifyBonus( abl.bonuses?.check, rollData );
       abl.checkBonus = checkBonusAbl + checkBonus;
 
       abl.save = abl.mod + abl.saveBonus;
-      if ( Number.isNumeric(abl.saveProf.term) ) abl.save += abl.saveProf.flat;
+      if ( Number.isNumeric( abl.saveProf.term ) ) abl.save += abl.saveProf.flat;
       abl.dc = 8 + abl.mod + prof + dcBonus;
 
-      if ( !Number.isFinite(abl.max) ) abl.max = CONFIG.SW5E.maxAbilityScore;
+      if ( !Number.isFinite( abl.max ) ) abl.max = CONFIG.SW5E.maxAbilityScore;
 
       // If we merged saves when transforming, take the highest bonus here.
-      if ( originalSaves && abl.proficient ) abl.save = Math.max(abl.save, originalSaves[id].save);
+      if ( originalSaves && abl.proficient ) abl.save = Math.max( abl.save, originalSaves[id].save );
     }
   }
 }

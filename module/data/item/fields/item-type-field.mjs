@@ -8,20 +8,20 @@
  * @param {DataFieldOptions} [schemaOptions={}]   Options forwarded to the SchemaField.
  */
 export default class ItemTypeField extends foundry.data.fields.SchemaField {
-  constructor(options={}, schemaOptions={}) {
+  constructor( options={}, schemaOptions={} ) {
     const fields = {
-      value: new foundry.data.fields.StringField({
+      value: new foundry.data.fields.StringField( {
         required: true, blank: true, initial: options.value ?? "", label: "SW5E.Type"
-      }),
-      subtype: new foundry.data.fields.StringField({
+      } ),
+      subtype: new foundry.data.fields.StringField( {
         required: true, blank: true, initial: options.subtype ?? "", label: "SW5E.Subtype"
-      }),
-      baseItem: new foundry.data.fields.StringField({
+      } ),
+      baseItem: new foundry.data.fields.StringField( {
         required: true, blank: true, initial: options.baseItem ?? "", label: "SW5E.BaseItem"
-      })
+      } )
     };
     if ( options.subtype === false ) delete fields.subtype;
     if ( options.baseItem === false ) delete fields.baseItem;
-    super(fields, schemaOptions);
+    super( fields, schemaOptions );
   }
 }

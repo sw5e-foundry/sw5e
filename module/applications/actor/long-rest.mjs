@@ -6,8 +6,8 @@
  * @param {object} [options={}]     Dialog rendering options.
  */
 export default class LongRestDialog extends Dialog {
-  constructor(actor, dialogData = {}, options = {}) {
-    super(dialogData, options);
+  constructor( actor, dialogData = {}, options = {} ) {
+    super( dialogData, options );
     this.actor = actor;
   }
 
@@ -15,10 +15,10 @@ export default class LongRestDialog extends Dialog {
 
   /** @inheritDoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       template: "systems/sw5e/templates/apps/long-rest.hbs",
       classes: ["sw5e", "dialog"]
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -26,7 +26,7 @@ export default class LongRestDialog extends Dialog {
   /** @inheritDoc */
   getData() {
     const context = super.getData();
-    const variant = game.settings.get("sw5e", "restVariant");
+    const variant = game.settings.get( "sw5e", "restVariant" );
     context.isGroup = this.actor.type === "group";
     context.promptNewDay = variant !== "gritty";     // It's always a new day when resting 1 week
     context.newDay = variant === "normal";           // It's probably a new day when resting normally (8 hours)
@@ -42,29 +42,29 @@ export default class LongRestDialog extends Dialog {
    * @param {Actor5e} [options.actor]  Actor that is taking the long rest.
    * @returns {Promise}                Promise that resolves when the rest is completed or rejects when canceled.
    */
-  static async longRestDialog({ actor } = {}) {
-    return new Promise((resolve, reject) => {
-      const dlg = new this(actor, {
-        title: `${game.i18n.localize("SW5E.LongRest")}: ${actor.name}`,
+  static async longRestDialog( { actor } = {} ) {
+    return new Promise( ( resolve, reject ) => {
+      const dlg = new this( actor, {
+        title: `${game.i18n.localize( "SW5E.LongRest" )}: ${actor.name}`,
         buttons: {
           rest: {
             icon: '<i class="fas fa-bed"></i>',
-            label: game.i18n.localize("SW5E.Rest"),
+            label: game.i18n.localize( "SW5E.Rest" ),
             callback: html => {
-              const formData = new FormDataExtended(html.find("form")[0]);
-              resolve(formData.object);
+              const formData = new FormDataExtended( html.find( "form" )[0] );
+              resolve( formData.object );
             }
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: game.i18n.localize("Cancel"),
+            label: game.i18n.localize( "Cancel" ),
             callback: reject
           }
         },
         default: "rest",
         close: reject
-      });
-      dlg.render(true);
-    });
+      } );
+      dlg.render( true );
+    } );
   }
 }

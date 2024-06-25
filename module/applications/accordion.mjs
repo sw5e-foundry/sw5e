@@ -13,7 +13,7 @@
  * @param {AccordionConfiguration} config  Configuration options.
  */
 export default class Accordion {
-  constructor(config) {
+  constructor( config ) {
     config.contentSelector = `${config.contentSelector}:not(.accordion-content)`;
     this.#config = config;
   }
@@ -48,30 +48,30 @@ export default class Accordion {
    * Augment the given markup with an accordion effect.
    * @param {HTMLElement} root  The root HTML node.
    */
-  bind(root) {
+  bind( root ) {
     const firstBind = this.#sections.size < 1;
     if ( firstBind ) this.#collapsed = [];
     this.#sections = new Map();
     this.#ongoing = new Map();
     const { headingSelector, contentSelector } = this.#config;
     let collapsedIndex = 0;
-    for ( const heading of root.querySelectorAll(headingSelector) ) {
-      const content = heading.querySelector(contentSelector) ?? heading.parentElement.querySelector(contentSelector);
+    for ( const heading of root.querySelectorAll( headingSelector ) ) {
+      const content = heading.querySelector( contentSelector ) ?? heading.parentElement.querySelector( contentSelector );
       if ( !content ) continue;
-      const wrapper = document.createElement("div");
-      wrapper.classList.add("accordion");
-      heading.before(wrapper);
-      wrapper.append(heading, content);
-      this.#sections.set(heading, content);
+      const wrapper = document.createElement( "div" );
+      wrapper.classList.add( "accordion" );
+      heading.before( wrapper );
+      wrapper.append( heading, content );
+      this.#sections.set( heading, content );
       content._fullHeight = content.getBoundingClientRect().height;
-      if ( firstBind ) this.#collapsed.push(this.#collapsed.length > 0);
-      else if ( this.#collapsed[collapsedIndex] ) wrapper.classList.add("collapsed");
-      heading.classList.add("accordion-heading");
-      content.classList.add("accordion-content");
-      heading.addEventListener("click", this._onClickHeading.bind(this));
+      if ( firstBind ) this.#collapsed.push( this.#collapsed.length > 0 );
+      else if ( this.#collapsed[collapsedIndex] ) wrapper.classList.add( "collapsed" );
+      heading.classList.add( "accordion-heading" );
+      content.classList.add( "accordion-content" );
+      heading.addEventListener( "click", this._onClickHeading.bind( this ) );
       collapsedIndex++;
     }
-    requestAnimationFrame(() => this._restoreCollapsedState());
+    requestAnimationFrame( () => this._restoreCollapsedState() );
   }
 
   /* -------------------------------------------- */
@@ -81,15 +81,15 @@ export default class Accordion {
    * @param {PointerEvent} event  The triggering event.
    * @protected
    */
-  _onClickHeading(event) {
-    if ( event.target.closest("a") ) return;
+  _onClickHeading( event ) {
+    if ( event.target.closest( "a" ) ) return;
     const heading = event.currentTarget;
-    const content = this.#sections.get(heading);
+    const content = this.#sections.get( heading );
     if ( !content ) return;
     event.preventDefault();
-    const collapsed = heading.parentElement.classList.contains("collapsed");
-    if ( collapsed ) this._onExpandSection(heading, content);
-    else this._onCollapseSection(heading, content);
+    const collapsed = heading.parentElement.classList.contains( "collapsed" );
+    if ( collapsed ) this._onExpandSection( heading, content );
+    else this._onCollapseSection( heading, content );
   }
 
   /* -------------------------------------------- */
@@ -102,29 +102,29 @@ export default class Accordion {
    * @param {boolean} [options.animate=true]  Whether to animate the expand effect.
    * @protected
    */
-  _onExpandSection(heading, content, { animate=true }={}) {
-    this.#cancelOngoing(heading);
+  _onExpandSection( heading, content, { animate=true }={} ) {
+    this.#cancelOngoing( heading );
 
     if ( this.#config.collapseOthers ) {
       for ( const [otherHeading, otherContent] of this.#sections.entries() ) {
-        if ( (heading !== otherHeading) && !otherHeading.parentElement.classList.contains("collapsed") ) {
-          this._onCollapseSection(otherHeading, otherContent, { animate });
+        if ( ( heading !== otherHeading ) && !otherHeading.parentElement.classList.contains( "collapsed" ) ) {
+          this._onCollapseSection( otherHeading, otherContent, { animate } );
         }
       }
     }
 
-    heading.parentElement.classList.remove("collapsed");
+    heading.parentElement.classList.remove( "collapsed" );
     if ( animate ) content.style.height = "0";
     else {
       content.style.height = `${content._fullHeight}px`;
       return;
     }
-    requestAnimationFrame(() => {
-      const onEnd = this._onEnd.bind(this, heading, content);
-      this.#ongoing.set(heading, onEnd);
-      content.addEventListener("transitionend", onEnd, { once: true });
+    requestAnimationFrame( () => {
+      const onEnd = this._onEnd.bind( this, heading, content );
+      this.#ongoing.set( heading, onEnd );
+      content.addEventListener( "transitionend", onEnd, { once: true } );
       content.style.height = `${content._fullHeight}px`;
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -137,22 +137,22 @@ export default class Accordion {
    * @param {boolean} [options.animate=true]  Whether to animate the collapse effect.
    * @protected
    */
-  _onCollapseSection(heading, content, { animate=true }={}) {
-    this.#cancelOngoing(heading);
+  _onCollapseSection( heading, content, { animate=true }={} ) {
+    this.#cancelOngoing( heading );
     const { height } = content.getBoundingClientRect();
-    heading.parentElement.classList.add("collapsed");
+    heading.parentElement.classList.add( "collapsed" );
     content._fullHeight = height || content._fullHeight;
     if ( animate ) content.style.height = `${height}px`;
     else {
       content.style.height = "0";
       return;
     }
-    requestAnimationFrame(() => {
-      const onEnd = this._onEnd.bind(this, heading, content);
-      this.#ongoing.set(heading, onEnd);
-      content.addEventListener("transitionend", onEnd, { once: true });
+    requestAnimationFrame( () => {
+      const onEnd = this._onEnd.bind( this, heading, content );
+      this.#ongoing.set( heading, onEnd );
+      content.addEventListener( "transitionend", onEnd, { once: true } );
       content.style.height = "0";
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -163,9 +163,9 @@ export default class Accordion {
    * @param {HTMLElement} content  The section content.
    * @protected
    */
-  _onEnd(heading, content) {
+  _onEnd( heading, content ) {
     content.style.height = "";
-    this.#ongoing.delete(heading);
+    this.#ongoing.delete( heading );
   }
 
   /* -------------------------------------------- */
@@ -174,10 +174,10 @@ export default class Accordion {
    * Cancel an ongoing effect.
    * @param {HTMLElement} heading  The section heading.
    */
-  #cancelOngoing(heading) {
-    const ongoing = this.#ongoing.get(heading);
-    const content = this.#sections.get(heading);
-    if ( ongoing && content ) content.removeEventListener("transitionend", ongoing);
+  #cancelOngoing( heading ) {
+    const ongoing = this.#ongoing.get( heading );
+    const content = this.#sections.get( heading );
+    if ( ongoing && content ) content.removeEventListener( "transitionend", ongoing );
   }
 
   /* -------------------------------------------- */
@@ -189,7 +189,7 @@ export default class Accordion {
   _saveCollapsedState() {
     this.#collapsed = [];
     for ( const heading of this.#sections.keys() ) {
-      this.#collapsed.push(heading.parentElement.classList.contains("collapsed"));
+      this.#collapsed.push( heading.parentElement.classList.contains( "collapsed" ) );
     }
   }
 
@@ -200,11 +200,11 @@ export default class Accordion {
    * @protected
    */
   _restoreCollapsedState() {
-    const entries = Array.from(this.#sections.entries());
+    const entries = Array.from( this.#sections.entries() );
     for ( let i = 0; i < entries.length; i++ ) {
       const collapsed = this.#collapsed[i];
       const [heading, content] = entries[i];
-      if ( collapsed ) this._onCollapseSection(heading, content, { animate: false });
+      if ( collapsed ) this._onCollapseSection( heading, content, { animate: false } );
     }
   }
 }

@@ -4,16 +4,16 @@ import AdoptedStyleSheetMixin from "./adopted-stylesheet-mixin.mjs";
  * A custom HTML element that displays proficiency status and allows cycling through values.
  * @fires change
  */
-export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin(HTMLElement) {
+export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin( HTMLElement ) {
   /** @inheritDoc */
   constructor() {
     super();
     this.#controller = new AbortController();
     this.#internals = this.attachInternals();
     this.#internals.role = "spinbutton";
-    this.#shadowRoot = this.attachShadow({ mode: "open" });
-    this._adoptStyleSheet(this._getStyleSheet());
-    this.#value = Number(this.getAttribute("value") ?? 0);
+    this.#shadowRoot = this.attachShadow( { mode: "open" } );
+    this._adoptStyleSheet( this._getStyleSheet() );
+    this.#value = Number( this.getAttribute( "value" ) ?? 0 );
   }
 
   /** @inheritDoc */
@@ -110,11 +110,11 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin(HTML
    * Is the input disabled?
    * @type {boolean}
    */
-  get disabled() { return this.hasAttribute("disabled"); }
+  get disabled() { return this.hasAttribute( "disabled" ); }
 
-  set disabled(value) {
-    this.toggleAttribute("disabled", value);
-    this.#shadowRoot.querySelector("input")?.toggleAttribute("disabled", value);
+  set disabled( value ) {
+    this.toggleAttribute( "disabled", value );
+    this.#shadowRoot.querySelector( "input" )?.toggleAttribute( "disabled", value );
   }
 
   /* -------------------------------------------- */
@@ -123,9 +123,9 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin(HTML
    * The name of the toggle.
    * @type {string}
    */
-  get name() { return this.getAttribute("name"); }
+  get name() { return this.getAttribute( "name" ); }
 
-  set name(value) { this.setAttribute("name", value); }
+  set name( value ) { this.setAttribute( "name", value ); }
 
   /* -------------------------------------------- */
 
@@ -133,11 +133,11 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin(HTML
    * Type of proficiency represented by this control (e.g. "ability" or "skill").
    * @type {"ability"|"skill"}
    */
-  get type() { return this.getAttribute("type") ?? "ability"; }
+  get type() { return this.getAttribute( "type" ) ?? "ability"; }
 
-  set type(value) {
-    if ( !["ability", "skill"].includes(value) ) throw new Error("Type must be 'ability' or 'skill'.");
-    this.setAttribute("type", value);
+  set type( value ) {
+    if ( !["ability", "skill"].includes( value ) ) throw new Error( "Type must be 'ability' or 'skill'." );
+    this.setAttribute( "type", value );
     this.#internals.ariaValueMin = 0;
     this.#internals.ariaValueMax = value === "ability" ? 1 : 2;
     this.#internals.ariaValueStep = value === "ability" ? 1 : 0.5;
@@ -163,9 +163,9 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin(HTML
 
   get value() { return this.#value; }
 
-  set value(value) {
-    value = Number(value);
-    if ( !this.validValues.includes(value) ) throw new Error("Value must be a valid proficiency multiplier.");
+  set value( value ) {
+    value = Number( value );
+    if ( !this.validValues.includes( value ) ) throw new Error( "Value must be a valid proficiency multiplier." );
     this.#value = value;
     this.#refreshValue();
   }
@@ -180,16 +180,16 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin(HTML
     this.#refreshValue();
 
     const { signal } = this.#controller;
-    this.addEventListener("click", this.#onClick.bind(this), { signal });
-    this.addEventListener("contextmenu", this.#onClick.bind(this), { signal });
-    this.#shadowRoot.querySelector("div").addEventListener("contextmenu", e => e.preventDefault(), { signal });
-    this.#shadowRoot.querySelector("input").addEventListener("change", this.#onChangeInput.bind(this), { signal });
+    this.addEventListener( "click", this.#onClick.bind( this ), { signal } );
+    this.addEventListener( "contextmenu", this.#onClick.bind( this ), { signal } );
+    this.#shadowRoot.querySelector( "div" ).addEventListener( "contextmenu", e => e.preventDefault(), { signal } );
+    this.#shadowRoot.querySelector( "input" ).addEventListener( "change", this.#onChangeInput.bind( this ), { signal } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _adoptStyleSheet(sheet) {
+  _adoptStyleSheet( sheet ) {
     this.#shadowRoot.adoptedStyleSheets = [sheet];
   }
 
@@ -199,13 +199,13 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin(HTML
    * Build the HTML internals.
    */
   #buildHTML() {
-    const div = document.createElement("div");
-    this.#shadowRoot.replaceChildren(div);
+    const div = document.createElement( "div" );
+    this.#shadowRoot.replaceChildren( div );
 
-    const input = document.createElement("input");
-    input.setAttribute("type", "number");
-    if ( this.disabled ) input.setAttribute("disabled", "");
-    div.appendChild(input);
+    const input = document.createElement( "input" );
+    input.setAttribute( "type", "number" );
+    if ( this.disabled ) input.setAttribute( "disabled", "" );
+    div.appendChild( input );
   }
 
   /* -------------------------------------------- */
@@ -214,11 +214,11 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin(HTML
    * Update input and aria attributes based on new input value.
    */
   #refreshValue() {
-    const input = this.#shadowRoot.querySelector("input");
-    input.setAttribute("value", this.#value);
+    const input = this.#shadowRoot.querySelector( "input" );
+    input.setAttribute( "value", this.#value );
     this.#internals.ariaValueNow = this.#value;
     this.#internals.ariaValueText = CONFIG.SW5E.proficiencyLevels[this.#value];
-    this.#internals.setFormValue(this.#value);
+    this.#internals.setFormValue( this.#value );
   }
 
   /* -------------------------------------------- */
@@ -234,8 +234,8 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin(HTML
    * Redirect focus requests into the inner input.
    * @param {object} options  Focus options forwarded to inner input.
    */
-  focus(options) {
-    this.#shadowRoot.querySelector("input")?.focus(options);
+  focus( options ) {
+    this.#shadowRoot.querySelector( "input" )?.focus( options );
   }
 
   /* -------------------------------------------- */
@@ -244,11 +244,11 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin(HTML
    * Change the value by one step, looping around if the limits have been reached.
    * @param {boolean} [up=true]  Should the value step up or down?
    */
-  step(up=true) {
+  step( up=true ) {
     const levels = this.validValues;
-    const idx = levels.indexOf(this.value);
-    this.value = levels[(idx + (up ? 1 : levels.length - 1)) % levels.length];
-    this.dispatchEvent(new Event("change"));
+    const idx = levels.indexOf( this.value );
+    this.value = levels[( idx + ( up ? 1 : levels.length - 1 ) ) % levels.length];
+    this.dispatchEvent( new Event( "change" ) );
   }
 
   /* -------------------------------------------- */
@@ -257,8 +257,8 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin(HTML
    * Handle changes to the input value directly.
    * @param {Event} event  Triggering change event.
    */
-  #onChangeInput(event) {
-    this.step(event.target.valueAsNumber > this.value);
+  #onChangeInput( event ) {
+    this.step( event.target.valueAsNumber > this.value );
   }
 
   /* -------------------------------------------- */
@@ -267,9 +267,9 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin(HTML
    * Handle a click event for modifying the value.
    * @param {PointerEvent} event  Triggering click event.
    */
-  #onClick(event) {
+  #onClick( event ) {
     event.preventDefault();
     if ( this.disabled ) return;
-    this.step((event.type === "click") && (event.button !== 2));
+    this.step( ( event.type === "click" ) && ( event.button !== 2 ) );
   }
 }

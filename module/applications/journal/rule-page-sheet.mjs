@@ -6,7 +6,7 @@ export default class JournalRulePageSheet extends JournalTextPageSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     const options = super.defaultOptions;
-    options.classes.push("rule");
+    options.classes.push( "rule" );
     return options;
   }
 
@@ -22,14 +22,14 @@ export default class JournalRulePageSheet extends JournalTextPageSheet {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  async getData(options) {
-    const context = await super.getData(options);
+  async getData( options ) {
+    const context = await super.getData( options );
     context.CONFIG = CONFIG.SW5E;
-    context.enrichedTooltip = await TextEditor.enrichHTML(this.object.system.tooltip, {
+    context.enrichedTooltip = await TextEditor.enrichHTML( this.object.system.tooltip, {
       relativeTo: this.object,
       secrets: this.object.isOwner,
       async: true
-    });
+    } );
     return context;
   }
 }

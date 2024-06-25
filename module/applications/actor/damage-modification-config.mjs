@@ -8,38 +8,38 @@ export default class DamageModificationConfig extends BaseConfig {
 
   /** @inheritDoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       classes: ["sw5e", "damage-modification", "trait-selector", "subconfig"],
       template: "systems/sw5e/templates/apps/damage-modification-config.hbs",
       width: 320,
       height: "auto"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
   get title() {
-    return game.i18n.localize("SW5E.DamageModification.Label");
+    return game.i18n.localize( "SW5E.DamageModification.Label" );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async getData(options={}) {
-    const context = await super.getData(options);
-    const data = foundry.utils.getProperty(this.document, "system.traits.dm");
-    context.bypasses = Object.entries(CONFIG.SW5E.itemProperties).reduce((obj, [k, v]) => {
-      if ( v.isPhysical ) obj[k] = { ...v, chosen: data.bypasses.has(k) };
+  async getData( options={} ) {
+    const context = await super.getData( options );
+    const data = foundry.utils.getProperty( this.document, "system.traits.dm" );
+    context.bypasses = Object.entries( CONFIG.SW5E.itemProperties ).reduce( ( obj, [k, v] ) => {
+      if ( v.isPhysical ) obj[k] = { ...v, chosen: data.bypasses.has( k ) };
       return obj;
-    }, {});
-    context.modifications = Object.entries(CONFIG.SW5E.damageTypes).reduce((obj, [k, v]) => {
+    }, {} );
+    context.modifications = Object.entries( CONFIG.SW5E.damageTypes ).reduce( ( obj, [k, v] ) => {
       obj[k] = {
         ...v,
         value: data.amount[k]
       };
       return obj;
-    }, {});
+    }, {} );
     return context;
   }
 
@@ -48,22 +48,22 @@ export default class DamageModificationConfig extends BaseConfig {
   /** @inheritDoc */
   _getActorOverrides() {
     const overrides = super._getActorOverrides();
-    this._addOverriddenChoices("system.traits.dm.bypasses", "system.traits.dm.bypasses", overrides);
+    this._addOverriddenChoices( "system.traits.dm.bypasses", "system.traits.dm.bypasses", overrides );
     return overrides;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _getSubmitData(updateData) {
-    const data = foundry.utils.expandObject(super._getSubmitData(updateData));
+  _getSubmitData( updateData ) {
+    const data = foundry.utils.expandObject( super._getSubmitData( updateData ) );
     const formData = {};
-    for ( const [type, formula] of Object.entries(foundry.utils.getProperty(data, "system.traits.dm.amount")) ) {
+    for ( const [type, formula] of Object.entries( foundry.utils.getProperty( data, "system.traits.dm.amount" ) ) ) {
       if ( formula ) formData[`system.traits.dm.amount.${type}`] = formula;
       else formData[`system.traits.dm.amount.-=${type}`] = "";
     }
     formData["system.traits.dm.bypasses"] = filteredKeys(
-      foundry.utils.getProperty(data, "system.traits.dm.bypasses") ?? {}
+      foundry.utils.getProperty( data, "system.traits.dm.bypasses" ) ?? {}
     );
     return formData;
   }

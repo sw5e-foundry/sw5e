@@ -6,25 +6,25 @@ import BaseConfigSheet from "./base-config.mjs";
 export default class ActorInitiativeConfig extends BaseConfigSheet {
   /** @override */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       classes: ["sw5e"],
       template: "systems/sw5e/templates/apps/initiative-config.hbs",
       width: 360,
       height: "auto"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @override */
   get title() {
-    return `${game.i18n.localize("SW5E.InitiativeConfig")}: ${this.document.name}`;
+    return `${game.i18n.localize( "SW5E.InitiativeConfig" )}: ${this.document.name}`;
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  getData(options = {}) {
+  getData( options = {} ) {
     const source = this.document.toObject();
     const init = source.system.attributes.init || {};
     const flags = source.flags.sw5e || {};
@@ -40,12 +40,12 @@ export default class ActorInitiativeConfig extends BaseConfigSheet {
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _getSubmitData(updateData = {}) {
-    const formData = super._getSubmitData(updateData);
+  _getSubmitData( updateData = {} ) {
+    const formData = super._getSubmitData( updateData );
     formData.flags = { sw5e: {} };
-    for (const flag of ["initiativeAlert", "initiativeAdv"]) {
+    for ( const flag of ["initiativeAlert", "initiativeAdv"] ) {
       const k = `flags.sw5e.${flag}`;
-      if (formData[k]) formData.flags.sw5e[flag] = true;
+      if ( formData[k] ) formData.flags.sw5e[flag] = true;
       else formData.flags.sw5e[`-=${flag}`] = null;
       delete formData[k];
     }

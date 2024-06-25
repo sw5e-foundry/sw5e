@@ -31,56 +31,56 @@ export default class PowerData extends ItemDataModel.mixin(
 ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      level: new foundry.data.fields.NumberField({
+    return this.mergeSchema( super.defineSchema(), {
+      level: new foundry.data.fields.NumberField( {
         required: true,
         integer: true,
         initial: 1,
         min: 0,
         label: "SW5E.PowerLevel"
-      }),
-      school: new foundry.data.fields.StringField({ required: true, label: "SW5E.PowerSchool" }),
-      properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+      } ),
+      school: new foundry.data.fields.StringField( { required: true, label: "SW5E.PowerSchool" } ),
+      properties: new foundry.data.fields.SetField( new foundry.data.fields.StringField(), {
         label: "SW5E.PowerComponents"
-      }),
+      } ),
       materials: new foundry.data.fields.SchemaField(
         {
-          value: new foundry.data.fields.StringField({ required: true, label: "SW5E.PowerMaterialsDescription" }),
-          consumed: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.PowerMaterialsConsumed" }),
-          cost: new foundry.data.fields.NumberField({
+          value: new foundry.data.fields.StringField( { required: true, label: "SW5E.PowerMaterialsDescription" } ),
+          consumed: new foundry.data.fields.BooleanField( { required: true, label: "SW5E.PowerMaterialsConsumed" } ),
+          cost: new foundry.data.fields.NumberField( {
             required: true,
             initial: 0,
             min: 0,
             label: "SW5E.PowerMaterialsCost"
-          }),
-          supply: new foundry.data.fields.NumberField({
+          } ),
+          supply: new foundry.data.fields.NumberField( {
             required: true,
             initial: 0,
             min: 0,
             label: "SW5E.PowerMaterialsSupply"
-          })
+          } )
         },
         { label: "SW5E.PowerMaterials" }
       ),
       preparation: new foundry.data.fields.SchemaField(
         {
-          mode: new foundry.data.fields.StringField({
+          mode: new foundry.data.fields.StringField( {
             required: true,
             initial: "prepared",
             label: "SW5E.PowerPreparationMode"
-          }),
-          prepared: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.PowerPrepared" })
+          } ),
+          prepared: new foundry.data.fields.BooleanField( { required: true, label: "SW5E.PowerPrepared" } )
         },
         { label: "SW5E.PowerPreparation" }
       ),
       scaling: new foundry.data.fields.SchemaField(
         {
-          mode: new foundry.data.fields.StringField({ required: true, initial: "none", label: "SW5E.ScalingMode" }),
-          formula: new FormulaField({ required: true, nullable: true, initial: null, label: "SW5E.ScalingFormula" })
+          mode: new foundry.data.fields.StringField( { required: true, initial: "none", label: "SW5E.ScalingMode" } ),
+          formula: new FormulaField( { required: true, nullable: true, initial: null, label: "SW5E.ScalingFormula" } )
         },
         { label: "SW5E.LevelScaling" }
       )
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -88,9 +88,9 @@ export default class PowerData extends ItemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    PowerData.#migrateScaling(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    PowerData.#migrateScaling( source );
   }
 
   /* -------------------------------------------- */
@@ -99,10 +99,10 @@ export default class PowerData extends ItemDataModel.mixin(
    * Migrate the component object to be 'properties' instead.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static _migrateComponentData(source) {
-    const components = filteredKeys(source.system?.components ?? {});
-    if (components.length) {
-      foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", components);
+  static _migrateComponentData( source ) {
+    const components = filteredKeys( source.system?.components ?? {} );
+    if ( components.length ) {
+      foundry.utils.setProperty( source, "flags.sw5e.migratedProperties", components );
     }
   }
 
@@ -112,9 +112,9 @@ export default class PowerData extends ItemDataModel.mixin(
    * Migrate power scaling.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateScaling(source) {
-    if (!("scaling" in source)) return;
-    if (source.scaling.mode === "" || source.scaling.mode === null) source.scaling.mode = "none";
+  static #migrateScaling( source ) {
+    if ( !( "scaling" in source ) ) return;
+    if ( source.scaling.mode === "" || source.scaling.mode === null ) source.scaling.mode = "none";
   }
 
   /* -------------------------------------------- */
@@ -124,7 +124,7 @@ export default class PowerData extends ItemDataModel.mixin(
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    this.properties.add("mgc");
+    this.properties.add( "mgc" );
   }
 
   /* -------------------------------------------- */
@@ -137,11 +137,11 @@ export default class PowerData extends ItemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async getCardData(enrichmentOptions = {}) {
-    const context = await super.getCardData(enrichmentOptions);
+  async getCardData( enrichmentOptions = {} ) {
+    const context = await super.getCardData( enrichmentOptions );
     context.isPower = true;
-    context.subtitle = [this.parent.labels.level, CONFIG.SW5E.powerSchools[this.school]?.label].filterJoin(" &bull; ");
-    if (this.parent.labels.components.vsm) context.tags = [this.parent.labels.components.vsm, ...context.tags];
+    context.subtitle = [this.parent.labels.level, CONFIG.SW5E.powerSchools[this.school]?.label].filterJoin( " &bull; " );
+    if ( this.parent.labels.components.vsm ) context.tags = [this.parent.labels.components.vsm, ...context.tags];
     return context;
   }
 
@@ -149,12 +149,12 @@ export default class PowerData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   async getFavoriteData() {
-    return foundry.utils.mergeObject(await super.getFavoriteData(), {
+    return foundry.utils.mergeObject( await super.getFavoriteData(), {
       subtitle: [this.parent.labels.components.vsm, this.parent.labels.activation],
       modifier: this.parent.labels.modifier,
       range: this.range,
       save: this.save
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -168,7 +168,7 @@ export default class PowerData extends ItemDataModel.mixin(
   get chatProperties() {
     return [
       this.parent.labels.level,
-      this.parent.labels.components.vsm + (this.parent.labels.materials ? ` (${this.parent.labels.materials})` : ""),
+      this.parent.labels.components.vsm + ( this.parent.labels.materials ? ` (${this.parent.labels.materials})` : "" ),
       ...this.parent.labels.components.tags
     ];
   }
@@ -180,11 +180,11 @@ export default class PowerData extends ItemDataModel.mixin(
     const abilities = this.parent?.actor?.system?.abilities;
     const attributes = this.parent?.actor?.system?.attributes;
     let school = this.school;
-    if (game.settings.get("sw5e", "simplifiedForcecasting") && ["lgt", "drk", "univ"].includes(school)) school = "univ";
+    if ( game.settings.get( "sw5e", "simplifiedForcecasting" ) && ["lgt", "drk", "univ"].includes( school ) ) school = "univ";
     return {
       lgt: attributes?.force?.override || "wis",
       drk: attributes?.force?.override || "cha",
-      univ: attributes?.force?.override || (abilities.wis?.mod ?? 0) >= (abilities.cha?.mod ?? 0) ? "wis" : "cha",
+      univ: attributes?.force?.override || ( abilities.wis?.mod ?? 0 ) >= ( abilities.cha?.mod ?? 0 ) ? "wis" : "cha",
       tec: attributes?.tech?.override || "int"
     }[school]
       || attributes?.powercasting || "int";

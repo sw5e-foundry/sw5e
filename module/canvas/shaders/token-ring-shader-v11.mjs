@@ -13,7 +13,7 @@ export default class TokenRingSamplerShaderV11 extends BaseSamplerShader {
   /** @override */
   get enabled() { return true; }
 
-  set enabled(enabled) {}
+  set enabled( enabled ) {}
 
   /* -------------------------------------------- */
 
@@ -31,12 +31,12 @@ export default class TokenRingSamplerShaderV11 extends BaseSamplerShader {
    * A null UVs array used for nulled texture position.
    * @type {Float32Array}
    */
-  static nullUvs = new Float32Array([0, 0, 0, 0, 0, 0, 0, 0]);
+  static nullUvs = new Float32Array( [0, 0, 0, 0, 0, 0, 0, 0] );
 
   /* -------------------------------------------- */
 
   /** @override */
-  static batchDefaultUniforms(maxTex) {
+  static batchDefaultUniforms( maxTex ) {
     return {
       tokenRingTexture: maxTex,
       time: 0
@@ -46,8 +46,8 @@ export default class TokenRingSamplerShaderV11 extends BaseSamplerShader {
   /* -------------------------------------------- */
 
   /** @override */
-  static _preRenderBatch(batchRenderer) {
-    batchRenderer.renderer.texture.bind(CONFIG.Token.ringClass.baseTexture, batchRenderer.uniforms.tokenRingTexture);
+  static _preRenderBatch( batchRenderer ) {
+    batchRenderer.renderer.texture.bind( CONFIG.Token.ringClass.baseTexture, batchRenderer.uniforms.tokenRingTexture );
     batchRenderer.uniforms.time = canvas.app.ticker.lastTime / 1000;
   }
 
@@ -58,21 +58,21 @@ export default class TokenRingSamplerShaderV11 extends BaseSamplerShader {
     this.batchGeometry =
       class BatchGeometry extends PIXI.Geometry {
         /** @override */
-        constructor(_static = false) {
+        constructor( _static = false ) {
           super();
-          this._buffer = new PIXI.Buffer(null, _static, false);
-          this._indexBuffer = new PIXI.Buffer(null, _static, true);
-          this.addAttribute("aVertexPosition", this._buffer, 2, false, PIXI.TYPES.FLOAT)
-            .addAttribute("aTextureCoord", this._buffer, 2, false, PIXI.TYPES.FLOAT)
-            .addAttribute("aRingTextureCoord", this._buffer, 2, false, PIXI.TYPES.FLOAT)
-            .addAttribute("aBackgroundTextureCoord", this._buffer, 2, false, PIXI.TYPES.FLOAT)
-            .addAttribute("aColor", this._buffer, 4, true, PIXI.TYPES.UNSIGNED_BYTE)
-            .addAttribute("aRingColor", this._buffer, 4, true, PIXI.TYPES.UNSIGNED_BYTE)
-            .addAttribute("aBackgroundColor", this._buffer, 4, true, PIXI.TYPES.UNSIGNED_BYTE)
-            .addAttribute("aTextureId", this._buffer, 1, true, PIXI.TYPES.FLOAT)
-            .addAttribute("aStates", this._buffer, 1, false, PIXI.TYPES.FLOAT)
-            .addAttribute("aScaleCorrection", this._buffer, 1, false, PIXI.TYPES.FLOAT)
-            .addIndex(this._indexBuffer);
+          this._buffer = new PIXI.Buffer( null, _static, false );
+          this._indexBuffer = new PIXI.Buffer( null, _static, true );
+          this.addAttribute( "aVertexPosition", this._buffer, 2, false, PIXI.TYPES.FLOAT )
+            .addAttribute( "aTextureCoord", this._buffer, 2, false, PIXI.TYPES.FLOAT )
+            .addAttribute( "aRingTextureCoord", this._buffer, 2, false, PIXI.TYPES.FLOAT )
+            .addAttribute( "aBackgroundTextureCoord", this._buffer, 2, false, PIXI.TYPES.FLOAT )
+            .addAttribute( "aColor", this._buffer, 4, true, PIXI.TYPES.UNSIGNED_BYTE )
+            .addAttribute( "aRingColor", this._buffer, 4, true, PIXI.TYPES.UNSIGNED_BYTE )
+            .addAttribute( "aBackgroundColor", this._buffer, 4, true, PIXI.TYPES.UNSIGNED_BYTE )
+            .addAttribute( "aTextureId", this._buffer, 1, true, PIXI.TYPES.FLOAT )
+            .addAttribute( "aStates", this._buffer, 1, false, PIXI.TYPES.FLOAT )
+            .addAttribute( "aScaleCorrection", this._buffer, 1, false, PIXI.TYPES.FLOAT )
+            .addIndex( this._indexBuffer );
         }
       };
   }
@@ -80,7 +80,7 @@ export default class TokenRingSamplerShaderV11 extends BaseSamplerShader {
   /* ---------------------------------------- */
 
   /** @override */
-  static _packInterleavedGeometry(element, attributeBuffer, indexBuffer, aIndex, iIndex) {
+  static _packInterleavedGeometry( element, attributeBuffer, indexBuffer, aIndex, iIndex ) {
     const {uint32View, float32View} = attributeBuffer;
 
     const packedVertices = aIndex / this.vertexSize;
@@ -88,18 +88,18 @@ export default class TokenRingSamplerShaderV11 extends BaseSamplerShader {
     const indices = element.indices;
     const vertexData = element.vertexData;
     const textureId = element._texture.baseTexture._batchLocation;
-    const argb = element._tintRGB + (element.worldAlpha * 255 << 24);
+    const argb = element._tintRGB + ( element.worldAlpha * 255 << 24 );
 
     // Prepare token ring attributes
     const trConfig = CONFIG.Token.ringClass;
     const object = element.object.object || {};
     const hasTokenRing = !!object.ring;
-    const ringColor = (object.ring?.ringColorLittleEndian ?? 0xFFFFFF) + 0xFF000000;
-    const bkgColor = (object.ring?.bkgColorLittleEndian ?? 0xFFFFFF) + 0xFF000000;
+    const ringColor = ( object.ring?.ringColorLittleEndian ?? 0xFFFFFF ) + 0xFF000000;
+    const bkgColor = ( object.ring?.bkgColorLittleEndian ?? 0xFFFFFF ) + 0xFF000000;
     const ringUvsFloat = object.ring?.ringUVs ?? trConfig.tokenRingSamplerShader.nullUvs;
     const bkgUvsFloat = object.ring?.bkgUVs ?? trConfig.tokenRingSamplerShader.nullUvs;
-    const states = (hasTokenRing ? object.ring.effects + 0.5 : 0.5);
-    const scaleCorrection = (hasTokenRing ? object.ring.scaleCorrection ?? 1 : 1);
+    const states = ( hasTokenRing ? object.ring.effects + 0.5 : 0.5 );
+    const scaleCorrection = ( hasTokenRing ? object.ring.scaleCorrection ?? 1 : 1 );
 
     for ( let i = 0; i < vertexData.length; i += 2 ) {
       float32View[aIndex++] = vertexData[i];

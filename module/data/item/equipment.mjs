@@ -68,144 +68,144 @@ export default class EquipmentData extends ItemDataModel.mixin(
 ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      type: new ItemTypeField({ value: "light", subtype: false }, { label: "SW5E.ItemEquipmentType" }),
+    return this.mergeSchema( super.defineSchema(), {
+      type: new ItemTypeField( { value: "light", subtype: false }, { label: "SW5E.ItemEquipmentType" } ),
       armor: new SchemaField(
         {
-          value: new foundry.data.fields.NumberField({
+          value: new foundry.data.fields.NumberField( {
             required: true,
             integer: true,
             min: 0,
             label: "SW5E.ArmorClass"
-          }),
-          magicalBonus: new NumberField({ min: 0, integer: true, label: "SW5E.MagicalBonus" }),
-          dex: new NumberField({ required: true, integer: true, label: "SW5E.ItemEquipmentDexMod" })
+          } ),
+          magicalBonus: new NumberField( { min: 0, integer: true, label: "SW5E.MagicalBonus" } ),
+          dex: new NumberField( { required: true, integer: true, label: "SW5E.ItemEquipmentDexMod" } )
         }
       ),
-      properties: new SetField(new StringField(), {
+      properties: new SetField( new StringField(), {
         label: "SW5E.ItemEquipmentProperties"
-      }),
+      } ),
       speed: new SchemaField(
         {
-          value: new NumberField({ required: true, min: 0, label: "SW5E.Speed" }),
-          conditions: new StringField({ required: true, label: "SW5E.SpeedConditions" })
+          value: new NumberField( { required: true, min: 0, label: "SW5E.Speed" } ),
+          conditions: new StringField( { required: true, label: "SW5E.SpeedConditions" } )
         },
         { label: "SW5E.Speed" }
       ),
-      strength: new NumberField({
+      strength: new NumberField( {
         required: true,
         integer: true,
         min: 0,
         label: "SW5E.ItemRequiredStr"
-      }),
-      proficient: new NumberField({
+      } ),
+      proficient: new NumberField( {
         required: true,
         min: 0,
         max: 1,
         integer: true,
         initial: null,
         label: "SW5E.ProficiencyLevel"
-      }),
+      } ),
 
       // Starship equipment
-      attributes: new SchemaField({
+      attributes: new SchemaField( {
         capx: new SchemaField(
           {
-            value: new NumberField({
+            value: new NumberField( {
               nullable: true,
               min: 0
-            })
+            } )
           },
           { required: true, label: "SW5E.CapacityMultiplier" }
         ),
         dmgred: new SchemaField(
           {
-            value: new NumberField({
+            value: new NumberField( {
               nullable: true,
               integer: true,
               min: 0
-            })
+            } )
           },
           { required: true, label: "SW5E.DmgRed" }
         ),
         regrateco: new SchemaField(
           {
-            value: new NumberField({
+            value: new NumberField( {
               nullable: true,
               min: 0
-            })
+            } )
           },
           { required: true, label: "SW5E.RegenerationRateCoefficient" }
         ),
         cscap: new SchemaField(
           {
-            value: new NumberField({
+            value: new NumberField( {
               nullable: true,
               integer: true,
               min: 0
-            })
+            } )
           },
           { required: true, label: "SW5E.CentStorageCapacity" }
         ),
         sscap: new SchemaField(
           {
-            value: new NumberField({
+            value: new NumberField( {
               nullable: true,
               integer: true,
               min: 0
-            })
+            } )
           },
           { required: true, label: "SW5E.SysStorageCapacity" }
         ),
         fuelcostsmod: new SchemaField(
           {
-            value: new NumberField({
+            value: new NumberField( {
               nullable: true,
               min: 0
-            })
+            } )
           },
           { required: true, label: "SW5E.FuelCostsMod" }
         ),
         powerdicerec: new SchemaField(
-          { value: new FormulaField({}) },
+          { value: new FormulaField( {} ) },
           { label: "SW5E.PowerDiceRecovery" }
         ),
         hdclass: new SchemaField(
           {
-            value: new NumberField({
+            value: new NumberField( {
               nullable: true,
               min: 0,
               max: 15
-            })
+            } )
           },
           { required: true, label: "SW5E.SysStorageCapacity" }
         )
-      })
-    });
+      } )
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
     enchantable: true,
     inventoryItem: true,
     inventoryOrder: 200
-  }, { inplace: false }));
+  }, { inplace: false } ) );
 
   /* -------------------------------------------- */
   /*  Migrations                                  */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    EquipmentData.#migrateArmor(source);
-    EquipmentData.#migrateType(source);
-    EquipmentData.#migrateStrength(source);
-    EquipmentData.#migrateProficient(source);
-    EquipmentData.#migrateStarshipData(source);
-    migrateItemProperties(source.properties, CONFIG.SW5E.equipmentProperties);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    EquipmentData.#migrateArmor( source );
+    EquipmentData.#migrateType( source );
+    EquipmentData.#migrateStrength( source );
+    EquipmentData.#migrateProficient( source );
+    EquipmentData.#migrateStarshipData( source );
+    migrateItemProperties( source.properties, CONFIG.SW5E.equipmentProperties );
   }
 
   /* -------------------------------------------- */
@@ -214,13 +214,13 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * Apply migrations to the armor field.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateArmor(source) {
-    if (!("armor" in source)) return;
+  static #migrateArmor( source ) {
+    if ( !( "armor" in source ) ) return;
     source.armor ??= {};
-    if (typeof source.armor.dex === "string") {
+    if ( typeof source.armor.dex === "string" ) {
       const dex = source.armor.dex;
-      if (dex === "") source.armor.dex = null;
-      else if (Number.isNumeric(dex)) source.armor.dex = Number(dex);
+      if ( dex === "" ) source.armor.dex = null;
+      else if ( Number.isNumeric( dex ) ) source.armor.dex = Number( dex );
     }
   }
 
@@ -230,9 +230,9 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * Apply migrations to the type field.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateType(source) {
-    if (!("type" in source)) return;
-    if (source.type.value === "bonus") source.type.value = "trinket";
+  static #migrateType( source ) {
+    if ( !( "type" in source ) ) return;
+    if ( source.type.value === "bonus" ) source.type.value = "trinket";
   }
 
   /* -------------------------------------------- */
@@ -241,10 +241,10 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * Ensure blank strength values are migrated to null, and string values are converted to numbers.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateStrength(source) {
-    if (typeof source.strength !== "string") return;
-    if (source.strength === "") source.strength = null;
-    if (Number.isNumeric(source.strength)) source.strength = Number(source.strength);
+  static #migrateStrength( source ) {
+    if ( typeof source.strength !== "string" ) return;
+    if ( source.strength === "" ) source.strength = null;
+    if ( Number.isNumeric( source.strength ) ) source.strength = Number( source.strength );
   }
 
   /* -------------------------------------------- */
@@ -253,12 +253,12 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * Ensure starship attributes are stored in the correct place.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateStarshipData(source) {
+  static #migrateStarshipData( source ) {
     const starshipAttrs = ["capx", "dmgred", "regrateco", "cscap", "sscap", "fuelcostmod", "powerdicerec", "hdclass"];
 
     source.attributes ??= {};
-    for (const attr of starshipAttrs) {
-      if (source[attr]) {
+    for ( const attr of starshipAttrs ) {
+      if ( source[attr] ) {
         source.attributes[attr] = source[attr];
         delete source[attr];
       }
@@ -271,9 +271,9 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * Migrates stealth disadvantage boolean to properties.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static _migrateStealth(source) {
-    if (foundry.utils.getProperty(source, "system.stealth") === true) {
-      foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", ["stealthDisadvantage"]);
+  static _migrateStealth( source ) {
+    if ( foundry.utils.getProperty( source, "system.stealth" ) === true ) {
+      foundry.utils.setProperty( source, "flags.sw5e.migratedProperties", ["stealthDisadvantage"] );
     }
   }
 
@@ -283,8 +283,8 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * Migrate the proficient field to convert boolean values.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateProficient(source) {
-    if (typeof source.proficient === "boolean") source.proficient = Number(source.proficient);
+  static #migrateProficient( source ) {
+    if ( typeof source.proficient === "boolean" ) source.proficient = Number( source.proficient );
   }
 
   /* -------------------------------------------- */
@@ -294,9 +294,9 @@ export default class EquipmentData extends ItemDataModel.mixin(
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    this.armor.value = (this._source.armor.value ?? 0) + (this.magicAvailable ? (this.armor.magicalBonus ?? 0) : 0);
+    this.armor.value = ( this._source.armor.value ?? 0 ) + ( this.magicAvailable ? ( this.armor.magicalBonus ?? 0 ) : 0 );
     this.type.label = CONFIG.SW5E.equipmentTypes[this.type.value]
-      ?? game.i18n.localize(CONFIG.Item.typeLabels.equipment);
+      ?? game.i18n.localize( CONFIG.Item.typeLabels.equipment );
   }
 
   /* -------------------------------------------- */
@@ -311,10 +311,10 @@ export default class EquipmentData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   async getFavoriteData() {
-    return foundry.utils.mergeObject(await super.getFavoriteData(), {
+    return foundry.utils.mergeObject( await super.getFavoriteData(), {
       subtitle: [this.type.label, this.parent.labels.activation],
       uses: this.hasLimitedUses ? this.getUsesData() : null
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -328,8 +328,8 @@ export default class EquipmentData extends ItemDataModel.mixin(
   get chatProperties() {
     return [
       this.type.label,
-      (this.isArmor || this.isMountable) ? (this.parent.labels?.armor ?? null) : null,
-      this.properties.has("stealthDisadvantage") ? game.i18n.localize("SW5E.Item.Property.StealthDisadvantage") : null
+      ( this.isArmor || this.isMountable ) ? ( this.parent.labels?.armor ?? null ) : null,
+      this.properties.has( "stealthDisadvantage" ) ? game.i18n.localize( "SW5E.Item.Property.StealthDisadvantage" ) : null
     ];
   }
 
@@ -341,8 +341,8 @@ export default class EquipmentData extends ItemDataModel.mixin(
    */
   get cardProperties() {
     return [
-      (this.isArmor || this.isMountable) ? (this.parent.labels?.armor ?? null) : null,
-      this.properties.has("stealthDisadvantage") ? game.i18n.localize("SW5E.Item.Property.StealthDisadvantage") : null
+      ( this.isArmor || this.isMountable ) ? ( this.parent.labels?.armor ?? null ) : null,
+      this.properties.has( "stealthDisadvantage" ) ? game.i18n.localize( "SW5E.Item.Property.StealthDisadvantage" ) : null
     ];
   }
 
@@ -374,15 +374,15 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * @returns {number}
    */
   get proficiencyMultiplier() {
-    if (Number.isFinite(this.proficient)) return this.proficient;
+    if ( Number.isFinite( this.proficient ) ) return this.proficient;
     const actor = this.parent.actor;
-    if (!actor) return 0;
-    if (actor.type === "npc") return 1; // NPCs are always considered proficient with any armor in their stat block.
+    if ( !actor ) return 0;
+    if ( actor.type === "npc" ) return 1; // NPCs are always considered proficient with any armor in their stat block.
     const config = CONFIG.SW5E.armorProficienciesMap;
     const itemProf = config[this.type.value];
     const actorProfs = actor.system.traits?.armorProf?.value ?? new Set();
-    const isProficient = (itemProf === true) || actorProfs.has(itemProf) || actorProfs.has(this.type.baseItem);
-    return Number(isProficient);
+    const isProficient = ( itemProf === true ) || actorProfs.has( itemProf ) || actorProfs.has( this.type.baseItem );
+    return Number( isProficient );
   }
 
   /* -------------------------------------------- */
@@ -392,6 +392,6 @@ export default class EquipmentData extends ItemDataModel.mixin(
    * @type {boolean}
    */
   get isStarshipItem() {
-    return (this.armor.type in CONFIG.SW5E.ssEquipmentTypes) || this.armor.type === "starship";
+    return ( this.armor.type in CONFIG.SW5E.ssEquipmentTypes ) || this.armor.type === "starship";
   }
 }

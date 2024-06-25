@@ -14,12 +14,12 @@ export default class ChatTrayElement extends HTMLElement {
    * @type {boolean}
    */
   get open() {
-    return this.hasAttribute("open");
+    return this.hasAttribute( "open" );
   }
 
-  set open(open) {
-    if ( open ) this.setAttribute("open", "");
-    else this.removeAttribute("open");
+  set open( open ) {
+    if ( open ) this.setAttribute( "open", "" );
+    else this.removeAttribute( "open" );
   }
 
   /* -------------------------------------------- */
@@ -27,8 +27,8 @@ export default class ChatTrayElement extends HTMLElement {
   /* -------------------------------------------- */
 
   /** @override */
-  attributeChangedCallback(name, oldValue, newValue) {
-    if ( name === "open" ) this._handleToggleOpen(newValue !== null);
+  attributeChangedCallback( name, oldValue, newValue ) {
+    if ( name === "open" ) this._handleToggleOpen( newValue !== null );
   }
 
   /* -------------------------------------------- */
@@ -37,10 +37,10 @@ export default class ChatTrayElement extends HTMLElement {
    * Handle clicks to the collapsible header.
    * @param {PointerEvent} event  Triggering click event.
    */
-  _handleClickHeader(event) {
+  _handleClickHeader( event ) {
     event.preventDefault();
     event.stopImmediatePropagation();
-    if ( !event.target.closest(".collapsible-content") ) this.toggleAttribute("open");
+    if ( !event.target.closest( ".collapsible-content" ) ) this.toggleAttribute( "open" );
   }
 
   /* -------------------------------------------- */
@@ -49,13 +49,13 @@ export default class ChatTrayElement extends HTMLElement {
    * Handle changing the collapsed state of this element.
    * @param {boolean} open  Is the element open?
    */
-  _handleToggleOpen(open) {
-    this.dispatchEvent(new Event("toggle"));
+  _handleToggleOpen( open ) {
+    this.dispatchEvent( new Event( "toggle" ) );
 
-    this.querySelector(".collapsible")?.classList.toggle("collapsed", !open);
+    this.querySelector( ".collapsible" )?.classList.toggle( "collapsed", !open );
 
     // Clear the height from the chat popout container so that it appropriately resizes.
-    const popout = this.closest(".chat-popout");
+    const popout = this.closest( ".chat-popout" );
     if ( popout ) popout.style.height = "";
   }
 }

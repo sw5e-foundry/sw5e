@@ -6,8 +6,8 @@
  * @param {object} [options={}]     Dialog rendering options.
  */
 export default class RegenRepairDialog extends Dialog {
-  constructor(actor, dialogData = {}, options = {}) {
-    super(dialogData, options);
+  constructor( actor, dialogData = {}, options = {} ) {
+    super( dialogData, options );
 
     /**
      * Store a reference to the Actor document which is repairing
@@ -20,10 +20,10 @@ export default class RegenRepairDialog extends Dialog {
 
   /** @inheritDoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       template: "systems/sw5e/templates/apps/regen-repair.hbs",
       classes: ["sw5e", "dialog"]
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -34,7 +34,7 @@ export default class RegenRepairDialog extends Dialog {
     context.isGroup = this.actor.type === "group";
 
     const attr = this.actor.system.attributes;
-    if (attr.hp.temp === attr.hp.tempmax || attr.shld.depleted || Number(attr.shldd.value) === 0) {
+    if ( attr.hp.temp === attr.hp.tempmax || attr.shld.depleted || Number( attr.shldd.value ) === 0 ) {
       context.useShieldDie = false;
     } else {
       context.useShieldDie = true;
@@ -51,29 +51,29 @@ export default class RegenRepairDialog extends Dialog {
    * @param {Actor5e} [options.actor]  Actor that is taking the regen repair.
    * @returns {Promise}                Promise that resolves when the repair is completed or rejects when canceled.
    */
-  static async regenRepairDialog({ actor } = {}) {
-    return new Promise((resolve, reject) => {
-      const dlg = new this(actor, {
-        title: `${game.i18n.localize("SW5E.RegenRepair")}: ${actor.name}`,
+  static async regenRepairDialog( { actor } = {} ) {
+    return new Promise( ( resolve, reject ) => {
+      const dlg = new this( actor, {
+        title: `${game.i18n.localize( "SW5E.RegenRepair" )}: ${actor.name}`,
         buttons: {
           regen: {
             icon: '<i class="fas fa-wrench"></i>',
-            label: game.i18n.localize("SW5E.Regen"),
+            label: game.i18n.localize( "SW5E.Regen" ),
             callback: html => {
-              const useShieldDie = html.find('input[name="useShieldDie"]')[0].checked;
-              resolve(useShieldDie);
+              const useShieldDie = html.find( 'input[name="useShieldDie"]' )[0].checked;
+              resolve( useShieldDie );
             }
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: game.i18n.localize("Cancel"),
+            label: game.i18n.localize( "Cancel" ),
             callback: reject
           }
         },
         default: "regen",
         close: reject
-      });
-      dlg.render(true);
-    });
+      } );
+      dlg.render( true );
+    } );
   }
 }

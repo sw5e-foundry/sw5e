@@ -33,30 +33,30 @@ export default class ActionTemplate extends ItemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
-      ability: new StringField({ required: true, nullable: true, initial: null, label: "SW5E.AbilityModifier" }),
-      actionType: new StringField({ required: true, nullable: true, initial: null, label: "SW5E.ItemActionType" }),
-      attack: new SchemaField({
-        bonus: new FormulaField({ required: true, label: "SW5E.ItemAttackBonus" }),
-        flat: new BooleanField({ label: "SW5E.ItemAttackFlat" })
-      }),
-      chatFlavor: new StringField({ required: true, label: "SW5E.ChatFlavor" }),
-      critical: new SchemaField({
-        threshold: new NumberField({
+      ability: new StringField( { required: true, nullable: true, initial: null, label: "SW5E.AbilityModifier" } ),
+      actionType: new StringField( { required: true, nullable: true, initial: null, label: "SW5E.ItemActionType" } ),
+      attack: new SchemaField( {
+        bonus: new FormulaField( { required: true, label: "SW5E.ItemAttackBonus" } ),
+        flat: new BooleanField( { label: "SW5E.ItemAttackFlat" } )
+      } ),
+      chatFlavor: new StringField( { required: true, label: "SW5E.ChatFlavor" } ),
+      critical: new SchemaField( {
+        threshold: new NumberField( {
           required: true, integer: true, initial: null, positive: true, label: "SW5E.ItemCritThreshold"
-        }),
-        damage: new FormulaField({ required: true, label: "SW5E.ItemCritExtraDamage" })
-      }),
-      damage: new SchemaField({
-        parts: new ArrayField(new ArrayField(new StringField({ nullable: true })), { required: true }),
-        versatile: new FormulaField({ required: true, label: "SW5E.VersatileDamage" })
-      }, { label: "SW5E.Damage" }),
+        } ),
+        damage: new FormulaField( { required: true, label: "SW5E.ItemCritExtraDamage" } )
+      } ),
+      damage: new SchemaField( {
+        parts: new ArrayField( new ArrayField( new StringField( { nullable: true } ) ), { required: true } ),
+        versatile: new FormulaField( { required: true, label: "SW5E.VersatileDamage" } )
+      }, { label: "SW5E.Damage" } ),
       enchantment: new EnchantmentField(),
-      formula: new FormulaField({ required: true, label: "SW5E.OtherFormula" }),
-      save: new SchemaField({
-        ability: new StringField({ required: true, blank: true, label: "SW5E.Ability" }),
-        dc: new NumberField({ required: true, min: 0, integer: true, label: "SW5E.AbbreviationDC" }),
-        scaling: new StringField({ required: true, blank: false, initial: "power", label: "SW5E.ScalingFormula" })
-      }, { label: "SW5E.SavingThrow" }),
+      formula: new FormulaField( { required: true, label: "SW5E.OtherFormula" } ),
+      save: new SchemaField( {
+        ability: new StringField( { required: true, blank: true, label: "SW5E.Ability" } ),
+        dc: new NumberField( { required: true, min: 0, integer: true, label: "SW5E.AbbreviationDC" } ),
+        scaling: new StringField( { required: true, blank: false, initial: "power", label: "SW5E.ScalingFormula" } )
+      }, { label: "SW5E.SavingThrow" } ),
       summons: new SummonsField()
     };
   }
@@ -66,12 +66,12 @@ export default class ActionTemplate extends ItemDataModel {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    ActionTemplate.#migrateAbility(source);
-    ActionTemplate.#migrateAttack(source);
-    ActionTemplate.#migrateCritical(source);
-    ActionTemplate.#migrateSave(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    ActionTemplate.#migrateAbility( source );
+    ActionTemplate.#migrateAttack( source );
+    ActionTemplate.#migrateCritical( source );
+    ActionTemplate.#migrateSave( source );
   }
 
   /* -------------------------------------------- */
@@ -80,8 +80,8 @@ export default class ActionTemplate extends ItemDataModel {
    * Migrate the ability field.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateAbility(source) {
-    if (Array.isArray(source.ability)) source.ability = source.ability[0];
+  static #migrateAbility( source ) {
+    if ( Array.isArray( source.ability ) ) source.ability = source.ability[0];
   }
 
   /* -------------------------------------------- */
@@ -90,12 +90,12 @@ export default class ActionTemplate extends ItemDataModel {
    * Move 'attackBonus' to 'attack.bonus' and ensure a 0 or null is converted to an empty string rather than "0".
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateAttack(source) {
-    if ("attackBonus" in source) {
+  static #migrateAttack( source ) {
+    if ( "attackBonus" in source ) {
       source.attack ??= {};
       source.attack.bonus ??= source.attackBonus;
     }
-    if ([0, "0", null].includes(source.attack?.bonus)) source.attack.bonus = "";
+    if ( [0, "0", null].includes( source.attack?.bonus ) ) source.attack.bonus = "";
   }
 
   /* -------------------------------------------- */
@@ -104,13 +104,13 @@ export default class ActionTemplate extends ItemDataModel {
    * Ensure the critical field is an object.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateCritical(source) {
-    if (!("critical" in source)) return;
-    if (typeof source.critical !== "object" || source.critical === null) source.critical = {
+  static #migrateCritical( source ) {
+    if ( !( "critical" in source ) ) return;
+    if ( typeof source.critical !== "object" || source.critical === null ) source.critical = {
       threshold: null,
       damage: ""
     };
-    if (source.critical.damage === null) source.critical.damage = "";
+    if ( source.critical.damage === null ) source.critical.damage = "";
   }
 
   /* -------------------------------------------- */
@@ -119,14 +119,14 @@ export default class ActionTemplate extends ItemDataModel {
    * Migrate the save field.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateSave(source) {
-    if (!("save" in source)) return;
+  static #migrateSave( source ) {
+    if ( !( "save" in source ) ) return;
     source.save ??= {};
-    if (source.save.scaling === "") source.save.scaling = "power";
-    if (source.save.ability === null) source.save.ability = "";
-    if (typeof source.save.dc === "string") {
-      if (source.save.dc === "") source.save.dc = null;
-      else if (Number.isNumeric(source.save.dc)) source.save.dc = Number(source.save.dc);
+    if ( source.save.scaling === "" ) source.save.scaling = "power";
+    if ( source.save.ability === null ) source.save.ability = "";
+    if ( typeof source.save.dc === "string" ) {
+      if ( source.save.dc === "" ) source.save.dc = null;
+      else if ( Number.isNumeric( source.save.dc ) ) source.save.dc = Number( source.save.dc );
     }
   }
 
@@ -139,7 +139,7 @@ export default class ActionTemplate extends ItemDataModel {
    * @type {string|null}
    */
   get abilityMod() {
-    if (this.ability === "none") return null;
+    if ( this.ability === "none" ) return null;
     return (
       this.ability
       || this._typeAbilityMod
@@ -175,7 +175,7 @@ export default class ActionTemplate extends ItemDataModel {
    * @type {number}
    */
   get baseCriticalThreshold() {
-    if (!this.hasAttack) return null;
+    if ( !this.hasAttack ) return null;
     const threshold = this._typeBaseCriticalThreshold;
     return threshold < Infinity ? threshold : 20;
   }
@@ -190,12 +190,12 @@ export default class ActionTemplate extends ItemDataModel {
    * @type {number|null}
    */
   get criticalThreshold() {
-    if (!this.hasAttack) return null;
+    if ( !this.hasAttack ) return null;
     let ammoThreshold = Infinity;
-    if (this.hasAmmo) {
-      ammoThreshold = this.parent?.actor?.items.get(this.consume.target)?.system.critical.threshold ?? Infinity;
+    if ( this.hasAmmo ) {
+      ammoThreshold = this.parent?.actor?.items.get( this.consume.target )?.system.critical.threshold ?? Infinity;
     }
-    const threshold = Math.min(this.critical.threshold ?? Infinity, this._typeCriticalThreshold, ammoThreshold);
+    const threshold = Math.min( this.critical.threshold ?? Infinity, this._typeCriticalThreshold, ammoThreshold );
     return threshold < Infinity ? threshold : this.baseCriticalThreshold;
   }
 
@@ -238,7 +238,7 @@ export default class ActionTemplate extends ItemDataModel {
    * @type {boolean}
    */
   get hasAttack() {
-    return ["mwak", "rwak", "mpak", "rpak"].includes(this.actionType);
+    return ["mwak", "rwak", "mpak", "rpak"].includes( this.actionType );
   }
 
   /* -------------------------------------------- */
@@ -258,7 +258,7 @@ export default class ActionTemplate extends ItemDataModel {
    * @type {boolean}
    */
   get hasSave() {
-    return this.actionType && !!(this.save.ability && this.save.scaling);
+    return this.actionType && !!( this.save.ability && this.save.scaling );
   }
 
   /* -------------------------------------------- */
@@ -268,7 +268,7 @@ export default class ActionTemplate extends ItemDataModel {
    * @type {boolean}
    */
   get hasSummoning() {
-    return (this.actionType === "summ") && !!this.summons?.profiles.length;
+    return ( this.actionType === "summ" ) && !!this.summons?.profiles.length;
   }
 
   /* -------------------------------------------- */
@@ -278,7 +278,7 @@ export default class ActionTemplate extends ItemDataModel {
    * @type {boolean}
    */
   get isEnchantment() {
-    return EnchantmentData.isEnchantment(this);
+    return EnchantmentData.isEnchantment( this );
   }
 
   /* -------------------------------------------- */
@@ -298,7 +298,7 @@ export default class ActionTemplate extends ItemDataModel {
    * @type {boolean}
    */
   get isVersatile() {
-    return this.actionType && !!(this.hasDamage && this.damage.versatile);
+    return this.actionType && !!( this.hasDamage && this.damage.versatile );
   }
 
   /* -------------------------------------------- */
@@ -306,10 +306,10 @@ export default class ActionTemplate extends ItemDataModel {
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  getRollData(options) {
-    const data = super.getRollData(options);
+  getRollData( options ) {
+    const data = super.getRollData( options );
     const key = this.abilityMod;
-    if (data && key && ("abilities" in data)) {
+    if ( data && key && ( "abilities" in data ) ) {
       const ability = data.abilities[key];
       data.mod = ability?.mod ?? 0;
     }

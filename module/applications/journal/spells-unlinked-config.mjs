@@ -2,8 +2,8 @@
  * Application for configuring a single unlinked power in a power list.
  */
 export default class PowersUnlinkedConfig extends DocumentSheet {
-  constructor(unlinkedId, object, options={}) {
-    super(object, options);
+  constructor( unlinkedId, object, options={} ) {
+    super( object, options );
     this.unlinkedId = unlinkedId;
   }
 
@@ -11,13 +11,13 @@ export default class PowersUnlinkedConfig extends DocumentSheet {
 
   /** @inheritDoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       classes: ["sw5e", "unlinked-power-config"],
       template: "systems/sw5e/templates/journal/page-power-list-unlinked-config.hbs",
       width: 400,
       height: "auto",
       sheetConfig: false
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -35,7 +35,7 @@ export default class PowersUnlinkedConfig extends DocumentSheet {
   /** @inheritDoc */
   get title() {
     return `${game.i18n.localize(
-      "JOURNALENTRYPAGE.SW5E.PowerList.UnlinkedPowers.Configuration")}: ${this.document.name}`;
+      "JOURNALENTRYPAGE.SW5E.PowerList.UnlinkedPowers.Configuration" )}: ${this.document.name}`;
   }
 
   /* -------------------------------------------- */
@@ -46,7 +46,7 @@ export default class PowersUnlinkedConfig extends DocumentSheet {
   getData() {
     const context = {
       ...super.getData(),
-      ...this.document.system.unlinkedPowers.find(u => u._id === this.unlinkedId),
+      ...this.document.system.unlinkedPowers.find( u => u._id === this.unlinkedId ),
       appId: this.id,
       CONFIG: CONFIG.SW5E
     };
@@ -56,10 +56,10 @@ export default class PowersUnlinkedConfig extends DocumentSheet {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _updateObject(event, formData) {
+  _updateObject( event, formData ) {
     const unlinkedPowers = this.document.toObject().system.unlinkedPowers;
-    const editing = unlinkedPowers.find(s => s._id === this.unlinkedId);
-    foundry.utils.mergeObject(editing, formData);
-    this.document.update({"system.unlinkedPowers": unlinkedPowers});
+    const editing = unlinkedPowers.find( s => s._id === this.unlinkedId );
+    foundry.utils.mergeObject( editing, formData );
+    this.document.update( {"system.unlinkedPowers": unlinkedPowers} );
   }
 }

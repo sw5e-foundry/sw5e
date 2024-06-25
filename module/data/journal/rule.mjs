@@ -11,8 +11,8 @@ export default class RuleJournalPageData extends foundry.abstract.DataModel {
   /** @inheritDoc */
   static defineSchema() {
     return {
-      tooltip: new HTMLField({ label: "SW5E.Rule.Tooltip" }),
-      type: new StringField({ blank: false, initial: "rule", label: "SW5E.Rule.Type.Label" })
+      tooltip: new HTMLField( { label: "SW5E.Rule.Tooltip" } ),
+      type: new StringField( { blank: false, initial: "rule", label: "SW5E.Rule.Type.Label" } )
     };
   }
 
@@ -23,16 +23,16 @@ export default class RuleJournalPageData extends foundry.abstract.DataModel {
    * @param {EnrichmentOptions} [enrichmentOptions={}]  Options for text enrichment.
    * @returns {{content: string, classes: string[]}}
    */
-  async richTooltip(enrichmentOptions = {}) {
+  async richTooltip( enrichmentOptions = {} ) {
     const context = {
       page: this.parent,
       type: CONFIG.SW5E.ruleTypes[this.type].label,
-      content: await TextEditor.enrichHTML(this.tooltip || this.parent.text.content, {
+      content: await TextEditor.enrichHTML( this.tooltip || this.parent.text.content, {
         secrets: false, async: true, relativeTo: this.parent, ...enrichmentOptions
-      })
+      } )
     };
     return {
-      content: await renderTemplate("systems/sw5e/templates/journal/page-rule-tooltip.hbs", context),
+      content: await renderTemplate( "systems/sw5e/templates/journal/page-rule-tooltip.hbs", context ),
       classes: ["sw5e-tooltip", "rule-tooltip"]
     };
   }

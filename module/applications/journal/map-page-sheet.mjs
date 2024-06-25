@@ -6,7 +6,7 @@ export default class JournalMapLocationPageSheet extends JournalTextPageSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     const options = super.defaultOptions;
-    options.classes.push("map");
+    options.classes.push( "map" );
     return options;
   }
 
@@ -20,17 +20,17 @@ export default class JournalMapLocationPageSheet extends JournalTextPageSheet {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  async _renderInner(...args) {
-    const jQuery = await super._renderInner(...args);
-    const editingHeader = jQuery[0].querySelector(".journal-header");
-    const viewingHeader = jQuery[0].querySelector(":is(h1, h2, h3)");
+  async _renderInner( ...args ) {
+    const jQuery = await super._renderInner( ...args );
+    const editingHeader = jQuery[0].querySelector( ".journal-header" );
+    const viewingHeader = jQuery[0].querySelector( ":is(h1, h2, h3)" );
 
     if ( editingHeader ) {
-      const input = document.createElement("input");
+      const input = document.createElement( "input" );
       input.name = "system.code";
       input.type = "text";
       input.value = this.document.system.code ?? "";
-      editingHeader.insertAdjacentElement("afterbegin", input);
+      editingHeader.insertAdjacentElement( "afterbegin", input );
     }
 
     else if ( viewingHeader && this.document.system.code ) {

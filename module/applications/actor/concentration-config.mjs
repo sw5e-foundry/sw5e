@@ -7,27 +7,27 @@ import BaseConfigSheet from "./base-config.mjs";
 export default class ActorConcentrationConfig extends BaseConfigSheet {
   /** @inheritDoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       classes: ["sw5e"],
       template: "systems/sw5e/templates/apps/concentration-config.hbs",
       width: 500,
       height: "auto"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @override */
   get title() {
-    return `${game.i18n.format("SW5E.AbilityConfigure", {
-      ability: game.i18n.localize("SW5E.Concentration") })
+    return `${game.i18n.format( "SW5E.AbilityConfigure", {
+      ability: game.i18n.localize( "SW5E.Concentration" ) } )
     }: ${this.document.name}`;
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  getData(options={}) {
+  getData( options={} ) {
     const src = this.document.toObject();
     const { ability, bonuses, limit, roll } = src.system.attributes.concentration;
     return {

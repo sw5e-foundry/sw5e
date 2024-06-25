@@ -14,9 +14,9 @@ export default class EquippableItemTemplate extends SystemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
-      attunement: new StringField({ required: true, label: "SW5E.Attunement" }),
-      attuned: new BooleanField({ label: "SW5E.Attuned" }),
-      equipped: new BooleanField({ required: true, label: "SW5E.Equipped" })
+      attunement: new StringField( { required: true, label: "SW5E.Attunement" } ),
+      attuned: new BooleanField( { label: "SW5E.Attuned" } ),
+      equipped: new BooleanField( { required: true, label: "SW5E.Equipped" } )
     };
   }
 
@@ -25,10 +25,10 @@ export default class EquippableItemTemplate extends SystemDataModel {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    EquippableItemTemplate.#migrateAttunement(source);
-    EquippableItemTemplate.#migrateEquipped(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    EquippableItemTemplate.#migrateAttunement( source );
+    EquippableItemTemplate.#migrateEquipped( source );
   }
 
   /* -------------------------------------------- */
@@ -37,8 +37,8 @@ export default class EquippableItemTemplate extends SystemDataModel {
    * Migrate the item's attuned boolean to attunement string.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateAttunement(source) {
-    switch (source.attunement) {
+  static #migrateAttunement( source ) {
+    switch ( source.attunement ) {
       case 2: source.attuned = true;
       case 1: source.attunement = "required"; break;
       case 0: source.attunement = ""; break;
@@ -51,9 +51,9 @@ export default class EquippableItemTemplate extends SystemDataModel {
    * Migrate the equipped field.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateEquipped(source) {
-    if (!("equipped" in source)) return;
-    if ((source.equipped === null) || (source.equipped === undefined)) source.equipped = false;
+  static #migrateEquipped( source ) {
+    if ( !( "equipped" in source ) ) return;
+    if ( ( source.equipped === null ) || ( source.equipped === undefined ) ) source.equipped = false;
   }
 
   /* -------------------------------------------- */
@@ -64,7 +64,7 @@ export default class EquippableItemTemplate extends SystemDataModel {
    * Ensure items that cannot be attuned are not marked as attuned.
    */
   prepareFinalEquippableData() {
-    if (!this.attunement) this.attuned = false;
+    if ( !this.attunement ) this.attuned = false;
   }
 
   /* -------------------------------------------- */
@@ -78,8 +78,8 @@ export default class EquippableItemTemplate extends SystemDataModel {
   get equippableItemCardProperties() {
     return [
       this.attunement === "required" ? CONFIG.SW5E.attunementTypes.required : null,
-      game.i18n.localize(this.equipped ? "SW5E.Equipped" : "SW5E.Unequipped"),
-      ("proficient" in this) ? CONFIG.SW5E.proficiencyLevels[this.prof?.multiplier || 0] : null
+      game.i18n.localize( this.equipped ? "SW5E.Equipped" : "SW5E.Unequipped" ),
+      ( "proficient" in this ) ? CONFIG.SW5E.proficiencyLevels[this.prof?.multiplier || 0] : null
     ];
   }
 
@@ -90,7 +90,7 @@ export default class EquippableItemTemplate extends SystemDataModel {
    * @type {boolean}
    */
   get magicAvailable() {
-    const attunement = this.attuned || (this.attunement !== "required");
-    return attunement && this.properties.has("mgc") && this.validProperties.has("mgc");
+    const attunement = this.attuned || ( this.attunement !== "required" );
+    return attunement && this.properties.has( "mgc" ) && this.validProperties.has( "mgc" );
   }
 }

@@ -4,7 +4,7 @@
  * @param {typeof HTMLElement} Base  The base class being mixed.
  * @returns {typeof AdoptedStyleSheetElement}
  */
-export default function AdoptedStyleSheetMixin(Base) {
+export default function AdoptedStyleSheetMixin( Base ) {
   return class AdoptedStyleSheetElement extends Base {
     /**
      * A map of cached stylesheets per Document root.
@@ -23,7 +23,7 @@ export default function AdoptedStyleSheetMixin(Base) {
 
     /** @inheritDoc */
     adoptedCallback() {
-      this._adoptStyleSheet(this._getStyleSheet());
+      this._adoptStyleSheet( this._getStyleSheet() );
     }
 
     /* -------------------------------------------- */
@@ -34,11 +34,11 @@ export default function AdoptedStyleSheetMixin(Base) {
      * @protected
      */
     _getStyleSheet() {
-      let sheet = this.constructor._stylesheets.get(this.ownerDocument);
+      let sheet = this.constructor._stylesheets.get( this.ownerDocument );
       if ( !sheet ) {
         sheet = new this.ownerDocument.defaultView.CSSStyleSheet();
-        sheet.replaceSync(this.constructor.CSS);
-        this.constructor._stylesheets.set(this.ownerDocument, sheet);
+        sheet.replaceSync( this.constructor.CSS );
+        this.constructor._stylesheets.set( this.ownerDocument, sheet );
       }
       return sheet;
     }
@@ -50,6 +50,6 @@ export default function AdoptedStyleSheetMixin(Base) {
      * @param {CSSStyleSheet} sheet  The sheet to adopt.
      * @abstract
      */
-    _adoptStyleSheet(sheet) {}
+    _adoptStyleSheet( sheet ) {}
   };
 }

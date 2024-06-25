@@ -13,27 +13,27 @@ export class ScaleValueConfigurationData extends foundry.abstract.DataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
-      identifier: new IdentifierField({ required: true, label: "SW5E.Identifier" }),
-      type: new foundry.data.fields.StringField({
+      identifier: new IdentifierField( { required: true, label: "SW5E.Identifier" } ),
+      type: new foundry.data.fields.StringField( {
         required: true,
         initial: "string",
         choices: TYPES,
         label: "SW5E.AdvancementScaleValueTypeLabel"
-      }),
-      distance: new foundry.data.fields.SchemaField({
-        units: new foundry.data.fields.StringField({ required: true, label: "SW5E.MovementUnits" })
-      }),
-      scale: new MappingField(new ScaleValueEntryField(), { required: true })
+      } ),
+      distance: new foundry.data.fields.SchemaField( {
+        units: new foundry.data.fields.StringField( { required: true, label: "SW5E.MovementUnits" } )
+      } ),
+      scale: new MappingField( new ScaleValueEntryField(), { required: true } )
     };
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    super.migrateData(source);
-    if (source.type === "numeric") source.type = "number";
-    Object.values(source.scale ?? {}).forEach(v => TYPES[source.type].migrateData(v));
+  static migrateData( source ) {
+    super.migrateData( source );
+    if ( source.type === "numeric" ) source.type = "number";
+    Object.values( source.scale ?? {} ).forEach( v => TYPES[source.type].migrateData( v ) );
   }
 }
 
@@ -42,12 +42,12 @@ export class ScaleValueConfigurationData extends foundry.abstract.DataModel {
  */
 export class ScaleValueEntryField extends foundry.data.fields.ObjectField {
   /** @override */
-  _cleanType(value, options) {
-    if (!(typeof value === "object")) value = {};
+  _cleanType( value, options ) {
+    if ( !( typeof value === "object" ) ) value = {};
 
     // Use a defined DataModel
     const cls = TYPES[options.source?.type];
-    if (cls) return cls.cleanData(value, options);
+    if ( cls ) return cls.cleanData( value, options );
 
     return value;
   }
@@ -55,17 +55,17 @@ export class ScaleValueEntryField extends foundry.data.fields.ObjectField {
   /* -------------------------------------------- */
 
   /** @override */
-  initialize(value, model, options={}) {
+  initialize( value, model, options={} ) {
     const cls = TYPES[model.type];
     if ( !value || !cls ) return value;
-    return new cls(value, {parent: model, ...options});
+    return new cls( value, {parent: model, ...options} );
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  toObject(value) {
-    return value.toObject(false);
+  toObject( value ) {
+    return value.toObject( false );
   }
 }
 
@@ -78,7 +78,7 @@ export class ScaleValueType extends foundry.abstract.DataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
-      value: new foundry.data.fields.StringField({ required: true })
+      value: new foundry.data.fields.StringField( { required: true } )
     };
   }
 
@@ -113,8 +113,8 @@ export class ScaleValueType extends foundry.abstract.DataModel {
    * @param {object} [options]         Options which affect DataModel construction.
    * @returns {ScaleValueType|null}
    */
-  static convertFrom(original, options) {
-    return new this({ value: original.formula }, options);
+  static convertFrom( original, options ) {
+    return new this( { value: original.formula }, options );
   }
 
   /* -------------------------------------------- */
@@ -157,7 +157,7 @@ export class ScaleValueTypeNumber extends ScaleValueType {
   /** @inheritdoc */
   static defineSchema() {
     return {
-      value: new foundry.data.fields.NumberField({ required: true })
+      value: new foundry.data.fields.NumberField( { required: true } )
     };
   }
 
@@ -165,20 +165,20 @@ export class ScaleValueTypeNumber extends ScaleValueType {
 
   /** @inheritdoc */
   static get metadata() {
-    return foundry.utils.mergeObject(super.metadata, {
+    return foundry.utils.mergeObject( super.metadata, {
       label: "SW5E.AdvancementScaleValueTypeNumber",
       hint: "SW5E.AdvancementScaleValueTypeHintNumber",
       isNumeric: true
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static convertFrom(original, options) {
-    const value = Number(original.formula);
-    if (Number.isNaN(value)) return null;
-    return new this({ value }, options);
+  static convertFrom( original, options ) {
+    const value = Number( original.formula );
+    if ( Number.isNaN( value ) ) return null;
+    return new this( { value }, options );
   }
 }
 
@@ -191,7 +191,7 @@ export class ScaleValueTypeCR extends ScaleValueTypeNumber {
   /** @inheritdoc */
   static defineSchema() {
     return {
-      value: new foundry.data.fields.NumberField({ required: true, min: 0 })
+      value: new foundry.data.fields.NumberField( { required: true, min: 0 } )
       // TODO: Add CR validator
     };
   }
@@ -200,17 +200,17 @@ export class ScaleValueTypeCR extends ScaleValueTypeNumber {
 
   /** @inheritdoc */
   static get metadata() {
-    return foundry.utils.mergeObject(super.metadata, {
+    return foundry.utils.mergeObject( super.metadata, {
       label: "SW5E.AdvancementScaleValueTypeCR",
       hint: "SW5E.AdvancementScaleValueTypeHintCR"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
   get display() {
-    switch (this.value) {
+    switch ( this.value ) {
       case 0.125:
         return "&frac18;";
       case 0.25:
@@ -234,9 +234,9 @@ export class ScaleValueTypeDice extends ScaleValueType {
   static defineSchema() {
     const fields = foundry.data.fields;
     return {
-      number: new fields.NumberField({ nullable: true, integer: true, positive: true }),
-      faces: new fields.NumberField({required: true, integer: true, positive: true}),
-      modifiers: new fields.SetField(new fields.StringField({required: true}))
+      number: new fields.NumberField( { nullable: true, integer: true, positive: true } ),
+      faces: new fields.NumberField( {required: true, integer: true, positive: true} ),
+      modifiers: new fields.SetField( new fields.StringField( {required: true} ) )
     };
   }
 
@@ -244,10 +244,10 @@ export class ScaleValueTypeDice extends ScaleValueType {
 
   /** @inheritdoc */
   static get metadata() {
-    return foundry.utils.mergeObject(super.metadata, {
+    return foundry.utils.mergeObject( super.metadata, {
       label: "SW5E.AdvancementScaleValueTypeDice",
       hint: "SW5E.AdvancementScaleValueTypeHintDice"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -261,17 +261,17 @@ export class ScaleValueTypeDice extends ScaleValueType {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static convertFrom(original, options) {
-    const [number, faces] = (original.formula ?? "").split("d");
-    if (!faces || !Number.isNumeric(number) || !Number.isNumeric(faces)) return null;
-    return new this({ number: Number(number) || null, faces: Number(faces) }, options);
+  static convertFrom( original, options ) {
+    const [number, faces] = ( original.formula ?? "" ).split( "d" );
+    if ( !faces || !Number.isNumeric( number ) || !Number.isNumeric( faces ) ) return null;
+    return new this( { number: Number( number ) || null, faces: Number( faces ) }, options );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
   get formula() {
-    if (!this.faces) return null;
+    if ( !this.faces ) return null;
     return `${this.number ?? ""}${this.die}`;
   }
 
@@ -294,9 +294,9 @@ export class ScaleValueTypeDice extends ScaleValueType {
    */
   get mods() {
     if ( !this.modifiers ) return "";
-    return this.modifiers.reduce((acc, mod) => {
-      return acc + (sw5e.utils.isValidDieModifier(mod) ? mod : "");
-    }, "");
+    return this.modifiers.reduce( ( acc, mod ) => {
+      return acc + ( sw5e.utils.isValidDieModifier( mod ) ? mod : "" );
+    }, "" );
   }
 
   /* -------------------------------------------- */
@@ -306,16 +306,16 @@ export class ScaleValueTypeDice extends ScaleValueType {
    * @type {string}
    */
   get denom() {
-    if (!this.faces) return "";
+    if ( !this.faces ) return "";
     return `d${this.faces}`;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    if (source.n) source.number = source.n;
-    if (source.die) source.faces = source.die;
+  static migrateData( source ) {
+    if ( source.n ) source.number = source.n;
+    if ( source.die ) source.faces = source.die;
   }
 }
 
@@ -327,10 +327,10 @@ export class ScaleValueTypeDice extends ScaleValueType {
 export class ScaleValueTypeDistance extends ScaleValueTypeNumber {
   /** @inheritdoc */
   static get metadata() {
-    return foundry.utils.mergeObject(super.metadata, {
+    return foundry.utils.mergeObject( super.metadata, {
       label: "SW5E.AdvancementScaleValueTypeDistance",
       hint: "SW5E.AdvancementScaleValueTypeHintDistance"
-    });
+    } );
   }
 
   /* -------------------------------------------- */

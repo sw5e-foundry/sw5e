@@ -6,16 +6,16 @@ export default class ShieldDice {
    * Object describing the shield dice for an actor.
    * @param {Actor5e} actor     The actor whose shield dice this document describes.
    */
-  constructor(actor) {
+  constructor( actor ) {
     this.actor = actor;
 
-    for (const item of Object.values(actor.starships)) {
-      if (/^d\d+$/.test(item.system.shldDice)) {
-        this.starships.add(item);
-        const hugeOrGrg = ["huge", "grg"].includes(item.system.size);
-        this.max += (item.system.shldDiceStart ?? 0) + ((hugeOrGrg ? 2 : 1) * item.system.tier);
-        this.value += (item.system.shldDiceStart ?? 0) + ((hugeOrGrg ? 2 : 1) * item.system.tier) - item.system.shldDiceUsed;
-        this.sizes.add(parseInt(item.system.shldDice.slice(1)));
+    for ( const item of Object.values( actor.starships ) ) {
+      if ( /^d\d+$/.test( item.system.shldDice ) ) {
+        this.starships.add( item );
+        const hugeOrGrg = ["huge", "grg"].includes( item.system.size );
+        this.max += ( item.system.shldDiceStart ?? 0 ) + ( ( hugeOrGrg ? 2 : 1 ) * item.system.tier );
+        this.value += ( item.system.shldDiceStart ?? 0 ) + ( ( hugeOrGrg ? 2 : 1 ) * item.system.tier ) - item.system.shldDiceUsed;
+        this.sizes.add( parseInt( item.system.shldDice.slice( 1 ) ) );
       }
     }
   }
@@ -77,7 +77,7 @@ export default class ShieldDice {
    * @type {number}
    */
   get smallestFace() {
-    return this.sizes.size ? Math.min(...this.sizes) : 0;
+    return this.sizes.size ? Math.min( ...this.sizes ) : 0;
   }
 
   /* -------------------------------------------- */
@@ -97,7 +97,7 @@ export default class ShieldDice {
    * @type {number}
    */
   get largestFace() {
-    return this.sizes.size ? Math.max(...this.sizes) : 0;
+    return this.sizes.size ? Math.max( ...this.sizes ) : 0;
   }
 
   /* -------------------------------------------- */
@@ -107,7 +107,7 @@ export default class ShieldDice {
    * @type {number}
    */
   get pct() {
-    return Math.clamp(this.max ? (this.value / this.max) * 100 : 0, 0, 100);
+    return Math.clamp( this.max ? ( this.value / this.max ) * 100 : 0, 0, 100 );
   }
 
   /* -------------------------------------------- */
@@ -118,13 +118,13 @@ export default class ShieldDice {
    */
   get bySize() {
     const shldd = {};
-    this.starships.forEach(sship => {
+    this.starships.forEach( sship => {
       const d = sship.system.shieldDice;
-      const hugeOrGrg = ["huge", "grg"].includes(sship.system.size);
-      const max = (sship.system.shldDiceStart ?? 0) + ((hugeOrGrg ? 2 : 1) * sship.system.tier);
+      const hugeOrGrg = ["huge", "grg"].includes( sship.system.size );
+      const max = ( sship.system.shldDiceStart ?? 0 ) + ( ( hugeOrGrg ? 2 : 1 ) * sship.system.tier );
       const remaining = max - sship.system.shldDiceUsed;
-      shldd[d] = (shldd[d] ?? 0) + remaining;
-    });
+      shldd[d] = ( shldd[d] ?? 0 ) + remaining;
+    } );
     return shldd;
   }
 
@@ -147,21 +147,21 @@ export default class ShieldDice {
    * @param {boolean} [options.largest]                           Whether to restore the largest shield dice first.
    * @returns {{updates: object[], shldDiceRecovered: number}}  Array of item updates and number of shield dice recovered.
    */
-  createShieldDiceUpdates({ maxShieldDice, largest = true } = {}) {
-    if (!Number.isInteger(maxShieldDice)) maxShieldDice = this.max;
-    const sships = Array.from(this.starships).sort((a, b) => {
-      a = parseInt(a.system.shldDice.slice(1));
-      b = parseInt(b.system.shldDice.slice(1));
-      return largest ? (b - a) : (a - b);
-    });
+  createShieldDiceUpdates( { maxShieldDice, largest = true } = {} ) {
+    if ( !Number.isInteger( maxShieldDice ) ) maxShieldDice = this.max;
+    const sships = Array.from( this.starships ).sort( ( a, b ) => {
+      a = parseInt( a.system.shldDice.slice( 1 ) );
+      b = parseInt( b.system.shldDice.slice( 1 ) );
+      return largest ? ( b - a ) : ( a - b );
+    } );
     const updates = [];
     let recovered = 0;
-    for (const item of sships) {
+    for ( const item of sships ) {
       const used = item.system.shldDiceUsed;
-      if ((recovered < maxShieldDice) && (used > 0)) {
-        const delta = Math.min(used, maxShieldDice - recovered);
+      if ( ( recovered < maxShieldDice ) && ( used > 0 ) ) {
+        const delta = Math.min( used, maxShieldDice - recovered );
         recovered += delta;
-        updates.push({ _id: item.id, "system.shldDiceUsed": used - delta });
+        updates.push( { _id: item.id, "system.shldDiceUsed": used - delta } );
       }
     }
     return { updates, shldDiceRecovered: recovered };

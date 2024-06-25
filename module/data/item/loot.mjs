@@ -17,22 +17,22 @@ export default class LootData extends ItemDataModel.mixin(
 ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+    return this.mergeSchema( super.defineSchema(), {
+      properties: new foundry.data.fields.SetField( new foundry.data.fields.StringField(), {
         label: "SW5E.ItemLootProperties"
-      }),
-      type: new ItemTypeField({ baseItem: false }, { label: "SW5E.ItemLootType" })
-    });
+      } ),
+      type: new ItemTypeField( { baseItem: false }, { label: "SW5E.ItemLootType" } )
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
     enchantable: true,
     inventoryItem: true,
     inventoryOrder: 600
-  }, { inplace: false }));
+  }, { inplace: false } ) );
 
   /* -------------------------------------------- */
   /*  Data Preparation                            */
@@ -41,7 +41,7 @@ export default class LootData extends ItemDataModel.mixin(
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    this.type.label = CONFIG.SW5E.lootTypes[this.type.value]?.label ?? game.i18n.localize(CONFIG.Item.typeLabels.loot);
+    this.type.label = CONFIG.SW5E.lootTypes[this.type.value]?.label ?? game.i18n.localize( CONFIG.Item.typeLabels.loot );
   }
 
   /* -------------------------------------------- */
@@ -55,7 +55,7 @@ export default class LootData extends ItemDataModel.mixin(
   get chatProperties() {
     return [
       this.type.label,
-      this.weight ? `${this.weight.value} ${game.i18n.localize("SW5E.AbbreviationLbs")}` : null,
+      this.weight ? `${this.weight.value} ${game.i18n.localize( "SW5E.AbbreviationLbs" )}` : null,
       this.priceLabel
     ];
   }

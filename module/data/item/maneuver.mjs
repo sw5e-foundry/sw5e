@@ -35,22 +35,22 @@ export default class ManeuverData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      type: new ItemTypeField({ baseItem: false }, { label: "SW5E.ItemManeuverType" }),
-      prerequisites: new SchemaField({
-        level: new NumberField({ integer: true, min: 0 })
-      }),
-      properties: new SetField(new StringField(), {
+    return this.mergeSchema( super.defineSchema(), {
+      type: new ItemTypeField( { baseItem: false }, { label: "SW5E.ItemManeuverType" } ),
+      prerequisites: new SchemaField( {
+        level: new NumberField( { integer: true, min: 0 } )
+      } ),
+      properties: new SetField( new StringField(), {
         label: "SW5E.ItemManeuverProperties"
-      }),
-      requirements: new StringField({ required: true, nullable: true, label: "SW5E.Requirements" }),
-      recharge: new SchemaField({
-        value: new NumberField({
+      } ),
+      requirements: new StringField( { required: true, nullable: true, label: "SW5E.Requirements" } ),
+      recharge: new SchemaField( {
+        value: new NumberField( {
           required: true, integer: true, min: 1, label: "SW5E.ManeuverRechargeOn"
-        }),
-        charged: new BooleanField({ required: true, label: "SW5E.Charged" })
-      }, { label: "SW5E.ManeuverActionRecharge" })
-    });
+        } ),
+        charged: new BooleanField( { required: true, label: "SW5E.Charged" } )
+      }, { label: "SW5E.ManeuverActionRecharge" } )
+    } );
   }
 
   /* -------------------------------------------- */
@@ -61,10 +61,10 @@ export default class ManeuverData extends ItemDataModel.mixin(
   prepareDerivedData() {
     super.prepareDerivedData();
 
-    if (this.type.value) {
+    if ( this.type.value ) {
       const config = CONFIG.SW5E.maneuverType[this.type.value];
-      if (config) this.type.label = config.subtypes?.[this.type.subtype] ?? null;
-      else this.type.label = game.i18n.localize(CONFIG.Item.typeLabels.maneuver);
+      if ( config ) this.type.label = config.subtypes?.[this.type.subtype] ?? null;
+      else this.type.label = game.i18n.localize( CONFIG.Item.typeLabels.maneuver );
     }
   }
 
@@ -79,10 +79,10 @@ export default class ManeuverData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   async getFavoriteData() {
-    return foundry.utils.mergeObject(await super.getFavoriteData(), {
+    return foundry.utils.mergeObject( await super.getFavoriteData(), {
       subtitle: [this.parent.labels.activation, this.parent.labels.recovery],
       uses: this.hasLimitedUses ? this.getUsesData() : null
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -90,10 +90,10 @@ export default class ManeuverData extends ItemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    FeatData.#migrateType(source);
-    FeatData.#migrateRecharge(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    FeatData.#migrateType( source );
+    FeatData.#migrateRecharge( source );
   }
 
   /* -------------------------------------------- */
@@ -102,9 +102,9 @@ export default class ManeuverData extends ItemDataModel.mixin(
    * Ensure feats have a type object.
    * @param {object} source The candidate source data from which the model will be constructed.
    */
-  static #migrateType(source) {
-    if (!("type" in source)) return;
-    if (!source.type) source.type = { value: "", subtype: "" };
+  static #migrateType( source ) {
+    if ( !( "type" in source ) ) return;
+    if ( !source.type ) source.type = { value: "", subtype: "" };
   }
 
   /* -------------------------------------------- */
@@ -113,12 +113,12 @@ export default class ManeuverData extends ItemDataModel.mixin(
    * Migrate 0 values to null.
    * @param {object} source The candidate source data from which the model will be constructed.
    */
-  static #migrateRecharge(source) {
-    if (!("recharge" in source)) return;
+  static #migrateRecharge( source ) {
+    if ( !( "recharge" in source ) ) return;
     const value = source.recharge.value;
-    if ((value === 0) || (value === "")) source.recharge.value = null;
-    else if ((typeof value === "string") && Number.isNumeric(value)) source.recharge.value = Number(value);
-    if (source.recharge.charged === null) source.recharge.charged = false;
+    if ( ( value === 0 ) || ( value === "" ) ) source.recharge.value = null;
+    else if ( ( typeof value === "string" ) && Number.isNumeric( value ) ) source.recharge.value = Number( value );
+    if ( source.recharge.charged === null ) source.recharge.charged = false;
   }
 
   /* -------------------------------------------- */
@@ -147,7 +147,7 @@ export default class ManeuverData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   get hasLimitedUses() {
-    return this.isActive && (!!this.recharge.value || super.hasLimitedUses);
+    return this.isActive && ( !!this.recharge.value || super.hasLimitedUses );
   }
 
   /* -------------------------------------------- */
@@ -158,7 +158,7 @@ export default class ManeuverData extends ItemDataModel.mixin(
    * @type {boolean}
    */
   get isEnchantmentSource() {
-    return EnchantmentData.isEnchantmentSource(this);
+    return EnchantmentData.isEnchantmentSource( this );
   }
 
   /* -------------------------------------------- */
@@ -181,14 +181,14 @@ export default class ManeuverData extends ItemDataModel.mixin(
     const abilities = actor?.system?.abilities;
 
     let attrs = [];
-    if (type === "physical") attrs = ["str", "dex", "con"];
-    else if (type === "mental") attrs = ["int", "wis", "cha"];
+    if ( type === "physical" ) attrs = ["str", "dex", "con"];
+    else if ( type === "mental" ) attrs = ["int", "wis", "cha"];
     else attrs = ["str", "dex", "con", "int", "wis", "cha"];
 
     return attrs.reduce(
-      (acc, attr) => {
+      ( acc, attr ) => {
         const mod = abilities?.[attr]?.mod ?? -Infinity;
-        if (mod > acc.mod) acc = { attr, mod };
+        if ( mod > acc.mod ) acc = { attr, mod };
         return acc;
       },
       { attr: "str", mod: -Infinity }

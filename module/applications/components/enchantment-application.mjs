@@ -38,19 +38,19 @@ export default class EnchantmentApplicationElement extends HTMLElement {
   /* -------------------------------------------- */
 
   connectedCallback() {
-    const messageId = this.closest("[data-message-id]")?.dataset.messageId;
-    this.chatMessage = game.messages.get(messageId);
+    const messageId = this.closest( "[data-message-id]" )?.dataset.messageId;
+    this.chatMessage = game.messages.get( messageId );
     if ( !this.chatMessage ) return;
 
     // Build the frame HTML only once
     if ( !this.dropArea ) {
-      const div = document.createElement("div");
-      div.classList.add("enchantment-control");
+      const div = document.createElement( "div" );
+      div.classList.add( "enchantment-control" );
       div.innerHTML = '<div class="drop-area"></div>';
-      this.replaceChildren(div);
-      this.dropArea = div.querySelector(".drop-area");
-      this.addEventListener("drop", this._onDrop.bind(this));
-      this.addEventListener("click", this._onRemoveEnchantment.bind(this));
+      this.replaceChildren( div );
+      this.dropArea = div.querySelector( ".drop-area" );
+      this.addEventListener( "drop", this._onDrop.bind( this ) );
+      this.addEventListener( "click", this._onRemoveEnchantment.bind( this ) );
     }
 
     this.buildItemList();
@@ -63,29 +63,29 @@ export default class EnchantmentApplicationElement extends HTMLElement {
    * the card list.
    */
   async buildItemList() {
-    const enchantedItems = (await EnchantmentData.appliedEnchantments(this.enchantmentItem.uuid)).map(enchantment => {
+    const enchantedItems = ( await EnchantmentData.appliedEnchantments( this.enchantmentItem.uuid ) ).map( enchantment => {
       const item = enchantment.parent;
-      const div = document.createElement("div");
-      div.classList.add("preview");
+      const div = document.createElement( "div" );
+      div.classList.add( "preview" );
       div.dataset.enchantmentUuid = enchantment.uuid;
       div.innerHTML = `
         <img src="${item.img}" class="gold-icon" alt="${item.name}">
         <span class="name">${item.name}</span>
       `;
       if ( item.isOwner ) {
-        const control = document.createElement("a");
-        control.ariaLabel = game.i18n.localize("SW5E.Enchantment.Action.Remove");
+        const control = document.createElement( "a" );
+        control.ariaLabel = game.i18n.localize( "SW5E.Enchantment.Action.Remove" );
         control.dataset.action = "removeEnchantment";
         control.dataset.tooltip = "SW5E.Enchantment.Action.Remove";
         control.innerHTML = '<i class="fa-solid fa-rotate-left" inert></i>';
-        div.append(control);
+        div.append( control );
       }
       return div;
-    });
+    } );
     if ( enchantedItems.length ) {
-      this.dropArea.replaceChildren(...enchantedItems);
+      this.dropArea.replaceChildren( ...enchantedItems );
     } else {
-      this.dropArea.innerHTML = `<p>${game.i18n.localize("SW5E.Enchantment.DropArea")}</p>`;
+      this.dropArea.innerHTML = `<p>${game.i18n.localize( "SW5E.Enchantment.DropArea" )}</p>`;
     }
   }
 
@@ -97,38 +97,38 @@ export default class EnchantmentApplicationElement extends HTMLElement {
    * Handle dropping an item onto the control.
    * @param {Event} event  Triggering drop event.
    */
-  async _onDrop(event) {
+  async _onDrop( event ) {
     event.preventDefault();
-    const data = TextEditor.getDragEventData(event);
-    const effect = this.enchantmentItem.effects.get(this.chatMessage.getFlag("sw5e", "use.enchantmentProfile"));
-    if ( (data.type !== "Item") || !effect ) return;
-    const droppedItem = await Item.implementation.fromDropData(data);
+    const data = TextEditor.getDragEventData( event );
+    const effect = this.enchantmentItem.effects.get( this.chatMessage.getFlag( "sw5e", "use.enchantmentProfile" ) );
+    if ( ( data.type !== "Item" ) || !effect ) return;
+    const droppedItem = await Item.implementation.fromDropData( data );
 
     // Validate against the enchantment's restraints on the origin item
-    const errors = this.enchantmentItem.system.enchantment?.canEnchant(droppedItem);
+    const errors = this.enchantmentItem.system.enchantment?.canEnchant( droppedItem );
     if ( errors?.length ) {
-      errors.forEach(err => ui.notifications.error(err.message));
+      errors.forEach( err => ui.notifications.error( err.message ) );
       return;
     }
 
     // If concentration is required, ensure it is still being maintained & GM is present
-    const concentrationId = this.chatMessage.getFlag("sw5e", "use.concentrationId");
-    const concentration = effect.parent.actor.effects.get(concentrationId);
+    const concentrationId = this.chatMessage.getFlag( "sw5e", "use.concentrationId" );
+    const concentration = effect.parent.actor.effects.get( concentrationId );
     if ( concentrationId && !concentration ) {
-      ui.notifications.error("SW5E.Enchantment.Warning.ConcentrationEnded", { localize: true });
+      ui.notifications.error( "SW5E.Enchantment.Warning.ConcentrationEnded", { localize: true } );
       return;
     }
     if ( !game.user.isGM && concentration && !concentration.actor?.isOwner ) {
-      ui.notifications.error("SW5E.EffectApplyWarningConcentration", { localize: true });
+      ui.notifications.error( "SW5E.EffectApplyWarningConcentration", { localize: true } );
       return;
     }
 
     const effectData = effect.toObject();
     effectData.origin = this.enchantmentItem.uuid;
-    const applied = await ActiveEffect.create(effectData, {
+    const applied = await ActiveEffect.create( effectData, {
       parent: droppedItem, keepOrigin: true, chatMessageOrigin: this.chatMessage.id
-    });
-    if ( concentration ) await concentration.addDependent(applied);
+    } );
+    if ( concentration ) await concentration.addDependent( applied );
   }
 
   /* -------------------------------------------- */
@@ -137,10 +137,10 @@ export default class EnchantmentApplicationElement extends HTMLElement {
    * Handle removing an enchantment.
    * @param {Event} event  Triggering drop event.
    */
-  async _onRemoveEnchantment(event) {
+  async _onRemoveEnchantment( event ) {
     if ( event.target.dataset.action !== "removeEnchantment" ) return;
-    const enchantmentUuid = event.target.closest("[data-enchantment-uuid]")?.dataset.enchantmentUuid;
-    const enchantment = await fromUuid(enchantmentUuid);
-    enchantment?.delete({ chatMessageOrigin: this.chatMessage.id });
+    const enchantmentUuid = event.target.closest( "[data-enchantment-uuid]" )?.dataset.enchantmentUuid;
+    const enchantment = await fromUuid( enchantmentUuid );
+    enchantment?.delete( { chatMessageOrigin: this.chatMessage.id } );
   }
 }

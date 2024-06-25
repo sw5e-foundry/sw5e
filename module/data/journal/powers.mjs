@@ -33,28 +33,28 @@ const { ArrayField, DocumentIdField, HTMLField, NumberField, SchemaField, SetFie
 export default class PowerListJournalPageData extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
-      type: new StringField({
+      type: new StringField( {
         initial: "class", label: "JOURNALENTRYPAGE.SW5E.PowerList.Type.Label"
-      }),
-      identifier: new IdentifierField({label: "SW5E.Identifier"}),
-      grouping: new StringField({
+      } ),
+      identifier: new IdentifierField( {label: "SW5E.Identifier"} ),
+      grouping: new StringField( {
         initial: "level", choices: this.GROUPING_MODES,
         label: "JOURNALENTRYPAGE.SW5E.PowerList.Grouping.Label",
         hint: "JOURNALENTRYPAGE.SW5E.PowerList.Grouping.Hint"
-      }),
-      description: new SchemaField({
-        value: new HTMLField({label: "SW5E.Description"})
-      }),
-      powers: new SetField(new StringField(), {label: "SW5E.ItemTypePowerPl"}),
-      unlinkedPowers: new ArrayField(new SchemaField({
-        _id: new DocumentIdField({initial: () => foundry.utils.randomID()}),
-        name: new StringField({required: true, label: "Name"}),
-        system: new SchemaField({
-          level: new NumberField({min: 0, integer: true, label: "SW5E.Level"}),
-          school: new StringField({label: "SW5E.School"})
-        }),
-        source: new SourceField({license: false, uuid: new StringField()})
-      }), {label: "JOURNALENTRYPAGE.SW5E.PowerList.UnlinkedPowers.Label"})
+      } ),
+      description: new SchemaField( {
+        value: new HTMLField( {label: "SW5E.Description"} )
+      } ),
+      powers: new SetField( new StringField(), {label: "SW5E.ItemTypePowerPl"} ),
+      unlinkedPowers: new ArrayField( new SchemaField( {
+        _id: new DocumentIdField( {initial: () => foundry.utils.randomID()} ),
+        name: new StringField( {required: true, label: "Name"} ),
+        system: new SchemaField( {
+          level: new NumberField( {min: 0, integer: true, label: "SW5E.Level"} ),
+          school: new StringField( {label: "SW5E.School"} )
+        } ),
+        source: new SourceField( {license: false, uuid: new StringField()} )
+      } ), {label: "JOURNALENTRYPAGE.SW5E.PowerList.UnlinkedPowers.Label"} )
     };
   }
 

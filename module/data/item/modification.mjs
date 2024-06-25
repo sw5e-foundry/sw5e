@@ -37,21 +37,21 @@ export default class ModificationData extends ItemDataModel.mixin(
 ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      modificationType: new StringField({
+    return this.mergeSchema( super.defineSchema(), {
+      modificationType: new StringField( {
         required: true,
         initial: "vibroweapon",
         label: "SW5E.ItemModificationType"
-      }),
-      modificationSlot: new StringField({
+      } ),
+      modificationSlot: new StringField( {
         required: true,
         initial: "slot1",
         label: "SW5E.ItemModificationSlot"
-      }),
+      } ),
       modifying: new SchemaField(
         {
-          id: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
-          disabled: new BooleanField({})
+          id: new ForeignDocumentField( foundry.documents.BaseItem, { idOnly: true } ),
+          disabled: new BooleanField( {} )
         },
         {}
       ),
@@ -64,18 +64,18 @@ export default class ModificationData extends ItemDataModel.mixin(
         {
           required: true,
           extraFields: {
-            indeterminate: new MappingField(new foundry.data.fields.BooleanField({ initial: true }), {
+            indeterminate: new MappingField( new foundry.data.fields.BooleanField( { initial: true } ), {
               required: true,
               initialKeys: {
                 ...CONFIG.SW5E.weaponProperties,
                 ...CONFIG.SW5E.castingProperties,
                 ...CONFIG.SW5E.equipmentProperties
               }
-            })
+            } )
           }
         }
       )
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -83,12 +83,12 @@ export default class ModificationData extends ItemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    migrateItemProperties(source.properties, {
+  static _migrateData( source ) {
+    super._migrateData( source );
+    migrateItemProperties( source.properties, {
       ...CONFIG.SW5E.weaponProperties,
       ...CONFIG.SW5E.castingProperties,
       ...CONFIG.SW5E.equipmentProperties
-    });
+    } );
   }
 }

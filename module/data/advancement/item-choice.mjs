@@ -38,30 +38,30 @@ export class ItemChoiceConfigurationData extends foundry.abstract.DataModel {
   /** @inheritDoc */
   static defineSchema() {
     return {
-      hint: new StringField({ label: "SW5E.AdvancementHint" }),
-      choices: new MappingField(new SchemaField({
-        count: new NumberField({ integer: true, min: 0 }),
-        replacement: new BooleanField({ label: "SW5E.AdvancementItemChoiceReplacement" })
-      }), {
+      hint: new StringField( { label: "SW5E.AdvancementHint" } ),
+      choices: new MappingField( new SchemaField( {
+        count: new NumberField( { integer: true, min: 0 } ),
+        replacement: new BooleanField( { label: "SW5E.AdvancementItemChoiceReplacement" } )
+      } ), {
         hint: "SW5E.AdvancementItemChoiceLevelsHint"
-      }),
-      allowDrops: new BooleanField({
+      } ),
+      allowDrops: new BooleanField( {
         initial: true, label: "SW5E.AdvancementConfigureAllowDrops",
         hint: "SW5E.AdvancementConfigureAllowDropsHint"
-      }),
-      type: new StringField({
+      } ),
+      type: new StringField( {
         blank: false, nullable: true, initial: null,
         label: "SW5E.AdvancementItemChoiceType", hint: "SW5E.AdvancementItemChoiceTypeHint"
-      }),
-      pool: new ArrayField(new SchemaField({
+      } ),
+      pool: new ArrayField( new SchemaField( {
         uuid: new StringField()
-      }), { label: "DOCUMENT.Items" }),
-      power: new EmbeddedDataField(PowerConfigurationData, { nullable: true, initial: null }),
-      restriction: new SchemaField({
-        type: new StringField({ label: "SW5E.Type" }),
-        subtype: new StringField({ label: "SW5E.Subtype" }),
-        level: new StringField({ label: "SW5E.PowerLevel" })
-      })
+      } ), { label: "DOCUMENT.Items" } ),
+      power: new EmbeddedDataField( PowerConfigurationData, { nullable: true, initial: null } ),
+      restriction: new SchemaField( {
+        type: new StringField( { label: "SW5E.Type" } ),
+        subtype: new StringField( { label: "SW5E.Subtype" } ),
+        level: new StringField( { label: "SW5E.PowerLevel" } )
+      } )
     };
   }
 
@@ -70,12 +70,12 @@ export class ItemChoiceConfigurationData extends foundry.abstract.DataModel {
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  static migrateData(source) {
-    if ("choices" in source) Object.entries(source.choices).forEach(([k, c]) => {
-      if (foundry.utils.getType(c) === "number") source.choices[k] = { count: c };
-    });
-    if ("pool" in source) {
-      source.pool = source.pool.map(i => foundry.utils.getType(i) === "string" ? { uuid: i } : i);
+  static migrateData( source ) {
+    if ( "choices" in source ) Object.entries( source.choices ).forEach( ( [k, c] ) => {
+      if ( foundry.utils.getType( c ) === "number" ) source.choices[k] = { count: c };
+    } );
+    if ( "pool" in source ) {
+      source.pool = source.pool.map( i => foundry.utils.getType( i ) === "string" ? { uuid: i } : i );
     }
     return source;
   }
@@ -102,12 +102,12 @@ export class ItemChoiceValueData extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
       ability: new StringField(),
-      added: new MappingField(new MappingField(new StringField())),
-      replaced: new MappingField(new SchemaField({
-        level: new NumberField({ integer: true, min: 0 }),
-        original: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
-        replacement: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true })
-      }))
+      added: new MappingField( new MappingField( new StringField() ) ),
+      replaced: new MappingField( new SchemaField( {
+        level: new NumberField( { integer: true, min: 0 } ),
+        original: new ForeignDocumentField( foundry.documents.BaseItem, { idOnly: true } ),
+        replacement: new ForeignDocumentField( foundry.documents.BaseItem, { idOnly: true } )
+      } ) )
     };
   }
 }

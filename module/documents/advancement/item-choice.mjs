@@ -11,21 +11,21 @@ export default class ItemChoiceAdvancement extends ItemGrantAdvancement {
 
   /** @inheritdoc */
   static get metadata() {
-    return foundry.utils.mergeObject(super.metadata, {
+    return foundry.utils.mergeObject( super.metadata, {
       dataModels: {
         configuration: ItemChoiceConfigurationData,
         value: ItemChoiceValueData
       },
       order: 50,
       icon: "systems/sw5e/icons/svg/item-choice.svg",
-      title: game.i18n.localize("SW5E.AdvancementItemChoiceTitle"),
-      hint: game.i18n.localize("SW5E.AdvancementItemChoiceHint"),
+      title: game.i18n.localize( "SW5E.AdvancementItemChoiceTitle" ),
+      hint: game.i18n.localize( "SW5E.AdvancementItemChoiceHint" ),
       multiLevel: true,
       apps: {
         config: ItemChoiceConfig,
         flow: ItemChoiceFlow
       }
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -34,7 +34,7 @@ export default class ItemChoiceAdvancement extends ItemGrantAdvancement {
 
   /** @inheritdoc */
   get levels() {
-    return Array.from(Object.keys(this.configuration.choices));
+    return Array.from( Object.keys( this.configuration.choices ) );
   }
 
   /* -------------------------------------------- */
@@ -42,18 +42,18 @@ export default class ItemChoiceAdvancement extends ItemGrantAdvancement {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  configuredForLevel(level) {
-    return (this.value.added?.[level] !== undefined) || !this.configuration.choices[level]?.count;
+  configuredForLevel( level ) {
+    return ( this.value.added?.[level] !== undefined ) || !this.configuration.choices[level]?.count;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  titleForLevel(level, { configMode = false } = {}) {
+  titleForLevel( level, { configMode = false } = {} ) {
     const data = this.configuration.choices[level] ?? {};
     let tag;
-    if (data.count) tag = game.i18n.format("SW5E.AdvancementItemChoiceChoose", { count: data.count });
-    else if (data.replacement) tag = game.i18n.localize("SW5E.AdvancementItemChoiceReplacementTitle");
+    if ( data.count ) tag = game.i18n.format( "SW5E.AdvancementItemChoiceChoose", { count: data.count } );
+    else if ( data.replacement ) tag = game.i18n.localize( "SW5E.AdvancementItemChoiceReplacementTitle" );
     else return this.title;
     return `${this.title} <em>(${tag})</em>`;
   }
@@ -61,10 +61,10 @@ export default class ItemChoiceAdvancement extends ItemGrantAdvancement {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  summaryForLevel(level, { configMode = false } = {}) {
+  summaryForLevel( level, { configMode = false } = {} ) {
     const items = this.value.added?.[level];
-    if (!items || configMode) return "";
-    return Object.values(items).reduce((html, uuid) => html + game.sw5e.utils.linkForUuid(uuid), "");
+    if ( !items || configMode ) return "";
+    return Object.values( items ).reduce( ( html, uuid ) => html + game.sw5e.utils.linkForUuid( uuid ), "" );
   }
 
   /* -------------------------------------------- */
@@ -72,28 +72,28 @@ export default class ItemChoiceAdvancement extends ItemGrantAdvancement {
   /* -------------------------------------------- */
 
   /** @override */
-  storagePath(level) {
+  storagePath( level ) {
     return `value.added.${level}`;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async apply(level, { replace: original, ...data }, retainedData = {}) {
+  async apply( level, { replace: original, ...data }, retainedData = {} ) {
     let replacement;
-    if (retainedData.replaced) ({ original, replacement } = retainedData.replaced);
+    if ( retainedData.replaced ) ( { original, replacement } = retainedData.replaced );
 
-    const updates = await super.apply(level, data, retainedData);
+    const updates = await super.apply( level, data, retainedData );
 
-    replacement ??= Object.keys(updates).pop();
-    if (original && replacement) {
-      const replacedLevel = Object.entries(this.value.added).reverse().reduce((level, [l, v]) => {
-        if ((original in v) && (Number(l) > level)) return Number(l);
+    replacement ??= Object.keys( updates ).pop();
+    if ( original && replacement ) {
+      const replacedLevel = Object.entries( this.value.added ).reverse().reduce( ( level, [l, v] ) => {
+        if ( ( original in v ) && ( Number( l ) > level ) ) return Number( l );
         return level;
-      }, 0);
-      if (Number.isFinite(replacedLevel)) {
-        this.actor.items.delete(original);
-        this.updateSource({ [`value.replaced.${level}`]: { level: replacedLevel, original, replacement } });
+      }, 0 );
+      if ( Number.isFinite( replacedLevel ) ) {
+        this.actor.items.delete( original );
+        this.updateSource( { [`value.replaced.${level}`]: { level: replacedLevel, original, replacement } } );
       }
     }
   }
@@ -101,37 +101,37 @@ export default class ItemChoiceAdvancement extends ItemGrantAdvancement {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  restore(level, data) {
-    const original = this.actor.items.get(data.replaced?.original);
-    if (data.replaced && !original) data.items = data.items.filter(i => i._id !== data.replaced.replacement);
+  restore( level, data ) {
+    const original = this.actor.items.get( data.replaced?.original );
+    if ( data.replaced && !original ) data.items = data.items.filter( i => i._id !== data.replaced.replacement );
 
-    super.restore(level, data);
+    super.restore( level, data );
 
-    if (data.replaced) {
-      if (!original) {
-        throw new ItemChoiceAdvancement.ERROR(game.i18n.localize("SW5E.AdvancementItemChoiceNoOriginalError"));
+    if ( data.replaced ) {
+      if ( !original ) {
+        throw new ItemChoiceAdvancement.ERROR( game.i18n.localize( "SW5E.AdvancementItemChoiceNoOriginalError" ) );
       }
-      this.actor.items.delete(data.replaced.original);
-      this.updateSource({ [`value.replaced.${level}`]: data.replaced });
+      this.actor.items.delete( data.replaced.original );
+      this.updateSource( { [`value.replaced.${level}`]: data.replaced } );
     }
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async reverse(level) {
-    const retainedData = await super.reverse(level);
+  async reverse( level ) {
+    const retainedData = await super.reverse( level );
 
     const replaced = retainedData.replaced = this.value.replaced[level];
-    if (replaced) {
+    if ( replaced ) {
       const uuid = this.value.added[replaced.level][replaced.original];
-      const itemData = await this.createItemData(uuid, replaced.original);
-      if (itemData) {
-        if (itemData.type === "power") {
-          foundry.utils.mergeObject(itemData, this.configuration.power?.powerChanges ?? {});
+      const itemData = await this.createItemData( uuid, replaced.original );
+      if ( itemData ) {
+        if ( itemData.type === "power" ) {
+          foundry.utils.mergeObject( itemData, this.configuration.power?.powerChanges ?? {} );
         }
-        this.actor.updateSource({ items: [itemData] });
-        this.updateSource({ [`value.replaced.-=${level}`]: null });
+        this.actor.updateSource( { items: [itemData] } );
+        this.updateSource( { [`value.replaced.-=${level}`]: null } );
       }
     }
 
@@ -150,36 +150,36 @@ export default class ItemChoiceAdvancement extends ItemGrantAdvancement {
    * @returns {boolean}                     Is this type valid?
    * @throws An error if the item is invalid and strict is `true`.
    */
-  _validateItemType(item, { type, restriction, strict = true } = {}) {
-    super._validateItemType(item, { strict });
+  _validateItemType( item, { type, restriction, strict = true } = {} ) {
+    super._validateItemType( item, { strict } );
     type ??= this.configuration.type;
     restriction ??= this.configuration.restriction;
 
     // Type restriction is set and the item type does not match the selected type
-    if (type && (type !== item.type)) {
-      const typeLabel = game.i18n.localize(CONFIG.Item.typeLabels[restriction]);
-      if (strict) throw new Error(game.i18n.format("SW5E.AdvancementItemChoiceTypeWarning", { type: typeLabel }));
+    if ( type && ( type !== item.type ) ) {
+      const typeLabel = game.i18n.localize( CONFIG.Item.typeLabels[restriction] );
+      if ( strict ) throw new Error( game.i18n.format( "SW5E.AdvancementItemChoiceTypeWarning", { type: typeLabel } ) );
       return false;
     }
 
     // If additional type restrictions applied, make sure they are valid
-    if ((type === "feat") && restriction.type) {
+    if ( ( type === "feat" ) && restriction.type ) {
       const typeConfig = CONFIG.SW5E.featureTypes[restriction.type];
       const subtype = typeConfig.subtypes?.[restriction.subtype];
       let errorLabel;
-      if (restriction.type !== item.system.type.value) errorLabel = typeConfig.label;
-      else if (subtype && (restriction.subtype !== item.system.type.subtype)) errorLabel = subtype;
-      if (errorLabel) {
-        if (strict) throw new Error(game.i18n.format("SW5E.AdvancementItemChoiceTypeWarning", { type: errorLabel }));
+      if ( restriction.type !== item.system.type.value ) errorLabel = typeConfig.label;
+      else if ( subtype && ( restriction.subtype !== item.system.type.subtype ) ) errorLabel = subtype;
+      if ( errorLabel ) {
+        if ( strict ) throw new Error( game.i18n.format( "SW5E.AdvancementItemChoiceTypeWarning", { type: errorLabel } ) );
         return false;
       }
     }
 
     // If power level is restricted, ensure the power is of the appropriate level
-    const l = parseInt(restriction.level);
-    if ((type === "power") && !Number.isNaN(l) && (item.system.level !== l)) {
+    const l = parseInt( restriction.level );
+    if ( ( type === "power" ) && !Number.isNaN( l ) && ( item.system.level !== l ) ) {
       const level = CONFIG.SW5E.powerLevels[l];
-      if (strict) throw new Error(game.i18n.format("SW5E.AdvancementItemChoicePowerLevelSpecificWarning", { level }));
+      if ( strict ) throw new Error( game.i18n.format( "SW5E.AdvancementItemChoicePowerLevelSpecificWarning", { level } ) );
       return false;
     }
 

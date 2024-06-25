@@ -46,60 +46,60 @@ export default class StarshipModData extends ItemDataModel.mixin(
 ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
+    return this.mergeSchema( super.defineSchema(), {
       system: new SchemaField(
         {
-          value: new StringField({
+          value: new StringField( {
             required: true,
             initial: "",
             label: "SW5E.ModSystem"
-          })
+          } )
         },
         { label: "SW5E.ModSystem" }
       ),
       grade: new SchemaField(
         {
-          value: new NumberField({
+          value: new NumberField( {
             required: true,
             min: 0,
             max: 5,
             integer: true,
             initial: 0,
             label: "SW5E.ModGrade"
-          })
+          } )
         },
         { label: "SW5E.ModGrade" }
       ),
       baseCost: new SchemaField(
         {
-          value: new NumberField({
+          value: new NumberField( {
             required: true,
             min: 0,
             integer: true,
             initial: null,
             nullable: true,
             label: "SW5E.ModBaseCost"
-          })
+          } )
         },
         { label: "SW5E.ModBaseCost" }
       ),
       free: new SchemaField(
         {
-          slot: new BooleanField({ required: true, label: "SW5E.ModFreeSlot" }),
-          suite: new BooleanField({ required: true, label: "SW5E.ModFreeSuite" })
+          slot: new BooleanField( { required: true, label: "SW5E.ModFreeSlot" } ),
+          suite: new BooleanField( { required: true, label: "SW5E.ModFreeSuite" } )
         }
       ),
       prerequisites: new SchemaField(
         {
-          value: new StringField({
+          value: new StringField( {
             required: true,
             initial: "",
             label: "SW5E.PrerequisitePl"
-          })
+          } )
         },
         { label: "SW5E.PrerequisitePl" }
       )
-    });
+    } );
   }
 
   /* -------------------------------------------- */

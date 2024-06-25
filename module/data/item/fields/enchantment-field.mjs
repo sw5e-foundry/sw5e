@@ -10,8 +10,8 @@ export default class EnchantmentField extends EmbeddedDataField {
    * Construct an enchantment field.
    * @param {object} [options={}]  Options to configure this field's behavior.
    */
-  constructor(options={}) {
-    super(EnchantmentData, foundry.utils.mergeObject({ required: false, nullable: true, initial: null }, options));
+  constructor( options={} ) {
+    super( EnchantmentData, foundry.utils.mergeObject( { required: false, nullable: true, initial: null }, options ) );
   }
 }
 
@@ -44,14 +44,14 @@ export class EnchantmentData extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
       classIdentifier: new IdentifierField(),
-      items: new SchemaField({
-        max: new FormulaField({deterministic: true}),
+      items: new SchemaField( {
+        max: new FormulaField( {deterministic: true} ),
         period: new StringField()
-      }),
-      restrictions: new SchemaField({
+      } ),
+      restrictions: new SchemaField( {
         allowMagical: new BooleanField(),
         type: new StringField()
-      })
+      } )
     };
   }
 
@@ -64,7 +64,7 @@ export class EnchantmentData extends foundry.abstract.DataModel {
    * @type {ActiveEffect5e[]}
    */
   get appliedEnchantments() {
-    return EnchantmentData.appliedEnchantments(this.item.uuid);
+    return EnchantmentData.appliedEnchantments( this.item.uuid );
   }
 
   /* -------------------------------------------- */
@@ -74,10 +74,10 @@ export class EnchantmentData extends foundry.abstract.DataModel {
    * @type {Set<string>}
    */
   static get enchantableTypes() {
-    return Object.entries(CONFIG.Item.dataModels).reduce((set, [k, v]) => {
-      if ( v.metadata?.enchantable ) set.add(k);
+    return Object.entries( CONFIG.Item.dataModels ).reduce( ( set, [k, v] ) => {
+      if ( v.metadata?.enchantable ) set.add( k );
       return set;
-    }, new Set());
+    }, new Set() );
   }
 
   /* -------------------------------------------- */
@@ -87,7 +87,7 @@ export class EnchantmentData extends foundry.abstract.DataModel {
    * @type {ActiveEffect5e[]}
    */
   get enchantments() {
-    return this.item.effects.filter(ae => ae.getFlag("sw5e", "type") === "enchantment");
+    return this.item.effects.filter( ae => ae.getFlag( "sw5e", "type" ) === "enchantment" );
   }
 
   /* -------------------------------------------- */
@@ -97,7 +97,7 @@ export class EnchantmentData extends foundry.abstract.DataModel {
    * @param {FeatData} data  Data for the feature.
    * @returns {boolean}
    */
-  static isEnchantment(data) {
+  static isEnchantment( data ) {
     return data.actionType === "ench";
   }
 
@@ -106,7 +106,7 @@ export class EnchantmentData extends foundry.abstract.DataModel {
    * @type {boolean}
    */
   get isEnchantment() {
-    return EnchantmentData.isEnchantment(this.parent);
+    return EnchantmentData.isEnchantment( this.parent );
   }
 
   /* -------------------------------------------- */
@@ -117,10 +117,10 @@ export class EnchantmentData extends foundry.abstract.DataModel {
    * @param {FeatData} data  Data for the feature.
    * @returns {boolean}
    */
-  static isEnchantmentSource(data) {
-    return !this.isEnchantment(data)
+  static isEnchantmentSource( data ) {
+    return !this.isEnchantment( data )
       && CONFIG.SW5E.featureTypes[data.type?.value]?.subtypes?.[data.type?.subtype]
-      && (data.type?.subtype in CONFIG.SW5E.featureTypes.enchantment.subtypes);
+      && ( data.type?.subtype in CONFIG.SW5E.featureTypes.enchantment.subtypes );
   }
 
   /**
@@ -129,7 +129,7 @@ export class EnchantmentData extends foundry.abstract.DataModel {
    * @type {boolean}
    */
   get isEnchantmentSource() {
-    return EnchantmentData.isEnchantmentSource(this.parent);
+    return EnchantmentData.isEnchantmentSource( this.parent );
   }
 
   /* -------------------------------------------- */
@@ -151,18 +151,18 @@ export class EnchantmentData extends foundry.abstract.DataModel {
    * @param {Item5e} item   Item from which to fetch the enchantments.
    * @returns {ActiveEffect5e[]}
    */
-  static availableEnchantments(item) {
+  static availableEnchantments( item ) {
     const keyPath = item.type === "power"
       ? "item.level"
       : item.system.enchantment?.classIdentifier
         ? `classes.${item.system.enchantment?.classIdentifier}.levels`
         : "details.level";
-    const level = foundry.utils.getProperty(item.getRollData(), keyPath) ?? 0;
-    return item.effects.filter(e => {
-      if ( (e.getFlag("sw5e", "type") !== "enchantment") || e.isAppliedEnchantment ) return false;
-      const { min, max } = e.getFlag("sw5e", "enchantment.level") ?? {};
-      return ((min ?? -Infinity) <= level) && (level <= (max ?? Infinity));
-    });
+    const level = foundry.utils.getProperty( item.getRollData(), keyPath ) ?? 0;
+    return item.effects.filter( e => {
+      if ( ( e.getFlag( "sw5e", "type" ) !== "enchantment" ) || e.isAppliedEnchantment ) return false;
+      const { min, max } = e.getFlag( "sw5e", "enchantment.level" ) ?? {};
+      return ( ( min ?? -Infinity ) <= level ) && ( level <= ( max ?? Infinity ) );
+    } );
   }
 
   /* -------------------------------------------- */
@@ -172,18 +172,18 @@ export class EnchantmentData extends foundry.abstract.DataModel {
    * @param {Item5e} item  Item that might be enchanted.
    * @returns {true|EnchantmentError[]}
    */
-  canEnchant(item) {
+  canEnchant( item ) {
     const errors = [];
 
-    if ( !this.restrictions.allowMagical && item.system.properties?.has("mgc") ) {
-      errors.push(new EnchantmentError(game.i18n.localize("SW5E.Enchantment.Warning.NoMagicalItems")));
+    if ( !this.restrictions.allowMagical && item.system.properties?.has( "mgc" ) ) {
+      errors.push( new EnchantmentError( game.i18n.localize( "SW5E.Enchantment.Warning.NoMagicalItems" ) ) );
     }
 
-    if ( this.restrictions.type && (item.type !== this.restrictions.type) ) {
-      errors.push(new EnchantmentError(game.i18n.format("SW5E.Enchantment.Warning.WrongType", {
-        incorrectType: game.i18n.localize(CONFIG.Item.typeLabels[item.type]),
-        allowedType: game.i18n.localize(CONFIG.Item.typeLabels[this.restrictions.type])
-      })));
+    if ( this.restrictions.type && ( item.type !== this.restrictions.type ) ) {
+      errors.push( new EnchantmentError( game.i18n.format( "SW5E.Enchantment.Warning.WrongType", {
+        incorrectType: game.i18n.localize( CONFIG.Item.typeLabels[item.type] ),
+        allowedType: game.i18n.localize( CONFIG.Item.typeLabels[this.restrictions.type] )
+      } ) ) );
     }
 
     return errors.length ? errors : true;
@@ -207,10 +207,10 @@ export class EnchantmentData extends foundry.abstract.DataModel {
    * @param {string} itemUuid  UUID of the item supplying the enchantments.
    * @returns {ActiveEffect5e[]}
    */
-  static appliedEnchantments(itemUuid) {
-    return Array.from(EnchantmentData.#appliedEnchantments.get(itemUuid) ?? [])
-      .map(uuid => fromUuidSync(uuid))
-      .filter(i => i);
+  static appliedEnchantments( itemUuid ) {
+    return Array.from( EnchantmentData.#appliedEnchantments.get( itemUuid ) ?? [] )
+      .map( uuid => fromUuidSync( uuid ) )
+      .filter( i => i );
   }
 
   /* -------------------------------------------- */
@@ -220,12 +220,12 @@ export class EnchantmentData extends foundry.abstract.DataModel {
    * @param {string} source     UUID of the active effect origin for the enchantment.
    * @param {string} enchanted  UUID of the enchantment to track.
    */
-  static trackEnchantment(source, enchanted) {
-    if ( enchanted.startsWith("Compendium.") ) return;
-    if ( !EnchantmentData.#appliedEnchantments.has(source) ) {
-      EnchantmentData.#appliedEnchantments.set(source, new Set());
+  static trackEnchantment( source, enchanted ) {
+    if ( enchanted.startsWith( "Compendium." ) ) return;
+    if ( !EnchantmentData.#appliedEnchantments.has( source ) ) {
+      EnchantmentData.#appliedEnchantments.set( source, new Set() );
     }
-    EnchantmentData.#appliedEnchantments.get(source).add(enchanted);
+    EnchantmentData.#appliedEnchantments.get( source ).add( enchanted );
   }
 
   /* -------------------------------------------- */
@@ -235,8 +235,8 @@ export class EnchantmentData extends foundry.abstract.DataModel {
    * @param {string} source     UUID of the active effect origin for the enchantment.
    * @param {string} enchanted  UUID of the enchantment to stop tracking.
    */
-  static untrackEnchantment(source, enchanted) {
-    EnchantmentData.#appliedEnchantments.get(source)?.delete(enchanted);
+  static untrackEnchantment( source, enchanted ) {
+    EnchantmentData.#appliedEnchantments.get( source )?.delete( enchanted );
   }
 }
 
@@ -244,8 +244,8 @@ export class EnchantmentData extends foundry.abstract.DataModel {
  * Error to throw when an item cannot be enchanted.
  */
 export class EnchantmentError extends Error {
-  constructor(...args) {
-    super(...args);
+  constructor( ...args ) {
+    super( ...args );
     this.name = "EnchantmentError";
   }
 }

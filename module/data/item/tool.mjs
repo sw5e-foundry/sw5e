@@ -28,39 +28,39 @@ export default class ToolData extends ItemDataModel.mixin(
 ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      type: new ItemTypeField({ subtype: false }, { label: "SW5E.ItemToolType" }),
-      ability: new foundry.data.fields.StringField({
+    return this.mergeSchema( super.defineSchema(), {
+      type: new ItemTypeField( { subtype: false }, { label: "SW5E.ItemToolType" } ),
+      ability: new foundry.data.fields.StringField( {
         required: true, blank: true, label: "SW5E.DefaultAbilityCheck"
-      }),
-      chatFlavor: new foundry.data.fields.StringField({ required: true, label: "SW5E.ChatFlavor" }),
-      proficient: new foundry.data.fields.NumberField({
+      } ),
+      chatFlavor: new foundry.data.fields.StringField( { required: true, label: "SW5E.ChatFlavor" } ),
+      proficient: new foundry.data.fields.NumberField( {
         required: true, initial: null, min: 0, max: 5, step: 0.5, label: "SW5E.ItemToolProficiency"
-      }),
-      properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+      } ),
+      properties: new foundry.data.fields.SetField( new foundry.data.fields.StringField(), {
         label: "SW5E.ItemToolProperties"
-      }),
-      bonus: new FormulaField({ required: true, label: "SW5E.ItemToolBonus" })
-    });
+      } ),
+      bonus: new FormulaField( { required: true, label: "SW5E.ItemToolBonus" } )
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
     enchantable: true,
     inventoryItem: true,
     inventoryOrder: 400
-  }, { inplace: false }));
+  }, { inplace: false } ) );
 
   /* -------------------------------------------- */
   /*  Migrations                                  */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    ToolData.#migrateAbility(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    ToolData.#migrateAbility( source );
   }
 
   /* -------------------------------------------- */
@@ -69,8 +69,8 @@ export default class ToolData extends ItemDataModel.mixin(
    * Migrate the ability field.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateAbility(source) {
-    if (Array.isArray(source.ability)) source.ability = source.ability[0];
+  static #migrateAbility( source ) {
+    if ( Array.isArray( source.ability ) ) source.ability = source.ability[0];
   }
 
   /* -------------------------------------------- */
@@ -80,7 +80,7 @@ export default class ToolData extends ItemDataModel.mixin(
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    this.type.label = CONFIG.SW5E.toolTypes[this.type.value] ?? game.i18n.localize(CONFIG.Item.typeLabels.tool);
+    this.type.label = CONFIG.SW5E.toolTypes[this.type.value] ?? game.i18n.localize( CONFIG.Item.typeLabels.tool );
   }
 
   /* -------------------------------------------- */
@@ -94,10 +94,10 @@ export default class ToolData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   async getFavoriteData() {
-    return foundry.utils.mergeObject(await super.getFavoriteData(), {
+    return foundry.utils.mergeObject( await super.getFavoriteData(), {
       subtitle: this.type.label,
       modifier: this.parent.parent?.system.tools?.[this.type.baseItem]?.total
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -139,12 +139,12 @@ export default class ToolData extends ItemDataModel.mixin(
    * @returns {number}
    */
   get proficiencyMultiplier() {
-    if (Number.isFinite(this.proficient)) return this.proficient;
+    if ( Number.isFinite( this.proficient ) ) return this.proficient;
     const actor = this.parent.actor;
-    if (!actor) return 0;
-    if (actor.type === "npc") return 1;
+    if ( !actor ) return 0;
+    if ( actor.type === "npc" ) return 1;
     const baseItemProf = actor.system.tools?.[this.type.baseItem];
     const categoryProf = actor.system.tools?.[this.type.value];
-    return Math.min(Math.max(baseItemProf?.value ?? 0, categoryProf?.value ?? 0), 2);
+    return Math.min( Math.max( baseItemProf?.value ?? 0, categoryProf?.value ?? 0 ), 2 );
   }
 }

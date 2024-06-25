@@ -7,20 +7,20 @@ export default class ActorSheetFlags extends BaseConfigSheet {
 
   /** @inheritDoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       id: "actor-flags",
       classes: ["sw5e"],
       template: "systems/sw5e/templates/apps/actor-flags.hbs",
       width: 500,
       closeOnSubmit: true
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
   get title() {
-    return `${game.i18n.localize("SW5E.FlagsTitle")}: ${this.object.name}`;
+    return `${game.i18n.localize( "SW5E.FlagsTitle" )}: ${this.object.name}`;
   }
 
   /* -------------------------------------------- */
@@ -43,13 +43,13 @@ export default class ActorSheetFlags extends BaseConfigSheet {
    * @private
    */
   _getClasses() {
-    const classes = this.object.items.filter(i => i.type === "class");
+    const classes = this.object.items.filter( i => i.type === "class" );
     return classes
-      .sort((a, b) => a.name.localeCompare(b.name, game.i18n.lang))
-      .reduce((obj, i) => {
+      .sort( ( a, b ) => a.name.localeCompare( b.name, game.i18n.lang ) )
+      .reduce( ( obj, i ) => {
         obj[i.id] = i.name;
         return obj;
-      }, {});
+      }, {} );
   }
 
   /* -------------------------------------------- */
@@ -63,13 +63,13 @@ export default class ActorSheetFlags extends BaseConfigSheet {
   _getFlags() {
     const flags = {};
     const baseData = this.document.toJSON();
-    for (let [k, v] of Object.entries(CONFIG.SW5E.characterFlags)) {
-      if (!flags.hasOwnProperty(v.section)) flags[v.section] = {};
-      let flag = foundry.utils.deepClone(v);
+    for ( let [k, v] of Object.entries( CONFIG.SW5E.characterFlags ) ) {
+      if ( !flags.hasOwnProperty( v.section ) ) flags[v.section] = {};
+      let flag = foundry.utils.deepClone( v );
       flag.type = v.type.name;
       flag.isCheckbox = v.type === Boolean;
-      flag.isSelect = v.hasOwnProperty("choices");
-      flag.value = foundry.utils.getProperty(baseData.flags, `sw5e.${k}`);
+      flag.isSelect = v.hasOwnProperty( "choices" );
+      flag.value = foundry.utils.getProperty( baseData.flags, `sw5e.${k}` );
       flags[v.section][`flags.sw5e.${k}`] = flag;
     }
     return flags;
@@ -102,8 +102,8 @@ export default class ActorSheetFlags extends BaseConfigSheet {
       { name: "system.bonuses.power.forceUnivDC", label: "SW5E.BonusForceUnivPowerDC" },
       { name: "system.bonuses.power.techDC", label: "SW5E.BonusTechPowerDC" }
     ];
-    for (let b of bonuses) {
-      b.value = foundry.utils.getProperty(src, b.name) || "";
+    for ( let b of bonuses ) {
+      b.value = foundry.utils.getProperty( src, b.name ) || "";
     }
     return bonuses;
   }
@@ -111,30 +111,30 @@ export default class ActorSheetFlags extends BaseConfigSheet {
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async _updateObject(event, formData) {
+  async _updateObject( event, formData ) {
     const actor = this.object;
-    let updateData = foundry.utils.expandObject(formData);
+    let updateData = foundry.utils.expandObject( formData );
     const src = actor.toObject();
 
     // Unset any flags which are "false"
     const flags = updateData.flags.sw5e;
     // Clone flags to dnd5e for module compatability
     updateData.flags.dnd5e = updateData.flags.sw5e;
-    for (let [k, v] of Object.entries(flags)) {
-      if ([undefined, null, "", false, 0].includes(v)) {
+    for ( let [k, v] of Object.entries( flags ) ) {
+      if ( [undefined, null, "", false, 0].includes( v ) ) {
         delete flags[k];
-        if (foundry.utils.hasProperty(src.flags, `sw5e.${k}`)) flags[`-=${k}`] = null;
+        if ( foundry.utils.hasProperty( src.flags, `sw5e.${k}` ) ) flags[`-=${k}`] = null;
       }
     }
 
     // Clear any bonuses which are whitespace only
-    for (let b of Object.values(updateData.system.bonuses)) {
-      for (let [k, v] of Object.entries(b)) {
+    for ( let b of Object.values( updateData.system.bonuses ) ) {
+      for ( let [k, v] of Object.entries( b ) ) {
         b[k] = v.trim();
       }
     }
 
     // Diff the data against any applied overrides and apply
-    await actor.update(updateData, { diff: false });
+    await actor.update( updateData, { diff: false } );
   }
 }

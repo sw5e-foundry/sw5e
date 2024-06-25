@@ -10,11 +10,11 @@
  * @param {string} [options.criticalBonusDamage]      An extra damage term that is applied only on a critical hit
  */
 export default class DamageRoll extends Roll {
-  constructor(formula, data, options) {
-    super(formula, data, options);
-    if (!this.options.preprocessed) this.preprocessFormula();
+  constructor( formula, data, options ) {
+    super( formula, data, options );
+    if ( !this.options.preprocessed ) this.preprocessFormula();
     // For backwards compatibility, skip rolls which do not have the "critical" option defined
-    if (this.options.critical !== undefined && !this.options.configured) this.configureDamage();
+    if ( this.options.critical !== undefined && !this.options.configured ) this.configureDamage();
   }
 
   /* -------------------------------------------- */
@@ -24,9 +24,9 @@ export default class DamageRoll extends Roll {
    * @param {Roll} roll
    * @returns {DamageRoll}
    */
-  static fromRoll(roll) {
-    const newRoll = new this(roll.formula, roll.data, roll.options);
-    Object.assign(newRoll, roll);
+  static fromRoll( roll ) {
+    const newRoll = new this( roll.formula, roll.data, roll.options );
+    Object.assign( newRoll, roll );
     return newRoll;
   }
 
@@ -57,57 +57,57 @@ export default class DamageRoll extends Roll {
    * @protected
    */
   preprocessFormula() {
-    for (let [i, term] of this.terms.entries()) {
+    for ( let [i, term] of this.terms.entries() ) {
       const nextTerm = this.terms[i + 1];
       const prevTerm = this.terms[i - 1];
 
       // Convert shorthand dX terms to 1dX preemptively to allow them to be appropriately doubled for criticals
-      if ((term instanceof StringTerm)
-        && /^d\d+/.test(term.term)
-        && !(prevTerm instanceof ParentheticalTerm)) {
+      if ( ( term instanceof StringTerm )
+        && /^d\d+/.test( term.term )
+        && !( prevTerm instanceof ParentheticalTerm ) ) {
         const formula = `1${term.term}`;
-        const newTerm = new Roll(formula).terms[0];
-        this.terms.splice(i, 1, newTerm);
+        const newTerm = new Roll( formula ).terms[0];
+        this.terms.splice( i, 1, newTerm );
         term = newTerm;
       }
 
       // Merge parenthetical terms that follow string terms to build a dice term (to allow criticals)
-      else if (term instanceof ParentheticalTerm
+      else if ( term instanceof ParentheticalTerm
         && prevTerm instanceof StringTerm
-        && prevTerm.term.match(/^[0-9]*d$/)) {
-        if (term.isDeterministic) {
+        && prevTerm.term.match( /^[0-9]*d$/ ) ) {
+        if ( term.isDeterministic ) {
           let newFormula = `${prevTerm.term}${term.evaluate().total}`;
           let deleteCount = 2;
 
           // Merge in any roll modifiers
-          if (nextTerm instanceof StringTerm) {
+          if ( nextTerm instanceof StringTerm ) {
             newFormula += nextTerm.term;
             deleteCount += 1;
           }
 
-          const newTerm = new Roll(newFormula).terms[0];
-          this.terms.splice(i - 1, deleteCount, newTerm);
+          const newTerm = new Roll( newFormula ).terms[0];
+          this.terms.splice( i - 1, deleteCount, newTerm );
           term = newTerm;
         }
       }
 
       // Merge any parenthetical terms followed by string terms
       else if (
-        (term instanceof ParentheticalTerm || term instanceof MathTerm)
+        ( term instanceof ParentheticalTerm || term instanceof MathTerm )
         && nextTerm instanceof StringTerm
-        && nextTerm.term.match(/^d[0-9]*$/)
+        && nextTerm.term.match( /^d[0-9]*$/ )
       ) {
-        if (term.isDeterministic) {
+        if ( term.isDeterministic ) {
           const newFormula = `${term.evaluate().total}${nextTerm.term}`;
-          const newTerm = new Roll(newFormula).terms[0];
-          this.terms.splice(i, 2, newTerm);
+          const newTerm = new Roll( newFormula ).terms[0];
+          this.terms.splice( i, 2, newTerm );
           term = newTerm;
         }
       }
     }
 
     // Re-compile the underlying formula
-    this._formula = this.constructor.getFormula(this.terms);
+    this._formula = this.constructor.getFormula( this.terms );
 
     // Mark configuration as complete
     this.options.preprocessed = true;
@@ -121,41 +121,41 @@ export default class DamageRoll extends Roll {
    */
   configureDamage() {
     const flatBonus = new Map();
-    for (let [i, term] of this.terms.entries()) {
+    for ( let [i, term] of this.terms.entries() ) {
       // Multiply dice terms
-      if (term instanceof DiceTerm) {
-        if ((game.release.generation > 11) && (term._number instanceof Roll)) {
+      if ( term instanceof DiceTerm ) {
+        if ( ( game.release.generation > 11 ) && ( term._number instanceof Roll ) ) {
           // Complex number term.
-          if (!term._number.isDeterministic) continue;
-          if (!term._number._evaluated) term._number.evaluateSync();
+          if ( !term._number.isDeterministic ) continue;
+          if ( !term._number._evaluated ) term._number.evaluateSync();
         }
         term.options.baseNumber = term.options.baseNumber ?? term.number; // Reset back
         term.number = term.options.baseNumber;
-        if (this.isCritical) {
+        if ( this.isCritical ) {
           let cm = this.options.criticalMultiplier ?? 2;
 
           // Powerful critical - maximize damage and reduce the multiplier by 1
-          if (this.options.powerfulCritical) {
+          if ( this.options.powerfulCritical ) {
             let bonus = term.number * term.faces;
-            if (bonus > 0) {
-              const flavor = term.flavor?.toLowerCase().trim() ?? game.i18n.localize("SW5E.PowerfulCritical");
-              flatBonus.set(flavor, (flatBonus.get(flavor) ?? 0) + bonus);
+            if ( bonus > 0 ) {
+              const flavor = term.flavor?.toLowerCase().trim() ?? game.i18n.localize( "SW5E.PowerfulCritical" );
+              flatBonus.set( flavor, ( flatBonus.get( flavor ) ?? 0 ) + bonus );
             }
-            cm = Math.max(1, cm - 1);
+            cm = Math.max( 1, cm - 1 );
           }
 
           // Alter the damage term
           let cb = this.options.criticalBonusDice && i === 0 ? this.options.criticalBonusDice : 0;
-          term.alter(cm, cb);
+          term.alter( cm, cb );
           term.options.critical = true;
         }
       }
 
       // Multiply numeric terms
-      else if (this.options.multiplyNumeric && term instanceof NumericTerm) {
+      else if ( this.options.multiplyNumeric && term instanceof NumericTerm ) {
         term.options.baseNumber = term.options.baseNumber ?? term.number; // Reset back
         term.number = term.options.baseNumber;
-        if (this.isCritical) {
+        if ( this.isCritical ) {
           term.number *= this.options.criticalMultiplier ?? 2;
           term.options.critical = true;
         }
@@ -163,22 +163,22 @@ export default class DamageRoll extends Roll {
     }
 
     // Add powerful critical bonus
-    if (this.options.powerfulCritical && flatBonus.size) {
-      for (const [type, number] of flatBonus.entries()) {
-        this.terms.push(new OperatorTerm({ operator: "+" }));
-        this.terms.push(new NumericTerm({ number, options: { flavor: type } }));
+    if ( this.options.powerfulCritical && flatBonus.size ) {
+      for ( const [type, number] of flatBonus.entries() ) {
+        this.terms.push( new OperatorTerm( { operator: "+" } ) );
+        this.terms.push( new NumericTerm( { number, options: { flavor: type } } ) );
       }
     }
 
     // Add extra critical damage term
-    if (this.isCritical && this.options.criticalBonusDamage) {
-      const extra = new Roll(this.options.criticalBonusDamage, this.data);
-      if (!(extra.terms[0] instanceof OperatorTerm)) this.terms.push(new OperatorTerm({ operator: "+" }));
-      this.terms.push(...extra.terms);
+    if ( this.isCritical && this.options.criticalBonusDamage ) {
+      const extra = new Roll( this.options.criticalBonusDamage, this.data );
+      if ( !( extra.terms[0] instanceof OperatorTerm ) ) this.terms.push( new OperatorTerm( { operator: "+" } ) );
+      this.terms.push( ...extra.terms );
     }
 
     // Re-compile the underlying formula
-    this._formula = this.constructor.getFormula(this.terms);
+    this._formula = this.constructor.getFormula( this.terms );
 
     // Mark configuration as complete
     this.options.configured = true;
@@ -189,8 +189,8 @@ export default class DamageRoll extends Roll {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  toMessage(messageData = {}, options = {}) {
-    return this.constructor.toMessage([this], messageData, options);
+  toMessage( messageData = {}, options = {} ) {
+    return this.constructor.toMessage( [this], messageData, options );
   }
 
   /* -------------------------------------------- */
@@ -208,37 +208,37 @@ export default class DamageRoll extends Roll {
    * @returns {Promise<ChatMessage|object>}  A promise which resolves to the created ChatMessage document if create is
    *                                         true, or the Object of prepared chatData otherwise.
    */
-  static async toMessage(rolls, messageData = {}, { rollMode, create = true } = {}) {
+  static async toMessage( rolls, messageData = {}, { rollMode, create = true } = {} ) {
     let isCritical = false;
-    for (const roll of rolls) {
-      if (!roll._evaluated) await roll.evaluate({ async: true });
+    for ( const roll of rolls ) {
+      if ( !roll._evaluated ) await roll.evaluate( { async: true } );
       messageData.flavor ??= roll.options.flavor;
       rollMode = roll.options.rollMode;
       isCritical ||= roll.isCritical;
     }
-    if (isCritical) {
-      const label = game.i18n.localize("SW5E.CriticalHit");
+    if ( isCritical ) {
+      const label = game.i18n.localize( "SW5E.CriticalHit" );
       messageData.flavor = messageData.flavor ? `${messageData.flavor} (${label})` : label;
     }
     rollMode ??= messageData.rollMode;
 
     // Prepare chat data
-    messageData = foundry.utils.mergeObject({
+    messageData = foundry.utils.mergeObject( {
       user: game.user.id,
       sound: CONFIG.sounds.dice
-    }, messageData);
+    }, messageData );
     messageData.rolls = rolls;
     // TODO: Remove when v11 support is dropped.
-    if (game.release.generation < 12) messageData.type = CONST.CHAT_MESSAGE_TYPES.ROLL;
+    if ( game.release.generation < 12 ) messageData.type = CONST.CHAT_MESSAGE_TYPES.ROLL;
 
     // Either create the message or just return the chat data
-    const cls = getDocumentClass("ChatMessage");
-    const msg = new cls(messageData);
+    const cls = getDocumentClass( "ChatMessage" );
+    const msg = new cls( messageData );
 
     // Either create or return the data
-    if (create) return cls.create(msg.toObject(), { rollMode });
+    if ( create ) return cls.create( msg.toObject(), { rollMode } );
     else {
-      if (rollMode) msg.applyRollMode(rollMode);
+      if ( rollMode ) msg.applyRollMode( rollMode );
       return msg.toObject();
     }
   }
@@ -259,8 +259,8 @@ export default class DamageRoll extends Roll {
    * @returns {Promise<D20Roll|null>}         A resulting D20Roll object constructed with the dialog, or null if the
    *                                          dialog was closed
    */
-  async configureDialog(data = {}, options = {}) {
-    const rolls = await this.constructor.configureDialog([this], data, options);
+  async configureDialog( data = {}, options = {} ) {
+    const rolls = await this.constructor.configureDialog( [this], data, options );
     return rolls[0] ?? null;
   }
 
@@ -279,22 +279,22 @@ export default class DamageRoll extends Roll {
    * @returns {Promise<D20Roll|null>}           A resulting D20Roll object constructed with the dialog,
    *                                            or null if the dialog was closed
    */
-  static async configureDialog(rolls, {
-    title, defaultRollMode, defaultCritical = false, template, allowCritical = true } = {}, options = {}) {
+  static async configureDialog( rolls, {
+    title, defaultRollMode, defaultCritical = false, template, allowCritical = true } = {}, options = {} ) {
 
     // Render the Dialog inner HTML
-    const content = await renderTemplate(template ?? this.EVALUATION_TEMPLATE, {
-      formulas: rolls.map((roll, index) => ({
+    const content = await renderTemplate( template ?? this.EVALUATION_TEMPLATE, {
+      formulas: rolls.map( ( roll, index ) => ( {
         formula: `${roll.formula}${index === 0 ? " + @bonus" : ""}`,
         type: CONFIG.SW5E.damageTypes[roll.options.type]?.label
           ?? CONFIG.SW5E.healingTypes[roll.options.type]?.label ?? null
-      })),
+      } ) ),
       defaultRollMode,
       rollModes: CONFIG.Dice.rollModes
-    });
+    } );
 
     // Create the Dialog window and await submission of the form
-    return new Promise(resolve => {
+    return new Promise( resolve => {
       new Dialog(
         {
           title,
@@ -302,20 +302,20 @@ export default class DamageRoll extends Roll {
           buttons: {
             critical: {
               condition: allowCritical,
-              label: game.i18n.localize("SW5E.CriticalHit"),
-              callback: html => resolve(rolls.map((r, i) => r._onDialogSubmit(html, true, i === 0)))
+              label: game.i18n.localize( "SW5E.CriticalHit" ),
+              callback: html => resolve( rolls.map( ( r, i ) => r._onDialogSubmit( html, true, i === 0 ) ) )
             },
             normal: {
-              label: game.i18n.localize(allowCritical ? "SW5E.Normal" : "SW5E.Roll"),
-              callback: html => resolve(rolls.map((r, i) => r._onDialogSubmit(html, false, i === 0)))
+              label: game.i18n.localize( allowCritical ? "SW5E.Normal" : "SW5E.Roll" ),
+              callback: html => resolve( rolls.map( ( r, i ) => r._onDialogSubmit( html, false, i === 0 ) ) )
             }
           },
           default: defaultCritical ? "critical" : "normal",
-          close: () => resolve(null)
+          close: () => resolve( null )
         },
         options
-      ).render(true);
-    });
+      ).render( true );
+    } );
   }
 
   /* -------------------------------------------- */
@@ -328,14 +328,14 @@ export default class DamageRoll extends Roll {
    * @returns {DamageRoll}        This damage roll.
    * @private
    */
-  _onDialogSubmit(html, isCritical, isFirst) {
-    const form = html[0].querySelector("form");
+  _onDialogSubmit( html, isCritical, isFirst ) {
+    const form = html[0].querySelector( "form" );
 
     // Append a situational bonus term
-    if (form.bonus.value && isFirst) {
-      const bonus = new DamageRoll(form.bonus.value, this.data);
-      if (!(bonus.terms[0] instanceof OperatorTerm)) this.terms.push(new OperatorTerm({ operator: "+" }));
-      this.terms = this.terms.concat(bonus.terms);
+    if ( form.bonus.value && isFirst ) {
+      const bonus = new DamageRoll( form.bonus.value, this.data );
+      if ( !( bonus.terms[0] instanceof OperatorTerm ) ) this.terms.push( new OperatorTerm( { operator: "+" } ) );
+      this.terms = this.terms.concat( bonus.terms );
     }
 
     // Apply advantage or disadvantage
@@ -348,9 +348,9 @@ export default class DamageRoll extends Roll {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static fromData(data) {
-    const roll = super.fromData(data);
-    roll._formula = this.getFormula(roll.terms);
+  static fromData( data ) {
+    const roll = super.fromData( data );
+    roll._formula = this.getFormula( roll.terms );
     return roll;
   }
 }

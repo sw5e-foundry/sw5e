@@ -43,68 +43,68 @@ const { ArrayField, ForeignDocumentField, HTMLField, NumberField, SchemaField, S
  *  }
  * });
  */
-export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
+export default class GroupActor extends ActorDataModel.mixin( CurrencyTemplate ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      type: new SchemaField({
-        value: new StringField({ initial: "party", label: "SW5E.Group.Type" })
-      }),
-      description: new SchemaField({
-        full: new HTMLField({ label: "SW5E.Description" }),
-        summary: new HTMLField({ label: "SW5E.DescriptionSummary" })
-      }),
-      members: new ArrayField(new SchemaField({
-        actor: new ForeignDocumentField(foundry.documents.BaseActor),
-        quantity: new SchemaField({
-          value: new NumberField({ initial: 1, integer: true, min: 0, label: "SW5E.Quantity" }),
-          formula: new FormulaField({ label: "SW5E.QuantityFormula" })
-        })
-      }), { label: "SW5E.GroupMembers" }),
+    return this.mergeSchema( super.defineSchema(), {
+      type: new SchemaField( {
+        value: new StringField( { initial: "party", label: "SW5E.Group.Type" } )
+      } ),
+      description: new SchemaField( {
+        full: new HTMLField( { label: "SW5E.Description" } ),
+        summary: new HTMLField( { label: "SW5E.DescriptionSummary" } )
+      } ),
+      members: new ArrayField( new SchemaField( {
+        actor: new ForeignDocumentField( foundry.documents.BaseActor ),
+        quantity: new SchemaField( {
+          value: new NumberField( { initial: 1, integer: true, min: 0, label: "SW5E.Quantity" } ),
+          formula: new FormulaField( { label: "SW5E.QuantityFormula" } )
+        } )
+      } ), { label: "SW5E.GroupMembers" } ),
       attributes: new SchemaField(
         {
-          movement: new SchemaField({
-            land: new NumberField({
+          movement: new SchemaField( {
+            land: new NumberField( {
               nullable: false,
               min: 0,
               step: 0.1,
               initial: 0,
               label: "SW5E.MovementLand"
-            }),
-            water: new NumberField({
+            } ),
+            water: new NumberField( {
               nullable: false,
               min: 0,
               step: 0.1,
               initial: 0,
               label: "SW5E.MovementWater"
-            }),
-            air: new NumberField({
+            } ),
+            air: new NumberField( {
               nullable: false,
               min: 0,
               step: 0.1,
               initial: 0,
               label: "SW5E.MovementAir"
-            })
-          })
+            } )
+          } )
         },
         { label: "SW5E.Attributes" }
       ),
-      details: new SchemaField({
-        xp: new foundry.data.fields.SchemaField({
-          value: new foundry.data.fields.NumberField({
+      details: new SchemaField( {
+        xp: new foundry.data.fields.SchemaField( {
+          value: new foundry.data.fields.NumberField( {
             integer: true, min: 0, label: "SW5E.ExperiencePointsCurrent"
-          })
-        }, { label: "SW5E.ExperiencePoints" })
-      }, { label: "SW5E.Details" })
-    });
+          } )
+        }, { label: "SW5E.ExperiencePoints" } )
+      }, { label: "SW5E.Details" } )
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
     systemFlagsModel: GroupSystemFlags
-  }, { inplace: false }));
+  }, { inplace: false } ) );
 
   /* -------------------------------------------- */
   /*  Properties                                  */
@@ -112,7 +112,7 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
 
   /** @override */
   get transferDestinations() {
-    return this.members.map(m => m.actor).filter(a => a.isOwner);
+    return this.members.map( m => m.actor ).filter( a => a.isOwner );
   }
 
   /* -------------------------------------------- */
@@ -122,7 +122,7 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
    * @type {Actor5e[]}
    */
   get playerCharacters() {
-    return this.members.map(m => m.actor).filter(a => a.type === "character");
+    return this.members.map( m => m.actor ).filter( a => a.type === "character" );
   }
 
   /* -------------------------------------------- */
@@ -130,9 +130,9 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    GroupActor.#migrateMembers(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    GroupActor.#migrateMembers( source );
   }
 
   /* -------------------------------------------- */
@@ -141,12 +141,12 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
    * Migrate group members from set of IDs into array of metadata objects.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateMembers(source) {
-    if (foundry.utils.getType(source.members) !== "Array") return;
-    source.members = source.members.map(m => {
-      if (foundry.utils.getType(m) === "Object") return m;
+  static #migrateMembers( source ) {
+    if ( foundry.utils.getType( source.members ) !== "Array" ) return;
+    source.members = source.members.map( m => {
+      if ( foundry.utils.getType( m ) === "Object" ) return m;
       return { actor: m };
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -156,25 +156,25 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
   /** @inheritdoc */
   prepareBaseData() {
     const memberIds = new Set();
-    this.members = this.members.filter((member, index) => {
-      if (!member.actor) {
+    this.members = this.members.filter( ( member, index ) => {
+      if ( !member.actor ) {
         const id = this._source.members[index]?.actor;
-        console.warn(`Actor "${id}" in group "${this._id}" does not exist within the World.`);
-      } else if (member.actor.type === "group") {
-        console.warn(`Group "${this._id}" may not contain another Group "${member.actor.id}" as a member.`);
-      } else if (memberIds.has(member.actor.id)) {
-        console.warn(`Actor "${member.actor.id}" duplicated in Group "${this._id}".`);
+        console.warn( `Actor "${id}" in group "${this._id}" does not exist within the World.` );
+      } else if ( member.actor.type === "group" ) {
+        console.warn( `Group "${this._id}" may not contain another Group "${member.actor.id}" as a member.` );
+      } else if ( memberIds.has( member.actor.id ) ) {
+        console.warn( `Actor "${member.actor.id}" duplicated in Group "${this._id}".` );
       } else {
-        memberIds.add(member.actor.id);
+        memberIds.add( member.actor.id );
         return true;
       }
       return false;
-    });
-    Object.defineProperty(this.members, "ids", {
+    } );
+    Object.defineProperty( this.members, "ids", {
       value: memberIds,
       enumerable: false,
       writable: false
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -182,15 +182,15 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
   /** @inheritdoc */
   prepareDerivedData() {
     const system = this;
-    Object.defineProperty(this.details.xp, "derived", {
+    Object.defineProperty( this.details.xp, "derived", {
       get() {
-        return system.type.value === "encounter" ? system.members.reduce((xp, { actor, quantity }) =>
-          xp + ((actor.system.details?.xp?.value ?? 0) * (quantity.value ?? 1))
-          , 0) : null;
+        return system.type.value === "encounter" ? system.members.reduce( ( xp, { actor, quantity } ) =>
+          xp + ( ( actor.system.details?.xp?.value ?? 0 ) * ( quantity.value ?? 1 ) )
+        , 0 ) : null;
       },
       configurable: true,
       enumerable: false
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -202,13 +202,13 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
    * @param {Actor5e} actor           A non-group Actor to add to the group
    * @returns {Promise<Actor5e>}      The updated group Actor
    */
-  async addMember(actor) {
-    if (actor.type === "group") throw new Error("You may not add a group within a group.");
-    if (actor.pack) throw new Error("You may only add Actors to the group which exist within the World.");
-    if (this.members.ids.has(actor.id)) return;
+  async addMember( actor ) {
+    if ( actor.type === "group" ) throw new Error( "You may not add a group within a group." );
+    if ( actor.pack ) throw new Error( "You may only add Actors to the group which exist within the World." );
+    if ( this.members.ids.has( actor.id ) ) return;
     const membersCollection = this.toObject().members;
-    membersCollection.push({ actor: actor.id });
-    return this.parent.update({ "system.members": membersCollection });
+    membersCollection.push( { actor: actor.id } );
+    return this.parent.update( { "system.members": membersCollection } );
   }
 
   /* -------------------------------------------- */
@@ -217,30 +217,30 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
    * Place all members in the group on the current scene.
    */
   async placeMembers() {
-    if (!game.user.isGM || !canvas.scene) return;
+    if ( !game.user.isGM || !canvas.scene ) return;
     const minimized = !this.parent.sheet._minimized;
     await this.parent.sheet.minimize();
     const tokensData = [];
 
     try {
-      const placements = await TokenPlacement.place({
-        tokens: Object.values(this.members).flatMap(({ actor, quantity }) =>
-          Array(this.type.value === "encounter" ? (quantity.value ?? 1) : 1).fill(actor.prototypeToken)
+      const placements = await TokenPlacement.place( {
+        tokens: Object.values( this.members ).flatMap( ( { actor, quantity } ) =>
+          Array( this.type.value === "encounter" ? ( quantity.value ?? 1 ) : 1 ).fill( actor.prototypeToken )
         )
-      });
-      for (const placement of placements) {
+      } );
+      for ( const placement of placements ) {
         const actor = placement.prototypeToken.actor;
         const appendNumber = !placement.prototypeToken.actorLink && placement.prototypeToken.appendNumber;
         delete placement.prototypeToken;
-        const tokenDocument = await actor.getTokenDocument(placement);
-        if (appendNumber) TokenPlacement.adjustAppendedNumber(tokenDocument, placement);
-        tokensData.push(tokenDocument.toObject());
+        const tokenDocument = await actor.getTokenDocument( placement );
+        if ( appendNumber ) TokenPlacement.adjustAppendedNumber( tokenDocument, placement );
+        tokensData.push( tokenDocument.toObject() );
       }
     } finally {
-      if (minimized) this.parent.sheet.maximize();
+      if ( minimized ) this.parent.sheet.maximize();
     }
 
-    await canvas.scene.createEmbeddedDocuments("Token", tokensData);
+    await canvas.scene.createEmbeddedDocuments( "Token", tokensData );
   }
 
   /* -------------------------------------------- */
@@ -250,18 +250,18 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
    * @param {Actor5e|string} actor    An Actor or ID to remove from this group
    * @returns {Promise<Actor5e>}      The updated group Actor
    */
-  async removeMember(actor) {
+  async removeMember( actor ) {
     // Handle user input
     let actorId;
-    if (typeof actor === "string") actorId = actor;
-    else if (actor instanceof Actor) actorId = actor.id;
-    else throw new Error("You must provide an Actor document or an actor ID to remove a group member");
-    if (!this.members.ids.has(actorId)) throw new Error(`Actor id "${actorId}" is not a group member`);
+    if ( typeof actor === "string" ) actorId = actor;
+    else if ( actor instanceof Actor ) actorId = actor.id;
+    else throw new Error( "You must provide an Actor document or an actor ID to remove a group member" );
+    if ( !this.members.ids.has( actorId ) ) throw new Error( `Actor id "${actorId}" is not a group member` );
 
     // Remove the actor and update the parent document
     const membersCollection = this.toObject().members;
-    membersCollection.findSplice(member => member.actor === actorId);
-    return this.parent.update({ "system.members": membersCollection });
+    membersCollection.findSplice( member => member.actor === actorId );
+    return this.parent.update( { "system.members": membersCollection } );
   }
 
   /* -------------------------------------------- */
@@ -273,13 +273,13 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
    */
   async rollQuantities() {
     const membersCollection = this.toObject().members;
-    await Promise.all(membersCollection.map(async member => {
-      if (!member.quantity?.formula) return member;
-      const roll = new Roll(member.quantity.formula);
+    await Promise.all( membersCollection.map( async member => {
+      if ( !member.quantity?.formula ) return member;
+      const roll = new Roll( member.quantity.formula );
       await roll.evaluate();
-      if (roll.total > 0) member.quantity.value = roll.total;
-    }));
-    return this.parent.update({ "system.members": membersCollection });
+      if ( roll.total > 0 ) member.quantity.value = roll.total;
+    } ) );
+    return this.parent.update( { "system.members": membersCollection } );
   }
 
   /* -------------------------------------------- */
@@ -292,19 +292,19 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
    * @param {RestResult} result         Results of the rest operation being built.
    * @returns {boolean}                 Returns `false` to prevent regular rest process from completing.
    */
-  async rest(config, result) {
+  async rest( config, result ) {
     const results = new Map();
-    for (const member of this.members) {
+    for ( const member of this.members ) {
       results.set(
         member.actor,
-        await member.actor[config.type === "short" ? "shortRest" : "longRest"]({
+        await member.actor[config.type === "short" ? "shortRest" : "longRest"]( {
           ...config, dialog: false, advanceTime: false
-        }) ?? null
+        } ) ?? null
       );
     }
 
     // Advance the game clock
-    if (config.advanceTime && (config.duration > 0) && game.user.isGM) await game.time.advance(60 * config.duration);
+    if ( config.advanceTime && ( config.duration > 0 ) && game.user.isGM ) await game.time.advance( 60 * config.duration );
 
     /**
      * A hook event that fires when the rest process is completed for a group.
@@ -313,7 +313,7 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
      * @param {Actor5e} group                         The group that just completed resting.
      * @param {Map<Actor5e, RestResult|null>} result  Details on the rests completed.
      */
-    Hooks.callAll("sw5e.groupRestCompleted", this.parent, results);
+    Hooks.callAll( "sw5e.groupRestCompleted", this.parent, results );
 
     return false;
   }
@@ -330,10 +330,10 @@ export default class GroupActor extends ActorDataModel.mixin(CurrencyTemplate) {
    * @see {Document#_onUpdate}
    * @protected
    */
-  _onUpdate(changed, options, userId) {
-    if (!foundry.utils.hasProperty(changed, "system.type.value") || (game.user !== game.users.activeGM)
-      || (game.settings.get("sw5e", "primaryParty")?.actor !== this.parent)
-      || (foundry.utils.getProperty(changed, "system.type.value") === "party")) return;
-    game.settings.set("sw5e", "primaryParty", { actor: null });
+  _onUpdate( changed, options, userId ) {
+    if ( !foundry.utils.hasProperty( changed, "system.type.value" ) || ( game.user !== game.users.activeGM )
+      || ( game.settings.get( "sw5e", "primaryParty" )?.actor !== this.parent )
+      || ( foundry.utils.getProperty( changed, "system.type.value" ) === "party" ) ) return;
+    game.settings.set( "sw5e", "primaryParty", { actor: null } );
   }
 }

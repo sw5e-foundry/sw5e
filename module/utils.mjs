@@ -7,8 +7,8 @@
  * @param {number} value  CR value for format.
  * @returns {string}
  */
-export function formatCR(value) {
-  return { 0.125: "⅛", 0.25: "¼", 0.5: "½" }[value] ?? formatNumber(value);
+export function formatCR( value ) {
+  return { 0.125: "⅛", 0.25: "¼", 0.5: "½" }[value] ?? formatNumber( value );
 }
 
 /* -------------------------------------------- */
@@ -19,9 +19,9 @@ export function formatCR(value) {
  * @param {object} options  Options forwarded to {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat}
  * @returns {string}
  */
-export function formatNumber(value, options) {
-  const formatter = new Intl.NumberFormat(game.i18n.lang, options);
-  return formatter.format(value);
+export function formatNumber( value, options ) {
+  const formatter = new Intl.NumberFormat( game.i18n.lang, options );
+  return formatter.format( value );
 }
 
 /* -------------------------------------------- */
@@ -31,8 +31,8 @@ export function formatNumber(value, options) {
  * @param {string} value  The text to format.
  * @returns {Handlebars.SafeString}
  */
-export function formatText(value) {
-  return new Handlebars.SafeString(value?.replaceAll("\n", "<br>") ?? "");
+export function formatText( value ) {
+  return new Handlebars.SafeString( value?.replaceAll( "\n", "<br>" ) ?? "" );
 }
 
 /* -------------------------------------------- */
@@ -44,7 +44,7 @@ export function formatText(value) {
  * @param {string} mod      The modifier to test.
  * @returns {boolean}
  */
-export function isValidDieModifier(mod) {
+export function isValidDieModifier( mod ) {
   const regex = {
     reroll: /rr?([0-9]+)?([<>=]+)?([0-9]+)?/i,
     explode: /xo?([0-9]+)?([<>=]+)?([0-9]+)?/i,
@@ -53,7 +53,7 @@ export function isValidDieModifier(mod) {
     dropKeep: /[dk]([hl])?([0-9]+)?/i,
     count: /(?:c[sf])([<>=]+)?([0-9]+)?/i
   };
-  return Object.values(regex).some(rgx => rgx.test(mod));
+  return Object.values( regex ).some( rgx => rgx.test( mod ) );
 }
 
 /* -------------------------------------------- */
@@ -64,14 +64,14 @@ export function isValidDieModifier(mod) {
  * @param {Document} target         Target document to be updated.
  * @returns {number|void}
  */
-export function parseInputDelta(input, target) {
+export function parseInputDelta( input, target ) {
   let value = input.value;
-  if (["+", "-"].includes(value[0])) {
-    const delta = parseFloat(value);
-    value = Number(foundry.utils.getProperty(target, input.dataset.name ?? input.name)) + delta;
+  if ( ["+", "-"].includes( value[0] ) ) {
+    const delta = parseFloat( value );
+    value = Number( foundry.utils.getProperty( target, input.dataset.name ?? input.name ) ) + delta;
   }
-  else if (value[0] === "=") value = Number(value.slice(1));
-  if (Number.isNaN(value)) return;
+  else if ( value[0] === "=" ) value = Number( value.slice( 1 ) );
+  if ( Number.isNaN( value ) ) return;
   input.value = value;
   return value;
 }
@@ -88,23 +88,23 @@ export function parseInputDelta(input, target) {
  * @param {string} [options.property]  Name of the property to which this formula belongs.
  * @returns {string}                 Formula with replaced data.
  */
-export function replaceFormulaData(formula, data, { item, property } = {}) {
-  const dataRgx = new RegExp(/@([a-z.0-9_-]+)/gi);
+export function replaceFormulaData( formula, data, { item, property } = {} ) {
+  const dataRgx = new RegExp( /@([a-z.0-9_-]+)/gi );
   const missingReferences = new Set();
-  formula = formula.replace(dataRgx, (match, term) => {
-    let value = foundry.utils.getProperty(data, term);
-    if (value == null) {
-      missingReferences.add(match);
+  formula = formula.replace( dataRgx, ( match, term ) => {
+    let value = foundry.utils.getProperty( data, term );
+    if ( value == null ) {
+      missingReferences.add( match );
       return "0";
     }
-    return String(value).trim();
-  });
-  if ((missingReferences.size > 0) && item.parent && property) {
-    const listFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "conjunction" });
-    const message = game.i18n.format("SW5E.FormulaMissingReferenceWarn", {
-      property, name: item.name, references: listFormatter.format(missingReferences)
-    });
-    item.parent._preparationWarnings.push({ message, link: item.uuid, type: "warning" });
+    return String( value ).trim();
+  } );
+  if ( ( missingReferences.size > 0 ) && item.parent && property ) {
+    const listFormatter = new Intl.ListFormat( game.i18n.lang, { style: "long", type: "conjunction" } );
+    const message = game.i18n.format( "SW5E.FormulaMissingReferenceWarn", {
+      property, name: item.name, references: listFormatter.format( missingReferences )
+    } );
+    item.parent._preparationWarnings.push( { message, link: item.uuid, type: "warning" } );
   }
   return formula;
 }
@@ -118,14 +118,14 @@ export function replaceFormulaData(formula, data, { item, property } = {}) {
  * @returns {number}                  Simplified bonus as an integer.
  * @protected
  */
-export function simplifyBonus(bonus, data = {}) {
-  if (!bonus) return 0;
-  if (Number.isNumeric(bonus)) return Number(bonus);
+export function simplifyBonus( bonus, data = {} ) {
+  if ( !bonus ) return 0;
+  if ( Number.isNumeric( bonus ) ) return Number( bonus );
   try {
-    const roll = new Roll(bonus, data);
-    return roll.isDeterministic ? Roll.safeEval(roll.formula) : 0;
-  } catch (error) {
-    console.error(error);
+    const roll = new Roll( bonus, data );
+    return roll.isDeterministic ? Roll.safeEval( roll.formula ) : 0;
+  } catch( error ) {
+    console.error( error );
     return 0;
   }
 }
@@ -139,9 +139,9 @@ export function simplifyBonus(bonus, data = {}) {
  * @param {string} id
  * @returns {string}
  */
-export function staticID(id) {
-  if (id.length >= 16) return id.substring(0, 16);
-  return id.padEnd(16, "0");
+export function staticID( id ) {
+  if ( id.length >= 16 ) return id.substring( 0, 16 );
+  return id.padEnd( 16, "0" );
 }
 
 /* -------------------------------------------- */
@@ -154,9 +154,9 @@ export function staticID(id) {
  * @param {Function} [filter]  Filtering function. If none is provided, it will just check for truthiness.
  * @returns {string[]}         Array of filtered keys.
  */
-export function filteredKeys(obj, filter) {
+export function filteredKeys( obj, filter ) {
   filter ??= e => e;
-  return Object.entries(obj).filter(e => filter(e[1])).map(e => e[0]);
+  return Object.entries( obj ).filter( e => filter( e[1] ) ).map( e => e[0] );
 }
 
 /* -------------------------------------------- */
@@ -167,13 +167,13 @@ export function filteredKeys(obj, filter) {
  * @param {string|Function} [sortKey]  An inner key upon which to sort or sorting function.
  * @returns {object}                   A copy of the original object that has been sorted.
  */
-export function sortObjectEntries(obj, sortKey) {
-  let sorted = Object.entries(obj);
-  const sort = (lhs, rhs) => foundry.utils.getType(lhs) === "string" ? lhs.localeCompare(rhs, game.i18n.lang) : lhs - rhs;
-  if (foundry.utils.getType(sortKey) === "function") sorted = sorted.sort((lhs, rhs) => sortKey(lhs[1], rhs[1]));
-  else if (sortKey) sorted = sorted.sort((lhs, rhs) => sort(lhs[1][sortKey], rhs[1][sortKey]));
-  else sorted = sorted.sort((lhs, rhs) => sort(lhs[1], rhs[1]));
-  return Object.fromEntries(sorted);
+export function sortObjectEntries( obj, sortKey ) {
+  let sorted = Object.entries( obj );
+  const sort = ( lhs, rhs ) => foundry.utils.getType( lhs ) === "string" ? lhs.localeCompare( rhs, game.i18n.lang ) : lhs - rhs;
+  if ( foundry.utils.getType( sortKey ) === "function" ) sorted = sorted.sort( ( lhs, rhs ) => sortKey( lhs[1], rhs[1] ) );
+  else if ( sortKey ) sorted = sorted.sort( ( lhs, rhs ) => sort( lhs[1][sortKey], rhs[1][sortKey] ) );
+  else sorted = sorted.sort( ( lhs, rhs ) => sort( lhs[1], rhs[1] ) );
+  return Object.fromEntries( sorted );
 }
 
 /* -------------------------------------------- */
@@ -183,22 +183,22 @@ export function sortObjectEntries(obj, sortKey) {
  * @param {string} uuid  The UUID of the Document index to retrieve.
  * @returns {object}     Document's index if one could be found.
  */
-export function indexFromUuid(uuid) {
-  const parts = uuid.split(".");
+export function indexFromUuid( uuid ) {
+  const parts = uuid.split( "." );
   let index;
 
   // Compendium Documents
-  if (parts[0] === "Compendium") {
+  if ( parts[0] === "Compendium" ) {
     const [, scope, packName, id] = parts;
-    const pack = game.packs.get(`${scope}.${packName}`);
-    index = pack?.index.get(id);
+    const pack = game.packs.get( `${scope}.${packName}` );
+    index = pack?.index.get( id );
   }
 
   // World Documents
-  else if (parts.length < 3) {
+  else if ( parts.length < 3 ) {
     const [docName, id] = parts;
     const collection = CONFIG[docName].collection.instance;
-    index = collection.get(id);
+    index = collection.get( id );
   }
 
   return index || null;
@@ -214,18 +214,18 @@ export function indexFromUuid(uuid) {
  * @param {string} [options.tooltip]  Tooltip to add to the link.
  * @returns {string}                  Link to the item or empty string if item wasn't found.
  */
-export function linkForUuid(uuid, { tooltip } = {}) {
-  let doc = fromUuidSync(uuid);
-  if (!doc) return "";
-  if (uuid.startsWith("Compendium.") && !(doc instanceof foundry.abstract.Document)) {
-    const { collection } = foundry.utils.parseUuid(uuid);
+export function linkForUuid( uuid, { tooltip } = {} ) {
+  let doc = fromUuidSync( uuid );
+  if ( !doc ) return "";
+  if ( uuid.startsWith( "Compendium." ) && !( doc instanceof foundry.abstract.Document ) ) {
+    const { collection } = foundry.utils.parseUuid( uuid );
     const cls = collection.documentClass;
     // Minimal "shell" of a document using index data
-    doc = new cls(foundry.utils.deepClone(doc), { pack: collection.metadata.id });
+    doc = new cls( foundry.utils.deepClone( doc ), { pack: collection.metadata.id } );
   }
   const a = doc.toAnchor();
-  if (tooltip) a.dataset.tooltip = tooltip;
-  if (game.release.generation < 12) a.setAttribute("draggable", true);
+  if ( tooltip ) a.dataset.tooltip = tooltip;
+  if ( game.release.generation < 12 ) a.setAttribute( "draggable", true );
   return a.outerHTML;
 }
 
@@ -238,8 +238,8 @@ export function linkForUuid(uuid, { tooltip } = {}) {
  * @returns {Token5e[]}
  */
 export function getSceneTargets() {
-  let targets = canvas.tokens.controlled.filter(t => t.actor);
-  if (!targets.length && game.user.character) targets = game.user.character.getActiveTokens();
+  let targets = canvas.tokens.controlled.filter( t => t.actor );
+  if ( !targets.length && game.user.character ) targets = game.user.character.getActiveTokens();
   return targets;
 }
 
@@ -254,11 +254,11 @@ export function getSceneTargets() {
  * @param {string} to     The final units.
  * @returns {number}      Weight in the specified units.
  */
-export function convertWeight(value, from, to) {
-  if (from === to) return value;
+export function convertWeight( value, from, to ) {
+  if ( from === to ) return value;
   const message = unit => `Weight unit ${unit} not defined in CONFIG.SW5E.weightUnits`;
-  if (!CONFIG.SW5E.weightUnits[from]) throw new Error(message(from));
-  if (!CONFIG.SW5E.weightUnits[to]) throw new Error(message(to));
+  if ( !CONFIG.SW5E.weightUnits[from] ) throw new Error( message( from ) );
+  if ( !CONFIG.SW5E.weightUnits[to] ) throw new Error( message( to ) );
   return value
     * CONFIG.SW5E.weightUnits[from].conversion
     / CONFIG.SW5E.weightUnits[to].conversion;
@@ -273,8 +273,8 @@ export function convertWeight(value, from, to) {
  * @param {string} identifier
  * @returns {boolean}
  */
-function isValidIdentifier(identifier) {
-  return /^([a-z0-9_-]+)$/i.test(identifier);
+function isValidIdentifier( identifier ) {
+  return /^([a-z0-9_-]+)$/i.test( identifier );
 }
 
 /**
@@ -282,23 +282,23 @@ function isValidIdentifier(identifier) {
  * @param {string} uuid
  * @returns {boolean}
  */
-function isValidUUID(uuid) {
-  let parts = uuid.split(".");
+function isValidUUID( uuid ) {
+  let parts = uuid.split( "." );
 
   // Compendium Document
-  const packs = new Set(game.packs.keys());
+  const packs = new Set( game.packs.keys() );
   if (
     parts[0] === "Compendium"
     && parts.length >= 4
-    && packs.has(`${parts[1]}.${parts[2]}`)
-    && foundry.data.validators.isValidId(parts[3])
+    && packs.has( `${parts[1]}.${parts[2]}` )
+    && foundry.data.validators.isValidId( parts[3] )
   ) {
-    parts = parts.slice(4);
+    parts = parts.slice( 4 );
   }
 
   // World Document / Embedded Document
-  while (parts.length >= 2 && parts[0] in game.documentTypes && foundry.data.validators.isValidId(parts[1])) {
-    parts = parts.slice(2);
+  while ( parts.length >= 2 && parts[0] in game.documentTypes && foundry.data.validators.isValidId( parts[1] ) ) {
+    parts = parts.slice( 2 );
   }
 
   return parts.length === 0;
@@ -391,12 +391,12 @@ export async function preloadHandlebarsTemplates() {
   ];
 
   const paths = {};
-  for (const path of partials) {
-    paths[path.replace(".hbs", ".html")] = path;
-    paths[`sw5e.${path.split("/").pop().replace(".hbs", "")}`] = path;
+  for ( const path of partials ) {
+    paths[path.replace( ".hbs", ".html" )] = path;
+    paths[`sw5e.${path.split( "/" ).pop().replace( ".hbs", "" )}`] = path;
   }
 
-  return loadTemplates(paths);
+  return loadTemplates( paths );
 }
 
 /* -------------------------------------------- */
@@ -407,13 +407,13 @@ export async function preloadHandlebarsTemplates() {
  * @param {object} options  Handlebars options.
  * @returns {string}
  */
-function dataset(object, options) {
+function dataset( object, options ) {
   const entries = [];
-  for (let [key, value] of Object.entries(object ?? {})) {
-    key = key.replace(/[A-Z]+(?![a-z])|[A-Z]/g, (a, b) => (b ? "-" : "") + a.toLowerCase());
-    entries.push(`data-${key}="${value}"`);
+  for ( let [key, value] of Object.entries( object ?? {} ) ) {
+    key = key.replace( /[A-Z]+(?![a-z])|[A-Z]/g, ( a, b ) => ( b ? "-" : "" ) + a.toLowerCase() );
+    entries.push( `data-${key}="${value}"` );
   }
-  return new Handlebars.SafeString(entries.join(" "));
+  return new Handlebars.SafeString( entries.join( " " ) );
 }
 
 /* -------------------------------------------- */
@@ -431,7 +431,7 @@ function dataset(object, options) {
  * @param {string} [options.childrenAttr]  Attribute pointing to array of children.
  * @returns {Handlebars.SafeString}        Formatted option list.
  */
-function groupedSelectOptions(choices, options) {
+function groupedSelectOptions( choices, options ) {
   const localize = options.hash.localize ?? false;
   const blank = options.hash.blank ?? null;
   const labelAttr = options.hash.labelAttr ?? "label";
@@ -439,33 +439,33 @@ function groupedSelectOptions(choices, options) {
   const childrenAttr = options.hash.childrenAttr ?? "children";
 
   // Create an option
-  const option = (name, label, chosen) => {
-    if (localize) label = game.i18n.localize(label);
+  const option = ( name, label, chosen ) => {
+    if ( localize ) label = game.i18n.localize( label );
     html += `<option value="${name}" ${chosen ? "selected" : ""}>${label}</option>`;
   };
 
   // Create a group
   const group = category => {
     let label = category[labelAttr];
-    if (localize) game.i18n.localize(label);
+    if ( localize ) game.i18n.localize( label );
     html += `<optgroup label="${label}">`;
-    children(category[childrenAttr]);
+    children( category[childrenAttr] );
     html += "</optgroup>";
   };
 
   // Add children
   const children = children => {
-    for (let [name, child] of Object.entries(children)) {
-      if (child[childrenAttr]) group(child);
-      else option(name, child[labelAttr], child[chosenAttr] ?? false);
+    for ( let [name, child] of Object.entries( children ) ) {
+      if ( child[childrenAttr] ) group( child );
+      else option( name, child[labelAttr], child[chosenAttr] ?? false );
     }
   };
 
   // Create the options
   let html = "";
-  if (blank !== null) option("", blank);
-  children(choices);
-  return new Handlebars.SafeString(html);
+  if ( blank !== null ) option( "", blank );
+  children( choices );
+  return new Handlebars.SafeString( html );
 }
 
 /* -------------------------------------------- */
@@ -476,17 +476,17 @@ function groupedSelectOptions(choices, options) {
  * @param {object} options  Handlebars options.
  * @returns {string}
  */
-function itemContext(context, options) {
-  if (arguments.length !== 2) throw new Error("#sw5e-itemContext requires exactly one argument");
-  if (foundry.utils.getType(context) === "function") context = context.call(this);
+function itemContext( context, options ) {
+  if ( arguments.length !== 2 ) throw new Error( "#sw5e-itemContext requires exactly one argument" );
+  if ( foundry.utils.getType( context ) === "function" ) context = context.call( this );
 
   const ctx = options.data.root.itemContext?.[context.id];
-  if (!ctx) {
-    const inverse = options.inverse(this);
-    if (inverse) return options.inverse(this);
+  if ( !ctx ) {
+    const inverse = options.inverse( this );
+    if ( inverse ) return options.inverse( this );
   }
 
-  return options.fn(context, { data: options.data, blockParams: [ctx] });
+  return options.fn( context, { data: options.data, blockParams: [ctx] } );
 }
 
 /* -------------------------------------------- */
@@ -497,17 +497,17 @@ function itemContext(context, options) {
  * @param {object} options   Handlebars options.
  * @returns {string}
  */
-function concealSection(conceal, options) {
-  let content = options.fn(this);
-  if (!conceal) return content;
+function concealSection( conceal, options ) {
+  let content = options.fn( this );
+  if ( !conceal ) return content;
 
   content = `<div inert>
     ${content}
   </div>
   <div class="unidentified-notice">
       <div>
-          <strong>${game.i18n.localize("SW5E.Unidentified.Title")}</strong>
-          <p>${game.i18n.localize("SW5E.Unidentified.Notice")}</p>
+          <strong>${game.i18n.localize( "SW5E.Unidentified.Title" )}</strong>
+          <p>${game.i18n.localize( "SW5E.Unidentified.Notice" )}</p>
       </div>
   </div>`;
   return content;
@@ -519,16 +519,16 @@ function concealSection(conceal, options) {
  * Register custom Handlebars helpers used by 5e.
  */
 export function registerHandlebarsHelpers() {
-  Handlebars.registerHelper({
+  Handlebars.registerHelper( {
     getProperty: foundry.utils.getProperty,
     "sw5e-concealSection": concealSection,
     "sw5e-dataset": dataset,
     "sw5e-groupedSelectOptions": groupedSelectOptions,
-    "sw5e-linkForUuid": (uuid, options) => linkForUuid(uuid, options.hash),
+    "sw5e-linkForUuid": ( uuid, options ) => linkForUuid( uuid, options.hash ),
     "sw5e-itemContext": itemContext,
-    "sw5e-numberFormat": (context, options) => formatNumber(context, options.hash),
+    "sw5e-numberFormat": ( context, options ) => formatNumber( context, options.hash ),
     "sw5e-textFormat": formatText
-  });
+  } );
 }
 
 /* -------------------------------------------- */
@@ -552,8 +552,8 @@ const _preLocalizationRegistrations = {};
  *                                        if multiple are provided.
  * @param {boolean} [options.sort=false]  Sort this config enum, using the key if set.
  */
-export function preLocalize(configKeyPath, { key, keys = [], sort = false } = {}) {
-  if (key) keys.unshift(key);
+export function preLocalize( configKeyPath, { key, keys = [], sort = false } = {} ) {
+  if ( key ) keys.unshift( key );
   _preLocalizationRegistrations[configKeyPath] = { keys, sort };
 }
 
@@ -563,18 +563,18 @@ export function preLocalize(configKeyPath, { key, keys = [], sort = false } = {}
  * Execute previously defined pre-localization tasks on the provided config object.
  * @param {object} config  The `CONFIG.SW5E` object to localize and sort. *Will be mutated.*
  */
-export function performPreLocalization(config) {
-  for (const [keyPath, settings] of Object.entries(_preLocalizationRegistrations)) {
-    const target = foundry.utils.getProperty(config, keyPath);
-    if (!target) continue;
-    _localizeObject(target, settings.keys);
-    if (settings.sort) foundry.utils.setProperty(config, keyPath, sortObjectEntries(target, settings.keys[0]));
+export function performPreLocalization( config ) {
+  for ( const [keyPath, settings] of Object.entries( _preLocalizationRegistrations ) ) {
+    const target = foundry.utils.getProperty( config, keyPath );
+    if ( !target ) continue;
+    _localizeObject( target, settings.keys );
+    if ( settings.sort ) foundry.utils.setProperty( config, keyPath, sortObjectEntries( target, settings.keys[0] ) );
   }
 
   // Localize & sort status effects
-  CONFIG.statusEffects.forEach(s => s.name = game.i18n.localize(s.name));
-  CONFIG.statusEffects.sort((lhs, rhs) =>
-    lhs.id === "dead" ? -1 : rhs.id === "dead" ? 1 : lhs.name.localeCompare(rhs.name, game.i18n.lang)
+  CONFIG.statusEffects.forEach( s => s.name = game.i18n.localize( s.name ) );
+  CONFIG.statusEffects.sort( ( lhs, rhs ) =>
+    lhs.id === "dead" ? -1 : rhs.id === "dead" ? 1 : lhs.name.localeCompare( rhs.name, game.i18n.lang )
   );
 }
 
@@ -586,29 +586,29 @@ export function performPreLocalization(config) {
  * @param {string[]} [keys]  List of inner keys that should be localized if this is an object.
  * @private
  */
-function _localizeObject(obj, keys) {
-  for (const [k, v] of Object.entries(obj)) {
+function _localizeObject( obj, keys ) {
+  for ( const [k, v] of Object.entries( obj ) ) {
     const type = typeof v;
-    if (type === "string") {
-      obj[k] = game.i18n.localize(v);
+    if ( type === "string" ) {
+      obj[k] = game.i18n.localize( v );
       continue;
     }
 
-    if (type !== "object") {
+    if ( type !== "object" ) {
       console.error(
-        new Error(`Pre-localized configuration values must be a string or object, ${type} found for "${k}" instead.`)
+        new Error( `Pre-localized configuration values must be a string or object, ${type} found for "${k}" instead.` )
       );
       continue;
     }
-    if (!keys?.length) {
-      console.error(new Error("Localization keys must be provided for pre-localizing when target is an object."));
+    if ( !keys?.length ) {
+      console.error( new Error( "Localization keys must be provided for pre-localizing when target is an object." ) );
       continue;
     }
 
-    for (const key of keys) {
-      const value = foundry.utils.getProperty(v, key);
-      if (!value) continue;
-      foundry.utils.setProperty(v, key, game.i18n.localize(value));
+    for ( const key of keys ) {
+      const value = foundry.utils.getProperty( v, key );
+      if ( !value ) continue;
+      foundry.utils.setProperty( v, key, game.i18n.localize( value ) );
     }
   }
 }
@@ -630,69 +630,69 @@ const _attributeLabelCache = new Map();
  * @param {Actor5e} [options.actor]  An optional reference actor.
  * @returns {string|void}
  */
-export function getHumanReadableAttributeLabel(attr, { actor } = {}) {
+export function getHumanReadableAttributeLabel( attr, { actor } = {} ) {
   // Check any actor-specific names first.
-  if (attr.startsWith("resources.") && actor) {
-    const resource = foundry.utils.getProperty(actor, `system.${attr}`);
-    if (resource.label) return resource.label;
+  if ( attr.startsWith( "resources." ) && actor ) {
+    const resource = foundry.utils.getProperty( actor, `system.${attr}` );
+    if ( resource.label ) return resource.label;
   }
 
-  if ((attr === "details.xp.value") && (actor?.type === "npc")) {
-    return game.i18n.localize("SW5E.ExperiencePointsValue");
+  if ( ( attr === "details.xp.value" ) && ( actor?.type === "npc" ) ) {
+    return game.i18n.localize( "SW5E.ExperiencePointsValue" );
   }
 
-  if (attr.startsWith(".") && actor) {
-    const item = fromUuidSync(attr, { relative: actor });
+  if ( attr.startsWith( "." ) && actor ) {
+    const item = fromUuidSync( attr, { relative: actor } );
     return item?.name ?? attr;
   }
 
   // Check if the attribute is already in cache.
-  let label = _attributeLabelCache.get(attr);
-  if (label) return label;
+  let label = _attributeLabelCache.get( attr );
+  if ( label ) return label;
 
   // Derived fields.
-  if (attr === "attributes.init.total") label = "SW5E.InitiativeBonus";
-  else if (attr === "attributes.ac.value") label = "SW5E.ArmorClass";
-  else if (attr === "attributes.powerdc") label = "SW5E.PowerDC";
+  if ( attr === "attributes.init.total" ) label = "SW5E.InitiativeBonus";
+  else if ( attr === "attributes.ac.value" ) label = "SW5E.ArmorClass";
+  else if ( attr === "attributes.powerdc" ) label = "SW5E.PowerDC";
 
   // Abilities.
-  else if (attr.startsWith("abilities.")) {
-    const [, key] = attr.split(".");
-    label = game.i18n.format("SW5E.AbilityScoreL", { ability: CONFIG.SW5E.abilities[key].label });
+  else if ( attr.startsWith( "abilities." ) ) {
+    const [, key] = attr.split( "." );
+    label = game.i18n.format( "SW5E.AbilityScoreL", { ability: CONFIG.SW5E.abilities[key].label } );
   }
 
   // Skills.
-  else if (attr.startsWith("skills.")) {
-    const [, key] = attr.split(".");
-    label = game.i18n.format("SW5E.SkillPassiveScore", { skill: CONFIG.SW5E.skills[key].label });
+  else if ( attr.startsWith( "skills." ) ) {
+    const [, key] = attr.split( "." );
+    label = game.i18n.format( "SW5E.SkillPassiveScore", { skill: CONFIG.SW5E.skills[key].label } );
   }
 
   // Power slots.
-  else if (attr.startsWith("powers.")) {
-    const [, key] = attr.split(".");
-    if (!/power\d+/.test(key)) label = `SW5E.PowerSlots${key.capitalize()}`;
+  else if ( attr.startsWith( "powers." ) ) {
+    const [, key] = attr.split( "." );
+    if ( !/power\d+/.test( key ) ) label = `SW5E.PowerSlots${key.capitalize()}`;
     else {
-      const plurals = new Intl.PluralRules(game.i18n.lang, { type: "ordinal" });
-      const level = Number(key.slice(5));
-      label = game.i18n.format(`SW5E.PowerSlotsN.${plurals.select(level)}`, { n: level });
+      const plurals = new Intl.PluralRules( game.i18n.lang, { type: "ordinal" } );
+      const level = Number( key.slice( 5 ) );
+      label = game.i18n.format( `SW5E.PowerSlotsN.${plurals.select( level )}`, { n: level } );
     }
   }
 
   // Attempt to find the attribute in a data model.
-  if (!label) {
+  if ( !label ) {
     const { CharacterData, NPCData, VehicleData, GroupData } = sw5e.dataModels.actor;
-    for (const model of [CharacterData, NPCData, VehicleData, GroupData]) {
-      const field = model.schema.getField(attr);
-      if (field) {
+    for ( const model of [CharacterData, NPCData, VehicleData, GroupData] ) {
+      const field = model.schema.getField( attr );
+      if ( field ) {
         label = field.label;
         break;
       }
     }
   }
 
-  if (label) {
-    label = game.i18n.localize(label);
-    _attributeLabelCache.set(attr, label);
+  if ( label ) {
+    label = game.i18n.localize( label );
+    _attributeLabelCache.set( attr, label );
   }
 
   return label;
@@ -708,32 +708,32 @@ export function getHumanReadableAttributeLabel(attr, { actor } = {}) {
  * @param {CompendiumCollection} powersPack     An Item compendium pack which provides source data for powers
  * @returns {Promise<void>}
  */
-export async function synchronizeActorPowers(actorPack, powersPack) {
+export async function synchronizeActorPowers( actorPack, powersPack ) {
 
   // Load all actors and powers
   const actors = await actorPack.getDocuments();
   const powers = await powersPack.getDocuments();
-  const powersMap = powers.reduce((obj, item) => {
+  const powersMap = powers.reduce( ( obj, item ) => {
     obj[item.name] = item;
     return obj;
-  }, {});
+  }, {} );
 
   // Unlock the pack
-  await actorPack.configure({ locked: false });
+  await actorPack.configure( { locked: false } );
 
   // Iterate over actors
-  SceneNavigation.displayProgressBar({ label: "Synchronizing Power Data", pct: 0 });
-  for (const [i, actor] of actors.entries()) {
-    const { toDelete, toCreate } = _synchronizeActorPowers(actor, powersMap);
-    if (toDelete.length) await actor.deleteEmbeddedDocuments("Item", toDelete);
-    if (toCreate.length) await actor.createEmbeddedDocuments("Item", toCreate, { keepId: true });
-    console.debug(`${actor.name} | Synchronized ${toCreate.length} powers`);
-    SceneNavigation.displayProgressBar({ label: actor.name, pct: ((i / actors.length) * 100).toFixed(0) });
+  SceneNavigation.displayProgressBar( { label: "Synchronizing Power Data", pct: 0 } );
+  for ( const [i, actor] of actors.entries() ) {
+    const { toDelete, toCreate } = _synchronizeActorPowers( actor, powersMap );
+    if ( toDelete.length ) await actor.deleteEmbeddedDocuments( "Item", toDelete );
+    if ( toCreate.length ) await actor.createEmbeddedDocuments( "Item", toCreate, { keepId: true } );
+    console.debug( `${actor.name} | Synchronized ${toCreate.length} powers` );
+    SceneNavigation.displayProgressBar( { label: actor.name, pct: ( ( i / actors.length ) * 100 ).toFixed( 0 ) } );
   }
 
   // Re-lock the pack
-  await actorPack.configure({ locked: true });
-  SceneNavigation.displayProgressBar({ label: "Synchronizing Power Data", pct: 100 });
+  await actorPack.configure( { locked: true } );
+  SceneNavigation.displayProgressBar( { label: "Synchronizing Power Data", pct: 100 } );
 }
 
 /* -------------------------------------------- */
@@ -745,30 +745,30 @@ export async function synchronizeActorPowers(actorPack, powersPack) {
  * @returns {{toDelete: string[], toCreate: object[]}}
  * @private
  */
-function _synchronizeActorPowers(actor, powersMap) {
+function _synchronizeActorPowers( actor, powersMap ) {
   const powers = actor.itemTypes.power;
   const toDelete = [];
   const toCreate = [];
-  if (!powers.length) return { toDelete, toCreate };
+  if ( !powers.length ) return { toDelete, toCreate };
 
-  for (const power of powers) {
+  for ( const power of powers ) {
     const source = powersMap[power.name];
-    if (!source) {
-      console.warn(`${actor.name} | ${power.name} | Does not exist in powers compendium pack`);
+    if ( !source ) {
+      console.warn( `${actor.name} | ${power.name} | Does not exist in powers compendium pack` );
       continue;
     }
 
     // Combine source data with the preparation and uses data from the actor
     const powerData = source.toObject();
     const { preparation, uses, save } = power.toObject().system;
-    Object.assign(powerData.system, { preparation, uses });
+    Object.assign( powerData.system, { preparation, uses } );
     powerData.system.save.dc = save.dc;
-    foundry.utils.setProperty(powerData, "_stats.compendiumSource", source.uuid);
-    foundry.utils.setProperty(powerData, "flags.core.sourceId", source.uuid);
+    foundry.utils.setProperty( powerData, "_stats.compendiumSource", source.uuid );
+    foundry.utils.setProperty( powerData, "flags.core.sourceId", source.uuid );
 
     // Record powers to be deleted and created
-    toDelete.push(power.id);
-    toCreate.push(powerData);
+    toDelete.push( power.id );
+    toCreate.push( powerData );
   }
   return { toDelete, toCreate };
 }
@@ -784,26 +784,26 @@ function _synchronizeActorPowers(actor, powersMap) {
  * @param {string} uuid   The uuid of the Document to retrieve
  * @returns {Document|null}
  */
-export function fromUuidSynchronous(uuid) {
-  if (!uuid) return null;
-  let parts = uuid.split(".");
+export function fromUuidSynchronous( uuid ) {
+  if ( !uuid ) return null;
+  let parts = uuid.split( "." );
   let doc;
 
   // Compendium Documents
-  if (parts[0] === "Compendium") return console.warn(`[Warning] fromUuidSynchronous does not work on Compendium uuids such as ${uuid}.`);
+  if ( parts[0] === "Compendium" ) return console.warn( `[Warning] fromUuidSynchronous does not work on Compendium uuids such as ${uuid}.` );
   // World Documents
   else {
-    const [docName, docId] = parts.slice(0, 2);
-    parts = parts.slice(2);
+    const [docName, docId] = parts.slice( 0, 2 );
+    parts = parts.slice( 2 );
     const collection = CONFIG[docName]?.collection?.instance;
-    doc = collection?.get(docId);
+    doc = collection?.get( docId );
   }
 
   // Embedded Documents
-  while (doc && parts.length > 1) {
-    const [embeddedName, embeddedId] = parts.slice(0, 2);
-    doc = doc.getEmbeddedDocument(embeddedName, embeddedId);
-    parts = parts.slice(2);
+  while ( doc && parts.length > 1 ) {
+    const [embeddedName, embeddedId] = parts.slice( 0, 2 );
+    doc = doc.getEmbeddedDocument( embeddedName, embeddedId );
+    parts = parts.slice( 2 );
   }
   return doc || null;
 }
@@ -816,33 +816,33 @@ export function fromUuidSynchronous(uuid) {
  * @param {string} uuid   The uuid of the Document to retrieve
  * @returns {Document|null}
  */
-export async function fromUuidSafe(uuid) {
-  if (!uuid) return null;
-  let parts = uuid.split(".");
+export async function fromUuidSafe( uuid ) {
+  if ( !uuid ) return null;
+  let parts = uuid.split( "." );
   let doc;
 
   // Compendium Documents
-  if (parts[0] === "Compendium") {
+  if ( parts[0] === "Compendium" ) {
     parts.shift();
-    const [scope, packName, id] = parts.slice(0, 3);
-    parts = parts.slice(3);
-    const pack = game.packs.get(`${scope}.${packName}`);
-    doc = await pack?.getDocument(id);
+    const [scope, packName, id] = parts.slice( 0, 3 );
+    parts = parts.slice( 3 );
+    const pack = game.packs.get( `${scope}.${packName}` );
+    doc = await pack?.getDocument( id );
   }
 
   // World Documents
   else {
-    const [docName, docId] = parts.slice(0, 2);
-    parts = parts.slice(2);
+    const [docName, docId] = parts.slice( 0, 2 );
+    parts = parts.slice( 2 );
     const collection = CONFIG[docName]?.collection?.instance;
-    doc = collection?.get(docId);
+    doc = collection?.get( docId );
   }
 
   // Embedded Documents
-  while (doc && parts.length > 1) {
-    const [embeddedName, embeddedId] = parts.slice(0, 2);
-    doc = doc.getEmbeddedDocument(embeddedName, embeddedId);
-    parts = parts.slice(2);
+  while ( doc && parts.length > 1 ) {
+    const [embeddedName, embeddedId] = parts.slice( 0, 2 );
+    doc = doc.getEmbeddedDocument( embeddedName, embeddedId );
+    parts = parts.slice( 2 );
   }
   return doc || null;
 }
@@ -855,8 +855,8 @@ export async function fromUuidSafe(uuid) {
  * @param {int} index     The index to start searching from
  * @returns {int[]|null}   The indexes of the start and end of the bracket, and start and end of the bracket's content
  */
-export function htmlFindClosingBracket(html, index = 0) {
-  if (!html) return null;
+export function htmlFindClosingBracket( html, index = 0 ) {
+  if ( !html ) return null;
   let inString = false;
   let depth = 0;
   let prev = null;
@@ -864,23 +864,23 @@ export function htmlFindClosingBracket(html, index = 0) {
   let blockEnd = null;
   let contentStart = null;
   let contentEnd = null;
-  for (let i = index; i < html.length; i++) {
+  for ( let i = index; i < html.length; i++ ) {
     const c = html[i];
-    if (['"', "'", "`"].includes(c)) {
-      if (!inString) inString = c;
-      else if (inString === c && prev !== "\\") inString = false;
-    } else if (inString) continue;
-    else if (prev === "<") {
-      if (blockStart === null) blockStart = i - 1;
+    if ( ['"', "'", "`"].includes( c ) ) {
+      if ( !inString ) inString = c;
+      else if ( inString === c && prev !== "\\" ) inString = false;
+    } else if ( inString ) continue;
+    else if ( prev === "<" ) {
+      if ( blockStart === null ) blockStart = i - 1;
       contentEnd = i - 1;
 
-      if (c === "/") depth -= 1;
+      if ( c === "/" ) depth -= 1;
       else depth += 1;
-    } else if (c === ">") {
-      if (contentStart === null) contentStart = i + 1;
+    } else if ( c === ">" ) {
+      if ( contentStart === null ) contentStart = i + 1;
       blockEnd = i + 1;
 
-      if (depth === 0) return [blockStart, blockEnd, contentStart, contentEnd];
+      if ( depth === 0 ) return [blockStart, blockEnd, contentStart, contentEnd];
     }
     prev = c;
   }
@@ -892,21 +892,21 @@ export function htmlFindClosingBracket(html, index = 0) {
  * @param {string} orig    The original string
  * @returns {string}       The slugified string
  */
-export function sluggify(orig) {
+export function sluggify( orig ) {
   // Replace %20 and underscores with spaces
-  orig = orig.replace(/%20|_/g, " ");
+  orig = orig.replace( /%20|_/g, " " );
   // Capitalize each word
-  orig = orig.replace(/\b\w+\b/g, w => w.capitalize());
+  orig = orig.replace( /\b\w+\b/g, w => w.capitalize() );
   // Replace slashes and commas with dashes
-  orig = orig.replace(/[/,]/g, "-");
+  orig = orig.replace( /[/,]/g, "-" );
   // Remove all whitespaces
-  orig = orig.replace(/[\s]/g, "");
+  orig = orig.replace( /[\s]/g, "" );
   // Replace all (ParenthesisedText) at the beggining of words with 'ParenthesisedText-'
-  orig = orig.replace(/^\(([^)]*)\)/g, "$1-");
+  orig = orig.replace( /^\(([^)]*)\)/g, "$1-" );
   // Replace all (ParenthesisedText) elsewhere '-ParenthesisedText'
-  orig = orig.replace(/-*\(([^)]*)\)/g, "-$1");
+  orig = orig.replace( /-*\(([^)]*)\)/g, "-$1" );
   // Remove all non-word characters but dashes
-  orig = orig.replace(/[^\w-]/g, "");
+  orig = orig.replace( /[^\w-]/g, "" );
 
   return orig;
 }
@@ -916,16 +916,16 @@ export function sluggify(orig) {
  * @param {string} path    The icon path
  * @returns {string}       The slugified path
  */
-export function sluggifyPath(path) {
-  let folder_index = path.search(/\/[^/]*$/) + 1;
-  let extension_index = path.search(/\.\w+$/);
-  if (extension_index === -1) extension_index = path.length;
+export function sluggifyPath( path ) {
+  let folder_index = path.search( /\/[^/]*$/ ) + 1;
+  let extension_index = path.search( /\.\w+$/ );
+  if ( extension_index === -1 ) extension_index = path.length;
 
-  let folder = path.substring(0, folder_index);
-  let icon = path.substring(folder_index, extension_index);
-  let extension = path.substring(extension_index);
+  let folder = path.substring( 0, folder_index );
+  let icon = path.substring( folder_index, extension_index );
+  let extension = path.substring( extension_index );
 
-  icon = sluggify(icon);
+  icon = sluggify( icon );
 
   return folder + icon + extension;
 }
@@ -936,11 +936,11 @@ export function sluggifyPath(path) {
  * @param {string} [style] The style of the icon, defaults to "solid"
  * @returns {string}        The slugified name
  */
-export function fontAwesomeIcon(glyph, style = "solid") {
+export function fontAwesomeIcon( glyph, style = "solid" ) {
   const styleClass = style === "regular" ? "far" : "fas";
-  const glyphClass = glyph.startsWith("fa-") ? glyph : `fa-${glyph}`;
-  const icon = document.createElement("i");
-  icon.classList.add(styleClass, glyphClass);
+  const glyphClass = glyph.startsWith( "fa-" ) ? glyph : `fa-${glyph}`;
+  const icon = document.createElement( "i" );
+  icon.classList.add( styleClass, glyphClass );
   return icon;
 }
 
@@ -950,9 +950,9 @@ export function fontAwesomeIcon(glyph, style = "solid") {
  * @param {string} selectors
  * @returns {HTMLElement} Result of the query
  */
-export function htmlQuery(parent, selectors) {
-  if (!(parent instanceof Element || parent instanceof Document)) return null;
-  return parent.querySelector(selectors);
+export function htmlQuery( parent, selectors ) {
+  if ( !( parent instanceof Element || parent instanceof Document ) ) return null;
+  return parent.querySelector( selectors );
 }
 
 /**
@@ -961,9 +961,9 @@ export function htmlQuery(parent, selectors) {
  * @param {string} selectors
  * @returns {HTMLElement} Result of the query
  */
-export function htmlQueryAll(parent, selectors) {
-  if (!(parent instanceof Element || parent instanceof Document)) return [];
-  return Array.from(parent.querySelectorAll(selectors));
+export function htmlQueryAll( parent, selectors ) {
+  if ( !( parent instanceof Element || parent instanceof Document ) ) return [];
+  return Array.from( parent.querySelectorAll( selectors ) );
 }
 
 /**
@@ -972,8 +972,8 @@ export function htmlQueryAll(parent, selectors) {
  * @param {string|number} key The key to check
  * @returns {boolean}
  */
-export function objectHasKey(obj, key) {
-  return (typeof key === "string" || typeof key === "number") && key in obj;
+export function objectHasKey( obj, key ) {
+  return ( typeof key === "string" || typeof key === "number" ) && key in obj;
 }
 
 /**
@@ -981,7 +981,7 @@ export function objectHasKey(obj, key) {
  * @param {unknown} value
  * @returns {boolean}
  */
-export function isObject(value) {
+export function isObject( value ) {
   return typeof value === "object" && value !== null;
 }
 
@@ -994,13 +994,13 @@ export function isObject(value) {
  *                                    to the list of collected actors.
  * @returns {Actors5e[]} An array of Actor5e elements according to the aforementioned filters.
  */
-export function getSelectedOrOwnActors(types, useOwnCharacter = true) {
+export function getSelectedOrOwnActors( types, useOwnCharacter = true ) {
   const actors = canvas.tokens.controlled
-    .flatMap(token => (token.actor ? token.actor : []))
-    .filter(actor => actor.isOwner)
-    .filter(actor => !types || types.includes(actor.type));
+    .flatMap( token => ( token.actor ? token.actor : [] ) )
+    .filter( actor => actor.isOwner )
+    .filter( actor => !types || types.includes( actor.type ) );
 
-  if (actors.length === 0 && game.user.character && useOwnCharacter) actors.push(game.user.character);
+  if ( actors.length === 0 && game.user.character && useOwnCharacter ) actors.push( game.user.character );
 
   return actors;
 }
@@ -1012,6 +1012,6 @@ export function getSelectedOrOwnActors(types, useOwnCharacter = true) {
  * @param {RegExp[]} regexes           The regex objects to compose.
  * @returns {RegExp}                   The composed regex object.
  */
-export function getComposedRegex(flags, ...regexes) {
-  return new RegExp(`(${regexes.map(regex => regex.source).join("|")})`, flags ?? "");
+export function getComposedRegex( flags, ...regexes ) {
+  return new RegExp( `(${regexes.map( regex => regex.source ).join( "|" )})`, flags ?? "" );
 }

@@ -39,35 +39,35 @@ export default class FeatData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      type: new ItemTypeField({ baseItem: false }, { label: "SW5E.ItemFeatureType" }),
-      prerequisites: new SchemaField({
-        level: new NumberField({ integer: true, min: 0 })
-      }),
-      properties: new SetField(new StringField(), {
+    return this.mergeSchema( super.defineSchema(), {
+      type: new ItemTypeField( { baseItem: false }, { label: "SW5E.ItemFeatureType" } ),
+      prerequisites: new SchemaField( {
+        level: new NumberField( { integer: true, min: 0 } )
+      } ),
+      properties: new SetField( new StringField(), {
         label: "SW5E.ItemFeatureProperties"
-      }),
-      requirements: new StringField({ required: true, nullable: true, label: "SW5E.Requirements" }),
-      recharge: new SchemaField({
-        value: new NumberField({
+      } ),
+      requirements: new StringField( { required: true, nullable: true, label: "SW5E.Requirements" } ),
+      recharge: new SchemaField( {
+        value: new NumberField( {
           required: true, integer: true, min: 1, label: "SW5E.FeatureRechargeOn"
-        }),
-        charged: new BooleanField({ required: true, label: "SW5E.Charged" })
-      }, { label: "SW5E.FeatureActionRecharge" }),
+        } ),
+        charged: new BooleanField( { required: true, label: "SW5E.Charged" } )
+      }, { label: "SW5E.FeatureActionRecharge" } ),
       // Starship features
-      attributes: new SchemaField({
-        speed: new SchemaField({
-          space: new NumberField({
+      attributes: new SchemaField( {
+        speed: new SchemaField( {
+          space: new NumberField( {
             required: true, nullable: true, integer: true, initial: 300, min: 0, label: "SW5E.BaseSpaceSpeed"
-          }),
-          turn: new NumberField({
+          } ),
+          turn: new NumberField( {
             required: true, nullable: true, integer: true, initial: 250, min: 0, label: "SW5E.BaseTurnSpeed"
-          })
+          } )
         },
-          { required: true }
+        { required: true }
         )
-      })
-    });
+      } )
+    } );
   }
 
   /* -------------------------------------------- */
@@ -78,10 +78,10 @@ export default class FeatData extends ItemDataModel.mixin(
   prepareDerivedData() {
     super.prepareDerivedData();
 
-    if (this.type.value) {
+    if ( this.type.value ) {
       const config = CONFIG.SW5E.featureTypes[this.type.value];
-      if (config) this.type.label = config.subtypes?.[this.type.subtype] ?? null;
-      else this.type.label = game.i18n.localize(CONFIG.Item.typeLabels.feat);
+      if ( config ) this.type.label = config.subtypes?.[this.type.subtype] ?? null;
+      else this.type.label = game.i18n.localize( CONFIG.Item.typeLabels.feat );
     }
   }
 
@@ -96,10 +96,10 @@ export default class FeatData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   async getFavoriteData() {
-    return foundry.utils.mergeObject(await super.getFavoriteData(), {
+    return foundry.utils.mergeObject( await super.getFavoriteData(), {
       subtitle: [this.parent.labels.activation, this.parent.labels.recovery],
       uses: this.hasLimitedUses ? this.getUsesData() : null
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -107,10 +107,10 @@ export default class FeatData extends ItemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    FeatData.#migrateType(source);
-    FeatData.#migrateRecharge(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    FeatData.#migrateType( source );
+    FeatData.#migrateRecharge( source );
   }
 
   /* -------------------------------------------- */
@@ -119,9 +119,9 @@ export default class FeatData extends ItemDataModel.mixin(
    * Ensure feats have a type object.
    * @param {object} source The candidate source data from which the model will be constructed.
    */
-  static #migrateType(source) {
-    if (!("type" in source)) return;
-    if (!source.type) source.type = { value: "", subtype: "" };
+  static #migrateType( source ) {
+    if ( !( "type" in source ) ) return;
+    if ( !source.type ) source.type = { value: "", subtype: "" };
   }
 
   /* -------------------------------------------- */
@@ -130,12 +130,12 @@ export default class FeatData extends ItemDataModel.mixin(
    * Migrate 0 values to null.
    * @param {object} source The candidate source data from which the model will be constructed.
    */
-  static #migrateRecharge(source) {
-    if (!("recharge" in source)) return;
+  static #migrateRecharge( source ) {
+    if ( !( "recharge" in source ) ) return;
     const value = source.recharge.value;
-    if (value === 0 || value === "") source.recharge.value = null;
-    else if (typeof value === "string" && Number.isNumeric(value)) source.recharge.value = Number(value);
-    if (source.recharge.charged === null) source.recharge.charged = false;
+    if ( value === 0 || value === "" ) source.recharge.value = null;
+    else if ( typeof value === "string" && Number.isNumeric( value ) ) source.recharge.value = Number( value );
+    if ( source.recharge.charged === null ) source.recharge.charged = false;
   }
 
   /* -------------------------------------------- */
@@ -164,7 +164,7 @@ export default class FeatData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   get hasLimitedUses() {
-    return this.isActive && (!!this.recharge.value || super.hasLimitedUses);
+    return this.isActive && ( !!this.recharge.value || super.hasLimitedUses );
   }
 
   /* -------------------------------------------- */
@@ -175,7 +175,7 @@ export default class FeatData extends ItemDataModel.mixin(
    * @type {boolean}
    */
   get isEnchantmentSource() {
-    return EnchantmentData.isEnchantmentSource(this);
+    return EnchantmentData.isEnchantmentSource( this );
   }
 
   /* -------------------------------------------- */

@@ -11,21 +11,21 @@ import StartingEquipmentTemplate from "./templates/starting-equipment.mjs";
  * @property {string} identifier     Identifier slug for this background.
  * @property {object[]} advancement  Advancement objects for this background.
  */
-export default class BackgroundData extends ItemDataModel.mixin(ItemDescriptionTemplate, StartingEquipmentTemplate) {
+export default class BackgroundData extends ItemDataModel.mixin( ItemDescriptionTemplate, StartingEquipmentTemplate ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      identifier: new IdentifierField({ required: true, label: "SW5E.Identifier" }),
-      advancement: new foundry.data.fields.ArrayField(new AdvancementField(), { label: "SW5E.AdvancementTitle" })
-    });
+    return this.mergeSchema( super.defineSchema(), {
+      identifier: new IdentifierField( { required: true, label: "SW5E.Identifier" } ),
+      advancement: new foundry.data.fields.ArrayField( new AdvancementField(), { label: "SW5E.AdvancementTitle" } )
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
     singleton: true
-  }, { inplace: false }));
+  }, { inplace: false } ) );
 
   /* -------------------------------------------- */
   /*  Socket Event Handlers                       */
@@ -39,9 +39,9 @@ export default class BackgroundData extends ItemDataModel.mixin(ItemDescriptionT
    * @see {Document#_onCreate}
    * @protected
    */
-  _onCreate(data, options, userId) {
-    if ((game.user.id !== userId) || this.parent.actor?.type !== "character") return;
-    this.parent.actor.update({ "system.details.background": this.parent.id });
+  _onCreate( data, options, userId ) {
+    if ( ( game.user.id !== userId ) || this.parent.actor?.type !== "character" ) return;
+    this.parent.actor.update( { "system.details.background": this.parent.id } );
   }
 
   /* -------------------------------------------- */
@@ -54,8 +54,8 @@ export default class BackgroundData extends ItemDataModel.mixin(ItemDescriptionT
    * @see {Document#_preDelete}
    * @protected
    */
-  async _preDelete(options, user) {
-    if (this.parent.actor?.type !== "character") return;
-    await this.parent.actor.update({ "system.details.background": null });
+  async _preDelete( options, user ) {
+    if ( this.parent.actor?.type !== "character" ) return;
+    await this.parent.actor.update( { "system.details.background": null } );
   }
 }

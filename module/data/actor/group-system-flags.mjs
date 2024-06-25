@@ -10,7 +10,7 @@ export default class GroupSystemFlags extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
       awardDestinations: new SetField(
-        new ForeignDocumentField(foundry.documents.BaseActor, { idOnly: true }), { required: false }
+        new ForeignDocumentField( foundry.documents.BaseActor, { idOnly: true } ), { required: false }
       )
     };
   }

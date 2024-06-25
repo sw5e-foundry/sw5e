@@ -5,7 +5,7 @@ import SystemFlagsMixin from "./flags.mjs";
  * @type {function(Class): Class}
  * @mixin
  */
-export default Base => class extends SystemFlagsMixin(Base) {
+export default Base => class extends SystemFlagsMixin( Base ) {
 
   /** @inheritDoc */
   get _systemFlagsDataModel() {
@@ -26,10 +26,10 @@ export default Base => class extends SystemFlagsMixin(Base) {
    * @see {Document#_preCreate}
    * @protected
    */
-  async _preCreate(data, options, user) {
-    let allowed = await super._preCreate(data, options, user);
-    if ( foundry.utils.isNewerVersion(game.version, 12) ) return allowed;
-    if ( allowed !== false ) allowed = await this.system._preCreate?.(data, options, user);
+  async _preCreate( data, options, user ) {
+    let allowed = await super._preCreate( data, options, user );
+    if ( foundry.utils.isNewerVersion( game.version, 12 ) ) return allowed;
+    if ( allowed !== false ) allowed = await this.system._preCreate?.( data, options, user );
     return allowed;
   }
 
@@ -45,10 +45,10 @@ export default Base => class extends SystemFlagsMixin(Base) {
    * @see {Document#_preUpdate}
    * @protected
    */
-  async _preUpdate(changed, options, user) {
-    let allowed = await super._preUpdate(changed, options, user);
-    if ( foundry.utils.isNewerVersion(game.version, 12) ) return allowed;
-    if ( allowed !== false ) allowed = await this.system._preUpdate?.(changed, options, user);
+  async _preUpdate( changed, options, user ) {
+    let allowed = await super._preUpdate( changed, options, user );
+    if ( foundry.utils.isNewerVersion( game.version, 12 ) ) return allowed;
+    if ( allowed !== false ) allowed = await this.system._preUpdate?.( changed, options, user );
     return allowed;
   }
 
@@ -63,10 +63,10 @@ export default Base => class extends SystemFlagsMixin(Base) {
    * @see {Document#_preDelete}
    * @protected
    */
-  async _preDelete(options, user) {
-    let allowed = await super._preDelete(options, user);
-    if ( foundry.utils.isNewerVersion(game.version, 12) ) return allowed;
-    if ( allowed !== false ) allowed = await this.system._preDelete?.(options, user);
+  async _preDelete( options, user ) {
+    let allowed = await super._preDelete( options, user );
+    if ( foundry.utils.isNewerVersion( game.version, 12 ) ) return allowed;
+    if ( allowed !== false ) allowed = await this.system._preDelete?.( options, user );
     return allowed;
   }
 
@@ -81,10 +81,10 @@ export default Base => class extends SystemFlagsMixin(Base) {
    * @see {Document#_onCreate}
    * @protected
    */
-  _onCreate(data, options, userId) {
-    super._onCreate(data, options, userId);
-    if ( foundry.utils.isNewerVersion(game.version, 12) ) return;
-    this.system._onCreate?.(data, options, userId);
+  _onCreate( data, options, userId ) {
+    super._onCreate( data, options, userId );
+    if ( foundry.utils.isNewerVersion( game.version, 12 ) ) return;
+    this.system._onCreate?.( data, options, userId );
   }
 
   /* -------------------------------------------- */
@@ -98,10 +98,10 @@ export default Base => class extends SystemFlagsMixin(Base) {
    * @see {Document#_onUpdate}
    * @protected
    */
-  _onUpdate(changed, options, userId) {
-    super._onUpdate(changed, options, userId);
-    if ( foundry.utils.isNewerVersion(game.version, 12) ) return;
-    this.system._onUpdate?.(changed, options, userId);
+  _onUpdate( changed, options, userId ) {
+    super._onUpdate( changed, options, userId );
+    if ( foundry.utils.isNewerVersion( game.version, 12 ) ) return;
+    this.system._onUpdate?.( changed, options, userId );
   }
 
   /* -------------------------------------------- */
@@ -114,9 +114,9 @@ export default Base => class extends SystemFlagsMixin(Base) {
    * @see {Document#_onDelete}
    * @protected
    */
-  _onDelete(options, userId) {
-    super._onDelete(options, userId);
-    if ( foundry.utils.isNewerVersion(game.version, 12) ) return;
-    this.system._onDelete?.(options, userId);
+  _onDelete( options, userId ) {
+    super._onDelete( options, userId );
+    if ( foundry.utils.isNewerVersion( game.version, 12 ) ) return;
+    this.system._onDelete?.( options, userId );
   }
 };

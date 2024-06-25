@@ -38,33 +38,33 @@ export default class ConsumableData extends ItemDataModel.mixin(
 ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      type: new ItemTypeField({ value: "potion", baseItem: false }, { label: "SW5E.ItemConsumableType" }),
-      magicalBonus: new NumberField({ min: 0, integer: true, label: "SW5E.MagicalBonus" }),
-      properties: new SetField(new StringField(), { label: "SW5E.ItemAmmoProperties" }),
-      uses: new ActivatedEffectTemplate.ItemUsesField({
-        autoDestroy: new BooleanField({ required: true, label: "SW5E.ItemDestroyEmpty" })
-      }, { label: "SW5E.LimitedUses" })
-    });
+    return this.mergeSchema( super.defineSchema(), {
+      type: new ItemTypeField( { value: "potion", baseItem: false }, { label: "SW5E.ItemConsumableType" } ),
+      magicalBonus: new NumberField( { min: 0, integer: true, label: "SW5E.MagicalBonus" } ),
+      properties: new SetField( new StringField(), { label: "SW5E.ItemAmmoProperties" } ),
+      uses: new ActivatedEffectTemplate.ItemUsesField( {
+        autoDestroy: new BooleanField( { required: true, label: "SW5E.ItemDestroyEmpty" } )
+      }, { label: "SW5E.LimitedUses" } )
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
     enchantable: true,
     inventoryItem: true,
     inventoryOrder: 300
-  }, { inplace: false }));
+  }, { inplace: false } ) );
 
   /* -------------------------------------------- */
   /*  Data Migrations                             */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    ConsumableData.#migratePropertiesData(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    ConsumableData.#migratePropertiesData( source );
   }
 
   /* -------------------------------------------- */
@@ -73,9 +73,9 @@ export default class ConsumableData extends ItemDataModel.mixin(
    * Migrate the properties object into a set.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migratePropertiesData(source) {
-    if (foundry.utils.getType(source.properties) !== "Object") return;
-    source.properties = filteredKeys(source.properties);
+  static #migratePropertiesData( source ) {
+    if ( foundry.utils.getType( source.properties ) !== "Object" ) return;
+    source.properties = filteredKeys( source.properties );
   }
 
   /* -------------------------------------------- */
@@ -85,12 +85,12 @@ export default class ConsumableData extends ItemDataModel.mixin(
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    if (!this.type.value) return;
+    if ( !this.type.value ) return;
     const config = CONFIG.SW5E.consumableTypes[this.type.value];
-    if (config) {
+    if ( config ) {
       this.type.label = config.subtypes?.[this.type.subtype] ?? config.label;
     } else {
-      this.type.label = game.i18n.localize(CONFIG.Item.typeLabels.consumable);
+      this.type.label = game.i18n.localize( CONFIG.Item.typeLabels.consumable );
     }
   }
 
@@ -106,11 +106,11 @@ export default class ConsumableData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   async getFavoriteData() {
-    return foundry.utils.mergeObject(await super.getFavoriteData(), {
+    return foundry.utils.mergeObject( await super.getFavoriteData(), {
       subtitle: [this.type.label, this.parent.labels.activation],
       uses: this.hasLimitedUses ? this.getUsesData() : null,
       quantity: this.quantity
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -124,7 +124,7 @@ export default class ConsumableData extends ItemDataModel.mixin(
   get chatProperties() {
     return [
       this.type.label,
-      this.hasLimitedUses ? `${this.uses.value}/${this.uses.max} ${game.i18n.localize("SW5E.Charges")}` : null,
+      this.hasLimitedUses ? `${this.uses.value}/${this.uses.max} ${game.i18n.localize( "SW5E.Charges" )}` : null,
       this.priceLabel
     ];
   }
@@ -133,7 +133,7 @@ export default class ConsumableData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   get _typeAbilityMod() {
-    if (this.type.value !== "scroll") return null;
+    if ( this.type.value !== "scroll" ) return null;
     return this.parent?.actor?.system.attributes.powercasting || "int";
   }
 
@@ -144,7 +144,7 @@ export default class ConsumableData extends ItemDataModel.mixin(
    * @returns {number}
    */
   get proficiencyMultiplier() {
-    const isProficient = this.parent?.actor?.getFlag("sw5e", "tavernBrawlerFeat");
+    const isProficient = this.parent?.actor?.getFlag( "sw5e", "tavernBrawlerFeat" );
     return isProficient ? 1 : 0;
   }
 
@@ -153,11 +153,11 @@ export default class ConsumableData extends ItemDataModel.mixin(
   /** @inheritdoc */
   get validProperties() {
     const valid = super.validProperties;
-    if (this.type.value === "ammo") Object.entries(CONFIG.SW5E.itemProperties).forEach(([k, v]) => {
-      if (v.isPhysical) valid.add(k);
-    });
-    else if (this.type.value === "scroll") CONFIG.SW5E.validProperties.power
-      .filter(p => p !== "material").forEach(p => valid.add(p));
+    if ( this.type.value === "ammo" ) Object.entries( CONFIG.SW5E.itemProperties ).forEach( ( [k, v] ) => {
+      if ( v.isPhysical ) valid.add( k );
+    } );
+    else if ( this.type.value === "scroll" ) CONFIG.SW5E.validProperties.power
+      .filter( p => p !== "material" ).forEach( p => valid.add( p ) );
     return valid;
   }
 
@@ -166,6 +166,6 @@ export default class ConsumableData extends ItemDataModel.mixin(
    * @type {boolean}
    */
   get isStarshipItem() {
-    return this.consumableType === "ammo" && (this.ammoType in CONFIG.SW5E.ammoStarshipTypes);
+    return this.consumableType === "ammo" && ( this.ammoType in CONFIG.SW5E.ammoStarshipTypes );
   }
 }

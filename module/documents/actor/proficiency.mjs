@@ -6,19 +6,19 @@
  * @param {boolean} [roundDown]  Should half-values be rounded up or down?
  */
 export default class Proficiency {
-  constructor(proficiency, multiplier, roundDown = false) {
+  constructor( proficiency, multiplier, roundDown = false ) {
     /**
      * Base proficiency value of the actor.
      * @type {number}
      * @private
      */
-    this._baseProficiency = Number(proficiency ?? 0);
+    this._baseProficiency = Number( proficiency ?? 0 );
 
     /**
      * Value by which to multiply the actor's base proficiency value.
      * @type {number}
      */
-    this.multiplier = Number(CONFIG.SW5E.proficiencyLevels[multiplier]?.mult ?? 0);
+    this.multiplier = Number( CONFIG.SW5E.proficiencyLevels[multiplier]?.mult ?? 0 );
 
     /**
      * Direction decimal results should be rounded ("up" or "down").
@@ -34,8 +34,8 @@ export default class Proficiency {
    * @param {number} level  Level or CR To use for calculating proficiency modifier.
    * @returns {number}      Proficiency modifier.
    */
-  static calculateMod(level) {
-    return Math.floor((level + 7) / 4);
+  static calculateMod( level ) {
+    return Math.floor( ( level + 7 ) / 4 );
   }
 
   /* -------------------------------------------- */
@@ -46,7 +46,7 @@ export default class Proficiency {
    */
   get flat() {
     const roundMethod = this.rounding === "down" ? Math.floor : Math.round;
-    return roundMethod(this.multiplier * this._baseProficiency);
+    return roundMethod( this.multiplier * this._baseProficiency );
   }
 
   /* -------------------------------------------- */
@@ -56,9 +56,9 @@ export default class Proficiency {
    * @type {string}
    */
   get dice() {
-    if (this._baseProficiency === 0 || this.multiplier === 0) return "0";
+    if ( this._baseProficiency === 0 || this.multiplier === 0 ) return "0";
     const roundTerm = this.rounding === "down" ? "floor" : "round";
-    if (this.multiplier === 0.5) {
+    if ( this.multiplier === 0.5 ) {
       return `${roundTerm}(1d${this._baseProficiency * 2} / 2)`;
     } else {
       return `${this.multiplier}d${this._baseProficiency * 2}`;
@@ -72,7 +72,7 @@ export default class Proficiency {
    * @type {string}
    */
   get term() {
-    return game.settings.get("sw5e", "proficiencyModifier") === "dice" ? this.dice : String(this.flat);
+    return game.settings.get( "sw5e", "proficiencyModifier" ) === "dice" ? this.dice : String( this.flat );
   }
 
   /* -------------------------------------------- */

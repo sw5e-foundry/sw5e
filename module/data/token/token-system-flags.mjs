@@ -28,30 +28,30 @@ export default class TokenSystemFlags extends foundry.abstract.DataModel {
   /** @override */
   static defineSchema() {
     return {
-      isPolymorphed: new BooleanField({required: false, initial: undefined}),
-      originalActor: new ForeignDocumentField(foundry.documents.BaseActor, {
+      isPolymorphed: new BooleanField( {required: false, initial: undefined} ),
+      originalActor: new ForeignDocumentField( foundry.documents.BaseActor, {
         required: false, initial: undefined, idOnly: true
-      }),
-      previousActorData: new ObjectField({required: false, initial: undefined}),
-      tokenRing: new SchemaField({
-        enabled: new BooleanField({label: "SW5E.TokenRings.Enabled"}),
-        colors: new SchemaField({
-          ring: new ColorField({required: false, label: "SW5E.TokenRings.RingColor"}),
-          background: new ColorField({required: false, label: "SW5E.TokenRings.RingColor"})
-        }, {required: false, initial: undefined}),
-        effects: new NumberField({
+      } ),
+      previousActorData: new ObjectField( {required: false, initial: undefined} ),
+      tokenRing: new SchemaField( {
+        enabled: new BooleanField( {label: "SW5E.TokenRings.Enabled"} ),
+        colors: new SchemaField( {
+          ring: new ColorField( {required: false, label: "SW5E.TokenRings.RingColor"} ),
+          background: new ColorField( {required: false, label: "SW5E.TokenRings.RingColor"} )
+        }, {required: false, initial: undefined} ),
+        effects: new NumberField( {
           initial: 1, min: 0, max: 8388607, integer: true, label: "SW5E.TokenRings.Effects.Label"
-        }),
-        scaleCorrection: new NumberField({
+        } ),
+        scaleCorrection: new NumberField( {
           required: false, initial: 1, min: 0, label: "SW5E.TokenRings.ScaleCorrection"
-        }),
-        textures: new SchemaField({
-          subject: new FilePathField({
+        } ),
+        textures: new SchemaField( {
+          subject: new FilePathField( {
             required: false, categories: ["IMAGE"], label: "SW5E.TokenRings.Subject.Label",
             hint: "SW5E.TokenRings.Subject.Hint"
-          })
-        }, {required: false, initial: undefined})
-      }, {required: false, initial: undefined, label: "SW5E.TokenRings.Title"})
+          } )
+        }, {required: false, initial: undefined} )
+      }, {required: false, initial: undefined, label: "SW5E.TokenRings.Title"} )
     };
   }
 }

@@ -14,7 +14,7 @@ export class ModuleArt {
      * The stored map of actor UUIDs to their art information.
      * @type {Map<string, ModuleArtInfo>}
      */
-    Object.defineProperty(this, "map", {value: new Map(), writable: false});
+    Object.defineProperty( this, "map", {value: new Map(), writable: false} );
   }
 
   /* -------------------------------------------- */
@@ -36,10 +36,10 @@ export class ModuleArt {
     // Load art modules in reverse order so that higher-priority modules overwrite lower-priority ones.
     for ( const { id, mapping, credit } of this.constructor.getArtModules().reverse() ) {
       try {
-        const json = await foundry.utils.fetchJsonWithTimeout(mapping);
-        await this.#parseArtMapping(id, json, credit);
-      } catch(e) {
-        console.error(e);
+        const json = await foundry.utils.fetchJsonWithTimeout( mapping );
+        await this.#parseArtMapping( id, json, credit );
+      } catch( e ) {
+        console.error( e );
       }
     }
   }
@@ -54,22 +54,22 @@ export class ModuleArt {
    * @param {string} [credit]  An optional credit line to attach to the Actor's biography.
    * @returns {Promise<void>}
    */
-  async #parseArtMapping(moduleId, mapping, credit) {
-    let settings = game.settings.get("sw5e", "moduleArtConfiguration")?.[moduleId];
+  async #parseArtMapping( moduleId, mapping, credit ) {
+    let settings = game.settings.get( "sw5e", "moduleArtConfiguration" )?.[moduleId];
     settings ??= {portraits: true, tokens: true};
-    for ( const [packName, actors] of Object.entries(mapping) ) {
-      const pack = game.packs.get(packName);
+    for ( const [packName, actors] of Object.entries( mapping ) ) {
+      const pack = game.packs.get( packName );
       if ( !pack ) continue;
-      for ( let [actorId, info] of Object.entries(actors) ) {
-        const entry = pack.index.get(actorId);
-        if ( !entry || !(settings.portraits || settings.tokens) ) continue;
+      for ( let [actorId, info] of Object.entries( actors ) ) {
+        const entry = pack.index.get( actorId );
+        if ( !entry || !( settings.portraits || settings.tokens ) ) continue;
         if ( settings.portraits ) entry.img = info.actor;
         else delete info.actor;
         if ( !settings.tokens ) delete info.token;
         if ( credit ) info.credit = credit;
         const uuid = `Compendium.${packName}.${actorId}`;
-        info = foundry.utils.mergeObject(this.map.get(uuid) ?? {}, info, {inplace: false});
-        this.map.set(`Compendium.${packName}.${actorId}`, info);
+        info = foundry.utils.mergeObject( this.map.get( uuid ) ?? {}, info, {inplace: false} );
+        this.map.set( `Compendium.${packName}.${actorId}`, info );
       }
     }
   }
@@ -81,7 +81,7 @@ export class ModuleArt {
    * @param {Module} module  The module.
    * @returns {string|null}
    */
-  static getModuleArtPath(module) {
+  static getModuleArtPath( module ) {
     const flags = module.flags?.[module.id];
     const artPath = flags?.["sw5e-art"];
     if ( !artPath || !module.active ) return null;
@@ -104,7 +104,7 @@ export class ModuleArt {
    * @returns {ModuleArtDescriptor[]}
    */
   static getArtModules() {
-    const settings = game.settings.get("sw5e", "moduleArtConfiguration");
+    const settings = game.settings.get( "sw5e", "moduleArtConfiguration" );
     const unsorted = [];
     const configs = [{
       id: game.system.id,
@@ -121,18 +121,18 @@ export class ModuleArt {
 
     for ( const module of game.modules ) {
       const flags = module.flags?.[module.id];
-      const mapping = this.getModuleArtPath(module);
+      const mapping = this.getModuleArtPath( module );
       if ( !mapping ) continue;
       const config = { id: module.id, label: module.title, credit: flags?.["sw5e-art-credit"], mapping };
-      configs.push(config);
+      configs.push( config );
       const priority = settings[module.id]?.priority;
-      if ( priority === undefined ) unsorted.push(config);
+      if ( priority === undefined ) unsorted.push( config );
       else config.priority = priority;
     }
 
-    const maxPriority = Math.max(...configs.map(({ priority }) => priority ?? -Infinity));
-    unsorted.forEach((config, i) => config.priority = maxPriority + ((i + 1) * CONST.SORT_INTEGER_DENSITY));
-    configs.sort((a, b) => a.priority - b.priority);
+    const maxPriority = Math.max( ...configs.map( ( { priority } ) => priority ?? -Infinity ) );
+    unsorted.forEach( ( config, i ) => config.priority = maxPriority + ( ( i + 1 ) * CONST.SORT_INTEGER_DENSITY ) );
+    configs.sort( ( a, b ) => a.priority - b.priority );
     return configs;
   }
 }
@@ -142,34 +142,34 @@ export class ModuleArt {
  */
 export class ModuleArtConfig extends FormApplication {
   /** @inheritdoc */
-  constructor(object={}, options={}) {
-    object = foundry.utils.mergeObject(game.settings.get("sw5e", "moduleArtConfiguration"), object, {inplace: false});
-    super(object, options);
+  constructor( object={}, options={} ) {
+    object = foundry.utils.mergeObject( game.settings.get( "sw5e", "moduleArtConfiguration" ), object, {inplace: false} );
+    super( object, options );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      title: game.i18n.localize("SW5E.ModuleArtConfigL"),
+    return foundry.utils.mergeObject( super.defaultOptions, {
+      title: game.i18n.localize( "SW5E.ModuleArtConfigL" ),
       id: "module-art-config",
       template: "systems/sw5e/templates/apps/module-art-config.hbs",
       popOut: true,
       width: 600,
       height: "auto"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  getData(options={}) {
-    const context = super.getData(options);
+  getData( options={} ) {
+    const context = super.getData( options );
     context.config = [];
     for ( const config of ModuleArt.getArtModules() ) {
       const settings = this.object[config.id] ?? { portraits: true, tokens: true };
-      context.config.push({ ...config, ...settings });
+      context.config.push( { ...config, ...settings } );
     }
     return context;
   }
@@ -177,9 +177,9 @@ export class ModuleArtConfig extends FormApplication {
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  activateListeners(html) {
-    super.activateListeners(html);
-    html.find("[data-action]").on("click", this._onAction.bind(this));
+  activateListeners( html ) {
+    super.activateListeners( html );
+    html.find( "[data-action]" ).on( "click", this._onAction.bind( this ) );
   }
 
   /* -------------------------------------------- */
@@ -189,38 +189,38 @@ export class ModuleArtConfig extends FormApplication {
    * @param {PointerEvent} event  The triggering event.
    * @protected
    */
-  _onAction(event) {
+  _onAction( event ) {
     const action = event.currentTarget.dataset.action;
-    const item = event.currentTarget.closest("[data-id]");
+    const item = event.currentTarget.closest( "[data-id]" );
     const id = item.dataset.id;
     const configs = [];
     for ( const element of this.form.elements ) {
-      const [id, key] = element.name.split(".");
-      if ( key === "priority" ) configs.push({ id, priority: Number(element.value) });
+      const [id, key] = element.name.split( "." );
+      if ( key === "priority" ) configs.push( { id, priority: Number( element.value ) } );
     }
-    const idx = configs.findIndex(config => config.id === id);
+    const idx = configs.findIndex( config => config.id === id );
     if ( idx < 0 ) return;
-    if ( (action === "increase") && (idx === 0) ) return;
-    if ( (action === "decrease") && (idx === configs.length - 1) ) return;
+    if ( ( action === "increase" ) && ( idx === 0 ) ) return;
+    if ( ( action === "decrease" ) && ( idx === configs.length - 1 ) ) return;
     const sortBefore = action === "increase";
     const config = configs[idx];
     const target = configs[sortBefore ? idx - 1 : idx + 1];
-    configs.splice(idx, 1);
-    const updates = SortingHelpers.performIntegerSort(config, {
+    configs.splice( idx, 1 );
+    const updates = SortingHelpers.performIntegerSort( config, {
       target, sortBefore,
       siblings: configs,
       sortKey: "priority"
-    });
-    updates.forEach(({ target, update }) => this.form.elements[`${target.id}.priority`].value = update.priority);
-    if ( action === "increase" ) item.previousElementSibling.insertAdjacentElement("beforebegin", item);
-    else item.nextElementSibling.insertAdjacentElement("afterend", item);
+    } );
+    updates.forEach( ( { target, update } ) => this.form.elements[`${target.id}.priority`].value = update.priority );
+    if ( action === "increase" ) item.previousElementSibling.insertAdjacentElement( "beforebegin", item );
+    else item.nextElementSibling.insertAdjacentElement( "afterend", item );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  async _updateObject(event, formData) {
-    await game.settings.set("sw5e", "moduleArtConfiguration", foundry.utils.expandObject(formData));
-    return SettingsConfig.reloadConfirm({world: true});
+  async _updateObject( event, formData ) {
+    await game.settings.set( "sw5e", "moduleArtConfiguration", foundry.utils.expandObject( formData ) );
+    return SettingsConfig.reloadConfirm( {world: true} );
   }
 }

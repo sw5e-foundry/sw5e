@@ -8,7 +8,7 @@ export default class StartingEquipmentConfig extends DocumentSheet {
 
   /** @inheritDoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       classes: ["sw5e", "starting-equipment"],
       dragDrop: [{ dragSelector: ".drag-bar", dropSelector: "form" }],
       template: "systems/sw5e/templates/apps/starting-equipment-config.hbs",
@@ -18,7 +18,7 @@ export default class StartingEquipmentConfig extends DocumentSheet {
       closeOnSubmit: false,
       submitOnChange: true,
       submitOnClose: true
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -27,7 +27,7 @@ export default class StartingEquipmentConfig extends DocumentSheet {
 
   /** @inheritDoc */
   get title() {
-    return `${game.i18n.localize("SW5E.StartingEquipment.Action.Configure")}: ${this.document.name}`;
+    return `${game.i18n.localize( "SW5E.StartingEquipment.Action.Configure" )}: ${this.document.name}`;
   }
 
   /* -------------------------------------------- */
@@ -35,28 +35,28 @@ export default class StartingEquipmentConfig extends DocumentSheet {
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async getData(options={}) {
-    const context = super.getData(options);
+  async getData( options={} ) {
+    const context = super.getData( options );
 
-    const processEntry = async (entry, depth=1) => {
+    const processEntry = async ( entry, depth=1 ) => {
       const data = {
         id: entry._id, entry, depth,
         groupType: entry.type in EquipmentEntryData.GROUPING_TYPES,
         validTypes: depth < 3 ? EquipmentEntryData.TYPES : EquipmentEntryData.OPTION_TYPES
       };
       if ( entry.type in EquipmentEntryData.GROUPING_TYPES ) {
-        data.children = await Promise.all(entry.children.map(c => processEntry(c, depth + 1)));
+        data.children = await Promise.all( entry.children.map( c => processEntry( c, depth + 1 ) ) );
       } else if ( entry.type === "linked" ) {
-        data.linked = fromUuidSync(entry.key);
-        data.showRequireProficiency = ["equipment", "tool", "weapon"].includes(data.linked?.type);
+        data.linked = fromUuidSync( entry.key );
+        data.showRequireProficiency = ["equipment", "tool", "weapon"].includes( data.linked?.type );
       }
       return data;
     };
     context.entries = await Promise.all(
       this.document.system.startingEquipment
-        .filter(e => !e.group)
-        .sort((lhs, rhs) => lhs.sort - rhs.sort)
-        .map(e => processEntry(e))
+        .filter( e => !e.group )
+        .sort( ( lhs, rhs ) => lhs.sort - rhs.sort )
+        .map( e => processEntry( e ) )
     );
 
     return context;
@@ -67,12 +67,12 @@ export default class StartingEquipmentConfig extends DocumentSheet {
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  activateListeners(jQuery) {
-    super.activateListeners(jQuery);
+  activateListeners( jQuery ) {
+    super.activateListeners( jQuery );
     const html = jQuery[0];
 
-    for ( const element of html.querySelectorAll("[data-action]") ) {
-      element.addEventListener("click", event => this._onAction(event.target));
+    for ( const element of html.querySelectorAll( "[data-action]" ) ) {
+      element.addEventListener( "click", event => this._onAction( event.target ) );
     }
   }
 
@@ -86,40 +86,40 @@ export default class StartingEquipmentConfig extends DocumentSheet {
    * @param {number} [options.depth]    Depth of the element being acted upon.
    * @param {string} [options.entryId]  ID of the entry to act upon.
    */
-  _onAction(element, { action, depth, entryId }={}) {
-    this.submit({ updateData: {
-      action: action ?? element.closest("[data-action]")?.dataset.action,
-      depth: depth ?? (Number(event.target.closest("[data-depth]")?.dataset.depth ?? 0) + 1),
-      entryId: entryId ?? element.closest("[data-entry-id]")?.dataset.entryId
-    } });
+  _onAction( element, { action, depth, entryId }={} ) {
+    this.submit( { updateData: {
+      action: action ?? element.closest( "[data-action]" )?.dataset.action,
+      depth: depth ?? ( Number( event.target.closest( "[data-depth]" )?.dataset.depth ?? 0 ) + 1 ),
+      entryId: entryId ?? element.closest( "[data-entry-id]" )?.dataset.entryId
+    } } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _getSubmitData(...args) {
-    const data = foundry.utils.expandObject(super._getSubmitData(...args));
-    data.startingEquipment = Object.values(data.startingEquipment ?? {});
+  _getSubmitData( ...args ) {
+    const data = foundry.utils.expandObject( super._getSubmitData( ...args ) );
+    data.startingEquipment = Object.values( data.startingEquipment ?? {} );
 
-    const highestSort = data.startingEquipment.reduce((sort, i) => i.sort > sort ? i.sort : sort, 0);
+    const highestSort = data.startingEquipment.reduce( ( sort, i ) => i.sort > sort ? i.sort : sort, 0 );
     switch ( data.action ) {
       case "add-entry":
-        data.startingEquipment.push({
+        data.startingEquipment.push( {
           _id: foundry.utils.randomID(),
           group: data.entryId,
           sort: highestSort + CONST.SORT_INTEGER_DENSITY,
-          type: (data.depth < 3) && !data.linkedUuid ? "OR" : "linked",
+          type: ( data.depth < 3 ) && !data.linkedUuid ? "OR" : "linked",
           key: data.linkedUuid
-        });
+        } );
         break;
       case "delete-entry":
         const deleteIds = new Set();
         const getDeleteIds = entry => {
-          deleteIds.add(entry._id);
-          entry.children?.forEach(c => getDeleteIds(c));
+          deleteIds.add( entry._id );
+          entry.children?.forEach( c => getDeleteIds( c ) );
         };
-        getDeleteIds(this.document.system.startingEquipment.find(i => i._id === data.entryId));
-        data.startingEquipment = data.startingEquipment.filter(e => !deleteIds.has(e._id));
+        getDeleteIds( this.document.system.startingEquipment.find( i => i._id === data.entryId ) );
+        data.startingEquipment = data.startingEquipment.filter( e => !deleteIds.has( e._id ) );
         break;
     }
 
@@ -138,35 +138,35 @@ export default class StartingEquipmentConfig extends DocumentSheet {
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _onDragStart(event) {
-    const entry = event.target.closest("[data-entry-id]");
+  _onDragStart( event ) {
+    const entry = event.target.closest( "[data-entry-id]" );
     if ( !entry ) return;
-    event.dataTransfer.setData("text/plain", JSON.stringify({
+    event.dataTransfer.setData( "text/plain", JSON.stringify( {
       type: "equipment-entry", uuid: this.document.uuid, entryId: entry.dataset.entryId
-    }));
+    } ) );
     const box = entry.getBoundingClientRect();
-    event.dataTransfer.setDragImage(entry, box.width - 6, box.height / 2);
+    event.dataTransfer.setDragImage( entry, box.width - 6, box.height / 2 );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  async _onDrop(event) {
+  async _onDrop( event ) {
     // Try to extract the data
-    const data = TextEditor.getDragEventData(event);
+    const data = TextEditor.getDragEventData( event );
 
     // Handle re-ordering of list
-    if ( data?.entryId && (data.uuid === this.document.uuid) ) return this._onSortEntry(event, data);
+    if ( data?.entryId && ( data.uuid === this.document.uuid ) ) return this._onSortEntry( event, data );
 
     // Handle dropping linked items
     if ( data?.type !== "Item" ) return;
-    const item = await Item.implementation.fromDropData(data);
+    const item = await Item.implementation.fromDropData( data );
 
     // Validate that this is a physical item
-    if ( !item.system.constructor._schemaTemplates?.includes(PhysicalItemTemplate) ) {
-      ui.notifications.error(game.i18n.format("SW5E.StartingEquipment.Warning.ItemTypeInvalid", {
-        type: game.i18n.localize(CONFIG.Item.typeLabels[item.type])
-      }));
+    if ( !item.system.constructor._schemaTemplates?.includes( PhysicalItemTemplate ) ) {
+      ui.notifications.error( game.i18n.format( "SW5E.StartingEquipment.Warning.ItemTypeInvalid", {
+        type: game.i18n.localize( CONFIG.Item.typeLabels[item.type] )
+      } ) );
       return null;
     }
 
@@ -177,16 +177,16 @@ export default class StartingEquipmentConfig extends DocumentSheet {
     const { entryId, entryType } = closestDrop?.dataset ?? {};
 
     // If no closest entry, create at top level, or if closest is a group, create inside that group
-    if ( !entryId || (entryType in EquipmentEntryData.GROUPING_TYPES) ) this.submit({ updateData: {
+    if ( !entryId || ( entryType in EquipmentEntryData.GROUPING_TYPES ) ) this.submit( { updateData: {
       action: "add-entry",
       entryId,
       linkedUuid: item.uuid
-    } });
+    } } );
 
     // If closest entry is linked, set its key to be this uuid
-    else if ( entryType === "linked" ) this.submit({ updateData: {
+    else if ( entryType === "linked" ) this.submit( { updateData: {
       [`startingEquipment.${entryId}.key`]: item.uuid
-    } });
+    } } );
   }
 
   /* -------------------------------------------- */
@@ -196,13 +196,13 @@ export default class StartingEquipmentConfig extends DocumentSheet {
    * @param {DragEvent} event  Triggering drop event.
    * @param {object} data      Drag event data.
    */
-  _onSortEntry(event, data) {
-    const dropArea = event.target.closest("[data-entry-id]");
-    const dragEntry = this.document.system.startingEquipment.find(e => e._id === data?.entryId);
-    const dropEntry = this.document.system.startingEquipment.find(e => e._id === dropArea?.dataset.entryId);
+  _onSortEntry( event, data ) {
+    const dropArea = event.target.closest( "[data-entry-id]" );
+    const dragEntry = this.document.system.startingEquipment.find( e => e._id === data?.entryId );
+    const dropEntry = this.document.system.startingEquipment.find( e => e._id === dropArea?.dataset.entryId );
 
     // If drag entry & drop entry are the same, or drop entry is drag entry's group, do nothing
-    if ( (dropEntry?._id === dragEntry._id) || (dropEntry?._id === dragEntry.group) ) return;
+    if ( ( dropEntry?._id === dragEntry._id ) || ( dropEntry?._id === dragEntry.group ) ) return;
 
     let updateData;
     let sortBefore;
@@ -210,13 +210,13 @@ export default class StartingEquipmentConfig extends DocumentSheet {
 
     // If drop entry is a group, move drag entry into it
     if ( dropEntry?.type in EquipmentEntryData.GROUPING_TYPES ) {
-      let depth = Number(dropArea.dataset.depth) + 1;
+      let depth = Number( dropArea.dataset.depth ) + 1;
       if ( dragEntry.children?.length ) {
         depth += 1;
-        if ( dragEntry.children.some(c => c.type in EquipmentEntryData.GROUPING_TYPES) ) depth += 1;
+        if ( dragEntry.children.some( c => c.type in EquipmentEntryData.GROUPING_TYPES ) ) depth += 1;
       }
       if ( depth > 3 ) {
-        ui.notifications.warn("SW5E.StartingEquipment.Warning.Depth", { localize: true });
+        ui.notifications.warn( "SW5E.StartingEquipment.Warning.Depth", { localize: true } );
         return;
       }
       updateData = { [`startingEquipment.${dragEntry._id}.group`]: dropEntry._id };
@@ -224,7 +224,7 @@ export default class StartingEquipmentConfig extends DocumentSheet {
     }
 
     // If drag entry and drop entry are in the same group, perform relative sort
-    else if ( dropEntry && (dropEntry.group === dragEntry.group) ) {
+    else if ( dropEntry && ( dropEntry.group === dragEntry.group ) ) {
       target = dropEntry;
     }
 
@@ -232,9 +232,9 @@ export default class StartingEquipmentConfig extends DocumentSheet {
     else if ( !dropEntry ) {
       updateData = { [`startingEquipment.${dragEntry._id}.group`]: null };
       const box = this.form.getBoundingClientRect();
-      sortBefore = (event.clientY - box.y) < (box.height * .75);
-      const sortedEntries = this.document.system.startingEquipment.filter(e => !e.group)
-        .sort((lhs, rhs) => lhs.sort - rhs.sort);
+      sortBefore = ( event.clientY - box.y ) < ( box.height * .75 );
+      const sortedEntries = this.document.system.startingEquipment.filter( e => !e.group )
+        .sort( ( lhs, rhs ) => lhs.sort - rhs.sort );
       target = sortBefore ? sortedEntries.shift() : sortedEntries.pop();
     }
 
@@ -244,15 +244,15 @@ export default class StartingEquipmentConfig extends DocumentSheet {
       target = dropEntry;
     }
 
-    if ( target && (target !== dragEntry) ) {
+    if ( target && ( target !== dragEntry ) ) {
       updateData ??= {};
-      const siblings = this.document.system.startingEquipment.filter(s => s._id !== dragEntry._id);
-      const sortUpdates = SortingHelpers.performIntegerSort(dragEntry, { target, siblings, sortBefore });
+      const siblings = this.document.system.startingEquipment.filter( s => s._id !== dragEntry._id );
+      const sortUpdates = SortingHelpers.performIntegerSort( dragEntry, { target, siblings, sortBefore } );
       for ( const update of sortUpdates ) {
         updateData[`startingEquipment.${update.target._id}.sort`] = update.update.sort;
       }
     }
 
-    if ( updateData ) this.submit({ updateData });
+    if ( updateData ) this.submit( { updateData } );
   }
 }

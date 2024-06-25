@@ -7,36 +7,36 @@ import ContextMenu5e from "../context-menu.mjs";
  */
 export default class EffectsElement extends HTMLElement {
   connectedCallback() {
-    this.#app = ui.windows[this.closest(".app")?.dataset.appid];
+    this.#app = ui.windows[this.closest( ".app" )?.dataset.appid];
 
-    for ( const control of this.querySelectorAll("[data-action]") ) {
-      control.addEventListener("click", event => {
-        this._onAction(event.currentTarget, event.currentTarget.dataset.action);
-      });
+    for ( const control of this.querySelectorAll( "[data-action]" ) ) {
+      control.addEventListener( "click", event => {
+        this._onAction( event.currentTarget, event.currentTarget.dataset.action );
+      } );
     }
 
-    for ( const source of this.querySelectorAll(".effect-source a") ) {
-      source.addEventListener("click", this._onClickEffectSource.bind(this));
+    for ( const source of this.querySelectorAll( ".effect-source a" ) ) {
+      source.addEventListener( "click", this._onClickEffectSource.bind( this ) );
     }
 
-    for ( const control of this.querySelectorAll("[data-context-menu]") ) {
-      control.addEventListener("click", event => {
+    for ( const control of this.querySelectorAll( "[data-context-menu]" ) ) {
+      control.addEventListener( "click", event => {
         event.preventDefault();
         event.stopPropagation();
         const { clientX, clientY } = event;
-        event.currentTarget.closest("[data-effect-id]").dispatchEvent(new PointerEvent("contextmenu", {
+        event.currentTarget.closest( "[data-effect-id]" ).dispatchEvent( new PointerEvent( "contextmenu", {
           view: window, bubbles: true, cancelable: true, clientX, clientY
-        }));
-      });
+        } ) );
+      } );
     }
 
-    const MenuCls = this.hasAttribute("v2") ? ContextMenu5e : ContextMenu;
-    new MenuCls(this, "[data-effect-id]", [], {onOpen: element => {
-      const effect = this.getEffect(element.dataset);
+    const MenuCls = this.hasAttribute( "v2" ) ? ContextMenu5e : ContextMenu;
+    new MenuCls( this, "[data-effect-id]", [], {onOpen: element => {
+      const effect = this.getEffect( element.dataset );
       if ( !effect ) return;
-      ui.context.menuItems = this._getContextOptions(effect);
-      Hooks.call("sw5e.getActiveEffectContextOptions", effect, ui.context.menuItems);
-    }});
+      ui.context.menuItems = this._getContextOptions( effect );
+      Hooks.call( "sw5e.getActiveEffectContextOptions", effect, ui.context.menuItems );
+    }} );
   }
 
   /* -------------------------------------------- */
@@ -77,70 +77,70 @@ export default class EffectsElement extends HTMLElement {
    * @param {Actor5e|Item5e} [options.parent]  Document that owns these active effects.
    * @returns {object}                  Data for rendering.
    */
-  static prepareCategories(effects, { parent }={}) {
+  static prepareCategories( effects, { parent }={} ) {
     // Define effect header categories
     const categories = {
       enchantment: {
         type: "enchantment",
-        label: game.i18n.localize("SW5E.Enchantment.Category.General"),
+        label: game.i18n.localize( "SW5E.Enchantment.Category.General" ),
         effects: [],
         isEnchantment: true
       },
       temporary: {
         type: "temporary",
-        label: game.i18n.localize("SW5E.EffectTemporary"),
+        label: game.i18n.localize( "SW5E.EffectTemporary" ),
         effects: []
       },
       enchantmentActive: {
         type: "activeEnchantment",
-        label: game.i18n.localize("SW5E.Enchantment.Category.Active"),
+        label: game.i18n.localize( "SW5E.Enchantment.Category.Active" ),
         effects: [],
         isEnchantment: true
       },
       passive: {
         type: "passive",
-        label: game.i18n.localize("SW5E.EffectPassive"),
+        label: game.i18n.localize( "SW5E.EffectPassive" ),
         effects: []
       },
       enchantmentInactive: {
         type: "inactiveEnchantment",
-        label: game.i18n.localize("SW5E.Enchantment.Category.Inactive"),
+        label: game.i18n.localize( "SW5E.Enchantment.Category.Inactive" ),
         effects: [],
         isEnchantment: true
       },
       inactive: {
         type: "inactive",
-        label: game.i18n.localize("SW5E.EffectInactive"),
+        label: game.i18n.localize( "SW5E.EffectInactive" ),
         effects: []
       },
       suppressed: {
         type: "suppressed",
-        label: game.i18n.localize("SW5E.EffectUnavailable"),
+        label: game.i18n.localize( "SW5E.EffectUnavailable" ),
         effects: [],
         disabled: true,
-        info: [game.i18n.localize("SW5E.EffectUnavailableInfo")]
+        info: [game.i18n.localize( "SW5E.EffectUnavailableInfo" )]
       }
     };
 
     // Iterate over active effects, classifying them into categories
     for ( const e of effects ) {
-      if ( (e.parent.system?.identified === false) && !game.user.isGM ) continue;
+      if ( ( e.parent.system?.identified === false ) && !game.user.isGM ) continue;
       if ( e.isAppliedEnchantment ) {
-        if ( e.disabled ) categories.enchantmentInactive.effects.push(e);
-        else categories.enchantmentActive.effects.push(e);
+        if ( e.disabled ) categories.enchantmentInactive.effects.push( e );
+        else categories.enchantmentActive.effects.push( e );
       }
-      else if ( e.getFlag("sw5e", "type") === "enchantment" ) categories.enchantment.effects.push(e);
-      else if ( e.isSuppressed ) categories.suppressed.effects.push(e);
-      else if ( e.disabled ) categories.inactive.effects.push(e);
-      else if ( e.isTemporary ) categories.temporary.effects.push(e);
-      else categories.passive.effects.push(e);
+      else if ( e.getFlag( "sw5e", "type" ) === "enchantment" ) categories.enchantment.effects.push( e );
+      else if ( e.isSuppressed ) categories.suppressed.effects.push( e );
+      else if ( e.disabled ) categories.inactive.effects.push( e );
+      else if ( e.isTemporary ) categories.temporary.effects.push( e );
+      else categories.passive.effects.push( e );
     }
     categories.enchantment.hidden = !parent?.system.isEnchantment;
     categories.enchantmentActive.hidden = !categories.enchantmentActive.effects.length;
     categories.enchantmentInactive.hidden = !categories.enchantmentInactive.effects.length;
     categories.suppressed.hidden = !categories.suppressed.effects.length;
 
-    for ( const category of Object.values(categories) ) {
+    for ( const category of Object.values( categories ) ) {
       category.localizationPrefix = category.isEnchantment ? "SW5E.Enchantment.Action." : "SW5E.Effect";
     }
 
@@ -157,54 +157,54 @@ export default class EffectsElement extends HTMLElement {
    * @returns {ContextMenuEntry[]}   An array of context menu options offered for the ActiveEffect.
    * @protected
    */
-  _getContextOptions(effect) {
-    const isConcentrationEffect = (this.document instanceof Actor5e) && this._app._concentration?.effects.has(effect);
+  _getContextOptions( effect ) {
+    const isConcentrationEffect = ( this.document instanceof Actor5e ) && this._app._concentration?.effects.has( effect );
     const options = [
       {
         name: "SW5E.ContextMenuActionEdit",
         icon: "<i class='fas fa-edit fa-fw'></i>",
         condition: () => effect.isOwner,
-        callback: li => this._onAction(li[0], "edit")
+        callback: li => this._onAction( li[0], "edit" )
       },
       {
         name: "SW5E.ContextMenuActionDuplicate",
         icon: "<i class='fas fa-copy fa-fw'></i>",
         condition: () => effect.isOwner,
-        callback: li => this._onAction(li[0], "duplicate")
+        callback: li => this._onAction( li[0], "duplicate" )
       },
       {
         name: "SW5E.ContextMenuActionDelete",
         icon: "<i class='fas fa-trash fa-fw'></i>",
         condition: () => effect.isOwner && !isConcentrationEffect,
-        callback: li => this._onAction(li[0], "delete")
+        callback: li => this._onAction( li[0], "delete" )
       },
       {
         name: effect.disabled ? "SW5E.ContextMenuActionEnable" : "SW5E.ContextMenuActionDisable",
         icon: effect.disabled ? "<i class='fas fa-check fa-fw'></i>" : "<i class='fas fa-times fa-fw'></i>",
         group: "state",
         condition: () => effect.isOwner && !isConcentrationEffect,
-        callback: li => this._onAction(li[0], "toggle")
+        callback: li => this._onAction( li[0], "toggle" )
       },
       {
         name: "SW5E.ConcentrationBreak",
         icon: '<sw5e-icon src="systems/sw5e/icons/svg/break-concentration.svg"></sw5e-icon>',
         condition: () => isConcentrationEffect,
-        callback: () => this.document.endConcentration(effect),
+        callback: () => this.document.endConcentration( effect ),
         group: "state"
       }
     ];
 
     // Toggle Favorite State
-    if ( (this.document instanceof Actor5e) && ("favorites" in this.document.system) ) {
-      const uuid = effect.getRelativeUUID(this.document);
-      const isFavorited = this.document.system.hasFavorite(uuid);
-      options.push({
+    if ( ( this.document instanceof Actor5e ) && ( "favorites" in this.document.system ) ) {
+      const uuid = effect.getRelativeUUID( this.document );
+      const isFavorited = this.document.system.hasFavorite( uuid );
+      options.push( {
         name: isFavorited ? "SW5E.FavoriteRemove" : "SW5E.Favorite",
         icon: "<i class='fas fa-star fa-fw'></i>",
         condition: () => effect.isOwner,
-        callback: li => this._onAction(li[0], isFavorited ? "unfavorite" : "favorite"),
+        callback: li => this._onAction( li[0], isFavorited ? "unfavorite" : "favorite" ),
         group: "state"
-      });
+      } );
     }
 
     return options;
@@ -219,37 +219,37 @@ export default class EffectsElement extends HTMLElement {
    * @returns {Promise}
    * @protected
    */
-  async _onAction(target, action) {
-    const event = new CustomEvent("effect", {
+  async _onAction( target, action ) {
+    const event = new CustomEvent( "effect", {
       bubbles: true,
       cancelable: true,
       detail: action
-    });
-    if ( target.dispatchEvent(event) === false ) return;
+    } );
+    if ( target.dispatchEvent( event ) === false ) return;
 
     if ( action === "toggleCondition" ) {
-      return this._onToggleCondition(target.closest("[data-condition-id]")?.dataset.conditionId);
+      return this._onToggleCondition( target.closest( "[data-condition-id]" )?.dataset.conditionId );
     }
 
-    const dataset = target.closest("[data-effect-id]")?.dataset;
-    const effect = this.getEffect(dataset);
-    if ( (action !== "create") && !effect ) return;
+    const dataset = target.closest( "[data-effect-id]" )?.dataset;
+    const effect = this.getEffect( dataset );
+    if ( ( action !== "create" ) && !effect ) return;
 
     switch ( action ) {
       case "create":
-        return this._onCreate(target);
+        return this._onCreate( target );
       case "delete":
         return effect.deleteDialog();
       case "duplicate":
-        return effect.clone({name: game.i18n.format("DOCUMENT.CopyOf", {name: effect.name})}, {save: true});
+        return effect.clone( {name: game.i18n.format( "DOCUMENT.CopyOf", {name: effect.name} )}, {save: true} );
       case "edit":
-        return effect.sheet.render(true);
+        return effect.sheet.render( true );
       case "favorite":
-        return this.document.system.addFavorite({type: "effect", id: effect.getRelativeUUID(this.document)});
+        return this.document.system.addFavorite( {type: "effect", id: effect.getRelativeUUID( this.document )} );
       case "toggle":
-        return effect.update({disabled: !effect.disabled});
+        return effect.update( {disabled: !effect.disabled} );
       case "unfavorite":
-        return this.document.system.removeFavorite(effect.getRelativeUUID(this.document));
+        return this.document.system.removeFavorite( effect.getRelativeUUID( this.document ) );
     }
   }
 
@@ -261,11 +261,11 @@ export default class EffectsElement extends HTMLElement {
    * @returns {Promise}
    * @protected
    */
-  async _onToggleCondition(conditionId) {
-    const existing = this.document.effects.get(staticID(`sw5e${conditionId}`));
+  async _onToggleCondition( conditionId ) {
+    const existing = this.document.effects.get( staticID( `sw5e${conditionId}` ) );
     if ( existing ) return existing.delete();
-    const effect = await ActiveEffect.implementation.fromStatusEffect(conditionId);
-    return ActiveEffect.implementation.create(effect, { parent: this.document, keepId: true });
+    const effect = await ActiveEffect.implementation.fromStatusEffect( conditionId );
+    return ActiveEffect.implementation.create( effect, { parent: this.document, keepId: true } );
   }
 
   /* -------------------------------------------- */
@@ -275,18 +275,18 @@ export default class EffectsElement extends HTMLElement {
    * @param {HTMLElement} target  Button that triggered this action.
    * @returns {Promise<ActiveEffect5e>}
    */
-  async _onCreate(target) {
-    const li = target.closest("li");
+  async _onCreate( target ) {
+    const li = target.closest( "li" );
     const isActor = this.document instanceof Actor;
-    const isEnchantment = li.dataset.effectType.startsWith("enchantment");
-    return this.document.createEmbeddedDocuments("ActiveEffect", [{
-      name: isActor ? game.i18n.localize("SW5E.EffectNew") : this.document.name,
+    const isEnchantment = li.dataset.effectType.startsWith( "enchantment" );
+    return this.document.createEmbeddedDocuments( "ActiveEffect", [{
+      name: isActor ? game.i18n.localize( "SW5E.EffectNew" ) : this.document.name,
       icon: isActor ? "icons/svg/aura.svg" : this.document.img,
       origin: isEnchantment ? undefined : this.document.uuid,
       "duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
-      disabled: ["inactive", "enchantmentInactive"].includes(li.dataset.effectType),
+      disabled: ["inactive", "enchantmentInactive"].includes( li.dataset.effectType ),
       "flags.sw5e.type": isEnchantment ? "enchantment" : undefined
-    }]);
+    }] );
   }
 
   /* -------------------------------------------- */
@@ -296,15 +296,15 @@ export default class EffectsElement extends HTMLElement {
    * @param {PointerEvent} event  The triggering event.
    * @protected
    */
-  async _onClickEffectSource(event) {
+  async _onClickEffectSource( event ) {
     const { uuid } = event.currentTarget.dataset;
-    const doc = await fromUuid(uuid);
+    const doc = await fromUuid( uuid );
     if ( !doc ) return;
-    if ( !doc.testUserPermission(game.user, "LIMITED") ) {
-      ui.notifications.warn("SW5E.DocumentViewWarn", { localize: true });
+    if ( !doc.testUserPermission( game.user, "LIMITED" ) ) {
+      ui.notifications.warn( "SW5E.DocumentViewWarn", { localize: true } );
       return;
     }
-    doc.sheet.render(true);
+    doc.sheet.render( true );
   }
 
   /* -------------------------------------------- */
@@ -318,8 +318,8 @@ export default class EffectsElement extends HTMLElement {
    * @param {string} [data.parentId]  ID of the parent item containing the effect.
    * @returns {ActiveEffect5e}
    */
-  getEffect({ effectId, parentId }={}) {
-    if ( !parentId ) return this.document.effects.get(effectId);
-    return this.document.items.get(parentId).effects.get(effectId);
+  getEffect( { effectId, parentId }={} ) {
+    if ( !parentId ) return this.document.effects.get( effectId );
+    return this.document.items.get( parentId ).effects.get( effectId );
   }
 }

@@ -14,12 +14,12 @@
             {{#if @root.editable}}
             <div class="controls">
                 <a class="deletion-control item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"
-                    data-item-id="{{ cls.id }}" aria-label="{{ localize " SW5E.ItemDelete" }}">
+                    data-item-id="{{ cls.id }}" aria-label="{{ localize 'SW5E.ItemDelete' }}">
                     <i class="fas fa-circle-xmark"></i>
                 </a>
                 {{#if cls.archetype}}
                 <a class="deletion-control item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"
-                    data-item-id="{{ cls.archetype.id }}" aria-label="{{ localize " SW5E.ItemDelete" }}">
+                    data-item-id="{{ cls.archetype.id }}" aria-label="{{ localize 'SW5E.ItemDelete' }}">
                     <i class="fas fa-circle-xmark"></i>
                 </a>
                 {{/if}}
@@ -62,8 +62,8 @@
 <{{elements.inventory}} class="inventory-element" v2>
 
     {{!-- Searching, Filtering, & Sorting --}}
-    <item-list-controls for="features" label="{{ localize " SW5E.FeatureSearch" }}" sort="toggle" group
-        group-label="{{ localize " SW5E.FilterGroupOrigin" }}" collection="items">
+    <item-list-controls for="features" label="{{ localize 'SW5E.FeatureSearch' }}" sort="toggle" group
+        group-label="{{ localize 'SW5E.FilterGroupOrigin' }}" collection="items">
         <datalist>
             <option value="action">{{ localize "SW5E.Action" }}</option>
             <option value="bonus">{{ localize "SW5E.BonusAction" }}</option>
@@ -144,13 +144,13 @@
                         {{#if @root.editable}}
                         {{!-- Editing --}}
                         <a class="item-control item-action" data-action="edit" data-tooltip="SW5E.ItemEdit"
-                            aria-label="{{ localize " SW5E.ItemEdit" }}">
+                            aria-label="{{ localize 'SW5E.ItemEdit' }}">
                             <i class="fas fa-pen-to-square"></i>
                         </a>
 
                         {{!-- Deleting --}}
                         <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"
-                            aria-label="{{ localize " SW5E.ItemDelete" }}">
+                            aria-label="{{ localize 'SW5E.ItemDelete' }}">
                             <i class="fas fa-trash"></i>
                         </a>
                         {{/if}}

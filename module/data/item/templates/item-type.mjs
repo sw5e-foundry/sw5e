@@ -29,7 +29,7 @@ export default class ItemTypeTemplate extends SystemDataModel {
    */
   static #migrateType( source ) {
     if ( foundry.utils.getType( source.type ) === "Object" ) return;
-    const oldType = source.consumableType ?? source.armor?.type ?? source.toolType ?? source.weaponType ?? source.modificationType ?? source.system.value;
+    const oldType = source.consumableType ?? source.armor?.type ?? source.toolType ?? source.weaponType ?? source.modificationType ?? source.system?.value;
     if ( ( oldType !== null ) && ( oldType !== undefined ) ) foundry.utils.setProperty( source, "type.value", oldType );
     const oldSubtype = source.ammoType ?? source.modificationSlot;
     if ( ( oldSubtype !== null ) && ( oldSubtype !== undefined ) ) foundry.utils.setProperty( source, "type.subtype", oldSubtype );

@@ -79,8 +79,8 @@
     <div class="middle">
 
         {{!-- Searching & Filtering --}}
-        <item-list-controls for="inventory" label="{{ localize "SW5E.InventorySearch" }}" sort="toggle" group
-                            group-label="{{ localize "SW5E.FilterGroupCategory" }}" collection="items">
+        <item-list-controls for="inventory" label="{{ localize 'SW5E.InventorySearch' }}" sort="toggle" group
+                            group-label="{{ localize 'SW5E.FilterGroupCategory' }}" collection="items">
             <datalist>
                 <option value="action">{{ localize "SW5E.Action" }}</option>
                 <option value="bonus">{{ localize "SW5E.BonusAction" }}</option>
@@ -93,7 +93,7 @@
         {{!-- Attunement --}}
         {{#with system.attributes.attunement}}
         <div class="attunement">
-            <i class="fas fa-sun" data-tooltip="SW5E.Attunement" aria-label="{{ localize "SW5E.Attunement" }}"></i>
+            <i class="fas fa-sun" data-tooltip="SW5E.Attunement" aria-label="{{ localize 'SW5E.Attunement' }}"></i>
             <span class="value">{{ value }}</span>
             <span class="separator">&sol;</span>
             {{#if @root.editable}}
@@ -138,7 +138,7 @@
                          data-action="use" aria-label="{{ item.name }}">
                         {{#if ctx.concentration}}
                         <i class="concentration fas fa-arrow-rotate-left fa-spin fa-spin-reverse"
-                           aria-label="{{ localize "SW5E.Concentration" }}"></i>
+                           aria-label="{{ localize 'SW5E.Concentration' }}"></i>
                         {{/if}}
                         <img class="item-image gold-icon" src="{{ item.img }}" alt="{{ item.name }}">
                         <div class="name name-stacked">
@@ -205,13 +205,13 @@
                         {{#if @root.editable}}
                         {{!-- Editing --}}
                         <a class="item-control item-action" data-action="edit" data-tooltip="SW5E.ItemEdit"
-                           aria-label="{{ localize "SW5E.ItemEdit" }}">
+                           aria-label="{{ localize 'SW5E.ItemEdit' }}">
                             <i class="fas fa-pen-to-square"></i>
                         </a>
 
                         {{!-- Deleting --}}
                         <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"
-                           aria-label="{{ localize "SW5E.ItemDelete" }}">
+                           aria-label="{{ localize 'SW5E.ItemDelete' }}">
                             <i class="fas fa-trash"></i>
                         </a>
                         {{else if @root.owner}}
@@ -238,7 +238,7 @@
 
                         {{!-- Context Menu --}}
                         <a class="item-control interface-only" data-context-menu
-                           aria-label="{{ localize "SW5E.AdditionalControls" }}">
+                           aria-label="{{ localize 'SW5E.AdditionalControls' }}">
                             <i class="fas fa-ellipsis-vertical"></i>
                         </a>
 

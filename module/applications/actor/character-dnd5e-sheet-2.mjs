@@ -56,7 +56,10 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
     0: "none",
     0.5: "half",
     1: "full",
-    2: "double"
+    2: "double",
+    3: "mastery",
+    4: "high mastery",
+    5: "grand mastery"
   };
 
   /**

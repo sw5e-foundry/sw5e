@@ -50,8 +50,8 @@
         {{~else if svg}}<sw5e-icon src="systems/sw5e/icons/svg/{{svg}}.svg"></sw5e-icon>{{/if}}
         <span class="roboto-upper">{{ localize label }}</span>
         {{#if @root.editable}}
-        <a class="trait-selector" data-trait="{{ key }}" data-tooltip="{{ localize " SW5E.TraitConfig" trait=(localize
-            label) }}" aria-label="{{ localize " SW5E.TraitConfig" trait=(localize label) }}">
+        <a class="trait-selector" data-trait="{{ key }}" data-tooltip="{{ localize 'SW5E.TraitConfig' trait=(localize
+            label) }}" aria-label="{{ localize 'SW5E.TraitConfig' trait=(localize label) }}">
             <i class="fas fa-cog"></i>
         </a>
         {{/if}}
@@ -97,8 +97,8 @@
         {{!-- Tools --}}
         <filigree-box class="tools">
             {{#if editable}}
-            <a class="trait-selector" data-trait="tool" data-tooltip="{{ localize " SW5E.TraitConfig"
-                trait=(localize "SW5E.TraitToolProf" ) }}" aria-label="{{ localize " SW5E.TraitConfig"
+            <a class="trait-selector" data-trait="tool" data-tooltip="{{ localize 'SW5E.TraitConfig'
+                trait=(localize "SW5E.TraitToolProf" ) }}" aria-label="{{ localize 'SW5E.TraitConfig'
                 trait=(localize "SW5E.TraitToolProf" ) }}">
                 <i class="fas fa-cog"></i>
             </a>
@@ -150,7 +150,7 @@
                     </div>
                     {{#if (and @root.editable @root.species)}}
                     <a class="config-button" data-action="type" data-tooltip="SW5E.CreatureTypeConfig"
-                        aria-label="{{ localize " SW5E.CreatureTypeConfig" }}">
+                        aria-label="{{ localize 'SW5E.CreatureTypeConfig' }}">
                         <i class="fas fa-cog"></i>
                     </a>
                     {{/if}}
@@ -176,7 +176,7 @@
                     </div>
                     {{#if editable}}
                     <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"
-                        aria-label="{{ localize " SW5E.ItemDelete" }}" data-tooltip-class data-tooltip-direction>
+                        aria-label="{{ localize 'SW5E.ItemDelete' }}" data-tooltip-class data-tooltip-direction>
                         <i class="fas fa-trash"></i>
                     </a>
                     {{/if}}
@@ -199,7 +199,7 @@
                     </div>
                     {{#if editable}}
                     <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"
-                        aria-label="{{ localize " SW5E.ItemDelete" }}" data-tooltip-class data-tooltip-direction>
+                        aria-label="{{ localize 'SW5E.ItemDelete' }}" data-tooltip-class data-tooltip-direction>
                         <i class="fas fa-trash"></i>
                     </a>
                     {{/if}}

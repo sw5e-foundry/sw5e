@@ -1,7 +1,7 @@
 <{{ elements.effects }} class="effects-element" v2>
 
     {{!-- Searching --}}
-    <item-list-controls for="effects" label="{{ localize "SW5E.EffectsSearch" }}" sort="a"
+    <item-list-controls for="effects" label="{{ localize 'SW5E.EffectsSearch' }}" sort="a"
                         collection="effects"></item-list-controls>
 
     {{!-- Effects List --}}
@@ -69,13 +69,13 @@
                         {{#if @root.editable}}
                         {{!-- Editing --}}
                         <a class="effect-control item-control" data-action="edit" data-tooltip="SW5E.EffectEdit"
-                           aria-label="{{ localize "SW5E.EffectEdit" }}">
+                           aria-label="{{ localize 'SW5E.EffectEdit' }}">
                             <i class="fas fa-pen-to-square"></i>
                         </a>
 
                         {{!-- Deleting --}}
                         <a class="effect-control item-control" data-action="delete" data-tooltip="SW5E.EffectDelete"
-                           aria-label="{{ localize "SW5E.EffectDelete" }}">
+                           aria-label="{{ localize 'SW5E.EffectDelete' }}">
                             <i class="fas fa-trash"></i>
                         </a>
                         {{else if toggleable}}
@@ -93,7 +93,7 @@
 
                         {{!-- Context Menu --}}
                         <a class="effect-control item-control interface-only" data-context-menu
-                           aria-label="{{ localize "SW5E.AdditionalControls" }}">
+                           aria-label="{{ localize 'SW5E.AdditionalControls' }}">
                             <i class="fas fa-ellipsis-vertical"></i>
                         </a>
 

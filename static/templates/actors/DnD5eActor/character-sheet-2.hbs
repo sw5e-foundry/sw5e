@@ -9,8 +9,8 @@
     <a class="label {{ @root.rollableClass }} ability-check">{{ abbr }}</a>
     <div class="mod">
         {{#if @root.editable}}
-        <a class="config-button" data-action="ability" data-tooltip="{{ localize " SW5E.AbilityConfigure" ability=label
-            }}" aria-label="{{ localize " SW5E.AbilityConfigure" ability=label }}">
+        <a class="config-button" data-action="ability" data-tooltip="{{ localize 'SW5E.AbilityConfigure' ability=label
+            }}" aria-label="{{ localize 'SW5E.AbilityConfigure' ability=label }}">
             <i class="fas fa-cog"></i>
         </a>
         {{else}}
@@ -51,7 +51,7 @@
         <div class="right">
 
             {{!-- Level --}}
-            <div class="level" aria-label="{{ localize " SW5E.LevelNumber" }}">{{ system.details.level }}</div>
+            <div class="level" aria-label="{{ localize 'SW5E.LevelNumber' }}">{{ system.details.level }}</div>
 
             {{!-- Inspiration --}}
             <button type="button" class="inspiration unbutton" data-action="toggleInspiration" aria-label="{{ localize "
@@ -63,15 +63,15 @@
                 {{#if actor.isOwner}}
                 <div class="sheet-header-buttons">
                     <button type="button" class="short-rest gold-button" data-tooltip="SW5E.ShortRest"
-                        aria-label="{{ localize " SW5E.ShortRest" }}">
+                        aria-label="{{ localize 'SW5E.ShortRest' }}">
                         <i class="fas fa-utensils"></i>
                     </button>
                     <button type="button" class="long-rest gold-button" data-tooltip="SW5E.LongRest"
-                        aria-label="{{ localize " SW5E.LongRest" }}">
+                        aria-label="{{ localize 'SW5E.LongRest' }}">
                         <i class="fas fa-campground"></i>
                     </button>
                     <button type="button" class="config-button gold-button" data-action="flags"
-                        data-tooltip="SW5E.SpecialTraits" aria-label="{{ localize " SW5E.SpecialTraits" }}">
+                        data-tooltip="SW5E.SpecialTraits" aria-label="{{ localize 'SW5E.SpecialTraits' }}">
                         <i class="fas fa-star"></i>
                     </button>
                 </div>
@@ -90,7 +90,7 @@
                     <span class="separator">&sol;</span>
                     <span class="max">{{ sw5e-numberFormat max }}</span>
                 </div>
-                <div class="xp-bar" role="meter" aria-label="{{ localize " SW5E.ExperiencePointsLabel" }}"
+                <div class="xp-bar" role="meter" aria-label="{{ localize 'SW5E.ExperiencePointsLabel' }}"
                     aria-valuemin="{{ min }}" aria-valuenow="{{ value }}" aria-valuemax="{{ max }}"
                     aria-valuetext="{{ pct }}%" style="--bar-percentage: {{ pct }}%;"></div>
                 {{/with}}
@@ -113,9 +113,9 @@
 
                     {{!-- Collapser --}}
                     <button type="button" class="collapser card-tab vertical unbutton interface-only" {{#if
-                        sidebarCollapsed}} data-tooltip="JOURNAL.ViewExpand" aria-label="{{ localize "
-                        JOURNAL.ViewExpand" }}" {{else}} data-tooltip="JOURNAL.ViewCollapse" aria-label="{{ localize "
-                        JOURNAL.ViewCollapse" }}" {{/if}}>
+                        sidebarCollapsed}} data-tooltip="JOURNAL.ViewExpand" aria-label="{{ localize '
+                        JOURNAL.ViewExpand' }}" {{else}} data-tooltip="JOURNAL.ViewCollapse" aria-label="{{ localize '
+                        JOURNAL.ViewCollapse' }}" {{/if}}>
                         <i class="fas fa-caret-{{#if sidebarCollapsed}}right{{else}}left{{/if}}"></i>
                     </button>
 
@@ -151,10 +151,10 @@
                             </div>
 
                             {{!-- AC --}}
-                            <div class="ac" aria-label="{{ localize " SW5E.ArmorClass" }}">
+                            <div class="ac" aria-label="{{ localize 'SW5E.ArmorClass' }}">
                                 {{#if editable}}
                                 <a class="config-button" data-action="armor" data-tooltip="SW5E.ArmorConfig"
-                                    aria-label="{{ localize " SW5E.ArmorConfig" }}">
+                                    aria-label="{{ localize 'SW5E.ArmorConfig' }}">
                                     <i class="fas fa-cog"></i>
                                 </a>
                                 {{else}}
@@ -181,8 +181,8 @@
                                 <div class="value">
                                     {{#if editable}}
                                     <a class="config-button" data-action="initiative"
-                                        data-tooltip="SW5E.InitiativeConfig" aria-label="{{ localize "
-                                        SW5E.InitiativeConfig" }}">
+                                        data-tooltip="SW5E.InitiativeConfig" aria-label="{{ localize '
+                                        SW5E.InitiativeConfig' }}">
                                         <i class="fas fa-cog"></i>
                                     </a>
                                     {{else}}
@@ -223,7 +223,7 @@
                                 <span>{{ localize "SW5E.HitPoints" }}</span>
                                 {{#if editable}}
                                 <a class="config-button" data-action="hitPoints" data-tooltip="SW5E.HitPointsConfig"
-                                    aria-label="{{ localize " SW5E.HitPointsConfig" }}">
+                                    aria-label="{{ localize 'SW5E.HitPointsConfig' }}">
                                     <i class="fas fa-cog"></i>
                                 </a>
                                 {{/if}}
@@ -248,7 +248,7 @@
                                 </div>
                                 <div class="tmp">
                                     <input type="text" name="system.attributes.hp.temp" data-dtype="Number"
-                                        placeholder="{{ localize " SW5E.TMP" }}" value="{{ temp }}">
+                                        placeholder="{{ localize 'SW5E.TMP' }}" value="{{ temp }}">
                                 </div>
                             </div>
                             {{/with}}
@@ -260,7 +260,7 @@
                                 <span>{{ localize "SW5E.HitDice" }}</span>
                                 {{#if editable}}
                                 <a class="config-button" data-action="hitDice" data-tooltip="SW5E.HitDiceConfig"
-                                    aria-label="{{ localize " SW5E.HitDiceConfig" }}">
+                                    aria-label="{{ localize 'SW5E.HitDiceConfig' }}">
                                     <i class="fas fa-cog"></i>
                                 </a>
                                 {{/if}}
@@ -290,7 +290,7 @@
 
                             {{!-- Roll Death Save --}}
                             <button type="button" data-action="rollDeathSave" data-tooltip="SW5E.DeathSaveRoll"
-                                aria-label="{{ localize " SW5E.DeathSaveRoll" }}"
+                                aria-label="{{ localize 'SW5E.DeathSaveRoll' }}"
                                 class="{{ rollableClass }} death-save unbutton">
                                 <sw5e-icon src="systems/sw5e/icons/svg/statuses/dead.svg"></sw5e-icon>
                             </button>
@@ -305,8 +305,8 @@
                         </div>
 
                         <button type="button" class="death-tab card-tab horizontal unbutton interface-only" {{#if
-                            death.open}} data-tooltip="SW5E.DeathSaveShow" aria-label="{{ localize " SW5E.DeathSaveShow"
-                            }}" {{else}} data-tooltip="SW5E.DeathSaveHide" aria-label="{{ localize " SW5E.DeathSaveHide"
+                            death.open}} data-tooltip="SW5E.DeathSaveShow" aria-label="{{ localize 'SW5E.DeathSaveShow'
+                            }}" {{else}} data-tooltip="SW5E.DeathSaveHide" aria-label="{{ localize 'SW5E.DeathSaveHide'
                             }}" {{/if}}>
                             <i class="fas fa-skull"></i>
                         </button>
@@ -340,8 +340,8 @@
                                 {{!-- Favorite Deletion --}}
                                 {{#if @root.editable}}
                                 <a class="deletion-control" data-action="removeFavorite" data-tooltip-class
-                                    data-tooltip-direction data-tooltip="SW5E.FavoriteRemove" aria-label="{{ localize "
-                                    SW5E.FavoriteRemove" }}">
+                                    data-tooltip-direction data-tooltip="SW5E.FavoriteRemove" aria-label="{{ localize '
+                                    SW5E.FavoriteRemove' }}">
                                     <i class="fas fa-circle-xmark"></i>
                                 </a>
                                 {{/if}}
@@ -505,8 +505,8 @@
     </section>
 
     {{!-- Child Creation --}}
-    <button type="button" class="create-child gold-button" aria-label="{{ " SIDEBAR.Create"
-        type=(localize "DOCUMENT.Item" ) }}">
+    <button type="button" class="create-child gold-button" aria-label="{{ 'SIDEBAR.Create'
+        type=(localize 'DOCUMENT.Item' ) }}">
         <i class="fas fa-plus"></i>
     </button>
 </form>

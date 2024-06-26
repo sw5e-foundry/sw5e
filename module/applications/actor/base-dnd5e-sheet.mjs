@@ -741,7 +741,7 @@ export default class ActorSheetDnD5e extends ActorSheetMixin( ActorSheet ) {
         app = new ActorHitDiceConfig( this.actor );
         break;
       case "hitPoints":
-        app = new ActorHitPointsConfig( this.actor );
+        app = new ActorHitPointsConfig( "hitPoints", this.actor );
         break;
       case "initiative":
         app = new ActorInitiativeConfig( this.actor );

@@ -86,10 +86,10 @@
                 <label>{{ localize "SW5E.ItemEquipmentType" }}</label>
                 <select name="system.type.value">
                     <option value=""></option>
-                    <optgroup label="{{ localize " SW5E.Armor" }}">
+                    <optgroup label="{{ localize 'SW5E.Armor' }}">
                         {{selectOptions config.armorTypes selected=system.type.value}}
                     </optgroup>
-                    <optgroup label="{{ localize " SW5E.Starship" }}">
+                    <optgroup label="{{ localize 'SW5E.Starship' }}">
                         {{selectOptions config.ssEquipmentTypes selected=system.type.value}}
                     </optgroup>
                     {{selectOptions config.miscEquipmentTypes selected=system.type.value}}

@@ -258,32 +258,6 @@ export default class ActorSheetSW5eCharacter extends ActorSheetSW5e {
 
       ChatMessage.create( data );
     } );
-
-    // Item Delete Confirmation
-    html.find( ".item-delete" ).off( "click" );
-    html.find( ".item-delete" ).click( event => {
-      let li = $( event.currentTarget ).parents( ".item" );
-      let itemId = li.attr( "data-item-id" );
-      let item = this.actor.items.get( itemId );
-      new Dialog( {
-        title: `Deleting ${item.name}`,
-        content: `<p>Are you sure you want to delete ${item.name}?</p>`,
-        buttons: {
-          Yes: {
-            icon: '<i class="fa fa-check"></i>',
-            label: "Yes",
-            callback: dlg => {
-              item.delete();
-            }
-          },
-          cancel: {
-            icon: '<i class="fas fa-times"></i>',
-            label: "No"
-          }
-        },
-        default: "cancel"
-      } ).render( true );
-    } );
   }
 
   /* -------------------------------------------- */

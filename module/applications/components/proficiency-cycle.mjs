@@ -64,6 +64,42 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin( HTM
           border-radius: 100%;
         }
       }
+
+      &:has([value="3"]) {
+        &::before {
+          inset: 1px;
+          border-width: 3px;
+        }
+
+        &::after {
+          inset: 5px;
+          border-radius: 100%;
+        }
+      }
+
+      &:has([value="4"]) {
+        &::before {
+          inset: 1px;
+          border-width: 4px;
+        }
+
+        &::after {
+          inset: 5px;
+          border-radius: 100%;
+        }
+      }
+
+      &:has([value="5"]) {
+        &::before {
+          inset: 1px;
+          border-width: 5px;
+        }
+
+        &::after {
+          inset: 5px;
+          border-radius: 100%;
+        }
+      }
     }
 
     input {
@@ -131,16 +167,16 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin( HTM
 
   /**
    * Type of proficiency represented by this control (e.g. "ability" or "skill").
-   * @type {"ability"|"skill"}
+   * @type {"ability"|"skill"|"tool"|"weapon"}
    */
   get type() { return this.getAttribute( "type" ) ?? "ability"; }
 
   set type( value ) {
-    if ( !["ability", "skill"].includes( value ) ) throw new Error( "Type must be 'ability' or 'skill'." );
+    if ( !["ability", "skill", "tool", "weapon"].includes( value ) ) throw new Error( "Type must be 'ability', 'skill', 'tool', or 'weapon'." );
     this.setAttribute( "type", value );
     this.#internals.ariaValueMin = 0;
-    this.#internals.ariaValueMax = value === "ability" ? 1 : 2;
-    this.#internals.ariaValueStep = value === "ability" ? 1 : 0.5;
+    this.#internals.ariaValueMax = value === "weapon" ? 1 : 5;
+    this.#internals.ariaValueStep = 0.5;
   }
 
   /* -------------------------------------------- */
@@ -150,7 +186,7 @@ export default class ProficiencyCycleElement extends AdoptedStyleSheetMixin( HTM
    * @type {number[]}
    */
   get validValues() {
-    return this.type === "ability" ? [0, 1] : [0, 1, .5, 2];
+    return this.type === "weapon" ? [0, 0.5, 1] : [0, 1, .5, 2, 3, 4, 5];
   }
 
   /* -------------------------------------------- */

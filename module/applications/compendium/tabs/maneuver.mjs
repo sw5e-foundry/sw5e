@@ -36,7 +36,7 @@ export class CompendiumBrowserManeuverTab extends CompendiumBrowserTab {
       const indexFields = [
         "img",
         "system.activation",
-        "system.maneuverType",
+        "system.type.value",
         "system.source"
       ];
 
@@ -64,8 +64,8 @@ export class CompendiumBrowserManeuverTab extends CompendiumBrowserTab {
               name: maneuverData.name,
               img: maneuverData.img,
               uuid: `Compendium.${pack.collection}.${maneuverData._id}`,
-              category: maneuverData.system.maneuverType,
-              categoryLabel: CONFIG.SW5E.maneuverTypes[maneuverData.system.maneuverType],
+              category: maneuverData.system.type.value,
+              categoryLabel: CONFIG.SW5E.maneuverTypes[maneuverData.system.type.value],
               time: maneuverData.system.activation.type,
               timeLabel: CONFIG.SW5E.abilityActivationTypes[maneuverData.system.activation.type],
               source: sourceSlug

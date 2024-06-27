@@ -163,13 +163,13 @@ export default class ActorSheetSW5eStarship extends ActorSheetSW5e {
 
     // Split features
     categories.ssactions = Object.fromEntries( Object.entries( categories.features )
-      .filter( ( [k, v] ) => ["starshipAction", "deployment"].includes( v.dataset.featType ) )
-      .map( ( [k, v] ) => [k.replace( /.*\./g, "" ), { ...v, derived: v.dataset.featType === "deployment" }] ) );
+      .filter( ( [k, v] ) => ["starshipAction", "deployment"].includes( v.dataset.feattype ) )
+      .map( ( [k, v] ) => [k.replace( /.*\./g, "" ), { ...v, derived: v.dataset.feattype === "deployment" }] ) );
 
     categories.features.feat.required = false;
     categories.features["feat.starship"].required = true;
     categories.features = Object.values( categories.features )
-      .filter( f => !["starshipAction", "deployment"].includes( f.dataset.featType ) );
+      .filter( f => !["starshipAction", "deployment"].includes( f.dataset.feattype ) );
 
     categories.inventory = Object.values( categories.inventory );
     categories.equipped = Object.values( categories.equipped );

@@ -462,14 +462,14 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
           label,
           items: [],
           hasActions: true,
-          dataset: { type: "feat", featType: type, featSubtype: subtype }
+          dataset: { type: "feat", feattype: type, featsubtype: subtype }
         };
       }
       categories.features[`feat.${type}`] = {
         label: val.label,
         items: [],
         hasActions: true,
-        dataset: { type: "feat", featType: type }
+        dataset: { type: "feat", feattype: type }
       };
     }
     if ( config.splitActive ) {
@@ -501,9 +501,9 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
     }
     if ( config.combineForcePowers ) categories.powers.for = { items: [], dataset: { type: "power", school: "uni" } };
 
-    if ( config.combineManeuvers ) categories.maneuvers = { items: [], dataset: { type: "maneuver", maneuverType: "general" } };
+    if ( config.combineManeuvers ) categories.maneuvers = { items: [], dataset: { type: "maneuver", feattype: "general" } };
     else for ( const [type, label] of Object.entries( config.maneuverTypes ?? CONFIG.SW5E.maneuverTypes ) ) {
-      categories.maneuvers[type] = { label, items: [], dataset: { type: "maneuver", maneuverType: type } };
+      categories.maneuvers[type] = { label, items: [], dataset: { type: "maneuver", feattype: type } };
     }
 
     return categories;
@@ -550,8 +550,8 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
         if ( config.combineManeuvers ) {
           categories.maneuvers.items.push( item );
           continue;
-        } else {
-          categories.maneuvers[item.system.maneuverType]?.items.push( item );
+        } else if ( item.system.type.value in categories.maneuvers ) {
+          categories.maneuvers[item.system.type.value]?.items.push( item );
           continue;
         }
       }
@@ -745,8 +745,8 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
 
     // Iterate over every maneuver item, adding maneuvers to the superiorityPowerbook by section
     maneuvers.forEach( maneuver => {
-      const type = maneuver.system.maneuverType;
-      superiorityPowerbook[type].maneuvers.push( maneuver );
+      const type = maneuver.system.type.value;
+      superiorityPowerbook[type]?.maneuvers.push( maneuver );
     } );
 
     // Sort the superiorityPowerbook

@@ -399,7 +399,7 @@ export default class InventoryElement extends HTMLElement {
    * @returns {Promise<Item5e>}
    */
   async _onCreate( target ) {
-    const { type, ...dataset } = ( target.closest( ".powerbook-header" ) ?? target ).dataset;
+    const { type, feattype, featsubtype, ...dataset } = ( target.closest( ".powerbook-header" ) ?? target ).dataset;
     delete dataset.action;
     delete dataset.tooltip;
 
@@ -416,6 +416,22 @@ export default class InventoryElement extends HTMLElement {
       system: foundry.utils.expandObject( { ...dataset } )
     };
     delete itemData.system.type;
+    delete itemData.system.feattype;
+    delete itemData.system.featsubtype;
+
+  if (feattype) {
+      itemData.system.type = {
+        value: feattype,
+        subtype: featsubtype
+      };
+      let cfg = CONFIG.SW5E.featureTypes[feattype];
+      if (cfg) {
+        if (featsubtype) cfg = cfg.subtypes[featsubtype];
+        else cfg = cfg.label;
+        itemData.name = game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(cfg).capitalize() });
+      }
+    }
+
     return this.actor.createEmbeddedDocuments( "Item", [itemData] );
   }
 

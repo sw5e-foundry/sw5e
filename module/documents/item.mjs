@@ -811,7 +811,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
    * @protected
    */
   _prepareManeuver() {
-    this.labels.maneuverType = game.i18n.localize( CONFIG.SW5E.maneuverTypes[this.system.maneuverType] );
+    this.labels.maneuverType = game.i18n.localize( CONFIG.SW5E.maneuverTypes[this.system.type.value] );
   }
 
   /* -------------------------------------------- */

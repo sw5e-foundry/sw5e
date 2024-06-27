@@ -215,7 +215,7 @@ export default class ActorSheetDnd5eCharacter extends ActorSheetDnD5e {
         label: "SW5E.Feature.Class",
         items: classfeatures,
         hasActions: true,
-        dataset: { type: "feat", featType: "class" },
+        dataset: { type: "feat", feattype: "class" },
         isClassfeature: true
       },
       species: {
@@ -229,21 +229,21 @@ export default class ActorSheetDnd5eCharacter extends ActorSheetDnD5e {
         label: "SW5E.CustomizationOption.FightingStyle",
         items: fightingstyles,
         hasActions: true,
-        dataset: { type: "feat", featType: "customizationOption", featSubType: "fightingStyle" },
+        dataset: { type: "feat", feattype: "customizationOption", featsubtype: "fightingStyle" },
         isFightingstyle: true
       },
       fightingmasteries: {
         label: "SW5E.CustomizationOption.FightingMastery",
         items: fightingmasteries,
         hasActions: true,
-        dataset: { type: "feat", featType: "customizationOption", featSubType: "fightingMastery" },
+        dataset: { type: "feat", feattype: "customizationOption", featsubtype: "fightingMastery" },
         isFightingmastery: true
       },
       lightsaberforms: {
         label: "SW5E.CustomizationOption.LightsaberForm",
         items: lightsaberforms,
         hasActions: true,
-        dataset: { type: "feat", featType: "customizationOption", featSubType: "lightsaberForm" },
+        dataset: { type: "feat", feattype: "customizationOption", featsubtype: "lightsaberForm" },
         isLightsaberform: true
       },
       active: {

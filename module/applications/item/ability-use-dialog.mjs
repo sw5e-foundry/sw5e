@@ -58,7 +58,7 @@ export default class AbilityUseDialog extends Dialog {
     const concentrationOptions = this._createConcentrationOptions( item );
     const resourceOptions = this._createResourceOptions( item );
 
-    const slotOptions = this._createPowerSlotOptions( item.actor, item.system.level );
+    const slotOptions = this._createPowerSlotOptions( item, item.system.level );
     if ( item.type === "power" ) {
       const slot = slotOptions.find( s => s.key === config.slotLevel ) ?? slotOptions.find( s => s.canCast );
       if ( slot ) item = item.clone( { "system.level": slot.level } );
@@ -141,15 +141,15 @@ export default class AbilityUseDialog extends Dialog {
 
   /**
    * Create an array of power slot options for a select.
-   * @param {Actor5e} actor  The actor with power slots.
    * @param {Item5e} item    The item being cast.
+   * @param {number} level   The minimum level.
    * @returns {object[]}     Array of power slot select options.
    * @private
    */
-  static _createPowerSlotOptions( actor, item ) {
+  static _createPowerSlotOptions( item, level ) {
+    const actor = item.actor;
     if ( !actor.system.powers ) return [];
 
-    const level = item.system.level;
     const school = item.system.school;
     const powerType = ( school in CONFIG.SW5E.powerSchoolsForce ) ? "force" : "tech";
     const points = actor.system.attributes[powerType]?.points?.value ?? 0;
@@ -318,7 +318,7 @@ export default class AbilityUseDialog extends Dialog {
       const powers = item.actor.system.powers[key] ?? {};
       const level = powers.level || 0;
       const minimum = ( item.type === "power" ) ? Math.max( item.system.level, level ) : level;
-      return this._createPowerSlotOptions( item.actor, minimum );
+      return this._createPowerSlotOptions( item, minimum );
     }
 
     const max = Math.min( cap, value );

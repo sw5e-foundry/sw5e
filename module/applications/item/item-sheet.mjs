@@ -546,7 +546,7 @@ export default class ItemSheet5e extends ItemSheet {
         // Props.push(labels.deployment);
         break;
       case "maneuver":
-        // Props.push(labels.maneuverType);
+        // Props.push(labels.type.value);
         break;
     }
 

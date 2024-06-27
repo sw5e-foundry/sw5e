@@ -377,7 +377,7 @@ function _getSubfolderName(data, pack) {
       if (data.system.level === 0) return "at-will";
       return `level-${data.system.level}`;
     case "maneuver":
-      return data.system.maneuverType;
+      return data.system.type.value;
     // actors
     case "fistorcodex":
     case "monsters":

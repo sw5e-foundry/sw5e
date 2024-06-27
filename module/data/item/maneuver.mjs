@@ -62,7 +62,7 @@ export default class ManeuverData extends ItemDataModel.mixin(
     super.prepareDerivedData();
 
     if ( this.type.value ) {
-      const config = CONFIG.SW5E.maneuverType[this.type.value];
+      const config = CONFIG.SW5E.maneuverTypes[this.type.value];
       if ( config ) this.type.label = config.subtypes?.[this.type.subtype] ?? null;
       else this.type.label = game.i18n.localize( CONFIG.Item.typeLabels.maneuver );
     }
@@ -92,8 +92,8 @@ export default class ManeuverData extends ItemDataModel.mixin(
   /** @inheritdoc */
   static _migrateData( source ) {
     super._migrateData( source );
-    FeatData.#migrateType( source );
-    FeatData.#migrateRecharge( source );
+    ManeuverData.#migrateType( source );
+    ManeuverData.#migrateRecharge( source );
   }
 
   /* -------------------------------------------- */
@@ -175,7 +175,7 @@ export default class ManeuverData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   get _typeAbilityMod() {
-    const type = this.maneuverType;
+    const type = this.type.value;
     const item = this?.parent;
     const actor = item?.parent;
     const abilities = actor?.system?.abilities;

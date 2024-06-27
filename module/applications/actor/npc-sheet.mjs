@@ -87,13 +87,13 @@ export default class ActorSheetSW5eNPC extends ActorSheetSW5e {
         label: "SW5E.Feature.Deployment",
         items: [],
         hasActions: true,
-        dataset: { type: "feat", featType: "deploymentFeature" }
+        dataset: { type: "feat", feattype: "deploymentFeature" }
       },
       ventures: {
         label: "SW5E.DeploymentFeature.Venture",
         items: [],
         hasActions: false,
-        dataset: { type: "feat", featType: "deploymentFeature", featSubType: "venture" }
+        dataset: { type: "feat", feattype: "deploymentFeature", featsubtype: "venture" }
       }
     };
 

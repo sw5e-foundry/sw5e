@@ -158,7 +158,7 @@ export default class ActorSheetSW5eCharacter extends ActorSheetSW5e {
     ];
 
     // Organize Features
-    categories.features = Object.values( categories.features ).filter( f => f.dataset.featType !== "deployment" );
+    categories.features = Object.values( categories.features ).filter( f => f.dataset.feattype !== "deployment" );
     categories.features.unshift( categories.class.species );
     const classFeatures = categories.features.splice(
       categories.features.findIndex( f => f.dataset.featType === "class" ),
@@ -625,7 +625,7 @@ async function addSubTabs( app, html, data ) {
     } );
 }
 
-Hooks.on( "renderActorSheet5eCharacter", ( app, html, data ) => {
+Hooks.on( "renderActorSheetSW5eCharacter", ( app, html, data ) => {
   addFavorites( app, html, data );
   addSubTabs( app, html, data );
 } );

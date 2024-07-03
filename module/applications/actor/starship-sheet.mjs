@@ -67,7 +67,7 @@ export default class ActorSheetSW5eStarship extends ActorSheetSW5e {
     for ( const key of Object.keys( CONFIG.SW5E.ssCrewStationTypes ) ) {
       const ssDeployment = ssDeploy[key];
       ssDeployment.actorsVisible = !!( !anyDeployed || ssDeployment.items?.size );
-      if ( this._filters.ssactions.has( "activeDeploy" ) ) ssDeployment.actionsVisible = !anyActive || ssDeployment.active;
+      if ( this._filters.ssactions.properties.has( "activeDeploy" ) ) ssDeployment.actionsVisible = !anyActive || ssDeployment.active;
       else ssDeployment.actionsVisible = !!( ssDeployment.actorsVisible || ssDeployment.value );
     }
 
@@ -85,8 +85,8 @@ export default class ActorSheetSW5eStarship extends ActorSheetSW5e {
     }, {} );
 
     // Check for Starship Shield
-    context.shieldInstalled = !!( this.actor._getEquipment( "ssshield", { equipped: true } )?.length );
-    context.isShieldDepleted = context.system.attributes.shld.depleted;
+    context.shieldInstalled = !!( this.actor.system.getEquipment( "ssshield", { equipped: true } )?.length );
+    context.isShieldDepleted = context.system.attributes.shldd.depleted;
 
     return context;
   }
@@ -100,13 +100,13 @@ export default class ActorSheetSW5eStarship extends ActorSheetSW5e {
     labels.hullDice = game.i18n.format( "SW5E.HullDiceFull", {
       cur: this.actor.system.attributes.hulld.value,
       max: this.actor.system.attributes.hulld.max,
-      die: this.actor.system.attributes.hulld.sizes.size
+      die: this.actor.system.attributes.hulld.largest
     } );
 
     labels.shieldDice = game.i18n.format( "SW5E.ShieldDiceFull", {
       cur: this.actor.system.attributes.shldd.value,
       max: this.actor.system.attributes.shldd.max,
-      die: this.actor.system.attributes.shldd.sizes.size
+      die: this.actor.system.attributes.shldd.largest
     } );
 
     return labels;
@@ -195,7 +195,7 @@ export default class ActorSheetSW5eStarship extends ActorSheetSW5e {
         ctx.active = ssDeploy.active.value === uuid;
         ctx.derived = uuid;
         ctx.name = feature.name;
-        if ( !this._filters.ssactions.has( "activeDeploy" ) ) ctx.name += ` (${actor.name})`;
+        if ( !this._filters.ssactions.properties.has( "activeDeploy" ) ) ctx.name += ` (${actor.name})`;
 
         if ( feature.system.type.subtype === "venture" ) categories.ssactions.venture.items.push( feature );
         else categories.ssactions.deployment.items.push( feature );
@@ -204,16 +204,16 @@ export default class ActorSheetSW5eStarship extends ActorSheetSW5e {
 
     // Apply item filters
     for ( const actions of Object.values( categories.ssactions ) ) {
-      actions.items = this._filterItems( actions.items, this._filters.ssactions );
+      actions.items = this._filterItems( actions.items, this._filters.ssactions.properties );
     }
     for ( const features of categories.features ) {
-      features.items = this._filterItems( features.items, this._filters.features );
+      features.items = this._filterItems( features.items, this._filters.features.properties );
     }
     for ( const itemType of categories.inventory ) {
-      itemType.items = this._filterItems( itemType.items, this._filters.inventory );
+      itemType.items = this._filterItems( itemType.items, this._filters.inventory.properties );
     }
     for ( const itemType of categories.equipped ) {
-      itemType.items = this._filterItems( itemType.items, this._filters.ssequipment );
+      itemType.items = this._filterItems( itemType.items, this._filters.ssequipment.properties );
     }
 
     // Organize Starship Size

@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="summary">
-            <div class="size" data-tooltip="SW5E.Size">{{lookup config.actorSizes system.traits.size}}</div>
+            <div class="size" data-tooltip="SW5E.Size">{{lookup (lookup config.actorSizes system.traits.size) "label"}}</div>
             <input type="text" name="system.details.source" value="{{system.details.source}}"
                 placeholder="{{ localize 'SW5E.Source' }}" />
             <div class="proficiency">{{ localize "SW5E.Proficiency" }} {{labels.proficiency}}</div>
@@ -218,9 +218,9 @@
               </ul> -->
                         </div>
                         <div>
-                            <label>{{localize "SW5E.ShldDamImm"}}</label>
+                            <label>{{localize "SW5E.ShieldDamImm"}}</label>
                             <a class="trait-selector" data-trait="sdi"
-                                data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ShldDamImm')}}"
+                                data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ShieldDamImm')}}"
                                 tabindex="0">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -231,9 +231,9 @@
               </ul> -->
                         </div>
                         <div>
-                            <label>{{localize "SW5E.ShldDamRes"}}</label>
+                            <label>{{localize "SW5E.ShieldDamRes"}}</label>
                             <a class="trait-selector" data-trait="sdr"
-                                data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ShldDamRes')}}"
+                                data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ShieldDamRes')}}"
                                 tabindex="0">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -244,9 +244,9 @@
               </ul> -->
                         </div>
                         <div>
-                            <label>{{localize "SW5E.ShldDamVuln"}}</label>
+                            <label>{{localize "SW5E.ShieldDamVuln"}}</label>
                             <a class="trait-selector" data-trait="sdv"
-                                data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ShldDamVuln')}}">
+                                data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ShieldDamVuln')}}">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <!-- <ul class="traits-list">

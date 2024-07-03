@@ -532,10 +532,11 @@ export default class AttributesFields {
     const shieldBase = shieldAdvancement.reduce( ( total, shieldAdvancement ) => total + Math.round( shieldAdvancement.getAdjustedTotal( shieldMod ) * shieldCapMult ), 0 );
     hp.tempmax = ( hp.tempmax ?? 0 ) + shieldBase + shieldBonus;
 
-    hp.effectiveMax = hp.max + ( hp.tempmax ?? 0 );
-    hp.value = Math.min( hp.value, hp.effectiveMax );
-    hp.damage = hp.effectiveMax - hp.value;
-    hp.pct = Math.clamp( hp.effectiveMax ? ( hp.value / hp.effectiveMax ) * 100 : 0, 0, 100 );
+    hp.effectiveMax = hp.max + hp.tempmax;
+    hp.value = Math.min( hp.value, hp.max );
+    hp.temp = Math.min( hp.temp, hp.max );
+    hp.damage = hp.effectiveMax - hp.value - hp.temp;
+    hp.pct = Math.clamp( hp.effectiveMax ? ( ( hp.value + hp.temp ) / hp.effectiveMax ) * 100 : 0, 0, 100 );
   }
 
   /* -------------------------------------------- */

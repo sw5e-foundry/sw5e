@@ -34,7 +34,7 @@ export default class RegenRepairDialog extends Dialog {
     context.isGroup = this.actor.type === "group";
 
     const attr = this.actor.system.attributes;
-    if ( attr.hp.temp === attr.hp.tempmax || attr.shld.depleted || Number( attr.shldd.value ) === 0 ) {
+    if ( attr.hp.temp === attr.hp.tempmax || attr.shldd.depleted || Number( attr.shldd.value ) === 0 ) {
       context.useShieldDie = false;
     } else {
       context.useShieldDie = true;

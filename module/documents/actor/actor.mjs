@@ -310,7 +310,6 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     this._prepareInitiative( rollData, checkBonus );
     this._preparePowercasting( rollData );
     this._prepareSuperiority( rollData );
-    this._prepareStarshipData();
   }
 
   /* -------------------------------------------- */
@@ -429,7 +428,11 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     for ( const action of actions ) items.push( action.toObject() );
 
     for ( const id of CONFIG.SW5E.ssDefaultEquipment ) {
-      const item = ( await fromUuid( id ) ).toObject();
+      const item = ( await fromUuid( id ) )?.toObject();
+      if (!item) {
+        ui.notifications.error( "SW5E.UUIDError", { localize: true } );
+        continue;
+      }
       item.system.equipped = true;
       items.push( item );
     }
@@ -888,76 +891,6 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     spr.dice.max += levelBonus + overallBonus;
   }
 
-  /* -------------------------------------------- */
-
-  _prepareStarshipData() {
-    if ( this.type !== "starship" ) return;
-
-    // Find Size info of Starship
-    const attr = this.system.attributes;
-    const abl = this.system.abilities;
-    const sizeData = this.itemTypes.starshipsize[0]?.system ?? {};
-
-    // Set Power Die Storage
-    attr.power.central.max += attr.equip.powerCoupling.centralCap;
-    attr.power.comms.max += attr.equip.powerCoupling.systemCap;
-    attr.power.engines.max += attr.equip.powerCoupling.systemCap;
-    attr.power.shields.max += attr.equip.powerCoupling.systemCap;
-    attr.power.sensors.max += attr.equip.powerCoupling.systemCap;
-    attr.power.weapons.max += attr.equip.powerCoupling.systemCap;
-
-    // Disable Shields
-    attr.shld.depleted = attr.hp.temp === 0 && attr.equip.shields.capMult !== 0;
-
-    // Prepare Speeds
-    if ( game.settings.get( "sw5e", "oldStarshipMovement" ) ) {
-      attr.movement.space = ( sizeData.baseSpaceSpeed ?? 0 ) + ( 50 * ( abl.str.mod - abl.con.mod ) );
-      attr.movement.turn = Math.min(
-        attr.movement.space,
-        Math.max( 50, ( sizeData.baseTurnSpeed ?? 0 ) - ( 50 * ( abl.dex.mod - abl.con.mod ) ) )
-      );
-    } else {
-      const roles = this.itemTypes.feat.filter(
-        f => f.system.type.value === "starship" && f.system.type.subtype === "role"
-      );
-      if ( roles.length === 0 ) this._preparationWarnings.push( {
-        message: game.i18n.localize( "SW5E.WarnNoSSRole" ),
-        type: "warning"
-      } );
-      else if ( roles.length > 1 ) this._preparationWarnings.push( {
-        message: game.i18n.localize( "SW5E.WarnMultipleSSRole" ),
-        type: "warning"
-      } );
-      else {
-        const role = roles[0];
-        attr.movement.space = role?.system?.attributes?.speed?.space ?? 0;
-        attr.movement.turn = role?.system?.attributes?.speed?.turn ?? 0;
-      }
-    }
-
-    // Prepare Mods
-    attr.mods.cap.value = this.itemTypes.starshipmod.filter( i => i.system.equipped && !i.system.free.slot ).reduce( ( acc, i ) => acc + i.system.quantity, 0 );
-
-    // Prepare Suites
-    attr.mods.suite.max += ( sizeData.modMaxSuitesMult ?? 1 ) * abl.con.mod;
-    attr.mods.suite.value = this.itemTypes.starshipmod.filter(
-      i => i.system.equipped && !i.system.free.suite && i.system.type.value === "Suite"
-    ).length;
-
-    // Prepare Hardpoints
-    attr.mods.hardpoint.max += ( sizeData.hardpointMult ?? 1 ) * Math.max( 1, abl.str.mod );
-
-    // Prepare Fuel
-    attr.fuel = this._computeFuel();
-  }
-
-  _computeFuel() {
-    const fuel = this.system.attributes.fuel;
-    fuel.cost *= this.system.attributes.equip.reactor.fuelMult;
-    // Compute Fuel percentage
-    const pct = Math.clamp( ( fuel.value.toNearest( 0.1 ) * 100 ) / fuel.fuelCap, 0, 100 );
-    return { ...fuel, pct, fueled: pct > 0 };
-  }
 
   /* -------------------------------------------- */
   /*  Event Handlers                              */
@@ -2890,11 +2823,10 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     };
 
     const attr = this.system.attributes;
-    const shld = attr.shld;
     const hp = attr.hp;
 
     // If shields are depleted, display an error notification and exit
-    if ( shld.depleted ) {
+    if ( attr.shldd.depleted ) {
       ui.notifications.error(
         game.i18n.format( "SW5E.ShieldDepletedWarn", {
           name: this.name
@@ -4065,7 +3997,7 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     // Take note of the initial hull points and number of hull dice the Actor has
     const hd0 = foundry.utils.getProperty( this, "system.attributes.hulld.value" );
     const hp0 = foundry.utils.getProperty( this, "system.attributes.hp.value" );
-    const regenShld = !foundry.utils.getProperty( this, "system.attributes.shld.depleted" );
+    const regenShld = !foundry.utils.getProperty( this, "system.attributes.shldd.depleted" );
 
     // Display a Dialog for rolling hull dice
     if ( config.dialog ) {
@@ -4468,7 +4400,6 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     let updates = {};
 
     updates["system.attributes.hp.temp"] = tempMax;
-    updates["system.attributes.shld.depleted"] = false;
 
     return { updates, shldPointsRecovered: Math.max( 0, tempMax - hp.temp ) };
   }
@@ -4492,10 +4423,12 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
   /**
    * Recovers starship shields dice during a repair.
    *
+   * @param {object} [options]
+   * @param {number} [options.maxHullDice]    Maximum number of hull dice to recover.
    * @returns {object}           Array of item updates and number of shield dice recovered.
    * @protected
    */
-  _getRepairShieldDiceRecovery() {
+  _getRepairShieldDiceRecovery( { maxShieldDice } = {} ) {
     return this.system.attributes.shldd.createShieldDiceUpdates( { maxShieldDice } );
   }
 
@@ -5287,7 +5220,7 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     }
 
     if ( tDeployed.deployments.size === 0 ) {
-      tUpdates["system.attributes.depleted.uuid"] = null;
+      tUpdates["system.attributes.deployed.uuid"] = null;
       if ( ssDeploy.active.value === target.uuid ) await this.ssToggleActiveCrew();
     }
 

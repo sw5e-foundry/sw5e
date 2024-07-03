@@ -131,6 +131,16 @@ export default class ShieldDice {
   /* -------------------------------------------- */
 
   /**
+   * Are the shields depleted?
+   * @returns {bool}
+   */
+  get depleted() {
+    return this.actor.system.attributes.hp.temp === 0 && this.max !== 0;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Override the default `toString` method for backwards compatibility.
    * @returns {number}    Remaining shield dice.
    */

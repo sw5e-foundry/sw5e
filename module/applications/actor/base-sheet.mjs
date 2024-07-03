@@ -807,7 +807,7 @@ export default class ActorSheetSW5e extends ActorSheetMixin( ActorSheet ) {
 
       // Action usage
       for ( let f of ["action", "bonus", "reaction"] ) {
-        if ( filters.has( f ) && item.system.activation.type !== f ) return false;
+        if ( filters.has( f ) && item.system.activation?.type !== f ) return false;
       }
 
       // Power-specific filters

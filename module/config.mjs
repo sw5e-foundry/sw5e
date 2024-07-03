@@ -5869,7 +5869,7 @@ SW5E.traits = {
   },
   sdi: {
     labels: {
-      title: "SW5E.ShldDamImm",
+      title: "SW5E.ShieldDamImm",
       localization: "SW5E.TraitSDIPlural"
     },
     icon: "systems/sw5e/icons/svg/trait-damage-immunities.svg",
@@ -5877,7 +5877,7 @@ SW5E.traits = {
   },
   sdr: {
     labels: {
-      title: "SW5E.ShldDamRes",
+      title: "SW5E.ShieldDamRes",
       localization: "SW5E.TraitSDRPlural"
     },
     icon: "systems/sw5e/icons/svg/trait-damage-resistances.svg",
@@ -5885,7 +5885,7 @@ SW5E.traits = {
   },
   sdv: {
     labels: {
-      title: "SW5E.ShldDamVuln",
+      title: "SW5E.ShieldDamVuln",
       localization: "SW5E.TraitSDVPlural"
     },
     icon: "systems/sw5e/icons/svg/trait-damage-vulnerabilities.svg",

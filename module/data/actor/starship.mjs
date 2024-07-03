@@ -2,13 +2,14 @@ import HullDice from "../../documents/actor/hull-dice.mjs";
 import ShieldDice from "../../documents/actor/shield-dice.mjs";
 import { simplifyBonus, fromUuidSynchronous } from "../../utils.mjs";
 import { FormulaField, MappingField, UUIDField, LocalDocumentField } from "../fields.mjs";
+import CreatureTypeField from "../shared/creature-type-field.mjs";
 import RollConfigField from "../shared/roll-config-field.mjs";
 import AttributesFields from "./templates/attributes.mjs";
 import CommonTemplate from "./templates/common.mjs";
 import DetailsFields from "./templates/details.mjs";
 import TraitsFields from "./templates/traits.mjs";
 
-const { SchemaField, NumberField, StringField, BooleanField, ArrayField, IntegerSortField } = foundry.data.fields;
+const { SchemaField, NumberField, StringField, BooleanField, ArrayField, IntegerSortField, SetField } = foundry.data.fields;
 
 /**
  * @typedef {object} ActorFavorites5e
@@ -128,10 +129,10 @@ export default class StarshipData extends CommonTemplate {
           hp: new SchemaField(
             {
               value: new NumberField( {
-                nullable: true,
+                nullable: false,
                 integer: true,
                 min: 0,
-                initial: null,
+                initial: 0,
                 label: "SW5E.HullPointsCurrent"
               } ),
               max: new NumberField( {
@@ -142,16 +143,18 @@ export default class StarshipData extends CommonTemplate {
                 label: "SW5E.HullPointsOverride"
               } ),
               temp: new NumberField( {
+                nullable: false,
                 integer: true,
-                initial: 0,
                 min: 0,
-                label: "SW5E.ShieldPoints"
+                initial: 0,
+                label: "SW5E.ShieldPointsCurrent"
               } ),
               tempmax: new NumberField( {
-                integer: true,
                 nullable: true,
+                integer: true,
+                min: 0,
                 initial: null,
-                label: "SW5E.ShieldPointsMax"
+                label: "SW5E.ShieldPointsOverride"
               } ),
               bonuses: new SchemaField( {
                 level: new FormulaField( { deterministic: true, label: "SW5E.HullPointsBonusLevel" } ),
@@ -367,7 +370,6 @@ export default class StarshipData extends CommonTemplate {
 
   /** @inheritdoc */
   prepareBaseData() {
-
     // Determine starship's proficiency bonus based on active deployed crew member
     this.attributes.prof = 0;
     const active = this.attributes.deployment.active;
@@ -375,7 +377,7 @@ export default class StarshipData extends CommonTemplate {
     if ( actor?.system?.details?.ranks ) this.attributes.prof = actor.system.attributes?.prof ?? 0;
 
     // Determine Starship size-based properties based on owned Starship item
-    const sizeData = this.itemTypes.starshipsize[0]?.system ?? {};
+    const sizeData = this.parent.itemTypes?.starshipsize[0]?.system ?? {};
     const tiers = parseInt( sizeData.tier ?? 0 );
 
     this.traits.size = sizeData.size ?? "med"; // Needs to be the short code
@@ -464,6 +466,9 @@ export default class StarshipData extends CommonTemplate {
     // Inherit deployed pilot's proficiency in piloting
     const pilot = fromUuidSynchronous( this.attributes.deployment.pilot.value );
     if ( pilot ) this.skills.man.value = Math.max( this.skills.man.value, pilot.system.skills.pil.value );
+
+    AttributesFields.prepareBaseArmorClass.call( this );
+    AttributesFields.prepareBaseEncumbrance.call( this );
   }
 
   /* -------------------------------------------- */
@@ -473,16 +478,8 @@ export default class StarshipData extends CommonTemplate {
    * Prepare movement & senses values derived from species item.
    */
   prepareEmbeddedData() {
-    if ( this.details.species instanceof Item ) {
-      AttributesFields.prepareSpecies.call( this, this.details.species );
-      this.details.type = this.details.species.system.type;
-    } else {
-      this.details.type = new CreatureTypeField( { swarm: false } ).initialize( { value: "humanoid" }, this );
-    }
     for ( const key of Object.keys( CONFIG.SW5E.movementTypes ) ) this.attributes.movement[key] ??= 0;
-    for ( const key of Object.keys( CONFIG.SW5E.senses ) ) this.attributes.senses[key] ??= 0;
     this.attributes.movement.units ??= Object.keys( CONFIG.SW5E.movementUnits )[0];
-    this.attributes.senses.units ??= Object.keys( CONFIG.SW5E.movementUnits )[0];
   }
 
   /* -------------------------------------------- */
@@ -496,25 +493,87 @@ export default class StarshipData extends CommonTemplate {
     const { originalSaves } = this.parent.getOriginalStats();
 
     this.prepareAbilities( { rollData, originalSaves } );
+    AttributesFields.prepareEncumbrance.call( this, rollData );
+    AttributesFields.prepareExhaustionLevel.call( this );
     AttributesFields.prepareMovement.call( this );
     TraitsFields.prepareResistImmune.call( this );
 
     // Hull/Shield Points
     const hspOptions = {};
     if ( this.attributes.hp.max === null ) {
-      hspOptions.hullAdvancement = Object.values( this.parent.starshipsizes )
-        .map( c => c.advancement.byType.hullPoints?.[0] ).filter( a => a );
+      hspOptions.hullAdvancement = Object.values( this.parent.starships )
+        .map( c => c.advancement.byType.HullPoints?.[0] ).filter( a => a );
       hspOptions.hullBonus = ( simplifyBonus( this.attributes.hp.bonuses.level, rollData ) * this.details.tier )
         + simplifyBonus( this.attributes.hp.bonuses.overall, rollData );
       hspOptions.hullMod = this.abilities[CONFIG.SW5E.defaultAbilities.hullPoints ?? "str"]?.mod ?? 0;
-      hspOptions.shieldAdvancement = Object.values( this.parent.starshipsizes )
-        .map( c => c.advancement.byType.shieldPoints?.[0] ).filter( a => a );
+    }
+    if ( this.attributes.hp.tempmax === null ) {
+      hspOptions.shieldAdvancement = Object.values( this.parent.starships )
+        .map( c => c.advancement.byType.ShieldPoints?.[0] ).filter( a => a );
       hspOptions.shieldBonus = ( simplifyBonus( this.attributes.hp.bonuses.templevel, rollData ) * this.details.tier )
         + simplifyBonus( this.attributes.hp.bonuses.tempoverall, rollData );
       hspOptions.shieldMod = this.abilities[CONFIG.SW5E.defaultAbilities.shieldPoints ?? "con"]?.mod ?? 0;
       hspOptions.shieldCapMult = this.attributes.equip.shields.capMult;
     }
     AttributesFields.prepareHullShieldPoints.call( this, this.attributes.hp, hspOptions );
+
+    // Find Size info of Starship
+    const attr = this.attributes;
+    const abl = this.abilities;
+    const sizeData = this.parent.starships[0]?.system ?? {};
+
+    // Set Power Die Storage
+    attr.power.central.max += attr.equip.powerCoupling.centralCap;
+    attr.power.comms.max += attr.equip.powerCoupling.systemCap;
+    attr.power.engines.max += attr.equip.powerCoupling.systemCap;
+    attr.power.shields.max += attr.equip.powerCoupling.systemCap;
+    attr.power.sensors.max += attr.equip.powerCoupling.systemCap;
+    attr.power.weapons.max += attr.equip.powerCoupling.systemCap;
+
+    // Prepare Speeds
+    if ( game.settings.get( "sw5e", "oldStarshipMovement" ) ) {
+      attr.movement.space = ( sizeData.baseSpaceSpeed ?? 0 ) + ( 50 * ( abl.str.mod - abl.con.mod ) );
+      attr.movement.turn = Math.min(
+        attr.movement.space,
+        Math.max( 50, ( sizeData.baseTurnSpeed ?? 0 ) - ( 50 * ( abl.dex.mod - abl.con.mod ) ) )
+      );
+    } else {
+      const roles = this.parent.itemTypes?.feat?.filter(
+        f => f.system.type.value === "starship" && f.system.type.subtype === "role"
+      ) ?? [];
+      if ( roles.length === 0 ) this.parent._preparationWarnings.push( {
+        message: game.i18n.localize( "SW5E.WarnNoSSRole" ),
+        type: "warning"
+      } );
+      else if ( roles.length > 1 ) this.parent._preparationWarnings.push( {
+        message: game.i18n.localize( "SW5E.WarnMultipleSSRole" ),
+        type: "warning"
+      } );
+      else {
+        const role = roles[0];
+        attr.movement.space = role?.system?.attributes?.speed?.space ?? 0;
+        attr.movement.turn = role?.system?.attributes?.speed?.turn ?? 0;
+      }
+    }
+
+    // Prepare Mods
+    attr.mods.cap.value = this.parent.itemTypes?.starshipmod?.filter(
+      i => i.system.equipped && !i.system.free.slot
+    ).reduce(
+      ( acc, i ) => acc + i.system.quantity, 0
+    ) ?? 0;
+
+    // Prepare Suites
+    attr.mods.suite.max += ( sizeData.modMaxSuitesMult ?? 1 ) * abl.con.mod;
+    attr.mods.suite.value = this.parent.itemTypes?.starshipmod?.filter(
+      i => i.system.equipped && !i.system.free.suite && i.system.type.value === "Suite"
+    )?.length ?? 0;
+
+    // Prepare Hardpoints
+    attr.mods.hardpoint.max += ( sizeData.hardpointMult ?? 1 ) * Math.max( 1, abl.str.mod );
+
+    // Prepare Fuel
+    attr.fuel = this._computeFuel();
   }
 
   /* -------------------------------------------- */
@@ -577,11 +636,20 @@ export default class StarshipData extends CommonTemplate {
    * @type {object}               Array of items of that type
    */
   getEquipment( type, { equipped = false } = {} ) {
-    return this.itemTypes.equipment.filter(
+    return this.parent.itemTypes?.equipment?.filter(
       item => type === item.system.type.value && ( !equipped || item.system.equipped )
-    );
+    ) ?? [];
   }
 
+  /* -------------------------------------------- */
+
+  _computeFuel() {
+    const fuel = this.attributes.fuel;
+    fuel.cost *= this.attributes.equip.reactor.fuelMult;
+    // Compute Fuel percentage
+    const pct = Math.clamp( ( fuel.value.toNearest( 0.1 ) * 100 ) / fuel.fuelCap, 0, 100 );
+    return { ...fuel, pct, fueled: pct > 0 };
+  }
 }
 
 /* -------------------------------------------- */

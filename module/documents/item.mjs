@@ -988,7 +988,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
         console.warn( `Unable to simplify formula for ${this.name} (${this.id})${parentInfo}`, err );
       }
       const damageType = damagePart[1];
-      return { formula, damageType, label: `${formula} ${damageLabels[damageType].label ?? ""}` };
+      return { formula, damageType, label: `${formula} ${damageLabels[damageType]?.label ?? ""}` };
     } );
     return ( this.labels.derivedDamage = derivedDamage );
   }

@@ -2081,7 +2081,7 @@ SW5E.itemProperties = {
     full: "SW5E.Item.Property.EnhancedFull",
     type: "Boolean",
     reference: "SW5E.Item.Property.EnhancedDesc",
-    icon: "systems/sw5e/icons/svg/properties/magical.svg",
+    icon: "systems/sw5e/icons/svg/properties/enhanced.svg",
     isPhysical: true
   },
   ritual: {
@@ -2819,7 +2819,8 @@ SW5E.damageTypes = {
     color: new Color( 0xADD8E6 )
   },
   energy: {
-    label: "SW5E.DamageEnergy"
+    label: "SW5E.DamageEnergy",
+    icon: "systems/sw5e/icons/svg/damage/energy.svg"
   },
   fire: {
     label: "SW5E.DamageFire",
@@ -2832,10 +2833,12 @@ SW5E.damageTypes = {
     color: new Color( 0x800080 )
   },
   ion: {
-    label: "SW5E.DamageIon"
+    label: "SW5E.DamageIon",
+    icon: "systems/sw5e/icons/svg/damage/ion.svg"
   },
   kinteic: {
-    label: "SW5E.DamageKinetic"
+    label: "SW5E.DamageKinetic",
+    icon: "systems/sw5e/icons/svg/damage/kinetic.svg"
   },
   lightning: {
     label: "SW5E.DamageLightning",
@@ -2858,7 +2861,8 @@ SW5E.damageTypes = {
     color: new Color( 0xFF1493 )
   },
   sonic: {
-    label: "SW5E.DamageSonic"
+    label: "SW5E.DamageSonic",
+    icon: "systems/sw5e/icons/svg/damage/sonic.svg"
   }
 };
 preLocalize( "damageTypes", { keys: ["label"], sort: true } );

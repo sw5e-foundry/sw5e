@@ -41,6 +41,7 @@ export const copyStatic = gulp.parallel(
   staticGulp.copyLang,
   staticGulp.copyPacks,
   staticGulp.copyTemplates,
+  staticGulp.copyTokens,
   staticGulp.copyUi,
   staticGulp.copyStaticRoot,
   staticGulp.copyRoot

@@ -1191,6 +1191,7 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     };
 
     const rollData = this.getRollData( { deterministic: true } );
+    const hp = this.system.attributes.hp;
     let tmp = parseInt( hp.temp ) || 0;
     damages.forEach( d => {
       d.active ??= {};

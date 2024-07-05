@@ -1,6 +1,7 @@
 import { ItemDataModel } from "../abstract.mjs";
 import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import ItemPropertiesTemplate from "./templates/item-properties.mjs";
 import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
@@ -8,19 +9,21 @@ import ItemTypeField from "./fields/item-type-field.mjs";
 /**
  * Data definition for Loot items.
  * @mixes ItemDescriptionTemplate
+ * @mixes ItemPropertiesTemplate
  * @mixes ItemTypeTemplate
  * @mixes IdentifiableTemplate
  * @mixes PhysicalItemTemplate
  */
 export default class LootData extends ItemDataModel.mixin(
-  ItemDescriptionTemplate, IdentifiableTemplate, ItemTypeTemplate, PhysicalItemTemplate
+  ItemDescriptionTemplate,
+  ItemPropertiesTemplate,
+  ItemTypeTemplate,
+  IdentifiableTemplate,
+  PhysicalItemTemplate
 ) {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
-      properties: new foundry.data.fields.SetField( new foundry.data.fields.StringField(), {
-        label: "SW5E.ItemLootProperties"
-      } ),
       type: new ItemTypeField( { baseItem: false }, { label: "SW5E.ItemLootType" } )
     } );
   }

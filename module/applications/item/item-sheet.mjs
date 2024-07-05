@@ -195,7 +195,10 @@ export default class ItemSheet5e extends ItemSheet {
         const v = CONFIG.SW5E.itemProperties[k];
         obj[k] = {
           label: v.label,
-          selected: item.system.properties.has( k )
+          type: v.type ?? "Boolean",
+          reference: v.reference,
+          selected: item.system.properties.has( k ),
+          value: item.system.getProperty( k, null )
         };
         return obj;
       }, {} );
@@ -581,7 +584,7 @@ export default class ItemSheet5e extends ItemSheet {
       ctx.reloadUsesAmmo = wpn.ammo.types?.length;
       if ( actor && ctx.reloadUsesAmmo ) {
         ctx.reloadAmmo = actor.itemTypes.consumable.reduce( ( list, ammo ) => {
-          if ( ammo.system.type.value === "ammo" && wpn.list?.types.includes( ammo.system.type.subtype ) ) {
+          if ( ammo.system.type.value === "ammo" && wpn.ammo?.types.includes( ammo.system.type.subtype ) ) {
             list[ammo.id] = `${ammo.name} (${ammo.system.quantity})`;
           }
           return list;
@@ -592,7 +595,7 @@ export default class ItemSheet5e extends ItemSheet {
         ctx.reloadDisabled = ctx.reloadUsesAmmo && !wpn.ammo.target;
       }
       ctx.reloadFull = wpn.ammo.value === wpn.ammo.max || ctx.reloadDisabled;
-      if ( wpn.properties?.ovr ) {
+      if ( wpn.properties?.has("ovr") ) {
         ctx.reloadActLabel = "SW5E.WeaponCoolDown";
         ctx.reloadLabel = "SW5E.WeaponOverheat";
       } else {
@@ -1202,7 +1205,7 @@ export default class ItemSheet5e extends ItemSheet {
         case "powerGenerator":
         case "projectorCanister":
         case "projectorTank":
-          if ( oldLoad === wpnSysdata?.properties?.rel ) ammoUpdates["system.quantity"] = oldAmmoSysdata?.quantity ?? 0 + 1;
+          if ( oldLoad === wpnSysdata?.getProperty("rel") ) ammoUpdates["system.quantity"] = oldAmmoSysdata?.quantity ?? 0 + 1;
           else {
             const confirm = await Dialog.confirm( {
               title: game.i18n.localize( "SW5E.WeaponAmmoConfirmEjectTitle" ),

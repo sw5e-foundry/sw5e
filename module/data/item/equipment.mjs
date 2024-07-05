@@ -5,6 +5,7 @@ import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import EquippableItemTemplate from "./templates/equippable-item.mjs";
 import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import ItemPropertiesTemplate from "./templates/item-properties.mjs";
 import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import MountableTemplate from "./templates/mountable.mjs";
@@ -16,6 +17,7 @@ const { NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
 /**
  * Data definition for Equipment items.
  * @mixes ItemDescriptionTemplate
+ * @mixes ItemPropertiesTemplate
  * @mixes ItemTypeTemplate
  * @mixes IdentifiableTemplate
  * @mixes PhysicalItemTemplate
@@ -35,7 +37,6 @@ const { NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
  * @property {string} speed.conditions      Conditions that may affect item's speed.
  * @property {number} strength              Minimum strength required to use a piece of armor.
  * @property {number} proficient            Does the owner have proficiency in this piece of equipment?
- * @property {object} properties            Mapping of various weapon property booleans and numbers.
  * @property {object} attributes
  * @property {object} attributes.capx
  * @property {number} attributes.capx.value            Starship: Multiplier for shield capacity.
@@ -56,8 +57,9 @@ const { NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
  */
 export default class EquipmentData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
-  IdentifiableTemplate,
+  ItemPropertiesTemplate,
   ItemTypeTemplate,
+  IdentifiableTemplate,
   PhysicalItemTemplate,
   EquippableItemTemplate,
   ActivatedEffectTemplate,
@@ -81,9 +83,6 @@ export default class EquipmentData extends ItemDataModel.mixin(
           dex: new NumberField( { required: true, integer: true, label: "SW5E.ItemEquipmentDexMod" } )
         }
       ),
-      properties: new SetField( new StringField(), {
-        label: "SW5E.ItemEquipmentProperties"
-      } ),
       speed: new SchemaField(
         {
           value: new NumberField( { required: true, min: 0, label: "SW5E.Speed" } ),

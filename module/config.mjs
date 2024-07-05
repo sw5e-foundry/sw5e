@@ -1297,20 +1297,20 @@ preLocalize( "armorClasses", { key: "label" } );
  * @enum {string}
  */
 SW5E.ammoStandardTypes = {
-  arrow: "SW5E.AmmoArrow",
-  bolt: "SW5E.AmmoBolt",
-  cartridge: "SW5E.AmmoCartridge",
-  dart: "SW5E.AmmoDart",
-  flechetteClip: "SW5E.AmmoFlechetteClip",
-  flechetteMag: "SW5E.AmmoFlechetteMag",
-  missile: "SW5E.AmmoMissile",
-  powerCell: "SW5E.AmmoPowerCell",
-  powerGenerator: "SW5E.AmmoPowerGenerator",
-  projectorCanister: "SW5E.AmmoProjectorCanister",
-  projectorTank: "SW5E.AmmoProjectorTank",
-  rocket: "SW5E.AmmoRocket",
-  snare: "SW5E.AmmoSnare",
-  torpedo: "SW5E.AmmoTorpedo"
+  arrow: "SW5E.ConsumableAmmoArrow",
+  bolt: "SW5E.ConsumableAmmoBolt",
+  cartridge: "SW5E.ConsumableAmmoCartridge",
+  dart: "SW5E.ConsumableAmmoDart",
+  flechetteClip: "SW5E.ConsumableAmmoFlechetteClip",
+  flechetteMag: "SW5E.ConsumableAmmoFlechetteMag",
+  missile: "SW5E.ConsumableAmmoMissile",
+  powerCell: "SW5E.ConsumableAmmoPowerCell",
+  powerGenerator: "SW5E.ConsumableAmmoPowerGenerator",
+  projectorCanister: "SW5E.ConsumableAmmoProjectorCanister",
+  projectorTank: "SW5E.ConsumableAmmoProjectorTank",
+  rocket: "SW5E.ConsumableAmmoRocket",
+  snare: "SW5E.ConsumableAmmoSnare",
+  torpedo: "SW5E.ConsumableAmmoTorpedo"
 };
 preLocalize( "ammoStandardTypes", { sort: true } );
 
@@ -1321,10 +1321,10 @@ preLocalize( "ammoStandardTypes", { sort: true } );
  * @enum {string}
  */
 SW5E.ammoStarshipTypes = {
-  sscluster: "SW5E.AmmoSsCluster",
-  ssmissile: "SW5E.AmmoSsMissile",
-  sstorpedo: "SW5E.AmmoSsTorpedo",
-  ssbomb: "SW5E.AmmoSsBomb"
+  sscluster: "SW5E.ConsumableAmmoSsCluster",
+  ssmissile: "SW5E.ConsumableAmmoSsMissile",
+  sstorpedo: "SW5E.ConsumableAmmoSsTorpedo",
+  ssbomb: "SW5E.ConsumableAmmoSsBomb"
 };
 preLocalize( "ammoStarshipTypes", { sort: true } );
 

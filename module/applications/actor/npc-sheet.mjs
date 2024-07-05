@@ -157,7 +157,7 @@ export default class ActorSheetSW5eNPC extends ActorSheetSW5e {
 
     // Apply item filters
     forcepowers = this._filterItems( forcepowers, this._filters.forcePowerbook.properties );
-    techpowers = this._filterItems( techpowers, this._filters.techPowerbook.properties.properties );
+    techpowers = this._filterItems( techpowers, this._filters.techPowerbook.properties );
     deploymentfeatures = this._filterItems( deploymentfeatures, this._filters.ssfeatures.properties );
     ventures = this._filterItems( ventures, this._filters.ssfeatures.properties );
     other = this._filterItems( other, this._filters.features.properties );

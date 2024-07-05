@@ -5,6 +5,7 @@ import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import EquippableItemTemplate from "./templates/equippable-item.mjs";
 import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import ItemPropertiesTemplate from "./templates/item-properties.mjs";
 import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
@@ -14,6 +15,7 @@ const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields
 /**
  * Data definition for Consumable items.
  * @mixes ItemDescriptionTemplate
+ * @mixes ItemPropertiesTemplate
  * @mixes ItemTypeTemplate
  * @mixes IdentifiableTemplate
  * @mixes PhysicalItemTemplate
@@ -22,14 +24,14 @@ const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields
  * @mixes ActionTemplate
  *
  * @property {number} magicalBonus       Magical bonus added to attack & damage rolls by ammunition.
- * @property {Set<string>} properties    Ammunition properties.
  * @property {object} uses
  * @property {boolean} uses.autoDestroy  Should this item be destroyed when it runs out of uses.
  */
 export default class ConsumableData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
-  IdentifiableTemplate,
+  ItemPropertiesTemplate,
   ItemTypeTemplate,
+  IdentifiableTemplate,
   PhysicalItemTemplate,
   EquippableItemTemplate,
   ActivatedEffectTemplate,

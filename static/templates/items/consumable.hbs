@@ -98,21 +98,6 @@
             </div>
             {{/if}}
 
-            {{!-- Ammunition Type --}}
-            {{#if isAmmo }}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemAmmoType" }}</label>
-                <select name="system.type.subtype">
-                    <optgroup label="{{ localize 'SW5E.StandardAmmo' }}">
-                        {{selectOptions config.ammoStandardTypes selected=system.type.subtype}}
-                    </optgroup>
-                    <optgroup label="{{ localize 'SW5E.StarshipAmmo' }}">
-                        {{selectOptions config.ammoStarshipTypes selected=system.type.subtype}}
-                    </optgroup>
-                </select>
-            </div>
-            {{/if}}
-
             <div class="form-group input select">
                 <label>{{localize "SW5E.Attunement"}}</label>
                 <div class="form-fields">

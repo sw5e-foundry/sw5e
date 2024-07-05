@@ -3,6 +3,7 @@ import { FormulaField } from "../fields.mjs";
 import EquippableItemTemplate from "./templates/equippable-item.mjs";
 import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import ItemPropertiesTemplate from "./templates/item-properties.mjs";
 import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
@@ -11,6 +12,7 @@ import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 /**
  * Data definition for Tool items.
  * @mixes ItemDescriptionTemplate
+ * @mixes ItemPropertiesTemplate
  * @mixes ItemTypeTemplate
  * @mixes IdentifiableTemplate
  * @mixes PhysicalItemTemplate
@@ -23,8 +25,13 @@ import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
  * @property {string} bonus       Bonus formula added to tool rolls.
  */
 export default class ToolData extends ItemDataModel.mixin(
-  ItemDescriptionTemplate, IdentifiableTemplate, ItemTypeTemplate,
-  PhysicalItemTemplate, EquippableItemTemplate, ActivatedEffectTemplate
+  ItemDescriptionTemplate,
+  ItemPropertiesTemplate,
+  ItemTypeTemplate,
+  IdentifiableTemplate,
+  PhysicalItemTemplate,
+  EquippableItemTemplate,
+  ActivatedEffectTemplate
 ) {
   /** @inheritdoc */
   static defineSchema() {
@@ -36,9 +43,6 @@ export default class ToolData extends ItemDataModel.mixin(
       chatFlavor: new foundry.data.fields.StringField( { required: true, label: "SW5E.ChatFlavor" } ),
       proficient: new foundry.data.fields.NumberField( {
         required: true, initial: null, min: 0, max: 5, step: 0.5, label: "SW5E.ItemToolProficiency"
-      } ),
-      properties: new foundry.data.fields.SetField( new foundry.data.fields.StringField(), {
-        label: "SW5E.ItemToolProperties"
       } ),
       bonus: new FormulaField( { required: true, label: "SW5E.ItemToolBonus" } )
     } );

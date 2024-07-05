@@ -2,12 +2,14 @@ import { ItemDataModel } from "../abstract.mjs";
 import EquippableItemTemplate from "./templates/equippable-item.mjs";
 import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import ItemPropertiesTemplate from "./templates/item-properties.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import CurrencyTemplate from "../shared/currency.mjs";
 
 /**
  * Data definition for Container items.
  * @mixes ItemDescriptionTemplate
+ * @mixes ItemPropertiesTemplate
  * @mixes IdentifiableTemplate
  * @mixes PhysicalItemTemplate
  * @mixes EquippableItemTemplate
@@ -19,6 +21,7 @@ import CurrencyTemplate from "../shared/currency.mjs";
  */
 export default class ContainerData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
+  ItemPropertiesTemplate,
   IdentifiableTemplate,
   PhysicalItemTemplate,
   EquippableItemTemplate,
@@ -28,9 +31,6 @@ export default class ContainerData extends ItemDataModel.mixin(
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
       quantity: new foundry.data.fields.NumberField( { min: 1, max: 1 } ),
-      properties: new foundry.data.fields.SetField( new foundry.data.fields.StringField(), {
-        label: "SW5E.ItemContainerProperties"
-      } ),
       capacity: new foundry.data.fields.SchemaField(
         {
           type: new foundry.data.fields.StringField( {

@@ -6,6 +6,7 @@ import EquippableItemTemplate from "./templates/equippable-item.mjs";
 import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
+import ItemPropertiesTemplate from "./templates/item-properties.mjs";
 import ItemTypeTemplate from "./templates/item-type.mjs";
 import MountableTemplate from "./templates/mountable.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
@@ -16,6 +17,7 @@ const { NumberField, SetField, StringField, SchemaField, ArrayField } = foundry.
 /**
  * Data definition for Weapon items.
  * @mixes ItemDescriptionTemplate
+ * @mixes ItemPropertiesTemplate
  * @mixes ItemTypeTemplate
  * @mixes IdentifiableTemplate
  * @mixes PhysicalItemTemplate
@@ -32,14 +34,14 @@ const { NumberField, SetField, StringField, SchemaField, ArrayField } = foundry.
  * @property {string} ammo.value          Current amount of loaded ammo.
  * @property {string} ammo.use            Amount of ammo spent per shot.
  * @property {Array<string>} ammo.types   Types of ammo this ammo can accept.
- * @property {Set<string>} properties     Weapon's properties.
  * @property {number} proficient          Does the weapon's owner have proficiency?
  * @property {string} firingArc           In which direction can the weapon fire? Options defined in `SW5E.weaponFiringArcs`.
  */
 export default class WeaponData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
-  IdentifiableTemplate,
+  ItemPropertiesTemplate,
   ItemTypeTemplate,
+  IdentifiableTemplate,
   PhysicalItemTemplate,
   EquippableItemTemplate,
   ActivatedEffectTemplate,
@@ -78,7 +80,6 @@ export default class WeaponData extends ItemDataModel.mixin(
         },
         {}
       ),
-      properties: new SetField( new StringField(), { label: "SW5E.ItemWeaponProperties" } ),
       proficient: new NumberField( {
         required: true,
         min: 0,
@@ -111,7 +112,6 @@ export default class WeaponData extends ItemDataModel.mixin(
   /** @inheritdoc */
   static _migrateData( source ) {
     super._migrateData( source );
-    WeaponData.#migratePropertiesData( source );
     WeaponData.#migrateProficient( source );
   }
 
@@ -205,7 +205,7 @@ export default class WeaponData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   get _typeBaseCriticalThreshold() {
-    return Math.max( 15, 20 - ( this.properties.ken ?? 0 ) );
+    return Math.max( 15, 20 - this.getProperty("ken", 0) );
   }
 
   /* -------------------------------------------- */

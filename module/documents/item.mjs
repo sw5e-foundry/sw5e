@@ -845,7 +845,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
   _prepareWeapon() {
     this.labels.armor = this.system.armor.value ? `${this.system.armor.value} ${game.i18n.localize( "SW5E.AC" )}` : "";
     if ( this.system.ammo ) {
-      this.system.ammo.max = this.system.properties.rel || this.system.properties.ovr || 0;
+      this.system.ammo.max = this.system.getProperty("reload", 0) || this.system.getProperty("overheat", 0);
       this.system.ammo.baseUse = 1;
     }
   }
@@ -1125,7 +1125,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
     // TODO: Maybe add flags for the other attack types?
 
     // Get the item's extra damage
-    dice += itemData.properties?.bru ?? 0;
+    dice += itemData.getProperty("bru", 0);
 
     return dice;
   }
@@ -1507,8 +1507,8 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
       const remaining = ammo.quantity - ammo.consumeAmount;
       if ( is.hasReload ) {
         if ( remaining < 0 ) {
-          if ( is.properties.rel ) ui.notifications.warn( game.i18n.format( "SW5E.ItemReloadNeeded", { name: this.name } ) );
-          else if ( is.properties.ovr ) ui.notifications.warn( game.i18n.format( "SW5E.ItemCoolDownNeeded", { name: this.name } ) );
+          if ( is.properties.has("rel") ) ui.notifications.warn( game.i18n.format( "SW5E.ItemReloadNeeded", { name: this.name } ) );
+          else if ( is.properties.has("ovr") ) ui.notifications.warn( game.i18n.format( "SW5E.ItemCoolDownNeeded", { name: this.name } ) );
           return false;
         } else itemUpdates["system.ammo.value"] = remaining;
       } else {
@@ -3492,6 +3492,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
       folder: data.folder,
       hasFolders: folders.length > 0,
       types: types.reduce( ( arr, type ) => {
+        if (CONFIG.SW5E.deprecatedItemTypes.includes( type )) return arr;
         const label = CONFIG[this.documentName]?.typeLabels?.[type] ?? type;
         arr.push( {
           type,

@@ -7,7 +7,7 @@ import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
 
-const { SchemaField, SetField, StringField } = foundry.data.fields;
+const { BooleanField, ForeignDocumentField, SchemaField, SetField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Equipment items.

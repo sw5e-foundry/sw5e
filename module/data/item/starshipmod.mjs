@@ -8,7 +8,7 @@ import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
 
-const { SchemaField, StringField } = foundry.data.fields;
+const { BooleanField, NumberField, SchemaField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Starship Modification items.

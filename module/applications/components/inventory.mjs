@@ -259,6 +259,14 @@ export default class InventoryElement extends HTMLElement {
       group: "state"
     } );
 
+    // Reload Weapon
+    if ( ("ammo" in item.system) && (item.system.ammo.max !== 0) ) options.push({
+      name: item.system.properties?.has("rel") ? "SW5E.ContextMenuActionReload" : "SW5E.ContextMenuActionCoolDown",
+      icon: "<i class='fas fa-raygun fa-fw'></i>",
+      condition: () => item.isOwner && (item.system.ammo.max !== item.system.ammo.value),
+      callback: () => item.sheet._onWeaponReload()
+    });
+
     // Toggle Favorite State
     if ( ( "favorites" in this.actor.system ) ) {
       const uuid = item.getRelativeUUID( this.actor );

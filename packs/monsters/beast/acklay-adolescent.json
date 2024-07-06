@@ -15,18 +15,19 @@
       "system": {
         "description": {
           "value": "<p>If the acklay moves at least 20 feet straight toward a creature and then hits it with a bite attack on the same turn, that target must succeed on a DC 16 Strength saving throw or be knocked prone. If the target is prone, the acklay can make one claw attack against it as a bonus action.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -35,31 +36,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "save",
-        "attackBonus": "0",
         "chatFlavor": "Knocked Prone",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -76,7 +79,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -85,10 +88,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -115,22 +124,24 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+9, Reach 10 ft., One target. <em>Hit : </em>24 (4d8+6) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -143,10 +154,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 10,
@@ -155,22 +167,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": "0",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -201,12 +214,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -215,61 +225,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "aut": false,
-          "bur": null,
-          "def": null,
-          "dex": null,
-          "dir": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "hid": false,
-          "ken": null,
-          "lum": false,
-          "mig": false,
-          "pic": null,
-          "rap": null,
-          "shk": null,
-          "sil": false,
-          "str": null,
-          "vic": null,
-          "mgc": null,
-          "ran": false,
-          "smr": false,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "ilk": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -296,29 +271,31 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+9, Reach 10 ft., One target. <em>Hit : </em>22 (3d10+6) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -327,31 +304,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 10,
-          "long": "",
+          "long": null,
           "units": "ft"
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -382,12 +361,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -396,61 +372,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -484,14 +425,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 6,
-        "save": 6,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 17
+        }
       },
       "dex": {
         "value": 9,
@@ -500,14 +434,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -1,
-        "save": -1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "con": {
         "value": 17,
@@ -516,14 +443,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 3,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 14
+        }
       },
       "int": {
         "value": 3,
@@ -532,14 +452,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -4,
-        "save": -4,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 7
+        }
       },
       "wis": {
         "value": 11,
@@ -548,14 +461,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "cha": {
         "value": 5,
@@ -564,14 +470,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -3,
-        "save": 0,
-        "prof": 3,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 8
+        }
       },
       "hon": {
         "value": 5,
@@ -579,7 +478,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 11,
@@ -587,41 +487,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 13,
         "calc": "natural",
-        "formula": "natural armor",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 95,
         "max": 95,
         "temp": 0,
         "tempmax": 0,
-        "formula": "10d12+30",
-        "min": 0
+        "formula": "10d12+30"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": -1,
-        "prof": 0,
-        "total": -1
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 40,
         "units": "ft",
         "hover": false
@@ -644,16 +540,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -662,16 +551,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -682,57 +564,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 3,
-      "powerdc": 11,
-      "bar1": {
-        "value": 95,
-        "min": 0,
-        "max": 95
-      },
-      "bar2": {
-        "value": 13,
-        "min": 0,
-        "max": 0
-      },
-      "encumbrance": {
-        "value": 2,
-        "max": 1320,
-        "pct": 0.15151515151515152,
-        "encumbered": false
-      },
-      "powerForceLightDC": 11,
-      "powerForceDarkDC": 8,
-      "powerForceUnivDC": 11,
-      "powerTechDC": 7,
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<p>Acklays were amphibious reptillian crustaceans with six deadly claws and razor-sharp teeth native to the planet Vendaxa. They were used as execution beasts by the Geonosians, and one attempted to kill Obi-Wan Kenobi, Anakin Skywalker, and Padmé Amidala in the Petranaki arena prior to the outbreak of the Clone Wars.</p><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Designation</u></td><td style=\"line-height:1.42857\">Non-sentient</td></tr><tr><td style=\"line-height:1.42857\"><u>Classification</u></td><td style=\"line-height:1.42857\"><p>Amphibious crustacean</p></td></tr><tr><td style=\"line-height:1.42857\"><u>Skin color</u></td><td style=\"line-height:1.42857\">Green</td></tr><tr><td style=\"line-height:1.42857\"><u>Distinctions</u></td><td style=\"line-height:1.42857\"><ul><li>Grappling hands</li><li>Stretchy stomachs</li><li>Razor-sharp teeth</li><li>Protective bony nodules</li><li>Hardened, skin covered claws</li><li>Six legs</li><li>Three eyes </li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Homeworld</u></td><td style=\"line-height:1.42857\">Vendaxa</td></tr><tr><td style=\"line-height:1.42857\"><u>Habitat</u></td><td style=\"line-height:1.42857\"><ul><li>Water</li><li>Land</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Diet</u></td><td style=\"line-height:1.42857\">Carnivore</td></tr></tbody></table><h3>Biology and appearance</h3><p>The acklay was a non-sentient mix of crustacean and reptile with amphibious traits that allowed it to inhabit the water and land of its homeworld of Vendaxa. The gigantic creature was protected by a hard, shell-like carapace of bony nodules. They walked on six hardened, skin-covered claws, and had grappling hands. Its mouth was filled with razor-sharp teeth, and used an organ beneath its chin to sense the body electricity given off by its prey, which it would then spear with its pointed legs. The species had stretchy stomachs and three eyes.</p><h3>Behavior</h3><p>Acklays were carnivorous, predatory creatures, and though they typically lived underwater on Vendaxa, they came on land to hunt the planet's plains for lemnai. Surprisingly agile, acklays scuttled around on their six pointed legs, using an organ beneath their chins to sense the body electricity of their prey. They speared their prey with their claws, biting through them with razor-sharp teeth and swallowing them into their stretchy stomachs. Vicious creatures possessing agile fury and bestial rage, acklays were known for their bite, and were strong enough to bite through a polearm and smash a stone pillar to the ground.</p><p>Acklays were known to be used as killer beasts in execution arenas, such as the Petranaki arena on Geonosis. There, Geonosian picadors kept the creatures under control with jabs from long-handled spears, and at other times the beasts were chained.</p><h3>Acklays in the galaxy</h3><p>At least two acklays were kept in the Petranaki arena on Geonosis as of 22 BBY; the mated pair shared a pen, and were utilized as killer beasts by the Geonosians. One of these acklays was unleashed during the attempted execution of Senator Padmé Amidala, Anakin Skywalker, and Obi-Wan Kenobi by the Confederacy of Independent Systems. The acklay was steered towards Kenobi by its picador, although the Jedi Knight outmaneuvered the beast, causing one of its powerful claw strikes to shear the chain binding him to a pillar. The acklay pursued Kenobi, rending holes in the arena floor with vicious stabs of its claw-like legs. Kenobi armed himself with a picador's polearm, though the acklay shrugged off his strikes and bit the spear in two. Ultimately, Kenobi bested the beast after obtaining a lightsaber once Mace Windu's Jedi assault team arrived to battle Count Dooku's battle droids. Kenobi sheared through the acklay's legs, and finished the dangerous beast off with a downward stab with his blade.</p><p>Acklays were present in the Petranaki arena during celebrations for the Eve of Meckgin and Poggle the Lesser's homecoming, and were chained alongside reeks while Poggle announced the Stalgasin hive's involvement in the Death Star project. Even the execution beasts quieted as Poggle made his speech to the hushed arena.</p><p>Acklay were considerated rare during the Imperial Era. One acklay was contained on a Class four container transport, and it was meant to be transported to Emperor's personal zoo before beeing released by Hondo Ohnaka.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Unaligned",
-      "species": "",
+      "species": null,
       "type": {
         "value": "beast",
         "subtype": "",
@@ -744,13 +617,9 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 1800
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 5
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "huge",
@@ -776,15 +645,14 @@
       "languages": {
         "value": [],
         "custom": "-"
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -794,11 +662,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -807,11 +675,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 0,
@@ -820,11 +688,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 6,
-        "passive": 16,
-        "prof": 0,
-        "total": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -833,11 +701,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -846,11 +714,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -859,11 +727,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -872,11 +740,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "passive": 6,
-        "prof": 0,
-        "total": -4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -885,11 +753,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "prof": 0,
-        "total": -4,
-        "passive": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -898,11 +766,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -911,11 +779,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "passive": 6,
-        "prof": 0,
-        "total": -4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -924,11 +792,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "prof": 0,
-        "total": -4,
-        "passive": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 0,
@@ -937,11 +805,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -950,11 +818,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -963,11 +831,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -976,11 +844,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0,
@@ -989,11 +857,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -1002,11 +870,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -1015,11 +883,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "prof": 0,
-        "total": -4,
-        "passive": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
     "tools": {},
@@ -1028,96 +896,67 @@
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1236,10 +1075,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493984361,
-    "modifiedTime": 1699591677420,
+    "modifiedTime": 1720368811013,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!i6mwmR8SGs3OsHy2"

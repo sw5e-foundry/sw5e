@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p>You erect a shelter up to 15 feet long, 10 feet wide, and 10 feet tall, with one-foot-thick walls, a roof, and a floor. It has a single door along its walls in a location of your choice. The building has temperature control and lighting systems, and can withstand harsh winds, heavy rain and snow. Any creature inside the shelter is protected from hazardous environmental effects outside the shelter such as extreme heat or cold. The structure does not provide additional breathing air for anyone inside if the environment it is placed in is not breathable. The shelter can comfortably support up to 5 Medium creatures. For each Medium creature, it can instead support 2 Small creatures. For each Small creature, it can instead support 2 Tiny creatures.</p>\n<p>When you reach 11th level, the shelter can extend up to 30 feet long, 15 feet wide, 15 feet tall, and it can now comfortably support up to 10 Medium creatures. For each Medium creature, it can instead support 2 Small creatures. For each Small creature, it can instead support 2 Tiny creatures. Additionally, when a creature completes a long rest while within your shelter, they regain all spent Hit Dice, instead of only half. When you reach 17th level, the shelter can extend up to 45 feet long, 20 feet wide, 20 feet tall, and it can now comfortably support up to 10 Large creatures. For each Large creature, it can instead support 2 Medium creatures. For each Medium creature, it can instead support 2 Small creatures. For each Small creature, it can instead support 2 Tiny creatures. Additionally, when a creature completes a long rest while within your shelter, their exhaustion level is reduced by 2, instead of only 1.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Construction Engineering) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -91,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1679609438389,
-    "modifiedTime": 1699591595243,
+    "modifiedTime": 1720368721252,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "yoOU4grY5xMWlm2A",

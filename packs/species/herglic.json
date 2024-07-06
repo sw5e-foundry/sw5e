@@ -1,8 +1,173 @@
 {
-  "_id": "69VQjwXwCvkgp135",
   "name": "Herglic",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2801331+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-herglic"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Herglic.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The herglic are a massive race of creatures descended from aquatic mammals, breathing though a blowhole on top of their heads. They are tall and wide, and have smooth, hairless skin that ranged in color from pale blue to black, though some rare individuals may appear pink or have white markings on their sides. Their girth tends to leave them feeling out of place among smaller species; herglic tend to take up two chairs or fill the entire doorway of any establishment they enter that does not cater to beings their size.</p>\n<h2>Society and Culture</h2>\n<p>The herglics are very technologically advanced, developing space flight and hyperdrives and colonizing their sector of the galaxy prior to the formation of the Galactic Republic. Natural explorers and traders, they sailed the cosmos establishing crucial trade routes and gaining prestige. Despite their size, herglic are surprisingly dexterous while working with tools, and are some of the finest engineers in the galaxy. </p>\n<p>Herglics have an inquisitive but practical nature, enjoying travel and having exotic experiences. Their perpetually calm demeanor  helps them interact with most other species peacefully, though when dealing with smaller species, herglics tend to become nervous and self-conscious about their proportions. They also seem to have an innate predilection for gambling and games of chance, which have gotten more than one herglic into trouble on several occasions.</p>\n<h2>Names</h2>\n<p>Male names are typically harsher sounding than female names. Herglics rarely use surnames.</p>\n<p><strong>Male Names.</strong> Biglu, Melchi, Sehvorah</p>\n<p><strong>Female Names.</strong> Mahg-Raet, Seese, Uddn</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "herglic",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "swim": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1ExutkN96fIo1d8B",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WxZQP6aVShp4RURw"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BzaWjpsZbDn13NjX"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bFo5OubmDFrHW7lW"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WFFzYWc4wdkeHupY"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bkxS5QeyPtDZJPtM"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.SGYK85PmcBHmQ7el"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.sZ4UUX9sxiuQ9C8g"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KlaNvkiMA5vvb4ph"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bvyBAClzp1ltvJM0"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IFxEjm47Er1pndeJ"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Crdx007Ame7sDuGz"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1hihJhPRuaLoPdQj",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "int": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1fLHvX0tV2Q1zBCa",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "snqESxBmuXm1EdEz",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:tec"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Black, gray, pale blue, pale pink"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Aquatic organs, massive size"
+    },
+    "heightAverage": {
+      "value": "6'"
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "200 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d8) lb."
+    },
+    "homeworld": {
+      "value": "Giju"
+    },
+    "slanguage": {
+      "value": "Herglese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "YD22dYhkmmoTaN4S",
@@ -80,142 +245,22 @@
       "name": "Herglic",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!69VQjwXwCvkgp135.YD22dYhkmmoTaN4S"
+      "_key": "!items.effects!GkccobxuYBt4NjZM.YD22dYhkmmoTaN4S"
     }
   ],
+  "_id": "GkccobxuYBt4NjZM",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2801331+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-herglic"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The herglic are a massive race of creatures descended from aquatic mammals, breathing though a blowhole on top of their heads. They are tall and wide, and have smooth, hairless skin that ranged in color from pale blue to black, though some rare individuals may appear pink or have white markings on their sides. Their girth tends to leave them feeling out of place among smaller species; herglic tend to take up two chairs or fill the entire doorway of any establishment they enter that does not cater to beings their size.</p>\n<h2>Society and Culture</h2>\n<p>The herglics are very technologically advanced, developing space flight and hyperdrives and colonizing their sector of the galaxy prior to the formation of the Galactic Republic. Natural explorers and traders, they sailed the cosmos establishing crucial trade routes and gaining prestige. Despite their size, herglic are surprisingly dexterous while working with tools, and are some of the finest engineers in the galaxy. </p>\n<p>Herglics have an inquisitive but practical nature, enjoying travel and having exotic experiences. Their perpetually calm demeanor  helps them interact with most other species peacefully, though when dealing with smaller species, herglics tend to become nervous and self-conscious about their proportions. They also seem to have an innate predilection for gambling and games of chance, which have gotten more than one herglic into trouble on several occasions.</p>\n<h2>Names</h2>\n<p>Male names are typically harsher sounding than female names. Herglics rarely use surnames.</p>\n<p><strong>Male Names.</strong> Biglu, Melchi, Sehvorah</p>\n<p><strong>Female Names.</strong> Mahg-Raet, Seese, Uddn</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "herglic",
-    "advancement": [
-      {
-        "_id": "5n0JGvjsjUy11wQH",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.WxZQP6aVShp4RURw",
-            "Compendium.sw5e.speciesfeatures.BzaWjpsZbDn13NjX",
-            "Compendium.sw5e.speciesfeatures.bFo5OubmDFrHW7lW",
-            "Compendium.sw5e.speciesfeatures.WFFzYWc4wdkeHupY",
-            "Compendium.sw5e.speciesfeatures.bkxS5QeyPtDZJPtM",
-            "Compendium.sw5e.speciesfeatures.SGYK85PmcBHmQ7el",
-            "Compendium.sw5e.speciesfeatures.sZ4UUX9sxiuQ9C8g",
-            "Compendium.sw5e.speciesfeatures.KlaNvkiMA5vvb4ph",
-            "Compendium.sw5e.speciesfeatures.bvyBAClzp1ltvJM0",
-            "Compendium.sw5e.speciesfeatures.IFxEjm47Er1pndeJ",
-            "Compendium.sw5e.speciesfeatures.Crdx007Ame7sDuGz"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "18t8u5tBHs4FJhhr",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "str": 2,
-            "int": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "u2skFOVdxKJ16YRX",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1fB4tp3Uv19Z415o",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:tec"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Black, gray, pale blue, pale pink"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Aquatic organs, massive size"
-    },
-    "heightAverage": {
-      "value": "6'"
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "200 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d8) lb."
-    },
-    "homeworld": {
-      "value": "Giju"
-    },
-    "slanguage": {
-      "value": "Herglese"
-    },
-    "movement": {
-      "walk": 30,
-      "swim": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002065,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!69VQjwXwCvkgp135"
+  "_key": "!items!GkccobxuYBt4NjZM"
 }

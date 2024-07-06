@@ -16,22 +16,24 @@
   "system": {
     "description": {
       "value": "<p>Tsiraki is a blue-colored alcoholic beverage crafted from fermented salakberries and pickling spices. As an action, you can apply this substance to a creature within 5 feet. For the next minute, the creature experiences a high that allows them to roll an additional [[/r d3]] when making an ability check, attack roll, or saving throw using Charisma. At the end of the high, the creature must succeed on a DC 14 Constitution saving throw or experience a low that lasts 10 minutes, during which they must roll a [[/r d3]] and subtract the result when making an ability check, attack roll, or saving throw using Charisma. At the end of the low, the creature must make a DC 14 Wisdom saving throw to resist addiction.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 60,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
@@ -44,10 +46,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 5,
@@ -56,21 +59,25 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
       "recovery": "",
-      "autoDestroy": false
+      "autoDestroy": false,
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -81,30 +88,34 @@
       "dc": 14,
       "scaling": "flat"
     },
-    "consumableType": "adrenal",
-    "ammoType": null,
     "properties": {},
-    "armor": {},
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "type": {
+      "value": "substance",
+      "subtype": "beverage"
     },
-    "equiped": false,
-    "weaponType": "",
-    "proficient": false,
-    "baseItem": "tsiraki"
+    "_propertyValues": {},
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493962988,
-    "modifiedTime": 1704036392748,
+    "modifiedTime": 1720368729468,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!2PkZVFdvHngM26O3"

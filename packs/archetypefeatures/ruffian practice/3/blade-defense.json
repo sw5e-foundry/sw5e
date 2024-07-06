@@ -13,48 +13,50 @@
   "system": {
     "description": {
       "value": "<p>You attempt to determine your target's next strike. Roll two Sneak Attack dice, and the target must make a Charisma saving throw. On a failed save, your AC increases by the higher amount rolled on the dice against the first attack it makes against you before the start of your next turn. On a successful save, your AC instead increases by the lower amount.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Ruffian Practice) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -84,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "folder": null,
   "sort": 0,
@@ -93,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426104213,
-    "modifiedTime": 1699591595217,
+    "modifiedTime": 1720368711895,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "od16cTmbcCNjRtn3",

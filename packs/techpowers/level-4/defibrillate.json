@@ -1,115 +1,37 @@
 {
-  "_id": "wus8Z5Px51XxF0iG",
   "name": "Defibrillate",
-  "type": "power",
-  "img": "systems/sw5e/packs/Icons/Tech%20Powers/Defibrillate.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickVersatile": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "use": false,
-          "resource": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:59.1497461+00:00",
       "importer_version": 3,
       "uid": "Power.name-defibrillate.level-4"
     }
   },
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Tech%20Powers/Defibrillate.webp",
   "system": {
     "description": {
       "value": "<p>You touch a creature that has died within the last minute and administer a shock to restore it to life. That creature returns to life with 1 hit point. This power can't return to life a creature that has died of old age, nor can it restore any missing body parts. If the creature is lacking body parts or organs integral for its survival—its head, for instance—the power automatically fails. Once this power has restored a creature to life, it cannot benefit from this power again until it finishes a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
-      "units": null,
-      "type": ""
+      "units": "",
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -118,19 +40,13 @@
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
-    },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
-    "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
@@ -147,14 +63,7 @@
     },
     "level": 4,
     "school": "tec",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": false,
-      "value": ""
-    },
+    "properties": {},
     "materials": {
       "value": "",
       "consumed": false,
@@ -163,23 +72,42 @@
     },
     "preparation": {
       "mode": "prepared",
-      "prepared": true
+      "prepared": false
     },
     "scaling": {
       "mode": "none",
       "formula": null
-    }
+    },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "enchantment": null,
+    "summons": null
   },
+  "effects": [],
+  "_id": "Z8Q0RzAZ3nQIgytR",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494020644,
-    "modifiedTime": 1707077465284,
+    "createdTime": 1720296025398,
+    "modifiedTime": 1720368946986,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!wus8Z5Px51XxF0iG"
+  "_key": "!items!Z8Q0RzAZ3nQIgytR"
 }

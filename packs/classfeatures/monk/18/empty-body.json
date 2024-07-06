@@ -23,62 +23,74 @@
         {
           "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "kinetic"
+          "value": "kinetic",
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "acid"
+          "value": "acid",
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "cold"
+          "value": "cold",
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "energy"
+          "value": "energy",
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "fire"
+          "value": "fire",
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "ion"
+          "value": "ion",
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "lightning"
+          "value": "lightning",
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "necrotic"
+          "value": "necrotic",
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "poison"
+          "value": "poison",
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "poison"
+          "value": "poison",
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "psychic"
+          "value": "psychic",
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "sonic"
+          "value": "sonic",
+          "priority": null
         }
       ],
       "description": "",
@@ -86,83 +98,12 @@
       "statuses": [],
       "flags": {},
       "tint": null,
-      "_key": "!items.effects!h4WPdGXUliSHbSWW.JEcECuosMRNxkmWH",
-      "sort": 0
+      "_key": "!items.effects!h4WPdGXUliSHbSWW.JEcECuosMRNxkmWH"
     }
   ],
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": true,
-          "resource": true,
-          "charge": true
-        },
-        "altValue": {
-          "use": true,
-          "resource": true,
-          "charge": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:58.6620289+00:00",
       "importer_version": 3,
@@ -172,11 +113,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Monk:</strong> 18th level</em></p>\n<p>You can use your action to spend 4 focus points to become invisible for 1 minute. During that time, you also have resistance to all damage but force damage.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk 18",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -189,33 +131,37 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -240,17 +186,26 @@
         "turn": null
       }
     },
-    "className": null
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493962354,
-    "modifiedTime": 1700067414260,
+    "modifiedTime": 1720368728395,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!h4WPdGXUliSHbSWW"

@@ -9,57 +9,44 @@
   },
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Species/Weequay.webp",
-  "effects": [],
   "system": {
     "description": {
       "value": "<p>When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Weequay",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
-      "units": null,
-      "type": ""
+      "units": "",
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": {
-      "threshold": null,
-      "damage": ""
-    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,18 +61,43 @@
       "value": "species",
       "subtype": ""
     },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {},
     "recharge": {
       "value": null,
       "charged": false
     },
     "attributes": {
       "speed": {
-        "space": null,
-        "turn": null
+        "space": 300,
+        "turn": 250
       }
-    },
-    "className": null
+    }
   },
+  "effects": [],
+  "_id": "OqlnFh2m4TrmG39K",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -93,12 +105,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
-    "createdTime": 1667426106902,
-    "modifiedTime": 1699295285466,
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296029297,
+    "modifiedTime": 1720368894242,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_id": "nJp7SOPVDh9Ofl5P",
-  "_key": "!items!nJp7SOPVDh9Ofl5P"
+  "_key": "!items!OqlnFh2m4TrmG39K"
 }

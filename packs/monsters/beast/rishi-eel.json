@@ -15,18 +15,19 @@
       "system": {
         "description": {
           "value": "<p>The eel can burrow through solid rock at half its burrow speed and leaves a 10-foot-diameter tunnel in its wake.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -35,31 +36,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -76,7 +79,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -85,10 +88,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -115,18 +124,19 @@
       "system": {
         "description": {
           "value": "<p>The captain adds 3 to its AC against one melee attack that would hit it. To do so, the captain must see the attacker and be wielding a melee weapon.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "reaction",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -135,31 +145,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -176,7 +188,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -185,10 +197,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -215,29 +233,31 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+10, Reach 10 ft., One target. <em>Hit : </em>23 (3d10+7) kinetic damage.</p><p>If the target is a Medium or smaller creature, it must succeed on a DC 18 Dexterity saving throw or be swallowed by the eel.</p><p></p><p>A swallowed creature is blinded and restrained, it has total cover against attacks and other effects outside the eel, and it takes 17 (5d6) acid damage at the start of each of the eel's turns.</p><p></p><p>If the eel takes 25 damage or more on a single turn from a creature inside it, the eel must succeed on a DC 20 Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, which fall prone in a space within 10 feet of the eel. If the eel dies, a swallowed creature is no longer restrained by it and can escape from the corpse by using 10 feet of movement, exiting prone.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -246,31 +266,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 10,
-          "long": "",
+          "long": null,
           "units": "ft"
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -301,12 +323,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -315,61 +334,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -396,18 +380,19 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>Mand'alor can move up to their speed without provoking opportunity attacks.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "legendary",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -416,31 +401,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -457,7 +444,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -466,10 +453,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -496,18 +489,19 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>Mand'alor makes one weapon attack.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "legendary",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -516,31 +510,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -557,7 +553,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -566,10 +562,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -596,18 +598,19 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>Mand'alor shouts a rallying cry to allies within 60ft that can hear or see them. Whenever Mand'alor or a friendly creature within range makes an attack roll or a saving throw, they can roll a d8 and add the number rolled to the attack roll or saving throw. This aura lasts for one round.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "legendary",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -616,31 +619,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -657,7 +662,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -666,10 +671,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -703,14 +714,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 7,
-        "save": 7,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 18
+        }
       },
       "dex": {
         "value": 7,
@@ -719,14 +723,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -2,
-        "save": -2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 9
+        }
       },
       "con": {
         "value": 20,
@@ -735,14 +732,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 5,
-        "save": 8,
-        "prof": 3,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 16
+        }
       },
       "int": {
         "value": 2,
@@ -751,14 +741,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -4,
-        "save": -4,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 7
+        }
       },
       "wis": {
         "value": 8,
@@ -767,14 +750,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -1,
-        "save": -1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "cha": {
         "value": 4,
@@ -783,14 +759,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -3,
-        "save": 0,
-        "prof": 3,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 8
+        }
       },
       "hon": {
         "value": 4,
@@ -798,7 +767,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 8,
@@ -806,41 +776,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 17,
         "calc": "natural",
-        "formula": "natural armor",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 172,
         "max": 172,
         "temp": 0,
         "tempmax": 0,
-        "formula": "15d12+75",
-        "min": 0
+        "formula": "15d12+75"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": -2,
-        "prof": 0,
-        "total": -2
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 30,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 40,
         "units": "ft",
         "hover": false
@@ -863,16 +829,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -881,16 +840,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -901,57 +853,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 3,
-      "powerdc": 11,
-      "bar1": {
-        "value": 172,
-        "min": 0,
-        "max": 172
-      },
-      "bar2": {
-        "value": 17,
-        "min": 0,
-        "max": 0
-      },
-      "encumbrance": {
-        "value": 1,
-        "max": 1440,
-        "pct": 0.06944444444444445,
-        "encumbered": false
-      },
-      "powerForceLightDC": 10,
-      "powerForceDarkDC": 8,
-      "powerForceUnivDC": 10,
-      "powerTechDC": 7,
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<p>The Rishi eel is a predator native to the Rishi moon. They dwell in caves of the moon's canyons and have a mouth with four mandibles. They are one of several species of eel in the galaxy. Rishi eel blood is almost impossible to remove.</p><p style=\"margin-bottom:10.5px;line-height:1.12em;z-index:15;overflow:hidden\">Rishi is a tropical planet in the Rishi system which is located in the in the Abrion sector of the Outer Rim Territories.</p><p style=\"margin-top:-0.8em;margin-bottom:10.5px;line-height:1.12em;z-index:15;overflow:hidden\"><br /></p><p style=\"margin-top:-0.8em;margin-bottom:10.5px;line-height:1.12em;z-index:15;overflow:hidden\">During the Clone Wars, the Confederacy of Independent Systems attempted to plunder Rishi's rich exonium mines.</p><p style=\"margin-top:-0.8em;margin-bottom:10.5px;line-height:1.12em;z-index:15;overflow:hidden\"><br /></p><p style=\"margin-top:-0.8em;margin-bottom:10.5px;line-height:1.12em;z-index:15;overflow:hidden\">Because of its close proximity to Kamino, Rishi was considered a last defense of the clone-producing planet.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Unaligned",
-      "species": "",
+      "species": null,
       "type": {
         "value": "beast",
         "subtype": "",
@@ -963,13 +906,9 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 3900
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 8
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "huge",
@@ -997,15 +936,14 @@
       "languages": {
         "value": [],
         "custom": ""
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -1015,11 +953,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -1028,11 +966,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 0,
@@ -1041,11 +979,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 7,
-        "passive": 17,
-        "prof": 0,
-        "total": 7
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -1054,11 +992,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -1067,11 +1005,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -1080,11 +1018,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -1093,11 +1031,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "passive": 6,
-        "prof": 0,
-        "total": -4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -1106,11 +1044,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "prof": 0,
-        "total": -4,
-        "passive": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -1119,11 +1057,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -1132,11 +1070,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "passive": 6,
-        "prof": 0,
-        "total": -4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -1145,11 +1083,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "prof": 0,
-        "total": -4,
-        "passive": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 0,
@@ -1158,11 +1096,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -1171,11 +1109,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -1184,11 +1122,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -1197,11 +1135,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0,
@@ -1210,11 +1148,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -1223,11 +1161,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -1236,11 +1174,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "prof": 0,
-        "total": -4,
-        "passive": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
     "tools": {},
@@ -1249,96 +1187,67 @@
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1457,10 +1366,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493984082,
-    "modifiedTime": 1699591677290,
+    "modifiedTime": 1720368801877,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!DXeKcCOrX3kEhTzm"

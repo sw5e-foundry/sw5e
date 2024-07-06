@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Path of Witchcraft:</strong> 7th level</em></p>\n<p>You've learned to attune your senses with nature. If you spend at least 1 minute meditating while in nature, you gain the following benefits for 1 hour:</p>\n<ul>\n<li>You ignore difficult terrain caused by nature.</li>\n<li>You can understand plants within 30 feet of you. They can telepathically communicate simple ideas to you, including memories from within the past day.</li>\n<li>You can command plants within 30 feet of you to create difficult terrain, or other tasks at the GM's discretion (no action required).</li>\n</ul>\n<p>Once you've used this feature, you must complete a short or long rest before you can use it again.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Sentinel (Path of Witchcraft) 7",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -33,33 +34,37 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,24 +79,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Sentinel"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493958018,
-    "modifiedTime": 1699591595207,
+    "modifiedTime": 1720368708657,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!kaWjWEJCL1sSaIC7"

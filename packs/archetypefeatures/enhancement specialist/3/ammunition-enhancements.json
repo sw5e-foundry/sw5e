@@ -13,48 +13,50 @@
   "system": {
     "description": {
       "value": "<p>You know two ammunition enhancements of your choice, which are detailed under \"Ammunition Enhancements\" below, and you earn more at higher levels. Many ammunition enhancements boost an attack in some way. Once per turn when you fire a shot from a blaster as part of the Attack action, you can apply one of your Ammunition Enhancement options to that shot,</p>\n<p>You gain an additional Ammunition Enhancement option of your choice when you reach certain levels in this class: 7th, 10th, 15th, and 18th level. Each option also improves when you become an 18th-level fighter.</p>\n<p>Each time you learn new ammunition enhancements, you can also replace one ammunition enhancement you know with a different one.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Fighter (Enhancement Specialist) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -84,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Fighter"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "folder": null,
   "sort": 0,
@@ -93,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426104178,
-    "modifiedTime": 1699591595241,
+    "modifiedTime": 1720368720417,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "y8z1sDzLBBO8D8HI",

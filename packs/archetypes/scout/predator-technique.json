@@ -16,24 +16,28 @@
   "system": {
     "description": {
       "value": "<h1>Predator Technique</h1>\n<p>Some scouts work in solitude, while others prefer the strength of a group. Followers of the Predator Technique find power lies with the pack; they distract their prey, while their allies go for the kill.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "predatortechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "1QDVzKN6dVbo9a4u",
+        "_id": "1xQpabUzDb1xDALE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.8DGG53yj7eOoAwVW",
-            "Compendium.sw5e.archetypefeatures.MBzjoBmMIrgFze6q",
-            "Compendium.sw5e.archetypefeatures.3fGONRv3flikLZAI"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.8DGG53yj7eOoAwVW"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.MBzjoBmMIrgFze6q"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.3fGONRv3flikLZAI"
+            }
           ],
           "optional": false
         },
@@ -42,11 +46,13 @@
         "title": "Features"
       },
       {
-        "_id": "1Ip3qJUBf0x77F61",
+        "_id": "1zfjfL1xJ26vbABA",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.KKh8VZnbhTMAfXyY"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.KKh8VZnbhTMAfXyY"
+            }
           ],
           "optional": false
         },
@@ -55,11 +61,13 @@
         "title": "Features"
       },
       {
-        "_id": "1hynNMjEc4fNboS0",
+        "_id": "hqryXwtLSst3rdal",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.JCDQRKdrqpvoxE57"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.JCDQRKdrqpvoxE57"
+            }
           ],
           "optional": false
         },
@@ -68,11 +76,13 @@
         "title": "Features"
       },
       {
-        "_id": "1SD9Wd4uIn3E17gL",
+        "_id": "12ighgT5lg691scE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.QiK8clUuVuTqq9YB"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.QiK8clUuVuTqq9YB"
+            }
           ],
           "optional": false
         },
@@ -81,7 +91,7 @@
         "title": "Features"
       },
       {
-        "_id": "8gJ5CrqrXgetp5ZE",
+        "_id": "xa7k0P0TYBVQ7AWe",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -101,7 +111,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -109,10 +119,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959705,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!1NArAZ8FKBEoN6Bg"

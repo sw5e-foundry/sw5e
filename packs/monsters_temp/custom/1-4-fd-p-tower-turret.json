@@ -21,8 +21,7 @@
       "system": {
         "description": {
           "value": "<p> The turret has disadvantage on saving throws against effects that would deal ion or lightning damage.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -40,10 +39,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -54,16 +54,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -93,10 +94,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -131,8 +138,7 @@
       "system": {
         "description": {
           "value": "<p> The construct requires an active gunner to take any actions, and if the gunner is subjected to any conditions that the construct is not immune to, the construct is also subjected to those conditions. The gunner may take their own action or one of the actions granted by the construct.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -150,10 +156,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -164,16 +171,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -203,10 +211,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -241,8 +255,7 @@
       "system": {
         "description": {
           "value": "<p> The turret uses its Intelligence modifier for attack, damage, and intitiative rolls.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -260,10 +273,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -274,16 +288,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -313,10 +328,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -351,8 +372,7 @@
       "system": {
         "description": {
           "value": "<p> The Turret chooses a target within 600 ft and lets loose a blast of energy at the target.  The target must succeed at a DC 16 Dexterity saving throw, or take 28 ([[/r 7d6 + 4]]) energy damage.  Large and larger constructs and structures have disadvantage on the saving throw, and suffer an additional 24 ([[/r 7d6]]) energy damage if they fail the save by 10 or more.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -370,10 +390,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -384,16 +405,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -432,10 +454,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -473,9 +501,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Strength",
-        "mod": 3
+        }
       },
       "dex": {
         "value": 4,
@@ -484,9 +510,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Dexterity",
-        "mod": -3
+        }
       },
       "con": {
         "value": 13,
@@ -495,9 +519,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Constitution",
-        "mod": 1
+        }
       },
       "int": {
         "value": 18,
@@ -506,9 +528,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Intelligence",
-        "mod": 4
+        }
       },
       "wis": {
         "value": 11,
@@ -517,9 +537,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Wisdom",
-        "mod": 0
+        }
       },
       "cha": {
         "value": 4,
@@ -528,9 +546,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Charisma",
-        "mod": -3
+        }
       },
       "hon": {
         "value": 4,
@@ -538,7 +554,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 11,
@@ -546,7 +563,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
@@ -560,23 +578,22 @@
         "max": 52,
         "temp": null,
         "tempmax": null,
-        "formula": "8d10 + 10",
-        "min": 0
+        "formula": "8d10 + 10"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -599,16 +616,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -617,16 +627,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -637,29 +640,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none"
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "exhaustion": 0,
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      },
+      "death": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "success": 0,
+        "failure": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<p>A turret is a mount for a weapon that enabled it to turn and pivot, allowing it to fire in many different directions. They are mounted on many vehicles, starfighters, and starships.  Other turrets are mounted on the ground, and can be both manned and un-manned. Weapons mounted on turrets included laser cannons and other types of projectile cannons.</p>\n<p>Manufactured by Atgar SpaceDefense Corporation, the 1.4 FD P-Tower is a light laser cannon employed as a fixed emplacement anti-vehicle weapon. It is designed to target a variety of enemy vehicles, including repulsortanks and landspeeders, although it has difficulty targeting fast-moving vehicles. The unit is quick to produce and inexpensive.The main bulk of the weapon is a 2.8 meter high energy dish that has sixteen micropower routers spaced evenly along the outer edge, and eight power conversion cells along the interior of the dish. Targeting sensors are placed on the upper edge of the dish, and a single light laser cannon emanates from the center of the dish. To fire the weapon, energy is fed directly into each micropower router which holds the charge until the firing computer registers that the Energy Conversion Point had been achieved. The power conversion cells around the dish glows once the weapon is primed to fire. At that point, the firing computer channels the energy from the routers into the main power converter located at the center of the dish, firing the weapon. The energy beam moves through the discharge barrel, into the galven circuitry and through the focusing lens to produce a low-power beam that is effective against repulsorcraft, landspeeders, and airspeeders.The 1.4 FD P-Tower utilizes an Atgar C-6 battery, which only retains enough power for eight shots before needing to be replaced. The battery is easy to replace when handled by a skilled technician. When hooked up to a power generator, the weapon has unlimited fire capability. The weapon also suffers from a low fire rate, and requires ten seconds to build up an adequate charge.  The visible dish was also a tempting target for opponents, although the weapon itself is protected by light armor plating.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "unaligned",
-      "species": "",
+      "species": null,
       "type": {
         "value": "custom",
         "subtype": "",
@@ -671,9 +693,8 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "SnV",
-      "xp": {
-        "value": 10
+      "source": {
+        "custom": "SnV"
       }
     },
     "traits": {
@@ -708,6 +729,10 @@
       "languages": {
         "value": [],
         "custom": ""
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
@@ -720,6 +745,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ani": {
@@ -728,6 +758,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ath": {
@@ -736,6 +771,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "dec": {
@@ -744,6 +784,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ins": {
@@ -752,6 +797,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "itm": {
@@ -760,6 +810,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "inv": {
@@ -768,6 +823,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "lor": {
@@ -776,6 +836,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "med": {
@@ -784,6 +849,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "nat": {
@@ -792,6 +862,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "pil": {
@@ -800,6 +875,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "prc": {
@@ -809,7 +889,11 @@
           "check": "",
           "passive": ""
         },
-        "proficient": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -817,6 +901,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "per": {
@@ -825,6 +914,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "slt": {
@@ -833,6 +927,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ste": {
@@ -841,6 +940,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "sur": {
@@ -849,6 +953,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "tec": {
@@ -857,6 +966,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       }
     },
@@ -866,73 +980,55 @@
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       }
     },
     "bonuses": {
@@ -975,11 +1071,10 @@
         "max": 0
       },
       "lair": {
-        "value": 0,
+        "value": false,
         "initiative": 0
       }
-    },
-    "source": "SnV"
+    }
   },
   "ownership": {
     "default": 0
@@ -1052,10 +1147,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493994442,
-    "modifiedTime": 1703969525129,
+    "modifiedTime": 1720401980132,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!iiEpt7tN3CzDdtla"

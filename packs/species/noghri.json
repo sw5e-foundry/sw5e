@@ -1,8 +1,174 @@
 {
-  "_id": "KrhqL2dbdh6LPvYf",
   "name": "Noghri",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2871287+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-noghri"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Noghri.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Noghri are a primitive humanoid species hailed from the planet Honoghr with steely gray-blue skin that are renowned assassins. A natural gift for stealth and hand-to-hand combat, Noghri are efficient killing machines with their rending claws and strong olfactory sense that can often determine familial lineage. Their smaller size belies their ruthlessness and potent hunting skills.</p>\n<h2>Society and Culture</h2>\n<p>Noghri culture relies heavily on honor, with society being clan-based, revolving around the Dukha, a community center in each village. The greatest strength of the Noghri stems from their loyalty and secrecy; when a Noghri takes a job, they always fulfill it, even if it would result in their death. As such, they make exceptional, albeit expensive bodyguards.</p>\n<p>Noghri are loathe to fight with weapons larger than small daggers, believing combat to be a personal celebration to be sullied by use of heavier weapons. As such, it is rare (though not impossible) to see a Noghri wielding a weapon larger than their forearm.</p>\n<p>Each Noghri clan village centers around the Dukha, with each clan being led by a Dynast. The Dukha is inhabited by the clan's Maitrakh, who functions as the storyteller, spiritual leader, and lore keep of the clan.</p>\n<h2>Names</h2>\n<p>Noghri names vary from short to long, with female names being typically softer. Surnames are clan-based.</p>\n<p><strong>Male Names.</strong> Cakhmaim, Ezrakh, Khabarakh, Rukh</p>\n<p><strong>Female Names.</strong> Cilnaas, Edvir, Kahr'corvh, Meewalh</p>\n<p><strong>Surnames.</strong> Bakh'tor, Eikh'mir, Hakh'khar, Khim'bar</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "noghri",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "tkwSZ6jyUDU1iSOJ",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KrlCEzrD8dDPG0QJ"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2T2nZDa9Zkkt3Boa"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Mk2TgzEAzLFIsLdL"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2UKEa6vmiglXfz7n"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lxLRbyQ8tmqYI6nU"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DGcrLArBwZvWQAxY"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.81Tlj2L03IvjZ9tR"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.D3prlwhPdwZoPD1x"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Ib8FIcPAu9WgXQ3c"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Y0He91hXBiVwSvyF"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.EnJsQrV92NuFHO1S"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1itEnfdoBAFz109w",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "str": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "hLoM8yO0Zgh1dzY1",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1GU1OdT3H4lfzLEN",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:sur",
+            "skills:ste"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Bluish-gray"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Brown"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Advanced olfactory senses, claws, hunting prowess."
+    },
+    "heightAverage": {
+      "value": "4'5\""
+    },
+    "heightRollMod": {
+      "value": "+2d6\""
+    },
+    "weightAverage": {
+      "value": "115 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Honoghr"
+    },
+    "slanguage": {
+      "value": "Honoghran"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "w8pDMiVbU1LKs1JQ",
@@ -72,8 +238,7 @@
       "name": "Noghri",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!KrhqL2dbdh6LPvYf.w8pDMiVbU1LKs1JQ"
+      "_key": "!items.effects!8JLRZDmKG8RIOPTo.w8pDMiVbU1LKs1JQ"
     },
     {
       "_id": "Z7CSYhnx99Q954zc",
@@ -107,142 +272,22 @@
       "name": "Keen Smell",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!KrhqL2dbdh6LPvYf.Z7CSYhnx99Q954zc"
+      "_key": "!items.effects!8JLRZDmKG8RIOPTo.Z7CSYhnx99Q954zc"
     }
   ],
+  "_id": "8JLRZDmKG8RIOPTo",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2871287+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-noghri"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Noghri are a primitive humanoid species hailed from the planet Honoghr with steely gray-blue skin that are renowned assassins. A natural gift for stealth and hand-to-hand combat, Noghri are efficient killing machines with their rending claws and strong olfactory sense that can often determine familial lineage. Their smaller size belies their ruthlessness and potent hunting skills.</p>\n<h2>Society and Culture</h2>\n<p>Noghri culture relies heavily on honor, with society being clan-based, revolving around the Dukha, a community center in each village. The greatest strength of the Noghri stems from their loyalty and secrecy; when a Noghri takes a job, they always fulfill it, even if it would result in their death. As such, they make exceptional, albeit expensive bodyguards.</p>\n<p>Noghri are loathe to fight with weapons larger than small daggers, believing combat to be a personal celebration to be sullied by use of heavier weapons. As such, it is rare (though not impossible) to see a Noghri wielding a weapon larger than their forearm.</p>\n<p>Each Noghri clan village centers around the Dukha, with each clan being led by a Dynast. The Dukha is inhabited by the clan's Maitrakh, who functions as the storyteller, spiritual leader, and lore keep of the clan.</p>\n<h2>Names</h2>\n<p>Noghri names vary from short to long, with female names being typically softer. Surnames are clan-based.</p>\n<p><strong>Male Names.</strong> Cakhmaim, Ezrakh, Khabarakh, Rukh</p>\n<p><strong>Female Names.</strong> Cilnaas, Edvir, Kahr'corvh, Meewalh</p>\n<p><strong>Surnames.</strong> Bakh'tor, Eikh'mir, Hakh'khar, Khim'bar</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "noghri",
-    "advancement": [
-      {
-        "_id": "tB0IPMNjuCMxG0ck",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.KrlCEzrD8dDPG0QJ",
-            "Compendium.sw5e.speciesfeatures.2T2nZDa9Zkkt3Boa",
-            "Compendium.sw5e.speciesfeatures.Mk2TgzEAzLFIsLdL",
-            "Compendium.sw5e.speciesfeatures.2UKEa6vmiglXfz7n",
-            "Compendium.sw5e.speciesfeatures.lxLRbyQ8tmqYI6nU",
-            "Compendium.sw5e.speciesfeatures.DGcrLArBwZvWQAxY",
-            "Compendium.sw5e.speciesfeatures.81Tlj2L03IvjZ9tR",
-            "Compendium.sw5e.speciesfeatures.D3prlwhPdwZoPD1x",
-            "Compendium.sw5e.speciesfeatures.Ib8FIcPAu9WgXQ3c",
-            "Compendium.sw5e.speciesfeatures.Y0He91hXBiVwSvyF",
-            "Compendium.sw5e.speciesfeatures.EnJsQrV92NuFHO1S"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "15rTofvRANcy1LLZ",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "dex": 2,
-            "str": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1lW3JJg22PVJwwWP",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "FG5rZBqNe94sw1Pq",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:sur",
-            "skills:ste"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Bluish-gray"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Brown"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Advanced olfactory senses, claws, hunting prowess."
-    },
-    "heightAverage": {
-      "value": "4'5\""
-    },
-    "heightRollMod": {
-      "value": "+2d6\""
-    },
-    "weightAverage": {
-      "value": "115 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Honoghr"
-    },
-    "slanguage": {
-      "value": "Honoghran"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002084,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!KrhqL2dbdh6LPvYf"
+  "_key": "!items!8JLRZDmKG8RIOPTo"
 }

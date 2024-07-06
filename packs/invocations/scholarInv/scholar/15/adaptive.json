@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> 15th level</em></p>\n<p>When the target of your Critical Analysis feature is reduced to 0 hit points, you can use your reaction to change the target of your analysis to another creature within range.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scholar 15",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -84,17 +89,26 @@
         "turn": null
       }
     },
-    "className": null
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493981042,
-    "modifiedTime": 1699591665851,
+    "modifiedTime": 1720368786743,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!HVEhmRaHaSmiDv8X"

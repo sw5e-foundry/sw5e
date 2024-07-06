@@ -21,8 +21,7 @@
       "system": {
         "description": {
           "value": "<p> A melee weapon does one extra die of damage when the wookiee hits with it (included in the attack).</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -40,10 +39,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -54,16 +54,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -93,10 +94,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -131,8 +138,7 @@
       "system": {
         "description": {
           "value": "<p> The wookiee's weapon attacks score a critical hit on a roll of 18-20.  When the wookiee scores a critical hit, it rolls the damage dice three times, instead of twice.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -150,10 +156,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -164,16 +171,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -203,10 +211,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -241,8 +255,7 @@
       "system": {
         "description": {
           "value": "<p> If the wookiee surprises a creature during the first round of combat, the wookiee has advantage on the first attack roll against that creature.  If the attack hits, it is considered a critical hit.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -260,10 +273,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -274,16 +288,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -313,10 +328,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -351,8 +372,7 @@
       "system": {
         "description": {
           "value": "<p> The wookiee makes two melee or two ranged weapon attacks.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -370,10 +390,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -384,16 +405,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -423,10 +445,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -461,24 +489,24 @@
       "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p> Melee Weapon Attack: +7 to hit, one target. Hit: 13 ([[/r 2d8 + 4]]) kinetic damage or 15 ([[/r 2d10 + 4]]) kinetic damage if wielded with two hands.</p>\n</section>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
         "source": {
           "custom": "SnV"
         },
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -491,10 +519,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -505,16 +534,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -549,12 +579,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -563,70 +590,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "mgc": null,
-          "aut": null,
-          "bur": null,
-          "dir": null,
-          "hvy": null,
-          "hid": null,
-          "ken": null,
-          "pic": null,
-          "ran": null,
-          "rap": null,
-          "rel": null,
-          "smr": null,
-          "spc": null,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": null,
-          "dgd": null,
-          "dis": null,
-          "dpt": null,
-          "dou": null,
-          "fin": null,
-          "fix": null,
-          "ilk": null,
-          "lgt": null,
-          "lum": null,
-          "mig": null,
-          "mod": null,
-          "neu": null,
-          "pen": null,
-          "pcl": null,
-          "rch": null,
-          "rck": null,
-          "ret": null,
-          "shk": null,
-          "sil": null,
-          "slg": null,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": null,
-          "thr": null,
-          "two": null,
-          "ver": null,
-          "con": null,
-          "exp": null,
-          "hom": null,
-          "ion": null,
-          "mlt": null,
-          "ovr": null,
-          "pow": null,
-          "sat": null,
-          "zon": null
-        },
+        "properties": {},
         "proficient": 1,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
+        },
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "effects": [],
       "folder": null,
@@ -661,24 +644,24 @@
       "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p> Ranged Weapon Attack: +7 to hit, range 40/160 ft., one target. Hit: 9 ([[/r 1d10 + 4]]) energy damage.</p>\n</section>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
         "source": {
           "custom": "SnV"
         },
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -691,10 +674,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 40,
@@ -705,16 +689,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "rwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -749,12 +734,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -763,70 +745,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "mgc": null,
-          "aut": null,
-          "bur": null,
-          "dir": null,
-          "hvy": null,
-          "hid": null,
-          "ken": null,
-          "pic": null,
-          "ran": null,
-          "rap": null,
-          "rel": null,
-          "smr": null,
-          "spc": null,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": null,
-          "dgd": null,
-          "dis": null,
-          "dpt": null,
-          "dou": null,
-          "fin": null,
-          "fix": null,
-          "ilk": null,
-          "lgt": null,
-          "lum": null,
-          "mig": null,
-          "mod": null,
-          "neu": null,
-          "pen": null,
-          "pcl": null,
-          "rch": null,
-          "rck": null,
-          "ret": null,
-          "shk": null,
-          "sil": null,
-          "slg": null,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": null,
-          "thr": null,
-          "two": null,
-          "ver": null,
-          "con": null,
-          "exp": null,
-          "hom": null,
-          "ion": null,
-          "mlt": null,
-          "ovr": null,
-          "pow": null,
-          "sat": null,
-          "zon": null
-        },
+        "properties": {},
         "proficient": 1,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
+        },
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "effects": [],
       "folder": null,
@@ -861,8 +799,7 @@
       "system": {
         "description": {
           "value": "<p> (Recharge 5-6) The wookiee sprays a 10-foot-cube area within 40 feet Each creature in the area must make a DC 15 Dexterity saving throw, taking 9 ([[/r 1d10 + 4]]) energy damage on a failed save.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -880,10 +817,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 10,
+          "value": "10",
           "width": null,
           "units": "ft",
-          "type": "cube"
+          "type": "cube",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -894,16 +832,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "save",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -938,10 +877,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -979,9 +924,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Strength",
-        "mod": 4
+        }
       },
       "dex": {
         "value": 18,
@@ -990,9 +933,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Dexterity",
-        "mod": 4
+        }
       },
       "con": {
         "value": 14,
@@ -1001,9 +942,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Constitution",
-        "mod": 2
+        }
       },
       "int": {
         "value": 11,
@@ -1012,9 +951,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Intelligence",
-        "mod": 0
+        }
       },
       "wis": {
         "value": 15,
@@ -1023,9 +960,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Wisdom",
-        "mod": 2
+        }
       },
       "cha": {
         "value": 10,
@@ -1034,9 +969,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Charisma",
-        "mod": 0
+        }
       },
       "hon": {
         "value": 10,
@@ -1044,7 +977,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 15,
@@ -1052,7 +986,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
@@ -1066,23 +1001,22 @@
         "max": 117,
         "temp": null,
         "tempmax": null,
-        "formula": "18d8 + 36",
-        "min": 0
+        "formula": "18d8 + 36"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -1105,16 +1039,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -1123,16 +1050,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -1143,29 +1063,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none"
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "exhaustion": 0,
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      },
+      "death": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "success": 0,
+        "failure": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<p>Wookiees are a tall species of furry humanoids from the planet Kashyyyk, who grow to a height of nearly three meters. They are covered from head to toe in a thick, shaggy coat of hair with water-shedding properties that notably comes in shades of brown, black, gray, and white. The species has two sexes, female and male. The latter grow long beards in adult life. Wookiee eye color ranges from blue to brown. Wookiees are big eaters, with the average adult requiring 3,500-6,000 calories a day of food.Wookiees have extendable claws which they use for climbing; using them for anything else violates the Wookiee honor code. Despite their fearsome appearance and volatile temperament, Wookiees are regarded as intelligent, sophisticated, loyal and trusting. When angered, Wookiees are known to descend into a berserker rage. Wookiees have a long lifespan, appearing not to age over a span of fifty years. <strong><em>History.</em></strong> The softening and repeal of anti-slavery laws under the Empire ultimately led to classifying the Wookiees as non-sentient. The Empire enslaved the Wookiees not because they were a meaningful threat to the Empire but because their massive, robust physiology allowed them to work long and hard in extreme conditions. As a result, many Wookiees were forced into slavery building much of the Imperial war machine, sent to be worked to death in the dangerous spice mines of the planet Kessel, or on construction sites such as the Death Star. Numerous Wookiees were bred for use in medical experimentation, and some were used as playthings, hunted for sport, or forced into gladiatorial combat.  Some of these wookiees turned towards darker pursuits after their rough treatment, such as the infamous bounty hunter Black Krrsantan.</p>\n<p>None</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "unaligned",
-      "species": "",
+      "species": null,
       "type": {
         "value": "custom",
         "subtype": "",
@@ -1177,9 +1116,8 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "SnV",
-      "xp": {
-        "value": 10
+      "source": {
+        "custom": "SnV"
       }
     },
     "traits": {
@@ -1209,6 +1147,10 @@
           "shyriiwook"
         ],
         "custom": ""
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
@@ -1221,6 +1163,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ani": {
@@ -1229,6 +1176,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ath": {
@@ -1237,6 +1189,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "dec": {
@@ -1245,6 +1202,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ins": {
@@ -1253,6 +1215,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "itm": {
@@ -1261,6 +1228,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "inv": {
@@ -1269,6 +1241,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "lor": {
@@ -1277,6 +1254,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "med": {
@@ -1285,6 +1267,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "nat": {
@@ -1293,6 +1280,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "pil": {
@@ -1301,6 +1293,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "prc": {
@@ -1310,7 +1307,11 @@
           "check": "",
           "passive": ""
         },
-        "proficient": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -1318,6 +1319,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "per": {
@@ -1326,6 +1332,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "slt": {
@@ -1334,6 +1345,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ste": {
@@ -1343,7 +1359,11 @@
           "check": "",
           "passive": ""
         },
-        "proficient": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -1352,7 +1372,11 @@
           "check": "",
           "passive": ""
         },
-        "proficient": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -1360,6 +1384,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       }
     },
@@ -1369,73 +1398,55 @@
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1478,11 +1489,10 @@
         "max": 0
       },
       "lair": {
-        "value": 0,
+        "value": false,
         "initiative": 0
       }
-    },
-    "source": "SnV"
+    }
   },
   "ownership": {
     "default": 0
@@ -1555,10 +1565,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493994515,
-    "modifiedTime": 1703969525129,
+    "modifiedTime": 1720401980132,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!sJ3CEQIQ7Y8tvSKL"

@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p>This augmentation replaces an eye.</p>\n<p>As an action, you can remove or replace this eye. While removed, the eye sprouts eight small legs, has a speed of 15 feet, an AC of 10, and 1 hit point. If it dies, you can't use it again until you complete a long rest. As an action on each of your turns, you can move the eye up to its speed as long as it is within 30 feet of you. You can see through both the detached eye and your remaining eye at the same time, or you can use your action to see through only one eye or the other.</p>\n<p>You can choose this modification multiple times.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Biotech Engineering)",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -84,17 +89,26 @@
         "turn": null
       }
     },
-    "className": "Engineer"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493981008,
-    "modifiedTime": 1699591665845,
+    "modifiedTime": 1720368785673,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!9YrYiBwHHlyuqlOs"

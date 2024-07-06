@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Makashi Form:</strong> 3rd level</em></p>\n<p>You gain the following Channel the Force option.</p>\n<h3>Makashi Riposte</h3>\n<p>When another creature damages you with a melee attack, you can expend a use of your Channel the Force and use your reaction to attempt to deflect the attack. When you do so, the damage you take from the attack is reduced by [[/r 1d10]] + your Dexterity modifier + your guardian level.</p>\n<p>If you reduce the damage to 0, you can immediately make a single melee weapon attack against that creature as a part of the reaction.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Makashi Form) 3",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -91,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1680288495921,
-    "modifiedTime": 1704036421154,
+    "modifiedTime": 1720368698003,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "U6qtLh1iUeygUbxl",

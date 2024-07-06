@@ -13,48 +13,50 @@
   "system": {
     "description": {
       "value": "<p>If the creature is a willing ally and volunteers to be grappled, you throw the target into any unoccupied space within 60 feet. That creature may immediately use its reaction to make one melee weapon attack, adding your Strength modifier to the attack's damage roll.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Berserker (Bloodstorm Approach) 10",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -84,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Berserker"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "folder": null,
   "sort": 0,
@@ -93,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426104168,
-    "modifiedTime": 1699591595186,
+    "modifiedTime": 1720368701091,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "YDSKOTBsH2rWpOkk",

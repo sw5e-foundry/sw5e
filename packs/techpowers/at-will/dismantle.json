@@ -1,119 +1,37 @@
 {
-  "_id": "HgxDfHVhCY4NCNhO",
   "name": "Dismantle",
-  "type": "power",
-  "img": "systems/sw5e/packs/Icons/Tech%20Powers/Dismantle.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [
-          true
-        ],
-        "altValue": [
-          true
-        ],
-        "context": []
-      },
-      "quickVersatile": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": true,
-          "resource": true
-        },
-        "altValue": {
-          "use": true,
-          "resource": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:03.1884037+00:00",
       "importer_version": 3,
       "uid": "Power.name-dismantle.level-0"
     }
   },
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Tech%20Powers/Dismantle.webp",
   "system": {
     "description": {
       "value": "<p>You break or tear an unenhanced structure or object you touch that is not being worn or carried by a creature other than you. The break or tear can be up to 1 foot in any dimension. When cast this in this way, this power has a casting time of 1 minute.</p>\n<p>Alternatively, you can touch a droid or construct when you cast this power. Make a melee tech attack against the target. On a hit, the target takes [[/r 1d6]] energy damage. When cast in this way, this power has a casting time of 1 action.</p>\n<p>This power's damage increases by [[/r 1d6]] when you reach 5th level ([[/r 2d6]]), 11th level ([[/r 3d6]]), and 17th level ([[/r 4d6]]).</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "none",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
-      "units": null,
-      "type": ""
+      "units": "",
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -122,19 +40,13 @@
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
-    },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "ability": null,
     "actionType": "mpak",
-    "attackBonus": 0,
-    "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
@@ -156,14 +68,7 @@
     },
     "level": 0,
     "school": "tec",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": false,
-      "value": ""
-    },
+    "properties": {},
     "materials": {
       "value": "",
       "consumed": false,
@@ -172,23 +77,42 @@
     },
     "preparation": {
       "mode": "prepared",
-      "prepared": true
+      "prepared": false
     },
     "scaling": {
       "mode": "atwill",
       "formula": null
-    }
+    },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "enchantment": null,
+    "summons": null
   },
+  "effects": [],
+  "_id": "eBi0uKqbCIeWN4qC",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494020532,
-    "modifiedTime": 1707077465284,
+    "createdTime": 1720296025398,
+    "modifiedTime": 1720368947240,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!HgxDfHVhCY4NCNhO"
+  "_key": "!items!eBi0uKqbCIeWN4qC"
 }

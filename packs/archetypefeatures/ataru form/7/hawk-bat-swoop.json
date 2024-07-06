@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Ataru Form:</strong> 7th level</em></p>\n<p>You gain the ability to move along vertical surfaces without falIing during the move. If you end your turn in the air, you fall immediately to the ground.</p>\n<p>Additionally, you no longer take damage when falling from a distance no greater than your walking speed.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Ataru Form) 7",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,24 +79,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Guardian"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493958128,
-    "modifiedTime": 1699591595219,
+    "modifiedTime": 1720368712781,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!pSIYfBgzCCVYDmII"

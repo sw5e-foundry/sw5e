@@ -21,8 +21,7 @@
       "system": {
         "description": {
           "value": "<p> The bor gullet is aware of the presence of creatures within 1 mile of it that have an Intelligence score of 4 or higher. It knows the distance and direction to each such creature, as well as each such creature's intelligence score, but it can't sense anything else about it. Droids and creatures protected by a mind blank power or other similar power cannot be perceived in this manner.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -40,10 +39,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -54,16 +54,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -93,10 +94,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -131,8 +138,7 @@
       "system": {
         "description": {
           "value": "<p> The bor gullet has advantage on saving throws against being charmed and frightened, and it can't be put to sleep.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -150,10 +156,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -164,16 +171,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -203,10 +211,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -241,8 +255,7 @@
       "system": {
         "description": {
           "value": "<p> If the bor gullet fails a saving throw, it can choose to succeed instead.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -260,10 +273,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -274,16 +288,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -313,10 +328,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -351,8 +372,7 @@
       "system": {
         "description": {
           "value": "<p> The bor gullet can establish a psychic link with any creature that it successfully grapples with its tentacles. Until the psychic link ends, the bor gullet can perceive everything the target senses. The target is aware that its mind is linked, and the bor gullet can terminate the link at any time (no action required). The target can use an action on its turn to attempt to break the psychic link, doing so with a successful DC 18 Intelligence saving throw. On a successful save, the target takes 10 ([[/r 3d6]]) psychic damage. The psychic link also ends if the target and the bor gullet are more than 1 mile apart, with no consequences to the target. The bor gullet can form psychic links with up to ten creatures at a time.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -370,10 +390,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -384,16 +405,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -423,10 +445,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -461,8 +489,7 @@
       "system": {
         "description": {
           "value": "<p> The bor gullet makes three tentacle attacks.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -480,10 +507,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -494,16 +522,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -533,10 +562,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -571,8 +606,7 @@
       "system": {
         "description": {
           "value": "<p> The bor gullet makes a tentacle attack.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -590,10 +624,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -604,16 +639,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -643,10 +679,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -681,8 +723,7 @@
       "system": {
         "description": {
           "value": "<p> The bor gullet emits psychic energy. Creatures of the bor gullet's choice within 60 feet of it must succeed on a DC 18 Intelligence saving throw or take 32 ([[/r 5d10 + 5]]) psychic damage and be stunned for 1 minute. A target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -700,10 +741,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -714,16 +756,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "save",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -758,10 +801,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -796,8 +845,7 @@
       "system": {
         "description": {
           "value": "<p> The bor gullet targets a creature with which it has a psychic link. The bor gullet gains insight into the target's emotional state and any thoughts that loom large in its mind (including worries, loves, and hates). The bor gullet can also make a Charisma (Deception) check with advantage to deceive the target's mind into thinking it believes one idea or feels a particular emotion. The target contests this attempt with a Wisdom (Insight) check. If the bor gullet succeeds, the mind believes the deception for 1 hour or until evidence of the lie is presented to the target.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -815,10 +863,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -829,16 +878,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -868,10 +918,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -906,8 +962,7 @@
       "system": {
         "description": {
           "value": "<p> The bor gullet targets a creature within 120 feet of it with which it has a psychic link. The bor gullet breaks the creature's concentration on a power it is using. The creature also takes [[/r 1d4]] psychic damage per level of the power.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -925,10 +980,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -939,16 +995,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -983,10 +1040,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -1021,8 +1084,7 @@
       "system": {
         "description": {
           "value": "<p> The bor gullet targets a creature within 120 feet of it with which it has a psychic link. Enemies of the bor gullet within 10 feet of that creature take 10 ([[/r 3d6]]) psychic damage.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -1040,10 +1102,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1054,16 +1117,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -1098,10 +1162,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -1136,8 +1206,7 @@
       "system": {
         "description": {
           "value": "<p> The bor gullet targets a creature within 120 feet of it with which it has a psychic link. The bor gullet ends the link, causing the creature to have disadvantage on all ability checks, attack rolls, and saving throws until the end of the creature's next turn.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -1155,10 +1224,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1169,16 +1239,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -1208,10 +1279,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -1249,9 +1326,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Strength",
-        "mod": 3
+        }
       },
       "dex": {
         "value": 8,
@@ -1260,9 +1335,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Dexterity",
-        "mod": -1
+        }
       },
       "con": {
         "value": 18,
@@ -1271,9 +1344,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Constitution",
-        "mod": 4
+        }
       },
       "int": {
         "value": 20,
@@ -1282,9 +1353,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Intelligence",
-        "mod": 5
+        }
       },
       "wis": {
         "value": 18,
@@ -1293,9 +1362,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Wisdom",
-        "mod": 4
+        }
       },
       "cha": {
         "value": 17,
@@ -1304,9 +1371,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Charisma",
-        "mod": 3
+        }
       },
       "hon": {
         "value": 17,
@@ -1314,7 +1379,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 18,
@@ -1322,7 +1388,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
@@ -1336,23 +1403,22 @@
         "max": 180,
         "temp": null,
         "tempmax": null,
-        "formula": "19d10 + 76",
-        "min": 0
+        "formula": "19d10 + 76"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -1375,16 +1441,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -1393,16 +1452,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -1413,29 +1465,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none"
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "exhaustion": 0,
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      },
+      "death": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "success": 0,
+        "failure": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<p>Bor gullets are a non-sentient, tentacled species found in the galaxy. They have the unique ability to read minds, with the unfortunate side-effect of causing insanity.  As a result, they were often used as a form of torture. Notably, Saw Gerrera's Partisans owned a bor gullet, and Harra the Hutt had collected a bor gullet in her menagerie on the planet Vodran.</p>\n<p>None</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "unaligned",
-      "species": "",
+      "species": null,
       "type": {
         "value": "custom",
         "subtype": "",
@@ -1447,9 +1518,8 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "SnV",
-      "xp": {
-        "value": 10
+      "source": {
+        "custom": "SnV"
       }
     },
     "traits": {
@@ -1480,6 +1550,10 @@
       "languages": {
         "value": [],
         "custom": "understands galactic basic but can't speak; telepathy 120 ft."
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
@@ -1492,6 +1566,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ani": {
@@ -1500,6 +1579,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ath": {
@@ -1508,6 +1592,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "dec": {
@@ -1517,7 +1606,11 @@
           "check": "",
           "passive": ""
         },
-        "proficient": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -1526,7 +1619,11 @@
           "check": "",
           "passive": ""
         },
-        "proficient": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -1534,6 +1631,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "inv": {
@@ -1542,6 +1644,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "lor": {
@@ -1551,7 +1658,11 @@
           "check": "",
           "passive": ""
         },
-        "proficient": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -1559,6 +1670,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "nat": {
@@ -1567,6 +1683,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "pil": {
@@ -1575,6 +1696,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "prc": {
@@ -1584,7 +1710,11 @@
           "check": "",
           "passive": ""
         },
-        "proficient": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -1592,6 +1722,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "per": {
@@ -1601,7 +1736,11 @@
           "check": "",
           "passive": ""
         },
-        "proficient": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -1609,6 +1748,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ste": {
@@ -1617,6 +1761,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "sur": {
@@ -1625,6 +1774,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "tec": {
@@ -1633,6 +1787,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       }
     },
@@ -1642,73 +1801,55 @@
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1751,11 +1892,10 @@
         "max": 0
       },
       "lair": {
-        "value": 0,
+        "value": false,
         "initiative": 0
       }
-    },
-    "source": "SnV"
+    }
   },
   "ownership": {
     "default": 0
@@ -1828,10 +1968,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493994640,
-    "modifiedTime": 1703969525129,
+    "modifiedTime": 1720401980132,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!xI6mPGgpz17LuKrE"

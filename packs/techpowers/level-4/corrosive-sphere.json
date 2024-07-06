@@ -1,142 +1,52 @@
 {
-  "_id": "AxqA07CwS5H6tBKi",
   "name": "Corrosive Sphere",
-  "type": "power",
-  "img": "systems/sw5e/packs/Icons/Tech%20Powers/CorrosiveSphere.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [
-          true,
-          true
-        ],
-        "altValue": [
-          true,
-          true
-        ],
-        "context": []
-      },
-      "quickVersatile": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "use": false,
-          "resource": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:59.1467481+00:00",
       "importer_version": 3,
       "uid": "Power.name-corrosive_sphere.level-4"
     }
   },
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Tech%20Powers/CorrosiveSphere.webp",
   "system": {
     "description": {
       "value": "<p>You create a globule of acid and hurl it at a point within range, where it explodes in a 20-foot-radius sphere. Each creature in that area must make a Dexterity saving throw. On a failed save, a creature takes [[/r 10d4]] acid damage and another [[/r 5d4]] acid damage at the end of its next turn. On a successful save, a creature takes half the initial damage and no damage at the end of its next turn.</p>\n<p><strong><em>Overcharge Tech.</em></strong> When you cast this power using a tech slot of 5th level or higher, the initial damage increases by [[/r 2d4]] for each slot level above 4th.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
       "value": "20",
       "width": null,
       "units": "ft",
-      "type": "sphere"
+      "type": "sphere",
+      "prompt": true
     },
     "range": {
-      "value": "150",
+      "value": 150,
       "long": null,
       "units": "ft"
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
-    },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
-    "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
@@ -162,14 +72,7 @@
     },
     "level": 4,
     "school": "tec",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": false,
-      "value": ""
-    },
+    "properties": {},
     "materials": {
       "value": "",
       "consumed": false,
@@ -178,23 +81,42 @@
     },
     "preparation": {
       "mode": "prepared",
-      "prepared": true
+      "prepared": false
     },
     "scaling": {
       "mode": "level",
       "formula": "2d4"
-    }
+    },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "enchantment": null,
+    "summons": null
   },
+  "effects": [],
+  "_id": "bESXXZRiJR1ufHXi",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494020513,
-    "modifiedTime": 1707077465284,
+    "createdTime": 1720296025398,
+    "modifiedTime": 1720401973099,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!AxqA07CwS5H6tBKi"
+  "_key": "!items!bESXXZRiJR1ufHXi"
 }

@@ -16,38 +16,39 @@
   "system": {
     "description": {
       "value": "<h4>Item Modification (Vibroweapon)</h4>\n <p>This weapon gains the heavy property.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "premium",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -56,18 +57,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": "none",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -83,30 +85,36 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "vibroweapon",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {
-        "hvy": false
-      },
-      "hvy": true
+    "properties": {},
+    "unidentified": {
+      "description": ""
     },
-    "modified": [],
-    "modificationItemType": "weapon"
+    "type": {
+      "value": "vibroweapon",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493999294,
-    "modifiedTime": 1699591687646,
+    "modifiedTime": 1720368842707,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!JUSQsn1WON7Qf7yr"

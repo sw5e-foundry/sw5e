@@ -1,11 +1,5 @@
 {
-  "_id": "GHsshomtLF233lun",
   "name": "Sonic Scream",
-  "type": "feat",
-  "img": "systems/sw5e/packs/Icons/Species/PaLowick.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.7008884+00:00",
@@ -13,53 +7,46 @@
       "uid": "Feature.name-sonic_scream.source-species.sourceName-palowick.level-None"
     }
   },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Species/PaLowick.webp",
   "system": {
     "description": {
       "value": "<p>As an action, you can violently expel air in a 15-foot cone. When you do so, each creature in the area of the exhalation must make a Wisdom saving throw (DC = 8 + your proficiency bonus + your Constitution modifier). A creature takes [[/r 2d6]] sonic damage on a failed save, and half as much damage on a successful one. The damage increases to [[/r 4d6]] at 5th level, [[/r 6d6]] at 11th level, and [[/r 8d6]] at 17th level. This ability has no effect on constructs. You can use this feature a number of times equal to your proficiency bonus. You regain all expended uses when you complete a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Pa'lowick",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
       "value": "15",
       "width": null,
       "units": "ft",
-      "type": "cone"
+      "type": "cone",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
       "max": "@attributes.prof",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": null,
     "damage": {
       "parts": [
         [
@@ -79,25 +66,55 @@
       "value": "species",
       "subtype": ""
     },
-    "recharge": "",
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {},
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
-        "space": null,
-        "turn": null
+        "space": 300,
+        "turn": 250
       }
-    },
-    "className": null
+    }
   },
+  "effects": [],
+  "_id": "9JGXFvGbp13FCEe5",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
-    "createdTime": 1674494003034,
-    "modifiedTime": 1695981492641,
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296029297,
+    "modifiedTime": 1720368880283,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!GHsshomtLF233lun"
+  "_key": "!items!9JGXFvGbp13FCEe5"
 }

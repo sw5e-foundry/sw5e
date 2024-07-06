@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Gunslinger Practice</h1>\n<p>Those operatives who choose the Gunslinger Practice are the masters of the trick shot. The Gunslinger and his blaster are the perfect team, utilizing knowledge of their enemies' vulnerabilities to take advantage of every opportunity.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "gunslingerpractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "t5i6prGoyXg1UBxj",
+        "_id": "X6s6xfFZyHnVTQFN",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.iuuLpWflyuk4sLd6",
-            "Compendium.sw5e.archetypefeatures.qdVYcGJWX7rULXqs"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.iuuLpWflyuk4sLd6"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.qdVYcGJWX7rULXqs"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "1gtijV7iAsnu1Ovn",
+        "_id": "ymzFg75PCPa1PV2X",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Q6d2La8xiy4o5kA8"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Q6d2La8xiy4o5kA8"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "1SKAw0xLtITo1bC5",
+        "_id": "dCpki8MXwF9DryLU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.11LhUtfvNr768aeo"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.11LhUtfvNr768aeo"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "1Ac8ypj9rS00BJOR",
+        "_id": "sP1ezOPwu1KHzG6y",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.AlQqDDigFMnrLi7h"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.AlQqDDigFMnrLi7h"
+            }
           ],
           "optional": false
         },
@@ -87,7 +95,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +103,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959722,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!C8WZz6xWjGGLfxML"

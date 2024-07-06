@@ -7,71 +7,6 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        }
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:04.8434442+00:00",
       "importer_version": 3,
@@ -81,38 +16,41 @@
   "system": {
     "description": {
       "value": "<h4>Adventuring Gear (Waist)</h4>\n <p><em><strong>Requires attunement</strong></em></p>\n<hr />\n<p>While wearing this belt, your Strength score becomes 21. If your Strength is already equal to or greater than 21, it has no effect on you.</p>\n<p><em>This belt increases a users physical power with pneumaticized assistance joists that provide support and leverage in a minimal form-factor.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 1,
+    "attunement": "required",
     "equipped": false,
     "rarity": "prototype",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -121,18 +59,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -150,8 +89,8 @@
     },
     "armor": {
       "value": null,
-      "type": "clothing",
-      "dex": null
+      "dex": null,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -190,29 +129,41 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": 1,
+    "_propertyValues": {},
+    "type": {
+      "value": "clothing",
+      "baseItem": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493964975,
-    "modifiedTime": 1699982381543,
+    "modifiedTime": 1720402291720,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!qHigQ3a8Kmp0T9Um"

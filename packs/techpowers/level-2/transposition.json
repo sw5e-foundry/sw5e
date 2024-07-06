@@ -9,52 +9,44 @@
   },
   "type": "power",
   "img": "systems/sw5e/packs/Icons/Tech%20Powers/Transposition.webp",
-  "effects": [],
   "system": {
     "description": {
       "value": "<p>Another creature you can see within range has its form shimmer in a holographic configuration before collapsing. The target must succeed on a Constitution saving throw (the target can choose to fail), or the target is teleported to an unoccupied space of your choice that you can see within range. The chosen space must be on a surface or in a liquid that can support the target without the target having to squeeze.</p>\n<p><strong><em>Overcharge Tech.</em></strong> When you cast this power using a tech slot of 3rd level or higher, the range of the power increases by 30 feet for each slot level above 2nd.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "90",
+      "value": 90,
       "long": null,
       "units": "ft"
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
-    },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
-    "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
@@ -71,14 +63,7 @@
     },
     "level": 2,
     "school": "tec",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": false,
-      "value": ""
-    },
+    "properties": {},
     "materials": {
       "value": "",
       "consumed": false,
@@ -87,13 +72,30 @@
     },
     "preparation": {
       "mode": "prepared",
-      "prepared": true
+      "prepared": false
     },
     "scaling": {
       "mode": "level",
       "formula": null
-    }
+    },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "enchantment": null,
+    "summons": null
   },
+  "effects": [],
+  "_id": "vfGPicWZ6g4ZLpHV",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -101,12 +103,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1667426102814,
-    "modifiedTime": 1707077465284,
+    "createdTime": 1720296025398,
+    "modifiedTime": 1720401973099,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_id": "ma2kS5lg0nGbAZux",
-  "_key": "!items!ma2kS5lg0nGbAZux"
+  "_key": "!items!vfGPicWZ6g4ZLpHV"
 }

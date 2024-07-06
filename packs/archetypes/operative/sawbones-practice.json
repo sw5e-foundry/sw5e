@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Sawbones Practice</h1>\n<p>Those operatives who choose the Sawbones Practice have studied the humanoid body on a more intimate level than other operatives. While others may know where best to stab in order to kill, you also know how to repair the wounds you inflict, as well as how to make them even deeper. You delve into the secrets of the body, learning as much medical knowledge as you can get your hands on, regardless of how dirty the work becomes.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "sawbonespractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "LNhkBfnjJpUEigue",
+        "_id": "uthEHV5NmlG1wEi9",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.kVTZjfeZRtAQTRNZ",
-            "Compendium.sw5e.archetypefeatures.Zy87jhJHs3BUGim5"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.kVTZjfeZRtAQTRNZ"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Zy87jhJHs3BUGim5"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "mupJhhrlc3BAyH23",
+        "_id": "o5zIB0McS9pGMqqP",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.eWjwLseohzB8EhYQ"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.eWjwLseohzB8EhYQ"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "AsId6zXq1bV1Eb5e",
+        "_id": "1pOvZ1mBxeye1gyT",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.4vKrQarcBwYaFiQ8"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.4vKrQarcBwYaFiQ8"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "1d3oXwMzbZTz1kDD",
+        "_id": "CN3vskTWZ6u1BLr2",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.IBxXS7o4VV3znf5i"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.IBxXS7o4VV3znf5i"
+            }
           ],
           "optional": false
         },
@@ -80,7 +88,7 @@
         "title": "Features"
       },
       {
-        "_id": "139BUq0A9iWZ1EIe",
+        "_id": "1IoqAekQylji1PiZ",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -100,7 +108,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -108,10 +116,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959761,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!clgsLYZaIxSQ0pLW"

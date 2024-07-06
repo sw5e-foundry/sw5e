@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Zoologist Pursuit:</strong> 17th level</em></p>\n<p>You have learned how to push your beast beyond its limits. If your beast is within 30 feet of you and can see or hear you, you can command it to enter a furious state. While raging, your beast gains the following benefits:</p>\n<ul>\n<li>Your beast has advantage on Strength checks and Strength saving throws if it is size Medium or larger.</li>\n<li>Your beast has advantage on Dexterity checks and Dexterity saving throws if it is size Small or smaller.</li>\n<li>When your beast hits with an attack, it deals bonus damage equal to your Critical Analysis ability modifer.</li>\n<li>Your beast has resistance to kinetic and energy damage.</li>\n</ul>\n<p>Your beast's furious state lasts for 1 minute. It ends early if your beast is knocked unconscious. You can end your beast's furious state as a bonus action.</p>\n<p>Once you've used this feature, you can't use it again until you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scholar (Zoologist Pursuit) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -33,33 +34,37 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,24 +79,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Scholar"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957797,
-    "modifiedTime": 1699591595181,
+    "modifiedTime": 1720368699428,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Vt6K2CCbLOvgSP04"

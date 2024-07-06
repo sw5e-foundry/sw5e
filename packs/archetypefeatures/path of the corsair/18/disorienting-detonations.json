@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Path of the Corsair:</strong> 18th level</em></p>\n<p>When a creature fails the saving throw against your Force-Empowered Detonators feature, you can spend 2 force points to subject it to the effects of one of the following force powers: affliction, force blind/deafen, stun, or stun droid. They automatically fail the saving throw for the selected power, but the effects only last until the end of your next turn.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Sentinel (Path of the Corsair) 18",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "turn"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -84,17 +89,26 @@
         "turn": null
       }
     },
-    "className": "Sentinel"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957833,
-    "modifiedTime": 1699591595186,
+    "modifiedTime": 1720368701227,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!YQjndSMMsWAJSeMy"

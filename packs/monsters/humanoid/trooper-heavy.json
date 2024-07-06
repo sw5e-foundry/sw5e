@@ -73,22 +73,24 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Ranged Weapon Attack </em>+5, Range 80/320 ft., One target. <em>Hit : </em>8 (1d10+3) energy damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -101,10 +103,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 80,
@@ -113,22 +116,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "dex",
         "actionType": "rwak",
-        "attackBonus": "0",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -159,12 +163,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -173,61 +174,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "aut": false,
-          "bur": null,
-          "def": null,
-          "dex": null,
-          "dir": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "hid": false,
-          "ken": null,
-          "lum": false,
-          "mig": false,
-          "pic": null,
-          "rap": null,
-          "shk": null,
-          "sil": false,
-          "str": null,
-          "vic": null,
-          "mgc": null,
-          "ran": false,
-          "smr": false,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "ilk": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -312,11 +278,12 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>The trooper sprays a 10-foot-cube area within normal range with shots. Each creature in the area must make a DC 13 Dexterity saving throw, taking 8 (1d10+3) energy damage on a failed save, or half as much on a successful one.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -329,10 +296,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 10,
+          "value": "10",
           "width": null,
           "units": "ft",
-          "type": "cube"
+          "type": "cube",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -341,22 +309,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "save",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -378,7 +347,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -387,10 +356,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -417,29 +392,31 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+4, Reach 5 ft., One target. <em>Hit : </em>4 (1d4+2) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -448,31 +425,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
-          "long": "",
+          "long": null,
           "units": "ft"
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -503,12 +482,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -517,61 +493,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -605,14 +546,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "dex": {
         "value": 16,
@@ -621,14 +555,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 3,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 13
+        }
       },
       "con": {
         "value": 17,
@@ -637,14 +564,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 3,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 13
+        }
       },
       "int": {
         "value": 9,
@@ -653,14 +573,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -1,
-        "save": -1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 9
+        }
       },
       "wis": {
         "value": 10,
@@ -669,14 +582,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "cha": {
         "value": 10,
@@ -685,14 +591,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "hon": {
         "value": 10,
@@ -700,7 +599,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 10,
@@ -708,41 +608,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 17,
         "calc": "natural",
-        "formula": "powered durasteel armor",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 42,
         "max": 42,
         "temp": 0,
         "tempmax": 0,
-        "formula": "5d10+15",
-        "min": 0
+        "formula": "5d10+15"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 3,
-        "prof": 0,
-        "total": 3
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -765,16 +661,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -783,16 +672,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -803,57 +685,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 2,
-      "powerdc": 10,
-      "bar1": {
-        "value": 42,
-        "min": 0,
-        "max": 42
-      },
-      "bar2": {
-        "value": 17,
-        "min": 0,
-        "max": 0
-      },
-      "encumbrance": {
-        "value": 2,
-        "max": 225,
-        "pct": 0.8888888888888888,
-        "encumbered": true
-      },
-      "powerForceLightDC": 10,
-      "powerForceDarkDC": 10,
-      "powerForceUnivDC": 10,
-      "powerTechDC": 9,
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"Send the Heavy Gunner in first—he has better armor and more firepower.\"</i></p><p><span style=\"font-size:13px\">- Obi-Wan Kenobi</span></p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Organization type</u><br /></td><td style=\"line-height:1.42857\">Specialized Trooper</td></tr><tr><td style=\"line-height:1.42857\"><p><u>Leader(s)</u></p></td><td style=\"line-height:1.42857\"><ul><li>Supreme Chancellor Sheev Palpatine</li><li><span style=\"background-color:transparent\">Jedi High Council</span><br /></li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Headquarters</u></td><td style=\"line-height:1.42857\"><ul><li>Tipoca City, Kamino</li><li>Galactic City, Coruscant</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Date founded</u></td><td style=\"line-height:1.42857\">c. 32 BBY, approximately 10 years before the Clone Wars</td></tr><tr><td style=\"line-height:1.42857\"><u>Date reorganized</u></td><td style=\"line-height:1.42857\">19 BBY, as the first generation of stormtroopers<br /></td></tr><tr><td style=\"line-height:1.42857\"><u>Date dissolved</u></td><td style=\"line-height:1.42857\">19 BBY, Kamino cloning facilities shut down<br /></td></tr><tr><td style=\"line-height:1.42857\"><p><u>Affiliation</u></p></td><td style=\"line-height:1.42857\"><p>Galactic Republic (Grand Army of the Republic)</p></td></tr></tbody></table><p>Heavy Gunners were clone troopers in the Grand Army of the Republic that used Z-6 rotary blaster cannons. The troopers had better clone trooper armor than other clones in the army. Due to their heavy blaster, they had superior firepower as well. Heavy Gunners in phase one armor had blue markings. In phase two armor, the clones still possessed blue markings, however, now the troopers also wore a kama, and a pauldron.<br /></p><p>During the Clone Wars, Heavy Gunners could work alongside a clone medic and a clone paratrooper that served as a sniper.</p><p>In 22 BBY, during the first battle of the Clone Wars, the First Battle of Geonosis, Heavy Gunners were deployed alongside the other clone troopers of the Grand Army to engage the Separatist's battle droids and their Geonosian allies. Later in the Clone Wars in 19 BBY, at least one Heavy Gunner fought in the Battle of Kashyyyk.</p><p>For general information about troopers, see <a class=\"entity-link\" data-entity=\"Actor\" data-id=\"NDYyNmJkM2ZkYjhm\" style=\"background-color:rgb( 255 , 255 , 255 )\"><i class=\"fas fa-user\"></i>Trooper</a><br /></p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Any Alignment",
-      "species": "",
+      "species": null,
       "type": {
         "value": "humanoid",
         "subtype": "",
@@ -865,13 +738,9 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 700
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 3
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "med",
@@ -899,15 +768,14 @@
           "basic"
         ],
         "custom": "One Other"
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -917,11 +785,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -930,11 +798,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 1,
@@ -943,11 +811,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 14,
-        "prof": 2,
-        "total": 4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -956,11 +824,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -969,11 +837,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -982,11 +850,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -995,11 +863,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -1008,11 +876,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "prof": 0,
-        "total": -1,
-        "passive": 9
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -1021,11 +889,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -1034,11 +902,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -1047,11 +915,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "prof": 0,
-        "total": -1,
-        "passive": 9
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 0,
@@ -1060,11 +928,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -1073,11 +941,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -1086,11 +954,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -1099,11 +967,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0,
@@ -1112,11 +980,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -1125,11 +993,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -1138,11 +1006,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "prof": 0,
-        "total": -1,
-        "passive": 9
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
     "tools": {},
@@ -1151,96 +1019,67 @@
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1359,10 +1198,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493984420,
-    "modifiedTime": 1699591677449,
+    "modifiedTime": 1720368813154,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!rfuqtiDOO0LSG0sU"

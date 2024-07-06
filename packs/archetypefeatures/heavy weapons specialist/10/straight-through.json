@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Heavy Weapons Specialist:</strong> 10th level</em></p>\n<p>When you score a critical hit on your turn while wielding a weapon with the heavy or strength properties, you can make one weapon attack against a creature within 5 feet of the target using your reaction.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Fighter (Heavy Weapons Specialist) 10",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "5",
+      "value": 5,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,24 +79,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Fighter"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.3",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493957912,
-    "modifiedTime": 1698185224868,
+    "modifiedTime": 1720368703132,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!bOxg7pJnnREV9ukP"

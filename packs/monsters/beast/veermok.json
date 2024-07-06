@@ -15,18 +15,19 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>The veermok makes three attacks: one with its bite and two with its fists.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -35,31 +36,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -76,7 +79,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -85,10 +88,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -115,29 +124,31 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+5, Reach 5 ft., One target. <em>Hit : </em>12 (2d8+3) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -146,31 +157,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
-          "long": "",
+          "long": null,
           "units": "ft"
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -201,12 +214,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -215,61 +225,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -296,29 +271,31 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+5, Reach 5 ft., One target. <em>Hit : </em>10 (2d6+3) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -327,31 +304,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
-          "long": "",
+          "long": null,
           "units": "ft"
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -382,12 +361,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -396,61 +372,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -477,29 +418,31 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Ranged Weapon Attack </em>+5, Range 25/50 ft., One target. <em>Hit : </em>10 (2d6+3) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -508,7 +451,8 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 25,
@@ -517,22 +461,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "rwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -563,12 +508,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -577,61 +519,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -665,14 +572,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 3,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 13
+        }
       },
       "dex": {
         "value": 14,
@@ -681,14 +581,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "con": {
         "value": 14,
@@ -697,14 +590,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "int": {
         "value": 6,
@@ -713,14 +599,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -2,
-        "save": 0,
-        "prof": 2,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 8
+        }
       },
       "wis": {
         "value": 12,
@@ -729,14 +608,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "cha": {
         "value": 5,
@@ -745,14 +617,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -3,
-        "save": -3,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 7
+        }
       },
       "hon": {
         "value": 5,
@@ -760,7 +625,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 12,
@@ -768,41 +634,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 12,
         "calc": "natural",
-        "formula": "",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 30,
         "max": 30,
         "temp": 0,
         "tempmax": 0,
-        "formula": "4d10+8",
-        "min": 0
+        "formula": "4d10+8"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 40,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 40,
         "units": "ft",
         "hover": false
@@ -825,16 +687,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -843,16 +698,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -863,57 +711,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 2,
-      "powerdc": 10,
-      "bar1": {
-        "value": 30,
-        "min": 0,
-        "max": 30
-      },
-      "bar2": {
-        "value": 12,
-        "min": 0,
-        "max": 0
-      },
-      "encumbrance": {
-        "value": 3,
-        "max": 480,
-        "pct": 0.625,
-        "encumbered": false
-      },
-      "powerForceLightDC": 11,
-      "powerForceDarkDC": 7,
-      "powerForceUnivDC": 11,
-      "powerTechDC": 8,
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"It looks like some kind of primate. A veermok, or close to it. But they're native to Naboo, what's it doing here?\"</i></p><p><span style=\"font-size:13px\">- Milo Graf</span></p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Designation</u></td><td style=\"line-height:1.42857\">Non-sentient</td></tr><tr><td style=\"line-height:1.42857\"><u>Classification</u></td><td style=\"line-height:1.42857\">Primate</td></tr><tr><td style=\"line-height:1.42857\">Subspecies</td><td style=\"line-height:1.42857\"><ul><li>Eriadu veermok</li><li>Woolly veermok</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Average height</u></td><td style=\"line-height:1.42857\">About twice the size of a human</td></tr><tr><td style=\"line-height:1.42857\"><u>Skin color</u></td><td style=\"line-height:1.42857\">Gray</td></tr><tr><td style=\"line-height:1.42857\"><u>Hair color</u></td><td style=\"line-height:1.42857\"><ul><li>Dark brown</li><li>Dark gray</li><li>Black</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Eye color</u></td><td style=\"line-height:1.42857\">Yellow</td></tr><tr><td style=\"line-height:1.42857\">Distinctions</td><td style=\"line-height:1.42857\"><ul><li>Jagged white claws</li><li>Sharp yellow teeth</li><li>Powerful forearms</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Homeworld</u><br /></td><td style=\"line-height:1.42857\">Naboo<br /></td></tr><tr><td style=\"line-height:1.42857\"><u>Habitat</u><br /></td><td style=\"line-height:1.42857\"><ul><li>Swamps</li><li>Woodland</li></ul></td></tr></tbody></table><p>Veermoks were a ferocious species of clawed and fanged primates native to the planet of Naboo. A distinct subspecies lived on Eriadu, in the Outer Rim Territories.</p><h3>Biology and appearance</h3><p>Veermoks were a non-sentient species of carnivorous primates that possessed a broad upper torso, long and powerful arms, but comparatively thin hind limbs. They had three-fingered paws tipped in jagged white claws, and a dog-like muzzle containing razor-sharp teeth. Their back and arms were covered in dark brown, woolly fur, but their lower anatomy was hairless. A single specimen had the strength of ten humans.</p><h3>Behavior</h3><blockquote><p><i>\"Are they aggressive?\"</i></p><p><span style=\"font-size:13px\"><i>\"Very.\"</i></span></p><p>- Lina and Milo Graf</p></blockquote><p>Living in swamps and moist woodlands, veermoks were arboreal creatures. They were also solitary creatures, spending a majority of their lives without others of their kind, and highly aggressive.</p><h3>History</h3><p>Veermoks evolved on Naboo, a bountiful planet situated in the Mid Rim region of the galaxy.</p><h3>Veermoks in the galaxy</h3><p>A very distinct subspecies lived on Eriadu, a world of the Outer Rim Territories that was practically galactic neighbors with Naboo. That subspecies differred from the more ordinary veermok both in appearance and social behavior.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Unaligned",
-      "species": "",
+      "species": null,
       "type": {
         "value": "beast",
         "subtype": "",
@@ -925,13 +764,9 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 450
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 2
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "lg",
@@ -963,15 +798,14 @@
       "languages": {
         "value": [],
         "custom": "—"
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -981,11 +815,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -994,11 +828,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 1,
@@ -1007,11 +841,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 15,
-        "prof": 2,
-        "total": 5
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -1020,11 +854,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -1033,11 +867,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -1046,11 +880,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -1059,11 +893,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -1072,11 +906,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "prof": 0,
-        "total": -2,
-        "passive": 8
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -1085,11 +919,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -1098,11 +932,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -1111,11 +945,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "prof": 0,
-        "total": -2,
-        "passive": 8
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 1,
@@ -1124,11 +958,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 13,
-        "prof": 2,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -1137,11 +971,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -1150,11 +984,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -1163,11 +997,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 1,
@@ -1176,11 +1010,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 14,
-        "prof": 2,
-        "total": 4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -1189,11 +1023,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -1202,11 +1036,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "prof": 0,
-        "total": -2,
-        "passive": 8
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
     "tools": {},
@@ -1215,96 +1049,67 @@
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1423,10 +1228,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493983991,
-    "modifiedTime": 1699591677240,
+    "modifiedTime": 1720368798455,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!3F74JBg4wIA06zEn"

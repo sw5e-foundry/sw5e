@@ -5,27 +5,29 @@
   "system": {
     "description": {
       "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">The {creature} can breathe air and water</span></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -36,16 +38,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -74,7 +77,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "ownership": {
@@ -83,10 +96,10 @@
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1669745231483,
-    "modifiedTime": 1699591681503,
+    "modifiedTime": 1720368816432,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "folder": null,

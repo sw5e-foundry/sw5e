@@ -16,25 +16,25 @@
   "system": {
     "description": {
       "value": null,
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "quantity": 1,
-    "weight": 2,
+    "weight": {
+      "value": 2,
+      "units": "lb"
+    },
     "price": {
       "value": 500,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
-    "toolType": "specialist",
-    "baseItem": "poisonerskit",
-    "ability": "int",
+    "ability": "",
     "chatFlavor": "",
     "proficient": null,
     "bonus": "",
@@ -44,46 +44,57 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
-    "target": {},
-    "range": {},
+    "target": {
+      "value": "",
+      "width": null,
+      "units": "",
+      "type": "",
+      "prompt": true
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
     "uses": {
       "value": null,
-      "max": null,
-      "per": null
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {},
-    "damage": {
-      "parts": [],
-      "versatile": ""
-    },
-    "save": {},
-    "armor": {},
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
     },
     "properties": {},
-    "equiped": false,
-    "actionType": "",
-    "attackBonus": 0,
-    "critical": null,
-    "formula": "",
-    "weaponType": ""
+    "_propertyValues": {},
+    "type": {
+      "value": "specialist",
+      "baseItem": "poisonerskit"
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "container": null,
+    "attuned": false,
+    "cover": null,
+    "crewed": false
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493981985,
-    "modifiedTime": 1693589988240,
+    "modifiedTime": 1720368792749,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!ofea5VziX4jBg5So"

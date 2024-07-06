@@ -8,27 +8,29 @@
   "system": {
     "description": {
       "value": "<p>As an action, you can roll your tech die.  Your reactor immediately produces that many power dice that must be stored immediately based on your ship's power coupling.  For any power dice produced in excess of your ship's capacity to store, your ship takes that many hull points in damage.</p><p>Additionally, your ship must succeed on a Constitution (Regulation) check (DC = 10 + the number rolled on your tech die) or take hull damage equal to one hull die + your ship's strength modifier.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Mechanic 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,15 +81,16 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Mechanic"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": "Technique"
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": {}
   },
   "ownership": {
     "default": 0
@@ -95,10 +99,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963436,
-    "modifiedTime": 1699591629486,
+    "modifiedTime": 1720368730041,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!PMxG5cMOa1Ke5xSZ"

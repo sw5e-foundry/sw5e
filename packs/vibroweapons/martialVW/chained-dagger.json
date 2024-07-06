@@ -1,11 +1,5 @@
 {
-  "_id": "QOlVIUthbalyOzx5",
   "name": "Chained dagger",
-  "type": "weapon",
-  "img": "systems/sw5e/packs/Icons/Martial%20Vibroweapons/ChainedDagger.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:13.4594492+00:00",
@@ -13,66 +7,51 @@
       "uid": "Weapon.name-chained_dagger.equipmentCategory-weapon"
     }
   },
+  "type": "weapon",
+  "img": "systems/sw5e/packs/Icons/Martial%20Vibroweapons/ChainedDagger.webp",
   "system": {
     "description": {
       "value": "<h3>Disarming</h3>\n<p>When you score a critical hit with a weapon with the disarming property against a creature that is holding an object, you can attempt to disarm the target (no action required). If the target is no more than one size larger than you (your size or smaller if your weapon has the light property), it must succeed on a Strength saving throw (DC = 8 + your bonus to attacks with the weapon) or it drops an object of your choice at its feet.</p>\n<h3>Finesse</h3>\n<p>When making an attack with a weapon with this property, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.</p>\n<h3>Reach</h3>\n<p>A weapon with this property adds 5 feet to your reach with it.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "quantity": 1,
-    "weight": null,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 350,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
+    "type": {
+      "value": "martialVW",
+      "subtype": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
-    "duration": {
-      "value": null,
-      "units": "inst"
-    },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": 10,
       "long": null,
       "units": "ft"
     },
-    "uses": {
-      "value": null,
-      "max": null,
-      "per": null,
-      "recovery": ""
-    },
-    "consume": {
-      "type": "",
-      "target": "",
-      "amount": null
-    },
-    "ability": "",
     "actionType": "mwak",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": {
-      "threshold": null,
-      "damage": ""
-    },
     "damage": {
       "parts": [
         [
@@ -82,18 +61,67 @@
       ],
       "versatile": ""
     },
+    "properties": {
+      "0": "drm",
+      "1": "fin",
+      "2": "rch"
+    },
+    "weaponClass": "trip",
+    "ammo": {
+      "types": [],
+      "target": "",
+      "value": null,
+      "use": null
+    },
+    "_propertyValues": {},
+    "unidentified": {
+      "description": ""
+    },
+    "container": null,
+    "attuned": false,
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
     "formula": "",
     "save": {
       "ability": "",
       "dc": null,
       "scaling": "power"
     },
+    "summons": null,
     "armor": {
-      "value": 10
+      "value": null
     },
     "hp": {
-      "value": 0,
-      "max": 0,
+      "value": null,
+      "max": null,
       "dt": null,
       "conditions": ""
     },
@@ -102,38 +130,26 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "weaponType": "martialVW",
-    "weaponClass": "trip",
-    "baseItem": "chaineddagger",
-    "ammo": {
-      "target": null,
-      "value": null,
-      "use": null,
-      "types": []
-    },
-    "properties": {
-      "drm": true,
-      "fin": true,
-      "rch": true,
-      "two": null
-    },
+    "magicalBonus": null,
     "proficient": null,
-    "equiped": false
+    "firingArc": ""
   },
+  "effects": [],
+  "_id": "lj2Ac5TNN17dzqO1",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494021696,
-    "modifiedTime": 1704036395356,
+    "createdTime": 1720296019804,
+    "modifiedTime": 1720368948692,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!QOlVIUthbalyOzx5"
+  "_key": "!items!lj2Ac5TNN17dzqO1"
 }

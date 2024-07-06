@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Demolitions Specialist</h1>\n<p>Those fighters who choose to become Demolitions Specialists are experts in using explosives in combat. They have an explosive for every situation, whether it be breaching a fortified bunker, taking down a walker, or simply demonstrating that in combat, standing too close to your squadmates can be fatal.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "demolitionsspecialist",
     "classIdentifier": "fighter",
     "advancement": [
       {
-        "_id": "1lNZ4ZmpihHYAoV8",
+        "_id": "1wPREwsK8mdme9fF",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.w5P8IDiDlyNisn51",
-            "Compendium.sw5e.archetypefeatures.XSKXwzNRaXtoxmLk"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.w5P8IDiDlyNisn51"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.XSKXwzNRaXtoxmLk"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "5YUAl26Y8391QWSH",
+        "_id": "1ITCFfKaiza71NCX",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.UztR2s7IBDDdDj8Y"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UztR2s7IBDDdDj8Y"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "1Uskcmi0NOxx1J1u",
+        "_id": "1xlz06s6FBXOzVGY",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.hdY8AsJAzETjZqm2"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hdY8AsJAzETjZqm2"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "1g5T103IY2fDcIVv",
+        "_id": "1kUvsCp6ZEH1B4a3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.J38UV7g4p9cmMGv7"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.J38UV7g4p9cmMGv7"
+            }
           ],
           "optional": false
         },
@@ -80,11 +88,13 @@
         "title": "Features"
       },
       {
-        "_id": "1vvMPeHAlCwN13VG",
+        "_id": "17QCllYur5R811gA",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.YWsDFY7hQEabL8PH"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.YWsDFY7hQEabL8PH"
+            }
           ],
           "optional": false
         },
@@ -93,7 +103,7 @@
         "title": "Features"
       },
       {
-        "_id": "ajykAujFa3e13dQk",
+        "_id": "4BPjmYLGacHOelp4",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -113,7 +123,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -121,10 +131,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959783,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!vSVMYgksB6ufATIK"

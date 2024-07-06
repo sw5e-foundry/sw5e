@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> Burning Ember Flourish</em> or <em>Hatchling's Flame</em></p>\n<p>As an action, you can create a wall of fire on a solid surface within 120 feet. You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick, or a ringed wall up to 20 feet in diameter, 20 feet high, and 1 foot thick. The wall is opaque and lasts for 1 minute.</p>\n<p>When the wall appears, each creature within its area must make a Dexterity saving throw. On a failed save, a creature takes [[/r 5d8]] fire damage, or half as much damage on a successful save.</p>\n<p>One side of the wall, chosen by you when you use this feature, deals [[/r 5d8]] fire damage to each creature that ends its turn within 10 feet of that side of the wall. A creature takes the same damage when it enters the wall for the first time on a turn or ends its turn there. The other side of the wall deals no damage.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 120,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -90,7 +93,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -100,10 +113,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1679609438414,
-    "modifiedTime": 1699591595154,
+    "modifiedTime": 1720368689468,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "HQhrtDc4qa13QmCX",

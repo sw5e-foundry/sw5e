@@ -8,27 +8,29 @@
   "system": {
     "description": {
       "value": "<p>Beginning when you choose this deployment as your specialty, at 1st rank, and again at 2nd, 3rd, 4th, and 5th rank, you can choose a venture (see Chapter 6 of <u>Starships of the Galaxy</u> for a list of ventures).</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Universal 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,15 +81,16 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Universal"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": {}
   },
   "ownership": {
     "default": 0
@@ -95,10 +99,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963431,
-    "modifiedTime": 1699591629485,
+    "modifiedTime": 1720368729984,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!LLUJ5KWK4yQCi7OG"

@@ -1,0 +1,127 @@
+{
+  "_id": "NEuCKHJxSe4vPgJl",
+  "name": "Grenade, incendiary",
+  "type": "consumable",
+  "img": "systems/sw5e/packs/Icons/Explosive/Grenade-Incendiary.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:06.0607392+00:00",
+      "importer_version": 3,
+      "uid": "Consumable.name-grenade_incendiary.equipmentCategory-explosive"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>Grenades can be set to detonate on impact or with a timer that causes them to explode on initiative count 20 (losing all initiative ties). As an action, you can prime and throw a grenade at a point you can see within 30 feet + your Strength modifier x 5. The grenade explodes, setting the ground in a 10-foot radius ablaze for 1 minute. The fire ignites any flammable objects in the area that aren't being worn or carried.</p>\n<p>When a creature enters the fire or starts its turn there, it creature must make a DC 14 Dexterity saving throw. The creature takes [[/r 2d8]] fire damage on a failed save, or half as much damage on a successful one. </p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "WH"
+    },
+    "quantity": 1,
+    "weight": {
+      "value": 1,
+      "units": "lb"
+    },
+    "price": {
+      "value": 275,
+      "denomination": "gc"
+    },
+    "attunement": "",
+    "equipped": false,
+    "rarity": "",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": "10",
+      "width": null,
+      "units": "ft",
+      "type": "radius",
+      "prompt": true
+    },
+    "range": {
+      "value": 30,
+      "long": null,
+      "units": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false,
+      "prompt": true
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": "",
+    "actionType": "save",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "2d8",
+          "fire"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": 14,
+      "scaling": "flat"
+    },
+    "properties": {},
+    "type": {
+      "subtype": "grenade",
+      "value": "explosive"
+    },
+    "_propertyValues": {},
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493966305,
+    "modifiedTime": 1720368759008,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!NEuCKHJxSe4vPgJl"
+}

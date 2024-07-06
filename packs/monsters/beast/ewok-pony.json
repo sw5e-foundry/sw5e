@@ -15,29 +15,31 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+4, Reach 5 ft., One target. <em>Hit : </em>7 (2d4+2) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -46,31 +48,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
-          "long": "",
+          "long": null,
           "units": "ft"
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -101,12 +105,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -115,61 +116,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -203,14 +169,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "dex": {
         "value": 10,
@@ -219,14 +178,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "con": {
         "value": 13,
@@ -235,14 +187,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "int": {
         "value": 2,
@@ -251,14 +196,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -4,
-        "save": -4,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 6
+        }
       },
       "wis": {
         "value": 11,
@@ -267,14 +205,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "cha": {
         "value": 7,
@@ -283,14 +214,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -2,
-        "save": 0,
-        "prof": 2,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 8
+        }
       },
       "hon": {
         "value": 7,
@@ -298,7 +222,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 11,
@@ -306,41 +231,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 10,
         "calc": "natural",
-        "formula": "",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 11,
         "max": 11,
         "temp": 0,
         "tempmax": 0,
-        "formula": "2d8+2",
-        "min": 0
+        "formula": "2d8+2"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 40,
         "units": "ft",
         "hover": false
@@ -363,16 +284,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -381,16 +295,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -401,57 +308,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 2,
-      "powerdc": 10,
-      "bar1": {
-        "value": 11,
-        "min": 0,
-        "max": 11
-      },
-      "bar2": {
-        "value": 10,
-        "min": 0,
-        "max": 0
-      },
-      "encumbrance": {
-        "value": 1,
-        "max": 225,
-        "pct": 0.4444444444444444,
-        "encumbered": false
-      },
-      "powerForceLightDC": 10,
-      "powerForceDarkDC": 8,
-      "powerForceUnivDC": 10,
-      "powerTechDC": 6,
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"That's not a star cruiser. That's a horse. Horses don't fly.\"</i> </p><p>- Cindel Towani</p></blockquote><h3><span style=\"color:rgb( 0 , 0 , 0 );font-size:13px;font-weight:normal\">Horses were large, solid-hoofed domesticated mammals with a flowing tail and mane. In some parts of the galaxy, they were used as draft animals, as beasts of burden, or for riding. While \"horse\" was the vernacular name for the species used in Galactic Basic Standard, the technical term used by scientists was equus.</span></h3><h3><br /></h3><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Designation</u></td><td style=\"line-height:1.42857\">Non-sentient</td></tr><tr><td style=\"line-height:1.42857\"><u>Skin color</u></td><td style=\"line-height:1.42857\"><p>Varied</p></td></tr><tr><td style=\"line-height:1.42857\"><u>Distinctions</u></td><td style=\"line-height:1.42857\"><ul><li>4 limbs</li><li>hooves</li><li>flowing mane</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Homeworld</u></td><td style=\"line-height:1.42857\"><ul><li>Dathomir</li><li>Endor</li></ul></td></tr></tbody></table><h3>Biology and appearance</h3><p>The species equus, commonly referred to as \"horse\" in Galactic Basic Standard and \"pulga\" in Ewokese, was a non-sentient type of quadrupedal mammal that lived on many planets of the galaxy and was divided into many breeds of different sizes and morphologies. Large black breeds lived on Dathomir, while smaller breeds called \"ponies\"—known as \"gaupas\" in Ewokese—dwelled in the forests of Endor. The size of an Endorian pony was comparable to that of a young Coruscanti armored rat.</p><p>Horses were ungulates, using the hooved tip of their toes to move around. Their long, flexible legs allowed them to run really fast, but they were incapable of flying. Their bodies were covered in hair, and a mane of even longer, thicker hair grew about their necks and heads. A horse's head featured a long muzzle consisting of the lips and nose. The eyes of a horse were on the sides of its skull, and its ears protruded from the top of the head. They came in two sexes, with the males being called \"stallions.\"</p><p>Many other species that resembled horses were often referred to as \"equine\" or \"equinoid,\" whether related to horses or not. Such beings included the sentient Nazzar, Svivreni, and Thakwaash. Some believed the Half-Bothans were temperamental or volatile because of their \"equine blood.\"</p><h3>Behavior and intelligence</h3><p>Horses could be domesticated so that people could ride them, or to carry and pull loads. For that reason, itinerant portrait photographers were known to bring ponies with them. The taming of a wild horse, however, was reputed to be a difficult and perilous task. The ponies raised by the Ewoks were reputed to be swift, brave and tough.</p><h3>History</h3><p>When Cindel Towani was befriended by Wicket after her family crashed on Endor, he showed her an Ewok-made pulga statue, which she identified as a horse, as he misunderstood her request for a star cruiser for a pulga due to sharing the same word. Apparently, at least one world visited by the Towani family in the Galactic Empire had horses.</p><p>The Ewoks mainly used small gaupas to ride, but also used large pulgas for heavier loads. In the quest to rescue the Towani parents, most of the Ewoks involved rode gaupas, while Cindel and Wicket traveled in a children-carrying basket aboard a full-sized pulga.</p><p>The Force-sensitive witches of Dathomir possessed beautiful black horses, which they sometimes rode instead of Dathomiri rancors. Some of the witches, notably Charal, possessed rings of mysterious origin with strange Force \"magic\" properties that allowed the witches to change the physical shapes of both themselves and their steeds.</p><p>Charal apparently brought her Dathomiri steed with her to the forest moon. To lure Cindel into a trap, she changed her own shape into a beautiful lady, and her horse into a white steed. Apparently, white horses were considered symbolic of purity and nobility in the Galactic Empire.</p><p>The Sanyassan Marauders under King Terak also used large horses as mounts. It is possible they brought these steeds with them to the forest moon, as Charal brought her own horse. The Marauders crashed on Endor almost 100 years before the Battle of Yavin, and the horses and ponies used by the Ewoks may well have been descended from Marauder-introduced stock.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Unaligned",
-      "species": "",
+      "species": null,
       "type": {
         "value": "beast",
         "subtype": "",
@@ -463,13 +361,9 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 25
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 1
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "med",
@@ -495,15 +389,14 @@
       "languages": {
         "value": [],
         "custom": "—"
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -513,11 +406,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -526,11 +419,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 0,
@@ -539,11 +432,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -552,11 +445,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -565,11 +458,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -578,11 +471,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -591,11 +484,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "passive": 6,
-        "prof": 0,
-        "total": -4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -604,11 +497,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "prof": 0,
-        "total": -4,
-        "passive": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -617,11 +510,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -630,11 +523,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "passive": 6,
-        "prof": 0,
-        "total": -4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -643,11 +536,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "prof": 0,
-        "total": -4,
-        "passive": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 0,
@@ -656,11 +549,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -669,11 +562,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -682,11 +575,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -695,11 +588,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0,
@@ -708,11 +601,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -721,11 +614,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -734,11 +627,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -4,
-        "prof": 0,
-        "total": -4,
-        "passive": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
     "tools": {},
@@ -747,96 +640,67 @@
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -955,10 +819,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493984384,
-    "modifiedTime": 1699591677431,
+    "modifiedTime": 1720368811780,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!kUPKJNS23DMifDCT"

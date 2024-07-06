@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Mechanist Technique:</strong> 11th level</em></p>\n<p>You are used to working with electronics and have learned to increase their potency, while becoming inured to their dangers. You gain resistance to ion and lightning damage.</p>\n<p>Additionally, whenever you deal ion damage to a creature, you can spend a tech point to force the creature to make a Constitution saving throw. On a failed save, it is stunned until the end of your next turn.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scout (Mechanist Technique) 11",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "turn"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,24 +79,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Scout"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.3",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493957952,
-    "modifiedTime": 1698185224868,
+    "modifiedTime": 1720368705491,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!eviAtXKewLeaplqC"

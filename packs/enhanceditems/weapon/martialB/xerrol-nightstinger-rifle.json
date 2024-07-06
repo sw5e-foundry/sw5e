@@ -7,85 +7,6 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [
-          true
-        ],
-        "altValue": [
-          true
-        ],
-        "context": []
-      },
-      "quickVersatile": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "quantity": false,
-          "use": true,
-          "resource": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:05.3801336+00:00",
       "importer_version": 3,
@@ -95,38 +16,41 @@
   "system": {
     "description": {
       "value": "<h4>Weapon (Nightstinger Rifle)</h4>\n <p>You have a +1 bonus to damage rolls with this enhanced weapon. Additionally, when you make the Dexterity (Stealth) check to remain hidden as a part of the weapon's silent property, you have advantage on the check.</p>\n<p><em>This nightstinger rifle has the unique property of shooting invisible rounds.</em></p>\n<p> </p>\n<h2>Nightstinger rifle</h2>\n<h3>Power cell (range 125/500) Cell</h3>\n<p>Weapons with this property are fueled by power cells, which must be loaded in order to fire the weapon. A power cell fuels a number of attacks equal to the weapon's reload number.</p>\n<h3>Reload 2</h3>\n<p>A number of shots equal to the reload number can be made with a weapon with this property. A character must then reload it using an action or a bonus action (their choice). You must have one free hand to reload.</p>\n<h3>Silent</h3>\n<p>When you make a ranged weapon attack with a weapon with the silent property while hidden, it does not automatically reveal your presence. Make a Dexterity (Stealth) check contested by your targets' Wisdom (Perception) check. On a success, you remain hidden.</p>\n<h3>Strength 11</h3>\n<p>A weapon with this property has a heavy kickback. While wielding it, you have disadvantage on attack rolls unless you meet the Strength requirement. If the weapon has the burst, penetrating, or rapid property, you must meet the Strength requirement to use this feature. If the weapon lacks the two-handed property, you can wield the weapon in two hands to temporarily reduce the strength number by one step (from 19 to 17, 17 to 15, 15 to 13, or 13 to 11). If this would reduce the strength number below 11, you ignore it entirely.</p>\n<h3>Two-handed</h3>\n<p>A weapon with this property requires two hands to use.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 11,
+    "weight": {
+      "value": 11,
+      "units": "lb"
+    },
     "price": {
       "value": 1075,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "premium",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -135,18 +59,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "rwak",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -181,13 +106,9 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "weaponType": "martialB",
     "weaponClass": "rifle",
-    "baseItem": "nightstingerrifle",
     "ammo": {
       "target": null,
       "value": null,
@@ -197,25 +118,41 @@
       ]
     },
     "properties": {
-      "ran": 120,
-      "rel": 2,
-      "sil": true,
-      "str": 11,
-      "two": true,
-      "pcl": "range 125/500"
+      "0": "pcl",
+      "1": "rel",
+      "2": "sil",
+      "3": "str",
+      "4": "two"
     },
     "proficient": null,
-    "equiped": false
+    "type": {
+      "value": "martialB",
+      "subtype": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "_propertyValues": {},
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "firingArc": ""
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493964357,
-    "modifiedTime": 1704036401790,
+    "modifiedTime": 1720402267009,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!0dZh5U8Pi9eldNTy"

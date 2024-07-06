@@ -16,8 +16,7 @@
   "system": {
     "description": {
       "value": "<img style=\"float:right;margin:5px;border:0px\" src=\"systems/sw5e/packs/Icons/Classes/engineer_01.webp\" />\n<p>Flinching occasionally as a blaster bolt hits the nearby bulkhead, a Sullustan mechanic quickly solders a large wire. He peers through his tinted goggles, ignoring the shouts of his ship captain as the enemy descends on the hanger. Finally he shouts with pride as the repaired coupling powers up, causing the frigate to hum with energy. He gathers his tools and runs into the ship moments before it finally takes off. </p>\n<p>Inside, the human captain jumps into the cockpit. She nods to her droid co-pilot, who quickly begins charting a course home. Before the calculations can be completed, enemy Starfighters scream in from the clouds. The pilot rolls the ship, nimbly evading incoming fire. She reroutes the power to shields, leaving just enough for astronavigation. Just as the energy reserves near depletion, the exosphere and stars beyond blur into streaks of light. In a flash, they warp to safety. </p>\n<p>A Cerean officer surveys the battlefield, looking for weaknesses. When he identifies a potential problem, he keys in a quick combination in his wristpad. In a blink, a custom suit of armor assembles itself around him. As the helmet locks into place, the officer leaps into the air, flying overhead and raining destruction on the opposition.</p>\n<p>Every machine needs an engineer to run it, and a living crew is no different. Engineers are the experts and professionals who rely on skill, bravery, and their tools to survive and keep others alive. While they do not claim to be fighters, their mere presence can turn the tide of battle or simply keep operations running.</p>\n<h2>Behind the Curtain</h2>\n<p>While perhaps not as intimidating as a heavily-armored trooper, or as exotic as a lighsaber-wielding guardian, engineers are no less vital to group dynamic. They are armorers and gunsmiths, electricians and welders, or any other facet to be found in facilities across the galaxy. Their work, often unsung, is what keeps starships (and their crew) intact.</p>\n<h2>Unflappable</h2>\n<p>It takes bravery for a soldier to enter a battlefield. It perhaps takes more for someone who is unarmed, and untrained in combat, to do the same. Engineers put their lives on the line for a living, whether by choice or acknowledging their plights as an occupational hazard. Whether they come from an elite training academy or learned their talents surviving in the slums, they are no strangers to danger and conflict.</p>\n<p>While creating your engineer character, consider what your primary skill set is and how you use it. You could be a street-smart mechanic who taught yourself how to fix swoop bikes as a teenager. Perhaps you are the recent graduate of an esteemed medical college, or a rookie pilot in the fledgling Rebel Alliance. What is the number one skill you are known for? Why are you willing to enter battles when you have no combat training? How do you view the more adventurous members of your group, and how do they see you and your role?</p>\n<h3>Quick Build</h3>\n<p>You can make an engineer quickly by following these suggestions. First, make Intelligence your highest ability score. Your next-highest score should be Constitution. Second, choose the scientist background.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "atFlavorText": {
       "value": "<h1>Engineering Disciplines</h1>\n<p>Each discipline focuses on maximizing the personal use of a certain tool. Your discipline grants you features at 3rd, 6th, 14th, and 18th level.</p>\n<ul>\n<li>@Compendium[sw5e.archetypes.DSaorO1E42ZAoYko]{Armormech engineering}</li>\n<li>@Compendium[sw5e.archetypes.ozOP9vSQ4uwXFdGQ]{Armstech engineering}</li>\n<li>@Compendium[sw5e.archetypes.TkSzn6cSCBsySMql]{Gadgeteer engineering}</li>\n<li>@Compendium[sw5e.archetypes.80auw3hdVYZAXGtr]{Unstable engineering}</li>\n<li>@Compendium[sw5e.archetypes.1xihjITntU4T6OfP]{Artificer engineering}</li>\n<li>@Compendium[sw5e.archetypes.p5sUTfZ2GnjkmpdC]{Astrotech engineering}</li>\n<li>@Compendium[sw5e.archetypes.QHBh0MLldjImDdoX]{Astrotech engineering (companion)}</li>\n<li>@Compendium[sw5e.archetypes.4WitHCdI0QiCuS8A]{Audiotech engineering}</li>\n<li>@Compendium[sw5e.archetypes.DAq5ZmQ6aQ88Q9oI]{Biochem engineering}</li>\n<li>@Compendium[sw5e.archetypes.FaKY07usa5nH8I08]{Biotech engineering}</li>\n<li>@Compendium[sw5e.archetypes.f7POhRSg0x4UXp1i]{Construction engineering}</li>\n<li>@Compendium[sw5e.archetypes.Y8uZyqAuOWmUZEDP]{Cybertech engineering}</li>\n<li>@Compendium[sw5e.archetypes.O3vgskHkhroUKBaZ]{Cybertech engineering (depreciated)}</li>\n<li>@Compendium[sw5e.archetypes.iHC7hyf1Zr3Q4hDF]{Cybertech engineering (old)}</li>\n</ul>"
@@ -25,43 +24,55 @@
     "invocations": {
       "value": ""
     },
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "identifier": "engineer",
     "levels": 1,
     "hitDice": "d8",
     "hitDiceUsed": 0,
     "advancement": [
       {
-        "_id": "1ETWKV2n0HOnRCeB",
+        "_id": "1Cr6jyE9a63q17bK",
         "type": "HitPoints",
         "configuration": {},
         "value": {}
       },
       {
-        "_id": "DWLHfnH22NLv4LvN",
+        "_id": "sZvWCERVglkNy7nW",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "potent-aptitude",
           "scale": {
             "1": {
               "n": 1,
-              "die": 4
+              "die": 4,
+              "number": 1,
+              "faces": 4
             },
             "5": {
               "n": 1,
-              "die": 6
+              "die": 6,
+              "number": 1,
+              "faces": 6
             },
             "9": {
               "n": 1,
-              "die": 8
+              "die": 8,
+              "number": 1,
+              "faces": 8
             },
             "13": {
               "n": 1,
-              "die": 10
+              "die": 10,
+              "number": 1,
+              "faces": 10
             },
             "17": {
               "n": 1,
-              "die": 12
+              "die": 12,
+              "number": 1,
+              "faces": 12
             }
           },
           "type": "dice"
@@ -70,7 +81,7 @@
         "title": "Potent Aptitude"
       },
       {
-        "_id": "1PFzhLODTdVWO5rK",
+        "_id": "1oTMjAYXQDFoFvxY",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "modification-slots",
@@ -100,7 +111,7 @@
         "title": "Modification Slots"
       },
       {
-        "_id": "hix9gNsZ6uR1CcB2",
+        "_id": "PHIzzAWCTNu1gy91",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -110,7 +121,7 @@
         "level": 4
       },
       {
-        "_id": "1hE6dFqWAMuEKuHF",
+        "_id": "jtwcJQWuKHhhopiD",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -120,7 +131,7 @@
         "level": 8
       },
       {
-        "_id": "YCb2LpQKPEtGvIr4",
+        "_id": "RureryFYRuGfbV1x",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -130,7 +141,7 @@
         "level": 12
       },
       {
-        "_id": "JTCRQiqwouTlgJyf",
+        "_id": "1DTOuKZzZoNT1gsI",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -140,7 +151,7 @@
         "level": 16
       },
       {
-        "_id": "mNWSb3WQhNC1FY4R",
+        "_id": "1UXP5tlkG4RZ1doS",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -150,7 +161,7 @@
         "level": 19
       },
       {
-        "_id": "1q60P4ULkTl8VGBs",
+        "_id": "XqDrXvn2qOh1gNVb",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -164,7 +175,7 @@
         "level": 1
       },
       {
-        "_id": "1DCy0O5qExu598Ik",
+        "_id": "17Q9RReUkLd91KDO",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -179,7 +190,7 @@
         "level": 1
       },
       {
-        "_id": "12vQcuQodn44tAmB",
+        "_id": "1oDJEr369Hyi1oAv",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -200,7 +211,7 @@
         "level": 1
       },
       {
-        "_id": "1DnxMNnN9jZgY4tI",
+        "_id": "KdY151NNJnw1wFW7",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -215,7 +226,7 @@
         "level": 1
       },
       {
-        "_id": "1CljRJRtLZEn1c6P",
+        "_id": "IRNEVCc1kzk1tbku",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -239,7 +250,7 @@
         "level": 1
       },
       {
-        "_id": "1nWG3qqJpUqbAMUw",
+        "_id": "3kuW8LE0dD11UNV1",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -254,12 +265,16 @@
         "title": "Multiclass Proficiencies"
       },
       {
-        "_id": "ja1X0g7XjFhF7rr0",
+        "_id": "1dKHH3iXcDBy1TJc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.mCxdqUjDPAo38JTt",
-            "Compendium.sw5e.classfeatures.fGsRWj9oEKcrukw6"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.mCxdqUjDPAo38JTt"
+            },
+            {
+              "uuid": "Compendium.sw5e.classfeatures.fGsRWj9oEKcrukw6"
+            }
           ],
           "optional": false
         },
@@ -268,12 +283,16 @@
         "title": "Features"
       },
       {
-        "_id": "1yBFCBimiBfi1TAv",
+        "_id": "W3J17Cis76iMYZ57",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.CBf0Ynl0NuA2z7sl",
-            "Compendium.sw5e.classfeatures.mX2O4be5m3rPokOa"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.CBf0Ynl0NuA2z7sl"
+            },
+            {
+              "uuid": "Compendium.sw5e.classfeatures.mX2O4be5m3rPokOa"
+            }
           ],
           "optional": false
         },
@@ -282,11 +301,13 @@
         "title": "Features"
       },
       {
-        "_id": "6SX3bj2m1eC1uX3R",
+        "_id": "t4qZC0DSajMOPXBP",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.shyd8NefpiwSPqof"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.shyd8NefpiwSPqof"
+            }
           ],
           "optional": false
         },
@@ -295,11 +316,13 @@
         "title": "Features"
       },
       {
-        "_id": "1HLZ2KplRn5eaNED",
+        "_id": "1S3ZmQy9mc5W1OUE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.f1XeMafaqejD02MW"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.f1XeMafaqejD02MW"
+            }
           ],
           "optional": false
         },
@@ -308,33 +331,65 @@
         "title": "Features"
       },
       {
-        "_id": "1gOFepHhIkQm1JW1",
+        "_id": "7FtQqmLTBmR1U2Bn",
         "type": "ItemChoice",
         "configuration": {
           "hint": "Each discipline focuses on maximizing the personal use of a certain tool. Your discipline grants you features at 3rd, 6th, 14th, and 18th level.",
           "choices": {
-            "3": 1
+            "3": {
+              "count": 1
+            }
           },
           "allowDrops": true,
           "type": "archetype",
           "pool": [
-            "Compendium.sw5e.archetypes.DSaorO1E42ZAoYko",
-            "Compendium.sw5e.archetypes.ozOP9vSQ4uwXFdGQ",
-            "Compendium.sw5e.archetypes.TkSzn6cSCBsySMql",
-            "Compendium.sw5e.archetypes.80auw3hdVYZAXGtr",
-            "Compendium.sw5e.archetypes.1xihjITntU4T6OfP",
-            "Compendium.sw5e.archetypes.p5sUTfZ2GnjkmpdC",
-            "Compendium.sw5e.archetypes.QHBh0MLldjImDdoX",
-            "Compendium.sw5e.archetypes.4WitHCdI0QiCuS8A",
-            "Compendium.sw5e.archetypes.DAq5ZmQ6aQ88Q9oI",
-            "Compendium.sw5e.archetypes.FaKY07usa5nH8I08",
-            "Compendium.sw5e.archetypes.f7POhRSg0x4UXp1i",
-            "Compendium.sw5e.archetypes.Y8uZyqAuOWmUZEDP",
-            "Compendium.sw5e.archetypes.O3vgskHkhroUKBaZ",
-            "Compendium.sw5e.archetypes.iHC7hyf1Zr3Q4hDF"
+            {
+              "uuid": "Compendium.sw5e.archetypes.DSaorO1E42ZAoYko"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.ozOP9vSQ4uwXFdGQ"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.TkSzn6cSCBsySMql"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.80auw3hdVYZAXGtr"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.1xihjITntU4T6OfP"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.p5sUTfZ2GnjkmpdC"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.QHBh0MLldjImDdoX"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.4WitHCdI0QiCuS8A"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.DAq5ZmQ6aQ88Q9oI"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.FaKY07usa5nH8I08"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.f7POhRSg0x4UXp1i"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.Y8uZyqAuOWmUZEDP"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.O3vgskHkhroUKBaZ"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.iHC7hyf1Zr3Q4hDF"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -358,35 +413,19 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     },
-    "saves": [
-      "con",
-      "int"
-    ],
-    "skills": {
-      "number": 3,
-      "choices": [
-        "inv",
-        "lor",
-        "med",
-        "nat",
-        "pil",
-        "tec"
-      ],
-      "value": []
-    },
-    "archetype": ""
+    "startingEquipment": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.0.2.7.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961827,
-    "modifiedTime": 1700848701769,
+    "modifiedTime": 1720401974718,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!x44c004uiEWzTmOb"

@@ -7,112 +7,55 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        }
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:06.1067123+00:00",
       "importer_version": 3,
       "uid": "Equipment.name-plastoid_composite.equipmentCategory-armor"
+    },
+    "sw5e": {
+      "migratedProperties": [
+        "stealthDisadvantage"
+      ]
     }
   },
   "system": {
     "description": {
       "value": "<h3>Bulky</h3>\n<p>While wearing armor with this property, you have disadvantage on Dexterity (Stealth) checks that rely on sound.</p>\n<h3>Reinforced</h3>\n<p>When you make a long jump while wearing armor with this property, you can cover a number of feet up to twice your Strength score. When you make a high jump, you can leap a number of feet up into the air equal to 3 + twice your Strength modifier.</p>\n<h3>Rigid</h3>\n<p>While wearing armor with this property, you add half your Dexterity modifier (rounded down), instead of your full Dexterity modifier, to Dexterity saving throws you make. If your Dexterity modifier is negative, you instead subtract the full modifier.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 45,
+    "weight": {
+      "value": 45,
+      "units": "lb"
+    },
     "price": {
       "value": 4500,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -121,20 +64,24 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -147,8 +94,8 @@
     },
     "armor": {
       "value": 15,
-      "type": "medium",
-      "dex": 2
+      "dex": 2,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -187,62 +134,46 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "baseItem": "compositearmor",
     "speed": {
       "value": null,
       "conditions": ""
     },
     "strength": null,
-    "stealth": true,
     "properties": {
-      "Absorptive": null,
-      "Agile": null,
-      "Anchor": null,
-      "Avoidant": null,
-      "Barbed": null,
-      "Bulky": true,
-      "Charging": null,
-      "Concealing": null,
-      "Cumbersome": null,
-      "Gauntleted": null,
-      "Imbalanced": null,
-      "Impermeable": null,
-      "Insulated": null,
-      "Interlocking": null,
-      "Lambent": null,
-      "Lightweight": null,
-      "Magnetic": null,
-      "Obscured": null,
-      "Obtrusive": null,
-      "Powered": null,
-      "Reactive": null,
-      "Regulated": null,
-      "Reinforced": true,
-      "Responsive": null,
-      "Rigid": true,
-      "Silent": null,
-      "Spiked": null,
-      "Strength": null,
-      "Steadfast": null,
-      "Versatile": null
+      "0": "Bulky",
+      "1": "Reinforced",
+      "2": "Rigid",
+      "3": "stealthDisadvantage"
     },
     "proficient": null,
-    "equiped": false,
-    "weaponType": ""
+    "type": {
+      "value": "medium",
+      "baseItem": "compositearmor"
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "_propertyValues": {},
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493960312,
-    "modifiedTime": 1704036410369,
+    "modifiedTime": 1720368724086,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!v0jLF6qG2IVMWrpU"

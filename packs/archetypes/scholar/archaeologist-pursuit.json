@@ -16,24 +16,28 @@
   "system": {
     "description": {
       "value": "<h1>Archaeologist Pursuit</h1>\n<p>Archaeologists are those who study the remnants of historical civilizations. Those scholars who choose the Archaeologist Pursuit are driven by a desire to uncover the past, forming a connection to the lives of those that came before, and unlocking within themselves a connection not just to history, but to the Force itself.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Archaeologist Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.NF681pzwk0n7IMzf]{Archive research}</li>\n<li>@Compendium[sw5e.invocations.F593Y6MWg9e7mOmi]{Force combat knowledge}</li>\n<li>@Compendium[sw5e.invocations.hiHMd46Ad5WAkwHL]{It belongs in a museum}</li>\n<li>@Compendium[sw5e.invocations.bS7xvsYZcZ1onGfB]{Localized survey}</li>\n<li>@Compendium[sw5e.invocations.Duv2a1FchU7TourL]{Making this up as you go}</li>\n<li>@Compendium[sw5e.invocations.Isk2PHfk82CcMFmF]{Telekinetic ministrations}</li>\n<li>@Compendium[sw5e.invocations.7f7bRcKW9TPGA8qD]{The years and the mileage}</li>\n<li>@Compendium[sw5e.invocations.talYZt1amuwSxg56]{Tomb of the ancients}</li>\n</ul>"
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "archaeologistpursuit",
     "classIdentifier": "scholar",
     "advancement": [
       {
-        "_id": "1lyba4Dd7AUJ5AdB",
+        "_id": "1b5H7r7Scp7ci9qJ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.MWo1kqA0ba5Ta43R",
-            "Compendium.sw5e.archetypefeatures.KL57sS7jcwOWdqZ8",
-            "Compendium.sw5e.archetypefeatures.HuWC6nLw7bmqQz4H"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.MWo1kqA0ba5Ta43R"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.KL57sS7jcwOWdqZ8"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.HuWC6nLw7bmqQz4H"
+            }
           ],
           "optional": false
         },
@@ -42,11 +46,13 @@
         "title": "Features"
       },
       {
-        "_id": "8Xx2APavyuKso6hT",
+        "_id": "1OYmyH4zNUxk1QMg",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.pANZh0AtuI6THv2S"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pANZh0AtuI6THv2S"
+            }
           ],
           "optional": false
         },
@@ -55,11 +61,13 @@
         "title": "Features"
       },
       {
-        "_id": "U9YbJ2PvOuV6Ih8k",
+        "_id": "2E8rxHHPrkNcIJn3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.pJ8e1i2GwBP8yRum"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pJ8e1i2GwBP8yRum"
+            }
           ],
           "optional": false
         },
@@ -68,11 +76,13 @@
         "title": "Features"
       },
       {
-        "_id": "mnf15lQHvhZQ1r9g",
+        "_id": "dy3q5WeHITb1xCbV",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.wNQS0Ptg34IyGxZZ"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.wNQS0Ptg34IyGxZZ"
+            }
           ],
           "optional": false
         },
@@ -81,7 +91,7 @@
         "title": "Features"
       },
       {
-        "_id": "1dLBJzXvFMvwx3OO",
+        "_id": "4SZ9XitDjod1j9kT",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -94,33 +104,65 @@
         "level": 3
       },
       {
-        "_id": "LZflsO9TH70KnuEF",
+        "_id": "UZE9p5lM4SU1aWQd",
         "type": "ItemChoice",
         "configuration": {
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
-            "2": 2,
-            "3": 2,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "2": {
+              "count": 2
+            },
+            "3": {
+              "count": 2
+            },
+            "5": {
+              "count": 1
+            },
+            "9": {
+              "count": 1
+            },
+            "11": {
+              "count": 1
+            },
+            "13": {
+              "count": 1
+            },
+            "17": {
+              "count": 1
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.NF681pzwk0n7IMzf",
-            "Compendium.sw5e.invocations.F593Y6MWg9e7mOmi",
-            "Compendium.sw5e.invocations.hiHMd46Ad5WAkwHL",
-            "Compendium.sw5e.invocations.bS7xvsYZcZ1onGfB",
-            "Compendium.sw5e.invocations.Duv2a1FchU7TourL",
-            "Compendium.sw5e.invocations.Isk2PHfk82CcMFmF",
-            "Compendium.sw5e.invocations.7f7bRcKW9TPGA8qD",
-            "Compendium.sw5e.invocations.talYZt1amuwSxg56"
+            {
+              "uuid": "Compendium.sw5e.invocations.NF681pzwk0n7IMzf"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.F593Y6MWg9e7mOmi"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.hiHMd46Ad5WAkwHL"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.bS7xvsYZcZ1onGfB"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Duv2a1FchU7TourL"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Isk2PHfk82CcMFmF"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.7f7bRcKW9TPGA8qD"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.talYZt1amuwSxg56"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -144,7 +186,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -152,10 +194,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959744,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Qlp03hPWaKZwxUa4"

@@ -7,85 +7,6 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [
-          true,
-          true
-        ],
-        "altValue": [
-          true,
-          true
-        ],
-        "context": []
-      },
-      "quickVersatile": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "use": false,
-          "resource": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:59.1127678+00:00",
       "importer_version": 3,
@@ -95,47 +16,49 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite</strong>: Saber Throw</em></p>\n<p>As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's range, otherwise the power fails. On a hit, the target takes [[/r 2d8]] damage of the same type as the weapon's damage and must make a Constitution saving throw. On a failed save, the target gains 1 slowed level until the end of its next turn and the weapon then immediately returns to your hand. The next attack made against the target that hits it before the end of the target's next turn deals an additional [[/r 1d10]] force damage. On a successful save, the target takes half as much additional force damage on the next attack that hits it, and suffers no additional effect. The weapon then immediately returns to your hand.</p>\n<p><strong><em>Force Potency.</em></strong> When you cast this power using a force slot of 3rd level or higher, the force damage increases by [[/r 1d10]] for each slot level above 2nd.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "Saber Throw",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
       "units": "ft"
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "rpak",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -162,14 +85,6 @@
     },
     "level": 2,
     "school": "uni",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": false,
-      "value": ""
-    },
     "materials": {
       "value": "",
       "consumed": false,
@@ -183,17 +98,24 @@
     "scaling": {
       "mode": "level",
       "formula": "1d10"
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493979252,
-    "modifiedTime": 1707077464877,
+    "modifiedTime": 1720401972720,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!VXznIASxjfuZIoTh"

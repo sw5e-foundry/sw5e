@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Mechanist Technique:</strong> 3rd level</em></p>\n<p>Your command of techcasting improves.</p>\n<h3>Improved Tech Powers Known</h3>\n<p>You know 7 tech powers of your choice, instead of 5, and you learn more at higher levels, as shown in the Tech Powers Known column of the Mechanist Technique Techcasting table. You may not learn a tech power of a level higher than your Max Power Level.</p>\n<h3>Improved Tech Points</h3>\n<p>You have a number of tech points equal to one and a half times your scout level, instead of your scout level, as shown in the Tech Points column of the Mechanist Technique Techcasting table, + your Intelligence modifier. You use these tech points to cast tech powers. You regain all expended tech points when you finish a short or long rest.</p>\n<h3>Improved Max Power Level</h3>\n<p>Your Max Power Level becomes 2nd, instead of 1st, and it increases at higher levels, as shown in the Mechanist Technique Techcasting table.</p>\n<p>You may only cast tech powers at 5th, 6th, and 7th-level once, instead of 4th and 5th. You regain the ability to do so after a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scout (Mechanist Technique (Companion)) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,24 +79,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Scout"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957707,
-    "modifiedTime": 1699591595169,
+    "modifiedTime": 1720368695048,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!PrzlaH9SDZpQpCL7"

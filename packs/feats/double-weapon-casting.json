@@ -16,48 +16,50 @@
   "system": {
     "description": {
       "value": "<p>You've learned to blend your prowess with twinblades with your casting. You gain the following benefits:</p>\n<ul>\n<li>Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.</li>\n<li>When you use your action to Cast a Power that calls for a weapon attack and attack with a weapon with the light and double properties while wielding it in two hands, you can use your bonus action to engage in Double-Weapon Fighting. All the rules of Double-Weapon Fighting still apply to you.</li></ul>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "4th level, the ability to cast force or tech powers",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -86,17 +88,27 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.3",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493966809,
-    "modifiedTime": 1698713312903,
+    "modifiedTime": 1720401977129,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!dQ8QSYPhVBbOAEX2"

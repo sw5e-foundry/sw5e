@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p>You sprout claws or some other natural weapon. Your unarmed strikes deal [[/r 1d4]] kinetic damage, and you can use your choice of your Strength, Dexterity, or Critical Analysis ability modifer for the attack and damage rolls. You must use the same modifier for both rolls. When you undergo your mutagenic transformation, your unarmed strikes increase to a [[/r d6]] and are considered enhanced for the duration. Additionally, you deal an additional [[/r 1d4]] acid, lightning, or poison damage when you hit with them.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scholar (Geneticist Pursuit)",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -93,17 +98,26 @@
         "turn": null
       }
     },
-    "className": "Scholar"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493981025,
-    "modifiedTime": 1699591665849,
+    "modifiedTime": 1720368786192,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!DTZU7qYm3Be8vZLN"

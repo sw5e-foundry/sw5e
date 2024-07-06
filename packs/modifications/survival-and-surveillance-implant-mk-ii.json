@@ -13,22 +13,22 @@
   "system": {
     "description": {
       "value": "<h4>Cybernetic Augmentation (Replacement)</h4>\n <p><em>Prerequisite:  Intelligence 15</em></p>\n<hr />\n<p>This augmentation replaces your eyes and face.</p>\n<p>This implant contains several improved tools for long-term survival and reconnaissance. As a bonus action, you can activate one of the below modes that enable you to use several of these tools at once. Only one mode can be active at a time.</p>\n<p><em></em>_</p>\n<ul>\n<li><strong>Communications Mode:</strong> This communications suite includes a headcomm with a scrambler that automatically encodes messages sent to a specified recipient commlink or receiver. While this mode is active, you cannot be deafened. Additionally, if you listen to any spoken language for 10 minutes, the software in this package will begin to attempt to decipher it. Make an Intelligence (Lore) check, DC determined by the GM depending on the rarity of the language. On a success, you can understand the spoken form of this language, and speak it if your species' vocal capabilities allow for it.</li>\n<li><strong>Interceptor Mode:</strong> This is a jamming and electronic warfare suite that includes a comm jammer, a holotrace device and pocket scrambler. Additionally, you can attempt to listen in on nearby audio communications chatter such as from a comlink or holocomm as an action. Make an Intelligence (Technology) check, DC determined by the GM depending on the sophistication of the technology. On a success, you can hear electronic communications originating from within 100 feet.</li>\n<li><strong>Respirator Mode:</strong> This includes a basic respirator that grants advantage on saving throws made to avoid being poisoned and resistance to poison damage. Additionally, you do not need air to breathe, allowing you to survive even in vacuum for up to 1 hour.</li>\n</ul>\n<p><strong>Side Effect:</strong> This complex interface causes significant interference with other communication devices, rendering them impossible to use. While this implant is installed, you can not use any portable device used for communication or jamming, such as a commlink or holotrace device.</p>\n<p><em>This sleek, stark white device adorned with a small antenna attaches to the back of the otherwise bulky S3 module.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "prototype",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -41,13 +41,14 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "100",
+      "value": 100,
       "long": null,
       "units": "feet"
     },
@@ -55,16 +56,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,15 +82,26 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "cybernetic",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {}
-    }
+    "properties": {},
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "cybernetic",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -97,10 +110,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1673970648632,
-    "modifiedTime": 1695981488156,
+    "modifiedTime": 1720401971472,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "H8vMxQMmpyc7MVVR",

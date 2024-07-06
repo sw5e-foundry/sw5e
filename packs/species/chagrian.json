@@ -1,8 +1,157 @@
 {
-  "_id": "2QrziMHQnappPY0P",
   "name": "Chagrian",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2731369+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-chagrian"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Chagrian.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Chagrians are born as tadpoles in clutches of three or more and raised in tubs of water in a family's private home. During this time, their arms, legs, and air-breathing lungs develop. Adult Chagrians are truly amphibious, retaining their ability to breathe underwater while also able to function without difficulty in air. They also possess acute low-light vision.</p>\n<p>The average Chagrian stands taller than a Human. They are distinguished by two fleshy growths protruding from the sides of their heads, which they call lethorns. As they age, the lethorns thicken. Males also sport two horns growing from the top of their skulls. These were once used in underwater duels to attract a mate, and are seen as a sign of the males' strength and virility. Females lack the superior cranial horns, but had more pronounced and longer posterior head plates; these can reach halfway down their back. Chagrians also have very long black forked tongues.</p>\n<h2>Society and Culture</h2>\n<p>As a species, Chagrians are generally peaceful and law-abiding to the point of becoming stoic and obstinate. Many Chagrians are motivated only by basic desires such as sustenance, shelter, and healthcare. Chagrian government ensures that every citizen is cared and provided for, so the standard of living for the poorest Chagrian is high compared to the members of other species. Chagrians who expect violence often wear red.</p>\n<h2>Names</h2>\n<p>Chagrian names have a very melodic tone. Male names are typically shorter than female names. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Bom, Chen, Fiet, Nedd, Touk</p>\n<p><strong>Female Names.</strong>  Chavik, Dabai, Fisil, Oolya, Tinto</p>\n<p><strong>Surnames.</strong> Kassin, Molya, Nigna, Onirali, Treen</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "chagrian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "swim": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "2PaJCnE7nrYS8q0V",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mzLy7jpMbSvZeAnz"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FdOyQncZj6pggliz"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mxde3Ov2DRRLZtTl"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.dStU3kyWF3zwedTw"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HKzu4pwVRyzdbu8a"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TirqBca6mhA1ERI9"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FvXOb71bI2sVruZE"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1hA2xPGFKixI3XmW"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TQYX2gh9OzU85HkB"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cr1wEK902BhEdQc2"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1u47HaFUVidV1giV",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "wis": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "Ce6RpQre7CMiu5tK",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Light to dark blue"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Horns (male), lethorns, black forked tongues"
+    },
+    "heightAverage": {
+      "value": "5'5\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "120 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Champala"
+    },
+    "slanguage": {
+      "value": "Chagri"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "yGJG8HBejLZV4hB0",
@@ -80,131 +229,22 @@
       "name": "Chagrian",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!2QrziMHQnappPY0P.yGJG8HBejLZV4hB0"
+      "_key": "!items.effects!QVbLMyqLPiFcG5Wn.yGJG8HBejLZV4hB0"
     }
   ],
+  "_id": "QVbLMyqLPiFcG5Wn",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2731369+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-chagrian"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Chagrians are born as tadpoles in clutches of three or more and raised in tubs of water in a family's private home. During this time, their arms, legs, and air-breathing lungs develop. Adult Chagrians are truly amphibious, retaining their ability to breathe underwater while also able to function without difficulty in air. They also possess acute low-light vision.</p>\n<p>The average Chagrian stands taller than a Human. They are distinguished by two fleshy growths protruding from the sides of their heads, which they call lethorns. As they age, the lethorns thicken. Males also sport two horns growing from the top of their skulls. These were once used in underwater duels to attract a mate, and are seen as a sign of the males' strength and virility. Females lack the superior cranial horns, but had more pronounced and longer posterior head plates; these can reach halfway down their back. Chagrians also have very long black forked tongues.</p>\n<h2>Society and Culture</h2>\n<p>As a species, Chagrians are generally peaceful and law-abiding to the point of becoming stoic and obstinate. Many Chagrians are motivated only by basic desires such as sustenance, shelter, and healthcare. Chagrian government ensures that every citizen is cared and provided for, so the standard of living for the poorest Chagrian is high compared to the members of other species. Chagrians who expect violence often wear red.</p>\n<h2>Names</h2>\n<p>Chagrian names have a very melodic tone. Male names are typically shorter than female names. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Bom, Chen, Fiet, Nedd, Touk</p>\n<p><strong>Female Names.</strong>  Chavik, Dabai, Fisil, Oolya, Tinto</p>\n<p><strong>Surnames.</strong> Kassin, Molya, Nigna, Onirali, Treen</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "chagrian",
-    "advancement": [
-      {
-        "_id": "UqTDh9rvZiL19tnG",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.mzLy7jpMbSvZeAnz",
-            "Compendium.sw5e.speciesfeatures.FdOyQncZj6pggliz",
-            "Compendium.sw5e.speciesfeatures.mxde3Ov2DRRLZtTl",
-            "Compendium.sw5e.speciesfeatures.dStU3kyWF3zwedTw",
-            "Compendium.sw5e.speciesfeatures.HKzu4pwVRyzdbu8a",
-            "Compendium.sw5e.speciesfeatures.TirqBca6mhA1ERI9",
-            "Compendium.sw5e.speciesfeatures.FvXOb71bI2sVruZE",
-            "Compendium.sw5e.speciesfeatures.1hA2xPGFKixI3XmW",
-            "Compendium.sw5e.speciesfeatures.TQYX2gh9OzU85HkB",
-            "Compendium.sw5e.speciesfeatures.cr1wEK902BhEdQc2"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1jqK2Ub8ggrw3IaT",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "dex": 2,
-            "wis": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1cWS0GitFNR0yPa8",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Light to dark blue"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Horns (male), lethorns, black forked tongues"
-    },
-    "heightAverage": {
-      "value": "5'5\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "120 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Champala"
-    },
-    "slanguage": {
-      "value": "Chagri"
-    },
-    "movement": {
-      "walk": 30,
-      "swim": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002057,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!2QrziMHQnappPY0P"
+  "_key": "!items!QVbLMyqLPiFcG5Wn"
 }

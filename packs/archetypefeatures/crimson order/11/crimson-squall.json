@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Crimson Order:</strong> 6th, 11th, and 17th level</em></p>\n<p>You've learned to enhance your kata. As a bonus action while wielding a monk weapon, you can expend 1 focus point to cause the area within 5 feet of you to become difficult terrain for hostile creatures for 1 minute. This area travels with you, and affected creatures within the area can not make opportunity attacks.</p>\n<p>At 11th level, the range of this area increases to 15 feet, and at 17th level, the range of this area increases to 30 feet.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Crimson Order) 11",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 5,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -91,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1680288495918,
-    "modifiedTime": 1699591595218,
+    "modifiedTime": 1720368712498,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "pHG1sLvNaofrbDzs",

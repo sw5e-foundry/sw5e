@@ -15,18 +15,19 @@
       "system": {
         "description": {
           "value": "<p>The droid has disadvantage on saving throws against effects that would deal ion or lightning damage.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -35,31 +36,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -76,7 +79,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -85,10 +88,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -115,18 +124,19 @@
       "system": {
         "description": {
           "value": "<p>The probe droid has advantage on Wisdom (Perception) checks that rely on hearing or sight.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -135,31 +145,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -176,7 +188,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -185,10 +197,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -273,22 +291,24 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Ranged Weapon Attack </em>+4, Range 60/240 ft., One target. <em>Hit : </em>7 (1d10+2) energy damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -301,10 +321,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 60,
@@ -313,22 +334,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "dex",
         "actionType": "rwak",
-        "attackBonus": "0",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -359,12 +381,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -373,61 +392,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "aut": false,
-          "bur": null,
-          "def": null,
-          "dex": null,
-          "dir": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "hid": false,
-          "ken": null,
-          "lum": false,
-          "mig": false,
-          "pic": null,
-          "rap": null,
-          "shk": null,
-          "sil": false,
-          "str": null,
-          "vic": null,
-          "mgc": null,
-          "ran": false,
-          "smr": false,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "ilk": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -533,11 +517,12 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>When the probe droid is reduced to half of its hit point maximum, it attempts to self-destruct. Each creature within 20 feet of it must make a DC 13 Dexterity saving throw, taking 6d6 fire damage on a failed save, or half as much on a successful one.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -550,10 +535,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 20,
+          "value": "20",
           "width": null,
           "units": "ft",
-          "type": "radius"
+          "type": "radius",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -562,22 +548,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "save",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -599,7 +586,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -608,10 +595,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -648,14 +641,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "dex": {
         "value": 15,
@@ -664,14 +650,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "con": {
         "value": 12,
@@ -680,14 +659,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "int": {
         "value": 17,
@@ -696,14 +668,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 3,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 13
+        }
       },
       "wis": {
         "value": 14,
@@ -712,14 +677,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "cha": {
         "value": 7,
@@ -728,14 +686,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -2,
-        "save": 0,
-        "prof": 2,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 8
+        }
       },
       "hon": {
         "value": 7,
@@ -743,7 +694,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 14,
@@ -751,41 +703,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 14,
         "calc": "natural",
-        "formula": "armor plating",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 37,
         "max": 37,
         "temp": 0,
         "tempmax": 0,
-        "formula": "5d10+10",
-        "min": 0
+        "formula": "5d10+10"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 40,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 5,
         "units": "ft",
         "hover": false
@@ -808,16 +756,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -826,16 +767,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -846,57 +780,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 2,
-      "powerdc": 10,
-      "bar1": {
-        "value": 37,
-        "min": 0,
-        "max": 37
-      },
-      "bar2": {
-        "value": 14,
-        "min": 0,
-        "max": 0
-      },
-      "encumbrance": {
-        "value": 1,
-        "max": 330,
-        "pct": 0.30303030303030304,
-        "encumbered": false
-      },
-      "powerForceLightDC": 12,
-      "powerForceDarkDC": 8,
-      "powerForceUnivDC": 12,
-      "powerTechDC": 13,
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"We have thousands of probe droids searching the galaxy. I want proof, not leads!\"</i></p><p><span style=\"font-size:13px\">- Admiral Kendal Ozzel</span></p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Manufacturer</u></td><td style=\"line-height:1.42857\">Arakyd Industries</td></tr><tr><td style=\"line-height:1.42857\"><u>Class</u></td><td style=\"line-height:1.42857\">Probe droid</td></tr><tr><td style=\"line-height:1.42857\"><u>Degree</u></td><td style=\"line-height:1.42857\">4th degree droid</td></tr><tr><td style=\"line-height:1.42857\"><u>Height</u><br /></td><td style=\"line-height:1.42857\">1,6 meters</td></tr></tbody></table><p>The Viper probe droid, commonly referred to as the probot or Imperial probe droid, was a deep-space exploration and reconnaissance probe droid produced by Arakyd Industries. The Viper model was based on the success of Galalloy Industries' early probe droids. The design of the probot also relied heavily on the work of Viper Sensor Intelligence Systems, a corporation acquired by Arakyd during the Clone Wars. Though they were used almost exclusively by the military, they were considered class two exploration droids.</p><h3>Specifications</h3><blockquote><p><i>\"'Fraid there's not much left.\"</i></p><p><span style=\"font-size:13px\"><i>\"What was it?\"</i></span></p><p><i>\"A droid of some kind. I didn't hit it that hard. It must've had a self-destruct.\"</i></p><p>- Han Solo and Princess Leia</p></blockquote><p>The lightly-armored Viper droid measured 1.6 meters in height with six manipulator arms extending from a central pod and several retractable sensor arms for gathering samples. High resolution receivers and sensors covered the domed head—including motion, acoustic, sonic, and seismic sensors, a radiation meter, magnetic imager, and holocamera. It had an atmosphere sensor capable of determining a planet's atmosphere class within one half-hour. It moved on a repulsorlift generator which was equipped to operate over any terrain. One of the arms was high-torque, and the droid was equipped with a floodlight on its head. In addition, when making transmissions, the probe droid emitted a audio encrypted imperial computer code set of an unknown serial number.<br /></p><p>Information was relayed back to its superiors via a high-frequency HoloNet transceiver. Its repulsorlift engines carried the droid across terrain at up to 40 km/h, while the arms gathered samples. Vipers were delivered to their targets through single-use custom built hyperspace pods. They were commonly deployed along the perimeters of key strategic star systems and hyperlanes to act as automated guardians.<br /></p><p>Typically, a Viper probe droid cost 14,500 credits. They were capable of being deployed from Galactic Empire Command centers.<br /></p><h3>History</h3><blockquote><p><i>\"Go and report. You have much to see. Burn brightly.\"</i></p><p><span style=\"font-size:13px\">- IG-88, to the last Viper probe droid constructed on Mechis III</span></p></blockquote><p>Arakyd probe droids were originally designed for use by the Galactic Republic in survey and exploration duty, but when the Republic was transformed into the Galactic Empire, Arakyd modified their probots with military-level sensors and equipment, and marketed them as Viper probe droids. This was not the first time Arakyd probots had been upgraded for warfare, however, as the Confederacy of Independent Systems had employed a number of upgraded probots during the invasion of Kashyyyk during the Clone Wars.[6] Viper probots in service with the Empire were upgraded under the direct supervision of Darth Vader, and featured a blaster cannon, a self-destruct mechanism, and, in some cases, deflector shields.</p><p>Many thousands of the Imperial Viper probe droids were manufactured on Mechis III, and were in production when the rogue assassin droid IG-88 took control of the planet's automated factories. IG-88 included a secondary set of programming into the Viper droids to relay any obtained intelligence back to Mechis III, as well as to the Empire. Thus, they simultaneously served as the eyes and ears of the Droid Revolution. The Imperial Intelligence's Analysis Bureau also used them as remote surveillance droids posted largely in the Outer Rim Territories. In conflict zones, probots often worked alongside the Imperial Navy to monitor traffic and provide early warnings of attack. They could also be programmed to engage pursuit mode, whereupon the Viper would track an enemy vessel and report back on its location and destination.</p><p>Arakyd's success with the military model of the Viper yielded the C-Viper probe droid variant designed for planetary law enforcement organizations, the Infiltrator probe droid for sabotage missions, and the Hunter-Killer probot.<br /></p><p>Shortly after the Battle of Tatooine, the Empire dispatched various probe droids to Tatooine in an attempt to recover the stolen plans for the Death Star. Six months after the Battle of Yavin, the Galactic Empire sent a detachment of probe droids to root out Rebel Commander Luke Skywalker. They were destroyed by Skywalker and Rogue Squadron. Probe droids were also used to scout ahead for Imperial strike forces, including during the Reytha campaign and the battle at Corellia, or were sent on search missions like at Chorax. Several were also dispatched to Dantooine as security measures while the Imperials arrived on the planet to detain the defecting Imperial officer Tycho Celchu.<br /></p><p><b>Locating Echo Base</b></p><blockquote><p><i>\"I think we've got something, sir. The report is only a fragment from a probe droid in the Hoth system, but it's the best lead we've had.\"</i></p><p><span style=\"font-size:13px\">- Captain Firmus Piett, to Admiral Kendal Ozzel</span></p></blockquote><p>Following the Battle of Yavin, the Empire committed thousands of these modified probe droids to scour the galaxy for hidden Alliance to Restore the Republic bases, specifically the Alliance High Command headquarters. They even went as far as to provide bounty hunters with remote request devices to search out targets moving from planet to planet.<br /></p><p>It was an Arakyd Viper, launched from the Imperial II-class Star Destroyer Stalker,[10] that landed on the ice planet Hoth and discovered the Rebellion's Echo Base. Upon landing on the frozen world, the probe droid appeared to the casual onlooker, and even the base's sensor readings, as one of many meteorites streaking to Hoth's surface. During a routine patrol of the Hoth wastes, Luke Skywalker intended to inspect the crash site, but was attacked by a wampa ice creature, and never learned what had really crashed to the ground. Thus, the Hoth probe droid was free to continue on its programmed mission.</p><p>Immediately upon emerging from its hyperspace pod, the probe detected a faint comm signal on non-Imperial bandwidths. This indicated to the droid the presence of an unregistered, and possibly Rebel, settlement. Since it had not yet gathered enough conclusive evidence to report, the droid moved away from the nearby signal in order that it might avoid contact until such time as self-preservation no longer became necessary.</p><p>Soon after moving away from its first contact, the probe droid vectored in on the detected signal's probable destination point, triangulating from its last known position. A long time passed where the droid made no contact with the signal whatsoever, so it continued to search. During the night blizzard that threatened the lives of Skywalker and Han Solo, the probe detected and destroyed a wampa with its powerful blaster cannon. Only with the most advanced Imperial sensor technology was the probe able to detect a wampa in a blizzard whiteout. As the blizzard raged into the night, the probe activated its modified power-intensive particle shield to protect it from the thick snow hazard.</p><p>In the early hours of the next morning, the probe ceased operation entirely, shunting its energy to its shield. The droid reappeared when the sun rose, cresting the rise of a snow bank in Echo Base's Zone 12. There, it detected the presence of a large deflector shield generator. It immediately began audio-visual recording of the contact. Following its programming, the droid then beamed, on omnisignal unicode, a transmission via its HoloNet transceiver concerning its find to Vader's personal flagship, the Star Dreadnought Executor. This information was privately received simultaneously by IG-88 back on Mechis III. Vader decided from this information that the Hoth system was indeed the location of the Rebel base, and he ordered his Death Squadron there in preparation of a full-scale ground assault.<br /></p><p>With the initial contact reported, the probe continued on its mission. It proceeded to meticulously map out the Echo Base defenses, including the surrounding trenches, artillery emplacements, and even the size, model, and location of the v-150 anti-orbital ion cannon, as well as observing troop movements and positions. This information was received by General Maximilian Veers. He and his commanders used this invaluable tactical information to plan the attack, a testament to the Empire's incredible preparedness during the Battle of Hoth.<br /></p><blockquote><p><i>\"Princess, we have a visitor. We've picked up something outside the base in Zone Twelve, moving east.\"</i></p><p><span style=\"font-size:13px\">- General Carlist Rieekan, to Princess Leia Organa</span></p></blockquote><p>Before the probe had a chance to implement its \"sabotage and disruption\" programming, the Echo Base command center received a transmission from Echo Station 3-8. The scout outpost had detected a metal object skimming through the icy wastes. The probe droid was discovered. The probe then proceeded to completely destroy the outpost and the scout within it with its blaster, turning it into a smoldering ruin. Solo and the Wookiee Chewbacca were dispatched to deal with the spy machine. The probe detected the approach of its two enemy assailants, but it was no match for them. The probe was soon trapped despite its evasive maneuvers. After a quick game of \"decoy,\" Solo blasted the confused probe. Solo's shots were only meant to disable the probe's motor functions, intending to take the droid intact, but its override programming kicked in and the probe immediately self-destructed.</p><p>Although the probe attempted to destroy itself, its self-destruct programming had apparently been at least marginally affected by either the frigid Hoth temperatures or the damage that was inflicted on it upon entering the Hoth system. The probe was almost destroyed entirely, though enough of it was left for Solo to retrieve and bring back to the base for memory scan. The base technicians and Alliance historian Voren Na'al were able to piece together some of the probe's memory circuits and learn many details concerning its particular mission experiences. Na'al used much of this data to help compile his subsequent reports on the history of the Rebellion during this period. Other probe droids were used during the actual Battle to locate Rebel installations.</p><p>In 14 ABY the Jedi Jaden Korr encountered probe droids used by the Imperial Remnant on his scouting mission on Hoth.<br /></p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Unaligned",
-      "species": "",
+      "species": null,
       "type": {
         "value": "droid",
         "subtype": "",
@@ -908,13 +833,9 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 200
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 1
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "lg",
@@ -946,15 +867,14 @@
       "languages": {
         "value": [],
         "custom": "—"
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -964,11 +884,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -977,11 +897,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 0,
@@ -990,11 +910,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -1003,11 +923,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -1016,11 +936,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -1029,11 +949,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 1,
@@ -1042,11 +962,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 15,
-        "prof": 2,
-        "total": 5
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -1055,11 +975,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "prof": 0,
-        "total": 3,
-        "passive": 13
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -1068,11 +988,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -1081,11 +1001,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -1094,11 +1014,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "prof": 0,
-        "total": 3,
-        "passive": 13
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 1,
@@ -1107,11 +1027,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 14,
-        "prof": 2,
-        "total": 4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -1120,11 +1040,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -1133,11 +1053,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -1146,11 +1066,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0,
@@ -1159,11 +1079,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -1172,11 +1092,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -1185,11 +1105,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "prof": 0,
-        "total": 3,
-        "passive": 13
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
     "tools": {},
@@ -1198,96 +1118,67 @@
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1406,10 +1297,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493984209,
-    "modifiedTime": 1699591677352,
+    "modifiedTime": 1720368806204,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!RNFfvtHCPKqJuWym"

@@ -1,8 +1,170 @@
 {
-  "_id": "5i6oz2FQWAj8EkcR",
   "name": "Rattataki",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.290127+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-rattataki"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Rattataki.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The Rattataki are a near-human species characterized by their nimble movements, chalk-white skin and oft-bald heads. Virtually isolated from the rest of the galaxy, the Rattataki developed a violent society on their home planet of Rattatak, which involves extensive gladiatorial combat. </p>\n<h2>Society and Culture</h2>\n<p>While most other inhabitants of Rattatak came from the Unknown Regions, there are a significant number of off-worlder mercenaries who come to Rattatak from time to time, likely to view or participate in gladiatorial combat, only to be stranded there permanently. The remarkably harsh conditions on the planet nearly drove its population to extinction. For eons, the Rattataki constantly battled amongst themselves and their fellow inhabitants (represented primarily by Humans, Zabraks, Siniteens, Vollick, and Weequay) over the planet's limited resources. Despite being nearly completely isolated from the outside galaxy, the Rattataki displayed remarkable initiative and continually created new ways to kill each other.</p>\n<p>Rattataki culture is bloody and unforgiving. Punishment for even the smallest crimes is unnecessarily harsh, which does little to quell that behavior. In fact, Rattataki who are known to commit crimes without being caught are celebrated.</p>\n<h2>Names</h2>\n<p>Rattataki names are harsh sounding and short. Surnames are familial, though many Rattataki abandon them in favor of self-aggrandizing titles.</p>\n<p><strong>Male Names.</strong> Aidus, Charnagus, Karok, Veran</p>\n<p><strong>Female Names.</strong> Amaran, Kassien, Silas, Sraja, Vol</p>\n<p><strong>Surnames.</strong> Anjek, Danvik, Degger, Kolla, Venkorr</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "rattataki",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 35,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1bM0IIHmCW271TiE",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WRX6mYJEZoLGgpcm"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WyodcdNEgjAEWtOK"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hqSsjmTxmvcoPQVL"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.nVBqjqPLnFFJ9pky"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MxCvbUMFCLh7F9Vc"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.dqyn74y3x8lJSPPr"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.83WXzeDc0sZp5tjG"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6l4JVqwH5sYuhYEQ"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Gkw9yAv6ezOeLLhA"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.V5XVUGcB52DA2aQe"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1j8KH93GR5r1Fouc",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1PDuT3xM0KwChfJw",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1AHgijhHVZAM1LzY",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:acr",
+            "skills:itm"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Chalk-white"
+    },
+    "hairColorOptions": {
+      "value": "Brown, grey or white"
+    },
+    "eyeColorOptions": {
+      "value": "Grey or white"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Near-human features, white skin, usually with a bald head, often tattooed"
+    },
+    "heightAverage": {
+      "value": "4'4\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "90 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Rattatak"
+    },
+    "slanguage": {
+      "value": "Rattataki"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "1peB1cOJ8IYxY5Cw",
@@ -80,140 +242,22 @@
       "name": "Rattataki",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!5i6oz2FQWAj8EkcR.1peB1cOJ8IYxY5Cw"
+      "_key": "!items.effects!rWmBISsRpzkFlmUC.1peB1cOJ8IYxY5Cw"
     }
   ],
+  "_id": "rWmBISsRpzkFlmUC",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.290127+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-rattataki"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The Rattataki are a near-human species characterized by their nimble movements, chalk-white skin and oft-bald heads. Virtually isolated from the rest of the galaxy, the Rattataki developed a violent society on their home planet of Rattatak, which involves extensive gladiatorial combat. </p>\n<h2>Society and Culture</h2>\n<p>While most other inhabitants of Rattatak came from the Unknown Regions, there are a significant number of off-worlder mercenaries who come to Rattatak from time to time, likely to view or participate in gladiatorial combat, only to be stranded there permanently. The remarkably harsh conditions on the planet nearly drove its population to extinction. For eons, the Rattataki constantly battled amongst themselves and their fellow inhabitants (represented primarily by Humans, Zabraks, Siniteens, Vollick, and Weequay) over the planet's limited resources. Despite being nearly completely isolated from the outside galaxy, the Rattataki displayed remarkable initiative and continually created new ways to kill each other.</p>\n<p>Rattataki culture is bloody and unforgiving. Punishment for even the smallest crimes is unnecessarily harsh, which does little to quell that behavior. In fact, Rattataki who are known to commit crimes without being caught are celebrated.</p>\n<h2>Names</h2>\n<p>Rattataki names are harsh sounding and short. Surnames are familial, though many Rattataki abandon them in favor of self-aggrandizing titles.</p>\n<p><strong>Male Names.</strong> Aidus, Charnagus, Karok, Veran</p>\n<p><strong>Female Names.</strong> Amaran, Kassien, Silas, Sraja, Vol</p>\n<p><strong>Surnames.</strong> Anjek, Danvik, Degger, Kolla, Venkorr</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "rattataki",
-    "advancement": [
-      {
-        "_id": "1LQhExPBVao9TObR",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.WRX6mYJEZoLGgpcm",
-            "Compendium.sw5e.speciesfeatures.WyodcdNEgjAEWtOK",
-            "Compendium.sw5e.speciesfeatures.hqSsjmTxmvcoPQVL",
-            "Compendium.sw5e.speciesfeatures.nVBqjqPLnFFJ9pky",
-            "Compendium.sw5e.speciesfeatures.MxCvbUMFCLh7F9Vc",
-            "Compendium.sw5e.speciesfeatures.dqyn74y3x8lJSPPr",
-            "Compendium.sw5e.speciesfeatures.83WXzeDc0sZp5tjG",
-            "Compendium.sw5e.speciesfeatures.6l4JVqwH5sYuhYEQ",
-            "Compendium.sw5e.speciesfeatures.Gkw9yAv6ezOeLLhA",
-            "Compendium.sw5e.speciesfeatures.V5XVUGcB52DA2aQe"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "BsWas5H4tFc1F8Mp",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "wis": 2
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "OPmdvNmjCLP1pWo0",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1jsuhwwo8dD2yNOe",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:acr",
-            "skills:itm"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Chalk-white"
-    },
-    "hairColorOptions": {
-      "value": "Brown, grey or white"
-    },
-    "eyeColorOptions": {
-      "value": "Grey or white"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Near-human features, white skin, usually with a bald head, often tattooed"
-    },
-    "heightAverage": {
-      "value": "4'4\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "90 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Rattatak"
-    },
-    "slanguage": {
-      "value": "Rattataki"
-    },
-    "movement": {
-      "walk": 35
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002064,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!5i6oz2FQWAj8EkcR"
+  "_key": "!items!rWmBISsRpzkFlmUC"
 }

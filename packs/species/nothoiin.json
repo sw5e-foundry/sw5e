@@ -1,8 +1,186 @@
 {
-  "_id": "KYirdDikaWKFaOXN",
   "name": "Nothoiin",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2871287+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-nothoiin"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Nothoiin.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Near-humans possessing golden, flaky skin, nothoiins feature fair to brown hair with brown eyes and typically have physical heights and builds common to humans.  Nothoiins' appearance has earned their species the nickname of \"Goldskins.\"</p>\n<h2>Society and Culture</h2>\n<p>Although nothoiins hail from their eponymous homeworld and star system in the Anoat Sector, they are ubiquitous throughout the Greater Javin Region and Corporate Sectors.  Their history of interstellar exploration and colonization was facilitated by their species' natural spacefaring abilities in both piloting and navigation and necessitated by their home planet's periodically harsh, dry climate.  Droughts on Nothoiin can last for decades, and the wildfires they foster have served as one of the primary factors behind the limited development of the planet's economy beyond the ur-diamond mining industry, which produces the system's chief export.  </p>\n<p>Large-scale emigration from Nothoiin has led members of its native species to seek careers as pilots, navigators, and operatives in numerous criminal enterprises.  Various nothoiin colonies have given rise to a number of different governmental systems running the gamut from representative democracies to autocracies.</p>\n<h2>Names</h2>\n<p>Nothoiin typically receive a gendered given name and a familial surname.</p>\n<p><strong>Male Names.</strong> Amrosio, Jado, Kosimas, Troov</p>\n<p><strong>Female Names.</strong> Elayah, Giranti, Lorinah, Sil</p>\n<p><strong>Surnames.</strong> Caban, Mordu, Plintus, Starstrider</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "nothoiin",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "2FSaaDejKEroMzBO",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.onXBvXuCP4kpyDxG"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ri1RE52hLp0wqH4n"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wg5KUtSz92E4e5DT"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QkjpTgobTLqOn29j"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Grlv7Bw8oAQmeWnd"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IedCyoXjQ7HWvgoL"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FEHKdCJJKaxyCzGH"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GNZmD6xYULvbFfXp"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.x6XqpQkduRwfmzM7"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.0IzxuRqCTGotKE9h"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.pdnvI6uqxO2fxMeW"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cBZIs5GUBWMUoZFF"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1sKENz91huEvPXh5",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "dex": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "2CzRGRUKLGP4jso8",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "BRN55roR69fXz89H",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:jewelersimplements",
+                "tool:scavengingkit",
+                "tool:archaeologistkit"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:pil",
+            "skills:lor"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Golden"
+    },
+    "hairColorOptions": {
+      "value": "Blond, brown, light brown"
+    },
+    "eyeColorOptions": {
+      "value": "Brown"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Near-human, flaky golden skin, skilled pilots"
+    },
+    "heightAverage": {
+      "value": "4'8\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "110 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Nothoiin"
+    },
+    "slanguage": {
+      "value": "Notho"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "JhHAOQyteRjEJhyC",
@@ -68,152 +246,22 @@
       "name": "Nothoiin",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!KYirdDikaWKFaOXN.JhHAOQyteRjEJhyC"
+      "_key": "!items.effects!7tyvqGgrGEtJwbzq.JhHAOQyteRjEJhyC"
     }
   ],
+  "_id": "7tyvqGgrGEtJwbzq",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2871287+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-nothoiin"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Near-humans possessing golden, flaky skin, nothoiins feature fair to brown hair with brown eyes and typically have physical heights and builds common to humans.  Nothoiins' appearance has earned their species the nickname of \"Goldskins.\"</p>\n<h2>Society and Culture</h2>\n<p>Although nothoiins hail from their eponymous homeworld and star system in the Anoat Sector, they are ubiquitous throughout the Greater Javin Region and Corporate Sectors.  Their history of interstellar exploration and colonization was facilitated by their species' natural spacefaring abilities in both piloting and navigation and necessitated by their home planet's periodically harsh, dry climate.  Droughts on Nothoiin can last for decades, and the wildfires they foster have served as one of the primary factors behind the limited development of the planet's economy beyond the ur-diamond mining industry, which produces the system's chief export.  </p>\n<p>Large-scale emigration from Nothoiin has led members of its native species to seek careers as pilots, navigators, and operatives in numerous criminal enterprises.  Various nothoiin colonies have given rise to a number of different governmental systems running the gamut from representative democracies to autocracies.</p>\n<h2>Names</h2>\n<p>Nothoiin typically receive a gendered given name and a familial surname.</p>\n<p><strong>Male Names.</strong> Amrosio, Jado, Kosimas, Troov</p>\n<p><strong>Female Names.</strong> Elayah, Giranti, Lorinah, Sil</p>\n<p><strong>Surnames.</strong> Caban, Mordu, Plintus, Starstrider</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "nothoiin",
-    "advancement": [
-      {
-        "_id": "xTRxjRA6L7E1JP5S",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.onXBvXuCP4kpyDxG",
-            "Compendium.sw5e.speciesfeatures.ri1RE52hLp0wqH4n",
-            "Compendium.sw5e.speciesfeatures.wg5KUtSz92E4e5DT",
-            "Compendium.sw5e.speciesfeatures.QkjpTgobTLqOn29j",
-            "Compendium.sw5e.speciesfeatures.Grlv7Bw8oAQmeWnd",
-            "Compendium.sw5e.speciesfeatures.IedCyoXjQ7HWvgoL",
-            "Compendium.sw5e.speciesfeatures.FEHKdCJJKaxyCzGH",
-            "Compendium.sw5e.speciesfeatures.GNZmD6xYULvbFfXp",
-            "Compendium.sw5e.speciesfeatures.x6XqpQkduRwfmzM7",
-            "Compendium.sw5e.speciesfeatures.0IzxuRqCTGotKE9h",
-            "Compendium.sw5e.speciesfeatures.pdnvI6uqxO2fxMeW",
-            "Compendium.sw5e.speciesfeatures.cBZIs5GUBWMUoZFF"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "A4VUWkc8d5WEMZVX",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2,
-            "dex": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "yoNO5Q6dj1e1zdlT",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1q8MoClxIWjrFwvk",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "tool:jewelersimplements",
-                "tool:scavengingkit",
-                "tool:archaeologistkit"
-              ]
-            }
-          ],
-          "grants": [
-            "skills:pil",
-            "skills:lor"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Golden"
-    },
-    "hairColorOptions": {
-      "value": "Blond, brown, light brown"
-    },
-    "eyeColorOptions": {
-      "value": "Brown"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Near-human, flaky golden skin, skilled pilots"
-    },
-    "heightAverage": {
-      "value": "4'8\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "110 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Nothoiin"
-    },
-    "slanguage": {
-      "value": "Notho"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002083,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!KYirdDikaWKFaOXN"
+  "_key": "!items!7tyvqGgrGEtJwbzq"
 }

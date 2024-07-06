@@ -13,38 +13,39 @@
   "system": {
     "description": {
       "value": "<h4>Droid Customization (Part)</h4>\n <p>A vocoder is an adjustment to a droid's speech center. The vocoder includes 20 languages, and grants the droid the ability to speak, read, and write each language. The languages can be changed out while interfaced with a protocol droid or appropriate computer.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "prototype",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -55,16 +56,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,15 +82,26 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "droidcustomization",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {}
-    }
+    "properties": {},
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "droidcustomization",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -97,10 +110,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1673970648650,
-    "modifiedTime": 1699591687698,
+    "modifiedTime": 1720368861451,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "ojYDXy4eXguHLCZe",

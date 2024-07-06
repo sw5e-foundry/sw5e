@@ -9,57 +9,44 @@
   },
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Species/Xexto.webp",
-  "effects": [],
   "system": {
     "description": {
       "value": "<p>Xexto have four arms which they can use independently of one another. You can only gain the benefit of items held by two of your arms at any given time, and once per round you can switch which arms you are benefiting from (no action required).</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Xexto",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": {
-      "threshold": null,
-      "damage": ""
-    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,18 +61,43 @@
       "value": "species",
       "subtype": ""
     },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {},
     "recharge": {
       "value": null,
       "charged": false
     },
     "attributes": {
       "speed": {
-        "space": null,
-        "turn": null
+        "space": 300,
+        "turn": 250
       }
-    },
-    "className": null
+    }
   },
+  "effects": [],
+  "_id": "XGIslca09f8Un9LA",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -93,12 +105,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
-    "createdTime": 1667426106913,
-    "modifiedTime": 1695981492641,
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296029297,
+    "modifiedTime": 1720368902512,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_id": "yL4Cj8fjJ7OEEO4S",
-  "_key": "!items!yL4Cj8fjJ7OEEO4S"
+  "_key": "!items!XGIslca09f8Un9LA"
 }

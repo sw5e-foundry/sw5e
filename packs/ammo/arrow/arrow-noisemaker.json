@@ -16,38 +16,41 @@
   "system": {
     "description": {
       "value": "<p>A noisemaker arrow is a specialized arrow for use with bow weapons. When the arrow hits another creature, object, or surface it generates an explosion of sound that can be heard up to 100 feet away. If the target of the attack is a creature, the creature must make a DC 14 Constitution saving throw. On a failed save, the creature takes [[/r 1d6]] sonic damage and is deafened until the end of its next turn. Once the arrow hits a target, it no longer gives a bonus.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 125,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -56,21 +59,25 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
       "recovery": "",
-      "autoDestroy": false
+      "autoDestroy": false,
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -86,29 +93,34 @@
       "dc": 14,
       "scaling": "flat"
     },
-    "consumableType": "ammo",
-    "ammoType": "arrow",
     "properties": {},
-    "baseItem": "arrow,noisemaker",
-    "armor": {},
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "_propertyValues": {},
+    "type": {
+      "value": "ammo",
+      "subtype": "arrow"
     },
-    "weaponType": "",
-    "proficient": false
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493956754,
-    "modifiedTime": 1704036410852,
+    "modifiedTime": 1720368678618,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!rWNnt31Qc8vijcUb"

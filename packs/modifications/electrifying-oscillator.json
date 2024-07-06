@@ -16,29 +16,29 @@
   "system": {
     "description": {
       "value": "<h4>Item Modification (Vibroweapon)</h4>\n <p>When you hit with the weapon, you can create an electronic burst. Each creature in a 15-foot cone centered on the creature you hit must make a DC 15 Dexterity saving throw, taking [[/r 1d8]] lightning damage on a failed save or half as much on a successful one.</p>\n<p>Once you've used this feature, you must complete a long rest before you can use it again.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "prototype",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "special",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
@@ -47,7 +47,8 @@
       "value": "15",
       "width": null,
       "units": "ft",
-      "type": "cone"
+      "type": "cone",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -56,18 +57,19 @@
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -88,27 +90,36 @@
       "dc": 15,
       "scaling": "flat"
     },
-    "modificationType": "vibroweapon",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {}
+    "properties": {},
+    "unidentified": {
+      "description": ""
     },
-    "modified": [],
-    "modificationItemType": "weapon"
+    "type": {
+      "value": "vibroweapon",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493999437,
-    "modifiedTime": 1699591687664,
+    "modifiedTime": 1720368849121,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!TWKkLAdqAevmwTn2"

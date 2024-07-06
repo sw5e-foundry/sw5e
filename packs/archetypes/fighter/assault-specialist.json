@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Assault Specialist</h1>\n<p>Those fighters who choose to become Assault Specialists focus on the development of raw physical power honed to deadly perfection. Assault Specialists combine rigorous training with physical excellence to deal devastating blows.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "assaultspecialist",
     "classIdentifier": "fighter",
     "advancement": [
       {
-        "_id": "VHsmNdwq4sY1cRv8",
+        "_id": "B09wZtew7eo1vT8Q",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.oaeOcCcID7jpDLvC",
-            "Compendium.sw5e.archetypefeatures.vYujZHTmApzAyaPs"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.oaeOcCcID7jpDLvC"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.vYujZHTmApzAyaPs"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "KGrECSFKajt184If",
+        "_id": "1nT0bJMv2Qxg1cFa",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.bdTn1STkrkyTymAW"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.bdTn1STkrkyTymAW"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "Mpr7OffONtyLnl2H",
+        "_id": "lERjlMtSMar1d52r",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.UQfXhacffisIadI7"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UQfXhacffisIadI7"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "1zTqnMMdrBNc1oij",
+        "_id": "xPCSBRsx7xV1L1lP",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.OHR8sRaJ4uhnCQt0"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.OHR8sRaJ4uhnCQt0"
+            }
           ],
           "optional": false
         },
@@ -80,11 +88,13 @@
         "title": "Features"
       },
       {
-        "_id": "F7uJusPFMr93hclY",
+        "_id": "HceacuM0hl3Lad5d",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.mUQpy94CIAOkbxC1"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.mUQpy94CIAOkbxC1"
+            }
           ],
           "optional": false
         },
@@ -100,7 +110,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -108,10 +118,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959709,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!3WEDJ9aje4WwK0b1"

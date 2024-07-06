@@ -13,48 +13,50 @@
   "system": {
     "description": {
       "value": "<p>Choose up to 10 creatures of your choice that are within 60 feet. Each must make a Constitution saving throw. On a failed save, a target takes [[/r 14d6]] ion damage and is stunned until the start of your next turn. On a success, it takes half damage and isn't stunned.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Astrotech Engineering) 18",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -89,7 +91,16 @@
         "turn": null
       }
     },
-    "className": "Engineer"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "folder": null,
   "sort": 0,
@@ -98,10 +109,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426104163,
-    "modifiedTime": 1699591595222,
+    "modifiedTime": 1720368713743,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "qHLiXj901pgIwyif",

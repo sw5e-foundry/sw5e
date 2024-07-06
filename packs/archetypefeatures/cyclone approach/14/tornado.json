@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Cyclone Approach:</strong> 14th level</em></p>\n<p>You can become a tornado of attacks. When you take the Attack action on your turn, you can forgo one of your regular attacks to make a melee attack against any number of creatures within 5 feet of you, with a separate attack roll for each target. If you are wielding a separate melee weapon in each hand, each successful hit against a target deals damage equal to the damage dice of both weapons + your ability modifier + any other modifiers.</p>\n<p>You can use this feature a number of times equal to your Strength modifier (a minimum of once). You regain all expended uses when you finish a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Berserker (Cyclone Approach) 14",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "5",
+      "value": 5,
       "long": null,
-      "units": "touch",
-      "unit": "feet"
+      "units": "touch"
     },
     "uses": {
       "value": null,
       "max": "max(@abilities.str.mod, 1)",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -84,17 +89,26 @@
         "turn": null
       }
     },
-    "className": "Berserker"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957493,
-    "modifiedTime": 1699591595148,
+    "modifiedTime": 1720368687346,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!D2dpEvNZhLDsArYf"

@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Ysannanite Form:</strong> 7th level</em></p>\n<p>Your familiarity with blaster weapons has granted you greater insight into their function and usage. Once on each of your turns, drawing or stowing a blaster no longer requires your object interaction. Additionally, you no longer require a free hand to reload.</p>\n<p>At 11th level, once per turn, when you hit a creature with a ranged weapon attack, the creature takes an extra [[/r 1d8]] damage. If you also use your Force-Empowered Shots with an attack, you add this damage to the extra damage of your Force-Empowered Shots. The damage is the same type as the weapon's damage.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Ysannanite Form) 7",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -79,24 +84,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Guardian"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957295,
-    "modifiedTime": 1699591595129,
+    "modifiedTime": 1720368680425,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!1B6xQuJCP8NK3Etg"

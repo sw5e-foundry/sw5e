@@ -1,11 +1,5 @@
 {
-  "_id": "wf7TWmgCK7OXS4ro",
   "name": "Gank",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Gank.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2781349+00:00",
@@ -13,32 +7,76 @@
       "uid": "Species.name-gank"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Gank.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>The ganks are a species of fur-covered carnivores. The typical member of the species has a face that is squared-off and yellow in color, the expression trapped in a perpetual snarl that non-ganks find unattractive. Small, mean-looking eyes peer from above the maw, their head sitting atop a thick neck between broad, strong shoulders. These cap two thickset, powerful arms, which terminate in hands with five fingers each. Their heavy build affords ganks great strength, yet they are also spry runners. They augment their bodies with cybernetics, making them a species of cyborgs.</p>\n<h2>Society and Culture</h2>\n<p>Precious little is known about gank culture. The exception is that the ganks are fabled for their violent and ruthless nature; even the slightest perceived insult is enough to throw a gank into a violent rage of retaliation. Outsiders similarly know little of the organization of gank society, or whether they have any central rulers at all. What is well known was that the ganks are a war-loving and regimented species, whose members enjoy occupations that allow them to fight and shed blood, such as that of assassin, bodyguard, bounty hunter, and mercenary. They are in particular demand by the hutts, who have enough ganks on retainer to constitute a small army. Their warlike ways and physical strength ranks the ganks among the galaxy's most redoubtable fighters. The species have no compunctions about premeditated murder, which lends them the nickname \"Gank Killers.\"</p>\n<h2>Names</h2>\n<p>Gank names do not differentiate between genders, and instead of surnames, they give themselves epithets. </p>\n<p><strong>First Names.</strong> Darakk, Frent, Shett, Yorrath</p>\n<p><strong>Epithets.</strong> the Feared, the Keen, the Slayer, the Tough</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "gank",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 35,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
     "advancement": [
       {
-        "_id": "14p0X6ViKYBl1ncO",
+        "_id": "1Nhtqm8AoNfo5sAM",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.speciesfeatures.gR2tL4vSkA29wiIx",
-            "Compendium.sw5e.speciesfeatures.GWuQwGQLVFbcpjwV",
-            "Compendium.sw5e.speciesfeatures.g1GkQjhJhH41eCvt",
-            "Compendium.sw5e.speciesfeatures.D15HkqAzlWDFhflh",
-            "Compendium.sw5e.speciesfeatures.T2g1wWJzZhFdx0Xx",
-            "Compendium.sw5e.speciesfeatures.3kcboX6RZ0glgksd",
-            "Compendium.sw5e.speciesfeatures.LV7NWe9tZLFFT2Uz",
-            "Compendium.sw5e.speciesfeatures.agxPD1Nc3tvR2Vh8",
-            "Compendium.sw5e.speciesfeatures.GdFtFwQyF0OvyNWh",
-            "Compendium.sw5e.speciesfeatures.e2dgecfCFSiLsmvL"
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.gR2tL4vSkA29wiIx"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GWuQwGQLVFbcpjwV"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.g1GkQjhJhH41eCvt"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.D15HkqAzlWDFhflh"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.T2g1wWJzZhFdx0Xx"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3kcboX6RZ0glgksd"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LV7NWe9tZLFFT2Uz"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.agxPD1Nc3tvR2Vh8"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GdFtFwQyF0OvyNWh"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.e2dgecfCFSiLsmvL"
+            }
           ],
           "optional": true
         },
@@ -47,7 +85,7 @@
         "title": "Features"
       },
       {
-        "_id": "1qQF7s6WLOlQ1ELx",
+        "_id": "Hph5Pavl4koZb9AH",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -59,7 +97,7 @@
         "level": 0
       },
       {
-        "_id": "ZUjhIuJPr9USq4qA",
+        "_id": "dce4fkHmkrzzPJ3G",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -70,7 +108,7 @@
         "level": 0
       },
       {
-        "_id": "gFayCMDAgDvb1wNO",
+        "_id": "1Q6WAQI9nPmV1dAq",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -104,9 +142,6 @@
         "level": 0
       }
     ],
-    "details": {
-      "isDroid": false
-    },
     "skinColorOptions": {
       "value": "Yellow or yellowish-brown"
     },
@@ -117,7 +152,7 @@
       "value": "Red, green, blue, or white"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Always armored, cybernetic communication"
@@ -140,20 +175,30 @@
     "slanguage": {
       "value": "Gank"
     },
-    "movement": {
-      "walk": 35
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "V64lCll37EmhBsJ6",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002146,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!wf7TWmgCK7OXS4ro"
+  "_key": "!items!V64lCll37EmhBsJ6"
 }

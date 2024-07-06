@@ -1,8 +1,191 @@
 {
-  "_id": "pVgUFVDyG2TN7T1s",
   "name": "Toydarian",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2941244+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-toydarian"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Toydarian.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>A mammalian species of winged, stout bodied humanoids, the Toydarians have stubby facial tusks which protruded from their lower jaw and framed a short pudgy trunk. While their stubby legs can support their body weight, Toydarians' primary mode of locomotion was their use of the wings on their upper back. Though their wings can beat as fast as ten times a second, the effort burned up large amounts of energy, causing the species to need to replenish itself often through regularly eating mass quantities of food. In order to fuel this hyperactive metabolism, Toydarians eat concentrated foods and egg-seeds. Most of the bloodiest wars in their history were fought over food supplies. </p>\n<h2>Society and Culture</h2>\n<p>Despite being ruled by the Hutts, the Toydarian people are able to govern themselves free of major outside intervention through the establishment of a feudal monarchy. A ruling king sits on the planet's throne, allowing vassals to form allegiances and have minor disputes to solve their own problems. The king makes sure to keep his vassals happy and to have their allegiance, but will occasionally encourage infighting to reveal the true character of the vassals and weed out treachery. </p>\n<p>Toydarians are known as shrewd businessmen.</p>\n<h2>Names</h2>\n<p>Toydarian names are fairly simple and guttural, but a few harsher elements can be found here and there. Male names are generally shorter than female names. Female names always end in a vowel. </p>\n<p><strong>Male Names.</strong> Dod, Nesteddo, Tul, Zloomroo</p>\n<p><strong>Female Names.</strong> Fefiffe, Lenlibo, Nugni, Zoldibu</p>\n<p><strong>Surnames.</strong> Daab, Faabb, Kepo, Mitra, Vulba</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "toydarian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "fly": 25,
+      "burrow": null,
+      "climb": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1xAR507t4IsBmBCf",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mP7VMW35N4m45VL2"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ResP9JYp99vtNHlh"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.V5kGNIfoo6buBrdf"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7G86H0t3hoCJ90nc"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fwtHpe4kttRxLZpR"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yma15Rq1k2AGFs7u"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MfowkZipGGZ0odtB"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bzSlIBoqpaG9PrLA"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.flPB6mxpFlvf7Ac5"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.NOoiOt2Ygz5hGP7o"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.NqPXZl5vogoohbmw"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1uy3pI3PBvByXp3c",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "int": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "mEZdn1TQl8h1BIDD",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1764HilyADB5JenM",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "skills:inv",
+                "skills:lor",
+                "skills:med",
+                "skills:nat",
+                "skills:pil",
+                "skills:tec",
+                "skills:ani",
+                "skills:ins",
+                "skills:prc",
+                "skills:sur",
+                "skills:dec",
+                "skills:itm",
+                "skills:prf",
+                "skills:per"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Blue, green, grey, or pink"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black, brown, or green"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Two wings, facial tusks, snout, three fingers and toes on appendages"
+    },
+    "heightAverage": {
+      "value": "3'3\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "40 lb."
+    },
+    "weightRollMod": {
+      "value": "x1 lb."
+    },
+    "homeworld": {
+      "value": "Toydaria"
+    },
+    "slanguage": {
+      "value": "Toydarian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "uswPAoIbJ2GUTyBM",
@@ -92,160 +275,22 @@
       "name": "Toydarian",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!pVgUFVDyG2TN7T1s.uswPAoIbJ2GUTyBM"
+      "_key": "!items.effects!mbPOGIOplmsD8hrv.uswPAoIbJ2GUTyBM"
     }
   ],
+  "_id": "mbPOGIOplmsD8hrv",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2941244+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-toydarian"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>A mammalian species of winged, stout bodied humanoids, the Toydarians have stubby facial tusks which protruded from their lower jaw and framed a short pudgy trunk. While their stubby legs can support their body weight, Toydarians' primary mode of locomotion was their use of the wings on their upper back. Though their wings can beat as fast as ten times a second, the effort burned up large amounts of energy, causing the species to need to replenish itself often through regularly eating mass quantities of food. In order to fuel this hyperactive metabolism, Toydarians eat concentrated foods and egg-seeds. Most of the bloodiest wars in their history were fought over food supplies. </p>\n<h2>Society and Culture</h2>\n<p>Despite being ruled by the Hutts, the Toydarian people are able to govern themselves free of major outside intervention through the establishment of a feudal monarchy. A ruling king sits on the planet's throne, allowing vassals to form allegiances and have minor disputes to solve their own problems. The king makes sure to keep his vassals happy and to have their allegiance, but will occasionally encourage infighting to reveal the true character of the vassals and weed out treachery. </p>\n<p>Toydarians are known as shrewd businessmen.</p>\n<h2>Names</h2>\n<p>Toydarian names are fairly simple and guttural, but a few harsher elements can be found here and there. Male names are generally shorter than female names. Female names always end in a vowel. </p>\n<p><strong>Male Names.</strong> Dod, Nesteddo, Tul, Zloomroo</p>\n<p><strong>Female Names.</strong> Fefiffe, Lenlibo, Nugni, Zoldibu</p>\n<p><strong>Surnames.</strong> Daab, Faabb, Kepo, Mitra, Vulba</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "toydarian",
-    "advancement": [
-      {
-        "_id": "1rn19lPwW94c1NfI",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.mP7VMW35N4m45VL2",
-            "Compendium.sw5e.speciesfeatures.ResP9JYp99vtNHlh",
-            "Compendium.sw5e.speciesfeatures.V5kGNIfoo6buBrdf",
-            "Compendium.sw5e.speciesfeatures.7G86H0t3hoCJ90nc",
-            "Compendium.sw5e.speciesfeatures.fwtHpe4kttRxLZpR",
-            "Compendium.sw5e.speciesfeatures.yma15Rq1k2AGFs7u",
-            "Compendium.sw5e.speciesfeatures.MfowkZipGGZ0odtB",
-            "Compendium.sw5e.speciesfeatures.bzSlIBoqpaG9PrLA",
-            "Compendium.sw5e.speciesfeatures.flPB6mxpFlvf7Ac5",
-            "Compendium.sw5e.speciesfeatures.NOoiOt2Ygz5hGP7o",
-            "Compendium.sw5e.speciesfeatures.NqPXZl5vogoohbmw"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1z7EA4PUIsZm1HT1",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "cha": 2,
-            "int": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1GzDISqIRkaM1SXZ",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "sm"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "l1xkVJ3LNfR19oT3",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 2,
-              "pool": [
-                "skills:inv",
-                "skills:lor",
-                "skills:med",
-                "skills:nat",
-                "skills:pil",
-                "skills:tec",
-                "skills:ani",
-                "skills:ins",
-                "skills:prc",
-                "skills:sur",
-                "skills:dec",
-                "skills:itm",
-                "skills:prf",
-                "skills:per"
-              ]
-            }
-          ],
-          "grants": [],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Blue, green, grey, or pink"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black, brown, or green"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Two wings, facial tusks, snout, three fingers and toes on appendages"
-    },
-    "heightAverage": {
-      "value": "3'3\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "40 lb."
-    },
-    "weightRollMod": {
-      "value": "x1 lb."
-    },
-    "homeworld": {
-      "value": "Toydaria"
-    },
-    "slanguage": {
-      "value": "Toydarian"
-    },
-    "movement": {
-      "walk": 25,
-      "fly": 25
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002136,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!pVgUFVDyG2TN7T1s"
+  "_key": "!items!mbPOGIOplmsD8hrv"
 }

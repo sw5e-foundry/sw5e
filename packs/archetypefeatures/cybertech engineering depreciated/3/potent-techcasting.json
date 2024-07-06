@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Cybertech Engineering (Depreciated):</strong> 3rd level</em></p>\n<p>When you miss with a tech attack roll, or a creature succeeds on a saving throw against a tech power you cast, you can expend one use of your Potent Aptitude to overwhelm them. Roll the die, and either add it to the attack roll or subtract it from their saving throw.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Cybertech Engineering (Depreciated)) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -91,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1679609438393,
-    "modifiedTime": 1699591595127,
+    "modifiedTime": 1720368679658,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "01F2Npmq9A2ERTyP",

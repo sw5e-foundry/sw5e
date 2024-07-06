@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Vonil/Ishu Form:</strong> 20th level</em></p>\n<p>You and your allies are a paragon of harmony. Your Strength or Dexterity (your choice) and Constitution scores increase by 2. Your maximum for those scores increases by 2. Additionally, you can use your action and choose an ally within 60 feet of you to gain the following benefits for 1 minute:</p>\n<ul>\n<li>You and the chosen ally have resistance to kinetic and energy damage.</li>\n<li>Neither you nor the chosen ally can have disadvantage on attack rolls.</li>\n<li>Both you and the chosen ally's critical hit ranges increase by 1.</li>\n</ul>\n<p>This effect ends early if either you or the chosen ally are incapacitated or die, or if the chosen ally is ever more than 60 feet away from you. Once you've used this feature, you can't use it again until you complete a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Vonil/Ishu Form) 20",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -33,33 +34,37 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -84,17 +89,26 @@
         "turn": null
       }
     },
-    "className": "Guardian"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957549,
-    "modifiedTime": 1699591595155,
+    "modifiedTime": 1720368689643,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!HmfdajaZCOjIwtQQ"

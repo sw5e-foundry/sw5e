@@ -54,8 +54,7 @@
       "name": "Aura of Command",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!e9vAcY3NLI2qKxIE.Pwq0j7VG4ePDGAWl",
-      "sort": 0
+      "_key": "!items.effects!e9vAcY3NLI2qKxIE.Pwq0j7VG4ePDGAWl"
     }
   ],
   "flags": {
@@ -120,27 +119,29 @@
   "system": {
     "description": {
       "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">Friendly creatures that can see and hear the {creature} within 30 feet of it add a +2 bonus to their attack and damage rolls. This effect ends if the </span><span style=\"font-family:'Open Sans', sans-serif\"> {creature}</span><span style=\"font-family:'Open Sans', sans-serif\"> is incapacitated.</span></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
-      "units": null,
-      "type": "self"
+      "units": "",
+      "type": "self",
+      "prompt": true
     },
     "range": {
       "value": 10,
@@ -149,35 +150,33 @@
     },
     "uses": {
       "value": null,
-      "max": 0,
-      "per": "",
+      "max": "",
+      "per": null,
       "recovery": "",
-      "type": ""
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
-      "damage": null
+      "damage": ""
     },
     "damage": {
       "parts": [],
-      "versatile": "",
-      "value": ""
+      "versatile": ""
     },
     "formula": "",
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "spell",
-      "value": ""
+      "scaling": "spell"
     },
     "type": {
       "value": "",
@@ -193,20 +192,26 @@
         "turn": null
       }
     },
-    "powercasting": {
-      "force": "none",
-      "tech": "none"
-    }
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1669753667510,
-    "modifiedTime": 1699591681499,
+    "modifiedTime": 1720368816205,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "folder": null,

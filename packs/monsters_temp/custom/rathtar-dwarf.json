@@ -21,8 +21,7 @@
       "system": {
         "description": {
           "value": "<p> The rathtar can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -40,10 +39,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -54,16 +54,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -93,10 +94,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -131,8 +138,7 @@
       "system": {
         "description": {
           "value": "<p> The rathtar can have up to eight arms at a time.  Each arm can be attacked (AC 20; 10 hit points; immunity to poison and psychic damage).  Destroying an arm deals no damage to the rathtar, which can extrude a replacement arm on its next turn.  An arm can also be broken if a creature takes an action and succeeds on a DC 15 Strength check against it.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -150,10 +156,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -164,16 +171,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -203,10 +211,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -241,8 +255,7 @@
       "system": {
         "description": {
           "value": "<p> The rathtar makes four flailing arm attacks, uses Reel, and makes one attack with its bite.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -260,10 +273,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -274,16 +288,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -313,10 +328,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -351,24 +372,24 @@
       "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p> Melee Weapon Attack: +7 to hit, reach 15 ft., one target. Hit: 6 ([[/r 1d4 + 4]])  kinetic damage, and the target is grappled (escape DC 15) if it is Medium or smaller. Until the grapple ends, the rathar can't use this arm on another target. The rathtar has eight arms and can have up to four creatures grappled at a time.</p>\n</section>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
         "source": {
           "custom": "SnV"
         },
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -381,10 +402,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 15,
@@ -395,16 +417,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -439,12 +462,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -453,70 +473,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "mgc": null,
-          "aut": null,
-          "bur": null,
-          "dir": null,
-          "hvy": null,
-          "hid": null,
-          "ken": null,
-          "pic": null,
-          "ran": null,
-          "rap": null,
-          "rel": null,
-          "smr": null,
-          "spc": null,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": null,
-          "dgd": null,
-          "dis": null,
-          "dpt": null,
-          "dou": null,
-          "fin": null,
-          "fix": null,
-          "ilk": null,
-          "lgt": null,
-          "lum": null,
-          "mig": null,
-          "mod": null,
-          "neu": null,
-          "pen": null,
-          "pcl": null,
-          "rch": null,
-          "rck": null,
-          "ret": null,
-          "shk": null,
-          "sil": null,
-          "slg": null,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": null,
-          "thr": null,
-          "two": null,
-          "ver": null,
-          "con": null,
-          "exp": null,
-          "hom": null,
-          "ion": null,
-          "mlt": null,
-          "ovr": null,
-          "pow": null,
-          "sat": null,
-          "zon": null
-        },
+        "properties": {},
         "proficient": 1,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
+        },
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "effects": [],
       "folder": null,
@@ -551,24 +527,24 @@
       "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p>  Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 11 ([[/r 2d6 + 4]]) kinetic damage.</p>\n</section>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
         "source": {
           "custom": "SnV"
         },
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -581,10 +557,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
@@ -595,16 +572,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -639,12 +617,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -653,70 +628,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "mgc": null,
-          "aut": null,
-          "bur": null,
-          "dir": null,
-          "hvy": null,
-          "hid": null,
-          "ken": null,
-          "pic": null,
-          "ran": null,
-          "rap": null,
-          "rel": null,
-          "smr": null,
-          "spc": null,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": null,
-          "dgd": null,
-          "dis": null,
-          "dpt": null,
-          "dou": null,
-          "fin": null,
-          "fix": null,
-          "ilk": null,
-          "lgt": null,
-          "lum": null,
-          "mig": null,
-          "mod": null,
-          "neu": null,
-          "pen": null,
-          "pcl": null,
-          "rch": null,
-          "rck": null,
-          "ret": null,
-          "shk": null,
-          "sil": null,
-          "slg": null,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": null,
-          "thr": null,
-          "two": null,
-          "ver": null,
-          "con": null,
-          "exp": null,
-          "hom": null,
-          "ion": null,
-          "mlt": null,
-          "ovr": null,
-          "pow": null,
-          "sat": null,
-          "zon": null
-        },
+        "properties": {},
         "proficient": 1,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
+        },
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "effects": [],
       "folder": null,
@@ -751,8 +682,7 @@
       "system": {
         "description": {
           "value": "<p> The rathtar pulls each creature grapples by it up to 15 feet straight toward it.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
         "source": {
@@ -770,10 +700,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -784,16 +715,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -823,10 +755,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "effects": [],
       "folder": null,
@@ -864,9 +802,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Strength",
-        "mod": 4
+        }
       },
       "dex": {
         "value": 10,
@@ -875,9 +811,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Dexterity",
-        "mod": 0
+        }
       },
       "con": {
         "value": 19,
@@ -886,9 +820,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Constitution",
-        "mod": 4
+        }
       },
       "int": {
         "value": 6,
@@ -897,9 +829,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Intelligence",
-        "mod": -2
+        }
       },
       "wis": {
         "value": 12,
@@ -908,9 +838,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Wisdom",
-        "mod": 1
+        }
       },
       "cha": {
         "value": 6,
@@ -919,9 +847,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Charisma",
-        "mod": -2
+        }
       },
       "hon": {
         "value": 6,
@@ -929,7 +855,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 12,
@@ -937,7 +864,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
@@ -951,23 +879,22 @@
         "max": 114,
         "temp": null,
         "tempmax": null,
-        "formula": "12d10 + 48",
-        "min": 0
+        "formula": "12d10 + 48"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -990,16 +917,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -1008,16 +928,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -1028,29 +941,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none"
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "exhaustion": 0,
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      },
+      "death": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "success": 0,
+        "failure": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<p>Rathtars were large, carnivorous cephalopods that were native to the planet Twon Ketee. Regarded as one of the most dangerous beasts in the galaxy, rathtars were known for hunting in packs, and their subspecies, the dwarf rathtar were involved in an incident known as the Trillia Massacre.   <strong><em>Biology.</em></strong> Although the study of rathtars was rare due to the danger posed by the beasts, it was believed that they shared common ancestry with other tentacled species such as the sarlaccs, the blixii, and the vixus of Umbara. Rathtars reproduced by fission, leading to rapidly increasing numbers if the species' population was not controlled.<strong><em>Hunting.</em></strong> Rathtars appeared physiologically primitive, endowed with only rudimentary senses and possessing small brains. Despite the appearance of a mindless eating machine, rathtars proved effective at working together, and displayed affinity for pack hunting. Individual rathtars appeared to become smarter when in proximity to others of its species, and rathtar packs utilized howls, at a frequency beyond humanoid hearing, to communicate among one another. They also vocalized deafening roars when attacking and devouring prey, and let out horrifying shrieks of fury when in pain. If in danger from a rathtar, one's best hope was to hide, as the creatures were largely blind.<strong><em>Feeding.</em></strong> Lacking a true skeleton, a rathtar had an enormous, round, slug-like body covered in light-reactive sensing orbs. They possessed multiple long, tentacle-like appendages; their principle feeding tentacles whipped out to capture and devour prey, which typically consisted of anything they perceived as non-rathtar. The creatures were ravenous and persistent eaters, capable of consuming virtually anything that they could fit into their robust, radial mouths, which were funnel-shaped and lined with rows of razor sharp teeth. Their throat distended outward into a hollow tongue, useful for swallowing struggling prey. The bilious creatures typically tore their meals apart piece by piece.<strong><em>Movement.</em></strong> Capable of locomotion, rathtars curled their ambulatory tentacles inward to form a ball and roll themselves forward in a whirl of whipping tentacles. They moved deceptively fast for their size, and had adhesive pads on their pointed tentacle tips—known as a club—which helped them attach to surfaces. <strong><em>Tentacles and Tougness.</em></strong> Their tentacles had enormous strength, and were of a muscular hydrostat form. Their fleshy bodies were covered in a hard, rubbery exterior, giving the rathtars a heavy resistance to blaster bolts, small-arms fire, and even biting attacks.</p>\n<p>None</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "unaligned",
-      "species": "",
+      "species": null,
       "type": {
         "value": "custom",
         "subtype": "",
@@ -1062,9 +994,8 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "SnV",
-      "xp": {
-        "value": 10
+      "source": {
+        "custom": "SnV"
       }
     },
     "traits": {
@@ -1096,6 +1027,10 @@
       "languages": {
         "value": [],
         "custom": ""
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
@@ -1108,6 +1043,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ani": {
@@ -1116,6 +1056,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ath": {
@@ -1124,6 +1069,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "dec": {
@@ -1132,6 +1082,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ins": {
@@ -1140,6 +1095,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "itm": {
@@ -1148,6 +1108,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "inv": {
@@ -1156,6 +1121,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "lor": {
@@ -1164,6 +1134,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "med": {
@@ -1172,6 +1147,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "nat": {
@@ -1180,6 +1160,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "pil": {
@@ -1188,6 +1173,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "prc": {
@@ -1196,6 +1186,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "prf": {
@@ -1204,6 +1199,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "per": {
@@ -1212,6 +1212,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "slt": {
@@ -1220,6 +1225,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ste": {
@@ -1229,7 +1239,11 @@
           "check": "",
           "passive": ""
         },
-        "proficient": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -1237,6 +1251,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "tec": {
@@ -1245,6 +1264,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       }
     },
@@ -1254,73 +1278,55 @@
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1363,11 +1369,10 @@
         "max": 0
       },
       "lair": {
-        "value": 0,
+        "value": false,
         "initiative": 0
       }
-    },
-    "source": "SnV"
+    }
   },
   "ownership": {
     "default": 0
@@ -1440,10 +1445,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493994091,
-    "modifiedTime": 1703969525129,
+    "modifiedTime": 1720401980132,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!IKkthAKiMOr1p2gC"

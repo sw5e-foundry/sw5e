@@ -5,6 +5,11 @@
       "timestamp": "2023-03-09T01:52:02.9935176+00:00",
       "importer_version": 3,
       "uid": "Power.name-sense_shatterpoint.level-2"
+    },
+    "sw5e": {
+      "migratedProperties": [
+        "concentration"
+      ]
     }
   },
   "type": "power",
@@ -13,11 +18,11 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite</strong>: Battle Insight</em></p>\n<p>You seek deeper insight into the defenses of a creature you can see within range. Until the end of your next turn, you have advantage on your next two attack rolls against the target.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "Battle Insight",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -30,30 +35,32 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
       "units": "ft"
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -71,14 +78,6 @@
     },
     "level": 2,
     "school": "uni",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": true,
-      "value": ""
-    },
     "materials": {
       "value": "",
       "consumed": false,
@@ -92,7 +91,16 @@
     "scaling": {
       "mode": "none",
       "formula": null
-    }
+    },
+    "properties": {
+      "0": "concentration"
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -101,10 +109,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426102470,
-    "modifiedTime": 1707077464877,
+    "modifiedTime": 1720368783673,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "yx1A1uzuXLU1LUSd",

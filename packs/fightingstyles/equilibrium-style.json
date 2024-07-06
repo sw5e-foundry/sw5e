@@ -7,76 +7,6 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": true,
-          "resource": true,
-          "charge": true
-        },
-        "altValue": {
-          "use": true,
-          "resource": true,
-          "charge": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:00.0122454+00:00",
       "importer_version": 3,
@@ -86,48 +16,50 @@
   "system": {
     "description": {
       "value": "<p>You are skilled at fighting without the confines of armor. You gain the following benefits:</p>\n<ul>\n<li>While you are wearing light or no armor and not wielding a shield, you can use your bonus action to mark a target within 30 feet that you can see until the end of your next turn. When you do so, you gain a bonus to AC and Dexterity saving throws against effects the target controls equal to half your Dexterity modifier (minimum of +1) while marked. You can only have one creature marked in this way at a time.</li>\n<li>You have advantage on Dexterity checks and Dexterity saving throws to avoid being moved.</li></ul>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": null,
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "turn"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -156,17 +88,27 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493967380,
-    "modifiedTime": 1695981493845,
+    "modifiedTime": 1720401977281,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!lfSExxZfBztibTi7"

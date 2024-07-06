@@ -15,18 +15,19 @@
       "system": {
         "description": {
           "value": "<p>The junior engineer is a 6th-level techcaster. Its techcasting ability is Intelligence (power save DC 13, +5 to hit with tech attacks) and it has 27 tech points.</p><p>The junior engineer knows the following</p><p>tech powers:</p><p>At-will: combustive shot, electro shock, encrypted message</p><p>1st-level: absorb energy, energy shield, oil slick, smoke cloud</p><p>2nd-level: overheat, release, scorching ray</p><p>3rd-level: explosion, sabotage charges</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -35,31 +36,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -76,7 +79,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -85,10 +88,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -115,18 +124,19 @@
       "system": {
         "description": {
           "value": "<p>The captain adds 3 to its AC against one melee attack that would hit it. To do so, the captain must see the attacker and be wielding a melee weapon.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "reaction",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -135,31 +145,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -176,7 +188,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -185,10 +197,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -215,29 +233,31 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Ranged Weapon Attack </em>+4, Range 100/400 ft., One target. <em>Hit : </em>6 (1d8+2) energy damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -246,7 +266,8 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 100,
@@ -255,22 +276,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "dex",
         "actionType": "rwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -301,12 +323,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -315,61 +334,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -396,18 +380,19 @@
       "system": {
         "description": {
           "value": "<p>After spending at least 30 seconds setting the charge, the engineer may attach the charge to a surface. The charge can be set with a 6-second timer, or detonated remotely using a remote detonator, which the engineer has. Once detonated, the breaching charge destroys an unenhanced section of wall up to 10 feet wide, 10 feet tall, and 5 feet deep. Additionally, each creature within 20 feet of the charge must make a DC 13 Dexterity saving throw. A creature takes 3d6 fire damage and 3d6 kinetic damage on a failed save, or half as much on a successful one. A construct makes this save with disadvantage. If the breaching charge is installed on the construct, it automatically fails the saving throw.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -416,31 +401,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -457,7 +444,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -466,10 +453,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -496,18 +489,19 @@
       "system": {
         "description": {
           "value": "<p>Mand'alor can move up to their speed without provoking opportunity attacks.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "legendary",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -516,31 +510,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -557,7 +553,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -566,10 +562,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -596,18 +598,19 @@
       "system": {
         "description": {
           "value": "<p>Mand'alor makes one weapon attack.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "legendary",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -616,31 +619,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -657,7 +662,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -666,10 +671,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -696,18 +707,19 @@
       "system": {
         "description": {
           "value": "<p>Mand'alor shouts a rallying cry to allies within 60ft that can hear or see them. Whenever Mand'alor or a friendly creature within range makes an attack roll or a saving throw, they can roll a d8 and add the number rolled to the attack roll or saving throw. This aura lasts for one round.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "legendary",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -716,31 +728,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -757,7 +771,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -766,10 +780,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -802,28 +822,29 @@
       "folder": null,
       "system": {
         "description": {
-          "value": "<p>As part of the action used to cast this power, you must make a ranged weapon attack against one creature within your weapon's range, otherwise the power fails. On a hit, the target suffers the attack's normal effects, and it ignites in flame. At the start of your next turn, the creature takes fire damage equal to your techcasting ability modifier. If the target or a creature within 5 feet of it uses an action to put out the flames, or if some other effect douses the flames, the effect ends.</p>\n<p>This power's damage increases when you reach higher levels. At 5th level, the ranged attack deals an extra 1d6 fire damage to the target, and the damage at the start of your next turn increases to 1d4 + your tech casting ability modifier. Both damage rolls increase by 1d6 and 1d4, respectively, at 11th level and 17th level.</p>\n",
-          "chat": "",
-          "unidentified": ""
+          "value": "<p>As part of the action used to cast this power, you must make a ranged weapon attack against one creature within your weapon's range, otherwise the power fails. On a hit, the target suffers the attack's normal effects, and it ignites in flame. At the start of your next turn, the creature takes fire damage equal to your techcasting ability modifier. If the target or a creature within 5 feet of it uses an action to put out the flames, or if some other effect douses the flames, the effect ends.</p>\n<p>This power's damage increases when you reach higher levels. At 5th level, the ranged attack deals an extra 1d6 fire damage to the target, and the damage at the start of your next turn increases to 1d4 + your tech casting ability modifier. Both damage rolls increase by 1d6 and 1d4, respectively, at 11th level and 17th level.</p>",
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 1,
+          "value": "1",
           "units": "round"
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -832,22 +853,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "int",
         "actionType": "util",
-        "attackBonus": null,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -866,14 +888,6 @@
         },
         "level": 0,
         "school": "tec",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -888,10 +902,13 @@
           "mode": "none",
           "formula": ""
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -924,28 +941,29 @@
       "folder": null,
       "system": {
         "description": {
-          "value": "<p>Lightning springs from you to deliver a shock to a creature you try to touch. Make a melee tech attack against the target. You have advantage on the attack roll if the target is made of metal or wearing armor made of metal. On a hit, the target takes 1d8 lightning damage and becomes shocked until the start of its next turn.</p>\n<p>This power's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).</p>\n",
-          "chat": "",
-          "unidentified": ""
+          "value": "<p>Lightning springs from you to deliver a shock to a creature you try to touch. Make a melee tech attack against the target. You have advantage on the attack roll if the target is made of metal or wearing armor made of metal. On a hit, the target takes 1d8 lightning damage and becomes shocked until the start of its next turn.</p>\n<p>This power's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).</p>",
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -954,22 +972,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "int",
         "actionType": "rpak",
-        "attackBonus": null,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -983,14 +1002,6 @@
         },
         "level": 0,
         "school": "tec",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1005,10 +1016,13 @@
           "mode": "none",
           "formula": ""
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1041,28 +1055,29 @@
       "folder": null,
       "system": {
         "description": {
-          "value": "<p>You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can send an encrypted reply that only you can hear. These messages cannot be intercepted or decrypted by unenhanced means.</p>\n<p>You can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood blocks the power. The power doesn't have to follow a straight line and can travel freely around corners or through openings.</p>\n",
-          "chat": "",
-          "unidentified": ""
+          "value": "<p>You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can send an encrypted reply that only you can hear. These messages cannot be intercepted or decrypted by unenhanced means.</p>\n<p>You can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood blocks the power. The power doesn't have to follow a straight line and can travel freely around corners or through openings.</p>",
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 1,
+          "value": "1",
           "units": "round"
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": 120,
@@ -1071,22 +1086,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "int",
         "actionType": "",
-        "attackBonus": null,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1100,14 +1116,6 @@
         },
         "level": 0,
         "school": "tec",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1122,10 +1130,13 @@
           "mode": "none",
           "formula": ""
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1158,28 +1169,29 @@
       "folder": null,
       "system": {
         "description": {
-          "value": "<p>The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering damage type until the start of your next turn. Also, the first time you hit with a melee attack on your next turn, the target takes an extra 1d6 damage of the triggering type, and the power ends.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.</p>\n",
-          "chat": "",
-          "unidentified": ""
+          "value": "<p>The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering damage type until the start of your next turn. Also, the first time you hit with a melee attack on your next turn, the target takes an extra 1d6 damage of the triggering type, and the power ends.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.</p>",
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "reaction",
           "cost": 1,
-          "condition": " which you take when you take acid, cold, energy, fire, ion, kinetic, lightning, or sonic damage"
+          "condition": "which you take when you take acid, cold, energy, fire, ion, kinetic, lightning, or sonic damage"
         },
         "duration": {
-          "value": 1,
+          "value": "1",
           "units": "round"
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1188,22 +1200,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "int",
         "actionType": "util",
-        "attackBonus": null,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -1222,14 +1235,6 @@
         },
         "level": 1,
         "school": "tec",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1244,10 +1249,13 @@
           "mode": "none",
           "formula": ""
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1280,28 +1288,29 @@
       "folder": null,
       "system": {
         "description": {
-          "value": "<p>You quickly create an energy shield. Until the start of your next turn, you have a +5 bonus to AC. This includes the triggering attack.</p>\n",
-          "chat": "",
-          "unidentified": ""
+          "value": "<p>You quickly create an energy shield. Until the start of your next turn, you have a +5 bonus to AC. This includes the triggering attack.</p>",
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "reaction",
           "cost": 1,
-          "condition": " which you take when you are hit by an attack"
+          "condition": "which you take when you are hit by an attack"
         },
         "duration": {
-          "value": 1,
+          "value": "1",
           "units": "round"
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1310,22 +1319,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "int",
         "actionType": "",
-        "attackBonus": null,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1339,14 +1349,6 @@
         },
         "level": 1,
         "school": "tec",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1361,10 +1363,13 @@
           "mode": "none",
           "formula": ""
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1397,28 +1402,29 @@
       "folder": null,
       "system": {
         "description": {
-          "value": "<p>You cover the ground in a 10-foot square within range in oil. For the duration, it is difficult terrain.</p>\n<p>When the oil appears, each creature standing in its area must succeed on a Dexterity saving throw or fall prone. A creature that enters the area or ends its turn there must also succeed on a Dexterity saving throw.</p>\n<p>The oil is flammable. Any 5 foot square of the oil exposed to fire burns away in one round. Each creature who enters the fire or starts it turn there must make a Dexterity saving throw, taking 3d6 fire damage on a failed save, or half as much on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.</p>\n",
-          "chat": "",
-          "unidentified": ""
+          "value": "<p>You cover the ground in a 10-foot square within range in oil. For the duration, it is difficult terrain.</p>\n<p>When the oil appears, each creature standing in its area must succeed on a Dexterity saving throw or fall prone. A creature that enters the area or ends its turn there must also succeed on a Dexterity saving throw.</p>\n<p>The oil is flammable. Any 5 foot square of the oil exposed to fire burns away in one round. Each creature who enters the fire or starts it turn there must make a Dexterity saving throw, taking 3d6 fire damage on a failed save, or half as much on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.</p>",
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 1,
+          "value": "1",
           "units": "minute"
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 10,
+          "value": "10",
           "width": null,
           "units": "ft",
-          "type": "square"
+          "type": "square",
+          "prompt": true
         },
         "range": {
           "value": 60,
@@ -1427,22 +1433,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "int",
         "actionType": "save",
-        "attackBonus": "@prof",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -1461,14 +1468,6 @@
         },
         "level": 1,
         "school": "tec",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1483,10 +1482,13 @@
           "mode": "none",
           "formula": ""
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "@prof",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1511,7 +1513,10 @@
           "sourceId": "Compendium.sw5e.techpowers.K5f18kJ5V2eMqLH7"
         },
         "sw5e": {
-          "dataVersion": "1.2.4"
+          "dataVersion": "1.2.4",
+          "migratedProperties": [
+            "concentration"
+          ]
         }
       },
       "img": "systems/sw5e/packs/Icons/Tech%20Powers/SmokeCloud.webp",
@@ -1519,28 +1524,29 @@
       "folder": null,
       "system": {
         "description": {
-          "value": "<p>You cause thick smoke to erupt from a point within range, filling a 20-foot-radius sphere. The sphere spreads around corners, and its area is heavily obscured. It lasts for the duration or until a wind of moderate or greater speed (at least 10 miles per hour) disperses it.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a tech slot of 2nd level or higher, the radius of the smoke cloud increases by 20 feet for each slot level above 1st.</p>\n",
-          "chat": "",
-          "unidentified": ""
+          "value": "<p>You cause thick smoke to erupt from a point within range, filling a 20-foot-radius sphere. The sphere spreads around corners, and its area is heavily obscured. It lasts for the duration or until a wind of moderate or greater speed (at least 10 miles per hour) disperses it.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a tech slot of 2nd level or higher, the radius of the smoke cloud increases by 20 feet for each slot level above 1st.</p>",
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 1,
+          "value": "1",
           "units": "hour"
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 20,
+          "value": "20",
           "width": null,
           "units": "ft",
-          "type": "radius"
+          "type": "radius",
+          "prompt": true
         },
         "range": {
           "value": 120,
@@ -1549,22 +1555,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "int",
         "actionType": "",
-        "attackBonus": "@prof",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1578,14 +1585,6 @@
         },
         "level": 1,
         "school": "tec",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": true,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1600,10 +1599,13 @@
           "mode": "none",
           "formula": ""
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "@prof",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1628,7 +1630,10 @@
           "sourceId": "Compendium.sw5e.techpowers.JZnbV9hvp3DZ2x49"
         },
         "sw5e": {
-          "dataVersion": "1.2.4"
+          "dataVersion": "1.2.4",
+          "migratedProperties": [
+            "concentration"
+          ]
         }
       },
       "img": "systems/sw5e/packs/Icons/Tech%20Powers/Overheat.webp",
@@ -1637,27 +1642,28 @@
       "system": {
         "description": {
           "value": "<p>Choose a manufactured metal object, such as a blaster or a suit of heavy or medium metal armor, that you can see within range. You cause the object to glow red-hot. Any creature in physical contact with the object takes 2d8 fire damage when you cast the power. Until the power ends, you can use a bonus action on each of your subsequent turns to cause this damage again.</p>\n<p>If an object is held, worn, or integrated, and a creature takes the damage from it, the creature must succeed on a Constitution saving throw or drop the object if it can. If it doesn't - or can't - drop the object, it has disadvantage on attack rolls and ability checks until the start of your next turn.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a tech slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 1,
+          "value": "1",
           "units": "minute"
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": 60,
@@ -1666,22 +1672,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "int",
         "actionType": "save",
-        "attackBonus": "@prof",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -1700,14 +1707,6 @@
         },
         "level": 2,
         "school": "tec",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": true,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1722,10 +1721,13 @@
           "mode": "none",
           "formula": ""
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "@prof",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1758,28 +1760,29 @@
       "folder": null,
       "system": {
         "description": {
-          "value": "<p>Choose an object that you can see within range. The object can be a door, a box, a chest, a set of binders, a lock, or another object that contains a mundane or enhanced means that prevents access.</p>\n<p>A target that is held shut by a mundane lock or that is stuck or barred becomes unlocked, unstuck, or unbarred. If the object has multiple locks, only one of them is unlocked.</p>\n<p>If you choose a target that is held shut with <em>lock</em>, that power is suppressed for 10 minutes, during which time the target can be opened and shut normally.</p>\n",
-          "chat": "",
-          "unidentified": ""
+          "value": "<p>Choose an object that you can see within range. The object can be a door, a box, a chest, a set of binders, a lock, or another object that contains a mundane or enhanced means that prevents access.</p>\n<p>A target that is held shut by a mundane lock or that is stuck or barred becomes unlocked, unstuck, or unbarred. If the object has multiple locks, only one of them is unlocked.</p>\n<p>If you choose a target that is held shut with <em>lock</em>, that power is suppressed for 10 minutes, during which time the target can be opened and shut normally.</p>",
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "object"
+          "type": "object",
+          "prompt": true
         },
         "range": {
           "value": 60,
@@ -1788,22 +1791,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "int",
         "actionType": "",
-        "attackBonus": "@prof",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1817,14 +1821,6 @@
         },
         "level": 2,
         "school": "tec",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1839,10 +1835,13 @@
           "mode": "none",
           "formula": ""
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "@prof",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1875,28 +1874,29 @@
       "folder": null,
       "system": {
         "description": {
-          "value": "<p>You create an explosion at a point within range. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.</p>\n<p>The fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a tech slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.</p>\n",
-          "chat": "",
-          "unidentified": ""
+          "value": "<p>You create an explosion at a point within range. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.</p>\n<p>The fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a tech slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.</p>",
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 20,
+          "value": "20",
           "width": null,
           "units": "ft",
-          "type": "radius"
+          "type": "radius",
+          "prompt": true
         },
         "range": {
           "value": 150,
@@ -1905,22 +1905,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "int",
         "actionType": "save",
-        "attackBonus": null,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -1939,14 +1940,6 @@
         },
         "level": 3,
         "school": "tec",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1961,10 +1954,13 @@
           "mode": "none",
           "formula": ""
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1989,7 +1985,10 @@
           "sourceId": "Compendium.sw5e.techpowers.YfSDSxySy8ZdOyDB"
         },
         "sw5e": {
-          "dataVersion": "1.2.4"
+          "dataVersion": "1.2.4",
+          "migratedProperties": [
+            "concentration"
+          ]
         }
       },
       "img": "systems/sw5e/packs/Icons/Tech%20Powers/SabotageCharges.webp",
@@ -1997,28 +1996,29 @@
       "folder": null,
       "system": {
         "description": {
-          "value": "<p>You create six tiny sabotage charges that last for the power's duration. When you cast the power, and as a bonus action on subsequent turns, you can hurl up to two of the charges to points you choose within 120 feet. Each charge explodes if it reaches the point or hits a solid surface. Each creature within 5 feet of the explosion must make a Dexterity save. The explosion deals 2d6 fire damage on a failure, or half damage on a success.</p>\n<p><em><strong>Overcharge Tech.</strong></em> The number of charges created increases by two for each slot level above 3rd.</p>\n",
-          "chat": "",
-          "unidentified": ""
+          "value": "<p>You create six tiny sabotage charges that last for the power's duration. When you cast the power, and as a bonus action on subsequent turns, you can hurl up to two of the charges to points you choose within 120 feet. Each charge explodes if it reaches the point or hits a solid surface. Each creature within 5 feet of the explosion must make a Dexterity save. The explosion deals 2d6 fire damage on a failure, or half damage on a success.</p>\n<p><em><strong>Overcharge Tech.</strong></em> The number of charges created increases by two for each slot level above 3rd.</p>",
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 10,
+          "value": "10",
           "units": "minute"
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -2027,22 +2027,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "int",
         "actionType": "save",
-        "attackBonus": "@prof",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -2061,14 +2062,6 @@
         },
         "level": 3,
         "school": "tec",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": true,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -2083,10 +2076,13 @@
           "mode": "none",
           "formula": ""
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "@prof",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -2119,28 +2115,29 @@
       "folder": null,
       "system": {
         "description": {
-          "value": "<p>You create three ionic rays and hurl them at targets within range. You can hurl them at one target or several. Make a ranged tech attack for each ray. On a hit, the target takes 2d4 ion damage.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a tech slot of 3rd level or higher, you create one additional ray for each slot level above 2nd.</p>\n",
-          "chat": "",
-          "unidentified": ""
+          "value": "<p>You create three ionic rays and hurl them at targets within range. You can hurl them at one target or several. Make a ranged tech attack for each ray. On a hit, the target takes 2d4 ion damage.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a tech slot of 3rd level or higher, you create one additional ray for each slot level above 2nd.</p>",
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": 120,
@@ -2149,22 +2146,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "int",
         "actionType": "rpak",
-        "attackBonus": "@prof",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -2183,14 +2181,6 @@
         },
         "level": 2,
         "school": "tec",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -2205,10 +2195,13 @@
           "mode": "none",
           "formula": ""
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "@prof",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -2234,107 +2227,50 @@
       "flags": {
         "timestamp": "2022-10-18T11:20:58.2188937+00:00",
         "uid": "Equipment.name-battle_armor.equipmentCategory-armor",
-        "betterRollssw5e": {
-          "critRange": {
-            "type": "String",
-            "value": ""
-          },
-          "critDamage": {
-            "type": "String",
-            "value": ""
-          },
-          "quickDesc": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickAttack": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickSave": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickDamage": {
-            "type": "Array",
-            "value": [],
-            "altValue": [],
-            "context": []
-          },
-          "quickProperties": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickCharges": {
-            "type": "Boolean",
-            "value": {
-              "quantity": false,
-              "use": false,
-              "resource": true
-            },
-            "altValue": {
-              "quantity": false,
-              "use": false,
-              "resource": true
-            }
-          },
-          "quickOther": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true,
-            "context": ""
-          },
-          "quickFlavor": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickPrompt": {
-            "type": "Boolean",
-            "value": false,
-            "altValue": false
-          }
+        "sw5e": {
+          "migratedProperties": [
+            "stealthDisadvantage"
+          ]
         }
       },
       "system": {
         "description": {
           "value": "<h3>Bulky</h3>\n<p>While wearing armor with this property, you have disadvantage on Dexterity (Stealth) checks that rely on sound.</p>\n<h3>Strength 13</h3>\n<p>While wearing armor or wielding a shield with this property, your speed is reduced by 10 unless your Strength score meets or exceeds the strength number. </p>\n<hr />\n<p>Battle armor is an armor that reduced weight, but restricts movement. The armor is commonly used by mercenaries, bounty hunters, soldiers, and civilians that live in dangerous areas.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "PHB",
+        "source": {
+          "custom": "PHB"
+        },
         "quantity": 1,
-        "weight": 55,
+        "weight": {
+          "value": 55,
+          "units": "lb"
+        },
         "price": {
           "value": 750,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
-          "type": null,
+          "type": "",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -2343,20 +2279,24 @@
         },
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -2369,8 +2309,8 @@
         },
         "armor": {
           "value": 16,
-          "type": "heavy",
-          "dex": 0
+          "dex": 0,
+          "magicalBonus": null
         },
         "hp": {
           "value": 0,
@@ -2397,9 +2337,7 @@
           "fuelcostsmod": {
             "value": null
           },
-          "powerdicerec": {
-            "value": ""
-          },
+          "powerdicerec": {},
           "hdclass": {
             "value": null
           }
@@ -2409,104 +2347,37 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null,
-          "overrides": {}
+          "changes": {}
         },
-        "baseItem": "battlearmor",
         "speed": {
           "value": null,
           "conditions": ""
         },
-        "strength": "",
-        "stealth": true,
+        "strength": null,
         "properties": {
-          "Absorptive": null,
-          "Agile": null,
-          "Anchor": null,
-          "Avoidant": null,
-          "Barbed": null,
+          "0": "Bulky",
+          "1": "Strength"
+        },
+        "proficient": 1,
+        "_propertyValues": {
           "Bulky": true,
-          "Charging": null,
-          "Concealing": null,
-          "Cumbersome": null,
-          "Gauntleted": null,
-          "Imbalanced": null,
-          "Impermeable": null,
-          "Insulated": null,
-          "Interlocking": null,
-          "Lambent": null,
-          "Lightweight": null,
-          "Magnetic": null,
-          "Obscured": null,
-          "Obtrusive": null,
-          "Powered": null,
-          "Reactive": null,
-          "Regulated": null,
-          "Reinforced": null,
-          "Responsive": null,
-          "Rigid": null,
-          "Silent": null,
-          "Spiked": null,
-          "Strength": 13,
-          "Steadfast": null,
-          "Versatile": null
+          "Strength": 13
         },
-        "proficient": true,
-        "capx": {
-          "value": null
+        "type": {
+          "value": "heavy",
+          "baseItem": "battlearmor"
         },
-        "dmgred": {
-          "value": null
+        "unidentified": {
+          "description": ""
         },
-        "regrateco": {
-          "value": null
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "cscap": {
-          "value": null
-        },
-        "sscap": {
-          "value": null
-        },
-        "fuelcostsmod": {
-          "value": null
-        },
-        "powerdicerec": {
-          "value": null
-        },
-        "hdclass": {
-          "value": null
-        },
-        "modifications": {
-          "chassisType": "none",
-          "augmentSlots": 0,
-          "mods": {
-            "slot1": {
-              "uuid": null,
-              "disabled": false
-            },
-            "slot2": {
-              "uuid": null,
-              "disabled": false
-            },
-            "slot3": {
-              "uuid": null,
-              "disabled": false
-            },
-            "slot4": {
-              "uuid": null,
-              "disabled": false
-            }
-          },
-          "augments": [],
-          "type": null,
-          "overrides": {}
-        },
-        "hpperhd": {
-          "value": null
-        },
-        "equiped": false,
-        "weaponType": ""
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null
       },
       "ownership": {
         "default": 0
@@ -2540,14 +2411,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "dex": {
         "value": 14,
@@ -2556,14 +2420,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "con": {
         "value": 14,
@@ -2572,14 +2429,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "int": {
         "value": 16,
@@ -2588,14 +2438,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 3,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 13
+        }
       },
       "wis": {
         "value": 12,
@@ -2604,14 +2447,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "cha": {
         "value": 10,
@@ -2620,14 +2456,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "hon": {
         "value": 10,
@@ -2635,7 +2464,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 12,
@@ -2643,41 +2473,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 16,
         "calc": "default",
-        "formula": "battle armor",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 39,
         "max": 39,
         "temp": 0,
         "tempmax": 0,
-        "formula": "6d8+12",
-        "min": 0
+        "formula": "6d8+12"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -2700,16 +2526,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": null,
-          "tempmax": null
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": null
+        }
       },
       "tech": {
         "points": {
@@ -2718,16 +2537,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": 27,
-          "temp": null,
-          "tempmax": null
-        },
-        "known": {
-          "value": 12,
-          "max": 0
-        },
-        "level": 6
+          "temp": null
+        }
       },
       "super": {
         "dice": {
@@ -2738,57 +2550,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "engineer",
-      "prof": 2,
-      "powerdc": 10,
-      "bar1": {
-        "value": 39,
-        "min": 0,
-        "max": 39
-      },
-      "bar2": {
-        "value": 16,
-        "min": 0,
-        "max": 0
-      },
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false,
-      "encumbrance": {
-        "value": 1,
-        "max": 150,
-        "pct": 0.6666666666666666,
-        "encumbered": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
       },
-      "powerForceLightDC": 11,
-      "powerForceDarkDC": 10,
-      "powerForceUnivDC": 11,
-      "powerTechDC": 13
+      "hd": {
+        "spent": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<p style=\"margin-bottom:10.5px;line-height:1.2em;z-index:15;overflow:hidden\">A mercenary (merc for short), sometimes also called soldier of fortune, hired gun, or free lance, is a soldier who fights or works in other ways (mostly in those involving violence) for any faction in exchange for a desirable amount of money.</p><p style=\"margin-top:-0.8em;margin-bottom:10.5px;line-height:1.2em;z-index:15;overflow:hidden\"><br /></p><p style=\"margin-top:-0.8em;margin-bottom:10.5px;line-height:1.2em;z-index:15;overflow:hidden\">Sometimes, the word mercenary is used as a derogatory term for someone who values credits over other things, such as ideals or kinship.</p><p style=\"margin-top:-0.8em;margin-bottom:10.5px;line-height:1.2em;z-index:15;overflow:hidden\"><br /></p><p style=\"margin-top:-0.8em;margin-bottom:10.5px;line-height:1.2em;z-index:15;overflow:hidden\">Only few large mercenary organizations existed in the galaxy. The forces of the galaxy tended to pull such organizations into conflict too regularly for mercenaries to exist in organized companies. Instead, individual mercenaries formed brotherhoods, that often existed as loose networks of contacts and contract makers. These brotherhoods provided some measure of camaraderie amongst the members of this otherwise very lonely business. The largest of these brotherhoods was the Brotherhood Mortalis, founded during the final years of the Old Republic.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Any Alignment",
-      "species": "",
+      "species": null,
       "type": {
         "value": "humanoid",
         "subtype": "",
@@ -2798,15 +2601,11 @@
       "environment": "",
       "cr": 3,
       "powerForceLevel": 0,
-      "powerTechLevel": 6,
+      "powerTechLevel": 3,
       "superiorityLevel": 0,
-      "source": "Fisto's Codex",
-      "xp": {
-        "value": 700
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 3
+      "source": {
+        "custom": "Fisto's Codex"
+      }
     },
     "traits": {
       "size": "med",
@@ -2836,15 +2635,14 @@
           "basic"
         ],
         "custom": ""
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -2854,11 +2652,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -2867,11 +2665,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 0,
@@ -2880,11 +2678,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -2893,11 +2691,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -2906,11 +2704,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -2919,11 +2717,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -2932,11 +2730,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -2945,11 +2743,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "prof": 0,
-        "total": 3,
-        "passive": 13
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -2958,11 +2756,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -2971,11 +2769,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -2984,11 +2782,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "prof": 0,
-        "total": 3,
-        "passive": 13
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 1,
@@ -2997,11 +2795,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 13,
-        "prof": 2,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -3010,11 +2808,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -3023,11 +2821,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -3036,11 +2834,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0,
@@ -3049,11 +2847,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -3062,11 +2860,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -3075,11 +2873,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "prof": 0,
-        "total": 3,
-        "passive": 13
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
     "tools": {},
@@ -3088,96 +2886,67 @@
         "fvalue": 0,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 1000,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 1000,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 1000,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -3296,10 +3065,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493968953,
-    "modifiedTime": 1699591655075,
+    "modifiedTime": 1720368777278,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!k5FL7ZkpWvny1gwq"

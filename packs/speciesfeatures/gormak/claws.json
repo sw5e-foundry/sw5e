@@ -1,11 +1,5 @@
 {
-  "_id": "fwX7qY5g2U3dujmw",
   "name": "Claws",
-  "type": "feat",
-  "img": "systems/sw5e/packs/Icons/Species/Gormak.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.6179368+00:00",
@@ -13,56 +7,46 @@
       "uid": "Feature.name-claws.source-species.sourceName-gormak.level-None"
     }
   },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Species/Gormak.webp",
   "system": {
     "description": {
       "value": "<p>Your claws are natural weapons, which you can use to make unarmed strikes. Additionally, your unarmed strikes deal [[/r 1d4]] kinetic damage.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Gormak",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": {
-      "threshold": null,
-      "damage": ""
-    },
     "damage": {
       "parts": [
         [
@@ -82,28 +66,55 @@
       "value": "species",
       "subtype": ""
     },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {},
     "recharge": {
       "value": null,
       "charged": false
     },
     "attributes": {
       "speed": {
-        "space": null,
-        "turn": null
+        "space": 300,
+        "turn": 250
       }
-    },
-    "className": null
+    }
   },
+  "effects": [],
+  "_id": "B3K5cjTrbD75sj5V",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
-    "createdTime": 1674494003537,
-    "modifiedTime": 1695981492641,
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296029297,
+    "modifiedTime": 1720368882248,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!fwX7qY5g2U3dujmw"
+  "_key": "!items!B3K5cjTrbD75sj5V"
 }

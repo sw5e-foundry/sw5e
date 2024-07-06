@@ -16,38 +16,41 @@
   "system": {
     "description": {
       "value": "<h3>Defensive 1</h3>\n<p>When you make your first attack on your turn with a weapon with the defensive property, you can choose to suffer a penalty to attack and damage rolls with that weapon up to the defensive number. If you do so, you gain the same bonus to AC. These effects last until the start of your next turn, as long as you're holding the weapon.</p>\n<h3>Finesse</h3>\n<p>When making an attack with a weapon with this property, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.</p>\n<h3>Hidden</h3>\n<p>You have advantage on Dexterity (Sleight of Hand) checks made to conceal a weapon with this property.</p>\n<h3>Light luminous</h3>\n<p>A weapon with this property is small and easy to handle, making it ideal for use when engaging in Double- or Two-Weapon Fighting. See the rules for Double- and Two-Weapon Fighting in chapter 9.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": null,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 375,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -56,18 +59,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "mwak",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -102,13 +106,9 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "weaponType": "martialLW",
     "weaponClass": "trip",
-    "baseItem": "guardshoto",
     "ammo": {
       "target": null,
       "value": null,
@@ -116,24 +116,41 @@
       "types": []
     },
     "properties": {
-      "def": 1,
-      "fin": true,
-      "lgt": true,
-      "lum": true,
-      "hid": true
+      "0": "def",
+      "1": "fin",
+      "2": "hid",
+      "3": "lgt",
+      "4": "lum"
     },
     "proficient": null,
-    "equiped": false
+    "type": {
+      "value": "martialLW",
+      "subtype": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "_propertyValues": {},
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "firingArc": ""
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493982807,
-    "modifiedTime": 1704036394533,
+    "modifiedTime": 1720368793427,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!xYrgfBXhWqh7jsU5"

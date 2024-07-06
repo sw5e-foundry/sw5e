@@ -1,8 +1,176 @@
 {
-  "_id": "pNzlPlfXMBn7nxnR",
   "name": "Aleena",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2711394+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-aleena"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Aleena.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Aleena are short, reptilian bipeds with large eyes and wide mouths full of small, sharp teeth. Aleena's bodies are long compared to their short arms and stubby legs. Warm-blooded reptiles, they possess exceptional reflexes as well as a fast metabolism which allow them to convert food into energy very rapidly in order to escape predators on their harsh home planet. </p>\n<h2>Society and Culture</h2>\n<p>Aleena are social and tend to thrive best in with close-knit teams if not with their own kind. They develop strong loyalties to friends and protect those they care about fiercely. Due to their inborn curiosity, the aleena are stereotypically galactic travelers, tourists in every sense. This, combined with their strong dedication to their relatives, results in aleena families traveling even to most unusual and dangerous locations just to see its sights. The appearance of aleena family walking through an intergalactic metropolis is a common sight on many planets. The aleena's love of sports and particularly, adventure and thrill sports, draw many into the galactic community. Most who enter professional classes are experts or diplomats. </p>\n<p>Aleena settlements were small, and most individuals were part of a single lineage, or tahiko. The leader of each tahiko led the community, and represented their wishes to the planetary advisory body. The advisory body elected a king to govern the planet, and was generally revered as a religious figure as they led religious ceremonies. </p>\n<h2>Names</h2>\n<p>Aleena names are generally short and guttural, with longer names being saved for royalty. Surnames are based on their tahiko, or tribal lineage.</p>\n<p><strong>Male Names.</strong> Batts, Gratz, Wakka, Zakan, Zetts</p>\n<p><strong>Female Names.</strong> Arkei, Harza, Sutci, Tsuon, Yenn, </p>\n<p><strong>Surnames.</strong> Anares, Kylar, Ors, Practes, Targae</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "aleena",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "JU8Mb1E5Wcf1jQYe",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.eIZgTuFIKTecZb1t"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bZL7LJXgovD32TrH"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.XLz2GIO82i6WTLFE"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.c3bX0j29kWX9ol3q"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hakzUZ8G5vFacbaz"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.I9NLX0vKmcmoDd79"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DNXAHRLRp66h5j4H"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Q8lRjuBwLHkPmhT0"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.s4plXSfuHKZgI9jH"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5zbkMFFBi3OnVXwF"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hVSm5HPrZbzzY9R5"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GtwFQdHLAwdRuByK"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "hq0X4EtGGAE1sDKl",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "cha": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "U3RjrFdGcQ1uetPv",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1E9xYGZTjdN51IFx",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:lor"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Blue, gray, purple, tan"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Blue"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Short stature, scaly skin, crested head"
+    },
+    "heightAverage": {
+      "value": "2'1\""
+    },
+    "heightRollMod": {
+      "value": "+2d4\""
+    },
+    "weightAverage": {
+      "value": "35 lb."
+    },
+    "weightRollMod": {
+      "value": "x1 lb."
+    },
+    "homeworld": {
+      "value": "Aleen"
+    },
+    "slanguage": {
+      "value": "Aleena"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "UCJDsDHBIg6vcQ2j",
@@ -80,142 +248,22 @@
       "name": "Aleena",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!pNzlPlfXMBn7nxnR.UCJDsDHBIg6vcQ2j"
+      "_key": "!items.effects!oswOeIZsuJ5nforM.UCJDsDHBIg6vcQ2j"
     }
   ],
+  "_id": "oswOeIZsuJ5nforM",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2711394+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-aleena"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Aleena are short, reptilian bipeds with large eyes and wide mouths full of small, sharp teeth. Aleena's bodies are long compared to their short arms and stubby legs. Warm-blooded reptiles, they possess exceptional reflexes as well as a fast metabolism which allow them to convert food into energy very rapidly in order to escape predators on their harsh home planet. </p>\n<h2>Society and Culture</h2>\n<p>Aleena are social and tend to thrive best in with close-knit teams if not with their own kind. They develop strong loyalties to friends and protect those they care about fiercely. Due to their inborn curiosity, the aleena are stereotypically galactic travelers, tourists in every sense. This, combined with their strong dedication to their relatives, results in aleena families traveling even to most unusual and dangerous locations just to see its sights. The appearance of aleena family walking through an intergalactic metropolis is a common sight on many planets. The aleena's love of sports and particularly, adventure and thrill sports, draw many into the galactic community. Most who enter professional classes are experts or diplomats. </p>\n<p>Aleena settlements were small, and most individuals were part of a single lineage, or tahiko. The leader of each tahiko led the community, and represented their wishes to the planetary advisory body. The advisory body elected a king to govern the planet, and was generally revered as a religious figure as they led religious ceremonies. </p>\n<h2>Names</h2>\n<p>Aleena names are generally short and guttural, with longer names being saved for royalty. Surnames are based on their tahiko, or tribal lineage.</p>\n<p><strong>Male Names.</strong> Batts, Gratz, Wakka, Zakan, Zetts</p>\n<p><strong>Female Names.</strong> Arkei, Harza, Sutci, Tsuon, Yenn, </p>\n<p><strong>Surnames.</strong> Anares, Kylar, Ors, Practes, Targae</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "aleena",
-    "advancement": [
-      {
-        "_id": "1BSkFwoBrRHJ1vKT",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.eIZgTuFIKTecZb1t",
-            "Compendium.sw5e.speciesfeatures.bZL7LJXgovD32TrH",
-            "Compendium.sw5e.speciesfeatures.XLz2GIO82i6WTLFE",
-            "Compendium.sw5e.speciesfeatures.c3bX0j29kWX9ol3q",
-            "Compendium.sw5e.speciesfeatures.hakzUZ8G5vFacbaz",
-            "Compendium.sw5e.speciesfeatures.I9NLX0vKmcmoDd79",
-            "Compendium.sw5e.speciesfeatures.DNXAHRLRp66h5j4H",
-            "Compendium.sw5e.speciesfeatures.Q8lRjuBwLHkPmhT0",
-            "Compendium.sw5e.speciesfeatures.s4plXSfuHKZgI9jH",
-            "Compendium.sw5e.speciesfeatures.5zbkMFFBi3OnVXwF",
-            "Compendium.sw5e.speciesfeatures.hVSm5HPrZbzzY9R5",
-            "Compendium.sw5e.speciesfeatures.GtwFQdHLAwdRuByK"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1uaKqMltTr0i1wFK",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "dex": 2,
-            "cha": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1hDXLLRdvwTU1c7z",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "sm"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "iFNdCLLQGYK1vpok",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:lor"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Blue, gray, purple, tan"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Blue"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Short stature, scaly skin, crested head"
-    },
-    "heightAverage": {
-      "value": "2'1\""
-    },
-    "heightRollMod": {
-      "value": "+2d4\""
-    },
-    "weightAverage": {
-      "value": "35 lb."
-    },
-    "weightRollMod": {
-      "value": "x1 lb."
-    },
-    "homeworld": {
-      "value": "Aleen"
-    },
-    "slanguage": {
-      "value": "Aleena"
-    },
-    "movement": {
-      "walk": 25
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002135,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!pNzlPlfXMBn7nxnR"
+  "_key": "!items!oswOeIZsuJ5nforM"
 }

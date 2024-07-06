@@ -23,7 +23,8 @@
         {
           "key": "flags.sw5e.jackOfAllTrades",
           "mode": 5,
-          "value": "1"
+          "value": "1",
+          "priority": null
         }
       ],
       "description": "",
@@ -31,83 +32,12 @@
       "statuses": [],
       "flags": {},
       "tint": null,
-      "_key": "!items.effects!C1UAdaL6DzVkJBiV.HtKChT8QHDMEC1eQ",
-      "sort": 0
+      "_key": "!items.effects!C1UAdaL6DzVkJBiV.HtKChT8QHDMEC1eQ"
     }
   ],
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": true,
-          "resource": true,
-          "charge": true
-        },
-        "altValue": {
-          "use": true,
-          "resource": true,
-          "charge": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:58.6730225+00:00",
       "importer_version": 3,
@@ -117,50 +47,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Sentinel:</strong> 1st level</em></p>\n<p>You can add half your proficiency bonus to any ability check you make that doesn't already include your proficiency bonus.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Sentinel",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -185,17 +120,26 @@
         "turn": null
       }
     },
-    "className": null
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493962274,
-    "modifiedTime": 1700067997729,
+    "modifiedTime": 1720368727424,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!C1UAdaL6DzVkJBiV"

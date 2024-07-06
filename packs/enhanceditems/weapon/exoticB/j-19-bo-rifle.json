@@ -16,38 +16,41 @@
   "system": {
     "description": {
       "value": "<h4>Weapon (Bo-Rifle)</h4>\n <p>You have a +1 bonus to attack and damage rolls with this enhanced weapon. Additionally, while it is in staff mode, the save DC for its shocking property increases to 14.</p>\n<p><em>This more recent and less artfully designed model of bo-rifle comes with a bayonet attached to the top edge.</em></p>\n<p> </p>\n<h2>Bo-rifle</h2>\n<h3>Modal (blaster rifle and techstaff)</h3>\n<p>A weapon with this property can switch between modes. A list of weapons in parentheses appears with the property-the weapons between which an exotic weapon can be switched by using an object interaction.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 1075,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "premium",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -56,18 +59,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "mwak",
-    "attackBonus": "1",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -102,13 +106,9 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "weaponType": "exoticB",
     "weaponClass": "",
-    "baseItem": "bo-rifle",
     "ammo": {
       "target": null,
       "value": null,
@@ -116,20 +116,41 @@
       "types": []
     },
     "properties": {
+      "0": "mod",
+      "1": "shk"
+    },
+    "proficient": null,
+    "_propertyValues": {
       "mod": "blaster rifle and techstaff",
       "shk": true
     },
-    "proficient": null
+    "type": {
+      "value": "exoticB",
+      "subtype": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "1",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "firingArc": ""
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493964971,
-    "modifiedTime": 1704036401790,
+    "modifiedTime": 1720402291484,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!pvCL1lOMkD22leit"

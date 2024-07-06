@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Physician Pursuit:</strong> 17th level</em></p>\n<p>You've developed the formula to concoct a cure-all miracle solution: a panacea. Over the course of 10 minutes, you can expend rare medical supplies worth 1,000 cr to create your panacea in a simple syringe. The panacea retains its potency for 24 hours. As a bonus action, a creature can use the panacea. Alternatively, as an action, they can administer it to another creature within 5 feet.</p>\n<p>The target has its exhaustion level reduced by one and regains all of its hit points. If the target is diseased, poisoned, paralyzed, or stunned, the condition ends.</p>\n<p>Once you create a panacea, you can't create another until you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scholar (Physician Pursuit) 17",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -33,31 +34,32 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "5",
+      "value": 5,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -87,17 +89,26 @@
         "turn": null
       }
     },
-    "className": "Scholar"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957947,
-    "modifiedTime": 1699591595196,
+    "modifiedTime": 1720368705095,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!eAem3vy3uo6k4AQE"

@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Audiotech Engineering:</strong> 18th level</em></p>\n<p>You've gained mastery over your modified instrument. As an action, you can end your enhanced song in a triumphant blast of power with an effect determined by the song you are playing.</p>\n<p>Once you've used this feature, you must complete a long rest before you can use it again.</p>\n<h3>Battle Crescendo</h3>\n<p>Choose up to 10 creatures of your choice that you can see and that can hear your song. Each must make a Constitution saving throw. On a failed save, a target takes [[/r 14d6]] sonic damage and is stunned for [[/r 1d4+1]] turns. On a success, it takes half damage and isn't stunned. If a creature is killed by this power, its head explodes.</p>\n<h3>Support Crescendo</h3>\n<p>Choose up to 10 creatures of your choice that you can see and that can hear your song. Once in the next minute, each creature can, as a free action in response to taking damage, choose to halve that damage. Additionally, if the damage would reduce them to 0 hit points, they are instead reduced to 1.</p>\n<h3>Disruption Crescendo</h3>\n<p>Choose up to 10 creatures of your choice that you can see and that can hear your song. Each creature must succeed on a Constitution saving throw or be paralyzed for [[/r 1d4+1]] turns. If a creature affected by this feature is damaged in any way, the effect ends for that creature.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Audiotech Engineering) 18",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "minute"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -79,24 +84,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Engineer"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957630,
-    "modifiedTime": 1704036421154,
+    "modifiedTime": 1720368693143,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!NKOEhauwGTSiMLrm"

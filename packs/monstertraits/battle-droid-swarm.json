@@ -7,11 +7,12 @@
   "system": {
     "description": {
       "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">When an ally of the {creature} hits a hostile creature that it can see with a weapon attack, the {creature} can use its reaction to make one weapon attack, with disadvantage, against that creature.</span></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
@@ -24,10 +25,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -36,22 +38,23 @@
     },
     "uses": {
       "value": null,
-      "max": "0",
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
-      "damage": null
+      "damage": ""
     },
     "damage": {
       "parts": [
@@ -73,7 +76,7 @@
       "subtype": ""
     },
     "recharge": {
-      "value": 0,
+      "value": null,
       "charged": false
     },
     "attributes": {
@@ -82,20 +85,26 @@
         "turn": null
       }
     },
-    "powercasting": {
-      "force": "none",
-      "tech": "none"
-    }
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1669756324197,
-    "modifiedTime": 1699591681505,
+    "modifiedTime": 1720368816617,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "folder": null,

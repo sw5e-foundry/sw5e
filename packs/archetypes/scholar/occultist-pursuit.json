@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Occultist Pursuit</h1>\n<p>Occultists research the obscure practitioners of mystical arts, from witches to shamans to sorcerers. Those scholars who choose the Occultist Pursuit learn to harness these magics to bewitch and confound their enemies. </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Occultist Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.z2LxheTxg2SjyTLq]{Arcane membrane}</li>\n<li>@Compendium[sw5e.invocations.x2Brnm7YoOvmHD29]{Evil eye}</li>\n<li>@Compendium[sw5e.invocations.rwiOEa6UDDGE8JiK]{Exsanguination}</li>\n<li>@Compendium[sw5e.invocations.hq0qrr5Oof1tAvjf]{Hexes and superstitions }</li>\n<li>@Compendium[sw5e.invocations.CHjXPUFGPQw91jvF]{Natural karma}</li>\n<li>@Compendium[sw5e.invocations.qYYJCDYt4iztZjw6]{Savage sortilege}</li>\n<li>@Compendium[sw5e.invocations.7NxzaKfEoEODPFJp]{Supernatural vigor}</li>\n</ul>"
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "occultistpursuit",
     "classIdentifier": "scholar",
     "advancement": [
       {
-        "_id": "1RO9EqmDCRas16uS",
+        "_id": "1S4STcI7m7Zq1iQ7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.aGO7s8TkeY9fEmd4",
-            "Compendium.sw5e.archetypefeatures.wLJ4f7vlpoBiSlUX"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.aGO7s8TkeY9fEmd4"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.wLJ4f7vlpoBiSlUX"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "isarepZU6wv1tAqn",
+        "_id": "1mcRKlFl6NXBzOtg",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ZI7BjzLcFQzru8Ga"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ZI7BjzLcFQzru8Ga"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "1bx1lhPGQUN21aJa",
+        "_id": "1AfxOjHtc1121ceN",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.wokNr8mYw9khsGQK"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.wokNr8mYw9khsGQK"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "uiQLLUmAZP33ksSX",
+        "_id": "ayAoK3oLJMUNtQ6h",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.bcFE1wrOE90hfVrM"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.bcFE1wrOE90hfVrM"
+            }
           ],
           "optional": false
         },
@@ -80,7 +88,7 @@
         "title": "Features"
       },
       {
-        "_id": "1rMom4UfjgvpxuU7",
+        "_id": "1oIrNNfdH3FbhU6V",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -94,32 +102,62 @@
         "level": 3
       },
       {
-        "_id": "1u4YRTHnRwUD1QEM",
+        "_id": "HHiEhRs75qoVvspr",
         "type": "ItemChoice",
         "configuration": {
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
-            "2": 2,
-            "3": 2,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "2": {
+              "count": 2
+            },
+            "3": {
+              "count": 2
+            },
+            "5": {
+              "count": 1
+            },
+            "9": {
+              "count": 1
+            },
+            "11": {
+              "count": 1
+            },
+            "13": {
+              "count": 1
+            },
+            "17": {
+              "count": 1
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.z2LxheTxg2SjyTLq",
-            "Compendium.sw5e.invocations.x2Brnm7YoOvmHD29",
-            "Compendium.sw5e.invocations.rwiOEa6UDDGE8JiK",
-            "Compendium.sw5e.invocations.hq0qrr5Oof1tAvjf",
-            "Compendium.sw5e.invocations.CHjXPUFGPQw91jvF",
-            "Compendium.sw5e.invocations.qYYJCDYt4iztZjw6",
-            "Compendium.sw5e.invocations.7NxzaKfEoEODPFJp"
+            {
+              "uuid": "Compendium.sw5e.invocations.z2LxheTxg2SjyTLq"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.x2Brnm7YoOvmHD29"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.rwiOEa6UDDGE8JiK"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.hq0qrr5Oof1tAvjf"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.CHjXPUFGPQw91jvF"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.qYYJCDYt4iztZjw6"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.7NxzaKfEoEODPFJp"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -143,7 +181,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -151,10 +189,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959757,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Zcx4q2QupVJr2Rmh"

@@ -1,8 +1,170 @@
 {
-  "_id": "fxX6jiB6zMh5LHdc",
   "name": "Balosar",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.272138+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-balosar"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Balosar.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Physically similar to humans, balosars appear to be sickly and gaunt when compared with the galaxy's most common species due to the heavy pollution of their homeworld. The most striking difference between balosars and humanity is a pair of antennapalps which sprouts from underneath the thick, coarse hair on their skulls. Retractable, these atennapalps allow them to listen into the subsonic range and give the species physical intuition and preternatural reflexes, which members of the Jedi Order sometimes mistook for Force-sensitivity. Balosars also possess an acute tolerance for poisonous substances, a byproduct of life on their toxic homeworld.</p>\n<h2>Society and Culture</h2>\n<p>Early in its history, the balosar homeworld was overrun by galactic megacorporations eager to exploit the world's lax ecological protection laws. The planet was home to the balo mushroom, a key ingredient in death sticks, one of the galaxy's most infamous narcotics. After its discovery, Balosar was wrought with corruption, addiction, and pollution from the production and usage of death sticks.</p>\n<p>Since there is little opportunity to flourish on their homeworld, balosars often leave in search of fortune elsewhere. Their natural resistance to the lethal—but not the addictive—effects of the drug encourages some to enter the death stick business.</p>\n<h2>Names</h2>\n<p>Balosar names have a slight exotic tinge to them—often because Balosar parents name their children while on a death stick high. Their surnames are familial.</p>\n<p><strong>Male Names.</strong> Barin, Elan, Fantes, Zerba </p>\n<p><strong>Female Names.</strong> Delaana, Ferrika, Reki, Vetyl </p>\n<p><strong>Surnames.</strong> Cher'dak, Mer'darro, Sel'Sabagno</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "balosar",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "9op9W0IrzM9mCwA5",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.CrNtbbSdsYw6XoDo"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yznhpJxi1uXeMLIg"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yfkLbiRRQPyAvCRt"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3nOr1uKqL49R56fc"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WdaTtVV7RKZXSrpi"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QC6csOFTwsnmnXql"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GbEX4D1jLyCWQ9Pp"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VMi37wLBrLhl7N0G"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.gtEIRAryb6eiDtP5"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.E8My28EbM0D3ETsJ"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "Zun88se0wkfctlqi",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "cha": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "xUKUUx01ZR6uvFlQ",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1xDCYJrEzyZj1F1m",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "tool:spicerskit"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Pale"
+    },
+    "hairColorOptions": {
+      "value": "Black, blond, orange, brown, white"
+    },
+    "eyeColorOptions": {
+      "value": "Varies"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Antennapalps, resistance to toxins"
+    },
+    "heightAverage": {
+      "value": "4'8\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "100 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Balosar"
+    },
+    "slanguage": {
+      "value": "Balosur"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "FzG2zpKDM6Elr24P",
@@ -72,8 +234,7 @@
       "name": "Balosar",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!fxX6jiB6zMh5LHdc.FzG2zpKDM6Elr24P"
+      "_key": "!items.effects!79MesF52wiLq1KdB.FzG2zpKDM6Elr24P"
     },
     {
       "_id": "mebaLEwfl4QjrFOD",
@@ -107,140 +268,22 @@
       "name": "Keen Hearing",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!fxX6jiB6zMh5LHdc.mebaLEwfl4QjrFOD"
+      "_key": "!items.effects!79MesF52wiLq1KdB.mebaLEwfl4QjrFOD"
     }
   ],
+  "_id": "79MesF52wiLq1KdB",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.272138+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-balosar"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Physically similar to humans, balosars appear to be sickly and gaunt when compared with the galaxy's most common species due to the heavy pollution of their homeworld. The most striking difference between balosars and humanity is a pair of antennapalps which sprouts from underneath the thick, coarse hair on their skulls. Retractable, these atennapalps allow them to listen into the subsonic range and give the species physical intuition and preternatural reflexes, which members of the Jedi Order sometimes mistook for Force-sensitivity. Balosars also possess an acute tolerance for poisonous substances, a byproduct of life on their toxic homeworld.</p>\n<h2>Society and Culture</h2>\n<p>Early in its history, the balosar homeworld was overrun by galactic megacorporations eager to exploit the world's lax ecological protection laws. The planet was home to the balo mushroom, a key ingredient in death sticks, one of the galaxy's most infamous narcotics. After its discovery, Balosar was wrought with corruption, addiction, and pollution from the production and usage of death sticks.</p>\n<p>Since there is little opportunity to flourish on their homeworld, balosars often leave in search of fortune elsewhere. Their natural resistance to the lethal—but not the addictive—effects of the drug encourages some to enter the death stick business.</p>\n<h2>Names</h2>\n<p>Balosar names have a slight exotic tinge to them—often because Balosar parents name their children while on a death stick high. Their surnames are familial.</p>\n<p><strong>Male Names.</strong> Barin, Elan, Fantes, Zerba </p>\n<p><strong>Female Names.</strong> Delaana, Ferrika, Reki, Vetyl </p>\n<p><strong>Surnames.</strong> Cher'dak, Mer'darro, Sel'Sabagno</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "balosar",
-    "advancement": [
-      {
-        "_id": "JiHJydYy73PEt8Tf",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.CrNtbbSdsYw6XoDo",
-            "Compendium.sw5e.speciesfeatures.yznhpJxi1uXeMLIg",
-            "Compendium.sw5e.speciesfeatures.yfkLbiRRQPyAvCRt",
-            "Compendium.sw5e.speciesfeatures.3nOr1uKqL49R56fc",
-            "Compendium.sw5e.speciesfeatures.WdaTtVV7RKZXSrpi",
-            "Compendium.sw5e.speciesfeatures.QC6csOFTwsnmnXql",
-            "Compendium.sw5e.speciesfeatures.GbEX4D1jLyCWQ9Pp",
-            "Compendium.sw5e.speciesfeatures.VMi37wLBrLhl7N0G",
-            "Compendium.sw5e.speciesfeatures.gtEIRAryb6eiDtP5",
-            "Compendium.sw5e.speciesfeatures.E8My28EbM0D3ETsJ"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1HgeLkJ2e3m81Brn",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "dex": 2,
-            "cha": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1q0ZQDBSCOMTau3a",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1pxTqKQIZVkiny18",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "tool:spicerskit"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Pale"
-    },
-    "hairColorOptions": {
-      "value": "Black, blond, orange, brown, white"
-    },
-    "eyeColorOptions": {
-      "value": "Varies"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Antennapalps, resistance to toxins"
-    },
-    "heightAverage": {
-      "value": "4'8\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "100 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Balosar"
-    },
-    "slanguage": {
-      "value": "Balosur"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002118,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!fxX6jiB6zMh5LHdc"
+  "_key": "!items!79MesF52wiLq1KdB"
 }

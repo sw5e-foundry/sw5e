@@ -1,99 +1,22 @@
 {
-  "_id": "7lffOLi62Lj2AJUS",
   "name": "Detect Enhancement",
-  "type": "power",
-  "img": "systems/sw5e/packs/Icons/Tech%20Powers/DetectEnhancement.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickVersatile": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "use": false,
-          "resource": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:59.1507454+00:00",
       "importer_version": 3,
       "uid": "Power.name-detect_enhancement.level-1"
     }
   },
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Tech%20Powers/DetectEnhancement.webp",
   "system": {
     "description": {
       "value": "<p>For the duration, you sense the presence of any enhancements within 30 feet of you. If you sense an enhancement in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears an enhancement.</p>\n<p>The power is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -103,13 +26,12 @@
       "value": "10",
       "units": "minute"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -118,19 +40,13 @@
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
-    },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
-    "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
@@ -147,13 +63,8 @@
     },
     "level": 1,
     "school": "tec",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": true,
-      "value": ""
+    "properties": {
+      "0": "concentration"
     },
     "materials": {
       "value": "",
@@ -163,23 +74,42 @@
     },
     "preparation": {
       "mode": "prepared",
-      "prepared": true
+      "prepared": false
     },
     "scaling": {
       "mode": "none",
       "formula": null
-    }
+    },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "enchantment": null,
+    "summons": null
   },
+  "effects": [],
+  "_id": "NPMinsoTCEkqg9dl",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494020505,
-    "modifiedTime": 1707077465284,
+    "createdTime": 1720296025398,
+    "modifiedTime": 1720368946546,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!7lffOLi62Lj2AJUS"
+  "_key": "!items!NPMinsoTCEkqg9dl"
 }

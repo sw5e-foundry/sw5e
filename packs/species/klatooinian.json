@@ -1,8 +1,177 @@
 {
-  "_id": "qEBkequEiXsa9YbE",
   "name": "Klatooinian",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2831315+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-klatooinian"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Klatooinian.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Klatooinians are a humanoid species with canine features, having short muzzles over toothy overbites. They are also notable for their heavy brows and ridges along the tops of their heads. </p>\n<h2>Society and Culture</h2>\n<p>For centuries, klatooinians have been slaves to the hutts, whom they view as almost godlike, immortal beings. Although the hutts allow a council of elders to rule on Klatooine, all off-world affairs are wholly under hutt control. Under the hutts, the klatooinians serve as soldiers and guards. Even those klatooinians who do not serve the hutts are often employed as hired muscle by other masters.</p>\n<p>Klatooinian society was known for a strong belief in tradition and the wisdom of the elders, although some younger klatooinians rebelled against this norm and sought out freedom from enslavement. Others attempted to gain their own fortunes as smugglers, pirates, bounty hunters, or raiders.</p>\n<h2>Names</h2>\n<p>Klatooinian names are often derived from the names of great heroes and historical figures. Surnames are familial, and are usually shorter than klatooinian given names. </p>\n<p><strong>Male Names.</strong> Barada, Castas, Sta-Den, Tarados</p>\n<p><strong>Female Names.</strong> Gelis, Petkara, Sterasi, Yelmith </p>\n<p><strong>Surnames.</strong> Eek, Gort, Gon, Ovin</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "klatooinian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1U1a6Yv31XZR1LFu",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.OBn9O7aJbBdfwS6h"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VV6rJw7ZwNa9jEKR"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.CjUJR2TEeZ0Eddfc"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.liYGg7uTcnBHqntt"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Plff00oyqwTfgzPD"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Q2K21jVkVbJWA8gg"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.h24MdtJnLYTqOU2J"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.OGHZ5JlOaGReOFi2"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.u7lf8ZNqR7wsxEXa"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cpNA7ufNM4vsWtHK"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1oYp3jXbfNfOavg8",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 1
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1yKnAQNR3cUfhctE",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1REj0DJGPOLY1i5t",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "weapon:mvb:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:itm",
+            "skills:lor"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Green, gray, brown"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Brown, black, gray"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Heavy brows, short canine muzzles"
+    },
+    "heightAverage": {
+      "value": "5'4\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "125 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Klatooine"
+    },
+    "slanguage": {
+      "value": "Huttese, Klatooinian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "G6pCpdwb6FUA1ViV",
@@ -80,147 +249,22 @@
       "name": "Klatooinian",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!qEBkequEiXsa9YbE.G6pCpdwb6FUA1ViV"
+      "_key": "!items.effects!3GTORTqgXTh6BHus.G6pCpdwb6FUA1ViV"
     }
   ],
+  "_id": "3GTORTqgXTh6BHus",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2831315+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-klatooinian"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Klatooinians are a humanoid species with canine features, having short muzzles over toothy overbites. They are also notable for their heavy brows and ridges along the tops of their heads. </p>\n<h2>Society and Culture</h2>\n<p>For centuries, klatooinians have been slaves to the hutts, whom they view as almost godlike, immortal beings. Although the hutts allow a council of elders to rule on Klatooine, all off-world affairs are wholly under hutt control. Under the hutts, the klatooinians serve as soldiers and guards. Even those klatooinians who do not serve the hutts are often employed as hired muscle by other masters.</p>\n<p>Klatooinian society was known for a strong belief in tradition and the wisdom of the elders, although some younger klatooinians rebelled against this norm and sought out freedom from enslavement. Others attempted to gain their own fortunes as smugglers, pirates, bounty hunters, or raiders.</p>\n<h2>Names</h2>\n<p>Klatooinian names are often derived from the names of great heroes and historical figures. Surnames are familial, and are usually shorter than klatooinian given names. </p>\n<p><strong>Male Names.</strong> Barada, Castas, Sta-Den, Tarados</p>\n<p><strong>Female Names.</strong> Gelis, Petkara, Sterasi, Yelmith </p>\n<p><strong>Surnames.</strong> Eek, Gort, Gon, Ovin</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "klatooinian",
-    "advancement": [
-      {
-        "_id": "16sS2f6Hs7zuFnPX",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.OBn9O7aJbBdfwS6h",
-            "Compendium.sw5e.speciesfeatures.VV6rJw7ZwNa9jEKR",
-            "Compendium.sw5e.speciesfeatures.CjUJR2TEeZ0Eddfc",
-            "Compendium.sw5e.speciesfeatures.liYGg7uTcnBHqntt",
-            "Compendium.sw5e.speciesfeatures.Plff00oyqwTfgzPD",
-            "Compendium.sw5e.speciesfeatures.Q2K21jVkVbJWA8gg",
-            "Compendium.sw5e.speciesfeatures.h24MdtJnLYTqOU2J",
-            "Compendium.sw5e.speciesfeatures.OGHZ5JlOaGReOFi2",
-            "Compendium.sw5e.speciesfeatures.u7lf8ZNqR7wsxEXa",
-            "Compendium.sw5e.speciesfeatures.cpNA7ufNM4vsWtHK"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "tAoTxJZk3w53mVpG",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "wis": 1
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "16OE6AuuPk7410HK",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1OwVmjYZQHKy60ta",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 2,
-              "pool": [
-                "weapon:mvb:*"
-              ]
-            }
-          ],
-          "grants": [
-            "skills:itm",
-            "skills:lor"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Green, gray, brown"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Brown, black, gray"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Heavy brows, short canine muzzles"
-    },
-    "heightAverage": {
-      "value": "5'4\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "125 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Klatooine"
-    },
-    "slanguage": {
-      "value": "Huttese, Klatooinian"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002137,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!qEBkequEiXsa9YbE"
+  "_key": "!items!3GTORTqgXTh6BHus"
 }

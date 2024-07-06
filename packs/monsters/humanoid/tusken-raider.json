@@ -15,18 +15,19 @@
       "system": {
         "description": {
           "value": "<p>As a bonus action, the tusken can move up to its speed toward a hostile creature that it can see.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -35,31 +36,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -76,7 +79,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -85,10 +88,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -173,22 +182,24 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+4, Reach 5 ft., One target. <em>Hit : </em>7 (1d10+2) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -201,10 +212,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
@@ -213,22 +225,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": "0",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -259,12 +272,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -273,61 +283,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "aut": false,
-          "bur": null,
-          "def": null,
-          "dex": null,
-          "dir": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "hid": false,
-          "ken": null,
-          "lum": false,
-          "mig": false,
-          "pic": null,
-          "rap": null,
-          "shk": null,
-          "sil": false,
-          "str": null,
-          "vic": null,
-          "mgc": null,
-          "ran": false,
-          "smr": false,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "ilk": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -354,29 +329,31 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Ranged Weapon Attack </em>+3, Range 150/600 ft., One target. <em>Hit : </em>6 (1d10+1) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -385,7 +362,8 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 150,
@@ -394,22 +372,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "dex",
         "actionType": "rwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -440,12 +419,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -454,61 +430,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -533,108 +474,46 @@
       "sort": 0,
       "flags": {
         "timestamp": "2022-10-18T11:20:58.2178937+00:00",
-        "uid": "Equipment.name-combat_suit.equipmentCategory-armor",
-        "betterRollssw5e": {
-          "critRange": {
-            "type": "String",
-            "value": ""
-          },
-          "critDamage": {
-            "type": "String",
-            "value": ""
-          },
-          "quickDesc": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickAttack": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickSave": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickDamage": {
-            "type": "Array",
-            "value": [],
-            "altValue": [],
-            "context": []
-          },
-          "quickProperties": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickCharges": {
-            "type": "Boolean",
-            "value": {
-              "quantity": false,
-              "use": false,
-              "resource": true
-            },
-            "altValue": {
-              "quantity": false,
-              "use": false,
-              "resource": true
-            }
-          },
-          "quickOther": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true,
-            "context": ""
-          },
-          "quickFlavor": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickPrompt": {
-            "type": "Boolean",
-            "value": false,
-            "altValue": false
-          }
-        }
+        "uid": "Equipment.name-combat_suit.equipmentCategory-armor"
       },
       "system": {
         "description": {
           "value": "<p>Combat suits are seen all over the galaxy, and can be found for sale by almost any merchant who dealt in weapons and armor. Many such suits are used by military organizations, such as the Galactic Republic's military, as well as by mercenaries, criminals, bounty hunters and even some Jedi.</p>\n<p>The suit itself offers decent protection from most types of attacks while maintaining maximum flexibility and minimum weight. However this armor is only recommended for light skirmishes.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "PHB",
+        "source": {
+          "custom": "PHB"
+        },
         "quantity": 1,
-        "weight": 10,
+        "weight": {
+          "value": 10,
+          "units": "lb"
+        },
         "price": {
           "value": 100,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
-          "type": null,
+          "type": "",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -643,20 +522,24 @@
         },
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -669,8 +552,8 @@
         },
         "armor": {
           "value": 11,
-          "type": "light",
-          "dex": null
+          "dex": null,
+          "magicalBonus": null
         },
         "hp": {
           "value": 0,
@@ -697,9 +580,7 @@
           "fuelcostsmod": {
             "value": null
           },
-          "powerdicerec": {
-            "value": ""
-          },
+          "powerdicerec": {},
           "hdclass": {
             "value": null
           }
@@ -709,104 +590,31 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null,
-          "overrides": {}
+          "changes": {}
         },
-        "baseItem": "combatsuit",
         "speed": {
           "value": null,
           "conditions": ""
         },
-        "strength": "",
-        "stealth": false,
-        "properties": {
-          "Absorptive": null,
-          "Agile": null,
-          "Anchor": null,
-          "Avoidant": null,
-          "Barbed": null,
-          "Bulky": null,
-          "Charging": null,
-          "Concealing": null,
-          "Cumbersome": null,
-          "Gauntleted": null,
-          "Imbalanced": null,
-          "Impermeable": null,
-          "Insulated": null,
-          "Interlocking": null,
-          "Lambent": null,
-          "Lightweight": null,
-          "Magnetic": null,
-          "Obscured": null,
-          "Obtrusive": null,
-          "Powered": null,
-          "Reactive": null,
-          "Regulated": null,
-          "Reinforced": null,
-          "Responsive": null,
-          "Rigid": null,
-          "Silent": null,
-          "Spiked": null,
-          "Strength": null,
-          "Steadfast": null,
-          "Versatile": null
+        "strength": null,
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "light",
+          "baseItem": "combatsuit"
         },
-        "proficient": true,
-        "capx": {
-          "value": null
+        "unidentified": {
+          "description": ""
         },
-        "dmgred": {
-          "value": null
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "regrateco": {
-          "value": null
-        },
-        "cscap": {
-          "value": null
-        },
-        "sscap": {
-          "value": null
-        },
-        "fuelcostsmod": {
-          "value": null
-        },
-        "powerdicerec": {
-          "value": null
-        },
-        "hdclass": {
-          "value": null
-        },
-        "modifications": {
-          "chassisType": "none",
-          "augmentSlots": 0,
-          "mods": {
-            "slot1": {
-              "uuid": null,
-              "disabled": false
-            },
-            "slot2": {
-              "uuid": null,
-              "disabled": false
-            },
-            "slot3": {
-              "uuid": null,
-              "disabled": false
-            },
-            "slot4": {
-              "uuid": null,
-              "disabled": false
-            }
-          },
-          "augments": [],
-          "type": null,
-          "overrides": {}
-        },
-        "hpperhd": {
-          "value": null
-        },
-        "equiped": false,
-        "weaponType": ""
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null
       },
       "ownership": {
         "default": 0
@@ -843,14 +651,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "dex": {
         "value": 12,
@@ -859,14 +660,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "con": {
         "value": 16,
@@ -875,14 +669,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 3,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 13
+        }
       },
       "int": {
         "value": 10,
@@ -891,14 +678,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "wis": {
         "value": 11,
@@ -907,14 +687,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "cha": {
         "value": 9,
@@ -923,14 +696,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -1,
-        "save": -1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 9
+        }
       },
       "hon": {
         "value": 9,
@@ -938,7 +704,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 11,
@@ -946,41 +713,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 12,
         "calc": "default",
-        "formula": "combat suit",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 15,
         "max": 15,
         "temp": 0,
         "tempmax": 0,
-        "formula": "2d8+6",
-        "min": 0
+        "formula": "2d8+6"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 1,
-        "prof": 0,
-        "total": 1
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -1003,16 +766,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -1021,16 +777,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -1041,57 +790,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 2,
-      "powerdc": 10,
-      "bar1": {
-        "value": 15,
-        "min": 0,
-        "max": 15
-      },
-      "bar2": {
-        "value": 12,
-        "min": 0,
-        "max": 0
-      },
-      "encumbrance": {
-        "value": 2,
-        "max": 225,
-        "pct": 0.8888888888888888,
-        "encumbered": true
-      },
-      "powerForceLightDC": 10,
-      "powerForceDarkDC": 9,
-      "powerForceUnivDC": 10,
-      "powerTechDC": 10,
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"Those Tuskens walk like men, but they're vicious, mindless monsters.\"</i></p><p>- Cliegg Lars</p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Designation</u><br /></td><td style=\"line-height:1.42857\">Sentient</td></tr><tr><td style=\"line-height:1.42857\"><u>Average height</u></td><td style=\"line-height:1.42857\">1,85 meters</td></tr><tr><td style=\"line-height:1.42857\"><u>Average mass</u></td><td style=\"line-height:1.42857\">89 kg</td></tr><tr><td style=\"line-height:1.42857\"><u>Skin color</u></td><td style=\"line-height:1.42857\">Sandy brown to glossy green</td></tr><tr><td style=\"line-height:1.42857\"><u>Homeworld</u></td><td style=\"line-height:1.42857\"><p>Tatooine</p></td></tr><tr><td style=\"line-height:1.42857\"><u>Language</u></td><td style=\"line-height:1.42857\">Tusken<br /><br /></td></tr></tbody></table><p>Tusken Raiders, less formally referred to as Sand People or simply as Tuskens, were a culture of nomadic, primitive sentients indigenous to Tatooine, where they were often hostile to local settlers. Tusken children were called Uli-ah.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Culture</h3><blockquote><p><i>\"A moisture farm? Poor locals never stood a chance. The Sand People think all water is sacred and was promised to them.\"</i></p><p>- Saponza to his partner after discovering a moisture farm ravaged by Tusken Raiders</p></blockquote><p>Tusken Raiders were a species native to the desert world of Tatooine. Their homeworld's harsh environment resulted in them being extremely xenophobic &amp; territorial of their native resources, often attacking the outskirts of smaller settlements such as Anchorhead. They viewed themselves as Tatooine's locals and everyone else as trespassers. The Sand People believed that all water was sacred and promised to them, resulting in them raiding moisture farms set up by colonists. Rare water wells, such as Gafsa, were also sacred to Tuskens. An individual simply trespassing close to one of these water wells could provoke immediate violence. Additionally, Tusken Raiders harvested black melons which grew in the Jundland Wastes, providing them with a reliable source of milk.</p><p>Tusken clan groups consisted of 20 to 30 individuals, and were led by clan leaders, tribal chiefs, and warlords. The Sand People communicated in a language known as Tusken. At the age of 15, a Tusken became an adult, and had to slay a krayt dragon and cut out the precious pearl found in its stomach to gain their adult role in their tribe. Tuskens inhabited encampments scattered across an area of the rocky Jundland Wastes known as The Needles, which were guarded from intruders by vicious massiffs.</p><p>Male Tusken Raiders were the warriors of their clans, often attacking vulnerable travelers that were unfortunate enough to wander through their territory. They wielded gaderffii sticks in combat, and used Tusken Cyclers to fire on vehicles they spotted. Every Tusken warrior created their own gaderffii stick, making each one unique. Males wore rough wrappings and garments that provided protection and allowed ease of movement. Male Tuskens served as warriors, while females held a number of roles. Females could be distinguished by their elaborate jeweled masks with eyeslits and torso-covering sand-shrouds. Tusken children, known as Uli-ah, wore unisex cowls and simple cloaks, and could not dress like males or females until they reached adulthood. All Sand People wore mouth grilles and eye coverings to retain moisture and keep sand out. However, their need to protect their bodies from Tatooine's weather grew into a taboo. Because of this, Tuskens almost never unmasked themselves in front of each other. In addition, no outsider ever saw behind a Tusken's mask and lived, and they were forbidden to remove their clothing in front of others, except at childbirth, on their wedding night, and at coming-of-age ceremonies.</p><p>The Sand People and banthas shared a close, almost mystical bond. During warrior initiation rites, a young Tusken was given a bantha matching their own gender and learned to care for it, with the pair becoming extremely close as the youth earned a place in its clan. When Sand People married, their banthas also mated, and, should its rider die, their bantha usually perished shortly after. If a bantha died before its rider, its remains were placed in a large graveyard, which was treated with great respect by Tuskens and other banthas.</p><p>While the Tuskens were nominally hostile towards outsiders, one tribe did enter into an arrangement with the lawman Cobb Vanth, the Sheriff of Freetown. Vanth and the animal tamer Malakili secured the Tuskens' protection by supplying water and a pearl from the belly of a krayt dragon. These Tuskens also shared Vanth's hostility towards criminal elements, especially slavers. Tuskens were also known to negotiate with outsiders, as demonstrated by the bounty hunter Din Djarin earning safe passage through Tusken land in exchange for a pair of new binoculars.</p><p>The Tuskens had superstitions about various landmarks on Tatooine. For example, the Tuskens avoided Mushroom Mesa at all costs and always fired their blasters before passing through the B'Thazoshe Bridge.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">History</h3><p><b>Pre-Clone Wars</b></p><blockquote><p><i>\"I…I killed them. I killed them all. They're dead, every single one of them. And not just the men, but the women and the children too. They're like animals, and I slaughtered them like animals.\"</i></p><p>- Anakin Skywalker</p></blockquote><p>In 32 BBY, during the Boonta Eve Classic, several Sand People camped out on Canyon Dune Turn. During the first lap, they took several shots at passing podracers with their projectile rifles. Though initially unsuccessful, on the second lap a Tusken managed to shoot down the podracer of pilot Teemto Pagalies, causing it to crash.</p><p>In 22 BBY, a month before the First Battle of Geonosis, Sand People attacked the Lars moisture farm and kidnapped Shmi Skywalker Lars, whom they imprisoned and tortured. Her son, the Jedi Padawan Anakin Skywalker, returned to Tatooine to rescue her, but after finding her in a Tusken camp, she died of her injuries. The vengeful Anakin proceeded to slaughter every nearby Tusken. Following the massacre, the Tuskens began to fear Skywalker as a vengeful desert demon, and began performing ritual sacrifices to ward him off.</p><p><b>Age of the Empire</b></p><p>In 2 BBY, while searching for Obi-Wan Kenobi, Ezra Bridger and C1-10P were ambushed by a group of Tusken Raiders, who succeeded in destroying their ship before being killed by the former Sith apprentice Darth Maul.<br /></p><p><b>Galactic Civil War</b></p><blockquote><p><i>\"I think we better get indoors. The Sand People are easily startled but they will soon be back, and in greater numbers.\"</i></p><p>- Obi-Wan Kenobi</p></blockquote><p>Two years later, Anakin's son Luke was attacked by A'Koba and a group of Tuskens after venturing from the homestead to retrieve R2-D2. Fortunately, Obi-Wan Kenobi warded off the Tuskens by imitating the cry of a krayt dragon, Tatooine's deadliest predator.</p><p>Shortly after the Battle of Yavin, Anakin, now the Sith Lord Darth Vader, slaughtered a village of Tuskens prior to his meeting with bounty hunters Boba Fett and Black Krrsantan. Following the attack, a survivor showed other Tuskens the ruins of his village and the corpses of his people. These Tuskens then built a shrine to Vader and sacrificed the survivor.</p><p>Sometime after, a Tusken known as the \"Jundland General\" led his people in a series of coordinated strikes against the colonists of Tatooine. However, he and his followers were crushed by a group of mercenaries led by Saponza and his partner.</p><p><b>New Republic Era</b></p><blockquote><p><i>\"Tusken Raiders. I heard the locals talking about this filth.\"</i></p><p><i>\"Tuskens think they're the locals. Everyone else is just trespassing.\"</i></p><p><i>\"Whatever they call themselves, they best keep their distance.\"</i></p><p><i>\"Yeah? Why don't you tell them yourself?\"</i></p><p>- Toro Calican and Din Djarin, about to run into some Tusken Raiders</p></blockquote><p>Prior to the Battle of Jakku, the Sheriff of Freetown Cobb Vanth struck a deal with local Tusken Raiders to protect his settlement from criminal elements. In return for protecting Freetown, the Tusken tribe received water and a pearl from the belly of a Krayt dragon. Like Vanth's community, the Tuskens despised criminals particularly slavers. When the Red Key Raiders under crime lord Lorgan Movellan captured Freetown, the Tusken tribe ambushed the criminals and liberated the town.</p><p>In 9 ABY, the Mandalorian Din Djarin reluctantly teamed up with rookie bounty hunter, Toro Calican. The two set out on speeder bikes across the Dune Sea to capture the rogue assassin Fennec Shand. On their way to the target, they encountered some Tusken Raiders. The Mandalorian negotiated through sign language to allow them safe passage through their land. The Tuskens allowed this, in exchange for the rookie bounty hunter's binoculars, which Djarin willingly gave to them in spite of Calican's objection.</p><p>In 34 ABY, during his self-imposed exile on Ahch-To, the Jedi Master Luke Skywalker had a dream where he ignored Princess Leia Organa's message and never joined the rebellion. In his dream, two decades had passed since any Tusken Raider had been seen on his side of Anchorhead and that nothing was left of them except for bones. Luke noted that for some reason it made him feel sad.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Chaotic Dark",
-      "species": "",
+      "species": null,
       "type": {
         "value": "humanoid",
         "subtype": "",
@@ -1103,13 +843,9 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 100
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 1
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "med",
@@ -1137,15 +873,14 @@
           "tusken"
         ],
         "custom": ""
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -1155,11 +890,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -1168,11 +903,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 0,
@@ -1181,11 +916,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -1194,11 +929,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -1207,11 +942,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -1220,11 +955,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -1233,11 +968,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -1246,11 +981,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0,
-        "passive": 10
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -1259,11 +994,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -1272,11 +1007,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -1285,11 +1020,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0,
-        "passive": 10
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 0,
@@ -1298,11 +1033,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -1311,11 +1046,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -1324,11 +1059,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -1337,11 +1072,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0,
@@ -1350,11 +1085,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 1,
@@ -1363,11 +1098,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 12,
-        "prof": 2,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -1376,11 +1111,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0,
-        "passive": 10
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
     "tools": {},
@@ -1389,96 +1124,67 @@
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1597,10 +1303,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493984354,
-    "modifiedTime": 1699591677416,
+    "modifiedTime": 1720368810794,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!hbO558Iu2DBk0X6N"

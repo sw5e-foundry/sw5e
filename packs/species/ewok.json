@@ -1,8 +1,187 @@
 {
-  "_id": "QZMVzQJspLNa5lSS",
   "name": "Ewok",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9156216+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-ewok"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Ewok.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Ewoks are sentient humanoid mammals, averaging about one meter in height, which can provide an advantage when trying to hide. They are covered in fur from head to toe, with brown and black the most common colors. Other Ewoks have near-white or reddish fur, but red fur is supposedly the rarest shade an Ewok can get. Most Ewoks have solid-colored fur, though a few sport stripes. Ewoks have large, bright eyes, small humanoid noses, and hands that possess two fingers and an opposable thumb. Despite their small size, Ewoks are physically strong enough to overpower combat-trained Humans. Their appearance has been likened to \"little bears,\" though they are sometimes referred to as \"mini Wookiees.\"</p>\n<h2>Society and Culture</h2>\n<p>Most Ewoks live high among the trees of the forest moon, in villages built between the closely spaced trees. The basic design of a tree village has a \"Central Village\" of thatched-roof huts on the primary limbs. These huts are high enough above the ground to be out of reach of predators. Suspended bridges connect the gaps between trees, adjoining distant huts. Knotted rope ladders allow access up or down.</p>\n<p>Ewoks enjoy singing and playing music during celebrations and rituals. They are resourceful and tend to make use of everything they get their hands on; they use a variety of crude drums, horns, flutes, and other instruments in their music.</p>\n<h2>Names</h2>\n<p>Ewok names are comprised of growled consonants. Female names always end in a vowel. Surnames are clan-based.</p>\n<p><strong>Male Names.</strong> Coostick, Erphek, Grarphil, Moodoo</p>\n<p><strong>Female Names.</strong> Booshi, Chela, Fesasha, Lipe, Ypezzi</p>\n<p><strong>Surnames.</strong> Fedrimra, Jellyng, Moomrack, Trantelaa</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "ewok",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "climb": 25,
+      "burrow": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1dB6UK5WDo541lTS",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xmiCsCyZIBU5yJIO"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6vdyXfRE82PQK7wW"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ogChCkb806gblED7"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1s7Ao1v1Op2GNrPq"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rN7sxK1vPm88juQq"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HJPLvY5TgRo5a6VQ"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MAmh6JnG3dQeKzxs"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Q3a4GjWoiI0C2vMA"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DU0anDpeZv6hafD8"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BoqJFWUwXw1yk37F"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2q3EUStJEGXIEqFz"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZAri2nCMgticM1NY"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Z9tEzkaLelwG4s8v"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "mlDJBpjzUsqMYOgc",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "con": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "URolazoQz3UW0xlk",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1GmCln1o2G1EqvhK",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:music:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:nat",
+            "skills:sur"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Brown"
+    },
+    "hairColorOptions": {
+      "value": "Shades of white, brown, red, and black"
+    },
+    "eyeColorOptions": {
+      "value": "Black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Furry, short stature, acute sense of smell"
+    },
+    "heightAverage": {
+      "value": "2'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d6\""
+    },
+    "weightAverage": {
+      "value": "40 lb."
+    },
+    "weightRollMod": {
+      "value": "x1 lb."
+    },
+    "homeworld": {
+      "value": "Forest Moon of Endor"
+    },
+    "slanguage": {
+      "value": "Ewokese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "YF5Ro8qNuBwzpwvV",
@@ -84,8 +263,7 @@
       "name": "Ewok",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!QZMVzQJspLNa5lSS.YF5Ro8qNuBwzpwvV"
+      "_key": "!items.effects!bdsuA0AlNTbsKUTM.YF5Ro8qNuBwzpwvV"
     },
     {
       "_id": "yPVoqgu4JugIxUlr",
@@ -119,152 +297,22 @@
       "name": "Keen Smell",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!QZMVzQJspLNa5lSS.yPVoqgu4JugIxUlr"
+      "_key": "!items.effects!bdsuA0AlNTbsKUTM.yPVoqgu4JugIxUlr"
     }
   ],
+  "_id": "bdsuA0AlNTbsKUTM",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9156216+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-ewok"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Ewoks are sentient humanoid mammals, averaging about one meter in height, which can provide an advantage when trying to hide. They are covered in fur from head to toe, with brown and black the most common colors. Other Ewoks have near-white or reddish fur, but red fur is supposedly the rarest shade an Ewok can get. Most Ewoks have solid-colored fur, though a few sport stripes. Ewoks have large, bright eyes, small humanoid noses, and hands that possess two fingers and an opposable thumb. Despite their small size, Ewoks are physically strong enough to overpower combat-trained Humans. Their appearance has been likened to \"little bears,\" though they are sometimes referred to as \"mini Wookiees.\"</p>\n<h2>Society and Culture</h2>\n<p>Most Ewoks live high among the trees of the forest moon, in villages built between the closely spaced trees. The basic design of a tree village has a \"Central Village\" of thatched-roof huts on the primary limbs. These huts are high enough above the ground to be out of reach of predators. Suspended bridges connect the gaps between trees, adjoining distant huts. Knotted rope ladders allow access up or down.</p>\n<p>Ewoks enjoy singing and playing music during celebrations and rituals. They are resourceful and tend to make use of everything they get their hands on; they use a variety of crude drums, horns, flutes, and other instruments in their music.</p>\n<h2>Names</h2>\n<p>Ewok names are comprised of growled consonants. Female names always end in a vowel. Surnames are clan-based.</p>\n<p><strong>Male Names.</strong> Coostick, Erphek, Grarphil, Moodoo</p>\n<p><strong>Female Names.</strong> Booshi, Chela, Fesasha, Lipe, Ypezzi</p>\n<p><strong>Surnames.</strong> Fedrimra, Jellyng, Moomrack, Trantelaa</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "ewok",
-    "advancement": [
-      {
-        "_id": "1wBFjGedMdDPB6mp",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.xmiCsCyZIBU5yJIO",
-            "Compendium.sw5e.speciesfeatures.6vdyXfRE82PQK7wW",
-            "Compendium.sw5e.speciesfeatures.ogChCkb806gblED7",
-            "Compendium.sw5e.speciesfeatures.1s7Ao1v1Op2GNrPq",
-            "Compendium.sw5e.speciesfeatures.rN7sxK1vPm88juQq",
-            "Compendium.sw5e.speciesfeatures.HJPLvY5TgRo5a6VQ",
-            "Compendium.sw5e.speciesfeatures.MAmh6JnG3dQeKzxs",
-            "Compendium.sw5e.speciesfeatures.Q3a4GjWoiI0C2vMA",
-            "Compendium.sw5e.speciesfeatures.DU0anDpeZv6hafD8",
-            "Compendium.sw5e.speciesfeatures.BoqJFWUwXw1yk37F",
-            "Compendium.sw5e.speciesfeatures.2q3EUStJEGXIEqFz",
-            "Compendium.sw5e.speciesfeatures.ZAri2nCMgticM1NY",
-            "Compendium.sw5e.speciesfeatures.Z9tEzkaLelwG4s8v"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "z8gNimLTH4E1Kpmo",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "dex": 2,
-            "con": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "b23vEOa55g1NnEuq",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "sm"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "iDDcemXml6Y6AIwT",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "tool:music:*"
-              ]
-            }
-          ],
-          "grants": [
-            "skills:nat",
-            "skills:sur"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Brown"
-    },
-    "hairColorOptions": {
-      "value": "Shades of white, brown, red, and black"
-    },
-    "eyeColorOptions": {
-      "value": "Black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Furry, short stature, acute sense of smell"
-    },
-    "heightAverage": {
-      "value": "2'9\""
-    },
-    "heightRollMod": {
-      "value": "+2d6\""
-    },
-    "weightAverage": {
-      "value": "40 lb."
-    },
-    "weightRollMod": {
-      "value": "x1 lb."
-    },
-    "homeworld": {
-      "value": "Forest Moon of Endor"
-    },
-    "slanguage": {
-      "value": "Ewokese"
-    },
-    "movement": {
-      "walk": 25,
-      "climb": 25
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002096,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!QZMVzQJspLNa5lSS"
+  "_key": "!items!bdsuA0AlNTbsKUTM"
 }

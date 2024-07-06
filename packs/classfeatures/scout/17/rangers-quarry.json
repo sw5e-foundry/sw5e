@@ -7,80 +7,6 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [
-          true
-        ],
-        "altValue": [
-          true
-        ],
-        "context": []
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": true,
-          "resource": true,
-          "charge": true
-        },
-        "altValue": {
-          "use": true,
-          "resource": true,
-          "charge": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:58.6690246+00:00",
       "importer_version": 3,
@@ -90,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Scout:</strong> 1st, 5th, 9th, and 17th level</em></p>\n<p>You learn how to effectively read and track your prey. Once on each of your turns, you can choose a creature you can see within 120 feet and mark it as your quarry (no action required). For the next hour, you gain the following benefits:</p>\n<ul>\n<li>Once per turn, when you hit the target with a weapon attack, you can deal [[/r 1d4]] additional damage to it of the same type as the weapon's damage. This die changes as you gain scout levels, as shown in the Ranger's Quarry column of the scout table.</li>\n<li>You have advantage on any Wisdom (Perception) or Wisdom (Survival) check you make to find it while it's on the same planet as you.</li>\n</ul>\n<p>You can only have one creature marked in this way at a time. Beginning at 5th level, you can use your reaction to mark a creature when it enters your line of sight, provided it is within range of your Ranger's Quarry.</p>\n<p>The duration increases to 8 hours at 9th level and 24 hours at 17th level.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scout 17",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "hour"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "creature"
+      "type": "creature",
+      "prompt": true
     },
     "range": {
-      "value": "120",
+      "value": 120,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -163,17 +94,26 @@
         "turn": null
       }
     },
-    "className": null
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493962388,
-    "modifiedTime": 1699591625687,
+    "modifiedTime": 1720368728869,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!rSEWzxGNUFmGYsqR"

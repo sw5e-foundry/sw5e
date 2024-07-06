@@ -1,11 +1,5 @@
 {
-  "_id": "WigluPOdDUGMhAS1",
   "name": "Spider Climb",
-  "type": "feat",
-  "img": "systems/sw5e/packs/Icons/Species/Harch.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.6249329+00:00",
@@ -13,53 +7,46 @@
       "uid": "Feature.name-spider_climb.source-species.sourceName-harch.level-None"
     }
   },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Species/Harch.webp",
   "system": {
     "description": {
       "value": "<p>You have a climbing speed of 30 feet. You have advantage on Strength saving throws and Strength (Athletics) checks that involve climbing, and while climbing you always have two hands free.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Harch",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": null,
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,25 +61,55 @@
       "value": "species",
       "subtype": ""
     },
-    "recharge": "",
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {},
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
-        "space": null,
-        "turn": null
+        "space": 300,
+        "turn": 250
       }
-    },
-    "className": null
+    }
   },
+  "effects": [],
+  "_id": "2XvmfKZmz4iUbg9A",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
-    "createdTime": 1674494003364,
-    "modifiedTime": 1695981492641,
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296029297,
+    "modifiedTime": 1720368875058,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!WigluPOdDUGMhAS1"
+  "_key": "!items!2XvmfKZmz4iUbg9A"
 }

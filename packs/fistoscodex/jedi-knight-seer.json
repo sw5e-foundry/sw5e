@@ -15,18 +15,19 @@
       "system": {
         "description": {
           "value": "<p>As an action, the seer can evoke healing energy that can restore 30 hit points to any number of creatures within 30 feet of it, and divide those hit points among them. This feature can restore a creature to no more than half of its hit point maximum. This feature has no effect on droids or constructs.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -35,31 +36,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -76,7 +79,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -85,10 +88,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -115,18 +124,19 @@
       "system": {
         "description": {
           "value": "<p>The sage is a 6th-level forcecaster. Its forcecasting ability is Wisdom (power save DC 14, +6 to hit with force attacks) and it has 28 force points.</p><p>The</p><p>sage knows the following force powers:</p><p>At-will: give life, guidance, spare the dying, turbulence</p><p>1st-level: battle precognition, burst of speed, heal, project</p><p>2nd-level: force barrier, force enlightenment, stun</p><p>3rd-level: knight speed, share life</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -135,31 +145,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -176,7 +188,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -185,10 +197,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -215,18 +233,19 @@
       "system": {
         "description": {
           "value": "<p>The Imperial Knight Master adds 3 to his AC against one lightweapon attack that would hit him. To do so, the Imperial Knight Master must see the attacker and be able to move his hand to intercept the blow. On a successful intercept the attackers lightweapon short circuits and is unusable until their next turn.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "reaction",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -235,31 +254,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -276,7 +297,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -285,10 +306,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -315,18 +342,19 @@
       "system": {
         "description": {
           "value": "<p>When a creature that the Imperial Knight Master can see attacks a target other than the Imperial Knight Master that is within 5 feet of the Imperial Knight Master, the Imperial Knight Master can use its reaction to impose disadvantage on the attack roll.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "reaction",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -335,31 +363,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -376,7 +406,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -385,10 +415,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -415,22 +451,24 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+4, Reach 5 ft., One target. <em>Hit : </em>5 (1d6+2) energy damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -443,10 +481,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
@@ -455,22 +494,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "dex",
         "actionType": "mwak",
-        "attackBonus": "0",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -501,12 +541,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -515,61 +552,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "aut": false,
-          "bur": null,
-          "def": null,
-          "dex": null,
-          "dir": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "hid": false,
-          "ken": null,
-          "lum": false,
-          "mig": false,
-          "pic": null,
-          "rap": null,
-          "shk": null,
-          "sil": false,
-          "str": null,
-          "vic": null,
-          "mgc": null,
-          "ran": false,
-          "smr": false,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "ilk": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -603,11 +605,11 @@
       "system": {
         "description": {
           "value": "<p>Placing your hand on another creature you can transfer your own life force to them. You spend and roll one of your hit dice and the creature regains that many hit points. This power has no effect on droids or constructs.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -620,10 +622,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -632,22 +635,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -661,14 +665,6 @@
         },
         "level": 0,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -683,16 +679,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -717,7 +710,10 @@
           "sourceId": "Compendium.sw5e.forcepowers.C2ROn2KK2QTLm9DW"
         },
         "sw5e": {
-          "dataVersion": "1.2.4"
+          "dataVersion": "1.2.4",
+          "migratedProperties": [
+            "concentration"
+          ]
         }
       },
       "img": "icons/svg/mystery-man.svg",
@@ -726,11 +722,11 @@
       "system": {
         "description": {
           "value": "<p>You touch one willing creature. Once before the power ends, the target can roll a d4 and add the number rolled to one ability check of its choice. It can roll the die before or after making the ability check. The power then ends.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -743,10 +739,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -755,22 +752,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -784,14 +782,6 @@
         },
         "level": 0,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": true,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -806,16 +796,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -849,11 +836,11 @@
       "system": {
         "description": {
           "value": "<p>You touch a living creature that has 0 hit points. The creature becomes stable. This power has no effect on droids or constructs.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -866,10 +853,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -878,22 +866,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -907,14 +896,6 @@
         },
         "level": 0,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -929,16 +910,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -972,11 +950,11 @@
       "system": {
         "description": {
           "value": "<p>Choose one creature, or choose two creatures that are within 5 feet of each other, within range. A target must succeed on a Dexterity saving throw or take 1d6 force damage.</p>\n<p>This power's damage increases by 1d6 when you reach 5th, 11th, and 17th level.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -989,10 +967,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": 120,
@@ -1001,22 +980,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "save",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -1035,14 +1015,6 @@
         },
         "level": 0,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1057,16 +1029,13 @@
           "mode": "atwill",
           "formula": "1d6"
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1100,11 +1069,11 @@
       "system": {
         "description": {
           "value": "<p>Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1117,10 +1086,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": "self"
+          "type": "self",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1129,22 +1099,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1158,14 +1129,6 @@
         },
         "level": 1,
         "school": "uni",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1180,16 +1143,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1223,11 +1183,11 @@
       "system": {
         "description": {
           "value": "<p>You touch a creature. The target's speed increases by 10 feet until the power ends.</p>\n<p><em><strong>Force Potency.</strong></em>&nbsp;When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1240,10 +1200,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1252,22 +1213,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1281,14 +1243,6 @@
         },
         "level": 1,
         "school": "uni",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1303,16 +1257,13 @@
           "mode": "level",
           "formula": "1 additional creature"
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1346,11 +1297,11 @@
       "system": {
         "description": {
           "value": "<p>A creature you touch regains a number of hit points equal to 1d8 + your forcecasting ability modifier. This power has no effect on droids or constructs.</p>\n<p><em><strong>Force Potency.</strong></em>&nbsp;When you cast this power using a force slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1363,10 +1314,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1375,22 +1327,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "heal",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -1409,14 +1362,6 @@
         },
         "level": 1,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1431,16 +1376,13 @@
           "mode": "level",
           "formula": "1d8"
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1474,11 +1416,11 @@
       "system": {
         "description": {
           "value": "<p>You lift three piles of debris or small objects from the ground and hurl them. Each pile hits a creature of your choice that you can see within range. The pile deals 1d4+1 force damage to its target. The piles all strike simultaneously and you can direct them to hit one creature or several.</p>\n<p><em><strong>Force Potency.</strong></em>&nbsp;When you cast this power using a force slot of 2nd level or higher, you lift and throw an additional pile of debris for each slot level above 1st.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1491,10 +1433,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 3,
+          "value": "3",
           "width": null,
           "units": "",
-          "type": "object"
+          "type": "object",
+          "prompt": true
         },
         "range": {
           "value": 120,
@@ -1503,22 +1446,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -1537,14 +1481,6 @@
         },
         "level": 1,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1559,16 +1495,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1602,11 +1535,11 @@
       "system": {
         "description": {
           "value": "<p>This power bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target's hit point maximum and current hit points increase by 5 for the duration.</p>\n<p><em><strong>Force Potency.</strong></em>&nbsp;When you cast this power using a force slot of 3rd level or higher, a target's hit points increase by an additional 5 for each slot level above 2nd.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1619,10 +1552,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 3,
+          "value": "3",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": 30,
@@ -1631,22 +1565,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1660,14 +1595,6 @@
         },
         "level": 2,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1682,16 +1609,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1716,7 +1640,10 @@
           "sourceId": "Compendium.sw5e.forcepowers.di7rHBW59w6cS1WM"
         },
         "sw5e": {
-          "dataVersion": "1.2.4"
+          "dataVersion": "1.2.4",
+          "migratedProperties": [
+            "concentration"
+          ]
         }
       },
       "img": "icons/svg/mystery-man.svg",
@@ -1725,11 +1652,11 @@
       "system": {
         "description": {
           "value": "<p><em><strong>Prerequisite:</strong> Guidance</em></p>\n<p>You touch a creature and enhance it with the Force. Choose one of the following effects; the target gains that effect until the power ends.</p>\n<ul>\n<li>Endurance.&nbsp;The target has advantage on Constitution checks. It also gains 2d6 temporary hit points, which are lost when the power ends.</li>\n<li>Strength.&nbsp;The target has advantage on Strength checks, and his or her carrying capacity doubles.</li>\n<li>Dexterity.&nbsp;The target has advantage on Dexterity checks. It also doesn&rsquo;t take damage from falling 20 feet or less if it isn&rsquo;t incapacitated.</li>\n<li>Splendor.&nbsp;The target has advantage on Charisma checks.</li>\n<li>Cunning.&nbsp;The target has advantage on Intelligence checks.</li>\n<li>Wisdom.&nbsp;The target has advantage on Wisdom checks.</li>\n</ul>\n<p><em><strong>Force Potency.</strong></em>&nbsp;When you cast this power using a force slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1742,10 +1669,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1754,22 +1682,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1783,14 +1712,6 @@
         },
         "level": 2,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": true,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1805,16 +1726,13 @@
           "mode": "level",
           "formula": "1 additional creature"
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1839,7 +1757,10 @@
           "sourceId": "Compendium.sw5e.forcepowers.8UOBsZEV8esbx6IG"
         },
         "sw5e": {
-          "dataVersion": "1.2.4"
+          "dataVersion": "1.2.4",
+          "migratedProperties": [
+            "concentration"
+          ]
         }
       },
       "img": "icons/svg/mystery-man.svg",
@@ -1848,11 +1769,11 @@
       "system": {
         "description": {
           "value": "<p>Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the power ends on the target.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1865,10 +1786,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": 60,
@@ -1877,22 +1799,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "save",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1906,14 +1829,6 @@
         },
         "level": 2,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": true,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1928,16 +1843,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1962,7 +1874,10 @@
           "sourceId": "Compendium.sw5e.forcepowers.BbTpLPyPoucTsEdA"
         },
         "sw5e": {
-          "dataVersion": "1.2.4"
+          "dataVersion": "1.2.4",
+          "migratedProperties": [
+            "concentration"
+          ]
         }
       },
       "img": "systems/sw5e/packs/Icons/Force%20Powers/KnightSpeed.webp",
@@ -1971,11 +1886,11 @@
       "system": {
         "description": {
           "value": "<p><em><strong>Prerequisite:</strong> Burst of Speed</em></p>\n<p>Choose a willing creature that you can see within range. Until the power ends, the target&rsquo;s speed is doubled, it gains a +2 bonus to AC, it has advantage on Dexterity saving throws, and it gains an additional action on each of its turns. That action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide, or Use an Object action.</p>\n<p>When the power ends, the target can&rsquo;t move or take actions until after its next turn, as a wave of lethargy sweeps over it.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "special",
           "cost": 1,
@@ -1988,10 +1903,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": 30,
@@ -2000,22 +1916,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -2029,14 +1946,6 @@
         },
         "level": 3,
         "school": "uni",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": true,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -2051,16 +1960,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -2094,11 +2000,11 @@
       "system": {
         "description": {
           "value": "<p><em><strong>Prerequisite:</strong> Give Life</em></p>\n<p>You sacrifice some of your health to mend another creature&rsquo;s injuries. You take 4d8 necrotic damage, and one creature of your choice that you can see within range regains a number of hit points equal to twice the necrotic damage you take. This power has no effect on droids or constructs.</p>\n<p><em><strong>Force Potency.</strong></em>&nbsp;When you cast this power using a force slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "Fisto's Codex",
+        "source": {
+          "custom": "Fisto's Codex"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -2111,10 +2017,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": 30,
@@ -2123,22 +2030,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -2157,14 +2065,6 @@
         },
         "level": 3,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -2179,16 +2079,13 @@
           "mode": "level",
           "formula": "1d8"
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -2222,14 +2119,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "dex": {
         "value": 14,
@@ -2238,14 +2128,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "con": {
         "value": 11,
@@ -2254,14 +2137,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "int": {
         "value": 13,
@@ -2270,14 +2146,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "wis": {
         "value": 18,
@@ -2286,14 +2155,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 4,
-        "save": 6,
-        "prof": 2,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 14
+        }
       },
       "cha": {
         "value": 13,
@@ -2302,14 +2164,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "hon": {
         "value": 13,
@@ -2317,7 +2172,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 18,
@@ -2325,41 +2181,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 12,
         "calc": "natural",
-        "formula": "15 with battle precognition",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 27,
         "max": 27,
         "temp": 0,
         "tempmax": 0,
-        "formula": "6d8",
-        "min": 0
+        "formula": "6d8"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -2382,16 +2234,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": 28,
-          "temp": null,
-          "tempmax": null
-        },
-        "known": {
-          "value": 13,
-          "max": 0
-        },
-        "level": 6
+          "temp": null
+        }
       },
       "tech": {
         "points": {
@@ -2400,16 +2245,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": null,
-          "tempmax": null
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": null
+        }
       },
       "super": {
         "dice": {
@@ -2420,57 +2258,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "consular",
-      "prof": 2,
-      "powerdc": 10,
-      "bar1": {
-        "value": 27,
-        "min": 0,
-        "max": 27
-      },
-      "bar2": {
-        "value": 12,
-        "min": 0,
-        "max": 0
-      },
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false,
-      "encumbrance": {
-        "value": 1,
-        "max": 150,
-        "pct": 0.6666666666666666,
-        "encumbered": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
       },
-      "powerForceLightDC": 14,
-      "powerForceDarkDC": 11,
-      "powerForceUnivDC": 14,
-      "powerTechDC": 11
+      "hd": {
+        "spent": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<p>The Jedi Order is an ancient order of protectors united by their ability to harness the power of the Force. Adhering to a doctrine that favored the light side of the Force, the Jedi aspire to attain a state of inner tranquility through calmness and meditation while avoiding emotions affiliated with the dark side of the Force, such as anger and hatred. Nevertheless, Jedi philosophy does not forbid a Jedi from acting in self-defense or in the defense of others. To that end, the weapon of a Jedi is the lightsaber, a blade composed of pure energy and different colors such as blue, green, purple or yellow.</p><p><b><i>History.</i></b> Before the time of the Galactic Empire, a Jedi was a guardian of peace and justice in the Galactic Republic. The Jedi's commitment to peace and democracy brought them into conflict with an order of dark side wielders known as the Sith, who sought power and dominion over the galaxy. Emerging victorious from their wars with the ancient Sith, the Jedi carried on in their duty as peacekeepers for over a millennium until the advent of the Clone Wars twenty-two years before the Battle of Yavin. Faced with a pan-galactic civil war between the Republic and Confederacy of Independent Systems, the Jedi adopted the mantle of generals and soldiers in the Grand Army of the Republic. After three years of conflict, the Jedi discovered that the war had been a ploy designed to restore the Sith to power. However, the Jedi were betrayed by one of their own—the Chosen One, Anakin Skywalker, who had been seduced to the dark side and anointed Darth Vader by the Sith Lord Darth Sidious. Using the Jedi's own clone troopers to initiate a systematic purge of the Jedi Order, the Lords of the Sith all but eradicated the Jedi in one fell swoop, reducing the order from thousands of Jedi Knights to a handful of survivors who dispersed into exile across the galaxy.</p><p>After Luke Skywalker redeemed his father, Anakin, and destroyed the Sith, the New Republic was founded. During the era of the New Republic, Skywalker worked to rebuild the Jedi Order by training many apprentices.</p><p><b><i>Philosophy.</i></b> The Jedi Knights focus on calmness and peace to channel their powers in the Force, using the light side of the Force to serve in the capacity of guardians of peace and justice in the galaxy. Even so, the Jedi seek to preserve balance in the Force; the ancient prophecy of the Chosen One foretold of a being who would restore balance to the Force by destroying the Sith. In combat, whereas an enemy may grow impatient and rely on their overwhelming strength, a Jedi would meditate and find serenity in their mind to focus. A Jedi uses their lightsaber only for defense, not for attack, and uses the Force for defense and knowledge rather than using it to gain power over others. Because of this, some Jedi are capable of appearing after death as Force spirits. Knowledge, the Force, and self-discipline are considered the three pillars of Jedi strength.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Jedi Knight</h3><p></p><div class=\"userscript-column-break\" style=\"font-family:&quot;open sans&quot; , sans-serif;font-size:14px;background-color:rgb( 236 , 240 , 241 )\"></div><p></p><p style=\"margin-bottom:10.5px;line-height:1.2em;z-index:15;overflow:hidden\">Jedi Knight was a rank within the Jedi Order, referring to Jedi who had completed their training and passed the Jedi Trials to become a full member of the Order. Jedi Knights, like the Order they served, were guardians of peace and justice in the Galactic Republic, and served in key military command roles during the Clone Wars. At the war's end, Supreme Chancellor Sheev Palpatine—secretly the Sith Lord Darth Sidious—issued Order 66, declaring every Jedi an enemy of the state. As a result, the clone troopers of the Grand Army of the Republic turned against their generals, killing most of the Jedi Knights. At the end of the Galactic Civil War, Luke Skywalker was the last known Jedi Knight.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Lawful Balanced",
-      "species": "",
+      "species": null,
       "type": {
         "value": "humanoid",
         "subtype": "Human",
@@ -2479,16 +2308,12 @@
       },
       "environment": "",
       "cr": 3,
-      "powerForceLevel": 6,
+      "powerForceLevel": 3,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Fisto's Codex",
-      "xp": {
-        "value": 700
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 3
+      "source": {
+        "custom": "Fisto's Codex"
+      }
     },
     "traits": {
       "size": "med",
@@ -2516,15 +2341,14 @@
           "basic"
         ],
         "custom": "Two Others"
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -2534,11 +2358,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -2547,11 +2371,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 4,
-        "passive": 14,
-        "prof": 0,
-        "total": 4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 0,
@@ -2560,11 +2384,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -2573,11 +2397,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -2586,11 +2410,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 4,
-        "passive": 14,
-        "prof": 0,
-        "total": 4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -2599,11 +2423,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -2612,11 +2436,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -2625,11 +2449,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "prof": 0,
-        "total": 1,
-        "passive": 11
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 1,
@@ -2638,11 +2462,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 4,
-        "passive": 16,
-        "prof": 2,
-        "total": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -2651,11 +2475,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -2664,11 +2488,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "prof": 0,
-        "total": 1,
-        "passive": 11
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 0,
@@ -2677,11 +2501,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 4,
-        "passive": 14,
-        "prof": 0,
-        "total": 4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -2690,11 +2514,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 1,
@@ -2703,11 +2527,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 13,
-        "prof": 2,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -2716,11 +2540,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0,
@@ -2729,11 +2553,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -2742,11 +2566,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 4,
-        "passive": 14,
-        "prof": 0,
-        "total": 4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -2755,11 +2579,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "prof": 0,
-        "total": 1,
-        "passive": 11
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
     "tools": {},
@@ -2768,96 +2592,67 @@
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 1000,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 1000,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 1000,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -2976,10 +2771,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493968856,
-    "modifiedTime": 1699591655024,
+    "modifiedTime": 1720368774649,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!WtBWySEMyPKOuMwK"

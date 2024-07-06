@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Ballistic Approach:</strong> 3rd level</em></p>\n<p>You gain proficiency in martial blasters with the burst or rapid property. Additionally, you've learned to use ranged weapons with untold fury. While wielding a blaster with which you are proficient, you gain the following benefits:</p>\n<ul>\n<li>You can use your choice of Strength or Dexterity modifier for the attack and damage rolls of blaster weapons against targets within 30 feet of you. You must use the same modifier for both rolls.</li>\n<li>When you use a blaster as an improvised weapon, you are considered proficient with it.</li></ul>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Berserker (Ballistic Approach) 3",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,24 +79,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Berserker"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493957449,
-    "modifiedTime": 1695981490773,
+    "modifiedTime": 1720401974552,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!CkwEWRhU0Y8HPkHt"

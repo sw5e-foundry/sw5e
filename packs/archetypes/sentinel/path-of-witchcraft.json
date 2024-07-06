@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Path of Witchcraft</h1>\n<p>The Force connects all living things. Those sentinels who follow the Path of Witchcraft use that connection to summon the aid of nature, both spirits and the elements, adapting them to their will.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "pathofwitchcraft",
     "classIdentifier": "sentinel",
     "advancement": [
       {
-        "_id": "14PYF0IAlOK3ivdu",
+        "_id": "13a3wyoeOigxuxTl",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.RADHCAZy3TPCP9MQ",
-            "Compendium.sw5e.archetypefeatures.x6bznESOMUpts4lI"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.RADHCAZy3TPCP9MQ"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.x6bznESOMUpts4lI"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "77SNtMwjHDg1vCtb",
+        "_id": "NAiCVPiCggZ1DLqX",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.kaWjWEJCL1sSaIC7"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.kaWjWEJCL1sSaIC7"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "1ClKBbrYksPE1ckM",
+        "_id": "ITPq7Gm0yfC1umWo",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.7Gvrr8WgWdPMfQNn"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.7Gvrr8WgWdPMfQNn"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "cYrJ5EKaDkY1agHj",
+        "_id": "qmhQPaxpa5d1ORhZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.J4rtULuz8Fljb6kS"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.J4rtULuz8Fljb6kS"
+            }
           ],
           "optional": false
         },
@@ -87,7 +95,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +103,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959777,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!skwyPoEeFAHo1EzJ"

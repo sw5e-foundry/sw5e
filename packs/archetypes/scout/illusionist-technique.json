@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Illusionist Technique</h1>\n<p>Among the galaxy you may find the various infiltrators and agents who make ample use of holographic technology to get themselves in and out of danger. Followers of the Illusionist Technique make use of this holographic technology to give themselves an illusory edge in combat.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "illusionisttechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "YZHb559HYd2vjQyT",
+        "_id": "DfBhSVYXhxy190El",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.lAW369rv2hiS8dkA",
-            "Compendium.sw5e.archetypefeatures.h9jPXWvV178DU6YK"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.lAW369rv2hiS8dkA"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.h9jPXWvV178DU6YK"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "1N7w6wa9ziG1kARL",
+        "_id": "wpKLim8PQN51MFE3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.kuyt0JMu56ObIrNW"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.kuyt0JMu56ObIrNW"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "1KDol4bwK7UYVVyO",
+        "_id": "N0fqU57Ii0yfTjOO",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ItBrXVOTDaTVCcKR"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ItBrXVOTDaTVCcKR"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "1SOOMR1WYa3U16PF",
+        "_id": "TliZgUCO16s1DyRl",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.v1GPZX7JZ4lh2Bhy"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.v1GPZX7JZ4lh2Bhy"
+            }
           ],
           "optional": false
         },
@@ -87,7 +95,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +103,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959752,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!UzpUR5lA4YOM5XVs"

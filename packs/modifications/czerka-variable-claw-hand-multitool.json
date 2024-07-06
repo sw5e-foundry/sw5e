@@ -13,38 +13,39 @@
   "system": {
     "description": {
       "value": "<h4>Cybernetic Augmentation (Replacement)</h4>\n <p><em>Prerequisite:  Intelligence 13</em></p>\n<hr />\n<p>This augmentation replaces a hand.</p>\n<p>As a bonus action, you can transform this claw-hand into one of the following items of your choice, or back its default claw-hand state. While your claw-hand is transformed, you are considered to be proficient in the item it is replicating, if you are not already: </p>\n<p> - Security kit</p>\n<p> - Artisan tools (one set, chosen at the time this augmentation is installed)</p>\n<p> - Commlink</p>\n<p> - Fusion cutter</p>\n<p> - Grappling hook (with 50 feet of fibercord cable)</p>\n<p> - Hydrospanner</p>\n<p> - Traumakit</p>\n<p> - Repair kit</p>\n<p> - Hidden blade <em>(martial vibroweapon)</em></p>\n<p> - Hold out <em>(simple blaster)</em></p>\n<p> - Medium shield generator <em>(medium armor)</em></p>\n<p>For items that have charges such as the repair kit, you regain all expended charges at the end of a long rest. For items that use power cells, you can reload those with power cells normally.  </p>\n<p><strong>Side Effect:</strong> Once this hand replacement has been installed, you can no longer wield weapons in this hand other than those this augmentation can transform into. </p>\n<p><em>The CVCM hand replacement appears to be a simple claw, but it contains a startling variety of tools, transforming to become whatever gadget is needed at the moment.</em> </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "prototype",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -55,16 +56,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,15 +82,26 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "cybernetic",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {}
-    }
+    "properties": {},
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "cybernetic",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -97,10 +110,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1673970648618,
-    "modifiedTime": 1695981488156,
+    "modifiedTime": 1720401971472,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "5vWlYYrjrVCbijUJ",

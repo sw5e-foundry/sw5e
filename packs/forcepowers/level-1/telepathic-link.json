@@ -7,93 +7,25 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickVersatile": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "use": false,
-          "resource": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:02.9945172+00:00",
       "importer_version": 3,
       "uid": "Power.name-telepathic_link.level-1"
+    },
+    "sw5e": {
+      "migratedProperties": [
+        "concentration"
+      ]
     }
   },
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite</strong>: Force Whisper</em></p>\n<p>You establish a telepathic link with one willing creature you touch. Until the power ends, whenever you and the target can see each other, each of you can communicate with the other via telepathy.</p>\n<p>You don't need to share a language with a creature for it to understand your telepathic utterances, and the creature understands you even if it lacks a language. The creature can respond to you telepathically as well, but it must understand at least one language in order to communicate this way. This power has no effect on droids or constructs.</p>\n<p><strong><em>Force Potency.</em></strong> When you cast this power using a force slot of 3rd level or higher, the duration increases to concentration, up to 1 hour, and if either you or the creature you are linked to are surprised while the other isn't, and both of you can see each other, the surprised creature can still act normally on its first turn in combat, as if it were not surprised.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "Force Whisper",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -106,10 +38,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
-      "units": null,
-      "type": ""
+      "units": "",
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -118,18 +51,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -147,14 +81,6 @@
     },
     "level": 1,
     "school": "uni",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": true,
-      "value": ""
-    },
     "materials": {
       "value": "",
       "consumed": false,
@@ -168,17 +94,26 @@
     "scaling": {
       "mode": "level",
       "formula": null
-    }
+    },
+    "properties": {
+      "0": "concentration"
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493979169,
-    "modifiedTime": 1707077464877,
+    "modifiedTime": 1720401972720,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!1xwjsRCMBZh4Qfqd"

@@ -1,8 +1,170 @@
 {
-  "_id": "Z7KGPPjkuJ0hA0Mn",
   "name": "Chironian",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2741371+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-chironian"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Chironian.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The chironian lower body has four legs, similar to that of a horse, and each ends in a dainty, cloven hoof. A chironian can sit down by folding his or her horse-like legs underneath the body. Chironians can also kick backward with both hind legs; this strong kick is sufficient to knock over other beings. A chironian's pace can vary between a walk, a canter, and a gallop.</p>\n<p>Each year, chironian heads grows two horns above the temples. These horns start as small knobs covered by red-furred velvet: a vascular tissue. Once the knobs have grown sufficiently, they break through the velvet naturally, emerging as transparent horns, as bright as diamond, cool to the touch and with smooth ridges. However, if the velvet is cut artificially, chironians can die from the injury. Over time, the horns grow long and sharp enough that adolescent chironians can use them to gore opponents.</p>\n<h2>Society and Culture</h2>\n<p>Chironians express emotions through the mannerisms of their hooves: when impatient, they stamp them; when excited, they tap them in a quick dance, or canter in a spot. The centauriforms frequently shake their heads and manes, and when angry, their faces flush a deeper shade. Young chironians, when frightened, are known to rub or press their velvet-covered horns against the foreheads of other beings to whom they are emotionally close.</p>\n<h2>Names</h2>\n<p>Chironian names are soft and melodic, despite the thick nature of their native language. Important family names are passed down through generations. They don't use surnames. </p>\n<p><strong>Male Names.</strong> Jefin, Slaturn, Cinall, Leathes</p>\n<p><strong>Female Names.</strong> Olachi, Luna, Sinall, Trespen</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "chironian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 40,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1qVk4uRetfXyFrwb",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.x5pmGpnT0HuQiDqo"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IapBos0348rPGuP5"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9Rukus8yVPeKN1fD"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.diCFvUCWSlC44fcg"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.SERR0lCtYYE9oNqE"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PlNLwrvZk5qAUX2b"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RM59gipQ22Gkbkmn"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7KqcD3T5iaooakC3"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.N9DIaVF8JGQheUcg"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vAiGdVWKvjN4FhJL"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "2jqjpNY6gc21aPdb",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "wis": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "bGkydIaM25MkHCB9",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "aQXafEmyVj1x4IHH",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:lor"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Brown, gold, or red"
+    },
+    "hairColorOptions": {
+      "value": "Black, brown, gold, or red"
+    },
+    "eyeColorOptions": {
+      "value": "Red to gold"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Two transparent horns, centauriform"
+    },
+    "heightAverage": {
+      "value": "6'0\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "450 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d8) lb."
+    },
+    "homeworld": {
+      "value": "Chiron"
+    },
+    "slanguage": {
+      "value": "Chironan"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "uSpdcXpfTiwyupUD",
@@ -62,140 +224,22 @@
       "name": "Chironian",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!Z7KGPPjkuJ0hA0Mn.uSpdcXpfTiwyupUD"
+      "_key": "!items.effects!6it6gKZecQu0DhgT.uSpdcXpfTiwyupUD"
     }
   ],
+  "_id": "6it6gKZecQu0DhgT",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2741371+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-chironian"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The chironian lower body has four legs, similar to that of a horse, and each ends in a dainty, cloven hoof. A chironian can sit down by folding his or her horse-like legs underneath the body. Chironians can also kick backward with both hind legs; this strong kick is sufficient to knock over other beings. A chironian's pace can vary between a walk, a canter, and a gallop.</p>\n<p>Each year, chironian heads grows two horns above the temples. These horns start as small knobs covered by red-furred velvet: a vascular tissue. Once the knobs have grown sufficiently, they break through the velvet naturally, emerging as transparent horns, as bright as diamond, cool to the touch and with smooth ridges. However, if the velvet is cut artificially, chironians can die from the injury. Over time, the horns grow long and sharp enough that adolescent chironians can use them to gore opponents.</p>\n<h2>Society and Culture</h2>\n<p>Chironians express emotions through the mannerisms of their hooves: when impatient, they stamp them; when excited, they tap them in a quick dance, or canter in a spot. The centauriforms frequently shake their heads and manes, and when angry, their faces flush a deeper shade. Young chironians, when frightened, are known to rub or press their velvet-covered horns against the foreheads of other beings to whom they are emotionally close.</p>\n<h2>Names</h2>\n<p>Chironian names are soft and melodic, despite the thick nature of their native language. Important family names are passed down through generations. They don't use surnames. </p>\n<p><strong>Male Names.</strong> Jefin, Slaturn, Cinall, Leathes</p>\n<p><strong>Female Names.</strong> Olachi, Luna, Sinall, Trespen</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "chironian",
-    "advancement": [
-      {
-        "_id": "YtKTf24jRXLArU5P",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.x5pmGpnT0HuQiDqo",
-            "Compendium.sw5e.speciesfeatures.IapBos0348rPGuP5",
-            "Compendium.sw5e.speciesfeatures.9Rukus8yVPeKN1fD",
-            "Compendium.sw5e.speciesfeatures.diCFvUCWSlC44fcg",
-            "Compendium.sw5e.speciesfeatures.SERR0lCtYYE9oNqE",
-            "Compendium.sw5e.speciesfeatures.PlNLwrvZk5qAUX2b",
-            "Compendium.sw5e.speciesfeatures.RM59gipQ22Gkbkmn",
-            "Compendium.sw5e.speciesfeatures.7KqcD3T5iaooakC3",
-            "Compendium.sw5e.speciesfeatures.N9DIaVF8JGQheUcg",
-            "Compendium.sw5e.speciesfeatures.vAiGdVWKvjN4FhJL"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1ihajXxOvfOv1P3S",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "str": 2,
-            "wis": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "12p4Zvg3OI0h116J",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1knn8oc1s60112ef",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:lor"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Brown, gold, or red"
-    },
-    "hairColorOptions": {
-      "value": "Black, brown, gold, or red"
-    },
-    "eyeColorOptions": {
-      "value": "Red to gold"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Two transparent horns, centauriform"
-    },
-    "heightAverage": {
-      "value": "6'0\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "450 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d8) lb."
-    },
-    "homeworld": {
-      "value": "Chiron"
-    },
-    "slanguage": {
-      "value": "Chironan"
-    },
-    "movement": {
-      "walk": 40
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002107,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!Z7KGPPjkuJ0hA0Mn"
+  "_key": "!items!6it6gKZecQu0DhgT"
 }

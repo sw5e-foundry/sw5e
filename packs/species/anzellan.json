@@ -1,8 +1,189 @@
 {
-  "_id": "4NVv8yQ6Vu6PvtCA",
   "name": "Anzellan",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2711394+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-anzellan"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Anzellan.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The anzellans are a diminutive species hailing from the secluded planet Anzella. Their eyes have floating corneal micro-lenses that allow them to see microscopic details. Anzellans are a bubbly and receptive people. They are a jovial and trusting people that tend to welcome strangers with open arms.</p>\n<p>Due to their volcanic homeworld, anzellans are also adapted towards heat. This, coupled with their small size, make them well-suited to working in compact places.</p>\n<h2>Society and Culture</h2>\n<p>Anzella is a tropical planet covered in thousands of small volcanic islands. Many of these islands are developed as small villages, with the largest islands designed to accommodate larger species. Anzellan culture is generally based around tourism and crafting; in fact, anzellans are renowned craftsmen due to their discerning eyesight and ability to fit into small spaces.</p>\n<p>Anzellan government is generally casual. Each village has its own governing council of rotating members; these villages act independently from one another unless their decisions would affect more than a single island. In that case, all of the councils work together to come to a planet-wide decision. </p>\n<h2>Names</h2>\n<p>Anzellan names are rarely longer than two syllables, with a bouncy intonation to them. Their surnames are familial.</p>\n<p><strong>Male Names.</strong> Babu, Gridel, Moru, Rano, Yodel</p>\n<p><strong>Female Names.</strong> Dibi, Fing, Nooni, Teena, Zazi</p>\n<p><strong>Surnames.</strong> E'ayoo, Frik, Meer, Tanni, Vrut</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "anzellan",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 20,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "CEVDRWk7RAiZP0mY",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.EIxJkRyp98lnX7QT"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.F7K0Qe3YL7Tf3d2O"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zDJFZKVLpNaOY28v"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lNOdyLwU5w2rJoT6"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Ac4Em4XDB412ZLUY"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JYeMNMVRrhKAlV0t"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.u8cJD72MPt5slT7X"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.CWRm4pDmECVx9sd0"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.91zntY3hHmTLsSlq"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QCm84P6V7ZRPmUem"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3lPpO2t4M4v26vV5"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5S47RmVR1oOu2fl8"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.B5ISlqrne1zJgeRu"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FS9LLz7vmA5HEOkq"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "R6s9V9M7hlb1rsqb",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2
+          },
+          "points": 2
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "2aSZ140alH8WgHlI",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "tiny"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "ilBJf5TtgF0ARhkd",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:tec",
+            "tool:tinkersimplements"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Brown, green, or tan"
+    },
+    "hairColorOptions": {
+      "value": "Black, gray, or white"
+    },
+    "eyeColorOptions": {
+      "value": "Black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Diminutive size, wispy eyebrows"
+    },
+    "heightAverage": {
+      "value": "1'0\""
+    },
+    "heightRollMod": {
+      "value": "+2d6\""
+    },
+    "weightAverage": {
+      "value": "3 lb."
+    },
+    "weightRollMod": {
+      "value": "x1 lb."
+    },
+    "homeworld": {
+      "value": "Anzella"
+    },
+    "slanguage": {
+      "value": "Anzellan"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "ZGdzAq1Gl4xaxDRD",
@@ -86,8 +267,7 @@
       "name": "Anzellan",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!4NVv8yQ6Vu6PvtCA.ZGdzAq1Gl4xaxDRD"
+      "_key": "!items.effects!3yCHFNGoZtdq36aE.ZGdzAq1Gl4xaxDRD"
     },
     {
       "_id": "J6me2fxX06OUbUSS",
@@ -121,151 +301,22 @@
       "name": "Detail Oriented - within 5 feet",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!4NVv8yQ6Vu6PvtCA.J6me2fxX06OUbUSS"
+      "_key": "!items.effects!3yCHFNGoZtdq36aE.J6me2fxX06OUbUSS"
     }
   ],
+  "_id": "3yCHFNGoZtdq36aE",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2711394+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-anzellan"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The anzellans are a diminutive species hailing from the secluded planet Anzella. Their eyes have floating corneal micro-lenses that allow them to see microscopic details. Anzellans are a bubbly and receptive people. They are a jovial and trusting people that tend to welcome strangers with open arms.</p>\n<p>Due to their volcanic homeworld, anzellans are also adapted towards heat. This, coupled with their small size, make them well-suited to working in compact places.</p>\n<h2>Society and Culture</h2>\n<p>Anzella is a tropical planet covered in thousands of small volcanic islands. Many of these islands are developed as small villages, with the largest islands designed to accommodate larger species. Anzellan culture is generally based around tourism and crafting; in fact, anzellans are renowned craftsmen due to their discerning eyesight and ability to fit into small spaces.</p>\n<p>Anzellan government is generally casual. Each village has its own governing council of rotating members; these villages act independently from one another unless their decisions would affect more than a single island. In that case, all of the councils work together to come to a planet-wide decision. </p>\n<h2>Names</h2>\n<p>Anzellan names are rarely longer than two syllables, with a bouncy intonation to them. Their surnames are familial.</p>\n<p><strong>Male Names.</strong> Babu, Gridel, Moru, Rano, Yodel</p>\n<p><strong>Female Names.</strong> Dibi, Fing, Nooni, Teena, Zazi</p>\n<p><strong>Surnames.</strong> E'ayoo, Frik, Meer, Tanni, Vrut</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "anzellan",
-    "advancement": [
-      {
-        "_id": "1rBcCbREohBx1ExG",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.EIxJkRyp98lnX7QT",
-            "Compendium.sw5e.speciesfeatures.F7K0Qe3YL7Tf3d2O",
-            "Compendium.sw5e.speciesfeatures.zDJFZKVLpNaOY28v",
-            "Compendium.sw5e.speciesfeatures.lNOdyLwU5w2rJoT6",
-            "Compendium.sw5e.speciesfeatures.Ac4Em4XDB412ZLUY",
-            "Compendium.sw5e.speciesfeatures.JYeMNMVRrhKAlV0t",
-            "Compendium.sw5e.speciesfeatures.u8cJD72MPt5slT7X",
-            "Compendium.sw5e.speciesfeatures.CWRm4pDmECVx9sd0",
-            "Compendium.sw5e.speciesfeatures.91zntY3hHmTLsSlq",
-            "Compendium.sw5e.speciesfeatures.QCm84P6V7ZRPmUem",
-            "Compendium.sw5e.speciesfeatures.3lPpO2t4M4v26vV5",
-            "Compendium.sw5e.speciesfeatures.5S47RmVR1oOu2fl8",
-            "Compendium.sw5e.speciesfeatures.B5ISlqrne1zJgeRu",
-            "Compendium.sw5e.speciesfeatures.FS9LLz7vmA5HEOkq"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1Adr1ywyf4SjgGwe",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2
-          },
-          "points": 2
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "RNO3FAPIQUnnUxSZ",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "tiny"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "i7dLAv5vwjX1FB1G",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "tool:*"
-              ]
-            }
-          ],
-          "grants": [
-            "skills:tec",
-            "tool:tinkersimplements"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Brown, green, or tan"
-    },
-    "hairColorOptions": {
-      "value": "Black, gray, or white"
-    },
-    "eyeColorOptions": {
-      "value": "Black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Diminutive size, wispy eyebrows"
-    },
-    "heightAverage": {
-      "value": "1'0\""
-    },
-    "heightRollMod": {
-      "value": "+2d6\""
-    },
-    "weightAverage": {
-      "value": "3 lb."
-    },
-    "weightRollMod": {
-      "value": "x1 lb."
-    },
-    "homeworld": {
-      "value": "Anzella"
-    },
-    "slanguage": {
-      "value": "Anzellan"
-    },
-    "movement": {
-      "walk": 20
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002063,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!4NVv8yQ6Vu6PvtCA"
+  "_key": "!items!3yCHFNGoZtdq36aE"
 }

@@ -1,8 +1,186 @@
 {
-  "_id": "sap5fZAWwade6HEd",
   "name": "Ugnaught",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:11.8983543+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-ugnaught"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Ugnaught.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Ugnaughts are diminutive, porcine humanoids who have pink skin, upturned noses, white hair, and thick layers of jowls. Some have tusks that they use in blood duels. They are strong and resilient, and their life-spans reached up to 200 standard years. They notably eat genteslugs.</p>\n<h2>Society and Culture</h2>\n<p>Ugnaughts are ruled by councils comprised of elected officers. Ugnaughts live their lives in accordance to their \"blood profession\", with Ugnaught parents teaching their children their trade. Infant Ugnaughts are known as Ugletts. If the number of new Ugnaughts in a given profession exceeds the need, a blood duel is called. When the Ugnaughts reached their twentieth year of age, these fights are held to the death, with the victor winning the right to inherit their blood profession. Despite this outdated and violent custom, the Ugnaughts are generally a peaceful people with a rich culture.</p>\n<p>When greeting an Ugnaught, it is advised to bow silently, then wait for a guttural purring as a positive response. Usage of the common galactic greeting \"yaa-yaah\" is considered a personal insult to Ugnaughts. If this occurrs, it was advisable to duck and cover, as various mechanical implements will be thrown one's way. </p>\n<p>Ugnaughts are often enslaved as they are fairly meek.</p>\n<h2>Names</h2>\n<p>Ugnaught names are generally concise. Female names sound more cheerful. Surnames are determined by blood profession.</p>\n<p><strong>Male Names.</strong> Banax, Dral, Durn, Togre, Yirkux</p>\n<p><strong>Female Names.</strong> Admeva, Olnito, Ruskor, Vurlilli</p>\n<p><strong>Surnames.</strong> Col, Gnatro, Mikk, Roc, Sag</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "ugnaught",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1N5uNfBipqcM129k",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WMETZjSUFY6x2VR5"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1LMnl1MaJKu0RjVs"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.kzvck5MugPyaqjDy"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.25N3Mwbtd70qr1wh"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lGVEXbsA9xQULmEm"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.YheaLNOTSpUbqNa3"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1Ib9yr9CFWVjTxx1"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.x1OgXA2wmYNKHQiV"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZCscO6eFPq3iIraw"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yZkr09ikUy0kcdoq"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.iAYXzr4WccmcyTbp"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.M6wPx5enCBJDO74B"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lMJscGusdUQNbOe7"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "D1aWOwjXR9O1xuwh",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "str": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "18hE8ahiInZ26vnm",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "cqj6vwPDIom1eCeI",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:*"
+              ]
+            }
+          ],
+          "grants": [
+            "tool:tinkersimplements"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Varying shades of pink"
+    },
+    "hairColorOptions": {
+      "value": "White"
+    },
+    "eyeColorOptions": {
+      "value": "Black and red"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Diminutive stature, porcine features, technological affinity"
+    },
+    "heightAverage": {
+      "value": "3'1\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "40 lb."
+    },
+    "weightRollMod": {
+      "value": "x1 lb."
+    },
+    "homeworld": {
+      "value": "Gentes"
+    },
+    "slanguage": {
+      "value": "Ugnaught"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "cEL26hyVYxGjv0si",
@@ -86,153 +264,22 @@
       "name": "Ugnaught",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!sap5fZAWwade6HEd.cEL26hyVYxGjv0si"
+      "_key": "!items.effects!d2DOlI7nh0KJrJBf.cEL26hyVYxGjv0si"
     }
   ],
+  "_id": "d2DOlI7nh0KJrJBf",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:11.8983543+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-ugnaught"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Ugnaughts are diminutive, porcine humanoids who have pink skin, upturned noses, white hair, and thick layers of jowls. Some have tusks that they use in blood duels. They are strong and resilient, and their life-spans reached up to 200 standard years. They notably eat genteslugs.</p>\n<h2>Society and Culture</h2>\n<p>Ugnaughts are ruled by councils comprised of elected officers. Ugnaughts live their lives in accordance to their \"blood profession\", with Ugnaught parents teaching their children their trade. Infant Ugnaughts are known as Ugletts. If the number of new Ugnaughts in a given profession exceeds the need, a blood duel is called. When the Ugnaughts reached their twentieth year of age, these fights are held to the death, with the victor winning the right to inherit their blood profession. Despite this outdated and violent custom, the Ugnaughts are generally a peaceful people with a rich culture.</p>\n<p>When greeting an Ugnaught, it is advised to bow silently, then wait for a guttural purring as a positive response. Usage of the common galactic greeting \"yaa-yaah\" is considered a personal insult to Ugnaughts. If this occurrs, it was advisable to duck and cover, as various mechanical implements will be thrown one's way. </p>\n<p>Ugnaughts are often enslaved as they are fairly meek.</p>\n<h2>Names</h2>\n<p>Ugnaught names are generally concise. Female names sound more cheerful. Surnames are determined by blood profession.</p>\n<p><strong>Male Names.</strong> Banax, Dral, Durn, Togre, Yirkux</p>\n<p><strong>Female Names.</strong> Admeva, Olnito, Ruskor, Vurlilli</p>\n<p><strong>Surnames.</strong> Col, Gnatro, Mikk, Roc, Sag</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "ugnaught",
-    "advancement": [
-      {
-        "_id": "jeOjSTCHz6C3a4da",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.WMETZjSUFY6x2VR5",
-            "Compendium.sw5e.speciesfeatures.1LMnl1MaJKu0RjVs",
-            "Compendium.sw5e.speciesfeatures.kzvck5MugPyaqjDy",
-            "Compendium.sw5e.speciesfeatures.25N3Mwbtd70qr1wh",
-            "Compendium.sw5e.speciesfeatures.lGVEXbsA9xQULmEm",
-            "Compendium.sw5e.speciesfeatures.YheaLNOTSpUbqNa3",
-            "Compendium.sw5e.speciesfeatures.1Ib9yr9CFWVjTxx1",
-            "Compendium.sw5e.speciesfeatures.x1OgXA2wmYNKHQiV",
-            "Compendium.sw5e.speciesfeatures.ZCscO6eFPq3iIraw",
-            "Compendium.sw5e.speciesfeatures.yZkr09ikUy0kcdoq",
-            "Compendium.sw5e.speciesfeatures.iAYXzr4WccmcyTbp",
-            "Compendium.sw5e.speciesfeatures.M6wPx5enCBJDO74B",
-            "Compendium.sw5e.speciesfeatures.lMJscGusdUQNbOe7"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1iLI5hwTmeXu1H8a",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2,
-            "str": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "hpk9pIscVcV1nBE7",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "sm"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "fAV8frbxuNm1hFlS",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "tool:*"
-              ]
-            }
-          ],
-          "grants": [
-            "tool:tinkersimplements"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Varying shades of pink"
-    },
-    "hairColorOptions": {
-      "value": "White"
-    },
-    "eyeColorOptions": {
-      "value": "Black and red"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Diminutive stature, porcine features, technological affinity"
-    },
-    "heightAverage": {
-      "value": "3'1\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "40 lb."
-    },
-    "weightRollMod": {
-      "value": "x1 lb."
-    },
-    "homeworld": {
-      "value": "Gentes"
-    },
-    "slanguage": {
-      "value": "Ugnaught"
-    },
-    "movement": {
-      "walk": 25
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002140,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!sap5fZAWwade6HEd"
+  "_key": "!items!d2DOlI7nh0KJrJBf"
 }

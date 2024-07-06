@@ -1,103 +1,22 @@
 {
-  "_id": "1wM2zJjL2EBEcH7C",
   "name": "Irradiate",
-  "type": "power",
-  "img": "systems/sw5e/packs/Icons/Tech%20Powers/Irradiate.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [
-          true
-        ],
-        "altValue": [
-          true
-        ],
-        "context": []
-      },
-      "quickVersatile": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": true,
-          "resource": true
-        },
-        "altValue": {
-          "use": true,
-          "resource": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:03.1894037+00:00",
       "importer_version": 3,
       "uid": "Power.name-irradiate.level-2"
     }
   },
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Tech%20Powers/Irradiate.webp",
   "system": {
     "description": {
       "value": "<p>A surge of radiation washes over a creature within range. The creature must make a Constitution saving throw. On a failed save, the target takes [[/r 3d10]] necrotic damage and suffers one level of exhaustion, which lasts for the duration. On a successful save, the target takes half as much damage and does not suffer a level of exhaustion. A creature exhausted by this power can make a Constitution saving throw at the end of each of its turns. On a successful save, the power ends.</p>\n<p><strong><em>Overcharge Tech.</em></strong> When you cast this power using a tech slot of 3rd level or higher, the damage increases by [[/r 1d10]] for each slot level above 2nd.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -107,34 +26,27 @@
       "value": "1",
       "units": "minute"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "120",
+      "value": 120,
       "long": null,
       "units": "ft"
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
-    },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
-    "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
@@ -156,13 +68,8 @@
     },
     "level": 2,
     "school": "tec",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": true,
-      "value": ""
+    "properties": {
+      "0": "concentration"
     },
     "materials": {
       "value": "",
@@ -172,23 +79,42 @@
     },
     "preparation": {
       "mode": "prepared",
-      "prepared": true
+      "prepared": false
     },
     "scaling": {
       "mode": "level",
       "formula": "1d10"
-    }
+    },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "enchantment": null,
+    "summons": null
   },
+  "effects": [],
+  "_id": "9ONooqQeoZbbgkMr",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494020487,
-    "modifiedTime": 1707077465284,
+    "createdTime": 1720296025398,
+    "modifiedTime": 1720401973099,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!1wM2zJjL2EBEcH7C"
+  "_key": "!items!9ONooqQeoZbbgkMr"
 }

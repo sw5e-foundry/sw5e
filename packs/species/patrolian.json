@@ -1,8 +1,195 @@
 {
-  "_id": "oUZfKfMMr6ZXXQ4J",
   "name": "Patrolian",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2881282+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-patrolian"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Patrolian.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Patrolians are fish-like in appearance, covered in pale, pastel-colored scales and possessing numerous fins on their long limbs and face, as well as a notable dorsal fin which often require modified clothing to accommodate. </p>\n<p>Thanks to their gills, patrolians are perfectly comfortable breathing underwater as well as on land, and their physiology is also notoriously resistant to electric shocks—both likely throwbacks to evolution on their native homeworld of Patrolia.</p>\n<h2>Society and Culture</h2>\n<p>Patrolians are a notably innovative and resourceful species, and many of their number have found their way into roles in the construction, maintenance and sale of technology. </p>\n<p>Unfortunately, patrolians tend to pursue these businesses in a shady manner, and most tend to operate such ventures in the criminal underworld, working as bounty hunters, thieves, fences, slicers and other such technically-demanding criminal roles. </p>\n<p>This inclination towards crime stems from their homeworld, which is perpetually stalled in a state of economic decay due to wartime. With the advent of multiple wars fought in the system, different armies continue to see the aquatic world as a strategic bulwark in the region. Because of this, patrolians have to find work not only off-world, but typically in fields not falling under governmental purview; unfortunately, criminal activities are the most common path. </p>\n<h2>Names</h2>\n<p>Patrolian names are usually multisyllabic and sing-songy with lots of open vowels and few fricatives. Patrolians are not known to use family names or other surnames.</p>\n<p><strong>Male Names.</strong> Dalladu, Feddi, Nogagai, Teconica</p>\n<p><strong>Female Names.</strong> Kakeda, Machibido, Rinimma, Talla</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "patrolian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "swim": 25,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "szDLoiFaqLpxguYf",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zuH2cUer6LYYlSDc"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zQtnzO7aFJhAQ6LQ"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lMdVgU4UEzCsdxTu"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Wah2wGO2i9oGIYEM"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.A5rZFMvjUsOcJTG2"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HYq58Gg98YOtMZTM"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jtKWccSjyOn3J0hs"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wQvnbj3hXffcfQpg"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.489xvA1zaV8lCOPR"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KhjIhIYeFeEdNvOt"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PDTyVEmVFW4hoGzb"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mcVbrOJQakSIDgkz"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WTU9mifnqzBNhZwr"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.SzFEjzY7RnBm3nhf"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "nzHPWcQuTFb1zUih",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "6JsJki6Im0wd4reB",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1wxZ8pZWjCvw19xF",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:dec",
+                "skills:ste"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "tool:specialist:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:tec"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Blue-purple to green"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Light to dark red"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Fin-like limbs, pastel-color scales"
+    },
+    "heightAverage": {
+      "value": "2'8\""
+    },
+    "heightRollMod": {
+      "value": "+2d4\""
+    },
+    "weightAverage": {
+      "value": "35 lb."
+    },
+    "weightRollMod": {
+      "value": "x1 lb."
+    },
+    "homeworld": {
+      "value": "Patrolia"
+    },
+    "slanguage": {
+      "value": "Patrolian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "6ONrHdnvLzAAXP1o",
@@ -92,161 +279,22 @@
       "name": "Patrolian",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!oUZfKfMMr6ZXXQ4J.6ONrHdnvLzAAXP1o"
+      "_key": "!items.effects!kb3EI94ueKXZSK9I.6ONrHdnvLzAAXP1o"
     }
   ],
+  "_id": "kb3EI94ueKXZSK9I",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2881282+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-patrolian"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Patrolians are fish-like in appearance, covered in pale, pastel-colored scales and possessing numerous fins on their long limbs and face, as well as a notable dorsal fin which often require modified clothing to accommodate. </p>\n<p>Thanks to their gills, patrolians are perfectly comfortable breathing underwater as well as on land, and their physiology is also notoriously resistant to electric shocks—both likely throwbacks to evolution on their native homeworld of Patrolia.</p>\n<h2>Society and Culture</h2>\n<p>Patrolians are a notably innovative and resourceful species, and many of their number have found their way into roles in the construction, maintenance and sale of technology. </p>\n<p>Unfortunately, patrolians tend to pursue these businesses in a shady manner, and most tend to operate such ventures in the criminal underworld, working as bounty hunters, thieves, fences, slicers and other such technically-demanding criminal roles. </p>\n<p>This inclination towards crime stems from their homeworld, which is perpetually stalled in a state of economic decay due to wartime. With the advent of multiple wars fought in the system, different armies continue to see the aquatic world as a strategic bulwark in the region. Because of this, patrolians have to find work not only off-world, but typically in fields not falling under governmental purview; unfortunately, criminal activities are the most common path. </p>\n<h2>Names</h2>\n<p>Patrolian names are usually multisyllabic and sing-songy with lots of open vowels and few fricatives. Patrolians are not known to use family names or other surnames.</p>\n<p><strong>Male Names.</strong> Dalladu, Feddi, Nogagai, Teconica</p>\n<p><strong>Female Names.</strong> Kakeda, Machibido, Rinimma, Talla</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "patrolian",
-    "advancement": [
-      {
-        "_id": "yc8bfAzgmDV1tBf1",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.zuH2cUer6LYYlSDc",
-            "Compendium.sw5e.speciesfeatures.zQtnzO7aFJhAQ6LQ",
-            "Compendium.sw5e.speciesfeatures.lMdVgU4UEzCsdxTu",
-            "Compendium.sw5e.speciesfeatures.Wah2wGO2i9oGIYEM",
-            "Compendium.sw5e.speciesfeatures.A5rZFMvjUsOcJTG2",
-            "Compendium.sw5e.speciesfeatures.HYq58Gg98YOtMZTM",
-            "Compendium.sw5e.speciesfeatures.jtKWccSjyOn3J0hs",
-            "Compendium.sw5e.speciesfeatures.wQvnbj3hXffcfQpg",
-            "Compendium.sw5e.speciesfeatures.489xvA1zaV8lCOPR",
-            "Compendium.sw5e.speciesfeatures.KhjIhIYeFeEdNvOt",
-            "Compendium.sw5e.speciesfeatures.PDTyVEmVFW4hoGzb",
-            "Compendium.sw5e.speciesfeatures.mcVbrOJQakSIDgkz",
-            "Compendium.sw5e.speciesfeatures.WTU9mifnqzBNhZwr",
-            "Compendium.sw5e.speciesfeatures.SzFEjzY7RnBm3nhf"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "7UHiNowl61DNfp2U",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1CYnkKQNeKdkQKHA",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "sm"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1egzELOtmwPQRv56",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "skills:dec",
-                "skills:ste"
-              ]
-            },
-            {
-              "count": 1,
-              "pool": [
-                "tool:specialist:*"
-              ]
-            }
-          ],
-          "grants": [
-            "skills:tec"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Blue-purple to green"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Light to dark red"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Fin-like limbs, pastel-color scales"
-    },
-    "heightAverage": {
-      "value": "2'8\""
-    },
-    "heightRollMod": {
-      "value": "+2d4\""
-    },
-    "weightAverage": {
-      "value": "35 lb."
-    },
-    "weightRollMod": {
-      "value": "x1 lb."
-    },
-    "homeworld": {
-      "value": "Patrolia"
-    },
-    "slanguage": {
-      "value": "Patrolian"
-    },
-    "movement": {
-      "walk": 25,
-      "swim": 25
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002132,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!oUZfKfMMr6ZXXQ4J"
+  "_key": "!items!kb3EI94ueKXZSK9I"
 }

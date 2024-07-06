@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:58.3432141+00:00",
+      "timestamp": "2023-05-30T20:15:43.1816855+00:00",
       "importer_version": 3,
       "uid": "Archetype.name-shield_specialist"
     }
@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Shield Specialist</h1>\n<p>Those fighters who choose to become Shield Specialists train to bolster those around them. They can inspire their allies with renewed vigor while simultaneously protecting them from harm.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "shieldspecialist",
     "classIdentifier": "fighter",
     "advancement": [
       {
-        "_id": "oGI0idWhuA4km6Od",
+        "_id": "ci1UoM5iu751V42t",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Ba8MayCDILLqUzyl",
-            "Compendium.sw5e.archetypefeatures.nbSkQGT2nd2uz8OF"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Ba8MayCDILLqUzyl"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.nbSkQGT2nd2uz8OF"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "18ucy8cV6RitX6z9",
+        "_id": "HCBhQEPzvzb1GqJD",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.nhdJJnUPWYmkEQid"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.nhdJJnUPWYmkEQid"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "19Wfb9KwymF2rKio",
+        "_id": "OGzVUeu3KFD1wCOx",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.QaR9kJgmsxBtVkSY"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.QaR9kJgmsxBtVkSY"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "1NiSVLMPWLToESeQ",
+        "_id": "3hLhto1GM7M1LTDz",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.bMb8NmSfrfnyLNfG"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.bMb8NmSfrfnyLNfG"
+            }
           ],
           "optional": false
         },
@@ -80,11 +88,13 @@
         "title": "Features"
       },
       {
-        "_id": "1HhZPCb21bDd1jLv",
+        "_id": "SaRh6I3Hf2W1tvHX",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.m15815dwhOhsvV9M"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.m15815dwhOhsvV9M"
+            }
           ],
           "optional": false
         },
@@ -100,7 +110,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -108,10 +118,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959718,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!9Jn2XBZYoWAH2JQR"

@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Gambler Pursuit:</strong> 17th level</em></p>\n<p>You have gained the ability to unnaturally alter luck in your favor. Once per round, after an attack roll, saving throw, or ability check is rolled by you or a creature that you can see, you can replace the number on the [[/r d20]] with a 7. Note the number on the [[/r d20]] of the roll that you replaced. That number becomes your borrowed luck roll.</p>\n<p>While you have a borrowed luck roll, you can expend it and replace any ability check, attack roll, or saving throw made by you or a creature that you can see with the value of the borrowed luck roll. You can only have one borrowed luck roll at a time, and you lose any </p>\n<p>unused borrowed luck rolls when you complete a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scholar (Gambler Pursuit) 17",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,24 +79,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Scholar"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957732,
-    "modifiedTime": 1699591595172,
+    "modifiedTime": 1720368696190,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!ROtT8JPFQoU1aXZr"

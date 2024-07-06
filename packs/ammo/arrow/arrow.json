@@ -16,38 +16,41 @@
   "system": {
     "description": {
       "value": "<p>Arrows are ammunition used in bow weapons. When you would use poison to coat a weapon or slug cartridge you can instead coat an arrow with the poison. Once a poisoned arrow hits a target, it no longer gives a bonus.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 1,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -56,21 +59,25 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
       "recovery": "",
-      "autoDestroy": false
+      "autoDestroy": false,
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -81,29 +88,34 @@
       "dc": null,
       "scaling": "power"
     },
-    "consumableType": "ammo",
-    "ammoType": "arrow",
     "properties": {},
-    "baseItem": "arrow",
-    "armor": {},
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "_propertyValues": {},
+    "type": {
+      "value": "ammo",
+      "subtype": "arrow"
     },
-    "weaponType": "",
-    "proficient": false
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493956748,
-    "modifiedTime": 1704036410852,
+    "modifiedTime": 1720368678574,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!kW97lhvo8rYMypG0"

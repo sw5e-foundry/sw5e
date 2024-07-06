@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Artillerist Technique</h1>\n<p>Some scouts choose to navigate around defenses, while others choose to go through them. Followers of the Artillerist Technique learn to exert greater control of their tech powers, causing delayed—and often empowered—effects.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "artilleristtechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "1xhJ6ErJh0SJTblG",
+        "_id": "re3xVqjJZc7Wfxfb",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.8xS2WONKsMp0LbrM",
-            "Compendium.sw5e.archetypefeatures.ddWHbl4kesFCln5V"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.8xS2WONKsMp0LbrM"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ddWHbl4kesFCln5V"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "2wXftDAwQAM8ferr",
+        "_id": "ycToiMxUafb1SINx",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.O2lxvWuyGLw2sVAc"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.O2lxvWuyGLw2sVAc"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "1wzTJuv3etLnwwwj",
+        "_id": "ZTbtUCU9Hcl1CtY3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.GirKxjNPvTGk3DVX"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.GirKxjNPvTGk3DVX"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "1vuFDnOUJL5Z5cSY",
+        "_id": "V5UGccku3KH1ruPT",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.BIZGnFjvoTzbcWIV"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.BIZGnFjvoTzbcWIV"
+            }
           ],
           "optional": false
         },
@@ -87,7 +95,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +103,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959752,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!V2bcLrwUYGQpV2PI"

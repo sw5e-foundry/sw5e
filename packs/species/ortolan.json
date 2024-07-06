@@ -1,8 +1,183 @@
 {
-  "_id": "sUIVVJzeUIAm51ZB",
   "name": "Ortolan",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2871287+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-ortolan"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Ortolan.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Ortolans are squat, heavily-built humanoid bipeds with long, trunklike noses and beady black eyes. They possess floppy ears, which are extremely sensitive to sound waves. They have two hands, each ending in four chubby fingers and a thumb, which is not opposable. A thick, baggy hide covered in fuzz resembling velvet hangs off of the Ortolan body. Ortolans have a keen sense of smell to help them forage for food. In fact, they are handicapped in their business affairs by their attachment to food, sometimes accepting otherwise unfavorable contracts when promised enough to eat. Their twin obsessions are food and music; offworld, many Ortolans find success as chefs or musicians. </p>\n<h2>Society and Culture</h2>\n<p>Ortolan society is reasonably industrialised, though not as technologically advanced as other species. Despite this, their economy is mostly based on barter, with credits primarily used to trade with offworlders. Education is the responsibility of their parents, though gifted youngsters are often traded to other families to get specialized education. </p>\n<p>While most Ortolans appear to have blue skin, Ortolans are actually covered in short velvety fur which they often dyed in bright colors, most often blue and pink.  This tradition began when a Devaronian trader tried to sell Ortolans a shipment of food dyes—they considered dyeing their food a waste of time, but found dyed fur to be quite stylish.</p>\n<h2>Names</h2>\n<p>Ortolan names are generally short with big sounds. Female names are typically softer. Surnames are familial.</p>\n<p><strong>Male names.</strong> Donmb, Hegh, Nax, Parm, Teeb</p>\n<p><strong>Female names.</strong> Bedla, Folfe, Nelni, Phoff, Sallo</p>\n<p><strong>Surnames.</strong> Bigek, Lubum, Nad, Rojool, Somo </p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "ortolan",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1F3en7UL32Wm1rdD",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.M9qhRFNkEBPbe3O5"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fvYImF9CpZzBtZW8"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mHfe5F7RwDtpidf4"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.NV0u2HkRL1shO8kD"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6jy5C380QjZ8pjfu"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.UfsD9dRbde81vIlf"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.nxG6tQZVqxlewa9y"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yiuqFkqHeZvgxQgQ"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BZXJpfPeX9yifA6R"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.gZ7vVsENhBIs5VLY"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.l2eesnUngVUEj9um"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TO7SF3LqXfPqk5dR"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "7SNcCHD02IK1ul1L",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "cha": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "BmZ7DZfTYO6rEJFL",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "h0RZpenlnlK48UWD",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:music:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:prf"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Light colors"
+    },
+    "hairColorOptions": {
+      "value": "Light colors"
+    },
+    "eyeColorOptions": {
+      "value": "Yellow"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Stocky builds, trunklike noses, floppy ears, small mouths, brightly dyed fur"
+    },
+    "heightAverage": {
+      "value": "2'10\""
+    },
+    "heightRollMod": {
+      "value": "+2d4\""
+    },
+    "weightAverage": {
+      "value": "50 lb."
+    },
+    "weightRollMod": {
+      "value": "x1 lb."
+    },
+    "homeworld": {
+      "value": "Orto"
+    },
+    "slanguage": {
+      "value": "Ortolan"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "2qQDQApwHSwk85jt",
@@ -78,8 +253,7 @@
       "name": "Ortolan",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!sUIVVJzeUIAm51ZB.2qQDQApwHSwk85jt"
+      "_key": "!items.effects!fp6MEQJrHKoKHxbL.2qQDQApwHSwk85jt"
     },
     {
       "_id": "LtZ1px6YzHzoE10s",
@@ -113,149 +287,22 @@
       "name": "Keen Hearing and Smell",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!sUIVVJzeUIAm51ZB.LtZ1px6YzHzoE10s"
+      "_key": "!items.effects!fp6MEQJrHKoKHxbL.LtZ1px6YzHzoE10s"
     }
   ],
+  "_id": "fp6MEQJrHKoKHxbL",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2871287+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-ortolan"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Ortolans are squat, heavily-built humanoid bipeds with long, trunklike noses and beady black eyes. They possess floppy ears, which are extremely sensitive to sound waves. They have two hands, each ending in four chubby fingers and a thumb, which is not opposable. A thick, baggy hide covered in fuzz resembling velvet hangs off of the Ortolan body. Ortolans have a keen sense of smell to help them forage for food. In fact, they are handicapped in their business affairs by their attachment to food, sometimes accepting otherwise unfavorable contracts when promised enough to eat. Their twin obsessions are food and music; offworld, many Ortolans find success as chefs or musicians. </p>\n<h2>Society and Culture</h2>\n<p>Ortolan society is reasonably industrialised, though not as technologically advanced as other species. Despite this, their economy is mostly based on barter, with credits primarily used to trade with offworlders. Education is the responsibility of their parents, though gifted youngsters are often traded to other families to get specialized education. </p>\n<p>While most Ortolans appear to have blue skin, Ortolans are actually covered in short velvety fur which they often dyed in bright colors, most often blue and pink.  This tradition began when a Devaronian trader tried to sell Ortolans a shipment of food dyes—they considered dyeing their food a waste of time, but found dyed fur to be quite stylish.</p>\n<h2>Names</h2>\n<p>Ortolan names are generally short with big sounds. Female names are typically softer. Surnames are familial.</p>\n<p><strong>Male names.</strong> Donmb, Hegh, Nax, Parm, Teeb</p>\n<p><strong>Female names.</strong> Bedla, Folfe, Nelni, Phoff, Sallo</p>\n<p><strong>Surnames.</strong> Bigek, Lubum, Nad, Rojool, Somo </p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "ortolan",
-    "advancement": [
-      {
-        "_id": "q5fMWlsUHucuvFCP",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.M9qhRFNkEBPbe3O5",
-            "Compendium.sw5e.speciesfeatures.fvYImF9CpZzBtZW8",
-            "Compendium.sw5e.speciesfeatures.mHfe5F7RwDtpidf4",
-            "Compendium.sw5e.speciesfeatures.NV0u2HkRL1shO8kD",
-            "Compendium.sw5e.speciesfeatures.6jy5C380QjZ8pjfu",
-            "Compendium.sw5e.speciesfeatures.UfsD9dRbde81vIlf",
-            "Compendium.sw5e.speciesfeatures.nxG6tQZVqxlewa9y",
-            "Compendium.sw5e.speciesfeatures.yiuqFkqHeZvgxQgQ",
-            "Compendium.sw5e.speciesfeatures.BZXJpfPeX9yifA6R",
-            "Compendium.sw5e.speciesfeatures.gZ7vVsENhBIs5VLY",
-            "Compendium.sw5e.speciesfeatures.l2eesnUngVUEj9um",
-            "Compendium.sw5e.speciesfeatures.TO7SF3LqXfPqk5dR"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "j8EXfx0Cu8mTLqSs",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2,
-            "cha": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "182fR8NKAAt9j7ET",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "sm"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "ZPe9AvPkdFMQa0Se",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "tool:music:*"
-              ]
-            }
-          ],
-          "grants": [
-            "skills:prf"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Light colors"
-    },
-    "hairColorOptions": {
-      "value": "Light colors"
-    },
-    "eyeColorOptions": {
-      "value": "Yellow"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Stocky builds, trunklike noses, floppy ears, small mouths, brightly dyed fur"
-    },
-    "heightAverage": {
-      "value": "2'10\""
-    },
-    "heightRollMod": {
-      "value": "+2d4\""
-    },
-    "weightAverage": {
-      "value": "50 lb."
-    },
-    "weightRollMod": {
-      "value": "x1 lb."
-    },
-    "homeworld": {
-      "value": "Orto"
-    },
-    "slanguage": {
-      "value": "Ortolan"
-    },
-    "movement": {
-      "walk": 25
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002139,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!sUIVVJzeUIAm51ZB"
+  "_key": "!items!fp6MEQJrHKoKHxbL"
 }

@@ -21,24 +21,24 @@
       "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p> Melee Weapon Attack: +2 to hit, reach 5 ft., one target. Hit: 1 kinetic damage.</p>\n</section>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
         "source": {
           "custom": "SnV"
         },
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -51,10 +51,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
@@ -65,16 +66,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "mwak",
-        "attackBonus": "1",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -104,12 +106,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -118,70 +117,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "mgc": null,
-          "aut": null,
-          "bur": null,
-          "dir": null,
-          "hvy": null,
-          "hid": null,
-          "ken": null,
-          "pic": null,
-          "ran": null,
-          "rap": null,
-          "rel": null,
-          "smr": null,
-          "spc": null,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": null,
-          "dgd": null,
-          "dis": null,
-          "dpt": null,
-          "dou": null,
-          "fin": null,
-          "fix": null,
-          "ilk": null,
-          "lgt": null,
-          "lum": null,
-          "mig": null,
-          "mod": null,
-          "neu": null,
-          "pen": null,
-          "pcl": null,
-          "rch": null,
-          "rck": null,
-          "ret": null,
-          "shk": null,
-          "sil": null,
-          "slg": null,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": null,
-          "thr": null,
-          "two": null,
-          "ver": null,
-          "con": null,
-          "exp": null,
-          "hom": null,
-          "ion": null,
-          "mlt": null,
-          "ovr": null,
-          "pow": null,
-          "sat": null,
-          "zon": null
-        },
+        "properties": {},
         "proficient": 1,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
+        },
+        "attack": {
+          "bonus": "1",
+          "flat": false
+        },
+        "unidentified": {
+          "description": ""
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "effects": [],
       "folder": null,
@@ -219,9 +174,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Strength",
-        "mod": 0
+        }
       },
       "dex": {
         "value": 8,
@@ -230,9 +183,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Dexterity",
-        "mod": -1
+        }
       },
       "con": {
         "value": 11,
@@ -241,9 +192,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Constitution",
-        "mod": 0
+        }
       },
       "int": {
         "value": 14,
@@ -252,9 +201,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Intelligence",
-        "mod": 2
+        }
       },
       "wis": {
         "value": 12,
@@ -263,9 +210,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Wisdom",
-        "mod": 1
+        }
       },
       "cha": {
         "value": 11,
@@ -274,9 +219,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "name": "Charisma",
-        "mod": 0
+        }
       },
       "hon": {
         "value": 11,
@@ -284,7 +227,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 12,
@@ -292,7 +236,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
@@ -306,23 +251,22 @@
         "max": 18,
         "temp": null,
         "tempmax": null,
-        "formula": "4d8",
-        "min": 0
+        "formula": "4d8"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -345,16 +289,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -363,16 +300,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -383,29 +313,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none"
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "exhaustion": 0,
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      },
+      "death": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "success": 0,
+        "failure": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<p>Protocol droids are programmed mostly for etiquette, and are often used as translators between sentients or between sentients and computers. They are generally designed to look like the sentients they serve; for example, 3PO-series protocol droids are humanoid.They possess knowledge about various cultures and customs, both to advise those for whom they were working, and to ensure their own behavior is diplomatic and culturally sensitive.<strong><em>History.</em></strong> Protocol droids constructed around 4000 BBY (around the time of the Great Sith War and the Jedi Civil War) were frequently engineered with certain behavioral shifts set to occur whenever another design-generation was reached. A number of these droids underwent radical changes with each new generation—for example, when a C7-model droid supplanted the C6 variety. Each numeric \"jump\" in sequence could have had wide-ranging changes in functionality and temperament during that historical period.<strong><em>Programming Units.</em></strong> Cybot Galactica, the most famous and successful manufacturer of protocol droids, outfit them with SyntheTech AA-1 VerboBrains to give their droids personalities with emotions and the ability to learn and grow very similar to organic beings. The 3PO unit possesses a TranLang III communications module that can reproduce over six million languages, as well as reproduce any sound it picks up. Linguistic modules are also used to improve their speech functions. Some models, such as the pricey E-3POs, also include the TechSpan I module, making it possible to interface with Imperial networks and undocumented technologies of Imperial subcontractors.</p>\n<p>The 3PO-series protocol droid is a Human-cyborg relations protocol droid produced by Cybot Galactica.  They are equipped with a TranLang III communication module, and as a result are fluent in over 6 million forms of communication. The model series has very similar aesthetic design in its casing to other Cybot Galactica droid model series such as the TC-series, 3PX-series, and 5YQ-series protocol droids.<strong><em>0-0-0.</em></strong> The Triple-Zero protocol personality matrix is a droid personality matrix that was created centuries before the rise of the Galactic Empire. The matrix is considered incredibly dangerous when placed into its designed droid body: a protocol droid. The matrix, when inserted into a protocol droid, turns it into an assassin droid that specializes in torture.It was quarantined on Quarantine World III in Kallidahin Space for centuries before it was stolen by the rogue archaeologist Doctor Aphra during the Galactic Civil War.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "unaligned",
-      "species": "",
+      "species": null,
       "type": {
         "value": "custom",
         "subtype": "",
@@ -417,9 +366,8 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "SnV",
-      "xp": {
-        "value": 10
+      "source": {
+        "custom": "SnV"
       }
     },
     "traits": {
@@ -455,6 +403,10 @@
       "languages": {
         "value": [],
         "custom": "all registered languages"
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
@@ -467,6 +419,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ani": {
@@ -475,6 +432,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ath": {
@@ -483,6 +445,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "dec": {
@@ -491,6 +458,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ins": {
@@ -499,6 +471,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "itm": {
@@ -507,6 +484,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "inv": {
@@ -515,6 +497,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "lor": {
@@ -524,7 +511,11 @@
           "check": "",
           "passive": ""
         },
-        "proficient": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -532,6 +523,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "nat": {
@@ -540,6 +536,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "pil": {
@@ -548,6 +549,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "prc": {
@@ -556,6 +562,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "prf": {
@@ -564,6 +575,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "per": {
@@ -573,7 +589,11 @@
           "check": "",
           "passive": ""
         },
-        "proficient": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -581,6 +601,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ste": {
@@ -589,6 +614,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "sur": {
@@ -597,6 +627,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "tec": {
@@ -605,6 +640,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       }
     },
@@ -614,73 +654,55 @@
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 1000,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 1,
         "foverride": null,
         "tvalue": 1,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0
+        "toverride": null
       }
     },
     "bonuses": {
@@ -723,11 +745,10 @@
         "max": 0
       },
       "lair": {
-        "value": 0,
+        "value": false,
         "initiative": 0
       }
-    },
-    "source": "SnV"
+    }
   },
   "ownership": {
     "default": 0
@@ -800,10 +821,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493994345,
-    "modifiedTime": 1703969525129,
+    "modifiedTime": 1720401980132,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!Wb0KaVuthvQD7kxS"

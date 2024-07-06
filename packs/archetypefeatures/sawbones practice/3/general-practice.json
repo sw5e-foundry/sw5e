@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Sawbones Practice:</strong> 3rd level</em></p>\n<p>You gain proficiency in Medicine, and you can use your Intelligence modifier instead of your Wisdom modifier for checks made with it.</p>\n<p>Additionally, you can expend one use of a traumakit to help revitalize your wounded allies during a short rest. If you or any friendly creatures within 30 feet of you regain hit points at the end of the short rest by spending one or more Hit Dice, each of those creatures regains an extra [[/r 1d6]] hit points.</p>\n<p>The extra hit points increase when you reach certain levels in this class: to [[/r 1d8]] at 9th level, to [[/r 1d10]] at 13th level, and to [[/r 1d12]] at 17th level.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Sawbones Practice) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "heal",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -79,24 +84,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493958017,
-    "modifiedTime": 1699591595207,
+    "modifiedTime": 1720368708625,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!kVTZjfeZRtAQTRNZ"

@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Bolstering Practice:</strong> 3rd level</em></p>\n<p>You learn a number of squad maneuvers you can use to assist allies or exploit enemies. When you deal Sneak Attack damage to a creature, you may choose to forgo two of your Sneak Attack dice to make the attack a squad maneuver.</p>\n<h3>Fortifying Strike</h3>\n<p>You inspire a friendly creature within 60 feet of you who can see or hear you and roll two Sneak Attack dice. That ally immediately gains temporary hit points equal to the amount of rolled.</p>\n<h3>Reaffirming Strike</h3>\n<p>You use the authority your attacks carry to help your ally focus on the task at hand. Choose a creature within 60 feet of you who can see or hear you and that is currently charmed or frightened by the creature you would deal Sneak Attack damage to. The condition immediately ends on that creature.</p>\n<h3>Bolstering Strike</h3>\n<p>You choose a friendly creature within 60 feet of you who can see or hear you. Once before the start of your next turn, if that creature hits the creature against which you forwent two Sneak Attack damage dice, they deal additional damage to the target equal to the maximum of the two Sneak Attack dice.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Bolstering Practice) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "creature"
+      "type": "creature",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,24 +79,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957524,
-    "modifiedTime": 1699591595151,
+    "modifiedTime": 1720368688428,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!FOjBpTGHIupbF0Kg"

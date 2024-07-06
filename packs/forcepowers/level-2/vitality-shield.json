@@ -13,11 +13,11 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite</strong>: Force Body</em></p>\n<p>You siphon some of your own vitality to create a barrier in the Force around yourself. You take [[/r 2d8]] true damage, and gain a number of temporary hit points equal to twice the amount of damage you took. If this damage would reduce your hit points to 0, the power fails. While you have these temporary hit points, you have advantage on Strength, Dexterity and Constitution saving throws. Any remaining temporary hit points are lost when this power ends.</p>\n<p><strong><em>Force Potency.</em></strong> When you cast this power using a force slot of 3rd level or higher, the true damage increases by [[/r 1d8]] for each slot level above 2nd.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "Force Body",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -30,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,18 +43,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -76,14 +78,6 @@
     },
     "level": 2,
     "school": "uni",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": false,
-      "value": ""
-    },
     "materials": {
       "value": "",
       "consumed": false,
@@ -97,7 +91,14 @@
     "scaling": {
       "mode": "level",
       "formula": "1d8"
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "properties": {}
   },
   "folder": null,
   "sort": 0,
@@ -106,10 +107,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426102470,
-    "modifiedTime": 1707077464877,
+    "modifiedTime": 1720401972720,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "wxHebrtYT2mBdDSR",

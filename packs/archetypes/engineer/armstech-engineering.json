@@ -16,24 +16,28 @@
   "system": {
     "description": {
       "value": "<h1>Armstech Engineering</h1>\n<p>Those engineers who choose the Armstech Engineeering discipline focus on the skill of constructing and modifying blasters and vibroweapons.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Armstech Modifications</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.3hUDSm2zLWSo92bh]{Accuracy focus}</li>\n<li>@Compendium[sw5e.invocations.fhx71CDkkfvHxSdD]{Amplifying barrel}</li>\n<li>@Compendium[sw5e.invocations.SFuYnpuRtguNYsyz]{Bayonet}</li>\n<li>@Compendium[sw5e.invocations.cpHSYCrMMYXo0jVD]{Burst core}</li>\n<li>@Compendium[sw5e.invocations.Zw33VBxEljkdadiS]{Booming strikes}</li>\n<li>@Compendium[sw5e.invocations.7dx1Y1MoG3petyem]{Celerity oscillator}</li>\n<li>@Compendium[sw5e.invocations.zPl6y4xnwbJa9KE9]{Collapsible frame}</li>\n<li>@Compendium[sw5e.invocations.ULRFJJyR0F4SC2Vy]{Compensation oscillator}</li>\n<li>@Compendium[sw5e.invocations.9L3X7rsNRVyo00Os]{Contoured grip }</li>\n<li>@Compendium[sw5e.invocations.bvmiki36C4Q964qi]{Expanded magazine}</li>\n<li>@Compendium[sw5e.invocations.hQj8PcS221DCv4gB]{Flashlight}</li>\n<li>@Compendium[sw5e.invocations.kAEzEyhFnYB37Jcn]{Harpoon reel}</li>\n<li>@Compendium[sw5e.invocations.hMrt2je2IOjsncjA]{Imbue weapon}</li>\n<li>@Compendium[sw5e.invocations.Aq7FL0fsclTh6KwV]{Improved burst core}</li>\n<li>@Compendium[sw5e.invocations.Amnk7r7sw81jQdyB]{Integrated magazine}</li>\n<li>@Compendium[sw5e.invocations.rDlLCHLtxISaLnYP]{Jagged oscillator}</li>\n<li>@Compendium[sw5e.invocations.gwuJY56Mpk9U7lp7]{Keen oscillator}</li>\n<li>@Compendium[sw5e.invocations.yaBOvKxFv0iuVeqS]{Neutronium edge}</li>\n<li>@Compendium[sw5e.invocations.TSaSSyjlei8lKf79]{Overcharge weapon}</li>\n<li>@Compendium[sw5e.invocations.lI5mGezQ30ldwFoX]{Power loop}</li>\n<li>@Compendium[sw5e.invocations.4WLFv95FFu80frlr]{Recoil dampener}</li>\n<li>@Compendium[sw5e.invocations.hXaG0IRE3Q05WMNo]{Returning weapon guard}</li>\n<li>@Compendium[sw5e.invocations.5Qwopz3L5yQI6sjl]{Screening weapon}</li>\n<li>@Compendium[sw5e.invocations.vzPNg9WIkSRaqApp]{Shock absorber}</li>\n<li>@Compendium[sw5e.invocations.MdhkJfryv1s50kDn]{Siege weapon}</li>\n<li>@Compendium[sw5e.invocations.Rlaj24TEPFY9ojlL]{Shocking harpoon}</li>\n<li>@Compendium[sw5e.invocations.UkOws7IBoRAweYPH]{Shocking oscillator}</li>\n<li>@Compendium[sw5e.invocations.pPzFGygvNtAcgUPm]{Snap fire}</li>\n<li>@Compendium[sw5e.invocations.vHel8wfkH3JTATgN]{Staggering oscillator}</li>\n<li>@Compendium[sw5e.invocations.JkqyVlbyhOYOEtFL]{Tracker}</li>\n<li>@Compendium[sw5e.invocations.nOOoyylQ0oT0mvSa]{Truelight}</li>\n<li>@Compendium[sw5e.invocations.7cW5VH2AqDgqdv0Y]{Venomous oscillator}</li>\n</ul>"
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "armstechengineering",
     "classIdentifier": "engineer",
     "advancement": [
       {
-        "_id": "17xH426fOXhk1QxD",
+        "_id": "1brvbG1LIDTuZo4e",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.wAkLeFbcTwU6azPK",
-            "Compendium.sw5e.archetypefeatures.iTG8ghWQ1im12Roz",
-            "Compendium.sw5e.archetypefeatures.OZVyUzf8EsFsTCUB"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.wAkLeFbcTwU6azPK"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.iTG8ghWQ1im12Roz"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.OZVyUzf8EsFsTCUB"
+            }
           ],
           "optional": false
         },
@@ -42,11 +46,13 @@
         "title": "Features"
       },
       {
-        "_id": "suzC8UtJjbU19Pad",
+        "_id": "vqF1eefGwKh1dHGZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.U7fGEBmunnrB19pe"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.U7fGEBmunnrB19pe"
+            }
           ],
           "optional": false
         },
@@ -55,11 +61,13 @@
         "title": "Features"
       },
       {
-        "_id": "1qd8dPkHPB3d1uVg",
+        "_id": "g6ytn9BIocc1rYuV",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.qhk4nFAwhsZinooc"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.qhk4nFAwhsZinooc"
+            }
           ],
           "optional": false
         },
@@ -68,11 +76,13 @@
         "title": "Features"
       },
       {
-        "_id": "15fbwk205EMfKA7f",
+        "_id": "1bJeXYhIpecv1bLz",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Ze0t4e7PbGB9qQ0p"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Ze0t4e7PbGB9qQ0p"
+            }
           ],
           "optional": false
         },
@@ -81,7 +91,7 @@
         "title": "Features"
       },
       {
-        "_id": "bEaewIf267D1GYZB",
+        "_id": "1Tfj5t4OCpLV14pd",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -108,56 +118,134 @@
         "level": 3
       },
       {
-        "_id": "QW9BycOmLwV2I2Cw",
+        "_id": "1ex0vGca8et21Ggh",
         "type": "ItemChoice",
         "configuration": {
           "hint": "",
           "choices": {
-            "3": 4,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "3": {
+              "count": 4
+            },
+            "5": {
+              "count": 1
+            },
+            "9": {
+              "count": 1
+            },
+            "11": {
+              "count": 1
+            },
+            "13": {
+              "count": 1
+            },
+            "17": {
+              "count": 1
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.3hUDSm2zLWSo92bh",
-            "Compendium.sw5e.invocations.fhx71CDkkfvHxSdD",
-            "Compendium.sw5e.invocations.SFuYnpuRtguNYsyz",
-            "Compendium.sw5e.invocations.cpHSYCrMMYXo0jVD",
-            "Compendium.sw5e.invocations.Zw33VBxEljkdadiS",
-            "Compendium.sw5e.invocations.7dx1Y1MoG3petyem",
-            "Compendium.sw5e.invocations.zPl6y4xnwbJa9KE9",
-            "Compendium.sw5e.invocations.ULRFJJyR0F4SC2Vy",
-            "Compendium.sw5e.invocations.9L3X7rsNRVyo00Os",
-            "Compendium.sw5e.invocations.bvmiki36C4Q964qi",
-            "Compendium.sw5e.invocations.hQj8PcS221DCv4gB",
-            "Compendium.sw5e.invocations.kAEzEyhFnYB37Jcn",
-            "Compendium.sw5e.invocations.hMrt2je2IOjsncjA",
-            "Compendium.sw5e.invocations.Aq7FL0fsclTh6KwV",
-            "Compendium.sw5e.invocations.Amnk7r7sw81jQdyB",
-            "Compendium.sw5e.invocations.rDlLCHLtxISaLnYP",
-            "Compendium.sw5e.invocations.gwuJY56Mpk9U7lp7",
-            "Compendium.sw5e.invocations.yaBOvKxFv0iuVeqS",
-            "Compendium.sw5e.invocations.TSaSSyjlei8lKf79",
-            "Compendium.sw5e.invocations.lI5mGezQ30ldwFoX",
-            "Compendium.sw5e.invocations.4WLFv95FFu80frlr",
-            "Compendium.sw5e.invocations.hXaG0IRE3Q05WMNo",
-            "Compendium.sw5e.invocations.5Qwopz3L5yQI6sjl",
-            "Compendium.sw5e.invocations.vzPNg9WIkSRaqApp",
-            "Compendium.sw5e.invocations.MdhkJfryv1s50kDn",
-            "Compendium.sw5e.invocations.Rlaj24TEPFY9ojlL",
-            "Compendium.sw5e.invocations.UkOws7IBoRAweYPH",
-            "Compendium.sw5e.invocations.pPzFGygvNtAcgUPm",
-            "Compendium.sw5e.invocations.vHel8wfkH3JTATgN",
-            "Compendium.sw5e.invocations.JkqyVlbyhOYOEtFL",
-            "Compendium.sw5e.invocations.nOOoyylQ0oT0mvSa",
-            "Compendium.sw5e.invocations.7cW5VH2AqDgqdv0Y"
+            {
+              "uuid": "Compendium.sw5e.invocations.3hUDSm2zLWSo92bh"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.fhx71CDkkfvHxSdD"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.SFuYnpuRtguNYsyz"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.cpHSYCrMMYXo0jVD"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Zw33VBxEljkdadiS"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.7dx1Y1MoG3petyem"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.zPl6y4xnwbJa9KE9"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.ULRFJJyR0F4SC2Vy"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.9L3X7rsNRVyo00Os"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.bvmiki36C4Q964qi"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.hQj8PcS221DCv4gB"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.kAEzEyhFnYB37Jcn"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.hMrt2je2IOjsncjA"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Aq7FL0fsclTh6KwV"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Amnk7r7sw81jQdyB"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.rDlLCHLtxISaLnYP"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.gwuJY56Mpk9U7lp7"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.yaBOvKxFv0iuVeqS"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.TSaSSyjlei8lKf79"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.lI5mGezQ30ldwFoX"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.4WLFv95FFu80frlr"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.hXaG0IRE3Q05WMNo"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.5Qwopz3L5yQI6sjl"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.vzPNg9WIkSRaqApp"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.MdhkJfryv1s50kDn"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Rlaj24TEPFY9ojlL"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.UkOws7IBoRAweYPH"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.pPzFGygvNtAcgUPm"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.vHel8wfkH3JTATgN"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.JkqyVlbyhOYOEtFL"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.nOOoyylQ0oT0mvSa"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.7cW5VH2AqDgqdv0Y"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -181,7 +269,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -189,10 +277,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959772,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!ozOP9vSQ4uwXFdGQ"

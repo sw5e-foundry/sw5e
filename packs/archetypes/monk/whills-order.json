@@ -16,22 +16,22 @@
   "system": {
     "description": {
       "value": "<h1>Whills Order</h1>\n<p>Monks of the Whills Order hold the secrets of the Force sacred, and dedicate their lives to defending ancient  knowledge of the Force and its artifacts. They master the use of ranged weapons, often crafting their own weapons in respectful admiration of the Jedi tradition of crafting lightweapons.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "whillsorder",
     "classIdentifier": "monk",
     "advancement": [
       {
-        "_id": "QH7Ia4j2yR0XcFbC",
+        "_id": "19MVbPuUBQ98Ovau",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.VEOq69gg0l6lolMK"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.VEOq69gg0l6lolMK"
+            }
           ],
           "optional": false
         },
@@ -40,11 +40,13 @@
         "title": "Features"
       },
       {
-        "_id": "1RLQ4679HQDD1u03",
+        "_id": "HqPcRpmOGLv10QPB",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.aZhT3MroOAPBsYk3"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.aZhT3MroOAPBsYk3"
+            }
           ],
           "optional": false
         },
@@ -53,11 +55,13 @@
         "title": "Features"
       },
       {
-        "_id": "5SQOyRd7mIq1fH9w",
+        "_id": "1viDVMcERu56Pz6C",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.mCJv9MUv4Zp11I8G"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.mCJv9MUv4Zp11I8G"
+            }
           ],
           "optional": false
         },
@@ -66,11 +70,13 @@
         "title": "Features"
       },
       {
-        "_id": "TQBbCKAXr1RQdQTY",
+        "_id": "1snywPRjSvLb1IwB",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.R5H3i6PfQEzdXyz9"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.R5H3i6PfQEzdXyz9"
+            }
           ],
           "optional": false
         },
@@ -79,7 +85,7 @@
         "title": "Features"
       },
       {
-        "_id": "nvCv4JiqAj8pAziO",
+        "_id": "1inr4iJi7iGN1rFd",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -103,7 +109,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -111,10 +117,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959775,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!qrHsv2kIAuh551eP"

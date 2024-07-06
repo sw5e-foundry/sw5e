@@ -16,24 +16,28 @@
   "system": {
     "description": {
       "value": "<h1>Artillerist Technique (Companion)</h1>\n<p>While some scouts choose to foray alone, others like to have support. Followers of the Artillerist Technique master control of militant constructs, laying waste to the battlefield with their expertise</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "artilleristtechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "1NwJVoAKLKtI2ToJ",
+        "_id": "1PS8AwzO6U5ysDNv",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.KSqajpKgYLHHbrYN",
-            "Compendium.sw5e.archetypefeatures.SfvH2V4uE7tDAcex",
-            "Compendium.sw5e.archetypefeatures.eqaL31dUvumWiavd"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.KSqajpKgYLHHbrYN"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.SfvH2V4uE7tDAcex"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.eqaL31dUvumWiavd"
+            }
           ],
           "optional": false
         },
@@ -42,11 +46,13 @@
         "title": "Features"
       },
       {
-        "_id": "NXDb4neSgEg1TE5i",
+        "_id": "wmmBJTAHsEoOXXO0",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.fx08RPXw91EqjPsT"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.fx08RPXw91EqjPsT"
+            }
           ],
           "optional": false
         },
@@ -55,11 +61,13 @@
         "title": "Features"
       },
       {
-        "_id": "1vyUrgdGHTatGA7o",
+        "_id": "1cOPkXMIlSGXYXiw",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.LqbUKNqodgjoGUvt"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.LqbUKNqodgjoGUvt"
+            }
           ],
           "optional": false
         },
@@ -68,11 +76,13 @@
         "title": "Features"
       },
       {
-        "_id": "1LHfPcpsH4Ge1rEN",
+        "_id": "1uPYnZaimd3Z4Jj1",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.j2mJ1wVjN04WYs8c"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.j2mJ1wVjN04WYs8c"
+            }
           ],
           "optional": false
         },
@@ -81,7 +91,7 @@
         "title": "Features"
       },
       {
-        "_id": "1RkaUUWrY73wEGUO",
+        "_id": "XDLo4IhQVkm130nI",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -101,7 +111,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -109,10 +119,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959735,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!M2q46N6qURpjJ0AG"

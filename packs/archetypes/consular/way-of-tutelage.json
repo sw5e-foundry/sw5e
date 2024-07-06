@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Way of Tutelage</h1>\n<p>With the Force, knowledge is most often passed from a master to an apprentice. Those consulars who follow the Way of Tutelage know the strength of working together exceeds that of working alone.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "wayoftutelage",
     "classIdentifier": "consular",
     "advancement": [
       {
-        "_id": "eYIGGS3TFmmiZfQm",
+        "_id": "ZwoC6xrEF7W6pODF",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.qj30oDvuxAeE5dDT",
-            "Compendium.sw5e.archetypefeatures.tMH9nk8BcPjhdGpx"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.qj30oDvuxAeE5dDT"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.tMH9nk8BcPjhdGpx"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "14RtLFVZsCQstM9x",
+        "_id": "1dCGXJPwZk5CeM7t",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.aFi5QjHFdex1KgUF"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.aFi5QjHFdex1KgUF"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "nUtebTSIlb21LvW6",
+        "_id": "1yVSu9rXe9dOA4Ul",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.QbjPXbvMzzeKBhZ8"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.QbjPXbvMzzeKBhZ8"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "PjSdslU6wjC11wpM",
+        "_id": "RjWje2lWSrT1OWGU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.tfdhGE8jEUW6b4C2"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.tfdhGE8jEUW6b4C2"
+            }
           ],
           "optional": false
         },
@@ -80,11 +88,13 @@
         "title": "Features"
       },
       {
-        "_id": "9UuL4rwcadcPQYJ5",
+        "_id": "1oioROFF7DN21TlB",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.pPyeqnE1GnMeG1og"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pPyeqnE1GnMeG1og"
+            }
           ],
           "optional": false
         },
@@ -93,7 +103,7 @@
         "title": "Features"
       },
       {
-        "_id": "KEvP0tPsFER1x80q",
+        "_id": "9tNLE56vApB1GjPF",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -119,7 +129,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -127,10 +137,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959713,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!61riK6l2zP6h2eaG"

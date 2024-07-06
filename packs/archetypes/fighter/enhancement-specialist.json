@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Enhancement Specialist</h1>\n<p>Those fighters who choose to become Enhancement Specialists learn to apply their technological prowess to their blasters. With their deep understanding of both their weapon and how to manipulate its ammunition on the fly, they can often turn the tides of a battle with a single shot.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Ammunition Enhancements</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.1ui0usMgcu3ltRTe]{Carbonite shot}</li>\n<li>@Compendium[sw5e.invocations.QEDbsrXVZLmEQUKY]{Coercing shot}</li>\n<li>@Compendium[sw5e.invocations.YNyebOyvcX9vanR7]{Explosive shot}</li>\n<li>@Compendium[sw5e.invocations.yfFf4971uRTExdT0]{Hallucinogen shot}</li>\n<li>@Compendium[sw5e.invocations.uwrLn2xJzgxZbKyB]{Piercing shot}</li>\n<li>@Compendium[sw5e.invocations.jcdgGDu92cA0EyYu]{Quell shot}</li>\n<li>@Compendium[sw5e.invocations.erNtEGbyln1yHQXr]{Seeking shot}</li>\n</ul>"
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "enhancementspecialist",
     "classIdentifier": "fighter",
     "advancement": [
       {
-        "_id": "V02BTd6sn791dq0B",
+        "_id": "5bbvNlMIRd43nhJX",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.mHXnv3WYF2JEAB7n",
-            "Compendium.sw5e.archetypefeatures.IW35g90AQDat9ja4"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.mHXnv3WYF2JEAB7n"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.IW35g90AQDat9ja4"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "QQ7RbZki0gv1FfT4",
+        "_id": "DBvITuMCEnRXcbrm",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.N8aZQvTPQWB41dGD"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.N8aZQvTPQWB41dGD"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "C4vU5xQlR6fcE7ot",
+        "_id": "FCDK7ofIcngWNotQ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.m3M2C9172EHcPgsx"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.m3M2C9172EHcPgsx"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "w7bdIiQbivY1dGYD",
+        "_id": "1qp1GQG0ECqz1eeC",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.yAdyUqUHFck92mEd"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.yAdyUqUHFck92mEd"
+            }
           ],
           "optional": false
         },
@@ -80,11 +88,13 @@
         "title": "Features"
       },
       {
-        "_id": "1mpKEED5dPPc19x0",
+        "_id": "1EI8T0h9664t1jWk",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ZbwvEeTXEPwoApqc"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ZbwvEeTXEPwoApqc"
+            }
           ],
           "optional": false
         },
@@ -93,7 +103,7 @@
         "title": "Features"
       },
       {
-        "_id": "1kfLen0Xt8h1OyVU",
+        "_id": "1Ri8pTaGqr0Y1b1e",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -119,7 +129,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -127,10 +137,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959723,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!CiOp71RlWtYdyBPi"

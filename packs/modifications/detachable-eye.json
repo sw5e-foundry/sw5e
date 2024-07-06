@@ -13,41 +13,42 @@
   "system": {
     "description": {
       "value": "<h4>Cybernetic Augmentation (Replacement)</h4>\n <p>This augmentation replaces an eye.</p>\n<p>As an action, you can remove or replace this eye. While removed, the eye sprouts eight small legs, has a speed of 15 feet, an AC of 10, and 1 hit point. As an action on each of your turns, you can move the eye up to its speed as long as it is within 30 feet of you. You can see through both the detached eye and your remaining eye at the same time, or you can use your action to see through only one eye or the other.</p>\n<p><strong>Side Effect:</strong> While the eye is removed, you have disadvantage on Intelligence (Investigation) and Wisdom (Perception) checks that rely on sight beyond 5 feet.</p>\n<p><em>This eye replacement is a favored tool for the augmented spy.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "standard",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
       "units": "feet"
     },
@@ -55,16 +56,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,15 +82,26 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "cybernetic",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {}
-    }
+    "properties": {},
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "cybernetic",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -97,10 +110,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1673970648619,
-    "modifiedTime": 1699591687651,
+    "modifiedTime": 1720368844639,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "MEb4YRgcnvptizOK",

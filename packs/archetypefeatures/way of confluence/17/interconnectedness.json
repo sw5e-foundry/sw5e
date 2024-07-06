@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Way of Confluence:</strong> 14th and 17th level</em></p>\n<p>When you cast a 5th level or lower force power that deals damage or restores hit points and targets only one creature, the power can instead target two creatures within range and within 5 feet of each other. </p>\n<p>You can use this feature five times. You gain an additional use at 17th level. You regain all expended uses when you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Consular (Way of Confluence) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 5,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "5",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -91,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1679609438442,
-    "modifiedTime": 1699591595190,
+    "modifiedTime": 1720368702589,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "aWy6ZLnCyDBUG7tC",

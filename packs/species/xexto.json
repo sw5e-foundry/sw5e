@@ -9,37 +9,86 @@
   },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Xexto.webp",
-  "effects": [],
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Xexto are spindly invertebrates with four arms with six fingers and two legs with ten toes. Almond-shaped eyes dominate a small head perched atop a long neck. Their brain is split between two parts of their body; the part located in the skull controls primitive emotions and basic body functions, while another portion in their chest controls higher functions such as creative thinking and logic. It's believed that xexto's body structure and lightning-fast reflexes developed to help them escape predators while pursuing their own prey, there is no question that genetic manipulation forever altered their evolutionary development.</p>\n<h2>Society and Culture</h2>\n<p>Although the Old Republic had long since outlawed experimentation on sentient beings, unscrupulous arkanian geneticists continued to search for primitive sentients on distant planets as fodder for their experiments. One such group found the xexto's forbears- a society of loosely organized hunter-gatherer tribes taking shelter in the trees of Troiken. Independently, they developed technologically advanced civilizations, and were on the verge of attaining interstellar travel when Republic scouts contacted them. Difficult terrain and dangerous predators found on their homeworld have led many Xexto to admire and encourage risk-taking. Despite their thrillseeking nature and willingness to take risks, xexto are generally well mannered and even-tempered. Questioning a Xexto's bravery is one way to make him or her angry. </p>\n<h2>Names</h2>\n<p>Xexto have very unique names, often sounding odd to outsiders. Surnames are familiar but optional.</p>\n<p><strong>First Names.</strong> Babading, Cicity, Gastoro, Maila, Qinla</p>\n<p><strong>Surnames.</strong> Cherum, Hevad, Qatabas, Riived, Serap</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "xexto",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "climb": 25,
+      "burrow": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
     "advancement": [
       {
-        "_id": "ucpwOkhv2fKInTHQ",
+        "_id": "D7XJFPC3nugcIeeN",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.speciesfeatures.FYgJvF1UerpQFZtC",
-            "Compendium.sw5e.speciesfeatures.NJKrncq2brqiGhBj",
-            "Compendium.sw5e.speciesfeatures.ZoBVjFPSNW4y2M6I",
-            "Compendium.sw5e.speciesfeatures.YUzcVzAT3U0ClGm3",
-            "Compendium.sw5e.speciesfeatures.P7WfXOBWxM9vdsrc",
-            "Compendium.sw5e.speciesfeatures.fu7M4RhheybTZMAr",
-            "Compendium.sw5e.speciesfeatures.O0TLgziXjHW8X829",
-            "Compendium.sw5e.speciesfeatures.yL4Cj8fjJ7OEEO4S",
-            "Compendium.sw5e.speciesfeatures.5a1N31XMTsEQmYdk",
-            "Compendium.sw5e.speciesfeatures.2oCVjgINNhhdoXAY",
-            "Compendium.sw5e.speciesfeatures.bcHzZ5JVxjlMWbAi",
-            "Compendium.sw5e.speciesfeatures.OxN5lpJRvgl3Dne3",
-            "Compendium.sw5e.speciesfeatures.BE6eEL1qBb5zfU2M",
-            "Compendium.sw5e.speciesfeatures.aLeSUHrPR0cs7F0t"
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FYgJvF1UerpQFZtC"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.NJKrncq2brqiGhBj"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZoBVjFPSNW4y2M6I"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.YUzcVzAT3U0ClGm3"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.P7WfXOBWxM9vdsrc"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fu7M4RhheybTZMAr"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.O0TLgziXjHW8X829"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yL4Cj8fjJ7OEEO4S"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5a1N31XMTsEQmYdk"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2oCVjgINNhhdoXAY"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bcHzZ5JVxjlMWbAi"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.OxN5lpJRvgl3Dne3"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BE6eEL1qBb5zfU2M"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.aLeSUHrPR0cs7F0t"
+            }
           ],
           "optional": true
         },
@@ -48,7 +97,7 @@
         "title": "Features"
       },
       {
-        "_id": "PepgSneDYrVCtlht",
+        "_id": "dJww1NwBeuL1Se23",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -61,7 +110,7 @@
         "level": 0
       },
       {
-        "_id": "CZwk8lF3iUq1dJwP",
+        "_id": "1kgTabJwlmHbrRWv",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -72,7 +121,7 @@
         "level": 0
       },
       {
-        "_id": "1oz2OoaintjB1Etj",
+        "_id": "nfRk8zqluDPm3IdU",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -92,10 +141,6 @@
         "level": 0
       }
     ],
-    "details": {
-      "isDroid": false
-    },
-    "-=traits": null,
     "skinColorOptions": {
       "value": "Chalk white to pale yellow"
     },
@@ -106,7 +151,7 @@
       "value": "Dark blue or black"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Four arms, long necks, spindly limbs"
@@ -129,14 +174,18 @@
     "slanguage": {
       "value": "Xextese"
     },
-    "-=damage": null,
-    "-=armorproperties": null,
-    "-=weaponproperties": null,
-    "movement": {
-      "walk": 25,
-      "climb": 25
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "2U1s5H6aA5YKNtFO",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -144,12 +193,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1667426105596,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_id": "CqnGvaNtaURCmLYO",
-  "_key": "!items!CqnGvaNtaURCmLYO"
+  "_key": "!items!2U1s5H6aA5YKNtFO"
 }

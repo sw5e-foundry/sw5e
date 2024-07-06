@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Path of Communion</h1>\n<p>Those who master the Force can transcend death, persisting beyond their natural experation. Those sentinels who follow the Path of Communion bond with a Force ghost, developing a symbiotic relationship which alters the way they perceive their surroundings.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "pathofcommunion",
     "classIdentifier": "sentinel",
     "advancement": [
       {
-        "_id": "gNwXdRXabmx6LGQe",
+        "_id": "gg669yuuLKUqzCLX",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.XkMWMdiqpquvZDIl",
-            "Compendium.sw5e.archetypefeatures.X6TVdZMcu1hlgH7l"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.XkMWMdiqpquvZDIl"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.X6TVdZMcu1hlgH7l"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "JbgeDIIe0h01brqg",
+        "_id": "dyoDfSteIIkNG1mP",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.kAYHyZ2j11MuED94"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.kAYHyZ2j11MuED94"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "11LtDZ67SSHO1bXJ",
+        "_id": "ofRYYvxXaPQ1G27s",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.clyjD2vr3rdXLqrI"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.clyjD2vr3rdXLqrI"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "DpHS84FyJFgo7DvZ",
+        "_id": "8DyQRgzOog1NBy6x",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.G9NlcRAQ2yP8Dkmc"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.G9NlcRAQ2yP8Dkmc"
+            }
           ],
           "optional": false
         },
@@ -87,7 +95,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +103,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959787,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!z86UNeuCm2yckt4i"

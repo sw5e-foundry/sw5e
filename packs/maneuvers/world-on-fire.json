@@ -16,18 +16,19 @@
   "system": {
     "description": {
       "value": "<p>On your turn, when you hit with a weapon attack, you can use a bonus action to expend and roll one superiority die to ignite phosphorescent powder on your target, dealing extra fire damage equal to the result of the roll. Additionally, the target sheds dim light in a 5-foot radius and can't become invisible until the end of your next turn, and becomes visible if it was already invisible.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": null,
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "turn"
     },
     "cover": null,
@@ -36,28 +37,29 @@
       "value": "5",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,17 +80,34 @@
       "dc": null,
       "scaling": "power"
     },
-    "maneuverType": "physical"
+    "type": {
+      "value": "physical",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {},
+    "recharge": {
+      "value": null,
+      "charged": false
+    }
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493983291,
-    "modifiedTime": 1699591675210,
+    "modifiedTime": 1720368793952,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!WGBSbJPBKpSAOQ2W"

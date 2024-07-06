@@ -1,8 +1,182 @@
 {
-  "_id": "H8CHzVz9ltcdXzlb",
   "name": "Gungan",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9156216+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-gungan"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Gungan.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Starting life as tadpoles, Gungans develop into tall beings with extremely flexible cartilaginous skeletons. Strong leg muscles allow for powerful and quick frog-kick style swimming through water as well as a remarkable jumping ability while on land. Fin-like ears (called haillu) also aid them in swimming, as well as expressing emotions like aggression, friendship, and fear. They have partially retractable eyestalks with nictitating membranes when underwater. Green eyes are unusual amongst Gungans.</p>\n<h2>Society and Culture</h2>\n<p>Gungans are generally a generous and peaceful species. They truly love to have visitors and warmly welcome them; however, they would remain suspicious until the visitors have earned their respect. Gungans are not tolerant of anyone who threatens their peaceful culture. They have very strict laws, and will go to the extremes to punish anyone who has committed a minor crime. Vandals, for example, can be given a sentence of exile, caning, or even stoning.</p>\n<p>If a Gungan is cast out of society, it is very difficult for them to return. If they do manage to return legally, they are often subjected to heavy discrimination. This can make life very difficult for them and can go on for months or years, until their past offenses disappear from memory. Returning back to the settlement they were exiled from illegally will sometimes result in the death penalty, especially if they brought along outsiders. </p>\n<h2>Names</h2>\n<p>Gungan names are often repeated syllables hyphenated.</p>\n<p><strong>Male Names.</strong> Crinn-Crinn, Gic, Noc-Noc, Wal</p>\n<p><strong>Female Names.</strong> Hew, Khi, La-La, Phro-Phro, Yuss</p>\n<p><strong>Surnames.</strong> Baud, Gos, Jalles, Mag, Wub</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "gungan",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "swim": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "16OGXX7S4f9sV3ah",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IelPdPMH1gJyx0kh"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jmCdeu5wHsTYfhbg"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.s101yjyroISTkxd4"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jtqh1UBvY2Ex0fhn"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.UAbrPLTTzRTeWAmr"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PjTLuerpWpRe3SN4"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wjRThA5n89EiCl0W"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wDNjhhBnTQCh2c4o"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.w6hfmi72emnHi42X"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ssmyqY68WrOonEw8"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.qmwxY2CRwBsSqNgJ"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HJAbRfAza1AWCNH5"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KYDok35mYJk5HHfr"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "159O7cayLZnHIgbk",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "str": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1BymGgZiTzbb1vr4",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1CloKt3sC074fjvl",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "armor:lgt",
+            "armor:med",
+            "weapon:techstaff",
+            "weapon:vibropike"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Blue, brown, or green"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Light colors"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Extendable tongues, long ears, eye stalks, three toes, aquatic species"
+    },
+    "heightAverage": {
+      "value": "5'5\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "115 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Naboo"
+    },
+    "slanguage": {
+      "value": "Gungan"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "kgqVkH4CH10efNNT",
@@ -104,150 +278,22 @@
       "name": "Gungan",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!H8CHzVz9ltcdXzlb.kgqVkH4CH10efNNT"
+      "_key": "!items.effects!NbslJdzeZMVkgn20.kgqVkH4CH10efNNT"
     }
   ],
+  "_id": "NbslJdzeZMVkgn20",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9156216+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-gungan"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Starting life as tadpoles, Gungans develop into tall beings with extremely flexible cartilaginous skeletons. Strong leg muscles allow for powerful and quick frog-kick style swimming through water as well as a remarkable jumping ability while on land. Fin-like ears (called haillu) also aid them in swimming, as well as expressing emotions like aggression, friendship, and fear. They have partially retractable eyestalks with nictitating membranes when underwater. Green eyes are unusual amongst Gungans.</p>\n<h2>Society and Culture</h2>\n<p>Gungans are generally a generous and peaceful species. They truly love to have visitors and warmly welcome them; however, they would remain suspicious until the visitors have earned their respect. Gungans are not tolerant of anyone who threatens their peaceful culture. They have very strict laws, and will go to the extremes to punish anyone who has committed a minor crime. Vandals, for example, can be given a sentence of exile, caning, or even stoning.</p>\n<p>If a Gungan is cast out of society, it is very difficult for them to return. If they do manage to return legally, they are often subjected to heavy discrimination. This can make life very difficult for them and can go on for months or years, until their past offenses disappear from memory. Returning back to the settlement they were exiled from illegally will sometimes result in the death penalty, especially if they brought along outsiders. </p>\n<h2>Names</h2>\n<p>Gungan names are often repeated syllables hyphenated.</p>\n<p><strong>Male Names.</strong> Crinn-Crinn, Gic, Noc-Noc, Wal</p>\n<p><strong>Female Names.</strong> Hew, Khi, La-La, Phro-Phro, Yuss</p>\n<p><strong>Surnames.</strong> Baud, Gos, Jalles, Mag, Wub</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "gungan",
-    "advancement": [
-      {
-        "_id": "vmL3q9QKqfG2kLsr",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.IelPdPMH1gJyx0kh",
-            "Compendium.sw5e.speciesfeatures.jmCdeu5wHsTYfhbg",
-            "Compendium.sw5e.speciesfeatures.s101yjyroISTkxd4",
-            "Compendium.sw5e.speciesfeatures.jtqh1UBvY2Ex0fhn",
-            "Compendium.sw5e.speciesfeatures.UAbrPLTTzRTeWAmr",
-            "Compendium.sw5e.speciesfeatures.PjTLuerpWpRe3SN4",
-            "Compendium.sw5e.speciesfeatures.wjRThA5n89EiCl0W",
-            "Compendium.sw5e.speciesfeatures.wDNjhhBnTQCh2c4o",
-            "Compendium.sw5e.speciesfeatures.w6hfmi72emnHi42X",
-            "Compendium.sw5e.speciesfeatures.ssmyqY68WrOonEw8",
-            "Compendium.sw5e.speciesfeatures.qmwxY2CRwBsSqNgJ",
-            "Compendium.sw5e.speciesfeatures.HJAbRfAza1AWCNH5",
-            "Compendium.sw5e.speciesfeatures.KYDok35mYJk5HHfr"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "EjYVTpts2lh1gpeM",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "dex": 2,
-            "str": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1U8xy2KM1WUq1m5z",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "Lqj9q37CEUcGiFAR",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "armor:lgt",
-            "armor:med",
-            "weapon:techstaff",
-            "weapon:vibropike"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Blue, brown, or green"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Light colors"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Extendable tongues, long ears, eye stalks, three toes, aquatic species"
-    },
-    "heightAverage": {
-      "value": "5'5\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "115 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Naboo"
-    },
-    "slanguage": {
-      "value": "Gungan"
-    },
-    "movement": {
-      "walk": 30,
-      "swim": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002076,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!H8CHzVz9ltcdXzlb"
+  "_key": "!items!NbslJdzeZMVkgn20"
 }

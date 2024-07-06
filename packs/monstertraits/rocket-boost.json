@@ -7,27 +7,29 @@
   "system": {
     "description": {
       "value": "<p>The {creature} leaps up to 40 feet in any direction.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "none",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 0,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -38,20 +40,21 @@
       "value": 1,
       "max": "1",
       "per": "day",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
-      "damage": null
+      "damage": ""
     },
     "damage": {
       "parts": [],
@@ -68,7 +71,7 @@
       "subtype": ""
     },
     "recharge": {
-      "value": 0,
+      "value": null,
       "charged": false
     },
     "attributes": {
@@ -77,20 +80,26 @@
         "turn": null
       }
     },
-    "powercasting": {
-      "force": "none",
-      "tech": "none"
-    }
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1669752944705,
-    "modifiedTime": 1699591681498,
+    "modifiedTime": 1720368816148,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "folder": null,

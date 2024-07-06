@@ -1,11 +1,5 @@
 {
-  "_id": "PR0fOTHhNGg5t4bM",
   "name": "Surprise Attack",
-  "type": "feat",
-  "img": "systems/sw5e/packs/Icons/Species/Defel.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.6189366+00:00",
@@ -13,53 +7,46 @@
       "uid": "Feature.name-surprise_attack.source-species.sourceName-defel.level-None"
     }
   },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Species/Defel.webp",
   "system": {
     "description": {
       "value": "<p>If you surprise a creature and hit it with an attack on your first turn in combat, the attack deals an extra [[/r 2d6]] damage to it. You can use this trait only once per combat.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Defel",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": null,
     "damage": {
       "parts": [
         [
@@ -79,25 +66,55 @@
       "value": "species",
       "subtype": ""
     },
-    "recharge": "",
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {},
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
-        "space": null,
-        "turn": null
+        "space": 300,
+        "turn": 250
       }
-    },
-    "className": null
+    }
   },
+  "effects": [],
+  "_id": "gqYPmMvhmO3kxvNk",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
-    "createdTime": 1674494003217,
-    "modifiedTime": 1695981492641,
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296029297,
+    "modifiedTime": 1720368910033,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!PR0fOTHhNGg5t4bM"
+  "_key": "!items!gqYPmMvhmO3kxvNk"
 }

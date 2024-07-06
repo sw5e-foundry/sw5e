@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Shadow Killer Practice:</strong> 3rd level</em></p>\n<p>You learn to combine poison and stealth to perform assassination techniques. When you deal Sneak Attack damage to a creature you may choose to forgo two of your Sneak Attack dice to make the attack a dark art.</p>\n<p><em></em>_</p>\n<p><strong>Dark Arts save DC</strong> = 8 + your proficiency bonus + your Intelligence modifier</p>\n<p><em></em>_</p>\n<h3>Envenomed Art</h3>\n<p>You attempt to poison the target. The target must make a Constitution saving throw or be poisoned until the end of your next turn.</p>\n<h3>Hallucinatory Art</h3>\n<p>You attempt to blind the target. The target must make a Wisdom saving throw or be blinded until the end of your next turn.</p>\n<h3>Vanishing Art</h3>\n<p>You feint to momentarily disappear from your target's purview. The target must make a Dexterity saving throw. On a failure, you can move up to 10 feet without provoking opportunity attacks from the target.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Shadow Killer Practice) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -91,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1679609438430,
-    "modifiedTime": 1699591595217,
+    "modifiedTime": 1720368711926,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "ohDu7r97o9itdhs9",

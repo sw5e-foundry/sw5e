@@ -10,27 +10,29 @@
   "system": {
     "description": {
       "value": "<p>As of 5th rank, you learn to briefly and massively boost your ship's system. When you use a technique that uses a bonus action, you can use another, different technique that also uses a bonus action this turn. Additionally, instead of rolling your Tech die for these uses, you can choose to take the maximum.</p><p>Once you've used this feature, you must finish a short or long rest before you can use it again.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Mechanic 5th Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "none",
       "cost": null,
       "condition": "When you use a technique that uses a bonus action"
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -41,16 +43,17 @@
       "value": 1,
       "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,25 +83,26 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Mechanic"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "5th Rank"
-    }
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963457,
-    "modifiedTime": 1699591629489,
+    "modifiedTime": 1720368730254,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!iq1avDe2RfQ7N5qR"

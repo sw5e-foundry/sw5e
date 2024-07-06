@@ -1,8 +1,173 @@
 {
-  "_id": "MjtvfR08Q8DviodT",
   "name": "Barabel",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.272138+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-barabel"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Barabel.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Barabel are a bipedal species of reptilians who are covered in very tough dark colored scales. Evolved from nocturnal lizards, the Barabel adapted a thick layer of fat which allowed them to remain active and not sluggish when temperatures dropped. A blaster set on stun would not damage them at all or slow them down, as it would merely bounce off their scales. Barabel are able to shed their tails if necessary, an ability that proved the undoing of many startled foes. They also possess heavy retractable claws along with needle sharp teeth which can grow to be 2 inches in length. A carnivorous species, Barabel possess two stomachs in order to process the massive amount of food they required to survive.</p>\n<h2>Society and Culture</h2>\n<p>Living in low tech communities ranging from a few dozen individuals to no more than ten thousand, the Barabel community is built around a warren where the group thrives and hunted from. The Barabel species is noted for its hunting and tracking prowess; many of their actions are fueled by their hunting instincts, leading to the general feeling that Barabel are always angry. They are well known for their aggression but are also extremely loyal. They also have a great deal of respect for the Jedi because of their first experiences with a Jedi Master who settled a dangerous clan dispute. Apologies, whether for a misdeed or in sympathy, are an unknown concept to Barabel and are considered insulting.</p>\n<h2>Names</h2>\n<p>Barabel names are harsh and gutteral. Female names are often softer. Surnames are warren-based.</p>\n<p><strong>Male Names.</strong> Anidroks, Bridiz, Trurzuk, Vilzinok</p>\n<p><strong>Female Names.</strong> Alge, Bulzo, Ekthamo, Inako, Nolku</p>\n<p><strong>Surnames.</strong> Akken, Dutarca, Khigta, Srabulgid, Zhomo</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "barabel",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "A9KrcC8Ax5v5tSgP",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vzuoARfib39NC8BU"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jBwdRes5aLzf9Wj0"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VhDBwNEt0FrLwE7x"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2cKG88N166kLc9oN"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PPnaqlWBxZWGzZFr"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bH36jAWdxwCVet0X"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.utzg9dlA8m4q0u6O"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PHrdAQ8oHYv12qxu"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BB6FpKatRdihEh7r"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BWXfbxtMAe73iYFF"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BAbwLkqCytJqgQfY"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1TVR3xenFakwz1b9",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "dex": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "luv1cJluAIl1aCWC",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "16ulMx4sAM2mxuDV",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:sur"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Black, green, grey, or red"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black or red"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Four-fingered hands, two inch long teeth"
+    },
+    "heightAverage": {
+      "value": "5'7\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "140 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Barab I"
+    },
+    "slanguage": {
+      "value": "Barabel"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "rZWNCSEJqZsjLbV5",
@@ -68,144 +233,22 @@
       "name": "Barabel",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!MjtvfR08Q8DviodT.rZWNCSEJqZsjLbV5"
+      "_key": "!items.effects!8Bpiq77nADOdC2bU.rZWNCSEJqZsjLbV5"
     }
   ],
+  "_id": "8Bpiq77nADOdC2bU",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.272138+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-barabel"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Barabel are a bipedal species of reptilians who are covered in very tough dark colored scales. Evolved from nocturnal lizards, the Barabel adapted a thick layer of fat which allowed them to remain active and not sluggish when temperatures dropped. A blaster set on stun would not damage them at all or slow them down, as it would merely bounce off their scales. Barabel are able to shed their tails if necessary, an ability that proved the undoing of many startled foes. They also possess heavy retractable claws along with needle sharp teeth which can grow to be 2 inches in length. A carnivorous species, Barabel possess two stomachs in order to process the massive amount of food they required to survive.</p>\n<h2>Society and Culture</h2>\n<p>Living in low tech communities ranging from a few dozen individuals to no more than ten thousand, the Barabel community is built around a warren where the group thrives and hunted from. The Barabel species is noted for its hunting and tracking prowess; many of their actions are fueled by their hunting instincts, leading to the general feeling that Barabel are always angry. They are well known for their aggression but are also extremely loyal. They also have a great deal of respect for the Jedi because of their first experiences with a Jedi Master who settled a dangerous clan dispute. Apologies, whether for a misdeed or in sympathy, are an unknown concept to Barabel and are considered insulting.</p>\n<h2>Names</h2>\n<p>Barabel names are harsh and gutteral. Female names are often softer. Surnames are warren-based.</p>\n<p><strong>Male Names.</strong> Anidroks, Bridiz, Trurzuk, Vilzinok</p>\n<p><strong>Female Names.</strong> Alge, Bulzo, Ekthamo, Inako, Nolku</p>\n<p><strong>Surnames.</strong> Akken, Dutarca, Khigta, Srabulgid, Zhomo</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "barabel",
-    "advancement": [
-      {
-        "_id": "yuxZdrwqTdL1rFg4",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.vzuoARfib39NC8BU",
-            "Compendium.sw5e.speciesfeatures.jBwdRes5aLzf9Wj0",
-            "Compendium.sw5e.speciesfeatures.VhDBwNEt0FrLwE7x",
-            "Compendium.sw5e.speciesfeatures.2cKG88N166kLc9oN",
-            "Compendium.sw5e.speciesfeatures.PPnaqlWBxZWGzZFr",
-            "Compendium.sw5e.speciesfeatures.bH36jAWdxwCVet0X",
-            "Compendium.sw5e.speciesfeatures.utzg9dlA8m4q0u6O",
-            "Compendium.sw5e.speciesfeatures.PHrdAQ8oHYv12qxu",
-            "Compendium.sw5e.speciesfeatures.BB6FpKatRdihEh7r",
-            "Compendium.sw5e.speciesfeatures.BWXfbxtMAe73iYFF",
-            "Compendium.sw5e.speciesfeatures.BAbwLkqCytJqgQfY"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "3PFaFBIBsxMqr2aG",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "con": 2,
-            "dex": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1538bghlgoWv10yX",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "SipEWbfQgZl1lv83",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:sur"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Black, green, grey, or red"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black or red"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Four-fingered hands, two inch long teeth"
-    },
-    "heightAverage": {
-      "value": "5'7\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "140 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Barab I"
-    },
-    "slanguage": {
-      "value": "Barabel"
-    },
-    "movement": {
-      "walk": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002089,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!MjtvfR08Q8DviodT"
+  "_key": "!items!8Bpiq77nADOdC2bU"
 }

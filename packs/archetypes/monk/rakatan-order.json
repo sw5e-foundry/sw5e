@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:15.1744539+00:00",
+      "timestamp": "2023-05-30T20:14:20.0011203+00:00",
       "importer_version": 3,
       "uid": "Archetype.name-rakatan_order"
     }
@@ -16,22 +16,22 @@
   "system": {
     "description": {
       "value": "<h1>Rakatan Order</h1>\n<p>Monks of the Rakatan Order believe in the harmony of self with technology. They use tech to push themselves beyond their body's natural limits.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "rakatanorder",
     "classIdentifier": "monk",
     "advancement": [
       {
-        "_id": "1hYAjUyOJWyd2TD8",
+        "_id": "1V87ezktc2Ud1Ik0",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.wh10BfOQCECFZCC6"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.wh10BfOQCECFZCC6"
+            }
           ],
           "optional": false
         },
@@ -40,11 +40,13 @@
         "title": "Features"
       },
       {
-        "_id": "1oAnsfYLzLiC1heq",
+        "_id": "1wxswV9zycqW1c2U",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.E0Fi3UDnVx3oUGZb"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.E0Fi3UDnVx3oUGZb"
+            }
           ],
           "optional": false
         },
@@ -53,11 +55,13 @@
         "title": "Features"
       },
       {
-        "_id": "1AyQ5RxYdYBu1w9s",
+        "_id": "1S28wgRq6BQ6Niv1",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.HKxCbk25ZvYyfVaU"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.HKxCbk25ZvYyfVaU"
+            }
           ],
           "optional": false
         },
@@ -66,11 +70,13 @@
         "title": "Features"
       },
       {
-        "_id": "1TGsvWMOSW7Q1fkX",
+        "_id": "1lmSxxF81FAoYhIx",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.899urmhys6ck1MUF"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.899urmhys6ck1MUF"
+            }
           ],
           "optional": false
         },
@@ -86,7 +92,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -94,10 +100,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959736,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!MQm8qCUgy5ln4L8B"

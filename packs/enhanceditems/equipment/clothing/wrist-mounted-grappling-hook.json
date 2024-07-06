@@ -13,38 +13,41 @@
   "system": {
     "description": {
       "value": "<h4>Adventuring Gear (Forearm)</h4>\n <p>You craft a wrist-mounted grappling hook weapon attached to a tightly coiled cord. With this grappler, you can make a ranged weapon attack with a range of 30/60. On a hit, it deals [[/r 1d4]] kinetic damage. This attack can target a surface, object, or creature.</p>\n<p>A creature struck by this attack is impaled by the hook. As an action, a creature can attempt to remove the hook. Removing the hook requires a DC 13 Strength check. While the hook is stuck in the target, you are connected to the target by a 60 foot cable.</p>\n<p>While the hook is deployed, you can use your bonus action to activate the reel, pulling yourself to the location if the target is your size or larger. A creature or object smaller than you is pulled to you. Alternatively, you can opt to release the cable (no action required).</p>\n<p>Once you've used this feature, you can't use it again until you recover and reinsert the hook as an action.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "standard",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -53,18 +56,19 @@
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "charges",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -87,8 +91,8 @@
     },
     "armor": {
       "value": null,
-      "type": "clothing",
-      "dex": null
+      "dex": null,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -127,18 +131,31 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null
+      "changes": {}
     },
-    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": 1,
+    "_propertyValues": {},
+    "type": {
+      "value": "clothing",
+      "baseItem": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -147,10 +164,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426100794,
-    "modifiedTime": 1699981618833,
+    "modifiedTime": 1720402276225,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "KBNEdtBbMz4xeYHp",

@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Way of Suggestion:</strong> 18th level</em></p>\n<p>You've learned how to weave the Force around you in a cloak of your choice. As an action, you can focus the Force for 10 minutes. For the duration, you gain your choice of one of the following effects.</p>\n<p>You can use each feature once. You regain all expended uses when you complete a long rest.</p>\n<h3>Cloak of Fright</h3>\n<p>Each creature of your choice that is within 60 feet must succeed on a Wisdom saving throw against your universal force save DC or become frightened for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.</p>\n<h3>Cloak of Invisibility</h3>\n<p>You and everything you are wearing or carrying become invisible to creatures of your choice. If you damage a creature or affect it with a force power, it can make a Wisdom saving throw against your universal force save DC. On a success, you are no longer invisible to that creature.</p>\n<h3>Cloak of Memory</h3>\n<p>Creatures that see you or any allies within 30 feet of you during this time cannot recall your physical appearances, your mannerisms, or any other identifying features.</p>\n<p>Creatures that interact with you must make a Wisdom saving throw against your universal force save DC once the interaction ends. You can choose to exclude a creature from this effect. On a failed save, the creature forgets all details of the interaction, rationalizing any of its outcomes.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Consular (Way of Suggestion) 18",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -33,33 +34,37 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -84,17 +89,26 @@
         "turn": null
       }
     },
-    "className": "Consular"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493958130,
-    "modifiedTime": 1699591595219,
+    "modifiedTime": 1720368712907,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!pWu7ql7UFckNjgmK"

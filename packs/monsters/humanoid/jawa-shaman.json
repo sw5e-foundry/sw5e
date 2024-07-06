@@ -15,18 +15,19 @@
       "system": {
         "description": {
           "value": "<p>The jawa can take the Disengage or Hide action as a bonus action on each of its turns.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -35,31 +36,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -76,7 +79,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -85,10 +88,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -115,18 +124,19 @@
       "system": {
         "description": {
           "value": "<p>The jawa is a 4th-level forcecaster. Its forcecasting ability is Wisdom (save DC 12, +4 to hit with power attacks). The jawa has 18 force points and knows the following powers: At will: affect mind, give life, spare the dying 1st level: beast trick, heal, heroism 2nd level: restoration, stun</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -135,31 +145,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -176,7 +188,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -185,10 +197,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -215,29 +233,31 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+2, Reach 5 ft., One target. <em>Hit : </em>5 (2d4) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -246,31 +266,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
-          "long": "",
+          "long": null,
           "units": "ft"
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -301,12 +323,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -315,61 +334,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -396,18 +380,19 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>The jawa cowers pathetically to distract nearby foes. Until the end of its next turn, its allies gain advantage on attack rolls against any target within 10 feet of the jawa.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -416,31 +401,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -457,7 +444,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -466,10 +453,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -494,7 +487,10 @@
           "sourceId": "Compendium.sw5e.forcepowers.b2MvrTaXlisYe2A4"
         },
         "sw5e": {
-          "dataVersion": "1.2.4"
+          "dataVersion": "1.2.4",
+          "migratedProperties": [
+            "concentration"
+          ]
         }
       },
       "img": "systems/sw5e/packs/Icons/Force%20Powers/AffectMind.webp",
@@ -503,11 +499,11 @@
       "system": {
         "description": {
           "value": "<p>Choose a target within range that isn't hostile toward you. The target must make a Wisdom saving throw. On a failed save, you have advantage on all Charisma checks directed at that target.</p>\n<p>On a successful save, the creature does not realize that you tried to use the Force to influence its mood, but it becomes immune to this power for one day. This power has no effect on droids or constructs.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "PHB",
+        "source": {
+          "custom": "PHB"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -520,10 +516,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": 30,
@@ -532,22 +529,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "save",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -561,14 +559,6 @@
         },
         "level": 0,
         "school": "uni",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": true,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -583,16 +573,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -626,11 +613,11 @@
       "system": {
         "description": {
           "value": "<p>Placing your hand on another creature you can transfer your own life force to them. You spend and roll one of your hit dice and the creature regains that many hit points. This power has no effect on droids or constructs.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "PHB",
+        "source": {
+          "custom": "PHB"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -643,10 +630,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -655,22 +643,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -684,14 +673,6 @@
         },
         "level": 0,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -706,16 +687,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -749,11 +727,11 @@
       "system": {
         "description": {
           "value": "<p>You touch a living creature that has 0 hit points. The creature becomes stable. This power has no effect on droids or constructs.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "PHB",
+        "source": {
+          "custom": "PHB"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -766,10 +744,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -778,22 +757,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -807,14 +787,6 @@
         },
         "level": 0,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -829,16 +801,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -872,11 +841,11 @@
       "system": {
         "description": {
           "value": "<p>This power lets you distract a beast. Choose a beast that you can see within range. If the beast's Intelligence is 4 or higher, the power fails. Otherwise, the beast must succeed on a Wisdom saving throw or be charmed by you for the power's duration. If you or one of your companions harms the target, the power ends.</p>\n<p><em><strong>Force Potency.</strong></em>&nbsp;When you cast this power using a force slot of 2nd level or higher, you can affect one additional beast for each slot level above 1st.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "PHB",
+        "source": {
+          "custom": "PHB"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -889,10 +858,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": 30,
@@ -901,22 +871,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -930,14 +901,6 @@
         },
         "level": 1,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -952,16 +915,13 @@
           "mode": "level",
           "formula": "1 additional beast"
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -995,11 +955,11 @@
       "system": {
         "description": {
           "value": "<p>A creature you touch regains a number of hit points equal to 1d8 + your forcecasting ability modifier. This power has no effect on droids or constructs.</p>\n<p><em><strong>Force Potency.</strong></em>&nbsp;When you cast this power using a force slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "PHB",
+        "source": {
+          "custom": "PHB"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1012,10 +972,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1024,22 +985,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "heal",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -1058,14 +1020,6 @@
         },
         "level": 1,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1080,16 +1034,13 @@
           "mode": "level",
           "formula": "1d8"
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1114,7 +1065,10 @@
           "sourceId": "Compendium.sw5e.forcepowers.LdtNnD37NnOsg8oF"
         },
         "sw5e": {
-          "dataVersion": "1.2.4"
+          "dataVersion": "1.2.4",
+          "migratedProperties": [
+            "concentration"
+          ]
         }
       },
       "img": "icons/svg/mystery-man.svg",
@@ -1123,11 +1077,11 @@
       "system": {
         "description": {
           "value": "<p>A willing creature you touch is imbued with bravery. Until the power ends, the creature is immune to being frightened and gains temporary hit points equal to your forcecasting ability modifier at the start of each of its turns. When the power ends, the target loses any remaining temporary hit points from this power.</p>\n<p><em><strong>Force Potency.</strong></em>&nbsp;When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "PHB",
+        "source": {
+          "custom": "PHB"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1140,10 +1094,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1152,22 +1107,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "heal",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -1186,14 +1142,6 @@
         },
         "level": 1,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": true,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1208,16 +1156,13 @@
           "mode": "level",
           "formula": "1 additional creature"
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1251,11 +1196,11 @@
       "system": {
         "description": {
           "value": "<p>You touch a creature and end either one disease or one condition afflicting it. The condition can be blinded, deafened, paralyzed, or poisoned.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "PHB",
+        "source": {
+          "custom": "PHB"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1268,10 +1213,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1280,22 +1226,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1309,14 +1256,6 @@
         },
         "level": 2,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": false,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1331,16 +1270,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1365,7 +1301,10 @@
           "sourceId": "Compendium.sw5e.forcepowers.8UOBsZEV8esbx6IG"
         },
         "sw5e": {
-          "dataVersion": "1.2.4"
+          "dataVersion": "1.2.4",
+          "migratedProperties": [
+            "concentration"
+          ]
         }
       },
       "img": "icons/svg/mystery-man.svg",
@@ -1374,11 +1313,11 @@
       "system": {
         "description": {
           "value": "<p>Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the power ends on the target.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "PHB",
+        "source": {
+          "custom": "PHB"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1391,10 +1330,11 @@
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": 60,
@@ -1403,22 +1343,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "save",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1432,14 +1373,6 @@
         },
         "level": 2,
         "school": "lgt",
-        "components": {
-          "vocal": false,
-          "somatic": false,
-          "material": false,
-          "ritual": false,
-          "concentration": true,
-          "value": ""
-        },
         "materials": {
           "value": "",
           "consumed": false,
@@ -1454,16 +1387,13 @@
           "mode": "none",
           "formula": ""
         },
-        "armorproperties": {
-          "parts": []
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "weaponproperties": {
-          "parts": []
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "enchantment": null,
+        "summons": null,
+        "properties": {}
       },
       "ownership": {
         "default": 0
@@ -1497,14 +1427,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "dex": {
         "value": 14,
@@ -1513,14 +1436,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "con": {
         "value": 12,
@@ -1529,14 +1445,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "int": {
         "value": 10,
@@ -1545,14 +1454,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "wis": {
         "value": 14,
@@ -1561,14 +1463,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "cha": {
         "value": 8,
@@ -1577,14 +1472,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -1,
-        "save": -1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 9
+        }
       },
       "hon": {
         "value": 8,
@@ -1592,7 +1480,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 14,
@@ -1600,41 +1489,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 12,
         "calc": "natural",
-        "formula": "",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 27,
         "max": 27,
         "temp": 0,
         "tempmax": 0,
-        "formula": "6d6+6",
-        "min": 0
+        "formula": "6d6+6"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -1657,16 +1542,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": 18,
-          "temp": null,
-          "tempmax": null
-        },
-        "known": {
-          "value": 8,
-          "max": 0
-        },
-        "level": 4
+          "temp": null
+        }
       },
       "tech": {
         "points": {
@@ -1675,16 +1553,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": null,
-          "tempmax": null
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": null
+        }
       },
       "super": {
         "dice": {
@@ -1695,57 +1566,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "consular",
-      "prof": 2,
-      "powerdc": 10,
-      "bar1": {
-        "value": 27,
-        "min": 0,
-        "max": 27
-      },
-      "bar2": {
-        "value": 12,
-        "min": 0,
-        "max": 0
-      },
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false,
-      "encumbrance": {
-        "value": 1,
-        "max": 150,
-        "pct": 0.6666666666666666,
-        "encumbered": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
       },
-      "powerForceLightDC": 12,
-      "powerForceDarkDC": 9,
-      "powerForceUnivDC": 12,
-      "powerTechDC": 10
+      "hd": {
+        "spent": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"I can't abide those Jawas! Disgusting creatures!\"</i></p><p>- C-3PO</p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Average height</u></td><td style=\"line-height:1.42857\">1 meter</td></tr><tr><td style=\"line-height:1.42857\"><u>Average mass</u></td><td style=\"line-height:1.42857\">30 kg</td></tr><tr><td style=\"line-height:1.42857\"><u>Eye color</u></td><td style=\"line-height:1.42857\">Yellow</td></tr><tr><td style=\"line-height:1.42857\"><u>Average lifespan</u></td><td style=\"line-height:1.42857\">Up to 80 standard years old</td></tr><tr><td style=\"line-height:1.42857\"><u>Homeworld</u></td><td style=\"line-height:1.42857\">Tatooine</td></tr><tr><td style=\"line-height:1.42857\"><u>Language</u></td><td style=\"line-height:1.42857\">Jawaese</td></tr></tbody></table><p>Jawas (pronounced /d͡ʒɑ:wə/)[5] were typically short rodent-like natives of Tatooine. They were passionate scavengers, seeking out technology for sale or trade in the deep deserts in their huge sandcrawler transports. A band of Jawas were responsible for locating C-3PO and R2-D2 and selling them to Luke Skywalker's uncle, Owen Lars. Another tribe of Jawas, led by Tteel Kkak, found Jabba the Hutt's rancor. They had a reputation for swindling, as they had a penchant for selling old equipment to moisture farmers. However, they were extremely passive beings, and hardly put up any resistance to colonists of their planet unlike other natives, like the Sand People, instead seeing foreigners as an excellent business opportunity.<br /></p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Biology and appearance</h3><blockquote><p><i>\"Utinni!\"</i></p><p>- A commonly used Jawa cry</p></blockquote><p>Jawas were easily identifiable by their traditional brown hooded robes, though it was not unheard of for them to wear other colors. Other notable features included their glowing yellow eyes, small stature and high pitched, quickly spoken language called Jawaese.</p><p>Through the study of corpses and skeletal remains, Baobab xenobiologists discovered that Jawas appeared to be gaunt, rodent-like creatures, with shrunken faces and yellow eyes. Conflicting research suggests that Jawas and Tusken Raiders, two native species of Tatooine, originally have evolved from the same extinct species, the Kumumgah, as both have common genetic markers, while other research suggests Jawas originated from humans.</p><p>At all times, Jawa faces remained obscured by a shroud of cloth to retain moisture, hide their identity and dissipate their body heat. Polished orange gemstones were embedded within the fabric to protect the Jawas' sensitive vision from the bright sunlight. The only physical parts that were exposed were their hands, which had tufts of fur on the palms. Jawas were renowned for their incredibly potent odor. Repulsive to most species, this odor contained incredible amounts of information such as other Jawas' identity, health, clan lineage, last meal, maturity, arousal and even their mood. Their odor was compounded by a mysterious solution Jawas dipped their clothes in to retain moisture, and their view of bathing as being a waste of precious water, which attracted swarms of insects to gather in the recesses of their hoods. Jawas evolved several important survival traits, such as exceptional night vision and a strong immune system. A Jawa's normal body temperature is 46°C (116°F) which resulted in a high metabolism and an efficient digestive system that drew all the needed nutrients from the Jawa staple diet of hubba gourd.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Society and culture</h3><blockquote><p><i>\"Sand stays. All else changes.\"</i></p><p>- Iziz</p></blockquote><p>Jawas were a communal, compulsive scavenger species who spent most of their life devoted to scavenging the deserts of Tatooine in search of any scrap metal, droid or mechanical part left behind from millennia of star travel and technological advancement, where the dry climate of Tatooine preserved almost all debris. Most non-Jawas regarded the Jawas as scavengers and thieves, a description that most Jawas actually found pleasing.</p><p>The Jawa's unofficial motto was not to look for uses in a salvaged item, but rather to imagine someone else who might find a use for it. And this was evidenced in their endless search for wares with which to trade with almost any being Jawas encountered. They had a kind of instinctive feel for machinery and electronics, notorious for knowing how to get a piece of equipment functioning just well enough to sell.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Social Organization</h3><blockquote><p>\"Jawas… Never around when you need them.\"</p><p>- Kyle Katarn</p></blockquote><p>Jawas lived in separate clan families, each with distinct, separate territories for living and scavenging. Each Sandcrawler was led by a Clan-Chief, who was male. However the overall operation of the Jawa clan was overseen by a female Shaman. A female Jawa became a shaman by either possessing some kind of Force ability with which to perform magic, overcoming an illness accompanied by a hallucinatory vision or was chosen and trained as the successor to the current Shaman. The shamans were believed to possess the ability to foretell the future, and performed spells, hexes and blessings to protect the clan and ensure the well being of all clan members. This title gave them a great deal of respect throughout the clan, which was strange in the largely patriarchal Jawa society, and this allowed the shaman to assume a position where they were to be consulted upon, and asked often for their wisdom. With the important position within the society, the shaman did not travel in the sandcrawler and instead remained within the safety of the clan's fortress. Other than shamans, females were shown little respect in Jawa society.</p><p>The primary activity in a Jawa's life was scavenging and trading within their sandcrawler vehicles. Upon reaching adulthood, Jawas were chosen to work on their sandcrawlers, and participate in the scavenger hunt, the search, trade and reselling of useful wares found within the deserts. All remaining Jawas lived within fortresses, nestled deep in the desert where their collected wares were stored, and Jawa children could be born and grow safely. The scavenging Jawas would return to their fortresses before Tatooine's storm season commenced. These fortresses had high walls made from large chunks of old wrecked spacecraft for protection against Sand People, krayt dragons and Tatooine's sand storms.</p><p>Once a year, just before the storm season on Tatooine, all the Jawa clans would gather in the great basin of the Dune Sea for the annual swap meet. Numerous sandcrawlers converged and the Jawas met to exchange their salvage. Other inter-clan business was also attended to such as the comparing of navigational data of the ever-changing desert and the arrangement of marriages to ensure cultural and genetic diversity.</p><p>Adhering to their scavenger instincts, it was quite common for different family clans to trade their sons and daughters for marriage through an intense barter or trade agreement. A common Jawa term for this was the trading of 'marriage merchandise'. Jawas found it acceptable to consummate their marriages in public.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Language</h3><p>Jawas spoke Jawaese, a randomly variable language[8] which was difficult to interpret due to its extremely high speech rate, and the Jawas' use of scent to add emphasis and tone to their words. To enable Jawas to more easily bargain and trade with other species, they relied on a simplified form of Jawaese, the Jawa Trade language which removed the use of scent in the language and was quite easily learned by species that commonly dealt with Jawa traders.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Diet</h3><p>The Jawas enjoy eating squills for their tough, pungent meat. Once, a Jawa clan took an Imperial transport capsule after it crash landed, and found Squills inside, happy to get a free dinner in addition to finding scrap.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">History</h3><blockquote><p><i>\"The Jawas have a tendency to pick up anything that's not tied down, Luke, but remember, they're basically afraid of their own shadows.</i></p><p>- Owen Lars to Luke Skywalker</p></blockquote><p>The Jawas were originally descendants of the Kumumgah species which used to live on Tatooine long before the formation of the Galactic Republic and long before the planet was even a desert. During the Pre-Republic era, sometime before 25,200 BBY, the Rakata of the Infinite Empire punished the Kumumgah for defying their authority by unleashing an orbital bombardment that reduced the surface of the once lush world of Tatooine into little more than fused glass, which eventually crumbled and became desert sand. This extreme climatic change split the Kumumgah into two races: the tall Ghorfas (who evolved into the Sand people) and the short Jawas. During the Jedi Civil War the Jawas spoke of themselves in a manner that suggested they are unrelated to Sand people and are also non-native to Tatooine. Whether this is truth or else a ploy to distance themselves from their more violent cousins is unknown. Also, due to the fact that the Sand People knew their history from generations-old oral narratives, it is debatable if the Jawas even knew of the story.</p><p>Analysis of ancient stone carvings found on numerous worlds, including Corellia and even Coruscant, led scientists of the Imperial Archaeological Division in 1 ABY to propose the hypothesis that these carvings were of Jawa origin and that their race once traveled among the stars. It is not known whether further analysis proved their hypothesis to be true.</p><p>At approximately 3959 BBY, following what was believed to be an important mining opportunity, the Czerka Corporation brought many sandcrawlers to Tatooine, though they abandoned the planet soon after they discovered the unstable nature of the local ores. Upon abandoning the planet, the sandcrawlers were quickly adopted by the Jawas, who would use them as mobile homes. The abandoned sandcrawlers radically changed Jawa civilization, serving as mobile fortresses for Jawa tribes searching the deserts for materials to scavenge. These vehicles served as a testament to the Jawa abilities of discovering unusual and unorthodox methods of making things work, and required continual maintenance to keep in working order.<br /></p><p>As colonists settled Tatooine, the Jawas were not as hostile towards them as the Sand people were. In their newly acquired sandcrawlers, Jawas would tour the desert, picking up old droids or equipment left by moisture farmers and other settlers, and would then either sell them to any willing customer or trade them for something else. Sometimes, Jawas would steal things that caught their eye, leading to settlers to regard them as untrustworthy. Presumably, they used the money made from their dealings to acquire supplies or other necessities from the settlers or other Jawas.</p><p>The Jawas also emigrated to other desert worlds, such as Ryloth and Florrum, and garbage planets, such as Raxus Prime, which was home to the Meeknu clan. One was even seen on the planet Genon, and several on the planet Coruscant. Another world where Jawas were present was Arcan IV.</p><p>When the Jedi Dass Jennir traveled to Orvax IV in 19 BBY, two of his companions, who belonged to short sized species, disguised themselves as Jawas, implicating that they were not an unusual sight on this planet.<br /></p><p>In 0 BBY, a group of Jawas on Tatooine disabled R2-D2 and carried him off into their sandcrawler where C-3PO was also being held. The Jawas later sold the droids to Owen Lars.</p><p>At 4 ABY, Tteel Kkak, a Jawa sandcrawler captain, discovered a rancor during the salvage of Grizzid's crashed ship, which he turned over to Jabba Desilijic Tiure.</p><p>Sometime after the Battle of Endor, a group of 480 Jawas was transported to Endor as part of a privately funded expedition to salvage valuable hardware from wreckage left there after the battle. They reportedly mutinied, forming a roving bandit gang that preyed upon any visitors to the moon.</p><p>In 17 ABY, some Jawas were forcefully taken to Skip 5 on the Smuggler's Run to help repair damaged Imperial equipment.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Equipment and technology</h3><p>Jawas only rarely ever carried weapons due to their usual passive nature. However they did mostly rely on ion blasters that shot beams of energy to disable droids, and restraining bolts for keeping them under control. Most Jawas also carried around various tools for repairing droids. They were also adept at creating custom droids, cobbled together from spare parts of other droids. These monster droids, as they were called, could be specially designed for the specific needs of a customer.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Chaotic Balanced",
-      "species": "",
+      "species": null,
       "type": {
         "value": "humanoid",
         "subtype": "",
@@ -1754,16 +1616,12 @@
       },
       "environment": "",
       "cr": 2,
-      "powerForceLevel": 4,
+      "powerForceLevel": 2,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 450
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 2
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "sm",
@@ -1791,15 +1649,14 @@
           "jawaese"
         ],
         "custom": "Understands But Doesn't Speak Galactic Basic"
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -1809,11 +1666,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -1822,11 +1679,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 0,
@@ -1835,11 +1692,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -1848,11 +1705,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -1861,11 +1718,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -1874,11 +1731,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -1887,11 +1744,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -1900,11 +1757,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0,
-        "passive": 10
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -1913,11 +1770,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -1926,11 +1783,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -1939,11 +1796,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0,
-        "passive": 10
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 0,
@@ -1952,11 +1809,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -1965,11 +1822,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -1978,11 +1835,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -1991,11 +1848,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 2,
@@ -2004,11 +1861,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 16,
-        "prof": 4,
-        "total": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -2017,11 +1874,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -2030,11 +1887,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0,
-        "passive": 10
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
     "tools": {},
@@ -2043,96 +1900,67 @@
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 1000,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 1000,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 1000,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -2251,10 +2079,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493984060,
-    "modifiedTime": 1699591677278,
+    "modifiedTime": 1720368801090,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!BrtNXzqhIcLeVLFi"

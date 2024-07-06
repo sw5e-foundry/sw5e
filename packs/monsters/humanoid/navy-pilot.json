@@ -15,29 +15,31 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Ranged Weapon Attack </em>+4, Range 40/160 ft., One target. <em>Hit : </em>4 (1d4+2) energy damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -46,7 +48,8 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 40,
@@ -55,22 +58,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "dex",
         "actionType": "rwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -101,12 +105,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -115,61 +116,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -194,108 +160,46 @@
       "sort": 0,
       "flags": {
         "timestamp": "2022-10-18T11:20:58.2178937+00:00",
-        "uid": "Equipment.name-combat_suit.equipmentCategory-armor",
-        "betterRollssw5e": {
-          "critRange": {
-            "type": "String",
-            "value": ""
-          },
-          "critDamage": {
-            "type": "String",
-            "value": ""
-          },
-          "quickDesc": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickAttack": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickSave": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickDamage": {
-            "type": "Array",
-            "value": [],
-            "altValue": [],
-            "context": []
-          },
-          "quickProperties": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickCharges": {
-            "type": "Boolean",
-            "value": {
-              "quantity": false,
-              "use": false,
-              "resource": true
-            },
-            "altValue": {
-              "quantity": false,
-              "use": false,
-              "resource": true
-            }
-          },
-          "quickOther": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true,
-            "context": ""
-          },
-          "quickFlavor": {
-            "type": "Boolean",
-            "value": true,
-            "altValue": true
-          },
-          "quickPrompt": {
-            "type": "Boolean",
-            "value": false,
-            "altValue": false
-          }
-        }
+        "uid": "Equipment.name-combat_suit.equipmentCategory-armor"
       },
       "system": {
         "description": {
           "value": "<p>Combat suits are seen all over the galaxy, and can be found for sale by almost any merchant who dealt in weapons and armor. Many such suits are used by military organizations, such as the Galactic Republic's military, as well as by mercenaries, criminals, bounty hunters and even some Jedi.</p>\n<p>The suit itself offers decent protection from most types of attacks while maintaining maximum flexibility and minimum weight. However this armor is only recommended for light skirmishes.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "PHB",
+        "source": {
+          "custom": "PHB"
+        },
         "quantity": 1,
-        "weight": 10,
+        "weight": {
+          "value": 10,
+          "units": "lb"
+        },
         "price": {
           "value": 100,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
-          "type": null,
+          "type": "",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
         "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -304,20 +208,24 @@
         },
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -330,8 +238,8 @@
         },
         "armor": {
           "value": 11,
-          "type": "light",
-          "dex": null
+          "dex": null,
+          "magicalBonus": null
         },
         "hp": {
           "value": 0,
@@ -358,9 +266,7 @@
           "fuelcostsmod": {
             "value": null
           },
-          "powerdicerec": {
-            "value": ""
-          },
+          "powerdicerec": {},
           "hdclass": {
             "value": null
           }
@@ -370,104 +276,31 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null,
-          "overrides": {}
+          "changes": {}
         },
-        "baseItem": "combatsuit",
         "speed": {
           "value": null,
           "conditions": ""
         },
-        "strength": "",
-        "stealth": false,
-        "properties": {
-          "Absorptive": null,
-          "Agile": null,
-          "Anchor": null,
-          "Avoidant": null,
-          "Barbed": null,
-          "Bulky": null,
-          "Charging": null,
-          "Concealing": null,
-          "Cumbersome": null,
-          "Gauntleted": null,
-          "Imbalanced": null,
-          "Impermeable": null,
-          "Insulated": null,
-          "Interlocking": null,
-          "Lambent": null,
-          "Lightweight": null,
-          "Magnetic": null,
-          "Obscured": null,
-          "Obtrusive": null,
-          "Powered": null,
-          "Reactive": null,
-          "Regulated": null,
-          "Reinforced": null,
-          "Responsive": null,
-          "Rigid": null,
-          "Silent": null,
-          "Spiked": null,
-          "Strength": null,
-          "Steadfast": null,
-          "Versatile": null
+        "strength": null,
+        "properties": {},
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "light",
+          "baseItem": "combatsuit"
         },
-        "proficient": true,
-        "capx": {
-          "value": null
+        "unidentified": {
+          "description": ""
         },
-        "dmgred": {
-          "value": null
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "regrateco": {
-          "value": null
-        },
-        "cscap": {
-          "value": null
-        },
-        "sscap": {
-          "value": null
-        },
-        "fuelcostsmod": {
-          "value": null
-        },
-        "powerdicerec": {
-          "value": null
-        },
-        "hdclass": {
-          "value": null
-        },
-        "modifications": {
-          "chassisType": "none",
-          "augmentSlots": 0,
-          "mods": {
-            "slot1": {
-              "uuid": null,
-              "disabled": false
-            },
-            "slot2": {
-              "uuid": null,
-              "disabled": false
-            },
-            "slot3": {
-              "uuid": null,
-              "disabled": false
-            },
-            "slot4": {
-              "uuid": null,
-              "disabled": false
-            }
-          },
-          "augments": [],
-          "type": null,
-          "overrides": {}
-        },
-        "hpperhd": {
-          "value": null
-        },
-        "equiped": false,
-        "weaponType": ""
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null
       },
       "ownership": {
         "default": 0
@@ -501,14 +334,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -1,
-        "save": -1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 9
+        }
       },
       "dex": {
         "value": 14,
@@ -517,14 +343,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 4,
-        "prof": 2,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "con": {
         "value": 10,
@@ -533,14 +352,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "int": {
         "value": 14,
@@ -549,14 +361,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 4,
-        "prof": 2,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "wis": {
         "value": 12,
@@ -565,14 +370,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "cha": {
         "value": 11,
@@ -581,14 +379,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "hon": {
         "value": 11,
@@ -596,7 +387,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 12,
@@ -604,41 +396,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 13,
         "calc": "default",
-        "formula": "combat suit",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 9,
         "max": 9,
         "temp": 0,
         "tempmax": 0,
-        "formula": "2d8",
-        "min": 0
+        "formula": "2d8"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -661,16 +449,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -679,16 +460,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -699,57 +473,48 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 2,
-      "powerdc": 10,
-      "bar1": {
-        "value": 9,
-        "min": 0,
-        "max": 9
-      },
-      "bar2": {
-        "value": 13,
-        "min": 0,
-        "max": 0
-      },
-      "encumbrance": {
-        "value": 1,
-        "max": 120,
-        "pct": 0.8333333333333334,
-        "encumbered": true
-      },
-      "powerForceLightDC": 11,
-      "powerForceDarkDC": 10,
-      "powerForceUnivDC": 11,
-      "powerTechDC": 12,
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      }
     },
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"The starfleet is a sea. It is endless, cannot be beaten, and given enough time turns even the strongest rocks to sand.\"</i></p><p><span style=\"font-size:13px\">- Grand General Cassio Tagge</span></p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Military unit type</u><br /></td><td style=\"line-height:1.42857\">Navy</td></tr><tr><td style=\"line-height:1.42857\"><p><u>Commanding officer(s)</u></p></td><td style=\"line-height:1.42857\"><ul><li>Darth Sidiuous (as Galactic Emperor)</li><li>Admiral Conan Antonio Motti (Chief of the Imperial Navy)</li><li>Fleet Admiral Gallius Rax (Post-Battle of Endor)</li><li>Grand Admiral Rae Sloane</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Sub-unit(s)</u></td><td style=\"line-height:1.42857\"><ul><li><span style=\"background-color:transparent\">Admiralty (Imperial Navy High Command)</span><br /></li><li>Death Star trooper officer corps</li><li>Imperial Navy Judicial Panel</li><li>Imperial Navy's officer corps</li><li>Imperial Starfighter Corps</li><li>Logistics Division</li><li>Military Police</li><li>Naval chiefs</li><li>Naval Command and Control</li><li>Office of the Navy's barrister advocate</li><li>Orbital Command</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Formed from</u></td><td style=\"line-height:1.42857\">Republic Navy</td></tr><tr><td style=\"line-height:1.42857\"><u>Date founded</u></td><td style=\"line-height:1.42857\">19 BBY</td></tr><tr><td style=\"line-height:1.42857\"><u>Date fragmented</u></td><td style=\"line-height:1.42857\">4 ABY</td></tr><tr><td style=\"line-height:1.42857\"><u>Date reorganized</u></td><td style=\"line-height:1.42857\">After 5 ABY, as the First Order Navy</td></tr><tr><td style=\"line-height:1.42857\"><p><u>Affiliation</u></p></td><td style=\"line-height:1.42857\"><ul><li>Galactic Empire (Imperial Military)</li><li>Core and Inner Rim Imperial remnant</li></ul></td></tr></tbody></table><p>The Imperial Navy, also known as the Imperial Starfleet or the Imperial fleet, was the naval branch of the Galactic Empire's military. It was created in the wake of the Clone Wars, when Chancellor Sheev Palpatine transformed the Galactic Republic he led into an authoritarian Empire. Consisting mainly of Star Destroyers and TIE fighters, the Imperial Navy was tasked with maintaining order in the galaxy.</p><h3>Background</h3><p>With the rise of the New Order, the massive military buildup that became synonymous with the late Galactic Republic in an effort to combat the Separatist Alliance in the Clone Wars was continued and expanded in the now Galactic Empire. When the Separatist leadership was executed at Mustafar by Darth Vader; then Supreme Chancellor Palpatine announced his plans for the galaxy since the beginning. Officially wiping away the thousand year old Republic by announcing the creation of the Galactic Empire, with himself as Galactic Emperor.</p><p>After the the rise of the New Order, the Imperial Navy was created from the remains of the Republic Navy at the end of the Clone Wars, and inherited its proud naval tradition that dated back thousands of years. It came to have its own starships that patrolled the vast majority of Imperial space throughout the reign of Emperor Palpatine's New Order.</p><p>After the establishment of the Imperial Navy, it became the primary projection of the Imperial Military's arm, becoming the largest branch in the Armed Forces with its enormous fleet of vessels and millions of personnel.</p><h3>History</h3><p><b>Rise of the Imperial Fleet</b></p><p>Almost immediately, any reminders of the Old Republic were removed, with the Grand Army of the Republic renamed the Imperial Army and Republic Navy reorganized as the Imperial Navy. The distinctive red coloring of Venator-class Star Destroyers were almost immediately painted a more subdued grey, along with the eventual uniform and equipment upgrades for the countless men and women in the Imperial Military. In the days following the proclamation of the New Order, the Imperial Navy would continue to utilize the popular Republic-era Alpha-3 Nimbus-class V-wing starfighters along with the mass produced Aggressive ReConnaissance-170 starfighter, while Darth Vader would receive his own black Eta-2 Actis-class light interceptor until he would eventually pilot his much improved TIE Advanced x1 which first saw usage during the Siege of Lothal four years prior to the Battle of Yavin.</p><p>With the destruction of the planet Anaxes and its shipyard facilities due to a cataclysmic event, corporations such as Sienar Fleet Systems and Kuat Drive Yards took up the mantle of producing the newer Imperial vessels coming into production. The Imperial I-class Star Destroyer would come to represent the new image of Imperial power and would eventually become the most feared and recognizable image of the Empire, with a mere Star Destroyer usually enough to bring treasonous systems in line through sheer threat of force. Due to their impressive armaments and imposing nature, nearly 25,000 Destroyers would be in operation at the height of the Empire's power.</p><p>The Imperial Navy would be occupied in subjugating remaining Separatist holdouts throughout the galaxy for at least five years following at Empire's rise along with cementing its political and territorial stability, allowing a sense of peace and prosperity to return to the Core Worlds. Four years after the Empire's rise, the Imperial-class Star Destroyer Perilous would be dispatched to quell the Free Ryloth movement over the Outer Rim world of Ryloth. However unbeknownst to the Imperials it would also be subject to an elaborate trap set by the rebels, in which it would be the first ISD to be destroyed to Moff Delian Mors knowledge. Nevertheless, the vessel would continue to be one of the most dreaded ships in the Imperial Fleet.</p><p>Five years into Imperial rule, the Imperial Navy began replacing its aging ARC-170 starfighters with the newer TIE Starfighter line, however Republic-era ships and equipment would still be utilized as the newer models were distributed. The Navy would also commission the Carrion Spike as Moff Tarkin's personal corvette, however a rebel cell led by former Republic Intelligence Captain Berch Teller would end up stealing the ship, causing a major political nightmare and military embarrassment for the Empire, with numerous star systems falling victim to the advanced ships weaponry and mechanical systems. The ship was ultimately destroyed after attacking a supply convoy carrying parts for the Empire's rumored Ultimate Weapon, which only later the galaxy would know as the Death Star. The cell along with its collaborators would be captured, interrogated and executed, while the Naval Intelligence Agency created during the rise of the Empire would be folded back under Imperial Intelligence following the discovery that one of its leaders and member of the Joint Chiefs was conspiring with the rebels in hopes of destroying them and thus receiving a promotion. Ultimately, the Empire had successfully dealt with a potentially hazardous situation, all while keeping details of its new superweapon a mere rumor.<br /></p><p>Eight years after the formation of the Empire, the Imperial Navy would be engaged in the Gorse conflict which would see the Imperial-class Star Destroyer Ultimatum commanded by Rae Sloane deployed to the Gorse system. With the Empire interested in increasing efficiency in the system due to the rare abundance of Thorilide found within, with Thorilide being a vital part in the construction of turbolaser batteries and thus essential for the expansion of the Imperial Starfleet. A brief encounter with rebels would occur, after which the planet would be secured, and production would be transferred to Baron Lero Danthe. Also around this time, the Empire would begin to utilize Gozanti-class cruisers to transport materials, slaves and other vital resources.</p><p><b>A growing insurrection</b></p><p>Thirteen years into the Empire's reign, an insurgency would tie up Imperial resources over the backwater agricultural world of Lothal, in which a rebel cell would continually harass and destroy Imperial resources. With Sienar Fleet Systems engaged in the lucrative production of TIE fighters for the Empire, along with the production of the new TIE Advanced v1, precursor to the x1, numerous Imperial-class Star Destroyers would be sent into orbit in an effort to capture the rebel group, along with the eventual redeployment of Grand Moff Tarkin to deal with the terrorists a year later. After capturing the Jedi in charge of the cell, Tarkin's new flagship, the Sovereign, would escort the Jedi survivor to Mustafar, where a small rebel fleet would engage it and several other Star Destroyers, destroying the Sovereign in the process but not before Tarkin managed to escape. The destruction of the Sovereign would continue to be remembered years later by soldiers of the New Republic.</p><p>The brutal Siege of Lothal would eventually be ordered by Darth Vader, in which multiple TIE/LN starfighters would scour the planet in an effort to locate the rebels and strike fear into the local population. Eventually forcing the rebels to flee Lothal, while the Imperial Navy would be able to deal a heavy blow to the Phoenix Cell in a pitched space battle. Nonetheless, a growing rebel network would cause worry within the higher echelons of the Empire, and along with it inspiring a greater emphasis on dealing with the growing insurrection.</p><p>Fourteen years after the Empire's political formation, Imperial Interdictor vessels would still be undergoing tests in locations such as the Del Zennis system, with the unique Imperial Interdictor improving on the design flaws of its predecessors roughly a decade ago. As a result, specialized test zones would be erected to test the ships capabilities, while Imperial weapons technicians would wear a specialized gold-colored uniform variant denoting the uniqueness of the project.</p><p>Nineteen years after the founding of the Galactic Empire, the Death Star would be ready for usage after its lengthy construction, demonstrating its firepower on the populous world of Alderaan in an effort to persuade then captive Princess Leia Organa to reveal the presence of a rebel base for the recently formed Alliance to Restore the Republic, following capture aboard her CR90 corvette the Tantive IV over Tatooine by the Imperial-class Star Destroyer Devastator, which also served as Lord Vader's personal flagship. In an instant, the influential world was destroyed, however an unlikely band of rebels, along with an older Jedi Master Obi-Wan Kenobi managed to free the princess and escape to the Alliance's base on Yavin 4. Unbeknownst to the rebels, a homing beacon had been installed on their ship, the Corellian YT-1300 light freighter Millennium Falcon leading the Death Star to the planet. During the intense Battle of Yavin, Luke Skywalker managed to fire the shot that would ultimately destroy the Empire's dreaded battlestation.</p><p><b>The Galactic Civil War</b></p><p>Following the destruction of the first Death Star, the Empire immediately began construction on the newer and more powerful DS-2 Death Star, all while the Imperial Military reeled at the loss of such a sizable portion of its martial forces. With nearly all of the Joint Chiefs of the Empire located on the battlestation when it was destroyed, General Cassio Tagge was promoted to the newly created rank of Grand General, receiving command of nearly all Imperial Military resources, while junior officers were quickly promoted in order to fill in the positions of the newly deceased. Simultaneously, Admiral Kendal Ozzel would personally issue a communique ordering the fleet into battle readiness. The Imperial Military also underwent a mass reorganization, rescinding the classification of Imperial Navy and Imperial Army pilots and engaging in rushed and scrambled offenses often with low quality intelligence in an effort to keep the rebels off balance.</p><p>Mobilizing for a galactic war, the Imperial fleet also began occupying notorious spice worlds such as Kerev Doi in an attempt to cut off potential sources of income for the Rebel Alliance. In a rapid blow and taking advantage of the Imperial Navy's—and Empire's temporary vertiginous state, the Rebel Alliance managed to destroy Weapons Factory Alpha located in the Corellian Industrial Cluster on Cymoon 1, the largest weapons factory in the galaxy and essential for Imperial Military production. Bombing the Imperial shipyards at Kuat and a supply base at Imdaar, the Rebellion also launched a series of over a dozen attacks against Imperial forces scattered across the galaxy. As a result, the Empire would be forced to deal with the Hutt Cartel in order to procure the necessary resources to rebuild from such a military setback. Grand General Tagge also noted how increased pirate attacks against Imperial convoys was only natural considering the loss of such a symbol of Imperial power.</p><p>Nonetheless the Empire's resolve would only increase in its pursuit of the rebel fleet, in which an elaborate scheme was put in motion attempting to sway the genius Drusil Bephorin to their cause who could reputedly discover the fleet through advanced mathematics. After a daring rescue led by then-Lieutenant Luke Skywalker, Drusil managed to escape her captivity on Denon as well as multiple Star Destroyers in pursuit. Also successfully eluding numerous Immobilizer 418 cruisers attempting to draw them out of hyperspace, she and her family safely arrived on the ocean world of Omereth. With the rescue of Drusil to the Alliance's cause, the Empire would suffer a decisive defeat, all while giving the Rebellion an edge in its fight against the New Order.</p><p>In the three years before the Battle of Hoth, the Empire would send numerous Viper probe droids to scour the galaxy for any hint of the rebel fleet, and later the presumed rebel base of operations. After a lone probe managed to discover the rebels at Echo Base on the remote ice world of Hoth, the Empire would assault the system under the newly formed Death Squadron, lead by no other Darth Vader himself aboard his new flagship the Executor-class Star Dreadnought, Executor. Seeking to surprise the rebels, Admiral Kendal Ozzel entered the system near the planet, alerting the Alliance to their presence and thus allowing them to raise their defensive shields, forcing a ground-based assault to ensue rather than an orbital bombardment. Choked by Vader for his arrogance, he installed Captain Firmus Piett in command of the Executor, all while the massive Battle of Hoth would ensue on the planet's surface. With Death Squadron in orbit, escaping transports were shot down and destroyed, with Admiral Jhared Montferrat taking down the transport that carried the wife of young rebel Adon Fox. However, the planetary v-150 ion cannon managed to temporarily disable various Imperial-class Star Destroyers, allowing numerous rebel sympathizers to escape.</p><p>Seeking to end the rebellion once and for all, a mere year later Emperor Palpatine opted to leak just enough information to the Bothan spynet and thus the Rebel Alliance that a new, more powerful Death Star was in construction over the forest moon of Endor, and that he himself would be overseeing its final stages of construction personally. Tempted, the Rebel Alliance began massing its fleet in the Sullust system, in which the Emperor ordered the Imperial Navy to ignore, hoping for the rebels to commit all their forces to a doomed attack. In preparation, Imperial naval resources gathered for the encounter in the Hudalla system.</p><p>Later arriving in the Endor system, the rebel fleet was surrounded by the single largest gathering of Star Destroyers in Imperial history, as well as a fully armed and operational Death Star, contradictory to the information that had been given to them. The Emperor however, seeking to turn a captive Luke Skywalker to the Dark side of the Force decreed that only the fighters engage the rebel fleet in an effort to prolong the encounter and thus enrage Skywalker. Unfortunately for the Emperor, not only would Luke Skywalker refuse the offer and become a Jedi Knight in his own regard, but the rebel strike team sent to disable the Death Star's shield generator on Endor would succeed, allowing the rebels to enter the unfinished Death Star II and destroy its main reactor. With the death of the Emperor by the hands of his own apprentice, the Galactic Empire and thus the Imperial Military would be thrown into a state of disarray following the loss of their leadership. The Battle of Endor had ended a clear defeat for both the Empire and Imperial Navy.</p><p><b>Post-Endor Conflicts</b></p><p><u>Imperial fragmentation</u></p><blockquote><p><i>\"Portions of our naval fleet have been hidden since not long after the destruction of our glorious battle station over the Endor moon. These fleets are not as large as the one we currently control here in the Vulpinus. Yet there are substantially just the same: hundreds of Star Destroyers, thousands of smaller craft.\"</i></p><p><span style=\"font-size:13px\">- Fleet Admiral Gallius Rax</span></p></blockquote><p>The Empire immediately entered a state of chaos after the death of its Galactic Emperor, with civil unrest across the galaxy and numerous individuals claiming to be be the rightful heir to the throne. Nonetheless, Imperial records would be in shambles for months in an attempt to confirm the deaths of personnel lost aboard the second Death Star, all while combating the new threat of the New Republic. Hearing of the Emperor's defeat at Endor, Governor Ubrik Adelhard would lock down the Anoat sector to all traffic, creating what would come to be known as the Iron Blockade. Subsequently numerous splinter fleets would separate from the Imperial Navy, while infighting and betrayal would spill blood in what the Imperial HoloNet would deem skirmishes and mutinies, all the while the full-scale galactic war that began following the Battle of Hoth would continue with increased ferocity. The Imperial Navy would also encounter fuel shortages, as Republic attacks forced Imperial vessels to flee, thus burning more fuel than what could be supplied.</p><p>After the death of the Emperor, Sentinel droids were sent to \"selected\" Imperial officers. These officers included Admiral Garrick Versio,[49] and Captain Lerr Duvat. They were ordered to begin Operation: Cinder, and emergency directive to tear apart the Empire. This could be done by experimental weather arrays.</p><p>In an effort to re-organize a fractured Empire, a secret Imperial gathering over the Outer Rim world of Akiva would commence in the months after the Battle of Endor, called the Imperial Future Council. Unfortunately, the meeting failed after the New Republic received word of the gathering and arrived en masse in the system, forcing a major space battle to ensue. The Republic had received information about the conference from a mysterious source known as the Operator, who was actually the Imperial Fleet Admiral Gallius Rax. Rax supplied information to the New Republic in order to eliminate his political rivals. Admiral Rae Sloane survived the battle and reunited with the Fleet Admiral in the Vulpinus Nebula.</p><p>The fragmentation of the Imperial war machine would also hamper Imperial Military production in the months after the Battle of Endor, creating a supply shortage of TIE/LN starfighters and forcing Star Destroyers to head out with less craft. Lack of trained personnel also harrowed the Imperial Navy, while the once mighty fleet was reduced to a single Super Star Destroyer, the Ravager. Following the events on Akiva, Rae Sloane became Grand Admiral and assumed leadership of Imperial forces in the Vulpinus Nebula; the largest of the Imperial remnant forces. In secret, Fleet Admiral Rax ruled the Imperial forces from behind the scenes. Sloane later discovered evidence that at least a quarter of the Empire's Star Destroyers and the Emperor's Super Star Destroyer Eclipse had mysteriously disappeared instead of being destroyed in battles with the New Republic as reported in the Imperial records.</p><p>During the inaugural meeting of the Shadow Council, Rax revealed that he secretly commanded substantial Imperial fleets consisting of hundreds of Star Destroyers and thousands of smaller craft in the Almagest, the Recluse's Nebula, the Queluhan Nebula, the Ro-Loo Triangle, and the Inamorata. Rax also used the Imperial-held foundry worlds of Zhadalene, Korrus, and Belladoon to produced war material including new TIE fighters for the Imperial war effort. Following the loss of Kashyyyk and the attack on the New Republic capital of Chandrila, Rax took power as Counselor to the Empire. To test the mettle of his new armada against the New Republic, Rax ordered the Imperial fleets to assemble on the planet Jakku.</p><p><b>Showdown on Jakku</b></p><blockquote><p><i>\"I must be a stronger blade! A... a blade with which to slit the throats of the traitors that crawl on their bellies toward our door!\"</i></p><p><span style=\"font-size:13px\">- Captain Groff, before his death during the Battle of Jakku</span></p></blockquote><p>After the discovery of Imperial forces at Jakku, the New Republic dispatched forces to take on the Empire following a Galactic Senate vote. A year and four days after the Battle of Endor, the Galactic Empire would be engaged in a major land and space battle over the desert world of Jakku against the New Republic. While Rax went to prepare the next stage of the Emperor's posthumous Contingency plan (which involved blowing up the planet Jakku while he and a chosen elect fled into the Unknown Regions), Grand Moff Randd commanded the Imperial fleet from the Ravager.</p><p>During the battle, the Imperial Navy formed a tight, protective wall around the Super Star Destroyer Ravager. This blunted the New Republic assault. As the battle raged, Captain Groff of the Star Destroyer Punishment panicked and rammed his Star Destroyer into a New Republic ship. This allowed the New Republic Commodore Kyrsta Agate to find a gap and bombard the Ravager. The Super Star Destroyer quickly crippled Agate's Starhawk-class battleship Concord but Agate managed to trap the Ravager in her ship's tractor beam. The downing of the Ravager turned the tide of the battle in the New Republic's favor. The ship's commanding officer Randd abandoned his post and fled in an escape pod.</p><p>With the growing New Republic Defense Fleet needing ships to supplement its military forces, it also embarked on a campaign to board and capture Imperial vessels during the battle. Lieutenant Thane Kyrell led a New Republic boarding party which boarded the Imperial-class Star Destroyer Inflictor in an effort to capture its first Star Destroyer. The attempt ultimately failed when Captain Ciena Ree crashed it onto the planet's surface below. Meanwhile, Grand Admiral Sloane joined forces with her New Republic opponents Norra Wexley and Brentin Lore Wexley to stop Counselor Rax from detonating Jakku and destroying the Imperial and New Republic forces.</p><p>Amidst the loss of the Ravager and the death of Gallius Rax, Grand Vizier Mas Amedda signed the Galactic Concordance with the New Republic; formally ending the Galactic Civil War and facilitating the Empire's surrender to the Republic. Per the terms of the Empire's surrender, the Imperial government was dissolved and all surviving Imperial military officers were designated as war criminals. Despite the Empire's surrender, several Imperial captains continued fighting at Jakku. Some crashed their ships onto the surface and tried to drag their enemies with them. Other Imperial captains fled with their warships into the Unknown Regions, using secret coordinates that had been supplied as part of the Contingency. Meanwhile, Grand Admiral Sloane, the highest ranking officer in the Imperial Navy, along with Brendol Hux, his son Armitage Hux, and several child soldiers rendezvoused in the Unknown Regions with the Emperor's command ship Eclipse, which had been sent into the frontier in advance as part of the Contingency.</p><p><b>Defeat and rebirth</b></p><blockquote><p><i>\"You will be avenged—when the Empire rises again.\"</i></p><p><span style=\"font-size:13px\">- Nash Windrider</span></p></blockquote><p>The Battle of Jakku was a catastrophic defeat for the Empire which turned the tide of the war decisively in the New Republic's favor. With few Star Destroyers left, the severely depleted Imperial fleet was confined to pre-determined regions within the Core Worlds and the Inner Rim. With talk that the Empire would be forced to engage in diplomatic talks with the New Republic in the month following the Battle of Jakku, many believed its collapse and ultimate surrender was imminent. Unbeknownst to the rebels, Imperial forces under Grand Moff Randd and Commander Nash Windrider had secretly used the time to amass its ships in the Queluhan Nebula, which masked it from enemy sensors in an endeavor to assault the Republic once again. With a clear chain of command reestablished and the factionalism that had previously divided the Empire swept away—along with weapons upgrades to its TIE/LN starfighters, the Imperial Navy stood ready to strike again.</p><p>Ultimately, the remnants of the Empire were defeated by the New Republic. Under the terms of the Galactic Concordance, the former Empire was forced to disarm its military forces and to pay punishing war reparations. A group of Imperial hardliners as per the Contingency relocated to the Unknown Regions where they remained for the next three decades. During that time, they re-consolidated themselves as the First Order, a military junta that admired the New Order and sought to \"restore it\" to the Galaxy. In 28 ABY, an individual at a cantina on Pamarthe stated that they thought the Imperial fleet still existed and would strike again.</p><p>In 21 ABY, the First Order embarked on an expansion of the old Imperial fleet, which had reinvented itself as the First Order Navy. To fund this rearmament program, the First Order channeled considerable funds into sympathetic Centrist senators in the New Republic like Lady Carise Sindian. Lady Carise used these funds to arm and train the Amaxine warriors, a paramilitary group led by Imperial loyalists including Arliz Hadrassian. To hide these funds, the First Order and their Centrist collaborators bankrolled the Nikto crime lord Rinnrivin Di's cartel. The profits from Rinnrivin's cartel were channeled back to shadow corporations in the Outer Rim run by Centrists, who transferred the funds back to the First Order. Despite an investigation launched by Senators Leia Organa and Ransolm Casterfo which neutralized Rinnrivin and the Amaxines, the First Order Navy succeeded in rebuilding its fleet by the time of the Cold war.</p><h3>Organization</h3><p><b>Administration</b></p><p>The Imperial Navy was commanded by Galactic Emperor Palpatine and the Joint Chiefs of the Empire, while admirals and captains assumed responsibility for their respective craft and would be informed of any long-term plans. The Admiralty was the overall leading unit of the navy and included Imperial Navy High Command. Naval Command and Control and the Naval chiefs also oversaw the tactical strategy of the Navy, and reassigned ships to trouble spots and plotted long-term strategy under the oversight of both the Emperor and Joint Chiefs. The Imperial Starfighter Corps also aided in overall naval operations, and disliked the Admiralty's push towards Kuat Drive Yards near monopoly on capital ship production due to a belief that TIE/LN fighters were purposely weakened to ensure continued production and purchases from the company would continue.</p><p>Similar to the Army, the Imperial Navy contained multiple branches responsible for various aspects of naval warfare, of which the most important and well known was Fleet Command. Fleet Command controlled the Imperial Navy's sub-capital and capital ships, and the lowest recruits to the Admiral of the Fleet fell under its auspices.</p><p>It was highly unusual for officers to receive captaincy of a Star Destroyer until middle age, while being assigned captaincy of smaller craft was considered to be ignominious. It was common practice for the Imperial Starfleet to often amass ships in an attempt to intimidate various worlds, officers sometimes gathered their respective ships in an attempt to display their power and impress superiors, with the more ships and men under ones command the more important that person was considered. With the Emperor commanding the most ships and men, he was easily considered the most important. The Navy also worked in conjunction with the Imperial Security Bureau, who installed an internal affairs officer aboard every Imperial-class Star Destroyer and Executor-class Star Dreadnought, while the Naval Intelligence Agency and its oversight by Imperial Intelligence provided vital information for the armada.</p><p><b>Order of Battle</b></p><p>In order to patrol the vast expanses of Imperial space, the Empire would split up varying amounts of naval forces into fleets, commanded by an admiral, a Fleet Admiral, or a Grand Admiral. Sector fleets controlled specific sectors of the galaxy, such as the Lothal sector fleet and the Anoat sector fleet. However, other fleets were mobile, being sent to conflicts where they were needed. These types of fleet included the Third Fleet, Seventh Fleet, Eleventh Fleet, and Death Squadron.</p><p>These fleets typically contained half a dozen Star Destroyers as their backbone, and were augmented by various carriers, starfighters, transports, gunboats and other support craft. Specific composition and size of a fleet varied dramatically on the fleet's mission and the political power of its commander.</p><p>Task forces were units of ships smaller than fleets that were usually under the command of an commodore or admiral whose flagship was an Imperial-class Star Destroyer. Notable task forces included the 96th, the 103rd, the 125th, the 231st and Carlou Gendling's task force.</p><p>By the height of the Galactic Empire, approximately 25,000 Imperial-class Star Destroyers would have been in use, while 20% of the Empire's starfighter fleet would be made up of the TIE/IN interceptor and other newer models in direct response to the Alliance's faster vessels such as the RZ-1 A-wing interceptor coming into production.</p><h3><b>Personnel</b></h3><blockquote><p><i>\"Ships, like men, must be used until they break.\"</i></p><p><span style=\"font-size:13px\">- Governor Everi Chalis</span></p></blockquote><p><b>Specializations</b></p><p>While the Imperial Navy was known mostly for its imposing dagger-shaped ships, Imperial manpower was also vital for the utilization of those craft. Dividing its personnel into the classification of either officer or enlisted, officers often received extra pay and visitation rights to their families more than once every five years for those from the Core Worlds, who often limited their communication to and from their families to demonstrate their commitment to the cause. Officers were encouraged to drink a nutritive slurry instead of regular food in order to conserve resources, however senior officers could gorge themselves without appearing feeble, and commissaries on various Imperial stations often served exotic foods, albeit for a stiff price. All officers and stormtroopers were required to have an innate combat readiness, and were expected to pass repeated certifications in various forms of self defense, weapon and vehicle handling, however at higher ranks these requirements lessened somewhat. Gambling was expressly forbidden within the military, with harsh punishments for those engaging in the activity. Those that shirked from duty could be reported for cowardice.</p><p>The enlisted ranks comprised the bulk of Imperial manpower, often filling in vital roles in maintaining, operating and providing assistance to the Imperial fleet with positions such as Imperial Navy Troopers (including their Death Star counterparts), flight commanders, duty officers and technicians. While only ten percent of TIE pilots graduated from the Imperial pilot training program, all pilots were still expected to be able to maintain and repair all single- and dual-pilot craft, and would often fly low over areas that needed to be reminded of the Empire's strength.</p><p>Crewmen often worked in sunken data pits—which denoted command hierarchy—located on the bridges of capital ships, and oversaw all data and intelligence transfer throughout the entire vessel, and could provide auxiliary navigational assistance to other craft in the system. While not all Imperial facilities utilized sunken data pits, Wilhuff Tarkin preferred their design and had them installed at the prefabricated Imperial facility known as Sentinel Base. Imperial weapons technicians operated the turbolaser batteries on various Imperial craft, while their elite gunners manned the Death Star's superlaser.</p><p>Handling logistical operations on Imperial Navy vessels were fleet logistics liaisons from the logistics corps.</p><p>There existed a form of rivalry between the Navy and the Imperial Army, with some naval officers having accused their colleagues of being pompous, unimaginative and arrogant. A rivalry also existed between Imperial Army and Imperial Navy pilots due to the latter often receiving better public recognition through the HoloNet News.</p><p>The Imperial MSE-6 series repair droid was utilized in most Imperial vessels to clean the floors.</p><p><b>Training</b></p><blockquote><p><i>\"You, too, can be part of the Imperial family. Don't just dream about applying for the Academy, make it come true! You can find a career in space: Exploration, Starfleet, or Merchant Service. Choose from navigation, engineering, space medicine, contact/liaison, and more! If you have the right stuff to take on the universe, and standardized examination scores that meet the requirements, dispatch your application to the Academy Screening Office, care of the Commandant, and join the ranks of the proud!\"</i></p><p><span style=\"font-size:13px\">- Advertisement promoting the Imperial Academy</span></p></blockquote><p>With many attracted to the Imperial Navy by promises of decent pay and access to some of the most advanced ships in the galaxy, prospective Imperial cadets could attend a preparatory school on respective worlds such as at the Academy for Young Imperials on Lothal, and from there would be sorted into advanced Imperial academies for further training. Not all candidates continued on with their training however, with some returning to their previous lives or failing to meet requirements. Most slots in the Inner Rim were reserved for citizens of former Separatist worlds in an effort to increase their loyalty.</p><p>After completion of their preparatory school, trainees would then be sorted alphabetically into their future academy, such as at the Arkanis Academy, with the most prestigious being the Royal Imperial Academy on Coruscant. Imperial officer training was noted to be vigorous, with frequent inspections and topics such as Core Worlds Classical Culture, Security Protocols and Interrogation Techniques, Large Vessel Design, Amphibious Battle Tactics and Large Vessel Design, along with training in numerous flight simulators. Imperial TIE pilots were trained that aiding fellow fliers was low priority unless no other task was assigned. Additionally, recruits could participate in athletic activities and compete professionally in Naval Corps Boxing, all for the chance of winning the belt. Cadets were ultimately separated into various tracks such as the command track or elite flight, while at the Royal Academy top cadets could attend a reception and ball at the Imperial Palace along with hundreds of senior military and government officials.</p><p>Upon graduation, trainees were commissioned as lieutenants, while they were also allowed a postgraduate visit back to their homeworlds. Further into their military careers, it was frowned upon to take recreational time off, while the vast majority of Imperial officers remained in service until they hit the mandatory retirement age or died. The Medal of Honor was one of the highest forms of Imperial commendation, lower only to the prestigious Distinguished Medal of Imperial Honor, given only for the greatest acts of sacrifice.</p><p><b>Ranks</b></p><p>Rank was determined by wearing a color-coded rank insignia plaque which utilized red, blue and yellow squares. An admiral was identified by twelve multicolored squares, six red over six blue; however, black-uniformed officers were identified with six colored squares side by side for the rank of admiral, four red and two yellow along with red-tipped code cylinders, unlike the blue tipped variant used by other officers. A captain was identified by six squares of three red over three blue. The prestigious title of Grand Moff was identified with twelve squares, six blue over three red and three yellow. While most high-ranking officers wore olive-green drab and lower ranking noncoms wore black uniforms, some officers could rise up the ranks and keep their black uniform variant.</p><p>The ranks of the Imperial Navy, arranged from lowest to highest, were: Ensign, Lieutenant (subdivided into Junior and Senior Lieutenant), Captain, Lieutenant Commander, Commander, Commodore, Rear Admiral, Vice Admiral, Admiral, Fleet Admiral, Grand Admiral, and Admiral of the Fleet. The Chief of the Imperial Navy was a single individual who served on the Joint Chiefs and advised the Supreme Commander of the overall Imperial Military.</p><p>A Flag Captain referred to a high-ranking individual who captained the flagship of an admiral. A Flag officer referred to a senior officer above the rank of commander.</p><p>It typically took ten to fifteen years to transition from ensign fresh from the academy to captain. Usually, a captain waited at least six more years before becoming commander. However, the High Command could speed up the process, especially for political reasons.</p><h3>Equipment</h3><p>Imperial uniforms varied depending on the specialization of the individual, ranging from protective armor to pressed jackets. Those of higher rank often wore the distinctive olive-green double-breasted tunic along with boots, trousers and a command cap displaying an officer's disk designed by Tarkin himself following the rise of the New Order. It saw wide service in both the Imperial Navy and Army, however a black variant was utilized by noncoms and stormtrooper officers.</p><p>Imperial weapons technicians wore distinctive clamshell helmets and partial body armor, while TIE pilots wore encased full body armor with helmets similar to those worn by stormtroopers, along with with flexible gas transfer tubes in the front of their helmets along with other modifications for operating in the vacuum of space.</p><h3><b>Starships of the Imperial Navy</b></h3><p><b>Capital ships</b></p><blockquote><p><i>\"We will apprehend them, my lord. Even if that requires repositioning half the capital ships in the fleet.\"</i></p><p><span style=\"font-size:13px\">- Vice Admiral Dodd Rancit, to Emperor Palpatine</span></p></blockquote><p>During its reign of the galaxy, the Imperial Navy used a plethora of capital ships as flagships and command ships. Several varieties of Star Destroyer were used, including the common Imperial-class Star Destroyers which consisted of both Imperial I- and Imperial II-class Star Destroyers, as well as the Interdictor-class Star Destroyer, the qaz-class Star Destroyer, the Secutor-class Star Destroyer, the Tector-class Star Destroyer, the Venator-class Star Destroyer, the Victory-class Star Destroyer, the Gladiator-class Star Destroyer, and the Onager-class Star Destroyer.</p><p>Although a rarer sight than a Star Destroyer, dreadnoughts were even more formidable ships. Thirteen Super Star Destroyers were in Imperial service prior to the Battle of Endor, including several Executor-class Star Dreadnoughts which consisted of the Executor I-class Star Dreadnought and the Executor II-class Star Dreadnought. The Assertor-class Command Dreadnought, acted as a sector command ship, and a heavy weapons platform. The Asteroid Dreadnought was rumoured to be in the Navy's possession.</p><p><b>Smaller craft</b></p><p>Along with its massive capital ships, the Imperial Navy also employed smaller vessels for support or other purposes not fit for a Star Destroyer. These included cruisers, such as attack cruisers, bulk cruisers, battlecruisers, Detainer CC-2200s, Gozanti-class cruisers, IGV-55 surveillance vessels, Immobilizer 418 cruisers, Cantwell-class Arrestor Cruisers, Carrack-class light cruisers, and both Arquitens-class command cruisers and light cruisers. A modified variant of the Arquitens-class command cruiser was the prison-tug, which served as a cruiser and tug for wreckage-prisons. A tractor tug was a model of tug utilized by the Empire.</p><p>Carriers were also widely used. Notable Imperial carrier ships included the Gozanti-class Assault Carrier, the Imperial escort carrier, and Quasar Fire-class cruiser-carrier which consisted of both the Quasar Fire I-class and the Quasar Fire II-class cruiser-carrier.</p><p>Corvettes such as the CR90 corvette and the Raider II-class corvette were also utilized.</p><p>Notable frigates used included CC-7700 frigates, EF76 Nebulon-B escort frigates and Razor-class frigates.</p><p>Other vessels in this category included the Imperial Support Vessel.</p><p><b>Freighters and cargo transports</b></p><p>To move large amounts of materials across the galaxy, the Imperial Navy used freighters and similar vessels. Common freighters and barges included the class four container transport, the Eta-class supply barge and the Imperial heavy freighter.</p><p><b>Troop and vehicle transports</b></p><p>Small craft dedicated to deploying troops and ground vehicles were known as dropships. Known dropships included the Theta-class barge, the Y-45 armored transport hauler and the Y-85 Titan dropship.</p><p>The type of transport called the Imperial Dropship Transport also performed this role, as did smaller gunships like the Low Altitude Assault Transport/infantry and the LAAT/le gunship.</p><p><b>Shuttles</b></p><p>Used to ferry around Imperial personnel, common shuttles included the Lambda-class T-4a shuttle and Delta-class T-3c shuttles of the Abecederian line, as well as Sentinel-class landing crafts, Theta-class T-2c shuttles, Zeta-class cargo shuttles and Zeta-class shuttles. The TIE/sh shuttles and TIE Boarding Crafts from the TIE line were also used as shuttles.</p><p><b>Starfighters</b></p><p>Belonging to the Imperial Navy's own Imperial Starfighter Corps, notable starfighters included the Alpha-3 Nimbus-class V-wing starfighters, Aggressive ReConnaissance-170 starfighters and Eta-2 Actis-class light interceptors. These were, however, later replaced with new TIE line starfighters, such as the TIE/D Defender (and its elite variant), the TIE/IN interceptor, the common TIE/ln space superiority starfighter, the TIE/rb heavy starfighter, the TIE/sa bomber, the TIE/sk x1 experimental air superiority fighter, the TIE/rp Reaper attack lander, the TIE Advanced v1, the TIE Advanced x1, the TIE/ag \"Aggressor\" Starfighter, the TIE/ca \"Punisher\" Starfighter, and the TIE lander. The TIE/ph \"Phantom\" Multi-Role Stealth Starfighter, was equipped with a cloaking device. Outside the TIE line was the prestigious VT-49 Decimator.</p><p><b>Space stations</b></p><p>Imperial construction modules, were used as staging areas, and for construction. The first and second Death Stars were battle stations within the Imperial fleet. The Wrath was a space station that orbited the planet Ponemah Terminal. The Torpedo Sphere that was rumored to be in the Empire's possession was classified as a space station and siege platform. The Shield Gate, orbiting Scarif, protected the Imperial security complex. Hivebase-1 was a top-secret space station used by the Tarkin Initiative as an archive station, it was one of the largest archives ever built. The supertanker fuel depots were mobile space stations designed by the Empire. For planetary defense included the FireStar II-class Orbital Defense Platforms, and the Golan I Space Defense Platforms, these include its other variants. Harbor-class Mobile Space Docks acted as mobile repair yards for Imperial fleets and battlegroups. Mk IX Orbital Maintenance Depots, were massive shipyards that could provide service to dreadnoughts.<br /></p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Lawful Balanced",
-      "species": "",
+      "species": null,
       "type": {
         "value": "humanoid",
         "subtype": "",
@@ -761,13 +526,9 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 25
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 1
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "med",
@@ -795,15 +556,14 @@
           "basic"
         ],
         "custom": ""
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -813,11 +573,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -826,11 +586,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 0,
@@ -839,11 +599,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -852,11 +612,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -865,11 +625,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -878,11 +638,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -891,11 +651,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -904,11 +664,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2,
-        "passive": 12
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -917,11 +677,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -930,11 +690,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -943,11 +703,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2,
-        "passive": 12
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 1,
@@ -956,11 +716,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 13,
-        "prof": 2,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -969,11 +729,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -982,11 +742,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -995,11 +755,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0,
@@ -1008,11 +768,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -1021,11 +781,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -1034,11 +794,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2,
-        "passive": 12
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
     "tools": {},
@@ -1047,96 +807,67 @@
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1255,10 +986,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493984003,
-    "modifiedTime": 1699591677248,
+    "modifiedTime": 1720368798956,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!56zyifdbmCZVD3pV"

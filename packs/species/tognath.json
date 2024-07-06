@@ -1,8 +1,180 @@
 {
-  "_id": "VPUpepqESsWVKhEv",
   "name": "Tognath",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2941244+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-tognath"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Tognath.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Tognath are a sentient species native to Yar Togna. Yar Togna is a foul-smelling, high-gravity planet with a toxic, fume-saturated atmosphere. As a result, tognath wear a breathing apparatus to process the oxygen content in a planet's atmosphere. The tognath have a striking look thanks to their insectoid and mammalian characteristics; another factor is their having both an endo- and exoskeleton. They also possess a very primitive nervous system, which provides them with immunity to most pain (a helpful trait in combat). Tognath begin life as larvae born from egg clutches hatched in a suspension jelly, and latch onto one of their parents, feeding directly from their bloodstream. While in that jelly, two or more eggs (not necessarily from the same parent) sometimes graft together, thus creating a bond that continues throughout the life of the eggmates. Six months later, parents visit a nursery tree, where the young detatch from them and spin a cocoon. Within, the offspring undergo a metamorphosis, developing both their skeletons to resist the high gravity and pressures of Yar Togna.</p>\n<h2>Society and Culture</h2>\n<p>Tognath live in stilted homes with lava channels near the main mountain range of Yar Togna, where they have access to mountain springwater. Most of tognath society believes that mate selection and egg laying should occur late in life, after having dedicated most of one's prime years to a career. This means that parents are generally retired and dote on their children relentlessly, often homeschooling them after their transformation. </p>\n<h2>Names</h2>\n<p>Tognath use generally simple, nongendered names, without bothering with surnames.</p>\n<p><strong>First Names.</strong> Darjia, Essec, Irion, Tathak</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "tognath",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "c75Z7wZEGFL1ynPS",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GTJTBiWaiR3qBMC7"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5ppUg7yemwzWAjsH"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.YYrloVmZ4m8LRIKv"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.70HgixSa8t5dZy38"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.qpfm5JKShu8U2Vxf"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LeNWAsVEsPlX4QC2"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lB9i6TzPI5hGufW2"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.f8syj9ljskWQNfrU"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.E6LP8T41XkwjSFsC"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Z86yNPHFAlDQx3Kr"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7zOfRMviG5UPKKzq"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.YjUXhU8B3SnUNhKX"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "80bKeOtYTLl1Q5o6",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 1
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "10YzRdZSoB7m16Vh",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1ORlaImpV5qf1ci6",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:artisan:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Tan or cream"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "White"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Breathing apparatus, endo and exoskeletons"
+    },
+    "heightAverage": {
+      "value": "5'5\""
+    },
+    "heightRollMod": {
+      "value": "+2d6\""
+    },
+    "weightAverage": {
+      "value": "105 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Yar Togna"
+    },
+    "slanguage": {
+      "value": "Tognath"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "ZuaX9Ve15bYpNKkv",
@@ -68,146 +240,22 @@
       "name": "Tognath",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!VPUpepqESsWVKhEv.ZuaX9Ve15bYpNKkv"
+      "_key": "!items.effects!yRlSEDZBupMJQ9I2.ZuaX9Ve15bYpNKkv"
     }
   ],
+  "_id": "yRlSEDZBupMJQ9I2",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2941244+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-tognath"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Tognath are a sentient species native to Yar Togna. Yar Togna is a foul-smelling, high-gravity planet with a toxic, fume-saturated atmosphere. As a result, tognath wear a breathing apparatus to process the oxygen content in a planet's atmosphere. The tognath have a striking look thanks to their insectoid and mammalian characteristics; another factor is their having both an endo- and exoskeleton. They also possess a very primitive nervous system, which provides them with immunity to most pain (a helpful trait in combat). Tognath begin life as larvae born from egg clutches hatched in a suspension jelly, and latch onto one of their parents, feeding directly from their bloodstream. While in that jelly, two or more eggs (not necessarily from the same parent) sometimes graft together, thus creating a bond that continues throughout the life of the eggmates. Six months later, parents visit a nursery tree, where the young detatch from them and spin a cocoon. Within, the offspring undergo a metamorphosis, developing both their skeletons to resist the high gravity and pressures of Yar Togna.</p>\n<h2>Society and Culture</h2>\n<p>Tognath live in stilted homes with lava channels near the main mountain range of Yar Togna, where they have access to mountain springwater. Most of tognath society believes that mate selection and egg laying should occur late in life, after having dedicated most of one's prime years to a career. This means that parents are generally retired and dote on their children relentlessly, often homeschooling them after their transformation. </p>\n<h2>Names</h2>\n<p>Tognath use generally simple, nongendered names, without bothering with surnames.</p>\n<p><strong>First Names.</strong> Darjia, Essec, Irion, Tathak</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "tognath",
-    "advancement": [
-      {
-        "_id": "pke5c9EbpPCVq856",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.GTJTBiWaiR3qBMC7",
-            "Compendium.sw5e.speciesfeatures.5ppUg7yemwzWAjsH",
-            "Compendium.sw5e.speciesfeatures.YYrloVmZ4m8LRIKv",
-            "Compendium.sw5e.speciesfeatures.70HgixSa8t5dZy38",
-            "Compendium.sw5e.speciesfeatures.qpfm5JKShu8U2Vxf",
-            "Compendium.sw5e.speciesfeatures.LeNWAsVEsPlX4QC2",
-            "Compendium.sw5e.speciesfeatures.lB9i6TzPI5hGufW2",
-            "Compendium.sw5e.speciesfeatures.f8syj9ljskWQNfrU",
-            "Compendium.sw5e.speciesfeatures.E6LP8T41XkwjSFsC",
-            "Compendium.sw5e.speciesfeatures.Z86yNPHFAlDQx3Kr",
-            "Compendium.sw5e.speciesfeatures.7zOfRMviG5UPKKzq",
-            "Compendium.sw5e.speciesfeatures.YjUXhU8B3SnUNhKX"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "P4SGY0VF3Vr1abyz",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "con": 1
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1yC9vjWhj1rw1lpX",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "yCr2eqD3E6K1EPRY",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "tool:artisan:*"
-              ]
-            }
-          ],
-          "grants": [],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Tan or cream"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "White"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Breathing apparatus, endo and exoskeletons"
-    },
-    "heightAverage": {
-      "value": "5'5\""
-    },
-    "heightRollMod": {
-      "value": "+2d6\""
-    },
-    "weightAverage": {
-      "value": "105 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Yar Togna"
-    },
-    "slanguage": {
-      "value": "Tognath"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002100,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!VPUpepqESsWVKhEv"
+  "_key": "!items!yRlSEDZBupMJQ9I2"
 }

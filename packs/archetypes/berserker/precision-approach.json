@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Precision Approach</h1>\n<p>Some berserkers have learned to channel their rage into a method of increasing their focus and precision to supernatural levels. Those berserkers who choose the Precision Approach hone their rage to a fine point, becoming agile warriors who ruthlessly dispatch their foes.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "precisionapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "1KgmCyXYwsUj10mX",
+        "_id": "yi6FQ6yfmDp1dWEn",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ZwzEXmXUBSQMarA7",
-            "Compendium.sw5e.archetypefeatures.aAMTfVpJR1g1Da7x"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ZwzEXmXUBSQMarA7"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.aAMTfVpJR1g1Da7x"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "12EVaHwDmRongdC1",
+        "_id": "pz41ahDiFDswz98S",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.QGZymJSoQ0q2BiZn"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.QGZymJSoQ0q2BiZn"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "DlCpdp31ese1jzL6",
+        "_id": "1ml6QCaxhdWc1dwZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.9RlZQaQbXOowxZ3c"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.9RlZQaQbXOowxZ3c"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "1Mq9N3scmwQS1bIU",
+        "_id": "1QEFxuQZfqG0JwwF",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.p1EP6FF3RmWNr44d"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.p1EP6FF3RmWNr44d"
+            }
           ],
           "optional": false
         },
@@ -80,7 +88,7 @@
         "title": "Features"
       },
       {
-        "_id": "W9x4wxsDfhs1TPNS",
+        "_id": "G9FMsCVfiyb1rijX",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -106,7 +114,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -114,10 +122,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959727,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!DOhLhimid3h8Huc7"

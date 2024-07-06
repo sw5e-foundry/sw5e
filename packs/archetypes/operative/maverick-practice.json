@@ -2,7 +2,7 @@
   "name": "Maverick Practice",
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:15.1754539+00:00",
+      "timestamp": "2023-05-30T20:14:20.0031191+00:00",
       "importer_version": 3,
       "uid": "Archetype.name-maverick_practice"
     }
@@ -13,23 +13,25 @@
   "system": {
     "description": {
       "value": "<h1>Maverick Practice</h1>\n<p>There are those who, when thrust into danger, use unexpected methods to achieve victory. Those operatives who choose the Maverick Practice draw on a wide array of skills, learning new ways to apply them, as their strongest asset.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "maverickpractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "1NzwUcNuxD8dxFaL",
+        "_id": "Ac8PwqdyMhd1A0cu",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.hhsr0V4yR9a0F26m",
-            "Compendium.sw5e.archetypefeatures.pcWBCvQPDEvW84jE"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hhsr0V4yR9a0F26m"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pcWBCvQPDEvW84jE"
+            }
           ],
           "optional": false
         },
@@ -38,11 +40,13 @@
         "title": "Features"
       },
       {
-        "_id": "9633Vsbic311akbL",
+        "_id": "1x8ZaQmdLzs85BKk",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.5XKqswL62vuTo14B"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.5XKqswL62vuTo14B"
+            }
           ],
           "optional": false
         },
@@ -51,11 +55,13 @@
         "title": "Features"
       },
       {
-        "_id": "EO0Yyp09uiu1sdq6",
+        "_id": "1DGlLvdJyHG4xSYU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.hgekmyNSua3zFx7e"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hgekmyNSua3zFx7e"
+            }
           ],
           "optional": false
         },
@@ -64,11 +70,13 @@
         "title": "Features"
       },
       {
-        "_id": "17AddFcyvbb3k5qG",
+        "_id": "1TWk7OBEteN017RV",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.tKni3feLtjveOzhr"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.tKni3feLtjveOzhr"
+            }
           ],
           "optional": false
         },
@@ -81,15 +89,11 @@
       "force": "none",
       "forceOverride": "",
       "tech": "none",
-      "techOverride": "",
-      "-=progression": null,
-      "-=ability": null
+      "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
-    },
-    "-=className": null,
-    "-=classCasterType": null
+      "progression": 0
+    }
   },
   "folder": null,
   "sort": 0,
@@ -98,10 +102,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426103159,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "0fXY5TiSjg7OhzAq",

@@ -13,18 +13,19 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> Shape the Flowing River</em></p>\n<p>As an action, you cause frost to chill the area around you, granting the following benefits until the start of your next turn:</p>\n<ul>\n<li>You have resistance to cold damage.</li>\n<li>You can move across difficult terrain created by ice or snow without spending extra movement.</li>\n<li>The ground in a 10-foot radius around you is icy and is difficult terrain for creatures other than you. The radius moves with you.</li>\n<li>You can use your action to create a 15-foot cone of freezing ice extending from your outstretched hand in a direction you choose. Each creature in the cone must make a Constitution saving throw. A creature takes [[/r 4d6]] cold damage on a failed save, or half as much damage on a successful one. A creature that fails its save against this effect gains 1 slowed level until the start of your next turn.</li>\n</ul>\n<p>At the start of each of your turns, you can use your bonus action to extend the benefits of this feature until the start of your next turn, to a maximum duration of 1 minute. This effect ends immediately if you are incapacitated or die.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
@@ -33,28 +34,29 @@
       "value": "10",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -89,7 +91,16 @@
         "turn": null
       }
     },
-    "className": "Monk"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "folder": null,
   "sort": 0,
@@ -98,10 +109,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426104195,
-    "modifiedTime": 1699591595174,
+    "modifiedTime": 1720368696845,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "SKbFPy3gIyFDWCpM",

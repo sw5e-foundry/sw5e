@@ -9,67 +9,49 @@
   },
   "type": "weapon",
   "img": "systems/sw5e/packs/Icons/Naturals/MartialArts.webp",
-  "effects": [],
   "system": {
     "description": {
       "value": "<h3>Finesse</h3>\n<p>When making an attack with a weapon with this property, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
+    "type": {
+      "value": "natural",
+      "subtype": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
-    "duration": {
-      "value": null,
-      "units": "inst"
-    },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
       "units": "ft"
     },
-    "uses": {
-      "value": null,
-      "max": null,
-      "per": null,
-      "recovery": ""
-    },
-    "consume": {
-      "type": "",
-      "target": "",
-      "amount": null
-    },
-    "ability": "",
     "actionType": "mwak",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": {
-      "threshold": null,
-      "damage": ""
-    },
     "damage": {
       "parts": [
         [
@@ -79,18 +61,65 @@
       ],
       "versatile": ""
     },
+    "properties": {
+      "0": "fin"
+    },
+    "weaponClass": "",
+    "ammo": {
+      "types": [],
+      "target": "",
+      "value": null,
+      "use": null
+    },
+    "_propertyValues": {},
+    "unidentified": {
+      "description": ""
+    },
+    "container": null,
+    "attuned": false,
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
     "formula": "",
     "save": {
       "ability": "",
       "dc": null,
       "scaling": "power"
     },
+    "summons": null,
     "armor": {
-      "value": 10
+      "value": null
     },
     "hp": {
-      "value": 0,
-      "max": 0,
+      "value": null,
+      "max": null,
       "dt": null,
       "conditions": ""
     },
@@ -99,24 +128,14 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null
+      "changes": {}
     },
-    "weaponType": "natural",
-    "weaponClass": "",
-    "baseItem": "martialarts",
-    "ammo": {
-      "target": null,
-      "value": null,
-      "use": null,
-      "types": []
-    },
-    "properties": {
-      "fin": true,
-      "-=amm": null
-    },
-    "proficient": null
+    "magicalBonus": null,
+    "proficient": null,
+    "firingArc": ""
   },
+  "effects": [],
+  "_id": "znScsGBnRkIijapl",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -124,12 +143,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1667426099569,
-    "modifiedTime": 1704036395356,
+    "createdTime": 1720296019804,
+    "modifiedTime": 1720368948779,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_id": "9rxilCmBO8lD94Oi",
-  "_key": "!items!9rxilCmBO8lD94Oi"
+  "_key": "!items!znScsGBnRkIijapl"
 }

@@ -1,8 +1,181 @@
 {
-  "_id": "XoFN88whSWZafSbn",
   "name": "Arkanian",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.272138+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-arkanian"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Arkanian.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Arkanians are a robust near-human species with solid white eyes and clawed, four-fingered hands.</p>\n<p>Arkanians are capable of seeing into the infrared spectrum, and their eyes are sensitive to sources of extreme heat. This proved helpful on their dark and frigid homeworld, but when traveling offworld, many must wear blinders on planets with hotter, younger suns. It is not unheard of for arkanians to undergo genetic or cybernetic manipulation of their own bodies, enhancing themselves so as to be better than \"lesser\" species.</p>\n<h2>Society and Culture</h2>\n<p>Arkanians are notoriously arrogant, a trait which came from generations of producing some of the galaxy's greatest advancements in genetics and technology. Their homeworld, Arkania, has vast quantities of precious gems; thus, the arkanians have never wanted for much in trade. This wealth went into funding their ambitious scientific projects, the most elaborate of which take generations to be completed. </p>\n<p>Many arkanians have come to see their species as the pinnacle of evolution, and amongst the most—if not <em>the</em> most—intelligent beings in the galaxy. Those species that are not already put off by their aloof nature often fear them, as tales of \"mad scientists\" and horrific experiments tend to surround them.</p>\n<h2>Names</h2>\n<p>Arkanian names are simultaneously dignified and succinct. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Arkoh, Hyrim, Zeta, Suprin </p>\n<p><strong>Female Names.</strong> Shenna, Elizie, Cratala, Hanna </p>\n<p><strong>Surnames.</strong> Focela, Barzane, Nasdra, Athacorr</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "arkanian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1naAqJV2jQWS1qyK",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Vo7HZQ6EqaerTmEV"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JjbW1HXsPy4XbFrQ"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.NBMMzNehxH8UOMqp"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wkCOmGXJ5ZXqf3TS"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3jH9iA16FQtdevIW"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.4DJLc1nZQ1zOuVqP"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.kR1mdpO6CKXbItGT"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mp3XSpsz73XXP07v"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zKXBydOWCWKoZ80I"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5rKbsfvR5JltTx41"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lMEKLgMs1npLeu1U"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DbbK9oKgq1HTilbl"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "12qJDOyBxfNI1uVv",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "wis": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1e1JMdoR9DfERn0O",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "COdAHkJiQKX1fpAe",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Tan"
+    },
+    "hairColorOptions": {
+      "value": "White"
+    },
+    "eyeColorOptions": {
+      "value": "White"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Four clawed digits, extreme intelligence, infrared vision"
+    },
+    "heightAverage": {
+      "value": "5'0\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "100 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Arkania"
+    },
+    "slanguage": {
+      "value": "Arkanian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "RAp3oZRuCxtSNaQn",
@@ -66,8 +239,7 @@
       "name": "Arkanian",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!XoFN88whSWZafSbn.RAp3oZRuCxtSNaQn"
+      "_key": "!items.effects!YhNI84gqbg7QOmUo.RAp3oZRuCxtSNaQn"
     },
     {
       "_id": "hfIgOZCRsvfzi2qj",
@@ -107,150 +279,22 @@
       "name": "Sunlight Sensitivity - you or your target is in sunlight",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!XoFN88whSWZafSbn.hfIgOZCRsvfzi2qj"
+      "_key": "!items.effects!YhNI84gqbg7QOmUo.hfIgOZCRsvfzi2qj"
     }
   ],
+  "_id": "YhNI84gqbg7QOmUo",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.272138+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-arkanian"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Arkanians are a robust near-human species with solid white eyes and clawed, four-fingered hands.</p>\n<p>Arkanians are capable of seeing into the infrared spectrum, and their eyes are sensitive to sources of extreme heat. This proved helpful on their dark and frigid homeworld, but when traveling offworld, many must wear blinders on planets with hotter, younger suns. It is not unheard of for arkanians to undergo genetic or cybernetic manipulation of their own bodies, enhancing themselves so as to be better than \"lesser\" species.</p>\n<h2>Society and Culture</h2>\n<p>Arkanians are notoriously arrogant, a trait which came from generations of producing some of the galaxy's greatest advancements in genetics and technology. Their homeworld, Arkania, has vast quantities of precious gems; thus, the arkanians have never wanted for much in trade. This wealth went into funding their ambitious scientific projects, the most elaborate of which take generations to be completed. </p>\n<p>Many arkanians have come to see their species as the pinnacle of evolution, and amongst the most—if not <em>the</em> most—intelligent beings in the galaxy. Those species that are not already put off by their aloof nature often fear them, as tales of \"mad scientists\" and horrific experiments tend to surround them.</p>\n<h2>Names</h2>\n<p>Arkanian names are simultaneously dignified and succinct. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Arkoh, Hyrim, Zeta, Suprin </p>\n<p><strong>Female Names.</strong> Shenna, Elizie, Cratala, Hanna </p>\n<p><strong>Surnames.</strong> Focela, Barzane, Nasdra, Athacorr</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "arkanian",
-    "advancement": [
-      {
-        "_id": "SxmwIglvCtLJcjMR",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.Vo7HZQ6EqaerTmEV",
-            "Compendium.sw5e.speciesfeatures.JjbW1HXsPy4XbFrQ",
-            "Compendium.sw5e.speciesfeatures.NBMMzNehxH8UOMqp",
-            "Compendium.sw5e.speciesfeatures.wkCOmGXJ5ZXqf3TS",
-            "Compendium.sw5e.speciesfeatures.3jH9iA16FQtdevIW",
-            "Compendium.sw5e.speciesfeatures.4DJLc1nZQ1zOuVqP",
-            "Compendium.sw5e.speciesfeatures.kR1mdpO6CKXbItGT",
-            "Compendium.sw5e.speciesfeatures.mp3XSpsz73XXP07v",
-            "Compendium.sw5e.speciesfeatures.zKXBydOWCWKoZ80I",
-            "Compendium.sw5e.speciesfeatures.5rKbsfvR5JltTx41",
-            "Compendium.sw5e.speciesfeatures.lMEKLgMs1npLeu1U",
-            "Compendium.sw5e.speciesfeatures.DbbK9oKgq1HTilbl"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1F6oeOoheAeR8DFB",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2,
-            "wis": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "gCLyjckVFKmsGtyL",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "v1nQ0nTC1sdtHAIZ",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "tool:*"
-              ]
-            }
-          ],
-          "grants": [],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Tan"
-    },
-    "hairColorOptions": {
-      "value": "White"
-    },
-    "eyeColorOptions": {
-      "value": "White"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Four clawed digits, extreme intelligence, infrared vision"
-    },
-    "heightAverage": {
-      "value": "5'0\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "100 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Arkania"
-    },
-    "slanguage": {
-      "value": "Arkanian"
-    },
-    "movement": {
-      "walk": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002104,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!XoFN88whSWZafSbn"
+  "_key": "!items!YhNI84gqbg7QOmUo"
 }

@@ -1,11 +1,5 @@
 {
-  "_id": "JJW1OllV82jC2RXG",
   "name": "Techaxe",
-  "type": "weapon",
-  "img": "systems/sw5e/packs/Icons/Simple%20Vibroweapons/Techaxe.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:54.3955029+00:00",
@@ -13,66 +7,51 @@
       "uid": "Weapon.name-techaxe.equipmentCategory-weapon"
     }
   },
+  "type": "weapon",
+  "img": "systems/sw5e/packs/Icons/Simple%20Vibroweapons/Techaxe.webp",
   "system": {
     "description": {
       "value": "<h3>Light</h3>\n<p>A weapon with this property is small and easy to handle, making it ideal for use when engaging in Double- or Two-Weapon Fighting. See the rules for Double- and Two-Weapon Fighting in chapter 9.</p>\n<h3>Thrown (range 25/75)</h3>\n<p>A weapon that can be used to make a ranged attack has this property. The range lists two numbers. The first is the weapon's normal range in feet, and the second indicates the weapon's long range. When attacking a target beyond normal range, you have disadvantage on the attack roll. You can't attack a target beyond the weapon's long range.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "quantity": 1,
-    "weight": 1,
+    "weight": {
+      "value": 1,
+      "units": "lb"
+    },
     "price": {
       "value": 75,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
+    "type": {
+      "value": "simpleVW",
+      "subtype": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
-    "duration": {
-      "value": null,
-      "units": "inst"
-    },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": 25,
       "long": 75,
       "units": "ft"
     },
-    "uses": {
-      "value": null,
-      "max": null,
-      "per": null,
-      "recovery": ""
-    },
-    "consume": {
-      "type": "",
-      "target": "",
-      "amount": null
-    },
-    "ability": "",
     "actionType": "mwak",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": {
-      "threshold": null,
-      "damage": ""
-    },
     "damage": {
       "parts": [
         [
@@ -82,18 +61,66 @@
       ],
       "versatile": ""
     },
+    "properties": {
+      "0": "lgt",
+      "1": "ran"
+    },
+    "weaponClass": "crushing",
+    "ammo": {
+      "types": [],
+      "target": "",
+      "value": null,
+      "use": null
+    },
+    "_propertyValues": {},
+    "unidentified": {
+      "description": ""
+    },
+    "container": null,
+    "attuned": false,
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
     "formula": "",
     "save": {
       "ability": "",
       "dc": null,
       "scaling": "power"
     },
+    "summons": null,
     "armor": {
-      "value": 10
+      "value": null
     },
     "hp": {
-      "value": 0,
-      "max": 0,
+      "value": null,
+      "max": null,
       "dt": null,
       "conditions": ""
     },
@@ -102,37 +129,26 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "weaponType": "simpleVW",
-    "weaponClass": "crushing",
-    "baseItem": "techaxe",
-    "ammo": {
-      "target": null,
-      "value": null,
-      "use": null,
-      "types": []
-    },
-    "properties": {
-      "lgt": true,
-      "ran": 25,
-      "thr": "range 20/60"
-    },
+    "magicalBonus": null,
     "proficient": null,
-    "equiped": false
+    "firingArc": ""
   },
+  "effects": [],
+  "_id": "WhLbnsnz8ee4kkpu",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494021691,
-    "modifiedTime": 1704036395356,
+    "createdTime": 1720296019804,
+    "modifiedTime": 1720368948565,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!JJW1OllV82jC2RXG"
+  "_key": "!items!WhLbnsnz8ee4kkpu"
 }

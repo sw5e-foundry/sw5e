@@ -1,8 +1,154 @@
 {
-  "_id": "jYsSo1k82BQJbmKl",
   "name": "Muun",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2861295+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-muun"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Muun.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Muuns are tall, gaunt humanoids with thin bodies, long limbs, and elongated hairless heads. They typically have pale pink or white skin, most likely derived from their propensity for staying indoors. Muuns have tiny ears on the middle of the sides of their heads, flat noses, and slim mouths which leads to a commonly nasally voice.</p>\n<h2>Society and Culture</h2>\n<p>Muuns believe in tradition, with an established culture based on intelligence and merit. A class-based hierarchy, Muuns consider the  the intellectual pursuits — financiers, lawyers, engineers, diplomats, scientists — as the highest levels of society. Muun culture, and life, revolves around economics and finance. Intense competition among coworkers encourages economic growth, increased productivity, and superior work ethic. Muuns also have a fundamental respect for justice, though they typically adhere to the letter of the law rather than the spirit.</p>\n<p>Since Muuns tend to shy away from fighting and physical pursuits, Muun society relies on alternative means for their planet's protection, using vast financial resources to purchase massive floating defense platforms to defend their civilization from attack.</p>\n<h2>Names</h2>\n<p>Muun names are typically clear and concise, rarely containing more than two syllables, with familial surnames.</p>\n<p><strong>Male Names.</strong> Clu, Hego, Nix, Pors, San</p>\n<p><strong>Female Names.</strong> Dax, Efra, Gil, Rel, Ter</p>\n<p><strong>Surnames.</strong> Card, Damask, Hill, Lesser, Tonith</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "muun",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1Oj3LDCi2pTHmtse",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.nrirYLEl4Z7d02id"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QCNoH5G0kzmKg1xb"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RQayuF4sYQe7EFZ1"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ItLYDLUzx7Ctgr4L"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.e42Uxwq42BwUwa8I"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yJNU3O45qs7BFV06"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.htTijUNlyua6DFCA"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.g2oRcDfBuaPiSQvc"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Tg3nRCrLIUHhYE7Q"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1Ciox3N5w6nP1k4k",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "cha": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1cWw3a7LLdgCdM07",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Light pink or white"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black or grey"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Three hearts, long limbs, elongated heads"
+    },
+    "heightAverage": {
+      "value": "5'8\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "145 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Scipio"
+    },
+    "slanguage": {
+      "value": "Muun"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "8gvuuKqgXs6QeD14",
@@ -68,126 +214,22 @@
       "name": "Muun",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!jYsSo1k82BQJbmKl.8gvuuKqgXs6QeD14"
+      "_key": "!items.effects!5G6T5ycCJQGeYuLc.8gvuuKqgXs6QeD14"
     }
   ],
+  "_id": "5G6T5ycCJQGeYuLc",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2861295+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-muun"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Muuns are tall, gaunt humanoids with thin bodies, long limbs, and elongated hairless heads. They typically have pale pink or white skin, most likely derived from their propensity for staying indoors. Muuns have tiny ears on the middle of the sides of their heads, flat noses, and slim mouths which leads to a commonly nasally voice.</p>\n<h2>Society and Culture</h2>\n<p>Muuns believe in tradition, with an established culture based on intelligence and merit. A class-based hierarchy, Muuns consider the  the intellectual pursuits — financiers, lawyers, engineers, diplomats, scientists — as the highest levels of society. Muun culture, and life, revolves around economics and finance. Intense competition among coworkers encourages economic growth, increased productivity, and superior work ethic. Muuns also have a fundamental respect for justice, though they typically adhere to the letter of the law rather than the spirit.</p>\n<p>Since Muuns tend to shy away from fighting and physical pursuits, Muun society relies on alternative means for their planet's protection, using vast financial resources to purchase massive floating defense platforms to defend their civilization from attack.</p>\n<h2>Names</h2>\n<p>Muun names are typically clear and concise, rarely containing more than two syllables, with familial surnames.</p>\n<p><strong>Male Names.</strong> Clu, Hego, Nix, Pors, San</p>\n<p><strong>Female Names.</strong> Dax, Efra, Gil, Rel, Ter</p>\n<p><strong>Surnames.</strong> Card, Damask, Hill, Lesser, Tonith</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "muun",
-    "advancement": [
-      {
-        "_id": "1h8F8zMXwxuao3EZ",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.nrirYLEl4Z7d02id",
-            "Compendium.sw5e.speciesfeatures.QCNoH5G0kzmKg1xb",
-            "Compendium.sw5e.speciesfeatures.RQayuF4sYQe7EFZ1",
-            "Compendium.sw5e.speciesfeatures.ItLYDLUzx7Ctgr4L",
-            "Compendium.sw5e.speciesfeatures.e42Uxwq42BwUwa8I",
-            "Compendium.sw5e.speciesfeatures.yJNU3O45qs7BFV06",
-            "Compendium.sw5e.speciesfeatures.htTijUNlyua6DFCA",
-            "Compendium.sw5e.speciesfeatures.g2oRcDfBuaPiSQvc",
-            "Compendium.sw5e.speciesfeatures.Tg3nRCrLIUHhYE7Q"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "iENr6m8PYzVV25m6",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2,
-            "cha": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "9KkQB1bnNuSb2h6L",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Light pink or white"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black or grey"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Three hearts, long limbs, elongated heads"
-    },
-    "heightAverage": {
-      "value": "5'8\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "145 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Scipio"
-    },
-    "slanguage": {
-      "value": "Muun"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002122,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!jYsSo1k82BQJbmKl"
+  "_key": "!items!5G6T5ycCJQGeYuLc"
 }

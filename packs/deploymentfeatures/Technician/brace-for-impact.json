@@ -9,28 +9,30 @@
   "flags": {},
   "system": {
     "description": {
-      "value": "<p><em><strong>Power Die Location:</strong> Shields</em><br>When you are reduced to zero shields, as a reaction, you can expend a power die to instead reduce your shields to one.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p><em><strong>Power Die Location:</strong> Shields</em><br />When you are reduced to zero shields, as a reaction, you can expend a power die to instead reduce your shields to one.</p>",
+      "chat": ""
     },
     "requirements": "Technician 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "self",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,17 +42,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "powerdice",
       "target": "attributes.power.shields.value",
-      "amount": 1
+      "amount": 1,
+      "scale": false
     },
     "ability": "",
     "actionType": "heal",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,25 +83,26 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Technician"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": "Stratagem"
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963417,
-    "modifiedTime": 1699591629483,
+    "modifiedTime": 1720368729837,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!9hfNnkr1SKOCZknx"

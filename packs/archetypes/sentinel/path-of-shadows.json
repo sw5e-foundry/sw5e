@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Path of Shadows</h1>\n<p>In darkness, there is protection. Those sentinels who follow the Path of Shadows utilize a calculated plan, becoming masters of stealth and ambush who forgo the head-on attack for the vulnerable flank.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "pathofshadows",
     "classIdentifier": "sentinel",
     "advancement": [
       {
-        "_id": "RMKklE1hnAa4HmPH",
+        "_id": "1zR3tnMajUnKb8FC",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.X53YgZevjoDygVam",
-            "Compendium.sw5e.archetypefeatures.ocyh8LZGSDc4trWi"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.X53YgZevjoDygVam"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ocyh8LZGSDc4trWi"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "K7x816QR4dg16wU1",
+        "_id": "z7XjRrlovRw1L3WR",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.S8EKDemG7wOzKU7x"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.S8EKDemG7wOzKU7x"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "HDa4dTA0JWP17UFO",
+        "_id": "1u9SXcJnYpgr1BYm",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ZXE4BqEuR817CI63"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ZXE4BqEuR817CI63"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "1CeMifBezDML1xXb",
+        "_id": "1Q0m8NO5ikCp1DaR",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.UALQWbDzmp6H8Uiq"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UALQWbDzmp6H8Uiq"
+            }
           ],
           "optional": false
         },
@@ -87,7 +95,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +103,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959714,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!6dnVRdJAIby4258g"

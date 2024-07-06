@@ -13,48 +13,50 @@
   "system": {
     "description": {
       "value": "<p>You deploy a wall up to 30 feet long, 10 feet high, and 3 feet thick, or a ringed wall up to 10 feet in diameter, 10 feet high, and 3 feet thick. The wall features ramparts deep enough to support creatures of Medium size or smaller, and provides one-quarter cover to any creature on its ramparts. The wall includes a ladder on the side of your choice. You choose whether the wall contains any openings otherwise. Any openings chosen in this way can be seen through on both sides. The wall can be climbed, but requires a Strength (Athletics) check against your tech save DC for any creature without a climbing speed. A creature can only make this check once per turn. </p>\n<p>When you reach 11th level, the wall can deploy up to 45 feet long and 15 feet high, or a ringed wall up to 15 feet in diameter and 15 feet high. Additionally, the wall now provides half cover to any creature on its ramparts. When you reach 17th level, the wall can deploy up to 60 feet long and 20 feet high, or a ringed wall up to 20 feet in diameter and 20 feet high. Additionally, the wall now provides three-quarters cover to any creature on its ramparts.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Construction Engineering) 11",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -84,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Engineer"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "folder": null,
   "sort": 0,
@@ -93,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426104174,
-    "modifiedTime": 1699591595233,
+    "modifiedTime": 1720368717467,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "unMMQdRJ8lxtYWv5",

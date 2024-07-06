@@ -10,27 +10,29 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Power Die Location:</strong> Sensors</em><br />When a friendly ship, including your own, makes an attack against a target, you can use your reaction to expend a power die. You add the power die to the attack roll, and the damage roll if it hits. You can use this maneuver before or after the attack roll, but before the GM determines whether or not the attack hits.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operator 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
       "condition": "When a friendly ship, including your own, makes an attack against a target"
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,17 +42,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "powerdice",
       "target": "attributes.power.sensors.value",
-      "amount": 1
+      "amount": 1,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,25 +83,26 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Operator"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": "Disruption"
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963403,
-    "modifiedTime": 1699591629482,
+    "modifiedTime": 1720368729695,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!0BYJ96ps3bjlHgxt"

@@ -13,18 +13,19 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> River of Hungry Flame</em></p>\n<p>As an action, you cause flames to race across your body, granting the following benefits until the start of your next turn:</p>\n<ul>\n<li>You have resistance to fire damage.</li>\n<li>The flames shed bright light in a 30-foot radius and dim light for an additional 30 feet.</li>\n<li>Any creature that moves within 5 feet of you for the first time on a turn or ends its turn there takes [[/r 1d10]] fire damage.</li>\n<li>You can use your action to create a line of fire 15 feet long and 5 feet wide extending from you in a direction you choose. Each creature in the line must make a Dexterity saving throw, taking [[/r 4d8]] fire damage on a failed save, or half as much on a successful one.</li>\n</ul>\n<p>At the start of each of your turns, you can use your bonus action to extend the benefits of this feature until the start of your next turn, to a maximum duration of 1 minute. This effect ends immediately if you are incapacitated or die.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
@@ -33,28 +34,29 @@
       "value": "30",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
-      "value": "5",
+      "value": 5,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -93,7 +95,16 @@
         "turn": null
       }
     },
-    "className": "Monk"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "folder": null,
   "sort": 0,
@@ -102,10 +113,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426104195,
-    "modifiedTime": 1699591595158,
+    "modifiedTime": 1720368691131,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "Jf3iz7Sn86isOcXe",

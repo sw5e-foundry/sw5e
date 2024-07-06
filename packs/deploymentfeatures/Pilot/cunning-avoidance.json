@@ -8,27 +8,29 @@
   "system": {
     "description": {
       "value": "<p>Also at 3rd rank, once per round, when your ship is hit with a ship attack or fails a saving throw, you can make a Dexterity (Maneuvering) check, and instead use that value for your AC or saving throw.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Pilot 3rd Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,15 +81,16 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Pilot"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "3rd Rank"
-    }
+    "properties": {}
   },
   "ownership": {
     "default": 0
@@ -95,10 +99,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963459,
-    "modifiedTime": 1699591629489,
+    "modifiedTime": 1720368730269,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!j38Mv9jlqn3528U4"

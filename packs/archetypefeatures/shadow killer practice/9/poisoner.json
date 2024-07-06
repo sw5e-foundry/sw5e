@@ -13,48 +13,50 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Shadow Killer Practice:</strong> 9th level</em></p>\n<p>You are a master of poisons. Targets of your poisons cannot have advantage on the saving throw made to resist your poison, and you have advantage on Dexterity (Sleight of Hand) checks made to conceal the application of poisons.</p>\n<p>Additionally, when you apply poison to a weapon or its ammunition, that poison can affect an additional hit or an additional piece of ammunition, and when you deal Sneak Attack damage with an attack that would include poison damage, you can change your Sneak Attack damage to poison damage.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Shadow Killer Practice) 9",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -84,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "folder": null,
   "sort": 0,
@@ -93,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426104218,
-    "modifiedTime": 1699591595173,
+    "modifiedTime": 1720368696612,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "S70e4C7FeptqIcjJ",

@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:15.1794522+00:00",
+      "timestamp": "2023-05-30T20:14:20.0071171+00:00",
       "importer_version": 3,
       "uid": "Archetype.name-deadeye_technique"
     }
@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Deadeye Technique</h1>\n<p>Some scouts become legends written in blaster burns. Followers of the Deadeye Technique perfect the art of the blaster shot and utilize their incredible focus to make shots that most would deem impossible. When everything depends on one shot, you want a Deadeye pulling the trigger.</p>\n<p>Due to their uncanny focus, Deadeyes can make shots that other marksmen would never dare to attempt. Deadeyes know how to make the most of ranged weapons and can use them to greater effect than other Scouts.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "deadeyetechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "1g23Jwu4YIoSxNQB",
+        "_id": "8M6l7YofGsR1q6Kr",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.TIsAJUQXEH32Dfgr",
-            "Compendium.sw5e.archetypefeatures.jCmKJKpNwiYatPkA"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.TIsAJUQXEH32Dfgr"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.jCmKJKpNwiYatPkA"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "1TDkDTzo3EOvcH0P",
+        "_id": "pzyGGQTB4EF1AD3E",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.PjOShcmujgdSM6J3"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.PjOShcmujgdSM6J3"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "eBNgVgFfLNRL0haW",
+        "_id": "A6ORQe5Me0W1bqOI",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.wYl6cjxwWbdXQKDY"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.wYl6cjxwWbdXQKDY"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "1fsdfMXwfEqV1Dt1",
+        "_id": "1LQ4uvozGQ5p12dU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.M2bObVPZABsSjW3H"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.M2bObVPZABsSjW3H"
+            }
           ],
           "optional": false
         },
@@ -87,7 +95,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +103,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959760,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!aniOJe8eRRoL440j"

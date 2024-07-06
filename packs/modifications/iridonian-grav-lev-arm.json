@@ -13,38 +13,39 @@
   "system": {
     "description": {
       "value": "<h4>Cybernetic Augmentation (Replacement)</h4>\n <p><em>Prerequisite:  Constitution 13</em></p>\n<hr />\n<p>This augmentation replaces a hand.</p>\n<p>Your unarmed strikes with this arm deal [[/r 1d4]] ion damage, and your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples. Additionally, you deal double damage to energy-based structures with your unarmed strikes.</p>\n<p><strong>Side Effect:</strong> You can no longer wield weapons with electronic components, such as blasters, vibroweapons, or lightweapons. Additionally, if this hand interacts with a small electronic device, such as a datapad or commlink, it is immediately disabled.</p>\n<p><em>This cybernetic arm replacement increases a user's physical strength and can be overloaded to release a unique field resonance discharge that is particularly effective against containment fields and makes holding on to hydrospanners a breeze.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "premium",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -55,16 +56,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -85,15 +87,26 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "cybernetic",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {}
-    }
+    "properties": {},
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "cybernetic",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -102,10 +115,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1673970648626,
-    "modifiedTime": 1695981488156,
+    "modifiedTime": 1720401971472,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "Uju92tcJWdeLVfPL",

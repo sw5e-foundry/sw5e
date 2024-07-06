@@ -1,11 +1,5 @@
 {
-  "_id": "5zbkMFFBi3OnVXwF",
   "name": "Racer's Reflexes",
-  "type": "feat",
-  "img": "systems/sw5e/packs/Icons/Species/Aleena.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.5709638+00:00",
@@ -13,53 +7,46 @@
       "uid": "Feature.name-racers_reflexes.source-species.sourceName-aleena.level-None"
     }
   },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Species/Aleena.webp",
   "system": {
     "description": {
       "value": "<p>Whenever you make a Dexterity ability check, attack roll, or saving throw, you can choose to add [[/r 1d4]] to the result. You can choose to do this after the check is rolled, but before the DM determines if you've passed or failed the check. You cannot do so again until you complete a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Aleena",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": null,
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,25 +61,55 @@
       "value": "species",
       "subtype": ""
     },
-    "recharge": "",
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {},
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
-        "space": null,
-        "turn": null
+        "space": 300,
+        "turn": 250
       }
-    },
-    "className": null
+    }
   },
+  "effects": [],
+  "_id": "oCs2TzWRABMV8sJI",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002847,
-    "modifiedTime": 1704036429273,
+    "createdTime": 1720296029297,
+    "modifiedTime": 1720368916492,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!5zbkMFFBi3OnVXwF"
+  "_key": "!items!oCs2TzWRABMV8sJI"
 }

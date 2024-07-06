@@ -1,8 +1,183 @@
 {
-  "_id": "FLrIaqeiRgG7XO4D",
   "name": "Defel",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2761355+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-defel"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Defel.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>While defel appear to be visually similar to the shistavanen, they are very different on a biological level. Defel have the ability to bend waves of light in such a manner that it renders them practically invisible to the human eye. Despite this ability, they could be still be spotted by force-users and keen-eyed individuals.</p>\n<p>Defel have extremely high perceptive ability because of their large ears, sensitive noses, and keen eyes. Because of the heightened levels of visual stimuli their eyes experience, defel are nearly blinded by sunlight but  can see rather well in the dark.</p>\n<h2>Society and Culture</h2>\n<p>Defel live in tight-knit, interdependent communites underground. The harsh environment on Af'El turned the defel into rugged survivors, able to hold their own in the Galaxy. </p>\n<p>Defel have a strong sense of honor and will not associate with individuals that do not keep their word.</p>\n<p>Because defel have yet to achieve interplanetary travel, they are a rare sight in the galaxy.</p>\n<h2>Defel Names</h2>\n<p>Defel names tend to sound dark and mysterious, and are mostly composed of multiple syllables. Defel surnames are familial, using stern and simple sounds.</p>\n<p><strong>Male Names.</strong> Alustair, Claustro, Tenebris, Varsiin</p>\n<p><strong>Female Names.</strong> Lhantra, Soliel, Stroika, Zavtra</p>\n<p><strong>Surnames.</strong> Gauss, Neura, Tume, Vecherom</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "defel",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 120,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "OkZetyx88zd1DrRk",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fyHcJDnp5r8QIQef"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.pYJrnq2flRsqEwmo"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.AwC2CoN3ZQyWaH2y"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IOVniOnrvpdDchg0"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.A6GuFt0z5gTAnhnC"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MUu1MtCM9kb5SRA9"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zkJh3FixwFvVncIP"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.B9pfkNYnMtp0zBTi"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IXg4uwBz6NhuQtCu"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2DVhcJ0ta4KfxBLI"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZNlu8yAwVfSiYMgm"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PR0fOTHhNGg5t4bM"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.57sSUS2Dbq5TNRp9"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WRewUZawZfoJb2sc"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "18SfdkU4rLyXmMdc",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2,
+            "dex": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "127Hi9sn1O1HcEW3",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "ckgb7QuGoaxyzCyb",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "tool:scavengingkit",
+            "skills:ste"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Black, brown, or grey"
+    },
+    "hairColorOptions": {
+      "value": "Blue to yellow in ultraviolet light, black to dark brown in visible light"
+    },
+    "eyeColorOptions": {
+      "value": "Black, orange, or red"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Ability to absorb light, light blindness, claws"
+    },
+    "heightAverage": {
+      "value": "3'10\""
+    },
+    "heightRollMod": {
+      "value": "+2d6\""
+    },
+    "weightAverage": {
+      "value": "65 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Af'El"
+    },
+    "slanguage": {
+      "value": "Defel"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "YsLIrMCUxkbLtaaK",
@@ -84,8 +259,7 @@
       "name": "Defel",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!FLrIaqeiRgG7XO4D.YsLIrMCUxkbLtaaK"
+      "_key": "!items.effects!feDhatiZBQdWNy0Q.YsLIrMCUxkbLtaaK"
     },
     {
       "_id": "qdcZdJhN1aN2ONoa",
@@ -125,148 +299,22 @@
       "name": "Sunlight Sensitivity - you or your target is in sunlight",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!FLrIaqeiRgG7XO4D.qdcZdJhN1aN2ONoa"
+      "_key": "!items.effects!feDhatiZBQdWNy0Q.qdcZdJhN1aN2ONoa"
     }
   ],
+  "_id": "feDhatiZBQdWNy0Q",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2761355+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-defel"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>While defel appear to be visually similar to the shistavanen, they are very different on a biological level. Defel have the ability to bend waves of light in such a manner that it renders them practically invisible to the human eye. Despite this ability, they could be still be spotted by force-users and keen-eyed individuals.</p>\n<p>Defel have extremely high perceptive ability because of their large ears, sensitive noses, and keen eyes. Because of the heightened levels of visual stimuli their eyes experience, defel are nearly blinded by sunlight but  can see rather well in the dark.</p>\n<h2>Society and Culture</h2>\n<p>Defel live in tight-knit, interdependent communites underground. The harsh environment on Af'El turned the defel into rugged survivors, able to hold their own in the Galaxy. </p>\n<p>Defel have a strong sense of honor and will not associate with individuals that do not keep their word.</p>\n<p>Because defel have yet to achieve interplanetary travel, they are a rare sight in the galaxy.</p>\n<h2>Defel Names</h2>\n<p>Defel names tend to sound dark and mysterious, and are mostly composed of multiple syllables. Defel surnames are familial, using stern and simple sounds.</p>\n<p><strong>Male Names.</strong> Alustair, Claustro, Tenebris, Varsiin</p>\n<p><strong>Female Names.</strong> Lhantra, Soliel, Stroika, Zavtra</p>\n<p><strong>Surnames.</strong> Gauss, Neura, Tume, Vecherom</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "defel",
-    "advancement": [
-      {
-        "_id": "4W9y6fkKBmhcDClQ",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.fyHcJDnp5r8QIQef",
-            "Compendium.sw5e.speciesfeatures.pYJrnq2flRsqEwmo",
-            "Compendium.sw5e.speciesfeatures.AwC2CoN3ZQyWaH2y",
-            "Compendium.sw5e.speciesfeatures.IOVniOnrvpdDchg0",
-            "Compendium.sw5e.speciesfeatures.A6GuFt0z5gTAnhnC",
-            "Compendium.sw5e.speciesfeatures.MUu1MtCM9kb5SRA9",
-            "Compendium.sw5e.speciesfeatures.zkJh3FixwFvVncIP",
-            "Compendium.sw5e.speciesfeatures.B9pfkNYnMtp0zBTi",
-            "Compendium.sw5e.speciesfeatures.IXg4uwBz6NhuQtCu",
-            "Compendium.sw5e.speciesfeatures.2DVhcJ0ta4KfxBLI",
-            "Compendium.sw5e.speciesfeatures.ZNlu8yAwVfSiYMgm",
-            "Compendium.sw5e.speciesfeatures.PR0fOTHhNGg5t4bM",
-            "Compendium.sw5e.speciesfeatures.57sSUS2Dbq5TNRp9",
-            "Compendium.sw5e.speciesfeatures.WRewUZawZfoJb2sc"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "KqPD6CRvtvK1x7EV",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "wis": 2,
-            "dex": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "10YoGMnzmSER1fP1",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "sm"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1jlmL44a2iv1dxTH",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "tool:scavengingkit",
-            "skills:ste"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Black, brown, or grey"
-    },
-    "hairColorOptions": {
-      "value": "Blue to yellow in ultraviolet light, black to dark brown in visible light"
-    },
-    "eyeColorOptions": {
-      "value": "Black, orange, or red"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Ability to absorb light, light blindness, claws"
-    },
-    "heightAverage": {
-      "value": "3'10\""
-    },
-    "heightRollMod": {
-      "value": "+2d6\""
-    },
-    "weightAverage": {
-      "value": "65 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Af'El"
-    },
-    "slanguage": {
-      "value": "Defel"
-    },
-    "movement": {
-      "walk": 25
-    },
-    "senses": {
-      "darkvision": 120
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002075,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!FLrIaqeiRgG7XO4D"
+  "_key": "!items!feDhatiZBQdWNy0Q"
 }

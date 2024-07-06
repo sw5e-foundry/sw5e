@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Zoologist Pursuit</h1>\n<p>Many academics develop an affinity for nature, studying the vast fauna that inhabit the different planets throughout the galaxy. Those scholars who choose the Zoologist Pursuit capitalize on their knowledge of animals, developing a strong bond with a companion with whom they gain an advantage on the battlefield.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Zoologist Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.IA4jl0o7ARMvjtP8]{Advantageous companion}</li>\n<li>@Compendium[sw5e.invocations.wq7lCp8vbXAUq9WW]{Holocam attachment}</li>\n<li>@Compendium[sw5e.invocations.m97kSOchAV1zVd84]{Neat tricks}</li>\n<li>@Compendium[sw5e.invocations.mQBpPMtKnRWNp682]{One big baddie}</li>\n<li>@Compendium[sw5e.invocations.y8Rfhv5OgKoNASbi]{Protective friend}</li>\n<li>@Compendium[sw5e.invocations.yShH3zQNRuA26GSz]{The more the merrier}</li>\n</ul>"
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "zoologistpursuit",
     "classIdentifier": "scholar",
     "advancement": [
       {
-        "_id": "xYoc6Yyxnbx1ALza",
+        "_id": "18u5DP7qAofE1oKH",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.x7soWLW66lFNBZXi",
-            "Compendium.sw5e.archetypefeatures.Whhu09jrSxgAp2Bw"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.x7soWLW66lFNBZXi"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Whhu09jrSxgAp2Bw"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "La6XSRodJzSoQY5g",
+        "_id": "1qYtfRTumHYBAFu7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.XhiqRVGEwwXj2NNt"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.XhiqRVGEwwXj2NNt"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "1OPzmA9YSlT11nW7",
+        "_id": "1vsmYaY2SBnu1tK2",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.0Wx4XOpf0PtS4ce9"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.0Wx4XOpf0PtS4ce9"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "i5Mdvk9Dy3F1M65E",
+        "_id": "lyOPC5HQnrKsLfs7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Vt6K2CCbLOvgSP04"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Vt6K2CCbLOvgSP04"
+            }
           ],
           "optional": false
         },
@@ -80,7 +88,7 @@
         "title": "Features"
       },
       {
-        "_id": "YmhvxGkPvGz1QoKw",
+        "_id": "15zXMMt6dBU31KgD",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -93,31 +101,59 @@
         "level": 3
       },
       {
-        "_id": "182RQEqVf6FClDrQ",
+        "_id": "iGohk2bmxNz13oUy",
         "type": "ItemChoice",
         "configuration": {
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
-            "2": 2,
-            "3": 2,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "2": {
+              "count": 2
+            },
+            "3": {
+              "count": 2
+            },
+            "5": {
+              "count": 1
+            },
+            "9": {
+              "count": 1
+            },
+            "11": {
+              "count": 1
+            },
+            "13": {
+              "count": 1
+            },
+            "17": {
+              "count": 1
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.IA4jl0o7ARMvjtP8",
-            "Compendium.sw5e.invocations.wq7lCp8vbXAUq9WW",
-            "Compendium.sw5e.invocations.m97kSOchAV1zVd84",
-            "Compendium.sw5e.invocations.mQBpPMtKnRWNp682",
-            "Compendium.sw5e.invocations.y8Rfhv5OgKoNASbi",
-            "Compendium.sw5e.invocations.yShH3zQNRuA26GSz"
+            {
+              "uuid": "Compendium.sw5e.invocations.IA4jl0o7ARMvjtP8"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.wq7lCp8vbXAUq9WW"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.m97kSOchAV1zVd84"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.mQBpPMtKnRWNp682"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.y8Rfhv5OgKoNASbi"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.yShH3zQNRuA26GSz"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -141,7 +177,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -149,10 +185,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959763,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!da3qYY9MHsT7b8y6"

@@ -16,24 +16,28 @@
   "system": {
     "description": {
       "value": "<h1>Astrotech Engineering (Companion)</h1>\n<p>Those engineers who choose the Astrotech Engineering discipline focus on crafting and upgrading their droid companions.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "astrotechengineering",
     "classIdentifier": "engineer",
     "advancement": [
       {
-        "_id": "10f0hpV4Qx5D1V6V",
+        "_id": "1oka0BtPFdUEgAL8",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.dsCEkyrz9k3oUxtN",
-            "Compendium.sw5e.archetypefeatures.n8a7Oz57PVYJNqUH",
-            "Compendium.sw5e.archetypefeatures.bSSZQE5BGifFx4dK"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.dsCEkyrz9k3oUxtN"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.n8a7Oz57PVYJNqUH"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.bSSZQE5BGifFx4dK"
+            }
           ],
           "optional": false
         },
@@ -42,11 +46,13 @@
         "title": "Features"
       },
       {
-        "_id": "1FkuwaqJe0NB1qmM",
+        "_id": "1bZUKfMHfDco1riY",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.GhSNtfyMCzNDw1iW"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.GhSNtfyMCzNDw1iW"
+            }
           ],
           "optional": false
         },
@@ -55,11 +61,13 @@
         "title": "Features"
       },
       {
-        "_id": "PXdF8bPPQemBWoWc",
+        "_id": "1SUS5OIGGsvL18vv",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.S54GOabRiyXoOSMW"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.S54GOabRiyXoOSMW"
+            }
           ],
           "optional": false
         },
@@ -68,11 +76,13 @@
         "title": "Features"
       },
       {
-        "_id": "hp7It6rl0SveiDbf",
+        "_id": "1zqSkdYphBOHDblW",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.jKYj9wLY1UMLTvYG"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.jKYj9wLY1UMLTvYG"
+            }
           ],
           "optional": false
         },
@@ -81,7 +91,7 @@
         "title": "Features"
       },
       {
-        "_id": "SrVaLPL07nR1BOts",
+        "_id": "yv3Wow6ctR16ejKa",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -101,7 +111,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -109,10 +119,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959742,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!QHBh0MLldjImDdoX"

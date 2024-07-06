@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Fireteam Specialist:</strong> 10th level</em></p>\n<p>While your companion is within 5 feet of you, you can use your bonus action to begin a coordinated </p>\n<p>maneuver. For the next minute, while you and your companion are within 5 feet of each other and neither of you are wielding a shield, you each gain a bonus to AC equal to half your proficiency bonus.</p>\n<p>This effect ends early if either you or your companion are incapacitated or die. Once you've used this feature, you can't use it again until you complete a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Fighter (Fireteam Specialist (Companion)) 10",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 5,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -91,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.3",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438400,
-    "modifiedTime": 1698185224868,
+    "modifiedTime": 1720368688724,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "FoNFPqroVIeF0Dhv",

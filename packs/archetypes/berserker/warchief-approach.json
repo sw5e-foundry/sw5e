@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Warchief Approach</h1>\n<p>For some berserkers, it is their duty or birthright to lead their tribe and kin to battle and victory. The Warchief Approach is one forged from alliances, bonds, and strategy. In combat, your rages are less mindless, and more focused. Ignoring the distractions of unimportant events, your attention hones in on the battlefield and how best to direct and control it. You guide your allies' strikes, and your presence is enough to wash away their fatigue.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "warchiefapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "1dDnOq9zjp8Og49H",
+        "_id": "197adb8Z8hIs1pUZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.7gnVnIDhy4tXzcTi",
-            "Compendium.sw5e.archetypefeatures.gtzwgunkGHxVh7Ec"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.7gnVnIDhy4tXzcTi"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.gtzwgunkGHxVh7Ec"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "jUHY4S777zMereoR",
+        "_id": "10GDsWB8iyQ0eF2V",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.03qIkerlYzQEYusy"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.03qIkerlYzQEYusy"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "19rCpoUCYp1i1ALZ",
+        "_id": "5l3HesPoQe1sRGET",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.AtCohgxfC4bUhGpp"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.AtCohgxfC4bUhGpp"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "1SmjsU13JxURQftN",
+        "_id": "A20vpZtIAtKk8BIv",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.UYWFpXz6HKecYIC2"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UYWFpXz6HKecYIC2"
+            }
           ],
           "optional": false
         },
@@ -80,7 +88,7 @@
         "title": "Features"
       },
       {
-        "_id": "1eob96Iq6TTR1oDh",
+        "_id": "1FZJuOHpgmnh1v4f",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -106,7 +114,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -114,10 +122,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959725,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!CvTODiaLKcBBLfh5"

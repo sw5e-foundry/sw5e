@@ -1,11 +1,5 @@
 {
-  "_id": "Z86yNPHFAlDQx3Kr",
   "name": "Primitive Nerves",
-  "type": "feat",
-  "img": "systems/sw5e/packs/Icons/Species/Tognath.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.7708482+00:00",
@@ -13,53 +7,46 @@
       "uid": "Feature.name-primitive_nerves.source-species.sourceName-tognath.level-None"
     }
   },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Species/Tognath.webp",
   "system": {
     "description": {
       "value": "<p>Because of their primitive nervous systems, tognath are immune to most pain, letting them shrug off major injuries. When you take damage, you can use your reaction to roll a [[/r d12]]. Add your Constitution modifier to the number rolled, and reduce the damage by that total. Once you've used this trait, you can't use it again until you finish a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Tognath",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": null,
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,25 +61,55 @@
       "value": "species",
       "subtype": ""
     },
-    "recharge": "",
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {},
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
-        "space": null,
-        "turn": null
+        "space": 300,
+        "turn": 250
       }
-    },
-    "className": null
+    }
   },
+  "effects": [],
+  "_id": "EkasJa5PJ1wpxN2h",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494003398,
-    "modifiedTime": 1704036429273,
+    "createdTime": 1720296029297,
+    "modifiedTime": 1720368885270,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!Z86yNPHFAlDQx3Kr"
+  "_key": "!items!EkasJa5PJ1wpxN2h"
 }

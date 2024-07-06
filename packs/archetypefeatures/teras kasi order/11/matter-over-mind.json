@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Teras Kasi Order:</strong> 11th level</em></p>\n<p>You tap into the greater power of your focus. While both your Forredari Stance and your Steel Hands Form are active, you gain the following benefits:</p>\n<ul>\n<li><strong>Dancing Dragonsnake.</strong> When you take force, lightning, or necrotic damage, you can use your reaction to deflect it. When you do so, the damage you take is reduced by [[/r 1d10]] + your focus ability modifier + your monk level.</li>\n<li><strong>Aryx Slash.</strong> Once on each of your turns, when you hit a target with an unarmed strike or monk weapon, you can roll a Martial Arts die and deal additional psychic damage equal to the amount rolled.</li>\n<li><strong>Piercing Gaze.</strong> When you would make an Insight check against a creature you know to wield the Force, you can use your focus ability modifier for the roll, and you are considered to have expertise in the Insight skill. If you would already have expertise in the check, you instead have advantage on the roll. </li></ul>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Teras Kasi Order) 11",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,24 +79,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Monk"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493958164,
-    "modifiedTime": 1704036421154,
+    "modifiedTime": 1720401974552,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!rBbMl7A3ozHfDoaQ"

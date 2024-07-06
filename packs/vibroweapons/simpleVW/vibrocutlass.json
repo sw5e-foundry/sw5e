@@ -9,67 +9,49 @@
   },
   "type": "weapon",
   "img": "systems/sw5e/packs/Icons/Simple%20Vibroweapons/Vibrocutlass.webp",
-  "effects": [],
   "system": {
     "description": {
       "value": "<h3>Dexterity 11</h3>\n<p>A weapon with this property requires more skill to control. While wielding it, you have disadvantage on attack rolls unless you meet the Dexterity requirement. </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "quantity": 1,
-    "weight": 1,
+    "weight": {
+      "value": 1,
+      "units": "lb"
+    },
     "price": {
       "value": 600,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
+    "type": {
+      "value": "simpleVW",
+      "subtype": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
-    "duration": {
-      "value": null,
-      "units": "inst"
-    },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
       "units": "ft"
     },
-    "uses": {
-      "value": null,
-      "max": null,
-      "per": null,
-      "recovery": ""
-    },
-    "consume": {
-      "type": "",
-      "target": "",
-      "amount": null
-    },
-    "ability": "",
     "actionType": "mwak",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": {
-      "threshold": null,
-      "damage": ""
-    },
     "damage": {
       "parts": [
         [
@@ -79,18 +61,65 @@
       ],
       "versatile": ""
     },
+    "properties": {
+      "0": "dex"
+    },
+    "weaponClass": "blade",
+    "ammo": {
+      "types": [],
+      "target": "",
+      "value": null,
+      "use": null
+    },
+    "_propertyValues": {},
+    "unidentified": {
+      "description": ""
+    },
+    "container": null,
+    "attuned": false,
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
     "formula": "",
     "save": {
       "ability": "",
       "dc": null,
       "scaling": "power"
     },
+    "summons": null,
     "armor": {
-      "value": 10
+      "value": null
     },
     "hp": {
-      "value": 0,
-      "max": 0,
+      "value": null,
+      "max": null,
       "dt": null,
       "conditions": ""
     },
@@ -99,24 +128,14 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null
+      "changes": {}
     },
-    "weaponType": "simpleVW",
-    "weaponClass": "blade",
-    "baseItem": "vibrocutlass",
-    "ammo": {
-      "target": null,
-      "value": null,
-      "use": null,
-      "types": []
-    },
-    "properties": {
-      "dex": 11,
-      "-=amm": null
-    },
-    "proficient": null
+    "magicalBonus": null,
+    "proficient": null,
+    "firingArc": ""
   },
+  "effects": [],
+  "_id": "vgTCxwCF8xlWBqU2",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -124,12 +143,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1667426099569,
-    "modifiedTime": 1704036395356,
+    "createdTime": 1720296019804,
+    "modifiedTime": 1720368948751,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_id": "WRORHupqx7zNC5c1",
-  "_key": "!items!WRORHupqx7zNC5c1"
+  "_key": "!items!vgTCxwCF8xlWBqU2"
 }

@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Path of Witchcraft:</strong> 13th and 17th level</em></p>\n<p>Your bond with your beast companion strengthens, granting the following benefits while your beast companion is within 30 feet of you:</p>\n<ul>\n<li>When you cast a force power that targets only yourself, and your beast companion is within range, you can also target your beast companion with that power. </li>\n<li>If you or your beast have darkvision and the other doesn't, the other gains it with the same radius. If you both have darkvision, you both use the larger radius of the two, which then increases by 30 feet.</li>\n<li>If you or your beast have advantage on Perception checks and the other doesn't, the other gains advantage on Perception checks. If you both have advantage on Perception checks, when either of you makes a Perception check with advantage, you can reroll one of the dice once.</li>\n</ul>\n<p>This radius increases to 60 feet at 17th level.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Sentinel (Path of Witchcraft (Companion)) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,24 +79,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Sentinel"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493958208,
-    "modifiedTime": 1699591595230,
+    "modifiedTime": 1720368716863,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!uAp4zqqSbx0HW05K"

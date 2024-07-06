@@ -7,11 +7,12 @@
   "system": {
     "description": {
       "value": "<p>The <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> exhales a torrent of water in a 120 foot cone. Each creature in the area must make a DC 24 Dexterity saving throw, taking 42 (12d6) kinetic damage and 42 (12d6) cold damage on a failed save, or half as much on a successful one.</p><p></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -24,10 +25,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 120,
+      "value": "120",
       "width": null,
       "units": "ft",
-      "type": "cone"
+      "type": "cone",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -36,22 +38,23 @@
     },
     "uses": {
       "value": null,
-      "max": "0",
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
-      "damage": null
+      "damage": ""
     },
     "damage": {
       "parts": [
@@ -86,20 +89,26 @@
         "turn": null
       }
     },
-    "powercasting": {
-      "force": "none",
-      "tech": "none"
-    }
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1669754964620,
-    "modifiedTime": 1699591681494,
+    "modifiedTime": 1720368815883,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "folder": null,

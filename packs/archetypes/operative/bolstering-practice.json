@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Bolstering Practice</h1>\n<p>Those operatives who choose the Bolstering Practice use precise strikes and brilliant use of small unit tactics to overwhelm enemies through superior teamwork.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "bolsteringpractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "VQPK9UhknVp1mXLX",
+        "_id": "Ir3MO8sLnVT1UlOr",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.elR3dhPLS1oM4z7u",
-            "Compendium.sw5e.archetypefeatures.FOjBpTGHIupbF0Kg"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.elR3dhPLS1oM4z7u"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.FOjBpTGHIupbF0Kg"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "OkyVvGcbVHR1m7qc",
+        "_id": "1lvqbXzOVrIY1j1T",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.zyemUQyZo4Q6YGvE"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.zyemUQyZo4Q6YGvE"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "pMn8M1amIhGQ5hNs",
+        "_id": "1OnYQKUQs2sB1yxQ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.UijTpKVNn8MnEpkE"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UijTpKVNn8MnEpkE"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "wKWSy6nB2NA1RN1k",
+        "_id": "1HD9MOEMtutXmWuC",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.aw4P3vsZCfNf5DKc"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.aw4P3vsZCfNf5DKc"
+            }
           ],
           "optional": false
         },
@@ -87,7 +95,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +103,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959724,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!CkiWjE5mn0xF1F7k"

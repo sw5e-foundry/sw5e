@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Path of Witchcraft:</strong> 18th level</em></p>\n<p>You've learned to command the elements to summon a fierce storm in a 30-foot radius around you. As an action, you can gain the following benefits for 1 minute:</p>\n<ul>\n<li>You gain a flying speed equal to your walking speed.</li>\n<li>You have resistance to energy, lightning, and necrotic damage.</li>\n<li>Whenever a hostile creature enters this radius for the first time on a turn or starts its turn there, it takes 10 lightning damage.</li>\n</ul>\n<p>This effect ends early if you are incapacitated or die. Once you've used this feature, you can't use it again until you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Sentinel (Path of Witchcraft) 18",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 30,
+      "value": "30",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -86,7 +89,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -96,10 +109,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1679609438454,
-    "modifiedTime": 1699591595157,
+    "modifiedTime": 1720368690572,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "J4rtULuz8Fljb6kS",

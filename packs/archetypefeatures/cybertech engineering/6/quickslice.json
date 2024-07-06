@@ -2,7 +2,7 @@
   "name": "Quickslice",
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:14.7457031+00:00",
+      "timestamp": "2023-05-30T20:15:26.4642184+00:00",
       "importer_version": 3,
       "uid": "Feature.name-quickslice.source-archetype.sourceName-cybertech_engineering.level-6"
     }
@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><strong><em>Cybertech Engineering:</em></strong><em> 6th level</em> </p>\n<p>When a creature you can see casts a tech power, you may use your reaction to attempt to download that tech power to your wristpad for later use if it is of a level for which you can cast. </p>\n<p>Make an ability check using your techcasting ability with proficiency. The DC equals 10 + two times the power's level. On a success you store the power for later use. On a failure, the power is not stored. You can cast powers stored in your wristpad as if you had learned them and they do not count against your tech powers known.</p>\n<p>Once you have used this feature on a creature, you cannot do so again on the same creature until you complete a short or long rest.</p>\n<p>You can store an amount of levels worth of tech powers equal to your engineer level at a time. Additionally, you can choose replace or remove one or more tech powers learned by this feature each time you use it.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Cybertech Engineering) 6",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -91,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438394,
-    "modifiedTime": 1695981490773,
+    "modifiedTime": 1720401974552,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "cxwXHpsjxTOGh3aG",

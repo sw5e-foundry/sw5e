@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p>As an action, you call up a mighty gale, which swirls around you in a 10-foot radius and moves with you, remaining centered on you. The wind lasts for 10 minutes. The wind deafens both you and other creatures in its area. It extinguishes unprotected flames in its area that are torch-sized or smaller and hedges out vapor, gas, and fog that can be dispersed by strong wind. The area is difficult terrain for creatures other than you and the attack rolls of ranged weapon attacks have disadvantage if the attacks pass in or out of the wind.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 10,
+      "value": "10",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -91,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1679683269090,
-    "modifiedTime": 1699591595242,
+    "modifiedTime": 1720368721066,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "ydb5xjMOlnrZPjNZ",

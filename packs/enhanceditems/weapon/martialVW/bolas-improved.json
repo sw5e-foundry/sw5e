@@ -7,85 +7,6 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [
-          true
-        ],
-        "altValue": [
-          true
-        ],
-        "context": []
-      },
-      "quickVersatile": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "quantity": false,
-          "use": true,
-          "resource": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:05.3821322+00:00",
       "importer_version": 3,
@@ -95,38 +16,41 @@
   "system": {
     "description": {
       "value": "<h4>Weapon (Bolas)</h4>\n <p>A Large or smaller creature hit by a bolas is restrained until it is freed. A bolas has no effect on formless or Huge or larger creatures. A creature can use its action to make a DC 15 Dexterity check, freeing itself or another creature within its reach on a success. The bolas has an AC of 12, 15 hit points, immunity to all damage not dealt by melee weapons, and resistance to damage dealt by unenhanced melee weapons. Destroying the bolas frees the creature without harming it and immediately ends the bolas's effects. While a creature is restrained by a bolas, you can make no further attacks with it.</p>\n<p>Due to their unwieldy nature, bolas make ineffective melee weapons. Melee attack rolls made with them are made at disadvantage.</p>\n<p> </p>\n<h2>Bolas</h2>\n<h3>Light</h3>\n<p>A weapon with this property is small and easy to handle, making it ideal for use when engaging in Double- or Two-Weapon Fighting. See the rules for Double- and Two-Weapon Fighting in chapter 9.</p>\n<h3>Thrown (range 20/60)</h3>\n<p>A weapon that can be used to make a ranged attack has this property. The range lists two numbers. The first is the weapon's normal range in feet, and the second indicates the weapon's long range. When attacking a target beyond normal range, you have disadvantage on the attack roll. You can't attack a target beyond the weapon's long range.</p>\n<h3>Special</h3>\n<p>A Large or smaller creature hit by a bolas is restrained until it is freed. A bolas has no effect on formless or Huge or larger creatures. A creature can use its action to make a DC 13 Dexterity check, freeing itself or another creature within its reach on a success. The bolas has an AC of 10, 5 hit points, and immunity to all damage not dealt by melee weapons. Destroying the bolas frees the creature without harming it and immediately ends the bolas's effects. While a creature is restrained by a bolas, you can make no further attacks with it.</p>\n<p>Due to their unwieldy nature, bolas make ineffective melee weapons. Melee attack rolls made with them are made at disadvantage.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 2,
+    "weight": {
+      "value": 2,
+      "units": "lb"
+    },
     "price": {
       "value": 100,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "prototype",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": 20,
@@ -135,18 +59,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "mwak",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -181,13 +106,9 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "weaponType": "martialVW",
     "weaponClass": "trip",
-    "baseItem": "bolas",
     "ammo": {
       "target": null,
       "value": null,
@@ -195,25 +116,41 @@
       "types": []
     },
     "properties": {
-      "dex": true,
-      "lgt": true,
-      "ran": 20,
-      "rch": true,
-      "spc": true,
-      "thr": "range 20/60"
+      "0": "lgt",
+      "1": "spc",
+      "2": "ran",
+      "3": "dex",
+      "4": "rch"
     },
     "proficient": null,
-    "equiped": false
+    "type": {
+      "value": "martialVW",
+      "subtype": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "_propertyValues": {},
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "firingArc": ""
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493964633,
-    "modifiedTime": 1704036401790,
+    "modifiedTime": 1720402276906,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!LV0MwR6xEq7TxzKa"

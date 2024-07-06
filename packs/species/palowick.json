@@ -1,8 +1,160 @@
 {
-  "_id": "DdWYFPH9FFuCeWQV",
   "name": "Pa'lowick",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2881282+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-palowick"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/PaLowick.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The pa'lowick are a species of humanoid amphibians who live in the coastal salt marshes of Lowick. They have compact but rotund midsections that top a pair of long, spindly legs ending in anisodactylic feet—three toes pointing forward, one back. This configuration, combined with their powerful lungs, enabled them to swim.</p>\n<p>The most prominent feature of pa'lowick physiology is their prehensile snout, which ends in a pair of pouty, human-like lips. Pa'lowick are also born with sharp tusks, which some lose by middle age.</p>\n<h2>Society and Culture</h2>\n<p>Pa'lowick live in large, independent communities with a feudal system of government. Many pa'lowick become fishers or hunters, as their biology allows. </p>\n<p>Songs and stories are the most treasured aspect of pa'lowick culture. Pa'lowick music runs the gamut of genres and subjects, although religious music is particularly common. Cultural heritage, such as history, genealogy, and parables, is largely passed down orally. Every Pa'lowick community has a dedicated storyteller; the esteem afforded this individual makes the position a coveted one. Large lungs make the Pa'lowick hearty singers and affords at least some members of the species the ability to scream loudly and disarm opponents in combat.</p>\n<h2>Names</h2>\n<p>Pa'lowick names tend to grow longer as the family tree grows older, with each generation adding a few syllables they are fond of.</p>\n<p><strong>Male Names.</strong> Loran, Jelanto, Neeamesh, Samoos</p>\n<p><strong>Female Names.</strong> Larisselle, Rensilla, Sy, Tripika</p>\n<p><strong>Surnames.</strong> Chatrunis, Dym, Geeci, Snootles</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "palowick",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "swim": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "vqRh4HCLISNI5f4D",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hgm1f2C9KffpJ0Xl"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.boErRlTv7wJsuUl3"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.CFKweprDI4URVLZB"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Oea3EV7bBZuRir1N"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.4BzsIJk6lLCfD2Yp"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RbG8d8Yd5PnelIb4"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ToTGGHvySemaTsBI"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PajbdnlY0awgB85M"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GHsshomtLF233lun"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HdGGQMGw1FkEPesa"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.dVjY2Q8zDFdXiM9x"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1EXdGe9hiXa5kApz",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "cha": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1AnroGZTQctGNMAm",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Generally tan and greenish hues"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Green, blue, gray, red-orange"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Long snout, bulbous body on thin legs"
+    },
+    "heightAverage": {
+      "value": "4'6\""
+    },
+    "heightRollMod": {
+      "value": "+2d6\""
+    },
+    "weightAverage": {
+      "value": "65 lbs."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Lowick"
+    },
+    "slanguage": {
+      "value": "Lowickese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "DOEcD2uiPDNcMRRg",
@@ -62,129 +214,22 @@
       "name": "Pa'lowick",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!DdWYFPH9FFuCeWQV.DOEcD2uiPDNcMRRg"
+      "_key": "!items.effects!D55bkJs8yy53ZCOk.DOEcD2uiPDNcMRRg"
     }
   ],
+  "_id": "D55bkJs8yy53ZCOk",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2881282+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-palowick"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The pa'lowick are a species of humanoid amphibians who live in the coastal salt marshes of Lowick. They have compact but rotund midsections that top a pair of long, spindly legs ending in anisodactylic feet—three toes pointing forward, one back. This configuration, combined with their powerful lungs, enabled them to swim.</p>\n<p>The most prominent feature of pa'lowick physiology is their prehensile snout, which ends in a pair of pouty, human-like lips. Pa'lowick are also born with sharp tusks, which some lose by middle age.</p>\n<h2>Society and Culture</h2>\n<p>Pa'lowick live in large, independent communities with a feudal system of government. Many pa'lowick become fishers or hunters, as their biology allows. </p>\n<p>Songs and stories are the most treasured aspect of pa'lowick culture. Pa'lowick music runs the gamut of genres and subjects, although religious music is particularly common. Cultural heritage, such as history, genealogy, and parables, is largely passed down orally. Every Pa'lowick community has a dedicated storyteller; the esteem afforded this individual makes the position a coveted one. Large lungs make the Pa'lowick hearty singers and affords at least some members of the species the ability to scream loudly and disarm opponents in combat.</p>\n<h2>Names</h2>\n<p>Pa'lowick names tend to grow longer as the family tree grows older, with each generation adding a few syllables they are fond of.</p>\n<p><strong>Male Names.</strong> Loran, Jelanto, Neeamesh, Samoos</p>\n<p><strong>Female Names.</strong> Larisselle, Rensilla, Sy, Tripika</p>\n<p><strong>Surnames.</strong> Chatrunis, Dym, Geeci, Snootles</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "palowick",
-    "advancement": [
-      {
-        "_id": "A78aG7rCaMW1SmWZ",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.hgm1f2C9KffpJ0Xl",
-            "Compendium.sw5e.speciesfeatures.boErRlTv7wJsuUl3",
-            "Compendium.sw5e.speciesfeatures.CFKweprDI4URVLZB",
-            "Compendium.sw5e.speciesfeatures.Oea3EV7bBZuRir1N",
-            "Compendium.sw5e.speciesfeatures.4BzsIJk6lLCfD2Yp",
-            "Compendium.sw5e.speciesfeatures.RbG8d8Yd5PnelIb4",
-            "Compendium.sw5e.speciesfeatures.ToTGGHvySemaTsBI",
-            "Compendium.sw5e.speciesfeatures.PajbdnlY0awgB85M",
-            "Compendium.sw5e.speciesfeatures.GHsshomtLF233lun",
-            "Compendium.sw5e.speciesfeatures.HdGGQMGw1FkEPesa",
-            "Compendium.sw5e.speciesfeatures.dVjY2Q8zDFdXiM9x"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1tPtusF941L9hHkP",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "dex": 2,
-            "cha": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1IwTP3XolC6v1bmi",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Generally tan and greenish hues"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Green, blue, gray, red-orange"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Long snout, bulbous body on thin legs"
-    },
-    "heightAverage": {
-      "value": "4'6\""
-    },
-    "heightRollMod": {
-      "value": "+2d6\""
-    },
-    "weightAverage": {
-      "value": "65 lbs."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Lowick"
-    },
-    "slanguage": {
-      "value": "Lowickese"
-    },
-    "movement": {
-      "walk": 30,
-      "swim": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002074,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!DdWYFPH9FFuCeWQV"
+  "_key": "!items!D55bkJs8yy53ZCOk"
 }

@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Path of Ethereality:</strong> 7th level</em></p>\n<p>As an action, you can step out of sync with the rest of the universe for 1 minute. At the start of each of your turns, roll a [[/r d20]]. If you roll 11 or higher, you and everything your are wearing or carrying are completely invisible to all beings, except for those with truesight. On a roll of 10 or lower, you instead appear as an indistinguishably blurred form roughly your normal height and weight, though a being with truesight sees you normally. Regardless of your appearance, for the duration, your speed doubles, you gain a flying speed equal to your walking speed, and you can move through creatures and objects willingly though you can not affect them and they can not affect you. You can end this feature early on your turn (no action required). When this effect ends, if you are inside a solid object or creature, you are immediately shunted to the nearest unoccupied space that you can occupy and take force damage equal to twice the number of feet you are moved. </p>\n<p>This effect ends early if you are incapacitated or die. Once you've used this feature, you must complete a short or long rest before you can use it again.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Sentinel (Path of Ethereality) 7",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -33,33 +34,37 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,24 +79,36 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Sentinel"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957792,
-    "modifiedTime": 1704036421154,
+    "modifiedTime": 1720368699201,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!VjnTTjD2eKKwImLP"

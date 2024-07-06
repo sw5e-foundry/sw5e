@@ -2,7 +2,7 @@
   "name": "Champion Approach",
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:15.1654594+00:00",
+      "timestamp": "2023-05-30T20:14:19.991125+00:00",
       "importer_version": 3,
       "uid": "Archetype.name-champion_approach"
     }
@@ -13,23 +13,25 @@
   "system": {
     "description": {
       "value": "<h1>Champion Approach</h1>\n<p>Some berserkers revel in battle for battle's sake. For berserkers of the Champion Approach, this revelry is the goal to which they constantly strive.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "championapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "O7tpIhsHVO1XueLP",
+        "_id": "hI9vpNf1ityZVjWL",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.byChgBk8kHZOl7E8",
-            "Compendium.sw5e.archetypefeatures.ptS54uDAmwgcvMwM"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.byChgBk8kHZOl7E8"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ptS54uDAmwgcvMwM"
+            }
           ],
           "optional": false
         },
@@ -38,11 +40,13 @@
         "title": "Features"
       },
       {
-        "_id": "1B6MJjWokBGS1w8X",
+        "_id": "fAQuEr50aeH1p3TE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.AMVGlS2jypSLg5jS"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.AMVGlS2jypSLg5jS"
+            }
           ],
           "optional": false
         },
@@ -51,11 +55,13 @@
         "title": "Features"
       },
       {
-        "_id": "1uLPHwFShfyow7zE",
+        "_id": "CYdPqKh8jvL1apK6",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.pl3rMANh1E0SE7sd"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pl3rMANh1E0SE7sd"
+            }
           ],
           "optional": false
         },
@@ -64,11 +70,13 @@
         "title": "Features"
       },
       {
-        "_id": "1BPHDoB1FwtjXm0S",
+        "_id": "SIbstbrMIqQ1S0Et",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.wkOst8Ac5YjCfSeM"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.wkOst8Ac5YjCfSeM"
+            }
           ],
           "optional": false
         },
@@ -81,15 +89,11 @@
       "force": "none",
       "forceOverride": "",
       "tech": "none",
-      "techOverride": "",
-      "-=progression": null,
-      "-=ability": null
+      "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
-    },
-    "-=className": null,
-    "-=classCasterType": null
+      "progression": 0
+    }
   },
   "folder": null,
   "sort": 0,
@@ -98,10 +102,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426103158,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "xGH77H0Doe0UGpZH",

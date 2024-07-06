@@ -36,8 +36,7 @@
       "name": "Crippling Shot",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!JlBFNmACItJ0vFlP.VV7NiuurLhagmEBw",
-      "sort": 0
+      "_key": "!items.effects!JlBFNmACItJ0vFlP.VV7NiuurLhagmEBw"
     }
   ],
   "folder": null,
@@ -45,28 +44,30 @@
   "flags": {},
   "system": {
     "description": {
-      "value": "<p><em><strong>Power Die Location:</strong> Weapons</em><br>When you hit a ship with a ship attack, you can expend one power die to cripple it. Add the power die to the attack's damage roll, and the target ship's flying speed is reduced by half until the end of their next turn.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p><em><strong>Power Die Location:</strong> Weapons</em><br />When you hit a ship with a ship attack, you can expend one power die to cripple it. Add the power die to the attack's damage roll, and the target ship's flying speed is reduced by half until the end of their next turn.</p>",
+      "chat": ""
     },
     "requirements": "Gunner 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "none",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -76,17 +77,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "powerdice",
       "target": "attributes.power.weapons.value",
-      "amount": 1
+      "amount": 1,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -116,25 +118,26 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Gunner"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": "Gambit"
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963429,
-    "modifiedTime": 1699591629485,
+    "modifiedTime": 1720368729964,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!JlBFNmACItJ0vFlP"

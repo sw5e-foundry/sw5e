@@ -1,8 +1,167 @@
 {
-  "_id": "nLiHBitcXtnNaGLU",
   "name": "Mirialan",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2861295+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-mirialan"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Mirialan.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Mirialans are a near-human species native to the planet Mirial. They have green to yellow skin and tattoos on their faces. The Mirialans are known for their spirituality and strong connection with the world around them. Mirialans are very flexible and agile, making them fast and formidable foes.</p>\n<h2>Society and Culture</h2>\n<p>The Mirialan people are deeply religious and practice a primitive understanding of the Force. They believe each individual's actions contribute to their destiny, building upon past successes and failures to drive them towards their fates. Within their belief system was the view that individual actions ripple through the Force, also affecting the destiny of the species as a whole.</p>\n<p>A Mirialan often places a unique, geometrically repeated tattoo on their face and hands to signify that they have completed a certain test or task, or achieved sufficient aptitude for a certain skill. The number of tattoos often acts as a good indicator of how mature and/or skilled a Mirialan was. Because the more markings brings about a form of status, Mirialan society is stratified and allows the heavily marked citizens to access greater opportunities. Despite its importance, most Mirialans do not know the entirety of the tattoo lexicon due to its complexity. The interaction between placement and positioning of the shapes is incredibly subtle and changes their meaning greatly.</p>\n<h2>Names</h2>\n<p>Mirialan names are typically concise and rarely more than two syllables. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Boca, Floha, Jemy, Puv, Choqa</p>\n<p><strong>Female Names.</strong> Buf, Ches, Kebe, Ovof, Shaqa</p>\n<p><strong>Surnames.</strong> Acave, Ishakee, Kefvi, Uflozi, Zoria</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "mirialan",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 35,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "L2BvWuDedu91GSHi",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.SOGlO1X7rBKzY3rL"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.AUjJVohwNCq77gCt"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.AP4nPBUBvecoX8A2"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.X8IjNtbLQIUsYvAv"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ikejUXQgiOeBTclu"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9yOgsZX4RtUvevKq"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.u0bgIf0ROxlWF3C8"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Ail6QfpnD20bDpRB"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wOmjT6hY0Utm7gPB"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "11sjruaTlIUH1CuT",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "int": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "WtWpvAkxu2j18jV2",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1RrVQkhx0GD61dEO",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:lor"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Green, olive, or yellow"
+    },
+    "hairColorOptions": {
+      "value": "Black, blonde, brown, or red"
+    },
+    "eyeColorOptions": {
+      "value": "Blue, green, violet, grey, red, yellow, or orange"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Facial tattoos, flexible and agile"
+    },
+    "heightAverage": {
+      "value": "4'6\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "100 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Mirial"
+    },
+    "slanguage": {
+      "value": "Mirialan"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "uLanO2lY6ro8UeYE",
@@ -74,139 +233,22 @@
       "name": "Mirialan",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!nLiHBitcXtnNaGLU.uLanO2lY6ro8UeYE"
+      "_key": "!items.effects!Ckfuud8mqgmAX8L3.uLanO2lY6ro8UeYE"
     }
   ],
+  "_id": "Ckfuud8mqgmAX8L3",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2861295+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-mirialan"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Mirialans are a near-human species native to the planet Mirial. They have green to yellow skin and tattoos on their faces. The Mirialans are known for their spirituality and strong connection with the world around them. Mirialans are very flexible and agile, making them fast and formidable foes.</p>\n<h2>Society and Culture</h2>\n<p>The Mirialan people are deeply religious and practice a primitive understanding of the Force. They believe each individual's actions contribute to their destiny, building upon past successes and failures to drive them towards their fates. Within their belief system was the view that individual actions ripple through the Force, also affecting the destiny of the species as a whole.</p>\n<p>A Mirialan often places a unique, geometrically repeated tattoo on their face and hands to signify that they have completed a certain test or task, or achieved sufficient aptitude for a certain skill. The number of tattoos often acts as a good indicator of how mature and/or skilled a Mirialan was. Because the more markings brings about a form of status, Mirialan society is stratified and allows the heavily marked citizens to access greater opportunities. Despite its importance, most Mirialans do not know the entirety of the tattoo lexicon due to its complexity. The interaction between placement and positioning of the shapes is incredibly subtle and changes their meaning greatly.</p>\n<h2>Names</h2>\n<p>Mirialan names are typically concise and rarely more than two syllables. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Boca, Floha, Jemy, Puv, Choqa</p>\n<p><strong>Female Names.</strong> Buf, Ches, Kebe, Ovof, Shaqa</p>\n<p><strong>Surnames.</strong> Acave, Ishakee, Kefvi, Uflozi, Zoria</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "mirialan",
-    "advancement": [
-      {
-        "_id": "1lu1kK3O69Ga1aCU",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.SOGlO1X7rBKzY3rL",
-            "Compendium.sw5e.speciesfeatures.AUjJVohwNCq77gCt",
-            "Compendium.sw5e.speciesfeatures.AP4nPBUBvecoX8A2",
-            "Compendium.sw5e.speciesfeatures.X8IjNtbLQIUsYvAv",
-            "Compendium.sw5e.speciesfeatures.ikejUXQgiOeBTclu",
-            "Compendium.sw5e.speciesfeatures.9yOgsZX4RtUvevKq",
-            "Compendium.sw5e.speciesfeatures.u0bgIf0ROxlWF3C8",
-            "Compendium.sw5e.speciesfeatures.Ail6QfpnD20bDpRB",
-            "Compendium.sw5e.speciesfeatures.wOmjT6hY0Utm7gPB"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1qd253RMolMzUQgd",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "dex": 2,
-            "int": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "bF1URAOq94U13D8v",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "fltsm4DVy0H5dLti",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:lor"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Green, olive, or yellow"
-    },
-    "hairColorOptions": {
-      "value": "Black, blonde, brown, or red"
-    },
-    "eyeColorOptions": {
-      "value": "Blue, green, violet, grey, red, yellow, or orange"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Facial tattoos, flexible and agile"
-    },
-    "heightAverage": {
-      "value": "4'6\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "100 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Mirial"
-    },
-    "slanguage": {
-      "value": "Mirialan"
-    },
-    "movement": {
-      "walk": 35
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002129,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!nLiHBitcXtnNaGLU"
+  "_key": "!items!Ckfuud8mqgmAX8L3"
 }

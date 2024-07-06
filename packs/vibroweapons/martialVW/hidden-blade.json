@@ -1,11 +1,5 @@
 {
-  "_id": "cmb8tlOI7j4wnfPi",
   "name": "Hidden blade",
-  "type": "weapon",
-  "img": "systems/sw5e/packs/Icons/Martial%20Vibroweapons/HiddenBlade.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:54.3975015+00:00",
@@ -13,66 +7,51 @@
       "uid": "Weapon.name-hidden_blade.equipmentCategory-weapon"
     }
   },
+  "type": "weapon",
+  "img": "systems/sw5e/packs/Icons/Martial%20Vibroweapons/HiddenBlade.webp",
   "system": {
     "description": {
       "value": "<h3>Finesse</h3>\n<p>When making an attack with a weapon with this property, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.</p>\n<h3>Fixed</h3>\n<p>A weapon with this property does not fill the hand, but you can't use the weapon while the hand is full. Additionally, you have a +10 bonus to ability checks and saving throws to avoid being disarmed of this weapon.</p>\n<h3>Hidden</h3>\n<p>You have advantage on Dexterity (Sleight of Hand) checks made to conceal a weapon with this property.</p>\n<h3>Light</h3>\n<p>A weapon with this property is small and easy to handle, making it ideal for use when engaging in Double- or Two-Weapon Fighting. See the rules for Double- and Two-Weapon Fighting in chapter 9.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "quantity": 1,
-    "weight": 1,
+    "weight": {
+      "value": 1,
+      "units": "lb"
+    },
     "price": {
       "value": 75,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
+    "type": {
+      "value": "martialVW",
+      "subtype": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
-    "duration": {
-      "value": null,
-      "units": "inst"
-    },
-    "cover": null,
-    "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
       "units": "ft"
     },
-    "uses": {
-      "value": null,
-      "max": null,
-      "per": null,
-      "recovery": ""
-    },
-    "consume": {
-      "type": "",
-      "target": "",
-      "amount": null
-    },
-    "ability": "",
     "actionType": "mwak",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": {
-      "threshold": null,
-      "damage": ""
-    },
     "damage": {
       "parts": [
         [
@@ -82,18 +61,68 @@
       ],
       "versatile": ""
     },
+    "properties": {
+      "0": "fin",
+      "1": "fix",
+      "2": "hid",
+      "3": "lgt"
+    },
+    "weaponClass": "trip",
+    "ammo": {
+      "types": [],
+      "target": "",
+      "value": null,
+      "use": null
+    },
+    "_propertyValues": {},
+    "unidentified": {
+      "description": ""
+    },
+    "container": null,
+    "attuned": false,
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
     "formula": "",
     "save": {
       "ability": "",
       "dc": null,
       "scaling": "power"
     },
+    "summons": null,
     "armor": {
-      "value": 10
+      "value": null
     },
     "hp": {
-      "value": 0,
-      "max": 0,
+      "value": null,
+      "max": null,
       "dt": null,
       "conditions": ""
     },
@@ -102,38 +131,26 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "weaponType": "martialVW",
-    "weaponClass": "trip",
-    "baseItem": "hiddenblade",
-    "ammo": {
-      "target": null,
-      "value": null,
-      "use": null,
-      "types": []
-    },
-    "properties": {
-      "fin": true,
-      "fix": true,
-      "hid": true,
-      "lgt": true
-    },
+    "magicalBonus": null,
     "proficient": null,
-    "equiped": false
+    "firingArc": ""
   },
+  "effects": [],
+  "_id": "rlDrDtvyD7t4FT0M",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494021702,
-    "modifiedTime": 1704036395356,
+    "createdTime": 1720296019804,
+    "modifiedTime": 1720368948722,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!cmb8tlOI7j4wnfPi"
+  "_key": "!items!rlDrDtvyD7t4FT0M"
 }

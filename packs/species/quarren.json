@@ -1,8 +1,163 @@
 {
-  "_id": "3LOMgdmvO9QADv10",
   "name": "Quarren",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.289128+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-quarren"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Quarren.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The Quarren are squid-like with four facial tentacles which protrude from their lower jaw. They have a pair of deep, turquoise eyes and finned hands with suction-tipped fingers. As an amphibious species, they are strong swimmers. They are also bipedal beings that can walk and sit upright. In the two long protrusions that extended from either side of their faces, Quarren have gill-like structures that are actually hearing organs. The Quarren are also capable of spitting out clouds of ink as a defensive measure.</p>\n<h2>Society and Culture</h2>\n<p>Quarren are a very self-centered and proud species, almost to the point of being xenophobic, would coincides with their isolationist behavior. Quarren find Humans to be very crude beings and think Galactic Basic to be very cumbersome and unsuitable for speech. The Quarren instead speak their native language more frequently.</p>\n<p>The Quarren are conservative and practical in their thinking, yet they reminisce more than they look to the future. The Quarren are isolationist, preferring to stay in the depths of the oceans of their homeworld. However, some Quarren make their living in the galaxy as business managers and accountants. The Quarren diligently mine metal ore from the deepest parts of the ocean, where they live deep beneath the waves. Their cities stretch far below the surface.</p>\n<h2>Names</h2>\n<p>Quarren names are typically harsh. Male and female names do not significantly deviate. Surnames are familial.</p>\n<p><strong>Names.</strong> Bagker, Jujon, Kibkyl, Qiockish, Yuntoz</p>\n<p><strong>Surnames.</strong> Chobnek, Geeckol, Nukranx, Tsastanx</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "quarren",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "climb": 30,
+      "swim": 30,
+      "burrow": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "H7G8LbKvhUF1ZjLh",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Xp0No1KdBNXi502u"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1hQha91PY4XPCAIq"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6NG1HwTPRIjlbeu0"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fyHYe69k8VkWixkr"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cpwO8bjO7l84RcGR"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.8RroZGIhITh70Je5"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LLyGDiTt85WWHqSu"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.e9qhfZgZqRF9uupP"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QDhVr5KGyYtUOIql"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HxEIzyVKmTpRz46s"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.pQCrUO8qPZMqE342"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TRvD64ccNSVr5nrE"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1EWY9AmOTNyc1jQv",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "wis": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "rMRQNQ7Ow0K1HAEL",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Orange, pink, purple, or red"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Blue or green"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Four tentacles that protrude from their jaws, finned or suction-cup tipped fingers, able to spit out clouds of ink in defense"
+    },
+    "heightAverage": {
+      "value": "4'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "105 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Mon Cala"
+    },
+    "slanguage": {
+      "value": "Quarrenese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "Yz0kDSJZzldZd1Af",
@@ -78,8 +233,7 @@
       "name": "Quarren",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!3LOMgdmvO9QADv10.Yz0kDSJZzldZd1Af"
+      "_key": "!items.effects!jJ7MdihYbHjCvf4y.Yz0kDSJZzldZd1Af"
     },
     {
       "_id": "bE4O6BrwZ9dmfqbZ",
@@ -113,134 +267,22 @@
       "name": "Keen Hearing",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!3LOMgdmvO9QADv10.bE4O6BrwZ9dmfqbZ"
+      "_key": "!items.effects!jJ7MdihYbHjCvf4y.bE4O6BrwZ9dmfqbZ"
     }
   ],
+  "_id": "jJ7MdihYbHjCvf4y",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.289128+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-quarren"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The Quarren are squid-like with four facial tentacles which protrude from their lower jaw. They have a pair of deep, turquoise eyes and finned hands with suction-tipped fingers. As an amphibious species, they are strong swimmers. They are also bipedal beings that can walk and sit upright. In the two long protrusions that extended from either side of their faces, Quarren have gill-like structures that are actually hearing organs. The Quarren are also capable of spitting out clouds of ink as a defensive measure.</p>\n<h2>Society and Culture</h2>\n<p>Quarren are a very self-centered and proud species, almost to the point of being xenophobic, would coincides with their isolationist behavior. Quarren find Humans to be very crude beings and think Galactic Basic to be very cumbersome and unsuitable for speech. The Quarren instead speak their native language more frequently.</p>\n<p>The Quarren are conservative and practical in their thinking, yet they reminisce more than they look to the future. The Quarren are isolationist, preferring to stay in the depths of the oceans of their homeworld. However, some Quarren make their living in the galaxy as business managers and accountants. The Quarren diligently mine metal ore from the deepest parts of the ocean, where they live deep beneath the waves. Their cities stretch far below the surface.</p>\n<h2>Names</h2>\n<p>Quarren names are typically harsh. Male and female names do not significantly deviate. Surnames are familial.</p>\n<p><strong>Names.</strong> Bagker, Jujon, Kibkyl, Qiockish, Yuntoz</p>\n<p><strong>Surnames.</strong> Chobnek, Geeckol, Nukranx, Tsastanx</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "quarren",
-    "advancement": [
-      {
-        "_id": "11XyTC33x7TyDsRh",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.Xp0No1KdBNXi502u",
-            "Compendium.sw5e.speciesfeatures.1hQha91PY4XPCAIq",
-            "Compendium.sw5e.speciesfeatures.6NG1HwTPRIjlbeu0",
-            "Compendium.sw5e.speciesfeatures.fyHYe69k8VkWixkr",
-            "Compendium.sw5e.speciesfeatures.cpwO8bjO7l84RcGR",
-            "Compendium.sw5e.speciesfeatures.8RroZGIhITh70Je5",
-            "Compendium.sw5e.speciesfeatures.LLyGDiTt85WWHqSu",
-            "Compendium.sw5e.speciesfeatures.e9qhfZgZqRF9uupP",
-            "Compendium.sw5e.speciesfeatures.QDhVr5KGyYtUOIql",
-            "Compendium.sw5e.speciesfeatures.HxEIzyVKmTpRz46s",
-            "Compendium.sw5e.speciesfeatures.pQCrUO8qPZMqE342",
-            "Compendium.sw5e.speciesfeatures.TRvD64ccNSVr5nrE"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "tCEoCNijrV5UdPJZ",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "con": 2,
-            "wis": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1gmvh1sZ5ghv1k1g",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Orange, pink, purple, or red"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Blue or green"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Four tentacles that protrude from their jaws, finned or suction-cup tipped fingers, able to spit out clouds of ink in defense"
-    },
-    "heightAverage": {
-      "value": "4'9\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "105 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Mon Cala"
-    },
-    "slanguage": {
-      "value": "Quarrenese"
-    },
-    "movement": {
-      "walk": 30,
-      "climb": 30,
-      "swim": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002059,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!3LOMgdmvO9QADv10"
+  "_key": "!items!jJ7MdihYbHjCvf4y"
 }

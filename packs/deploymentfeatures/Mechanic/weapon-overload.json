@@ -10,27 +10,29 @@
   "system": {
     "description": {
       "value": "<p>As a bonus action, you can roll your tech die.  The next time a ship weapon deals damage before the end of your next turn, it deals additional damage equal to the result of the die. The damage is of the same type dealt by the original attack.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Mechanic 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,17 +42,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,25 +83,26 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Mechanic"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": "Technique"
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963402,
-    "modifiedTime": 1699591629482,
+    "modifiedTime": 1720368729687,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!04VuHxn1zFFcJHRa"

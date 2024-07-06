@@ -13,23 +13,25 @@
   "system": {
     "description": {
       "value": "<h1>Shadow Killer Practice</h1>\n<p>Those operatives who choose the Shadow Killer Practice are master assassins, the spiritual practitioners who combine their finely honed skills with mystical aid to vanish from sight and neutralize their targets with poison-coated weapons.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "shadowkillerpractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "R4qUbqR61mANIQJg",
+        "_id": "k4X7B4fxjueCu40j",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Fx3dqiaoWec8rhi3",
-            "Compendium.sw5e.archetypefeatures.ohDu7r97o9itdhs9"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Fx3dqiaoWec8rhi3"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ohDu7r97o9itdhs9"
+            }
           ],
           "optional": false
         },
@@ -38,11 +40,13 @@
         "title": "Features"
       },
       {
-        "_id": "SoS7trNdxbQI8xE9",
+        "_id": "yK6SqxlvFPf12HRg",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.S70e4C7FeptqIcjJ"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.S70e4C7FeptqIcjJ"
+            }
           ],
           "optional": false
         },
@@ -51,11 +55,13 @@
         "title": "Features"
       },
       {
-        "_id": "12mVSbnkBUWz1hGz",
+        "_id": "N8G1Xh8pa1D1neOz",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.EvACp4LrpbKbic2k"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.EvACp4LrpbKbic2k"
+            }
           ],
           "optional": false
         },
@@ -64,11 +70,13 @@
         "title": "Features"
       },
       {
-        "_id": "1lQxoKzBfNSWlJkn",
+        "_id": "y9wbR3ZxoTR7KRsT",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.lVz2FVvCG2q65gxG"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.lVz2FVvCG2q65gxG"
+            }
           ],
           "optional": false
         },
@@ -77,7 +85,7 @@
         "title": "Features"
       },
       {
-        "_id": "1eNAv5CoTFqJ17yb",
+        "_id": "11VEdGBu4u2P12At",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -94,15 +102,11 @@
       "force": "none",
       "forceOverride": "",
       "tech": "none",
-      "techOverride": "",
-      "-=progression": null,
-      "-=ability": null
+      "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
-    },
-    "-=className": null,
-    "-=classCasterType": null
+      "progression": 0
+    }
   },
   "folder": null,
   "sort": 0,
@@ -111,10 +115,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426103159,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "N2nY2tYO5cOv5oWs",

@@ -16,23 +16,25 @@
   "system": {
     "description": {
       "value": "<h1>Cyclone Approach</h1>\n<p>The Cyclone Approach empowers the berserker's ability to fight with weapons in each hand. Followers of this approach learn to move quickly to avoid attacks and can become a whirlwind of fury and steel, cleaving through hordes of enemies.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "cycloneapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "6sYmHz70T0H9UOXm",
+        "_id": "Rx0RFYeW1w4UyYRO",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.UMbQEY4Ayb1tYMqU",
-            "Compendium.sw5e.archetypefeatures.yC60nJSLsjnVYsgA"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UMbQEY4Ayb1tYMqU"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.yC60nJSLsjnVYsgA"
+            }
           ],
           "optional": false
         },
@@ -41,11 +43,13 @@
         "title": "Features"
       },
       {
-        "_id": "U4yQhEUGauJ1TZRZ",
+        "_id": "KP5WHgMNv3Y1B4bb",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.uKz2RxG3mUZjfZXV"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.uKz2RxG3mUZjfZXV"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "1lURHhEi8YcD2jyF",
+        "_id": "htd2RsKXQ0t1s8pH",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.qIyMkK0g5nYUSc9c"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.qIyMkK0g5nYUSc9c"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "NRWIrTFC1nq1v2wq",
+        "_id": "1PORtc7cbaPs1ttc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.D2dpEvNZhLDsArYf"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.D2dpEvNZhLDsArYf"
+            }
           ],
           "optional": false
         },
@@ -87,7 +95,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +103,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959759,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!ZyIY9sjXar2ElKeL"

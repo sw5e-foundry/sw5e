@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Exhibition Specialist:</strong> 18th level</em></p>\n<p>You've perfected a fighting style that allows you to stylishly dominate the field of battle. When you mark a creature with your In The Spotlight feature, you can enhance it. For the duration of the mark, you gain the following additional benefits:</p>\n<ul>\n<li>You can add your full Charisma modifier, instead of half, to any weapon damage roll you make against the marked target that doesn't already include that modifier.</li>\n<li>You can add half your Charisma modifier (minimum of one) to any weapon attack roll you make against the marked target that doesn't already include that modifier.</li>\n<li>If the marked target is reduced to 0 hit points, you can use your reaction to mark a new creature within 30 feet of you. The duration of the new mark is equal to the remaining duration of the existing mark.</li>\n</ul>\n<p>This effect ends early if you're incapacitated or die. Once you've used this feature, you can't use it again until you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Fighter (Exhibition Specialist) 18",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -84,17 +89,26 @@
         "turn": null
       }
     },
-    "className": "Fighter"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957317,
-    "modifiedTime": 1699591595132,
+    "modifiedTime": 1720368681328,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!2Pb9OITYFWjfh68F"

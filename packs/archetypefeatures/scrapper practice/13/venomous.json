@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Shadow Killer Practice:</strong> 3rd, 5th, 9th, 13th, and 17th level</em></p>\n<p>You gain proficiency with the poisoner's kit, and you can apply a poison as a bonus action.</p>\n<p>Additionally, you learn to create a number of special poison vials. Over the course of a short or long rest, you can create two doses of poison. You must have a poisoner's kit in order to create these doses. Your doses can only be used by you, and they lose their potency at the end of your next short or long rest.</p>\n<p>As an action, you can use one of your doses to coat one vibroweapon, one slug cartridge, or one wrist launcher dart. A creature hit by the coated weapon must make a Constitution saving throw (DC = 8 + your proficiency bonus + your Intelligence modifier), taking [[/r 1d4]] + your Intelligence modifier poison damage on a failed save or half as much on a successful one. Once applied, the poison retains potency for 1 minute before drying.</p>\n<p>The quantity and damage of your doses increases at higher levels, to three and [[/r 2d4]] at 5th level, four and [[/r 3d4]] at 9th level, five and [[/r 4d4]] at 13th level, and six and [[/r 5d4]] at 17th level.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Scrapper Practice) 13",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -86,7 +89,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -96,10 +109,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1679683269105,
-    "modifiedTime": 1699591595219,
+    "modifiedTime": 1720368712625,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "pJinp0CP0jwos9J3",

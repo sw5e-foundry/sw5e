@@ -54,8 +54,7 @@
       "name": "Overload Systems",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!2GMuH7TIypF8O3bB.Xafum7u479aJ6zZA",
-      "sort": 0
+      "_key": "!items.effects!2GMuH7TIypF8O3bB.Xafum7u479aJ6zZA"
     }
   ],
   "folder": null,
@@ -64,27 +63,29 @@
   "system": {
     "description": {
       "value": "<p>Also at 5th rank, you learn how to overload the systems of a ship remotely. As an action, you can attempt to breach the systems of the target of your System Disturbance. The ship must make a Constitution saving throw (DC = 8 + your bonus to Interfere checks). On a failed save, the target's flying speed reduced by half, it's turning speed is doubled, it takes a -2 penalty to AC and Dexterity saving throws, it's shields no longer regenerate, and it can't use reactions. On its turn, it can use either an action or a bonus action, not both. Regardless of the ship's abilities, crew, or equipment, it can't make more than one attack during its turn.</p>\n<p>The ship's pilot makes another Constitution saving throw at the end of its turns. On a successful save, the effect ends.</p>\n<p>Once you've use this feature, you must finish a short or long rest before you can use it again.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operator 5th Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -95,16 +96,17 @@
       "value": 1,
       "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "con",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -134,25 +136,26 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Operator"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "5th Rank"
-    }
+    "properties": {}
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963406,
-    "modifiedTime": 1699591629482,
+    "modifiedTime": 1720368729722,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!2GMuH7TIypF8O3bB"

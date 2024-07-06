@@ -1,8 +1,170 @@
 {
-  "_id": "YqhBPIMydXukWNKG",
   "name": "Togorian",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2941244+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-togorian"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Togorian.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The Togorian people are a feline warrior species native to the planet Togoria. They are large, heavy-framed bipeds, with retractable claws on their hands and feet. Female Togorians grow up to 7 feet tall, while adult males can reach up to 9 feet. They're covered in gray-white, black, brown, or orange fur, often with colorful spots or stripes. </p>\n<h2>Society and Culture</h2>\n<p>Togorians have a unique cultural division between their sexes. They evolved as nomadic hunters of creatures like the bist and etelo, surviving on the wilderness as apex predators. As time went on, a rift in their society developed between the two sexes. Males were drawn to continue their lifestyle as nomads and hunters for their people, while females tended to prefer remaining in permanent camps and contributed the vast majority of their species technological developments. This division has continued into modern times, with males continuing their nomadic traditions and females frequently preferring to stay in villages and cities. Males visit their mates for about a month each year, but otherwise the sexes live completely separate lives. Whether in spite of this separation of the sexes, or because of it, Togorians are typically monogamous and devoted to their chosen mates.</p>\n<h2>Names</h2>\n<p>Togorian names tend to be short and primal-sounding. Female names tend to include softer consonants and more vowels, while male names are typically harsher. Togorians do not use surnames.</p>\n<p><strong>Male Names.</strong>  Mezgraf, Mlatar, Morto, Mrrov, Torr</p>\n<p><strong>Female Names.</strong> Coelle, Elotis, H'sishi, Kra'ake, Rrowv</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "togorian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1xSgq7ypnZaN9LEW",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3HpEWSlrxzvNE0fv"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZQtGFQMV13mZzSJ2"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.qcz0Pyg0hqioowLk"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bgdwXibjsD5yH2wY"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ymgEqXXd5h9lX2Je"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bY7svfzd3A224liw"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.UwiZUOFt3dvCCFTh"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZHK8D1qJbXRVJSPJ"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.XP6Fxfjej22M6PVf"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Wmx8GFYKEFrOY8b1"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1LndyR2YLqjH113R",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1RFfWEj0AMpfJkMD",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "7uestiLhsNl1Hh53",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:sur",
+            "skills:ste"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Black, brown, or white"
+    },
+    "hairColorOptions": {
+      "value": "Black, brown, orange, or white"
+    },
+    "eyeColorOptions": {
+      "value": "Brown, green, orange, or yellow"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Large frame, retractable claws, striped fur, rigid honor code"
+    },
+    "heightAverage": {
+      "value": "6'2\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "175 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d6) lb."
+    },
+    "homeworld": {
+      "value": "Togoria"
+    },
+    "slanguage": {
+      "value": "Togorese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "AwKbuyAocEAz5vyD",
@@ -80,140 +242,22 @@
       "name": "Togorian",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!YqhBPIMydXukWNKG.AwKbuyAocEAz5vyD"
+      "_key": "!items.effects!6LgSF9g7RCN6einu.AwKbuyAocEAz5vyD"
     }
   ],
+  "_id": "6LgSF9g7RCN6einu",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2941244+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-togorian"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The Togorian people are a feline warrior species native to the planet Togoria. They are large, heavy-framed bipeds, with retractable claws on their hands and feet. Female Togorians grow up to 7 feet tall, while adult males can reach up to 9 feet. They're covered in gray-white, black, brown, or orange fur, often with colorful spots or stripes. </p>\n<h2>Society and Culture</h2>\n<p>Togorians have a unique cultural division between their sexes. They evolved as nomadic hunters of creatures like the bist and etelo, surviving on the wilderness as apex predators. As time went on, a rift in their society developed between the two sexes. Males were drawn to continue their lifestyle as nomads and hunters for their people, while females tended to prefer remaining in permanent camps and contributed the vast majority of their species technological developments. This division has continued into modern times, with males continuing their nomadic traditions and females frequently preferring to stay in villages and cities. Males visit their mates for about a month each year, but otherwise the sexes live completely separate lives. Whether in spite of this separation of the sexes, or because of it, Togorians are typically monogamous and devoted to their chosen mates.</p>\n<h2>Names</h2>\n<p>Togorian names tend to be short and primal-sounding. Female names tend to include softer consonants and more vowels, while male names are typically harsher. Togorians do not use surnames.</p>\n<p><strong>Male Names.</strong>  Mezgraf, Mlatar, Morto, Mrrov, Torr</p>\n<p><strong>Female Names.</strong> Coelle, Elotis, H'sishi, Kra'ake, Rrowv</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "togorian",
-    "advancement": [
-      {
-        "_id": "1O5R37OjJeQc1IUd",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.3HpEWSlrxzvNE0fv",
-            "Compendium.sw5e.speciesfeatures.ZQtGFQMV13mZzSJ2",
-            "Compendium.sw5e.speciesfeatures.qcz0Pyg0hqioowLk",
-            "Compendium.sw5e.speciesfeatures.bgdwXibjsD5yH2wY",
-            "Compendium.sw5e.speciesfeatures.ymgEqXXd5h9lX2Je",
-            "Compendium.sw5e.speciesfeatures.bY7svfzd3A224liw",
-            "Compendium.sw5e.speciesfeatures.UwiZUOFt3dvCCFTh",
-            "Compendium.sw5e.speciesfeatures.ZHK8D1qJbXRVJSPJ",
-            "Compendium.sw5e.speciesfeatures.XP6Fxfjej22M6PVf",
-            "Compendium.sw5e.speciesfeatures.Wmx8GFYKEFrOY8b1"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "15ZKkRwYC1UH1RrD",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "str": 2
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "19Q71jhXLz3SR8c2",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "IjCiGdSM3iEqHQsz",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:sur",
-            "skills:ste"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Black, brown, or white"
-    },
-    "hairColorOptions": {
-      "value": "Black, brown, orange, or white"
-    },
-    "eyeColorOptions": {
-      "value": "Brown, green, orange, or yellow"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Large frame, retractable claws, striped fur, rigid honor code"
-    },
-    "heightAverage": {
-      "value": "6'2\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "175 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d6) lb."
-    },
-    "homeworld": {
-      "value": "Togoria"
-    },
-    "slanguage": {
-      "value": "Togorese"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002106,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!YqhBPIMydXukWNKG"
+  "_key": "!items!6LgSF9g7RCN6einu"
 }

@@ -16,24 +16,28 @@
   "system": {
     "description": {
       "value": "<h1>Tactical Specialist</h1>\n<p>Those fighters who choose to become Tactical Specialists employ martial techniques passed down through generations. To a Tactical Specialist, combat is an academic field, sometimes including subjects beyond battle such as armstech or armormech. Not every fighter absorbs the lessons of history, theory, and artistry that are reflected in the Tactical Specialty, but those who do are well-rounded fighters of great skill and knowledge.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "tacticalspecialist",
     "classIdentifier": "fighter",
     "advancement": [
       {
-        "_id": "1P6P96fiLFtJ1ya7",
+        "_id": "1iM72bi2OLbuambY",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.VaeXx1uqSbb2SA68",
-            "Compendium.sw5e.archetypefeatures.NtAIiS7Zz4BWuxBq",
-            "Compendium.sw5e.archetypefeatures.TpLT8MuI3KKsljxa"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.VaeXx1uqSbb2SA68"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.NtAIiS7Zz4BWuxBq"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.TpLT8MuI3KKsljxa"
+            }
           ],
           "optional": false
         },
@@ -42,11 +46,13 @@
         "title": "Features"
       },
       {
-        "_id": "TAGTMT227s9vgdq1",
+        "_id": "clYDeTz6RCnnYkwu",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.5Z3zJmTNI6uyEPNA"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.5Z3zJmTNI6uyEPNA"
+            }
           ],
           "optional": false
         },
@@ -55,11 +61,13 @@
         "title": "Features"
       },
       {
-        "_id": "NUKQpWzWmk71kfUa",
+        "_id": "lyHSTDLkcja1LLt7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.znI7r1ArIIqcmUpf"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.znI7r1ArIIqcmUpf"
+            }
           ],
           "optional": false
         },
@@ -68,11 +76,13 @@
         "title": "Features"
       },
       {
-        "_id": "N2EDpOhMRAVGKX3w",
+        "_id": "WdgXi73bsfI1fpHu",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.TCBftUhIxww79moU"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.TCBftUhIxww79moU"
+            }
           ],
           "optional": false
         },
@@ -81,11 +91,13 @@
         "title": "Features"
       },
       {
-        "_id": "KiE3L3LElV51jWnL",
+        "_id": "9XD9WhRRUiP1qTFg",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.RQnRq0u0DbUJcO58"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.RQnRq0u0DbUJcO58"
+            }
           ],
           "optional": false
         },
@@ -94,7 +106,7 @@
         "title": "Features"
       },
       {
-        "_id": "dEnQmqyPse91ATqk",
+        "_id": "19IwvrtGxPUz1d8e",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -119,7 +131,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -127,10 +139,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959720,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Ayxbhs6ruoY7Z5ob"

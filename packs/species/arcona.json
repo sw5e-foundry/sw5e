@@ -1,8 +1,186 @@
 {
-  "_id": "KwDQepuVGtneaTTY",
   "name": "Arcona",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.272138+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-arcona"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Arcona.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Arcona have anvil-shaped heads, claws, marble-like eyes, and protective skin. Cona is always hot, and has very little water, but the atmosphere is filled with ammonia vapor. Arcona adapted to this environment by eating the ammonia-converting roots of flora as a source of water. Arcona depended on the ammonia to live and, as a result, arcona living offworld have to take ammonia supplements. Despite their large eyes, arcona have very poor eyesight. Their eyes, made up of thousands of photoreceptors, can not detect fine shapes, only seeing blurry objects. To aid this, they have a small sensory organ between their eyes. Often mistaken for their nose, this organ detects heat patterns from living beings. Thus, arcona can recognize things by its heat pattern.</p>\n<p>Arcona are highly susceptible to addiction to spice and common salt, which serves as a hallucinogen with effects resembling that of intoxication. Their eyes shift to gold after prolonged addiction.</p>\n<h2>Society and Culture</h2>\n<p>Arcona normally think of themselves not as individuals but as a collective whole. Largely forsaking individuality, they often refer to themselves as \"we\" even when alone. The arcona live in loose, family-based communities called nests, which are ruled by a Grand Nest. Because arcona are born in nests underground, they obtain a close sense of family living in close quarters with siblings. Males raise the young, since females are typically impulsive thrill-seekers. </p>\n<h2>Names</h2>\n<p>Arcona names are quite diverse, named by their fathers in the nest. Surnames are either familial or nest-based. </p>\n<p><strong>Male Names.</strong> Bijrik, El, Jat, Kazat, Onalol, Shle</p>\n<p><strong>Female Names.</strong> Ak, Cimam, Cuten, He, Madan, Omik</p>\n<p><strong>Surnames.</strong> Cheen, -drell, -faxel, Shran, Takonak, -voll</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "arcona",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1ma74shXqJdc189z",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.gxH2uC5yeYjWDT1I"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VtcmwgoMzSyN5drX"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RlRqIROI3uxWyPNA"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xrg3iCrrgQmakqZi"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BLfBuQlxa4icG6ZZ"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.SBRz4Sr38EkRHy36"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.8QrCV3ObiaVW8ozf"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ddzhJOtS7wNoss1E"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.8NCiamp3Sl32sj1o"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xaZigNylv3TjsLQN"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.iXAE2kZ01ftvDaV0"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.aPcTTdb9n5LvIvs5"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "44CwSVRlh0JBDXqv",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "con": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1TiepNVKh3li18xB",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "ynrBVsfnS7iYDUg6",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:inv",
+                "skills:lor",
+                "skills:med",
+                "skills:nat",
+                "skills:pil",
+                "skills:tec"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Ebony to mahogany"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Green, blue, pink, gold when addicted"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Flat  heads, easily addicted"
+    },
+    "heightAverage": {
+      "value": "5'0\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "95 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Cona"
+    },
+    "slanguage": {
+      "value": "Arconese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "vkpTLAXvTHpP9S6H",
@@ -60,8 +238,7 @@
       "name": "Arcona",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!KwDQepuVGtneaTTY.vkpTLAXvTHpP9S6H"
+      "_key": "!items.effects!A8YCUKCQwtPCSNMn.vkpTLAXvTHpP9S6H"
     },
     {
       "_id": "P9LXrkukSdERPtiq",
@@ -95,152 +272,22 @@
       "name": "Keen Smell",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!KwDQepuVGtneaTTY.P9LXrkukSdERPtiq"
+      "_key": "!items.effects!A8YCUKCQwtPCSNMn.P9LXrkukSdERPtiq"
     }
   ],
+  "_id": "A8YCUKCQwtPCSNMn",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.272138+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-arcona"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Arcona have anvil-shaped heads, claws, marble-like eyes, and protective skin. Cona is always hot, and has very little water, but the atmosphere is filled with ammonia vapor. Arcona adapted to this environment by eating the ammonia-converting roots of flora as a source of water. Arcona depended on the ammonia to live and, as a result, arcona living offworld have to take ammonia supplements. Despite their large eyes, arcona have very poor eyesight. Their eyes, made up of thousands of photoreceptors, can not detect fine shapes, only seeing blurry objects. To aid this, they have a small sensory organ between their eyes. Often mistaken for their nose, this organ detects heat patterns from living beings. Thus, arcona can recognize things by its heat pattern.</p>\n<p>Arcona are highly susceptible to addiction to spice and common salt, which serves as a hallucinogen with effects resembling that of intoxication. Their eyes shift to gold after prolonged addiction.</p>\n<h2>Society and Culture</h2>\n<p>Arcona normally think of themselves not as individuals but as a collective whole. Largely forsaking individuality, they often refer to themselves as \"we\" even when alone. The arcona live in loose, family-based communities called nests, which are ruled by a Grand Nest. Because arcona are born in nests underground, they obtain a close sense of family living in close quarters with siblings. Males raise the young, since females are typically impulsive thrill-seekers. </p>\n<h2>Names</h2>\n<p>Arcona names are quite diverse, named by their fathers in the nest. Surnames are either familial or nest-based. </p>\n<p><strong>Male Names.</strong> Bijrik, El, Jat, Kazat, Onalol, Shle</p>\n<p><strong>Female Names.</strong> Ak, Cimam, Cuten, He, Madan, Omik</p>\n<p><strong>Surnames.</strong> Cheen, -drell, -faxel, Shran, Takonak, -voll</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "arcona",
-    "advancement": [
-      {
-        "_id": "JgMw5Jp5RDkNOnM5",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.gxH2uC5yeYjWDT1I",
-            "Compendium.sw5e.speciesfeatures.VtcmwgoMzSyN5drX",
-            "Compendium.sw5e.speciesfeatures.RlRqIROI3uxWyPNA",
-            "Compendium.sw5e.speciesfeatures.xrg3iCrrgQmakqZi",
-            "Compendium.sw5e.speciesfeatures.BLfBuQlxa4icG6ZZ",
-            "Compendium.sw5e.speciesfeatures.SBRz4Sr38EkRHy36",
-            "Compendium.sw5e.speciesfeatures.8QrCV3ObiaVW8ozf",
-            "Compendium.sw5e.speciesfeatures.ddzhJOtS7wNoss1E",
-            "Compendium.sw5e.speciesfeatures.8NCiamp3Sl32sj1o",
-            "Compendium.sw5e.speciesfeatures.xaZigNylv3TjsLQN",
-            "Compendium.sw5e.speciesfeatures.iXAE2kZ01ftvDaV0",
-            "Compendium.sw5e.speciesfeatures.aPcTTdb9n5LvIvs5"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "13DFwdlurR7G1ya2",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "cha": 2,
-            "con": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "qiigtwX62tF1OvYu",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1bvtMVAdh83vwu6z",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "skills:inv",
-                "skills:lor",
-                "skills:med",
-                "skills:nat",
-                "skills:pil",
-                "skills:tec"
-              ]
-            }
-          ],
-          "grants": [],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Ebony to mahogany"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Green, blue, pink, gold when addicted"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Flat  heads, easily addicted"
-    },
-    "heightAverage": {
-      "value": "5'0\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "95 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Cona"
-    },
-    "slanguage": {
-      "value": "Arconese"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002085,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!KwDQepuVGtneaTTY"
+  "_key": "!items!A8YCUKCQwtPCSNMn"
 }

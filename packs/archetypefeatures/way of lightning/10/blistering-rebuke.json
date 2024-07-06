@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Way of Lightning:</strong> 10th, 13th, and 17th level</em></p>\n<p>When a creature within 5 feet of you that you can see hits you with an attack, you can use your reaction to cause the creature to make a Dexterity saving throw against your universal force save DC. On a failed save, the creature takes [[/r 1d10]] plus your consular level lightning damage, is pushed back 10 feet, and becomes <em>shocked</em> until the end of their next turn. On a successful save, the creature takes half as much damage and isn't moved or <em>shocked</em>.</p>\n<p>You can use this feature four times. You gain an additional use at 13th and 17th level. You regain all expended uses when you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Consular (Way of Lightning) 10",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 5,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "4",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -86,7 +89,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -96,10 +109,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1680288495931,
-    "modifiedTime": 1699591595141,
+    "modifiedTime": 1720368684790,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "8cubxZfCakEZPJO2",

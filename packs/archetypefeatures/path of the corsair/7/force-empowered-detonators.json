@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Path of the Corsair:</strong> 7th level</em></p>\n<p>You learn to infuse a number of small detonators with the Force. Over the course of a short or long rest, you can create a number of detonators equal to your Wisdom or Charisma modifier (your choice, minimum of one). Your detonators can only be used by you, and they lose their potency at the end of your next short or long rest.</p>\n<p>As a bonus action on each of your turns, you can throw one of your detonators at a point within range. Your detonators have a range equal to 30 feet + your Wisdom or Charisma modifier x 5. Make a universal ranged force attack. On a hit, the detonator adheres to the target, and if the target is a Large or smaller creature, it is pushed back 5 feet. On a miss, it falls to the ground. Hit or miss, the detonator then explodes. The target and each creature within 5 feet must make a Dexterity saving throw against your universal force save DC. If the detonator adhered to a target, the creature has disadvantage on the saving throw. A creature takes force damage using your Kinetic Combat die + your Wisdom or Charisma modifier (your choice) on a failed save, or half as much on a successful one.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Sentinel (Path of the Corsair) 7",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 5,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -91,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1680288495969,
-    "modifiedTime": 1699591595164,
+    "modifiedTime": 1720368693177,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "Ndi3Ly5dpOa3Rmoi",

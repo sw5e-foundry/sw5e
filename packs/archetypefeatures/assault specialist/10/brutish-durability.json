@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Assault Specialist:</strong> 10th, 13th, and 17th level</em></p>\n<p>Once per round, you can roll a [[/r d8]] and add the die to a saving throw you make. If applying this bonus to a death saving throw increases the total to 20 or higher, you gain the benefits of rolling a 20 on the [[/r d20]].</p>\n<p>This die increases to a [[/r d10]] at 13th level and a [[/r d12]] at 17th level.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Fighter (Assault Specialist) 10",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {}
   },
   "effects": [],
   "folder": null,
@@ -91,10 +104,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1680288495916,
-    "modifiedTime": 1704036421154,
+    "modifiedTime": 1720368698265,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "UQfXhacffisIadI7",

@@ -16,22 +16,22 @@
   "system": {
     "description": {
       "value": "<h1>Way of the Sage</h1>\n<p>The rejuvenating power of the Force is incredible, and the consular is the master of this usage. Those consulars who follow the Way of the Sage assist with an array of healing powers that grant allies the strength to continue through even the harshest of encounters. Separated from the heart of the fray, the sage can be an unfailing warden to those in need.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "wayofthesage",
     "classIdentifier": "consular",
     "advancement": [
       {
-        "_id": "1qPZybE6mnec1KvH",
+        "_id": "LScqt1HzspWq8xSz",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.XUyo0Tn0gHIJhZtp"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.XUyo0Tn0gHIJhZtp"
+            }
           ],
           "optional": false
         },
@@ -40,11 +40,13 @@
         "title": "Features"
       },
       {
-        "_id": "1ULbpNqC4vsL1dJ3",
+        "_id": "HSetzXUFq55w9ny2",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.dPNGSAW5urzfb1cT"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.dPNGSAW5urzfb1cT"
+            }
           ],
           "optional": false
         },
@@ -53,11 +55,13 @@
         "title": "Features"
       },
       {
-        "_id": "17MkyGpAl8w61tXN",
+        "_id": "1uXdoN0Zqi6X2zR7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.WY9QOMyGONH2HRGp"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.WY9QOMyGONH2HRGp"
+            }
           ],
           "optional": false
         },
@@ -66,11 +70,13 @@
         "title": "Features"
       },
       {
-        "_id": "dujO3HKScUIDTNS3",
+        "_id": "1M6QW9TtVqpGdvHC",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.c5ZNeZPFgh9IOnJk"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.c5ZNeZPFgh9IOnJk"
+            }
           ],
           "optional": false
         },
@@ -79,11 +85,13 @@
         "title": "Features"
       },
       {
-        "_id": "7mYbFE14ZNm1KPRs",
+        "_id": "1HNWKRa48xy0WPHt",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ow8lboCU7nSy3dyd"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ow8lboCU7nSy3dyd"
+            }
           ],
           "optional": false
         },
@@ -99,7 +107,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -107,10 +115,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959760,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!bC6icCMCk6quP19r"

@@ -16,48 +16,50 @@
   "system": {
     "description": {
       "value": "<p>When you make a Strength (Athletics) check to grapple or shove a creature, you can expend a superiority die. Until the end of your turn, you can drag the grappled creature with you without your speed being halved. Additionally, if the creature is moved at least 5 feet, you can roll the superiority die, dealing kinetic damage to the creature equal to the result of the roll.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Proficiency in Athletics",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,17 +80,34 @@
       "dc": null,
       "scaling": "power"
     },
-    "maneuverType": "physical"
+    "type": {
+      "value": "physical",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": {},
+    "recharge": {
+      "value": null,
+      "charged": false
+    }
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493983305,
-    "modifiedTime": 1699591675212,
+    "modifiedTime": 1720368794123,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!falo0kRnf0nMOOax"

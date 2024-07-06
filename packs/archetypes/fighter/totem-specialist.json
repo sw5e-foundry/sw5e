@@ -16,24 +16,28 @@
   "system": {
     "description": {
       "value": "<h1>Totem Specialist</h1>\n<p>Those fighters who become Totem Specialists tap into a primal attunement to the Force, applying tribal ceremony to create powerful talismans that enhance their abilities.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Totem Options</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.8CXel89RBrnBed4C]{Totem of the acklay}</li>\n<li>@Compendium[sw5e.invocations.Eb8EBtRmO0Tq8NVu]{Totem of the hawk}</li>\n<li>@Compendium[sw5e.invocations.HwmJ7NCip6Fbmzyf]{Totem of the loth-wolf}</li>\n<li>@Compendium[sw5e.invocations.Dt5Z9wgTmuYQZshK]{Totem of the rancor}</li>\n<li>@Compendium[sw5e.invocations.LOIC4jmEV9YjOfjb]{Totem of the sarlacc}</li>\n<li>@Compendium[sw5e.invocations.Tlrd0Y3DsB7gNW0G]{Totem of the vornskr}</li>\n</ul>"
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "totemspecialist",
     "classIdentifier": "fighter",
     "advancement": [
       {
-        "_id": "bWllU4lwA0Q1Lm4x",
+        "_id": "5q4kUm37KEE1fjve",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.UW4sZghPgRePZJnX",
-            "Compendium.sw5e.archetypefeatures.DD0jyXFV6RAQwXpe",
-            "Compendium.sw5e.archetypefeatures.XfQiRawVZiulDJNy"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UW4sZghPgRePZJnX"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.DD0jyXFV6RAQwXpe"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.XfQiRawVZiulDJNy"
+            }
           ],
           "optional": false
         },
@@ -42,11 +46,13 @@
         "title": "Features"
       },
       {
-        "_id": "m76Pyonhqbj1nHlf",
+        "_id": "4uJe4SxYs8t1LRfw",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.36e3F9LqpO8hZQFF"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.36e3F9LqpO8hZQFF"
+            }
           ],
           "optional": false
         },
@@ -55,11 +61,13 @@
         "title": "Features"
       },
       {
-        "_id": "jCZohoiJ2kpKqYzd",
+        "_id": "cRIz9757A9wXrvxp",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.O8tTxOPVoT74sDdt"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.O8tTxOPVoT74sDdt"
+            }
           ],
           "optional": false
         },
@@ -68,11 +76,13 @@
         "title": "Features"
       },
       {
-        "_id": "QzvfVYzuR7TDYE5M",
+        "_id": "3ihxThnj7a36SrMm",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.0I8mGUA8SnYa8zKM"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.0I8mGUA8SnYa8zKM"
+            }
           ],
           "optional": false
         },
@@ -81,11 +91,13 @@
         "title": "Features"
       },
       {
-        "_id": "JNPdQTOHLBwjNlm9",
+        "_id": "umQYY4VDLc91eFE7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.TeEN1l7snHIuHxn6"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.TeEN1l7snHIuHxn6"
+            }
           ],
           "optional": false
         },
@@ -94,7 +106,7 @@
         "title": "Features"
       },
       {
-        "_id": "1dCwFyjZuOhJ15im",
+        "_id": "1Agksu09WOUkr1FN",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -120,7 +132,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -128,10 +140,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959708,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!27M1azt4WBz5Vmwy"

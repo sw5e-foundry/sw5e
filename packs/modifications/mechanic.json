@@ -13,58 +13,60 @@
   "system": {
     "description": {
       "value": "<h4>Droid Customization (Part)</h4>\n <p>As an action, you can activate the repair tools, choosing one of the following options:</p>\n<ul>\n<li>You can stabilize a droid within 5 feet of you that has 0 hit points, without needing to make an Intelligence (Technology) check.</li>\n<li>You can restore [[/r 2d4+2]] hit points to a droid or construct within 5 feet.</li>\n</ul>\n<p>You can use each feature once. You regain all expended uses when you complete a long rest.</p>\n<p><em>This part equips the droid with a series of machine repair tools.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "standard",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "5",
+      "value": 5,
       "long": null,
       "units": "feet"
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "heal",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -85,15 +87,26 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "droidcustomization",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {}
-    }
+    "properties": {},
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "droidcustomization",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -102,10 +115,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1673970648642,
-    "modifiedTime": 1699591687683,
+    "modifiedTime": 1720368855871,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "f51LhoWogJO2a6Vy",

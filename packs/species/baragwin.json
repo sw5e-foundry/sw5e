@@ -1,8 +1,185 @@
 {
-  "_id": "9I4FSaNm2b5OadQx",
   "name": "Baragwin",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2731369+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-baragwin"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Baragwin.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>A hunchbacked species of sentient reptilians, the bipedal baragwin are easily recognized across the galaxy. Noted for their thick, wrinkled skin which can resist most physical attacks and their shuffling gait, the large-headed race have no obvious differences between male and female baragwin. An acute sense of smell give the species enough sensitivity to detect another being's mood and feelings. This leads some of them into careers as big-game hunters, or even as bounty hunters. Due to their ponderous movement, many non-baragwin believe the race to be a dull-witted people while, in fact, they are quite intelligent. Despite this fact, the baragwin frequently keep this intelligence hidden, using the misconceptions of others to their own advantage.</p>\n<h2>Society and Culture</h2>\n<p>Baragwin culture, since it does not derive from a single homeworld, is highly dependent on a baragwin's planet of origin, with Tatooinian baragwin behaving quite differently from those from Denuhi-Eight. Baragwin generally have little prejudice, treating all other beings equally regardless of species, culture, or planetary origins; though criminal baragwin will exploit all beings equally instead. Baragwin settlements are generally small and anarchic, with short-term leaders selected by informal democratic processes. Baragwin are famous as skilled weapon-smiths and introduced many different weapons to different worlds. Baragwin-made blasters and vibroblades are among the most powerful personal weapons in the galaxy. </p>\n<h2>Names</h2>\n<p>Baragwin have names with wide tones, spoken using the entire mouth, that don't differentiate by gender. Baragwin use familial surnames.</p>\n<p><strong>First Names.</strong> Dagel, Eskaul, Idalli, Migo</p>\n<p><strong>Surnames.</strong> Fadani, Igara, Kodrue, Wylbas</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "baragwin",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "7S9EAqzVtAFg4tFK",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xaVy3RGuNtwQTyVX"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9oXxmB1R34Rxx1af"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.CnAIq3ZGVNN6glWG"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FT3iHsMVH33cBu03"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PiOYBpYDrzPsLJeq"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IeRDuvHmMTe2kSLH"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.B1c0WeDXFisgvNhg"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LwEOpeVBr8rCZ9zO"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7n21XdAaCohKBvYg"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zDW1ft1NWv7KLGM2"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.T9wG0oNiW5ht40O3"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TIvVRbq554iT9I4K"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "WF9Yn5h5RT514Dwn",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "con": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "17e5IOj6qlH51RtZ",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "fC5lE70R1cd1y03J",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "tool:armstechsimplements",
+                "tool:munitionskit",
+                "weapon:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:sur"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Drag green to dark olive"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Yellow or red"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Hunchback, large heads, strong sense of smell"
+    },
+    "heightAverage": {
+      "value": "4'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "145 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Old Barag"
+    },
+    "slanguage": {
+      "value": "Baragwinian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "ygBLONc021h8kHLW",
@@ -66,8 +243,7 @@
       "name": "Baragwin",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!9I4FSaNm2b5OadQx.ygBLONc021h8kHLW"
+      "_key": "!items.effects!WyBFlEdXJgL2eowF.ygBLONc021h8kHLW"
     },
     {
       "_id": "nKa8zU0nbYU67Xh1",
@@ -101,151 +277,22 @@
       "name": "Keen Smell",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!9I4FSaNm2b5OadQx.nKa8zU0nbYU67Xh1"
+      "_key": "!items.effects!WyBFlEdXJgL2eowF.nKa8zU0nbYU67Xh1"
     }
   ],
+  "_id": "WyBFlEdXJgL2eowF",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2731369+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-baragwin"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>A hunchbacked species of sentient reptilians, the bipedal baragwin are easily recognized across the galaxy. Noted for their thick, wrinkled skin which can resist most physical attacks and their shuffling gait, the large-headed race have no obvious differences between male and female baragwin. An acute sense of smell give the species enough sensitivity to detect another being's mood and feelings. This leads some of them into careers as big-game hunters, or even as bounty hunters. Due to their ponderous movement, many non-baragwin believe the race to be a dull-witted people while, in fact, they are quite intelligent. Despite this fact, the baragwin frequently keep this intelligence hidden, using the misconceptions of others to their own advantage.</p>\n<h2>Society and Culture</h2>\n<p>Baragwin culture, since it does not derive from a single homeworld, is highly dependent on a baragwin's planet of origin, with Tatooinian baragwin behaving quite differently from those from Denuhi-Eight. Baragwin generally have little prejudice, treating all other beings equally regardless of species, culture, or planetary origins; though criminal baragwin will exploit all beings equally instead. Baragwin settlements are generally small and anarchic, with short-term leaders selected by informal democratic processes. Baragwin are famous as skilled weapon-smiths and introduced many different weapons to different worlds. Baragwin-made blasters and vibroblades are among the most powerful personal weapons in the galaxy. </p>\n<h2>Names</h2>\n<p>Baragwin have names with wide tones, spoken using the entire mouth, that don't differentiate by gender. Baragwin use familial surnames.</p>\n<p><strong>First Names.</strong> Dagel, Eskaul, Idalli, Migo</p>\n<p><strong>Surnames.</strong> Fadani, Igara, Kodrue, Wylbas</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "baragwin",
-    "advancement": [
-      {
-        "_id": "17TmtXHzQqxIjPti",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.xaVy3RGuNtwQTyVX",
-            "Compendium.sw5e.speciesfeatures.9oXxmB1R34Rxx1af",
-            "Compendium.sw5e.speciesfeatures.CnAIq3ZGVNN6glWG",
-            "Compendium.sw5e.speciesfeatures.FT3iHsMVH33cBu03",
-            "Compendium.sw5e.speciesfeatures.PiOYBpYDrzPsLJeq",
-            "Compendium.sw5e.speciesfeatures.IeRDuvHmMTe2kSLH",
-            "Compendium.sw5e.speciesfeatures.B1c0WeDXFisgvNhg",
-            "Compendium.sw5e.speciesfeatures.LwEOpeVBr8rCZ9zO",
-            "Compendium.sw5e.speciesfeatures.7n21XdAaCohKBvYg",
-            "Compendium.sw5e.speciesfeatures.zDW1ft1NWv7KLGM2",
-            "Compendium.sw5e.speciesfeatures.T9wG0oNiW5ht40O3",
-            "Compendium.sw5e.speciesfeatures.TIvVRbq554iT9I4K"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1QlJeJbahsZbLuxw",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2,
-            "con": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1yNxpPSYtzEWqqta",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "Be3rb8IkwQ31Rdr6",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 2,
-              "pool": [
-                "tool:armstechsimplements",
-                "tool:munitionskit",
-                "weapon:*"
-              ]
-            }
-          ],
-          "grants": [
-            "skills:sur"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Drag green to dark olive"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Yellow or red"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Hunchback, large heads, strong sense of smell"
-    },
-    "heightAverage": {
-      "value": "4'9\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "145 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Old Barag"
-    },
-    "slanguage": {
-      "value": "Baragwinian"
-    },
-    "movement": {
-      "walk": 25
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002068,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!9I4FSaNm2b5OadQx"
+  "_key": "!items!WyBFlEdXJgL2eowF"
 }

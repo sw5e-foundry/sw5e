@@ -7,71 +7,6 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        }
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:04.7145191+00:00",
       "importer_version": 3,
@@ -81,38 +16,41 @@
   "system": {
     "description": {
       "value": "<h4>Adventuring Gear (Head)</h4>\n <p><em><strong>Requires attunement</strong></em></p>\n<p><em>Prerequisite:  at least 3 levels in consular</em></p>\n<hr />\n<p>This item can hold a number of charges equal to half your consular level (rounded up). When you complete a long rest, this item regains all missing charges. When you would use a Force-Empowered Casting option, you can expend charges instead of force points.</p>\n<p>When you reach 5th level in consular, when you use your Force Recovery feature, you can add both your Wisdom and Charisma modifier to the number of force points regained, instead of just one.</p>\n<p>When you reach 11th level in consular, you can ignore the prerequisites for force powers that are lower level than your Max Power Level.</p>\n<p>When you reach 17th level in consular, when you make a Constitution saving throw to maintain concentration on a force power, you can add your Wisdom or Charisma modifier (your choice, minimum of one) if it doesn't already include that modifier. </p>\n<p><em>This platinum circlet contains a gem that shifts colors at the whim of its bearer.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 1,
+    "attunement": "required",
     "equipped": false,
     "rarity": "prototype",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "special",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -123,16 +61,17 @@
       "value": null,
       "max": "ceil((@classes.consular.levels)/2)",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -150,8 +89,8 @@
     },
     "armor": {
       "value": null,
-      "type": "clothing",
-      "dex": null
+      "dex": null,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -190,29 +129,41 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": 1,
+    "_propertyValues": {},
+    "type": {
+      "value": "clothing",
+      "baseItem": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493964895,
-    "modifiedTime": 1699982381543,
+    "modifiedTime": 1720402287594,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!hM4iAJm05SAZ5I0h"

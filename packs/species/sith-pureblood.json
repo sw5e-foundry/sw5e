@@ -1,8 +1,170 @@
 {
-  "_id": "oRWQrcgMIgC247Oo",
   "name": "Sith Pureblood",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9166212+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-sith_pureblood"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/SithPureblood.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Sith are a proud and violent species of humanoids that evolved on Korriban, a planet within the Horuset system in an isolated Outer Rim region called the Stygian Caldera. Sith have a larger than average number of individuals with potential to use the Force in their species, so high in fact that the entire species was considered strongly Force-sensitive. </p>\n<p>Sith purebloods are characterized by their expressive facial appendages, bone spurs, cranial horns, and predatory gaze.</p>\n<h2>Society and Culture</h2>\n<p>Sith culture is a rigid and stratified caste-based society. For the sith, war and violence are just as much a part of the natural order of life as peace or serenity. Though they are in an almost constant state of war, their civilization is quite sophisticated; they see these acts not as cruel or barbaric, but simply basic aspects of existence. Their constant warring led to a dwindling of the population on their original homeworld of Korriban as well as cultivated an intensely xenophobic society. </p>\n<h2>Names</h2>\n<p>Sith pureblood names are not conventional. They are often named for virtues in the Sith tongue. Sith rarely share surnames, since they do not value family ties. When a sith pureblood achieves a success or victory, they often change their name to match their perceived newfound status. Since Force-sensitivity is common in sith purebloods, and their culture is built around strength, most sith are called simply \"My Lord,\" or some other epithet, by their underlings.</p>\n<p><strong>Male Names.</strong> Aqorzum, Khashai, Sihmot, Wirjol</p>\n<p><strong>Female Names.</strong> Aqurwia, Cliriu, Nupax, Ubhesosiuth</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "sithpureblood",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1QwMjZE5VjrJ1t6W",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.42loDFAz5t2Khkje"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.tizlCKpSAZjh59W6"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.tSxlCHljVNyPhpPL"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.nsZ3n1nh9JrQ541J"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.SXSe8hymdRzTinH4"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MFpTrimJwwpexo4x"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.NLXCakx5kFDHJ5Uu"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.uV74AtbGXiqEcV5H"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ozBuANVw7aZXwe2o"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.p57pRpEAS67GnQa9"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "RbywMkEhXC2kFEIX",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1wH4fMCgrcbz17MC",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1MwKOI9GtgIO4C1w",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:prc",
+            "skills:itm"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Black or red"
+    },
+    "hairColorOptions": {
+      "value": "Black, brown, gray, red, or white"
+    },
+    "eyeColorOptions": {
+      "value": "Orange, red, or yellow"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Tentacle facial appendages, often wear jewelry or have tattoos, bone spurs"
+    },
+    "heightAverage": {
+      "value": "4'8\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "110 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Korriban"
+    },
+    "slanguage": {
+      "value": "Sith"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "C3lStl981RznrCtr",
@@ -86,143 +248,22 @@
       "name": "Sith Pureblood",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!oRWQrcgMIgC247Oo.C3lStl981RznrCtr"
+      "_key": "!items.effects!8hxuAyyiRK7jtiBM.C3lStl981RznrCtr"
     }
   ],
+  "_id": "8hxuAyyiRK7jtiBM",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9166212+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-sith_pureblood"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Sith are a proud and violent species of humanoids that evolved on Korriban, a planet within the Horuset system in an isolated Outer Rim region called the Stygian Caldera. Sith have a larger than average number of individuals with potential to use the Force in their species, so high in fact that the entire species was considered strongly Force-sensitive. </p>\n<p>Sith purebloods are characterized by their expressive facial appendages, bone spurs, cranial horns, and predatory gaze.</p>\n<h2>Society and Culture</h2>\n<p>Sith culture is a rigid and stratified caste-based society. For the sith, war and violence are just as much a part of the natural order of life as peace or serenity. Though they are in an almost constant state of war, their civilization is quite sophisticated; they see these acts not as cruel or barbaric, but simply basic aspects of existence. Their constant warring led to a dwindling of the population on their original homeworld of Korriban as well as cultivated an intensely xenophobic society. </p>\n<h2>Names</h2>\n<p>Sith pureblood names are not conventional. They are often named for virtues in the Sith tongue. Sith rarely share surnames, since they do not value family ties. When a sith pureblood achieves a success or victory, they often change their name to match their perceived newfound status. Since Force-sensitivity is common in sith purebloods, and their culture is built around strength, most sith are called simply \"My Lord,\" or some other epithet, by their underlings.</p>\n<p><strong>Male Names.</strong> Aqorzum, Khashai, Sihmot, Wirjol</p>\n<p><strong>Female Names.</strong> Aqurwia, Cliriu, Nupax, Ubhesosiuth</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "sithpureblood",
-    "advancement": [
-      {
-        "_id": "1mdL6ogqVoHWy20C",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.42loDFAz5t2Khkje",
-            "Compendium.sw5e.speciesfeatures.tizlCKpSAZjh59W6",
-            "Compendium.sw5e.speciesfeatures.tSxlCHljVNyPhpPL",
-            "Compendium.sw5e.speciesfeatures.nsZ3n1nh9JrQ541J",
-            "Compendium.sw5e.speciesfeatures.SXSe8hymdRzTinH4",
-            "Compendium.sw5e.speciesfeatures.MFpTrimJwwpexo4x",
-            "Compendium.sw5e.speciesfeatures.NLXCakx5kFDHJ5Uu",
-            "Compendium.sw5e.speciesfeatures.uV74AtbGXiqEcV5H",
-            "Compendium.sw5e.speciesfeatures.ozBuANVw7aZXwe2o",
-            "Compendium.sw5e.speciesfeatures.p57pRpEAS67GnQa9"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1zDOmky5qUfr1Q0z",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "cha": 2
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "js8WaxFkXuTRmbHO",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "kNxsm4Gt9Le1ubns",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:prc",
-            "skills:itm"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Black or red"
-    },
-    "hairColorOptions": {
-      "value": "Black, brown, gray, red, or white"
-    },
-    "eyeColorOptions": {
-      "value": "Orange, red, or yellow"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Tentacle facial appendages, often wear jewelry or have tattoos, bone spurs"
-    },
-    "heightAverage": {
-      "value": "4'8\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "110 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Korriban"
-    },
-    "slanguage": {
-      "value": "Sith"
-    },
-    "movement": {
-      "walk": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002131,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!oRWQrcgMIgC247Oo"
+  "_key": "!items!8hxuAyyiRK7jtiBM"
 }

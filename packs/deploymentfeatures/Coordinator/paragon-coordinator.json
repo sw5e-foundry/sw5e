@@ -8,27 +8,29 @@
   "system": {
     "description": {
       "value": "<p>As of 5th tier, you are a paragon of your deployment. When you would expend a Power die or an Inspiring Display die, you can use a [[/r d4]] instead of expending a die. You can only use this feature once per round.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Coordinator 5th Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,15 +81,16 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Coordinator"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "5th Rank"
-    }
+    "properties": {}
   },
   "ownership": {
     "default": 0
@@ -95,10 +99,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963404,
-    "modifiedTime": 1699591629482,
+    "modifiedTime": 1720368729701,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!0ChMqVmu5Zbm1MdK"

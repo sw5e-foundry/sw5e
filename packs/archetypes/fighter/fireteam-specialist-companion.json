@@ -16,24 +16,28 @@
   "system": {
     "description": {
       "value": "<h1>Fireteam Specialist (Companion)</h1>\n<p>When charging onto the frontlines of the galaxy's harshest conflicts, it pays to have people you can trust at your side. Those fighters who choose to become Fireteam Specialists work in tandem with a companion, becoming more than either could be on their own.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "fireteamspecialist",
     "classIdentifier": "fighter",
     "advancement": [
       {
-        "_id": "18N6VCPdgUC7zsvI",
+        "_id": "w0Cqb6guFRxLyPVf",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.nRPXN56W71K3qzRR",
-            "Compendium.sw5e.archetypefeatures.SuhgRK5K3GqkQXTe",
-            "Compendium.sw5e.archetypefeatures.hqwneBmQ52MvlMrT"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.nRPXN56W71K3qzRR"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.SuhgRK5K3GqkQXTe"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hqwneBmQ52MvlMrT"
+            }
           ],
           "optional": false
         },
@@ -42,11 +46,13 @@
         "title": "Features"
       },
       {
-        "_id": "1DyUwhWMgJL014cC",
+        "_id": "1oIXuiguXGivNU7K",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.k5FWh0AqBi5j9oTJ"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.k5FWh0AqBi5j9oTJ"
+            }
           ],
           "optional": false
         },
@@ -55,11 +61,13 @@
         "title": "Features"
       },
       {
-        "_id": "1klHXT3CTLHg4h88",
+        "_id": "1pxsOIRJUMlpRE3l",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.FoNFPqroVIeF0Dhv"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.FoNFPqroVIeF0Dhv"
+            }
           ],
           "optional": false
         },
@@ -68,11 +76,13 @@
         "title": "Features"
       },
       {
-        "_id": "s4Ysin7TF1b92wM3",
+        "_id": "eXKjskWUiXh1xSNF",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.7yiK1oxu1IVvVN0c"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.7yiK1oxu1IVvVN0c"
+            }
           ],
           "optional": false
         },
@@ -81,11 +91,13 @@
         "title": "Features"
       },
       {
-        "_id": "qxdwfXpxsdr1DFku",
+        "_id": "W3BgEhhk8Jeb5ROu",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ajGOFD7S4Pl1DUpC"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ajGOFD7S4Pl1DUpC"
+            }
           ],
           "optional": false
         },
@@ -94,7 +106,7 @@
         "title": "Features"
       },
       {
-        "_id": "1De03AUEpkwp17uZ",
+        "_id": "IpuqEiMJQ911yUx9",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -120,7 +132,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -128,10 +140,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959721,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!BGIYzeSUkzZBa4Sq"

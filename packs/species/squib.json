@@ -1,8 +1,166 @@
 {
-  "_id": "252n5KfccLRdbysj",
   "name": "Squib",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.291126+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-squib"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Squib.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Squibs are small, sentient, humanoid mammals with both rodent and canine characteristics. Their pink skin is covered in fur that offers some protection from cold weather, but, more importantly, it serves as an olfactory organ, able to pick up scents at a distance and ascertain intrinsic details—such as penetrating through a disguise or identifying a forgery—when rubbed against. The species has both male and female sexes, although non-Squibs often have difficulty determining the sex of a Squib based on appearance alone. Their mouths are full of forbidding, sharp, white teeth, and their flexible cheeks were capable of storing items.</p>\n<h2>Society and Culture</h2>\n<p>Squibs are friendly and cheerful to such an extent that, over time, they are considered quite annoying. Squibs are inherently curious, handling items with little regard to care. They are unabashed pack rats, and they wear clothing for the excess storage rather than necessity. The Squibs' overconfidence is a defining trait. The typical Squib response to a threat is not to fight or flee, but to bluff and bluster, especially when not face-to-face. In person, their sharp teeth are their favored means of intimidation. Squibs believe that bargaining is the highest form of communication, and they believe haggling is more important than the goods themselves. A deal is a binding oath to Squibs, and they are incredibly loyal to their business partners.</p>\n<h2>Names</h2>\n<p>Squibs combine their first and last names, which are familial, into one long, hyphenated name. They often go by nicknames derived from their full names. Male and female names do not significantly deviate.</p>\n<p><strong>Full Names.</strong> Galaneever-marmalios, Meelawin-demort, Sleerinwilpher-remalior</p>\n<p><strong>Nicknames.</strong> Galan, Meela, Wilpher</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "squib",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "eJrUibXNm9o1kVv8",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ybl5HluAkIXbWJrW"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Bkl9mb60zJQ2DmQM"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mjfOaiXQgwGMXHbB"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5D6E4Im00Hy0njh9"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.tOKjXIPxSlkPnRrp"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.33ybhn9hr9d06VEN"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.AvAvIAzG3oBzu77s"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yE0iNKzBPQVN2Ed8"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rqrAR6TUek6CWaQM"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.F7TmYb0gaDQeKNga"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cm2SceZqsGJ7JN0y"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JtJrTztf1ZD3IwGK"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bwUN8ipcnkqjbCxp"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "J1PS3eDmoeJ1Rg4U",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "dex": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1w8Yw4O8vg7DY5j8",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Pink"
+    },
+    "hairColorOptions": {
+      "value": "White, gray, black, brown, blue, violet, or red"
+    },
+    "eyeColorOptions": {
+      "value": "Blue, yellow, red, or brown"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Curious, overconfident, hagglers"
+    },
+    "heightAverage": {
+      "value": "2'11\""
+    },
+    "heightRollMod": {
+      "value": "+2d4\""
+    },
+    "weightAverage": {
+      "value": "45 lb."
+    },
+    "weightRollMod": {
+      "value": "x1 lb."
+    },
+    "homeworld": {
+      "value": "Skor II"
+    },
+    "slanguage": {
+      "value": "Squibbian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "nu2OtSBRydV6qbHh",
@@ -66,8 +224,7 @@
       "name": "Squib",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!252n5KfccLRdbysj.nu2OtSBRydV6qbHh"
+      "_key": "!items.effects!ttpUDfrjeu5wIpUh.nu2OtSBRydV6qbHh"
     },
     {
       "_id": "hVGaUSK9JuJrYec5",
@@ -101,130 +258,22 @@
       "name": "Keen Smell",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!252n5KfccLRdbysj.hVGaUSK9JuJrYec5"
+      "_key": "!items.effects!ttpUDfrjeu5wIpUh.hVGaUSK9JuJrYec5"
     }
   ],
+  "_id": "ttpUDfrjeu5wIpUh",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.291126+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-squib"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Squibs are small, sentient, humanoid mammals with both rodent and canine characteristics. Their pink skin is covered in fur that offers some protection from cold weather, but, more importantly, it serves as an olfactory organ, able to pick up scents at a distance and ascertain intrinsic details—such as penetrating through a disguise or identifying a forgery—when rubbed against. The species has both male and female sexes, although non-Squibs often have difficulty determining the sex of a Squib based on appearance alone. Their mouths are full of forbidding, sharp, white teeth, and their flexible cheeks were capable of storing items.</p>\n<h2>Society and Culture</h2>\n<p>Squibs are friendly and cheerful to such an extent that, over time, they are considered quite annoying. Squibs are inherently curious, handling items with little regard to care. They are unabashed pack rats, and they wear clothing for the excess storage rather than necessity. The Squibs' overconfidence is a defining trait. The typical Squib response to a threat is not to fight or flee, but to bluff and bluster, especially when not face-to-face. In person, their sharp teeth are their favored means of intimidation. Squibs believe that bargaining is the highest form of communication, and they believe haggling is more important than the goods themselves. A deal is a binding oath to Squibs, and they are incredibly loyal to their business partners.</p>\n<h2>Names</h2>\n<p>Squibs combine their first and last names, which are familial, into one long, hyphenated name. They often go by nicknames derived from their full names. Male and female names do not significantly deviate.</p>\n<p><strong>Full Names.</strong> Galaneever-marmalios, Meelawin-demort, Sleerinwilpher-remalior</p>\n<p><strong>Nicknames.</strong> Galan, Meela, Wilpher</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "squib",
-    "advancement": [
-      {
-        "_id": "18Vaidqn2jwDG4DH",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.ybl5HluAkIXbWJrW",
-            "Compendium.sw5e.speciesfeatures.Bkl9mb60zJQ2DmQM",
-            "Compendium.sw5e.speciesfeatures.mjfOaiXQgwGMXHbB",
-            "Compendium.sw5e.speciesfeatures.5D6E4Im00Hy0njh9",
-            "Compendium.sw5e.speciesfeatures.tOKjXIPxSlkPnRrp",
-            "Compendium.sw5e.speciesfeatures.33ybhn9hr9d06VEN",
-            "Compendium.sw5e.speciesfeatures.AvAvIAzG3oBzu77s",
-            "Compendium.sw5e.speciesfeatures.yE0iNKzBPQVN2Ed8",
-            "Compendium.sw5e.speciesfeatures.rqrAR6TUek6CWaQM",
-            "Compendium.sw5e.speciesfeatures.F7TmYb0gaDQeKNga",
-            "Compendium.sw5e.speciesfeatures.cm2SceZqsGJ7JN0y",
-            "Compendium.sw5e.speciesfeatures.JtJrTztf1ZD3IwGK",
-            "Compendium.sw5e.speciesfeatures.bwUN8ipcnkqjbCxp"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "11dJ1jCIrPEV1l8G",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "cha": 2,
-            "dex": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1G0L53euwbrg1Ac5",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "sm"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Pink"
-    },
-    "hairColorOptions": {
-      "value": "White, gray, black, brown, blue, violet, or red"
-    },
-    "eyeColorOptions": {
-      "value": "Blue, yellow, red, or brown"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Curious, overconfident, hagglers"
-    },
-    "heightAverage": {
-      "value": "2'11\""
-    },
-    "heightRollMod": {
-      "value": "+2d4\""
-    },
-    "weightAverage": {
-      "value": "45 lb."
-    },
-    "weightRollMod": {
-      "value": "x1 lb."
-    },
-    "homeworld": {
-      "value": "Skor II"
-    },
-    "slanguage": {
-      "value": "Squibbian"
-    },
-    "movement": {
-      "walk": 25
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002055,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!252n5KfccLRdbysj"
+  "_key": "!items!ttpUDfrjeu5wIpUh"
 }

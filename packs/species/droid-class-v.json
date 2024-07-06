@@ -1,8 +1,194 @@
 {
-  "_id": "dXv4mSmPXasKS0Qf",
   "name": "Droid, Class V",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9146224+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-droid_class_v"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Droid-ClassV.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Appearance</h2>\n<p>Class V droids are typically vaguely human-like in both shape and size, standing at around 6 feet, although many can be larger. They are usually a polished metallic color, though this can vary based on tasks for which they are created, their affiliation, or quirks of their owner.</p>\n<p>They are noteworthy for their simple programming and quiet, focused work habits.</p>\n<h2>Utility</h2>\n<p>Class V droids are programmed for menial and low-skill tasks. Such droids tend to perform basic tasks such as construction, lifting, maintenance, mining, sanitation, and transportation. Labor droids are fifth-degree droids.</p>\n<h2>Names</h2>\n<p>Droids are typically called by their designation, given to them when they are created, or some affectation given to them by their owner. Often this affectation is a play on their designation. Occasionally, noteworthy droids will earn monikers based on their accomplishments.</p>\n<p><strong>Designations (Names).</strong> CO-34 (See-Oh Three Four), FX-9 (Effex), PK-4 (Pook), SAE-B13 (Sable)</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "droid-classv",
+    "details": {
+      "isDroid": true
+    },
+    "type": {
+      "value": "droid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "ajOMQhk2Jnn13PX1",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.chbzIrZvX0mKceaZ"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5WbGOHt45FutDsjq"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.EZNm65i0pmCWqXBj"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.EEKaH1enipIZrzIm"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.nF8u8lEuNXE0sWKc"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.CYdCZjmGL7xCvjPp"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RB0hjy3NWjKo9KOk"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.YxgkJNwdOhe0rxJL"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.EvBgPScxN4yAKSGl"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.P9yjgq8TafBwLJDz"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6up14zRnJaBA9lAN"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.YtLUpfnen5lFb7MH"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.auQjaJlqDBfDFu8x"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.u708MP7qADGB3bzU"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FvGMSaAn5i6V6JJV"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BlNkz6FnJ20BFERj"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1ej0IzLtQEwsO2CU",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1M0xKd37B4n110WJ",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "T69z9tAuZPP1Ovyt",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:artisan:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:ath"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": ""
+    },
+    "hairColorOptions": {
+      "value": ""
+    },
+    "eyeColorOptions": {
+      "value": ""
+    },
+    "colorScheme": {
+      "value": "Typically metallic"
+    },
+    "distinctions": {
+      "value": "Vaguely human-like size and shape, typically quiet"
+    },
+    "heightAverage": {
+      "value": "5'2\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "140 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d8) lb."
+    },
+    "homeworld": {
+      "value": ""
+    },
+    "slanguage": {
+      "value": "Binary"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "Z3v7Cj4aSpJg4K8C",
@@ -122,164 +308,22 @@
       "name": "Droid, Class V",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!dXv4mSmPXasKS0Qf.Z3v7Cj4aSpJg4K8C"
+      "_key": "!items.effects!swCRalxq9OlRcwqW.Z3v7Cj4aSpJg4K8C"
     }
   ],
+  "_id": "swCRalxq9OlRcwqW",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9146224+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-droid_class_v"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Appearance</h2>\n<p>Class V droids are typically vaguely human-like in both shape and size, standing at around 6 feet, although many can be larger. They are usually a polished metallic color, though this can vary based on tasks for which they are created, their affiliation, or quirks of their owner.</p>\n<p>They are noteworthy for their simple programming and quiet, focused work habits.</p>\n<h2>Utility</h2>\n<p>Class V droids are programmed for menial and low-skill tasks. Such droids tend to perform basic tasks such as construction, lifting, maintenance, mining, sanitation, and transportation. Labor droids are fifth-degree droids.</p>\n<h2>Names</h2>\n<p>Droids are typically called by their designation, given to them when they are created, or some affectation given to them by their owner. Often this affectation is a play on their designation. Occasionally, noteworthy droids will earn monikers based on their accomplishments.</p>\n<p><strong>Designations (Names).</strong> CO-34 (See-Oh Three Four), FX-9 (Effex), PK-4 (Pook), SAE-B13 (Sable)</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "droid-classv",
-    "advancement": [
-      {
-        "_id": "1uUgMxXRyqbJ13Qy",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.chbzIrZvX0mKceaZ",
-            "Compendium.sw5e.speciesfeatures.5WbGOHt45FutDsjq",
-            "Compendium.sw5e.speciesfeatures.EZNm65i0pmCWqXBj",
-            "Compendium.sw5e.speciesfeatures.EEKaH1enipIZrzIm",
-            "Compendium.sw5e.speciesfeatures.nF8u8lEuNXE0sWKc",
-            "Compendium.sw5e.speciesfeatures.CYdCZjmGL7xCvjPp",
-            "Compendium.sw5e.speciesfeatures.RB0hjy3NWjKo9KOk",
-            "Compendium.sw5e.speciesfeatures.YxgkJNwdOhe0rxJL",
-            "Compendium.sw5e.speciesfeatures.EvBgPScxN4yAKSGl",
-            "Compendium.sw5e.speciesfeatures.P9yjgq8TafBwLJDz",
-            "Compendium.sw5e.speciesfeatures.6up14zRnJaBA9lAN",
-            "Compendium.sw5e.speciesfeatures.YtLUpfnen5lFb7MH",
-            "Compendium.sw5e.speciesfeatures.auQjaJlqDBfDFu8x",
-            "Compendium.sw5e.speciesfeatures.u708MP7qADGB3bzU",
-            "Compendium.sw5e.speciesfeatures.FvGMSaAn5i6V6JJV",
-            "Compendium.sw5e.speciesfeatures.BlNkz6FnJ20BFERj"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "VRXnQ0UeLHGcYPFp",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "str": 2
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "H7FNMQBYCho1Co6D",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "ciYplQ4TlXi1u82N",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "tool:artisan:*"
-              ]
-            }
-          ],
-          "grants": [
-            "skills:ath"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": true
-    },
-    "skinColorOptions": {
-      "value": null
-    },
-    "hairColorOptions": {
-      "value": null
-    },
-    "eyeColorOptions": {
-      "value": null
-    },
-    "colorScheme": {
-      "value": "Typically metallic"
-    },
-    "distinctions": {
-      "value": "Vaguely human-like size and shape, typically quiet"
-    },
-    "heightAverage": {
-      "value": "5'2\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "140 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d8) lb."
-    },
-    "homeworld": {
-      "value": null
-    },
-    "slanguage": {
-      "value": "Binary"
-    },
-    "droidDistinctions": {
-      "value": ""
-    },
-    "manufacturer": {
-      "value": ""
-    },
-    "droidLanguage": {
-      "value": ""
-    },
-    "type": {
-      "value": "droid"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002114,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!dXv4mSmPXasKS0Qf"
+  "_key": "!items!swCRalxq9OlRcwqW"
 }

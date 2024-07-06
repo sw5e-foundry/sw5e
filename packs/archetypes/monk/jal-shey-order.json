@@ -16,22 +16,22 @@
   "system": {
     "description": {
       "value": "<h1>Jal Shey Order</h1>\n<p>Monks of the Jal Shey order, driven by the pursuit of knowledge, maintain one of the most well-respected and heavily guarded repositories of history and knowledge across the galaxy: the Archives of the Jal Shey. Here, young folk of all species seeking the clarity of truth and the strength of knowledge pledge to learn the arts of seeking enlightenment by understanding the world around them, and mastering the techniques to defend it. To become a Jal Shey monk is to give one's self to the quest for unveiling the deepest mysteries of the galaxy, to bring light to the secrets of the dark, and guard the most powerful and dangerous of truths.</p>\n<p>  </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "jalsheyorder",
     "classIdentifier": "monk",
     "advancement": [
       {
-        "_id": "1TTpBWBPHVUv18Vv",
+        "_id": "1p5edJLDAjiX2VuD",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.3s0MvRg7iwuxkJTo"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.3s0MvRg7iwuxkJTo"
+            }
           ],
           "optional": false
         },
@@ -40,12 +40,16 @@
         "title": "Features"
       },
       {
-        "_id": "1SMPFj8bIfaXrUMU",
+        "_id": "BSQv5m53ce7eIFez",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.IeAMpVcjaQf8DVLC",
-            "Compendium.sw5e.archetypefeatures.hliR34zhLDaGsge6"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.IeAMpVcjaQf8DVLC"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hliR34zhLDaGsge6"
+            }
           ],
           "optional": false
         },
@@ -54,11 +58,13 @@
         "title": "Features"
       },
       {
-        "_id": "vpq2qqM1aRaKgbgn",
+        "_id": "FfDgTN4kypjZ7lOO",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.AzW8SUVcxgYzmjTD"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.AzW8SUVcxgYzmjTD"
+            }
           ],
           "optional": false
         },
@@ -67,11 +73,13 @@
         "title": "Features"
       },
       {
-        "_id": "11BTDKFzj2ZGbDHw",
+        "_id": "1PFCj2B8w8ow14zl",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.A3adZpDPMyLDiqqj"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.A3adZpDPMyLDiqqj"
+            }
           ],
           "optional": false
         },
@@ -80,7 +88,7 @@
         "title": "Features"
       },
       {
-        "_id": "1m4GttdhhMD01Exy",
+        "_id": "8c3cagAiw7vBNWF2",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -108,7 +116,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -116,10 +124,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959766,
-    "modifiedTime": 1703969496781,
+    "modifiedTime": 1720401973505,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!gnKE0zDdVRS7Lor7"

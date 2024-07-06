@@ -1,8 +1,160 @@
 {
-  "_id": "MZj96ilcepG4xlmi",
   "name": "Advozse",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2701392+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-advozse"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Advozse.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Advozsec evolved from herbivorous reptile-analogs which fed on the vegetation known to form around Riflor's hot springs. Evolving into a class of reptomammal, advozsec have a single horn at the crown of their heads, four digits on each hand and foot, pointed ears, and large eyes. Advozsec are strictly vegetarian, unable to properly digest meat. The geothermal hot springs that appear on their homeworld forced the species to evolve thick skin in order to survive. The large eyes of the advozsec are adaptations to the clouds of volcanic ash which darken Riflor's skies. </p>\n<h2>Society and Culture</h2>\n<p>Since so much of the sunlight on Riflor is blocked by volcanic eruptions, advozsec tend to settle near geothermal springs for heat. Unfortunately, these springs also tend to be in geologically unstable regions, and anything built near them is often destroyed or abandoned due to eruptions or groundquakes. As a result, the advozse people ended up having little attachment to material goods or long-term plans, and developed a pessimistic, selfish, and even paranoid outlook on life. This facet of their culture remained long after contact with the Galactic Republic gave them access to modern construction techniques allowing for more permanent buildings. Seeing financial stability as the only truly achievable stability one could find in life, the advozsec constantly strive to accumulate as much monetary wealth as they can in a lifetime in order to have the ability to rebuild when the worst happens.</p>\n<h2>Names</h2>\n<p>Advozsec have simple names that do not distinguish between genders, using familiar surnames.</p>\n<p><strong>First Names.</strong> Dleck, Fjemm, Gorde, Rollar, Xon</p>\n<p><strong>Surnames.</strong> Ghantere, Leventraim, Timack, Vy, Zimda</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "advozse",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1owc68bsNuG95mqS",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7EfcciLOoeOBkTjy"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zZUj2b8L9VMD4n2W"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wGP43qtMgCCMLsJO"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.P1gs5cxhTY0kOByB"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ht4oxZJGisEXxf6b"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.S1ifQ5ro4W0KOGn6"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RbB63zbSwUv18pYm"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WsCuTmUQjEjTfzd4"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wqVuzbTFaREpcc2F"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7zBEymMcVAGatZsn"
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lx5UkaAJ0M9H3Vpq"
+            }
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "EuV5K5yAEB314DfE",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "wis": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "GBfjEKkfklPwY675",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Green, brown, muddy yellow, or tan"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black or red"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Large eyes, single horn on head, pointed ears"
+    },
+    "heightAverage": {
+      "value": "4'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d6\""
+    },
+    "weightAverage": {
+      "value": "100 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Riflor"
+    },
+    "slanguage": {
+      "value": "Advb"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "G49BHyIIfQBdFmUt",
@@ -74,131 +226,22 @@
       "name": "Advozse",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!MZj96ilcepG4xlmi.G49BHyIIfQBdFmUt"
+      "_key": "!items.effects!TLwHDG0EpgcQyop5.G49BHyIIfQBdFmUt"
     }
   ],
+  "_id": "TLwHDG0EpgcQyop5",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2701392+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-advozse"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Advozsec evolved from herbivorous reptile-analogs which fed on the vegetation known to form around Riflor's hot springs. Evolving into a class of reptomammal, advozsec have a single horn at the crown of their heads, four digits on each hand and foot, pointed ears, and large eyes. Advozsec are strictly vegetarian, unable to properly digest meat. The geothermal hot springs that appear on their homeworld forced the species to evolve thick skin in order to survive. The large eyes of the advozsec are adaptations to the clouds of volcanic ash which darken Riflor's skies. </p>\n<h2>Society and Culture</h2>\n<p>Since so much of the sunlight on Riflor is blocked by volcanic eruptions, advozsec tend to settle near geothermal springs for heat. Unfortunately, these springs also tend to be in geologically unstable regions, and anything built near them is often destroyed or abandoned due to eruptions or groundquakes. As a result, the advozse people ended up having little attachment to material goods or long-term plans, and developed a pessimistic, selfish, and even paranoid outlook on life. This facet of their culture remained long after contact with the Galactic Republic gave them access to modern construction techniques allowing for more permanent buildings. Seeing financial stability as the only truly achievable stability one could find in life, the advozsec constantly strive to accumulate as much monetary wealth as they can in a lifetime in order to have the ability to rebuild when the worst happens.</p>\n<h2>Names</h2>\n<p>Advozsec have simple names that do not distinguish between genders, using familiar surnames.</p>\n<p><strong>First Names.</strong> Dleck, Fjemm, Gorde, Rollar, Xon</p>\n<p><strong>Surnames.</strong> Ghantere, Leventraim, Timack, Vy, Zimda</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "advozse",
-    "advancement": [
-      {
-        "_id": "XcdHS2gPBS11klr5",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.7EfcciLOoeOBkTjy",
-            "Compendium.sw5e.speciesfeatures.zZUj2b8L9VMD4n2W",
-            "Compendium.sw5e.speciesfeatures.wGP43qtMgCCMLsJO",
-            "Compendium.sw5e.speciesfeatures.P1gs5cxhTY0kOByB",
-            "Compendium.sw5e.speciesfeatures.ht4oxZJGisEXxf6b",
-            "Compendium.sw5e.speciesfeatures.S1ifQ5ro4W0KOGn6",
-            "Compendium.sw5e.speciesfeatures.RbB63zbSwUv18pYm",
-            "Compendium.sw5e.speciesfeatures.WsCuTmUQjEjTfzd4",
-            "Compendium.sw5e.speciesfeatures.wqVuzbTFaREpcc2F",
-            "Compendium.sw5e.speciesfeatures.7zBEymMcVAGatZsn",
-            "Compendium.sw5e.speciesfeatures.lx5UkaAJ0M9H3Vpq"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "xssGTZeHV9gsRLrW",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "con": 2,
-            "wis": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "7v3hCaheQhL1ihjr",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Green, brown, muddy yellow, or tan"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black or red"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Large eyes, single horn on head, pointed ears"
-    },
-    "heightAverage": {
-      "value": "4'9\""
-    },
-    "heightRollMod": {
-      "value": "+2d6\""
-    },
-    "weightAverage": {
-      "value": "100 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Riflor"
-    },
-    "slanguage": {
-      "value": "Advb"
-    },
-    "movement": {
-      "walk": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002088,
-    "modifiedTime": 1703969505315,
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720401975668,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!MZj96ilcepG4xlmi"
+  "_key": "!items!TLwHDG0EpgcQyop5"
 }

@@ -109,6 +109,7 @@
 
     {{!-- Starship Sheet Body --}}
     <section class="sheet-body">
+        {{!-- Core Tab --}}
         <section class="tab core" data-group="primary" data-tab="attributes">
             <section class="panel abilities">
                 {{!-- Ability Scores --}}
@@ -427,29 +428,29 @@
         </section>
 
         {{!-- Crew --}}
-        <div class="tab crew flexcol" data-group="primary" data-tab="crew">
+        <section class="tab crew flexcol" data-group="primary" data-tab="crew">
             {{> "sw5e.swalt-crew"}}
-        </div>
+        </section>
 
         {{!-- Cargo --}}
-        <div class="tab cargo flexcol" data-group="primary" data-tab="cargo">
+        <section class="tab cargo flexcol" data-group="primary" data-tab="cargo">
             {{> "sw5e.swalt-inventory" sections=inventory showCurrency="true"}}
-        </div>
+        </section>
 
         {{!-- Equipment Tab --}}
-        <div class="tab equipment flexcol" data-group="primary" data-tab="equipment">
+        <section class="tab equipment flexcol" data-group="primary" data-tab="equipment">
             {{> "sw5e.swalt-inventory" sections=equipment showFiringArc="true"}}
-        </div>
+        </section>
 
         {{!-- Features Tab --}}
-        <div class="tab features flexcol" data-group="primary" data-tab="features">
+        <section class="tab features flexcol" data-group="primary" data-tab="features">
             {{> "sw5e.swalt-features" sections=features}}
-        </div>
+        </section>
 
         {{!-- Effects Tab --}}
-        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+        <section class="tab effects flexcol" data-group="primary" data-tab="effects">
             {{> "sw5e.swalt-active-effects"}}
-        </div>
+        </section>
 
     </section>
 </form>

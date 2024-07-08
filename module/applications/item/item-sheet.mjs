@@ -198,7 +198,7 @@ export default class ItemSheet5e extends ItemSheet {
           type: v.type ?? "Boolean",
           reference: v.reference,
           selected: item.system.properties.has( k ),
-          value: item.system.getProperty( k, null )
+          value: item.system.getProperty?.( k, null )
         };
         return obj;
       }, {} );
@@ -276,7 +276,7 @@ export default class ItemSheet5e extends ItemSheet {
     if ( this.editingDescriptionTarget ) {
       context.editingDescriptionTarget = this.editingDescriptionTarget;
       context.enriched.editing = await TextEditor.enrichHTML(
-        foundry.utils.getProperty( context, this.editingDescriptionTarget ), enrichmentOptions
+        foundry.utils.getProperty?.( context, this.editingDescriptionTarget ), enrichmentOptions
       );
     }
     return context;
@@ -491,7 +491,7 @@ export default class ItemSheet5e extends ItemSheet {
     if ( "properties" in this.item.system ) {
       ActiveEffect5e.addOverriddenChoices( this.item, "system.properties", "system.properties", overrides );
     }
-    if ( ( "damage" in this.item.system ) && foundry.utils.getProperty( this.item.overrides, "system.damage.parts" ) ) {
+    if ( ( "damage" in this.item.system ) && foundry.utils.getProperty?.( this.item.overrides, "system.damage.parts" ) ) {
       overrides.push( "damage-control" );
       Array.fromRange( 2 ).forEach( index => overrides.push(
         `system.damage.parts.${index}.0`, `system.damage.parts.${index}.1`
@@ -641,7 +641,7 @@ export default class ItemSheet5e extends ItemSheet {
 
     // Handle Damage array
     const damage = formData.system?.damage;
-    if ( damage && !foundry.utils.getProperty( this.item.overrides, "system.damage.parts" ) ) {
+    if ( damage && !foundry.utils.getProperty?.( this.item.overrides, "system.damage.parts" ) ) {
       damage.parts = Object.values( damage?.parts || {} ).map( d => [d[0] || "", d[1] || ""] );
     }
 
@@ -713,7 +713,7 @@ export default class ItemSheet5e extends ItemSheet {
     const els = this.form.getElementsByClassName( "tristate-checkbox" );
     for ( const el of els ) {
       const indet_path = el.name.replace( /(\w+)[.](\w+)$/, "$1.indeterminate.$2" );
-      el.indeterminate = foundry.utils.getProperty( this.item, indet_path ) !== false;
+      el.indeterminate = foundry.utils.getProperty?.( this.item, indet_path ) !== false;
     }
     return html;
   }
@@ -745,8 +745,8 @@ export default class ItemSheet5e extends ItemSheet {
         const path = ev.target.name;
         const indet_path = path.replace( /(\w+)[.](\w+)$/, "$1.indeterminate.$2" );
 
-        const val = foundry.utils.getProperty( this.item, path );
-        const indet_val = foundry.utils.getProperty( this.item, indet_path ) !== false;
+        const val = foundry.utils.getProperty?.( this.item, path );
+        const indet_val = foundry.utils.getProperty?.( this.item, indet_path ) !== false;
 
         if ( indet_val ) {
           update[path] = false;
@@ -1205,7 +1205,7 @@ export default class ItemSheet5e extends ItemSheet {
         case "powerGenerator":
         case "projectorCanister":
         case "projectorTank":
-          if ( oldLoad === wpnSysdata?.getProperty("rel") ) ammoUpdates["system.quantity"] = oldAmmoSysdata?.quantity ?? 0 + 1;
+          if ( oldLoad === wpnSysdata?.getProperty?.("rel") ) ammoUpdates["system.quantity"] = oldAmmoSysdata?.quantity ?? 0 + 1;
           else {
             const confirm = await Dialog.confirm( {
               title: game.i18n.localize( "SW5E.WeaponAmmoConfirmEjectTitle" ),

@@ -5383,7 +5383,8 @@ SW5E.conditionTypes = {
     icon: "systems/sw5e/icons/svg/statuses/charmed.svg"
   },
   corroded: {
-    label: "SW5E.ConCorroded"
+    label: "SW5E.ConCorroded",
+    icon: "systems/sw5e/icons/svg/statuses/corroded.svg"
   },
   deafened: {
     label: "SW5E.ConDeafened",
@@ -5408,7 +5409,8 @@ SW5E.conditionTypes = {
     icon: "systems/sw5e/icons/svg/statuses/grappled.svg"
   },
   ignited: {
-    label: "SW5E.ConIgnited"
+    label: "SW5E.ConIgnited",
+    icon: "systems/sw5e/icons/svg/statuses/ignited.svg"
   },
   incapacitated: {
     label: "SW5E.ConIncapacitated",
@@ -5441,7 +5443,8 @@ SW5E.conditionTypes = {
     icon: "systems/sw5e/icons/svg/statuses/restrained.svg"
   },
   shocked: {
-    label: "SW5E.ConShocked"
+    label: "SW5E.ConShocked",
+    icon: "systems/sw5e/icons/svg/statuses/shocked.svg"
   },
   silenced: {
     label: "EFFECT.SW5E.StatusSilenced",
@@ -5449,7 +5452,9 @@ SW5E.conditionTypes = {
     pseudo: true
   },
   slowed: {
-    label: "SW5E.ConSlowed"
+    label: "SW5E.ConSlowed",
+    icon: "systems/sw5e/icons/svg/statuses/slowed.svg",
+    levels: 4
   },
   stunned: {
     label: "SW5E.ConStunned",
@@ -5473,7 +5478,8 @@ SW5E.conditionTypes = {
     riders: ["prone"]
   },
   weakened: {
-    label: "SW5E.ConWeakened"
+    label: "SW5E.ConWeakened",
+    icon: "systems/sw5e/icons/svg/statuses/weakened.svg"
   }
 };
 preLocalize( "conditionTypes", { key: "label", sort: true } );

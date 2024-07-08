@@ -253,7 +253,7 @@ Hooks.once( "init", function() {
     Babele.get().setSystemTranslationsDir( "babele" );
   }
 
-  // Exhaustion handling
+  // Exhaustion and Slowed handling
   documents.ActiveEffect5e.registerHUDListeners();
 } );
 

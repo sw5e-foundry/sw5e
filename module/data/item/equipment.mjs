@@ -13,7 +13,7 @@ import ModdableTemplate from "./templates/moddable.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
 
 
-const { NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
+const { NumberField, SchemaField, StringField } = foundry.data.fields;
 /**
  * Data definition for Equipment items.
  * @mixes ItemDescriptionTemplate

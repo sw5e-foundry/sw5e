@@ -77,6 +77,7 @@ export default class AttributesFields {
    * @property {string} super.dice.bonuses.level           Bonus formula applied for each class level.
    * @property {string} super.dice.bonuses.overall         Bonus formula applied to total SD.
    * @property {number} exhaustion                         Creature's exhaustion level.
+   * @property {number} slowed                             Creature's slowed level.
    * @property {object} concentration
    * @property {string} concentration.ability              The ability used for concentration saving throws.
    * @property {string} concentration.bonus                The bonus provided to concentration saving throws.
@@ -143,6 +144,9 @@ export default class AttributesFields {
       ),
       exhaustion: new foundry.data.fields.NumberField( {
         required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.Exhaustion"
+      } ),
+      slowed: new foundry.data.fields.NumberField( {
+        required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.Slowed"
       } ),
       concentration: new RollConfigField( {
         ability: "",
@@ -297,6 +301,18 @@ export default class AttributesFields {
     const exhaustion = this.parent.effects.get( ActiveEffect5e.ID.EXHAUSTION );
     const level = exhaustion?.getFlag( "sw5e", "exhaustionLevel" );
     this.attributes.exhaustion = Number.isFinite( level ) ? level : 0;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Adjust slowed level based on Active Effects.
+   * @this {CharacterData|NPCData}
+   */
+  static prepareSlowedLevel() {
+    const slowed = this.parent.effects.get( ActiveEffect5e.ID.SLOWED );
+    const level = slowed?.getFlag( "sw5e", "slowedLevel" );
+    this.attributes.slowed = Number.isFinite( level ) ? level : 0;
   }
 
   /* -------------------------------------------- */
@@ -549,6 +565,9 @@ export default class AttributesFields {
     const statuses = this.parent.statuses;
     const noMovement = this.parent.hasConditionEffect( "noMovement" );
     const halfMovement = this.parent.hasConditionEffect( "halfMovement" );
+    const slowedMovement1 = this.parent.hasConditionEffect( "slowedMovement1" );
+    const slowedMovement2 = this.parent.hasConditionEffect( "slowedMovement2" );
+    const slowedMovement3 = this.parent.hasConditionEffect( "slowedMovement3" );
     const encumbered = statuses.has( "encumbered" );
     const heavilyEncumbered = statuses.has( "heavilyEncumbered" );
     const exceedingCarryingCapacity = statuses.has( "exceedingCarryingCapacity" );
@@ -559,6 +578,13 @@ export default class AttributesFields {
       if ( noMovement || ( crawl && ( type !== "walk" ) ) ) speed = 0;
       else {
         if ( halfMovement ) speed *= 0.5;
+        if ( slowedMovement3 ) {
+          speed = Math.max( 0, speed - ( CONFIG.SW5E.conditionTypes.slowed.speedReduction[3][units] ?? 0 ) );
+        } else if ( slowedMovement2 ) {
+          speed = Math.max( 0, speed - ( CONFIG.SW5E.conditionTypes.slowed.speedReduction[2][units] ?? 0 ) );
+        } else if ( slowedMovement1 ) {
+          speed = Math.max( 0, speed - ( CONFIG.SW5E.conditionTypes.slowed.speedReduction[1][units] ?? 0 ) );
+        }
         if ( heavilyEncumbered ) {
           speed = Math.max( 0, speed - ( CONFIG.SW5E.encumbrance.speedReduction.heavilyEncumbered[units] ?? 0 ) );
         } else if ( encumbered ) {

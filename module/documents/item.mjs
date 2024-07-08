@@ -845,7 +845,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
   _prepareWeapon() {
     this.labels.armor = this.system.armor.value ? `${this.system.armor.value} ${game.i18n.localize( "SW5E.AC" )}` : "";
     if ( this.system.ammo ) {
-      this.system.ammo.max = this.system.getProperty("reload", 0) || this.system.getProperty("overheat", 0);
+      this.system.ammo.max = this.system.getProperty?.( "reload", 0 ) || this.system.getProperty?.( "overheat", 0 );
       this.system.ammo.baseUse = 1;
     }
   }
@@ -1125,7 +1125,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
     // TODO: Maybe add flags for the other attack types?
 
     // Get the item's extra damage
-    dice += itemData.getProperty("bru", 0);
+    dice += itemData.getProperty?.( "bru", 0 ) ?? 0;
 
     return dice;
   }
@@ -1507,8 +1507,8 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
       const remaining = ammo.quantity - ammo.consumeAmount;
       if ( is.hasReload ) {
         if ( remaining < 0 ) {
-          if ( is.properties.has("rel") ) ui.notifications.warn( game.i18n.format( "SW5E.ItemReloadNeeded", { name: this.name } ) );
-          else if ( is.properties.has("ovr") ) ui.notifications.warn( game.i18n.format( "SW5E.ItemCoolDownNeeded", { name: this.name } ) );
+          if ( is.properties.has( "rel" ) ) ui.notifications.warn( game.i18n.format( "SW5E.ItemReloadNeeded", { name: this.name } ) );
+          else if ( is.properties.has( "ovr" ) ) ui.notifications.warn( game.i18n.format( "SW5E.ItemCoolDownNeeded", { name: this.name } ) );
           return false;
         } else itemUpdates["system.ammo.value"] = remaining;
       } else {
@@ -1679,7 +1679,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
       case "attribute":
         const amt = usageConfig.resourceAmount;
         const target = as.powers && ( amt in as.powers ) ? `powers.${amt}.value` : consume.target;
-        resource = foundry.utils.getProperty( as, target );
+        resource = foundry.utils.getProperty?.( as, target );
         quantity = resource || 0;
         break;
       case "ammo":
@@ -1709,7 +1709,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
           );
           return false;
         }
-        resource = foundry.utils.getProperty( starship.system, consume.target );
+        resource = foundry.utils.getProperty?.( starship.system, consume.target );
         quantity = resource || 0;
         break;
     }
@@ -1724,7 +1724,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
     let remaining = quantity - amount;
     if ( remaining < 0 && consume.type === "powerdice" ) {
       consume.target = "attributes.power.central.value";
-      resource = foundry.utils.getProperty( starship.system, consume.target );
+      resource = foundry.utils.getProperty?.( starship.system, consume.target );
       quantity = resource || 0;
       remaining = quantity - amount;
     }
@@ -2139,7 +2139,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
     }
 
     // Add damage bonus formula
-    const actorBonus = foundry.utils.getProperty( this.actor.system, `bonuses.${this.system.actionType}` ) || {};
+    const actorBonus = foundry.utils.getProperty?.( this.actor.system, `bonuses.${this.system.actionType}` ) || {};
     if ( actorBonus.damage && parseInt( actorBonus.damage ) !== 0 ) {
       rollConfigs[0].parts.push( actorBonus.damage );
     }
@@ -3017,8 +3017,8 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
     const updates = {};
 
     // Unowned modifications are not modifying any item
-    if ( foundry.utils.getProperty( data, "system.modifying.id" ) !== null ) updates["system.modifying.id"] = null;
-    if ( foundry.utils.getProperty( data, "system.modifying.disabled" ) !== false ) updates["system.modifying.disabled"] = false;
+    if ( foundry.utils.getProperty?.( data, "system.modifying.id" ) !== null ) updates["system.modifying.id"] = null;
+    if ( foundry.utils.getProperty?.( data, "system.modifying.disabled" ) !== false ) updates["system.modifying.disabled"] = false;
 
     return updates;
   }
@@ -3035,11 +3035,11 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
    */
   _onCreateOwnedEquipment( data, isNPCorSS ) {
     const updates = {};
-    if ( foundry.utils.getProperty( data, "system.equipped" ) === undefined ) {
+    if ( foundry.utils.getProperty?.( data, "system.equipped" ) === undefined ) {
       updates["system.equipped"] = isNPCorSS; // NPCs and Starships automatically equip equipment
     }
 
-    if ( foundry.utils.getProperty( data, "system.proficient" ) === undefined ) {
+    if ( foundry.utils.getProperty?.( data, "system.proficient" ) === undefined ) {
       if ( isNPCorSS ) {
         updates["system.proficient"] = true; // NPCs and Starships automatically have equipment proficiency
       } else {
@@ -3096,7 +3096,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
    */
   _onCreateOwnedFeature( data, isNPC ) {
     const updates = {};
-    if ( isNPC && !foundry.utils.getProperty( data, "system.type.value" ) ) {
+    if ( isNPC && !foundry.utils.getProperty?.( data, "system.type.value" ) ) {
       updates["system.type.value"] = "monster"; // Set features on NPCs to be 'monster features'.
     }
     return updates;
@@ -3492,7 +3492,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
       folder: data.folder,
       hasFolders: folders.length > 0,
       types: types.reduce( ( arr, type ) => {
-        if (CONFIG.SW5E.deprecatedItemTypes.includes( type )) return arr;
+        if ( CONFIG.SW5E.deprecatedItemTypes.includes( type ) ) return arr;
         const label = CONFIG[this.documentName]?.typeLabels?.[type] ?? type;
         arr.push( {
           type,

@@ -5355,7 +5355,7 @@ SW5E.consumableResources = [
  * @property {string} label        Localized label for the condition.
  * @property {boolean} [pseudo]    Is this a pseudo-condition, i.e. one that does not appear in the conditions appendix
  *                                 but acts as a status effect?
- * @property {number} [levels]     The number of levels of exhaustion an actor can obtain.
+ * @property {number} [levels]     The number of levels of the condition an actor can obtain.
  */
 
 /**
@@ -5376,11 +5376,13 @@ SW5E.conditionTypes = {
   blinded: {
     label: "SW5E.ConBlinded",
     icon: "systems/sw5e/icons/svg/statuses/blinded.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.XNjuuloYOfesNbbZ.JournalEntryPage.0000000000000000",
     special: "BLIND"
   },
   charmed: {
     label: "SW5E.ConCharmed",
-    icon: "systems/sw5e/icons/svg/statuses/charmed.svg"
+    icon: "systems/sw5e/icons/svg/statuses/charmed.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.xlfP4WiC8dt2mHXv.JournalEntryPage.0000000000000000"
   },
   corroded: {
     label: "SW5E.ConCorroded",
@@ -5388,7 +5390,8 @@ SW5E.conditionTypes = {
   },
   deafened: {
     label: "SW5E.ConDeafened",
-    icon: "systems/sw5e/icons/svg/statuses/deafened.svg"
+    icon: "systems/sw5e/icons/svg/statuses/deafened.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.y0QASIZcnC8e30lr.JournalEntryPage.0000000000000000"
   },
   diseased: {
     label: "SW5E.ConDiseased",
@@ -5398,15 +5401,18 @@ SW5E.conditionTypes = {
   exhaustion: {
     label: "SW5E.ConExhaustion",
     icon: "systems/sw5e/icons/svg/statuses/exhaustion.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.EpnBWP4VKrmHICaa.JournalEntryPage.0000000000000000",
     levels: 6
   },
   frightened: {
     label: "SW5E.ConFrightened",
-    icon: "systems/sw5e/icons/svg/statuses/frightened.svg"
+    icon: "systems/sw5e/icons/svg/statuses/frightened.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.9P1kVYb1U3WElbKS.JournalEntryPage.0000000000000000"
   },
   grappled: {
     label: "SW5E.ConGrappled",
-    icon: "systems/sw5e/icons/svg/statuses/grappled.svg"
+    icon: "systems/sw5e/icons/svg/statuses/grappled.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.PQ0MUIr3IzvMXEu5.JournalEntryPage.0000000000000000"
   },
   ignited: {
     label: "SW5E.ConIgnited",
@@ -5414,37 +5420,45 @@ SW5E.conditionTypes = {
   },
   incapacitated: {
     label: "SW5E.ConIncapacitated",
-    icon: "systems/sw5e/icons/svg/statuses/incapacitated.svg"
+    icon: "systems/sw5e/icons/svg/statuses/incapacitated.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.COPoH4lzofPVzIiK.JournalEntryPage.0000000000000000"
   },
   invisible: {
     label: "SW5E.ConInvisible",
-    icon: "systems/sw5e/icons/svg/statuses/invisible.svg"
+    icon: "systems/sw5e/icons/svg/statuses/invisible.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.eQD2ubHBnMNlMIR0.JournalEntryPage.0000000000000000"
   },
   paralyzed: {
     label: "SW5E.ConParalyzed",
     icon: "systems/sw5e/icons/svg/statuses/paralyzed.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.OZn3BCm8cHO8G3cT.JournalEntryPage.0000000000000000",
     statuses: ["incapacitated"]
   },
   petrified: {
     label: "SW5E.ConPetrified",
     icon: "systems/sw5e/icons/svg/statuses/petrified.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.aalhUc7zItsYml45.JournalEntryPage.0000000000000000",
     statuses: ["incapacitated"]
   },
   poisoned: {
     label: "SW5E.ConPoisoned",
-    icon: "systems/sw5e/icons/svg/statuses/poisoned.svg"
+    icon: "systems/sw5e/icons/svg/statuses/poisoned.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.fGgXKHClM9aTq8t7.JournalEntryPage.0000000000000000"
   },
   prone: {
     label: "SW5E.ConProne",
-    icon: "systems/sw5e/icons/svg/statuses/prone.svg"
+    icon: "systems/sw5e/icons/svg/statuses/prone.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.r2bQT0RrvwFIWKGh.JournalEntryPage.0000000000000000"
   },
   restrained: {
     label: "SW5E.ConRestrained",
-    icon: "systems/sw5e/icons/svg/statuses/restrained.svg"
+    icon: "systems/sw5e/icons/svg/statuses/restrained.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.MtoBPQrFn6PSrNyb.JournalEntryPage.0000000000000000"
   },
   shocked: {
     label: "SW5E.ConShocked",
-    icon: "systems/sw5e/icons/svg/statuses/shocked.svg"
+    icon: "systems/sw5e/icons/svg/statuses/shocked.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.HBSJojgAGu9Gsctd.JournalEntryPage.0000000000000000"
   },
   silenced: {
     label: "EFFECT.SW5E.StatusSilenced",
@@ -5454,11 +5468,30 @@ SW5E.conditionTypes = {
   slowed: {
     label: "SW5E.ConSlowed",
     icon: "systems/sw5e/icons/svg/statuses/slowed.svg",
-    levels: 4
+    levels: 4,
+    speedReduction: [
+      {
+        ft: 0,
+        m: 0
+      },
+      {
+        ft: 15,
+        m: 4.5
+      },
+      {
+        ft: 25,
+        m: 7.5
+      },
+      {
+        ft: 30,
+        m: 9
+      }
+    ]
   },
   stunned: {
     label: "SW5E.ConStunned",
     icon: "systems/sw5e/icons/svg/statuses/stunned.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.HgKfTdiUxEEQ9Ebp.JournalEntryPage.0000000000000000",
     statuses: ["incapacitated"]
   },
   surprised: {
@@ -5474,6 +5507,7 @@ SW5E.conditionTypes = {
   unconscious: {
     label: "SW5E.ConUnconscious",
     icon: "systems/sw5e/icons/svg/statuses/unconscious.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.EpQxbma06eaNVsQB.JournalEntryPage.0000000000000000",
     statuses: ["incapacitated"],
     riders: ["prone"]
   },
@@ -5488,12 +5522,15 @@ preLocalize( "conditionTypes", { key: "label", sort: true } );
 
 /**
  * Various effects of conditions and which conditions apply it. Either keys for the conditions,
- * and with a number appended for a level of exhaustion.
+ * and with a number appended for a level of a condition.
  * @enum {object}
  */
 SW5E.conditionEffects = {
-  noMovement: new Set( ["exhaustion-5", "grappled", "paralyzed", "petrified", "restrained", "stunned", "unconscious"] ),
-  halfMovement: new Set( ["exhaustion-2"] ),
+  noMovement: new Set( ["exhaustion-5", "slowed-4", "grappled", "paralyzed", "petrified", "restrained", "stunned", "unconscious"] ),
+  halfMovement: new Set(),
+  slowedMovement1: new Set( ["slowed-1"] ),
+  slowedMovement2: new Set( ["slowed-2"] ),
+  slowedMovement3: new Set( ["slowed-3"] ),
   crawl: new Set( ["prone", "exceedingCarryingCapacity"] ),
   halfHealth: new Set( ["exhaustion-4"] )
 };

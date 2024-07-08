@@ -429,7 +429,7 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
 
     for ( const id of CONFIG.SW5E.ssDefaultEquipment ) {
       const item = ( await fromUuid( id ) )?.toObject();
-      if (!item) {
+      if ( !item ) {
         ui.notifications.error( "SW5E.UUIDError", { localize: true } );
         continue;
       }
@@ -443,19 +443,21 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
   /* -------------------------------------------- */
 
   /**
-   * Is this actor under the effect of this property from some status or due to its level of exhaustion?
+   * Is this actor under the effect of this property from some status or due to its level of exhaustion/slowed?
    * @param {string} key      A key in `SW5E.conditionEffects`.
    * @returns {boolean}       Whether the actor is affected.
    */
   hasConditionEffect( key ) {
     const props = CONFIG.SW5E.conditionEffects[key] ?? new Set();
-    const level = this.system.attributes?.exhaustion ?? null;
+    const exhaustion = this.system.attributes?.exhaustion ?? null;
+    const slowed = this.system.attributes?.slowed ?? null;
     const imms = this.system.traits?.ci?.value ?? new Set();
     const statuses = this.statuses;
     return props.some( k => {
       const l = Number( k.split( "-" ).pop() );
       return ( statuses.has( k ) && !imms.has( k ) )
-        || ( !imms.has( "exhaustion" ) && ( level !== null ) && Number.isInteger( l ) && ( level >= l ) );
+        || ( k.startsWith( "exhaustion" ) && !imms.has( "exhaustion" ) && ( exhaustion !== null ) && Number.isInteger( l ) && ( exhaustion >= l ) )
+        || ( k.startsWith( "slowed" ) && !imms.has( "slowed" ) && ( slowed !== null ) && Number.isInteger( l ) && ( slowed >= l ) );
     } );
   }
 
@@ -964,6 +966,11 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     // Record previous exhaustion level.
     if ( Number.isFinite( foundry.utils.getProperty( changed, "system.attributes.exhaustion" ) ) ) {
       foundry.utils.setProperty( options, "sw5e.originalExhaustion", this.system.attributes.exhaustion );
+    }
+
+    // Record previous slowed level.
+    if ( Number.isFinite( foundry.utils.getProperty( changed, "system.attributes.slowed" ) ) ) {
+      foundry.utils.setProperty( options, "sw5e.originalSlowed", this.system.attributes.slowed );
     }
   }
 
@@ -1952,7 +1959,7 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     const itemData = item ? {
       isForcePower: item.system.school in CONFIG.SW5E.powerSchoolsForce,
       isTechPower: item.system.school in CONFIG.SW5E.powerSchoolsTech,
-      isPoison: item.type == "consumable" && item.system.type.value === "poison",
+      isPoison: item.type === "consumable" && item.system.type.value === "poison",
       damageTypes: ( item?.system?.damage?.parts ?? [] ).reduce( ( ( set, part ) => {
         if ( part[1] ) set.add( part[1] );
         return set;
@@ -4425,7 +4432,7 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
    * Recovers starship shields dice during a repair.
    *
    * @param {object} [options]
-   * @param {number} [options.maxHullDice]    Maximum number of hull dice to recover.
+   * @param {number} [options.maxShieldDice]    Maximum number of shield dice to recover.
    * @returns {object}           Array of item updates and number of shield dice recovered.
    * @protected
    */
@@ -4805,6 +4812,7 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     // Specific additional adjustments
     d.system.details.alignment = o.system.details.alignment; // Don't change alignment
     d.system.attributes.exhaustion = o.system.attributes.exhaustion; // Keep your prior exhaustion level
+    d.system.attributes.slowed = o.system.attributes.slowed; // Keep your prior slowed level
     d.system.attributes.inspiration = o.system.attributes.inspiration; // Keep inspiration
     d.system.powers = o.system.powers; // Keep power slots
     d.system.attributes.ac.flat = target.system.attributes.ac.value; // Override AC
@@ -5369,6 +5377,7 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     if ( userId === game.userId ) {
       await this.updateEncumbrance( options );
       this._onUpdateExhaustion( data, options );
+      this._onUpdateSlowed( data, options );
     }
 
     const hp = options.sw5e?.hp;
@@ -5526,6 +5535,31 @@ export default class Actor5e extends SystemDocumentMixin( Actor ) {
     } else {
       effect = await ActiveEffect.implementation.fromStatusEffect( "exhaustion", { parent: this } );
       effect.updateSource( { "flags.sw5e.exhaustionLevel": level } );
+      return ActiveEffect.implementation.create( effect, { parent: this, keepId: true } );
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * TODO: Perform this as part of Actor._preUpdateOperation instead when it becomes available in v12.
+   * Handle syncing the Actor's slowed level with the ActiveEffect.
+   * @param {object} data                          The Actor's update delta.
+   * @param {DocumentModificationContext} options  Additional options supplied with the update.
+   * @returns {Promise<ActiveEffect|void>}
+   * @protected
+   */
+  async _onUpdateSlowed( data, options ) {
+    const level = foundry.utils.getProperty( data, "system.attributes.slowed" );
+    if ( !Number.isFinite( level ) ) return;
+    let effect = this.effects.get( ActiveEffect5e.ID.SLOWED );
+    if ( level < 1 ) return effect?.delete();
+    else if ( effect ) {
+      const originalSlowed = foundry.utils.getProperty( options, "sw5e.originalSlowed" );
+      return effect.update( { "flags.sw5e.slowedLevel": level }, { sw5e: { originalSlowed } } );
+    } else {
+      effect = await ActiveEffect.implementation.fromStatusEffect( "slowed", { parent: this } );
+      effect.updateSource( { "flags.sw5e.slowedLevel": level } );
       return ActiveEffect.implementation.create( effect, { parent: this, keepId: true } );
     }
   }

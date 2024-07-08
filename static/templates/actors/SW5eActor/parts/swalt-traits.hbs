@@ -51,6 +51,13 @@
             </div>
         </div>
         <div class="counter">
+            <h4>{{ localize "SW5E.Slowed" }}</h4>
+            <div class="counter-value">
+                <input type="text" name="system.attributes.slowed" value="{{system.attributes.slowed}}"
+                    placeholder="0" data-dtype="Number">
+            </div>
+        </div>
+        <div class="counter">
             <h4>{{ localize "SW5E.Inspiration" }}</h4>
             <div class="counter-value">
                 <input type="checkbox" name="system.attributes.inspiration" data-dtype="Boolean" {{checked

@@ -12,7 +12,7 @@ import MountableTemplate from "./templates/mountable.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
 import ModdableTemplate from "./templates/moddable.mjs";
 
-const { NumberField, SetField, StringField, SchemaField, ArrayField } = foundry.data.fields;
+const { NumberField, StringField, SchemaField, ArrayField } = foundry.data.fields;
 
 /**
  * Data definition for Weapon items.
@@ -205,7 +205,7 @@ export default class WeaponData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   get _typeBaseCriticalThreshold() {
-    return Math.max( 15, 20 - this.getProperty("ken", 0) );
+    return Math.max( 15, 20 - this.getProperty( "ken", 0 ) );
   }
 
   /* -------------------------------------------- */

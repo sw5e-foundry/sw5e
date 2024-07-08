@@ -2,7 +2,6 @@ import HullDice from "../../documents/actor/hull-dice.mjs";
 import ShieldDice from "../../documents/actor/shield-dice.mjs";
 import { simplifyBonus, fromUuidSynchronous } from "../../utils.mjs";
 import { FormulaField, MappingField, UUIDField, LocalDocumentField } from "../fields.mjs";
-import CreatureTypeField from "../shared/creature-type-field.mjs";
 import RollConfigField from "../shared/roll-config-field.mjs";
 import AttributesFields from "./templates/attributes.mjs";
 import CommonTemplate from "./templates/common.mjs";
@@ -495,6 +494,7 @@ export default class StarshipData extends CommonTemplate {
     this.prepareAbilities( { rollData, originalSaves } );
     AttributesFields.prepareEncumbrance.call( this, rollData );
     AttributesFields.prepareExhaustionLevel.call( this );
+    AttributesFields.prepareSlowedLevel.call( this );
     AttributesFields.prepareMovement.call( this );
     TraitsFields.prepareResistImmune.call( this );
 

@@ -260,12 +260,12 @@ export default class InventoryElement extends HTMLElement {
     } );
 
     // Reload Weapon
-    if ( ("ammo" in item.system) && (item.system.ammo.max !== 0) ) options.push({
-      name: item.system.properties?.has("rel") ? "SW5E.ContextMenuActionReload" : "SW5E.ContextMenuActionCoolDown",
+    if ( ( "ammo" in item.system ) && ( item.system.ammo.max !== 0 ) ) options.push( {
+      name: item.system.properties?.has( "rel" ) ? "SW5E.ContextMenuActionReload" : "SW5E.ContextMenuActionCoolDown",
       icon: "<i class='fas fa-raygun fa-fw'></i>",
-      condition: () => item.isOwner && (item.system.ammo.max !== item.system.ammo.value),
+      condition: () => item.isOwner && ( item.system.ammo.max !== item.system.ammo.value ),
       callback: () => item.sheet._onWeaponReload()
-    });
+    } );
 
     // Toggle Favorite State
     if ( ( "favorites" in this.actor.system ) ) {
@@ -427,16 +427,16 @@ export default class InventoryElement extends HTMLElement {
     delete itemData.system.feattype;
     delete itemData.system.featsubtype;
 
-  if (feattype) {
+    if ( feattype ) {
       itemData.system.type = {
         value: feattype,
         subtype: featsubtype
       };
       let cfg = CONFIG.SW5E.featureTypes[feattype];
-      if (cfg) {
-        if (featsubtype) cfg = cfg.subtypes[featsubtype];
+      if ( cfg ) {
+        if ( featsubtype ) cfg = cfg.subtypes[featsubtype];
         else cfg = cfg.label;
-        itemData.name = game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(cfg).capitalize() });
+        itemData.name = game.i18n.format( "SW5E.ItemNew", { type: game.i18n.localize( cfg ).capitalize() } );
       }
     }
 

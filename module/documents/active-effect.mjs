@@ -12,7 +12,8 @@ export default class ActiveEffect5e extends ActiveEffect {
    */
   static ID = {
     ENCUMBERED: staticID( "sw5eencumbered" ),
-    EXHAUSTION: staticID( "sw5eexhaustion" )
+    EXHAUSTION: staticID( "sw5eexhaustion" ),
+    SLOWED: staticID( "sw5eslowed" )
   };
 
   /* -------------------------------------------- */
@@ -337,6 +338,7 @@ export default class ActiveEffect5e extends ActiveEffect {
   prepareDerivedData() {
     super.prepareDerivedData();
     if ( this.id === this.constructor.ID.EXHAUSTION ) this._prepareExhaustionLevel();
+    if ( this.id === this.constructor.ID.SLOWED ) this._prepareSlowedLevel();
     if ( this.isAppliedEnchantment ) EnchantmentData.trackEnchantment( this.origin, this.uuid );
   }
 
@@ -358,6 +360,21 @@ export default class ActiveEffect5e extends ActiveEffect {
       this.statuses.add( "dead" );
       CONFIG.SW5E.statusEffects.dead.statuses?.forEach( s => this.statuses.add( s ) );
     }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Modify the ActiveEffect's attributes based on the slowed level.
+   * @protected
+   */
+  _prepareSlowedLevel() {
+    let level = this.getFlag( "sw5e", "slowedLevel" );
+    if ( !Number.isFinite( level ) ) level = 1;
+    // TODO: Remove when v11 support is dropped.
+    if ( game.release.version < 12 ) this.icon = this.constructor._getSlowedImage( level );
+    else this.img = this.constructor._getSlowedImage( level );
+    this.name = `${game.i18n.localize( "SW5E.Slowed" )} ${level}`;
   }
 
   /* -------------------------------------------- */
@@ -482,19 +499,31 @@ export default class ActiveEffect5e extends ActiveEffect {
   /** @inheritDoc */
   _onUpdate( data, options, userId ) {
     super._onUpdate( data, options, userId );
-    const originalLevel = foundry.utils.getProperty( options, "sw5e.originalExhaustion" );
-    const newLevel = foundry.utils.getProperty( data, "flags.sw5e.exhaustionLevel" );
+    const originalExhaustion = foundry.utils.getProperty( options, "sw5e.originalExhaustion" );
+    const newExhaustion = foundry.utils.getProperty( data, "flags.sw5e.exhaustionLevel" );
+    const originalSlowed = foundry.utils.getProperty( options, "sw5e.originalSlowed" );
+    const newSlowed = foundry.utils.getProperty( data, "flags.sw5e.slowedLevel" );
     const originalEncumbrance = foundry.utils.getProperty( options, "sw5e.originalEncumbrance" );
     const newEncumbrance = data.statuses?.[0];
     const name = this.name;
 
     // Display proper scrolling status effects for exhaustion
-    if ( ( this.id === this.constructor.ID.EXHAUSTION ) && Number.isFinite( newLevel ) && Number.isFinite( originalLevel ) ) {
-      if ( newLevel === originalLevel ) return;
+    if ( ( this.id === this.constructor.ID.EXHAUSTION ) && Number.isFinite( newExhaustion ) && Number.isFinite( originalExhaustion ) ) {
+      if ( newExhaustion === originalExhaustion ) return;
       // Temporarily set the name for the benefit of _displayScrollingTextStatus. We should improve this method to
       // accept a name parameter instead.
-      if ( newLevel < originalLevel ) this.name = `Exhaustion ${originalLevel}`;
-      this._displayScrollingStatus( newLevel > originalLevel );
+      if ( newExhaustion < originalExhaustion ) this.name = `Exhaustion ${originalExhaustion}`;
+      this._displayScrollingStatus( newExhaustion > originalExhaustion );
+      this.name = name;
+    }
+
+    // Display proper scrolling status effects for slowed
+    if ( ( this.id === this.constructor.ID.SLOWED ) && Number.isFinite( newSlowed ) && Number.isFinite( originalSlowed ) ) {
+      if ( newSlowed === originalSlowed ) return;
+      // Temporarily set the name for the benefit of _displayScrollingTextStatus. We should improve this method to
+      // accept a name parameter instead.
+      if ( newSlowed < originalSlowed ) this.name = `Slowed ${originalSlowed}`;
+      this._displayScrollingStatus( newSlowed > originalSlowed );
       this.name = name;
     }
 
@@ -580,16 +609,24 @@ export default class ActiveEffect5e extends ActiveEffect {
   /* -------------------------------------------- */
 
   /**
-   * Adjust exhaustion icon display to match current level.
+   * Adjust exhaustion and slowed icon display to match current level.
    * @param {Application} app  The TokenHUD application.
    * @param {jQuery} html      The TokenHUD HTML.
    */
   static onTokenHUDRender( app, html ) {
     const actor = app.object.actor;
-    const level = foundry.utils.getProperty( actor, "system.attributes.exhaustion" );
-    if ( Number.isFinite( level ) && ( level > 0 ) ) {
-      const img = ActiveEffect5e._getExhaustionImage( level );
+    const exhaustionLevel = foundry.utils.getProperty( actor, "system.attributes.exhaustion" );
+    const slowedLevel = foundry.utils.getProperty( actor, "system.attributes.slowed" );
+    if ( Number.isFinite( exhaustionLevel ) && ( exhaustionLevel > 0 ) ) {
+      const img = ActiveEffect5e._getExhaustionImage( exhaustionLevel );
       html.find( '[data-status-id="exhaustion"]' ).css( {
+        objectPosition: "-100px",
+        background: `url('${img}') no-repeat center / contain`
+      } );
+    }
+    if ( Number.isFinite( slowedLevel ) && ( slowedLevel > 0 ) ) {
+      const img = ActiveEffect5e._getSlowedImage( slowedLevel );
+      html.find( '[data-status-id="slowed"]' ).css( {
         objectPosition: "-100px",
         background: `url('${img}') no-repeat center / contain`
       } );
@@ -608,6 +645,23 @@ export default class ActiveEffect5e extends ActiveEffect {
     const ext = split.pop();
     const path = split.join( "." );
     return `${path}-${level}.${ext}`;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Get the image used to represent slowed at this level.
+   * @param {number} level
+   * @returns {string}
+   */
+  static _getSlowedImage( level ) {
+    // TODO SW5E: Remove this once/if we get a separate icon for each slowed level
+    return CONFIG.SW5E.conditionTypes.slowed.icon;
+
+    // const split = CONFIG.SW5E.conditionTypes.slowed.icon.split( "." );
+    // const ext = split.pop();
+    // const path = split.join( "." );
+    // return `${path}-${level}.${ext}`;
   }
 
   /* -------------------------------------------- */
@@ -647,6 +701,7 @@ export default class ActiveEffect5e extends ActiveEffect {
 
     const id = target.dataset?.statusId;
     if ( id === "exhaustion" ) ActiveEffect5e._manageExhaustion( event, actor );
+    else if ( id === "slowed" ) ActiveEffect5e._manageSlowed( event, actor );
     else if ( id === "concentrating" ) ActiveEffect5e._manageConcentration( event, actor );
   }
 
@@ -666,6 +721,24 @@ export default class ActiveEffect5e extends ActiveEffect {
     else level--;
     const max = CONFIG.SW5E.conditionTypes.exhaustion.levels;
     actor.update( { "system.attributes.exhaustion": Math.clamp( level, 0, max ) } );
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Manage custom slowed cycling when interacting with the token HUD.
+   * @param {PointerEvent} event        The triggering event.
+   * @param {Actor5e} actor             The actor belonging to the token.
+   */
+  static _manageSlowed( event, actor ) {
+    let level = foundry.utils.getProperty( actor, "system.attributes.slowed" );
+    if ( !Number.isFinite( level ) ) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if ( event.button === 0 ) level++;
+    else level--;
+    const max = CONFIG.SW5E.conditionTypes.slowed.levels;
+    actor.update( { "system.attributes.slowed": Math.clamp( level, 0, max ) } );
   }
 
   /* -------------------------------------------- */

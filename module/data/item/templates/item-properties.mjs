@@ -7,7 +7,7 @@ const { StringField, SetField, ObjectField } = foundry.data.fields;
  * Data model template with item properties.
  *
  * @property {Set<string>} properties     Item's properties.
- * @property {object} properties          Item's property values.
+ * @property {object} propertyValues      Item's property values.
  * @mixin
  */
 export default class ItemPropertiesTemplate extends SystemDataModel {
@@ -37,7 +37,7 @@ export default class ItemPropertiesTemplate extends SystemDataModel {
    */
   static #migratePropertiesData( source ) {
     if ( foundry.utils.getType( source.properties ) !== "Object" ) return;
-    source._propertyValues = Object.fromEntries(Object.entries(source.properties).filter( e => e[1]));
+    source._propertyValues = Object.fromEntries( Object.entries( source.properties ).filter( e => e[1] ) );
     source.properties = filteredKeys( source.properties );
   }
 
@@ -45,19 +45,19 @@ export default class ItemPropertiesTemplate extends SystemDataModel {
   /*  Helpers                                     */
   /* -------------------------------------------- */
 
-  getProperty(key, default_value=false) {
-    return this.properties.has(key) ? (this._propertyValues[key] ?? true) : default_value;
+  getProperty( key, default_value=false ) {
+    return this.properties.has( key ) ? ( this._propertyValues[key] ?? true ) : default_value;
   }
 
-  setProperty(key, value) {
-    this.properties.add(key);
-    this.parent.update({ "system.properties": Array.from(this.properties) }, { resursive: false });
-    this.parent.update({ ["system._propertyValues." + key]: value });
+  setProperty( key, value ) {
+    this.properties.add( key );
+    this.parent.update( { "system.properties": Array.from( this.properties ) }, { resursive: false } );
+    this.parent.update( { [`system._propertyValues.${key}`]: value } );
   }
 
-  deleteProperty(key) {
-    this.properties.delete(key);
-    this.parent.update({ "system.properties": Array.from(this.properties) }, { resursive: false });
-    this.parent.update({ ["system._propertyValues." + key]: null });
+  deleteProperty( key ) {
+    this.properties.delete( key );
+    this.parent.update( { "system.properties": Array.from( this.properties ) }, { resursive: false } );
+    this.parent.update( { [`system._propertyValues.${key}`]: null } );
   }
 }

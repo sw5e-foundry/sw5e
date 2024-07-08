@@ -225,16 +225,31 @@ export default class ActorSheetDnD5eCharacter2 extends ActorSheetDnD5eCharacter 
     };
 
     // Exhaustion
-    const max = CONFIG.SW5E.conditionTypes.exhaustion.levels;
-    context.exhaustion = Array.fromRange( max, 1 ).reduce( ( acc, n ) => {
+    const maxExhaustion = CONFIG.SW5E.conditionTypes.exhaustion.levels;
+    context.exhaustion = Array.fromRange( maxExhaustion, 1 ).reduce( ( acc, n ) => {
       const label = game.i18n.format( "SW5E.ExhaustionLevel", { n } );
       const classes = ["pip"];
       const filled = attributes.exhaustion >= n;
       if ( filled ) classes.push( "filled" );
-      if ( n === max ) classes.push( "death" );
+      if ( n === maxExhaustion ) classes.push( "death" );
       const pip = { n, label, filled, tooltip: label, classes: classes.join( " " ) };
 
-      if ( n <= max / 2 ) acc.left.push( pip );
+      if ( n <= maxExhaustion / 2 ) acc.left.push( pip );
+      else acc.right.push( pip );
+      return acc;
+    }, { left: [], right: [] } );
+
+    // Slowed
+    const maxSlowed = CONFIG.SW5E.conditionTypes.slowed.levels;
+    context.slowed = Array.fromRange( maxSlowed, 1 ).reduce( ( acc, n ) => {
+      const label = game.i18n.format( "SW5E.SlowedLevel", { n } );
+      const classes = ["pip"];
+      const filled = attributes.slowed >= n;
+      if ( filled ) classes.push( "filled" );
+      if ( n === maxSlowed ) classes.push( "death" );
+      const pip = { n, label, filled, tooltip: label, classes: classes.join( " " ) };
+
+      if ( n <= maxSlowed / 2 ) acc.left.push( pip );
       else acc.right.push( pip );
       return acc;
     }, { left: [], right: [] } );

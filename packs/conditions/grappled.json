@@ -13,28 +13,37 @@
   "pages": [
     {
       "name": "Grappled",
-      "type": "text",
+      "_id": "0000000000000000",
+      "text": {
+        "content": "<p>A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.</p>\n<ul>\n<li>The condition ends if the grappler is incapacitated (see the condition).</li>\n<li>The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect.</li></ul>",
+        "format": 1
+      },
+      "src": null,
+      "flags": {
+        "sw5e-importer": {
+          "timestamp": "2020-01-17T18:31:17.6357082+00:00",
+          "importer_version": 3,
+          "uid": "Conditions.name-grappled"
+        }
+      },
+      "type": "rule",
+      "system": {
+        "tooltip": "<p>A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.</p>\n<ul>\n<li>The condition ends if the grappler is incapacitated (see the condition).</li>\n<li>The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect.</li>",
+        "type": "condition"
+      },
       "title": {
-        "show": false,
+        "show": true,
         "level": 1
       },
-      "text": {
-        "format": 1,
-        "content": "<p>A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.</p>\n<ul>\n<li>The condition ends if the grappler is incapacitated (see the condition).</li>\n<li>The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect.</li></ul>"
-      },
-      "_id": "NlgZcYSCnBAF4fco",
       "image": {},
       "video": {
         "controls": true,
         "volume": 0.5
       },
-      "src": null,
-      "system": {},
       "sort": 0,
       "ownership": {
         "default": -1
       },
-      "flags": {},
       "_stats": {
         "systemId": null,
         "systemVersion": null,
@@ -43,7 +52,7 @@
         "modifiedTime": null,
         "lastModifiedBy": null
       },
-      "_key": "!journal.pages!PQ0MUIr3IzvMXEu5.NlgZcYSCnBAF4fco"
+      "_key": "!journal.pages!PQ0MUIr3IzvMXEu5.0000000000000000"
     }
   ],
   "ownership": {
@@ -54,8 +63,8 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720368729319,
-    "modifiedTime": 1720368729363,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418067128,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!journal!PQ0MUIr3IzvMXEu5"
 }

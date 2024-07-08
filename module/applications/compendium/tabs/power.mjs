@@ -20,7 +20,7 @@ export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
       "time",
       "school",
       "source",
-      "components"
+      "properties"
     ];
 
     constructor(browser) {
@@ -41,7 +41,7 @@ export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
         "system.activation",
         "system.school",
         "system.source",
-        "system.components"
+        "system.properties"
       ];
 
       const data = this.browser.packLoader.loadPacks("Item", this.browser.loadedPacks("power"), indexFields);
@@ -53,7 +53,8 @@ export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
           if (powerData.type === "power") {
             if (!this.hasAllIndexFields(powerData, indexFields)) {
               console.warn(
-                `Item '${powerData.name}' does not have all required data fields. Consider unselecting pack '${pack.metadata.label}' in the compendium browser settings.`
+                `Item '${powerData.name}' does not have all required data fields. Consider unselecting pack '${pack.metadata.label}' in the compendium browser settings.`,
+                `Missing: ${this.listMissingIndexFields(powerData, indexFields)}`
               );
               continue;
             }
@@ -70,9 +71,9 @@ export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
               uuid: `Compendium.${pack.collection}.${powerData._id}`,
               level: powerData.system.level,
               levelLabel: CONFIG.SW5E.powerLevels[powerData.system.level],
-              components: powerData.system.components,
+              properties: powerData.system.properties,
               school: powerData.system.school,
-              schoolLabel: CONFIG.SW5E.powerSchools[powerData.system.school],
+              schoolLabel: CONFIG.SW5E.powerSchools[powerData.system.school].label,
               time: powerData.system.activation.type,
               timeLabel: CONFIG.SW5E.abilityActivationTypes[powerData.system.activation.type],
               source: sourceSlug
@@ -84,12 +85,16 @@ export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
       this.indexData = powers;
 
       // Filters
-      this.filterData.checkboxes.school.options = this.generateCheckboxOptions(CONFIG.SW5E.powerSchools);
+      this.filterData.checkboxes.school.options = this.generateCheckboxOptions(CONFIG.SW5E.powerSchools, { label: "label" });
       this.filterData.checkboxes.level.options = this.generateCheckboxOptions(CONFIG.SW5E.powerLevels);
       this.filterData.checkboxes.time.options = this.generateCheckboxOptions(CONFIG.SW5E.abilityActivationTypes);
       this.filterData.checkboxes.source.options = this.generateSourceCheckboxOptions(sources);
-      this.filterData.multiselects.components.options = this.generateMultiselectOptions({
-        ...Object.fromEntries(Object.entries(CONFIG.SW5E.powerTags).filter(([k, v]) => v.filter).map(([k, v]) => [k, v.label]))
+      this.filterData.multiselects.properties.options = this.generateMultiselectOptions({
+        ...Object.fromEntries(
+          Object.entries(CONFIG.SW5E.itemProperties)
+          .filter(([k, v]) => CONFIG.SW5E.validProperties.power.has(k))
+          .map(([k, v]) => [k, v.label])
+        )
       });
 
       console.debug("SW5e System | Compendium Browser | Finished loading powers");
@@ -115,8 +120,8 @@ export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
       if (checkboxes.source.selected.length) {
         if (!checkboxes.source.selected.includes(entry.source)) return false;
       }
-      // Components
-      if (!this.filterTraits(entry.components, multiselects.components.selected, multiselects.components.conjunction, entry)) return false;
+      // Properties
+      if (!this.filterTraits(entry.properties, multiselects.properties.selected, multiselects.properties.conjunction, entry)) return false;
       return true;
     }
 
@@ -149,7 +154,7 @@ export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
           }
         },
         multiselects: {
-          components: {
+          properties: {
             conjunction: "and",
             label: "SW5E.CompendiumBrowser.FilterProperties",
             options: [],

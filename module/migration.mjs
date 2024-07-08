@@ -13,9 +13,9 @@ export const needsMigration = function() {
     game.settings.set( "sw5e", "systemMigrationVersion", game.system.version );
     return false;
   }
-  if ( cv && !isNewerVersion( game.system.flags.needsMigrationVersion, cv ) ) return false;
+  if ( cv && !foundry.utils.isNewerVersion( game.system.flags.needsMigrationVersion, cv ) ) return false;
 
-  if ( cv && isNewerVersion( game.system.flags.compatibleMigrationVersion, cv ) ) {
+  if ( cv && foundry.utils.isNewerVersion( game.system.flags.compatibleMigrationVersion, cv ) ) {
     ui.notifications.error( "MIGRATION.5eVersionTooOldWarning", { localize: true, permanent: true } );
   }
 

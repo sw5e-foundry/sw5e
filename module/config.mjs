@@ -2592,11 +2592,9 @@ SW5E.validProperties = {
     "zone"
   ] ),
   power: new Set( [
-    "vocal",
-    "somatic",
-    "material",
     "concentration",
-    "ritual"
+    "ritual",
+    "freeLearn"
   ] ),
   tool: new Set( [
     "concentration",

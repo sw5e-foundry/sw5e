@@ -96,11 +96,10 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
             ].filter(f => !!f && !(optional[itemData.type]??[]).includes(f));
             if (!this.hasAllIndexFields(itemData, _fields)) {
               console.warn(
-                `Item '${itemData.name}' does not have all required data fields.`
-                            + ` Consider unselecting pack '${pack.metadata.label}' in the compendium browser settings.`
-                            + ` Fields: ${_fields}`
+                `Item '${itemData.name}' does not have all required data fields.`,
+                `Consider unselecting pack '${pack.metadata.label}' in the compendium browser settings.`,
+                `Missing: ${this.listMissingIndexFields(itemData, indexFields)}`
               );
-              for (const field of _fields) if (getProperty(itemData, field) === undefined) console.log(`Missing ${field}`);
               continue;
             }
 
@@ -150,7 +149,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
       this.indexData = inventoryItems;
 
       // Filters
-      this.filterData.checkboxes.consumableTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.consumableTypes);
+      this.filterData.checkboxes.consumableTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.consumableTypes, { label: "label" });
       this.filterData.checkboxes.consumableSubtypes.options = this.generateCheckboxOptions(CONFIG.SW5E.ammoTypes);
       this.filterData.checkboxes.equipmentTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.equipmentTypes);
       this.filterData.checkboxes.modificationTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.modificationTypes);
@@ -168,7 +167,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
         obj[type] = `ITEM.Type${type.capitalize()}`;
         return obj;
       }, {}));
-      this.filterData.checkboxes.rarity.options = this.generateCheckboxOptions(CONFIG.SW5E.itemRarity, false);
+      this.filterData.checkboxes.rarity.options = this.generateCheckboxOptions(CONFIG.SW5E.itemRarity, { sort: false });
       this.filterData.checkboxes.source.options = this.generateSourceCheckboxOptions(sources);
 
       console.log("SW5e System | Compendium Browser | Finished loading inventory items");

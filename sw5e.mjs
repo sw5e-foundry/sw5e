@@ -551,18 +551,8 @@ Hooks.once( "ready", async function() {
     }
   } );
 
-  // Determine whether a system migration is required and feasible
-  if ( !game.user.isGM ) return;
-  const cv = game.settings.get( "sw5e", "systemMigrationVersion" ) || game.world.flags.sw5e?.version;
-  const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
-  if ( !cv && totalDocuments === 0 ) return game.settings.set( "sw5e", "systemMigrationVersion", game.system.version );
-  if ( cv && !foundry.utils.isNewerVersion( game.system.flags.needsMigrationVersion, cv ) ) return;
-
-  // Perform the migration
-  if ( cv && foundry.utils.isNewerVersion( game.system.flags.compatibleMigrationVersion, cv ) ) {
-    ui.notifications.error( "MIGRATION.5eVersionTooOldWarning", {localize: true, permanent: true} );
-  }
-  migrations.migrateWorld();
+  // Perform system migration if it is required and feasible
+  if (migrations.needsMigration()) migrations.migrateWorld();
 
   // Configure compendium browser.
   game.sw5e.compendiumBrowser = new applications.compendium.CompendiumBrowser();

@@ -90,7 +90,7 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
             if (creatureSubtype) creatureSubtypes.add(creatureSubtype);
 
             // Prepare source
-            const source = actorData.system.details.source;
+            const source = actorData.system.details.source.label ?? actorData.system.details.source.custom ?? "";
             const sourceSlug = sluggify(source);
             if (source) sources.add(source);
 
@@ -127,7 +127,7 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
       this.indexData = bestiaryActors;
 
       // Filters
-      this.filterData.checkboxes.sizes.options = this.generateCheckboxOptions(CONFIG.SW5E.actorSizes);
+      this.filterData.checkboxes.sizes.options = this.generateCheckboxOptions(CONFIG.SW5E.actorSizes, { label: "label" });
       this.filterData.checkboxes.alignment.options = this.generateSourceCheckboxOptions(alignments);
       this.filterData.checkboxes.creatureType.options = this.generateSourceCheckboxOptions(creatureTypes);
       this.filterData.checkboxes.creatureSubtype.options = this.generateSourceCheckboxOptions(creatureSubtypes);

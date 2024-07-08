@@ -100,7 +100,11 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
 
       // Filters
       this.filterData.checkboxes.category.options = this.generateCheckboxOptions(
-        Object.fromEntries(Object.entries(CONFIG.SW5E.featureTypes).map(([k, v]) => [k, v.label]))
+        Object.fromEntries(
+          Object.entries(CONFIG.SW5E.featureTypes)
+          .map(([k, v]) => [k, v.label])
+          .filter(([k, v]) => v)
+        )
       );
       this.filterData.checkboxes.subcategory.options = this.generateCheckboxOptions(
         Object.fromEntries(Object.values(CONFIG.SW5E.featureTypes).map(v => Object.entries(v.subtypes ?? {})).flat())

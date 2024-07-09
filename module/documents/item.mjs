@@ -1052,7 +1052,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
     const rollData = this.getRollData();
 
     // Use wisdom on attack rolls for starship weapons, unless an item specific ability is set
-    if ( rollData && !this.system.ability && ( this.system.type?.value ?? "" ).search( "(starship)" ) !== -1 ) rollData.mod = rollData.abilities.wis?.mod;
+    if ( rollData && !this.system.ability && ( this.system.type?.value ?? "" ).search( "(starship)" ) !== -1 ) rollData.mod = rollData.abilities?.wis?.mod ?? 0;
 
     // Define Roll bonuses
     const parts = [];
@@ -1069,7 +1069,7 @@ export default class Item5e extends SystemDocumentMixin( Item ) {
       }
 
       // Actor-level global bonus to attack rolls
-      const actorBonus = this.actor.system.bonuses?.[this.system.actionType] || {};
+      const actorBonus = this.actor?.system?.bonuses?.[this.system.actionType] || {};
       if ( actorBonus.attack ) parts.push( actorBonus.attack );
 
       ammo = this.hasAmmo ? this.getAmmo : null;

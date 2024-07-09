@@ -90,9 +90,12 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
             if (creatureSubtype) creatureSubtypes.add(creatureSubtype);
 
             // Prepare source
-            const source = actorData.system.details.source.label ?? actorData.system.details.source.custom ?? "";
-            const sourceSlug = sluggify(source);
-            if (source) sources.add(source);
+            const source = actorData.system.details.source.label ?? actorData.system.details.source.custom ?? actorData.system.details.source;
+            var sourceSlug;
+            if (source && foundry.utils.getType(source) === "string") {
+              sourceSlug = sluggify(source);
+              sources.add(source);
+            }
 
             // Prepare traits
             const traits = {

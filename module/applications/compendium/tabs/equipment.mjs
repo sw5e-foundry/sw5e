@@ -123,10 +123,11 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
             itemData.filters = {};
 
             // Prepare source
-            const source = itemData.system.source.value;
-            if (source) {
+            const source = itemData.system.source.label ?? itemData.system.source.custom ?? itemData.system.source;
+            var sourceSlug;
+            if (source && foundry.utils.getType(source) === "string") {
+              sourceSlug = sluggify(source);
               sources.add(source);
-              itemData.system.source.value = sluggify(source);
             }
 
             inventoryItems.push({
@@ -138,7 +139,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
               subcategory: itemData.system.subcategory.value ?? null,
               price: foundry.utils.getProperty(itemData, price[itemData.type] ?? price.default) ?? null,
               rarity: itemData.system.rarity.value ?? "",
-              source: itemData.system.source.value ?? "",
+              source: sourceSlug ?? "",
               properties: itemData.system.properties ?? {}
             });
           }

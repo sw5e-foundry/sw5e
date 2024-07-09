@@ -77,8 +77,11 @@ export class CompendiumBrowserClassificationTab extends CompendiumBrowserTab {
 
             // Prepare source
             const source = classificationData.system.source.label ?? classificationData.system.source.custom ?? classificationData.system.source;
-            const sourceSlug = sluggify(source ?? "");
-            if (source) sources.add(source);
+            var sourceSlug;
+            if (source && foundry.utils.getType(source) === "string") {
+              sourceSlug = sluggify(source);
+              sources.add(source);
+            }
 
             // Only store essential data
             classifications.push({
@@ -87,7 +90,7 @@ export class CompendiumBrowserClassificationTab extends CompendiumBrowserTab {
               img: classificationData.img,
               uuid: `Compendium.${pack.collection}.${classificationData._id}`,
               class: classSlug,
-              source: sourceSlug
+              source: sourceSlug ?? ""
             });
           }
         }

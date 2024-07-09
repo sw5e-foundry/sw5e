@@ -56,8 +56,11 @@ export class CompendiumBrowserManeuverTab extends CompendiumBrowserTab {
 
             // Prepare source
             const source = maneuverData.system.source.label ?? maneuverData.system.source.custom ?? maneuverData.system.source;
-            const sourceSlug = sluggify(source);
-            if (source) sources.add(source);
+            var sourceSlug;
+            if (source && foundry.utils.getType(source) === "string") {
+              sourceSlug = sluggify(source);
+              sources.add(source);
+            }
 
             maneuvers.push({
               type: maneuverData.type,
@@ -68,7 +71,7 @@ export class CompendiumBrowserManeuverTab extends CompendiumBrowserTab {
               categoryLabel: CONFIG.SW5E.maneuverTypes[maneuverData.system.type.value],
               time: maneuverData.system.activation.type,
               timeLabel: CONFIG.SW5E.abilityActivationTypes[maneuverData.system.activation.type],
-              source: sourceSlug
+              source: sourceSlug ?? ""
             });
           }
         }

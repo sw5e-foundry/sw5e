@@ -76,8 +76,11 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
 
             // Prepare source
             const source = featData.system.source.label ?? featData.system.source.custom ?? featData.system.source;
-            const sourceSlug = sluggify(source ?? "");
-            if (source) sources.add(source);
+            var sourceSlug;
+            if (source && foundry.utils.getType(source) === "string") {
+              sourceSlug = sluggify(source);
+              sources.add(source);
+            }
 
             // Only store essential data
             feats.push({
@@ -89,7 +92,7 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
               level: p_level,
               category: featData.system.type.value,
               subcategory: featData.system.type.subtype,
-              source: sourceSlug
+              source: sourceSlug ?? ""
             });
           }
         }

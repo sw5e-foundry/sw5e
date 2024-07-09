@@ -61,8 +61,11 @@ export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
 
             // Prepare source
             const source = powerData.system.source.label ?? powerData.system.source.custom ?? powerData.system.source;
-            const sourceSlug = sluggify(source);
-            if (source) sources.add(source);
+            var sourceSlug;
+            if (source && foundry.utils.getType(source) === "string") {
+              sourceSlug = sluggify(source);
+              sources.add(source);
+            }
 
             powers.push({
               type: powerData.type,
@@ -76,7 +79,7 @@ export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
               schoolLabel: CONFIG.SW5E.powerSchools[powerData.system.school].label,
               time: powerData.system.activation.type,
               timeLabel: CONFIG.SW5E.abilityActivationTypes[powerData.system.activation.type],
-              source: sourceSlug
+              source: sourceSlug ?? ""
             });
           }
         }

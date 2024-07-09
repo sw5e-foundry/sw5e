@@ -10,11 +10,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> at least 2 levels in operative</em></p>\n<p>Your quick thinking and agility allow you to act and move your ship quickly. You can take a bonus action on each of your turns in combat. This action can be used only to take the Conceal, Evade, or Fly action.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -27,10 +28,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -41,16 +43,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": null,
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,18 +84,25 @@
       }
     },
     "prerequisites": [
-      "at least 2 levels in operative"
-    ]
+      null
+    ],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494021250,
-    "modifiedTime": 1699591752613,
+    "modifiedTime": 1720552921307,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!Ks8TffMcgBcJFPSm"

@@ -1,0 +1,128 @@
+{
+  "name": "Carbonite Launcher, Mk V",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p>As an action, a crew member may generate an explosion of cryogenic energy in a 600-foot-radius sphere centered on a point you can see within 2500 feet. Each ship in the affected area must make a Constitution saving throw (DC = 8 + prof. bonus + ship's wisdom modifier). On a failed save, the ship takes 8d6 + 20 cold damage and is stunned for 1 minute as it is encased in carbonite. On a successful save, the ship takes half damage and is stunned until the end of its next turn.</p>\n<p>As an action, a crew member of a stunned ship can make a Strength check (DC = 8 + prof. bonus + ship's wisdom modifier), ending this effect on itself on a success.</p>\n<p>A ship reduced to 0 hit points by this power explodes instantly, as its hull shatters into frozen chunks.</p>\n<p>This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</p>",
+      "chat": ""
+    },
+    "source": {},
+    "quantity": 1,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": "",
+    "equipped": false,
+    "rarity": "",
+    "identified": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": "600",
+      "width": null,
+      "units": "ft",
+      "type": "radius",
+      "prompt": true
+    },
+    "range": {
+      "value": 2500,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": "",
+      "prompt": false
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "scale": false
+    },
+    "ability": "",
+    "actionType": "save",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "8d6+20",
+          "cold"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "wis"
+    },
+    "grade": {
+      "value": 5
+    },
+    "baseCost": {
+      "value": null
+    },
+    "prerequisites": {
+      "value": "Carbonite Launcher, Mk IV"
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494018743,
+    "modifiedTime": 1720552916666,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "oO0hA7tccNB7w3Fl",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!oO0hA7tccNB7w3Fl"
+}

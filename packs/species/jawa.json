@@ -43,71 +43,88 @@
     },
     "advancement": [
       {
-        "_id": "i0YQppVQdmi1CUkI",
+        "_id": "14nFieEWeRNT16wN",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.qwnzijkjbTmR2Fuc"
+              "uuid": "Compendium.sw5e.speciesfeatures.SiDRcwBeBlCd5Osq",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.KrlcCA9zkqURvhpV"
+              "uuid": "Compendium.sw5e.speciesfeatures.9LozDMExjylHa1q7",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.Ax1JlBHo5wHUg1J8"
+              "uuid": "Compendium.sw5e.speciesfeatures.mi0Bb6q4mIJ9klUN",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.vyV5MGfYTGHi5xvU"
+              "uuid": "Compendium.sw5e.speciesfeatures.3GVIOM4j6J1WU6xk",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.dKWSAypCOb9Vlz77"
+              "uuid": "Compendium.sw5e.speciesfeatures.Laz5VmspYAGXiQmW",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.n4ngTpfvLucv74DC"
+              "uuid": "Compendium.sw5e.speciesfeatures.tjUyvnOO7xPNRnLK",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.4kQtFAXSuEAX4gfy"
+              "uuid": "Compendium.sw5e.speciesfeatures.c81bisDwzNue3u9r",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.8IDO5xiCWXhUQT1K"
+              "uuid": "Compendium.sw5e.speciesfeatures.DFCcEusqroycQItI",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.i3Q4yBycEr5t5pd1"
+              "uuid": "Compendium.sw5e.speciesfeatures.4v7n4eFwpWOeobEK",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.R54giBSCSHxMg9HV"
+              "uuid": "Compendium.sw5e.speciesfeatures.AkPjvNBNWAYDDtMR",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.3Vx4oP4RGSrJnKCN"
+              "uuid": "Compendium.sw5e.speciesfeatures.X3VlOu4weJQ0BhJD",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.5kIr4HFnvg1ZPEdw"
+              "uuid": "Compendium.sw5e.speciesfeatures.eBwTf5ze3C9T3QV3",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.3grhAyX3HFQYrZga"
+              "uuid": "Compendium.sw5e.speciesfeatures.7uHLyIyMOAdh4RZQ",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "1izenicpuuXa1IH9",
+        "_id": "1AJYvhe3H6341oXY",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "dex": 2,
             "int": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "O1tlvSlMEPF14pTN",
+        "_id": "1bTjwJ3Dhnph2SfO",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -118,7 +135,7 @@
         "level": 0
       },
       {
-        "_id": "lvuOUvxx33EPMFM7",
+        "_id": "DrpKtQNMANg1hy7W",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -126,9 +143,12 @@
             "skills:slt",
             "tool:tinkersimplements"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -278,7 +298,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553797266,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!bIXK0HMhkjZyNVZX"

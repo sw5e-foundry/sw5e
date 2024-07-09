@@ -43,65 +43,80 @@
     },
     "advancement": [
       {
-        "_id": "ZlZU4XTAMWxCsuLi",
+        "_id": "nc1GYxvWjCDF7xQ7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.7wej10095akpQDfr"
+              "uuid": "Compendium.sw5e.speciesfeatures.6tv6UbWeP3wb81yN",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.mOZ03Ahegill4zTW"
+              "uuid": "Compendium.sw5e.speciesfeatures.WiyUQYfiHzNeNGrC",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.pdGhTMwGVXBPse5U"
+              "uuid": "Compendium.sw5e.speciesfeatures.PErmkGfqnzkfPtuf",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.ary4EoVIPoT1dPj6"
+              "uuid": "Compendium.sw5e.speciesfeatures.BUgnXkQlk5q0oUze",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.5DJ6nOXL3ODv8ZMP"
+              "uuid": "Compendium.sw5e.speciesfeatures.ngEbaVfkxpozX4mG",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.A65IueD20mdcFODB"
+              "uuid": "Compendium.sw5e.speciesfeatures.dQ0wBXH6eqgKeTmv",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.Vxmux7LyLbKhh9uG"
+              "uuid": "Compendium.sw5e.speciesfeatures.opHfOVGmur2pNcws",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.h5AFiJirWT13NboH"
+              "uuid": "Compendium.sw5e.speciesfeatures.kh9JgKvxZQSv15oC",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.bM0oIAfrcxDtkvEw"
+              "uuid": "Compendium.sw5e.speciesfeatures.LToF6JQF2YxWXEfc",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.8xD1JtzsdAOEt5P7"
+              "uuid": "Compendium.sw5e.speciesfeatures.5m7SQr3yBufS9AKX",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.pcbDeWUYikLtMcXF"
+              "uuid": "Compendium.sw5e.speciesfeatures.hgVFaSUeIwFNVPMY",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "1uQQhXgG2jHhzUYM",
+        "_id": "QBisqyTQqB61NVS4",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "wis": 2,
             "con": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "1tHZg2omKDA2E2pq",
+        "_id": "7uOM9jQy1tOoVvn8",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -112,16 +127,19 @@
         "level": 0
       },
       {
-        "_id": "15BjtvxXCKCbmnFS",
+        "_id": "8HioMTcMECNFnFwl",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "skills:ath"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -259,7 +277,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553796713,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!E9PQl0AG7sdLt0IP"

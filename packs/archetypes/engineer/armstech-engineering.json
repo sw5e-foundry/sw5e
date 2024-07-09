@@ -30,16 +30,20 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.wAkLeFbcTwU6azPK"
+              "uuid": "Compendium.sw5e.archetypefeatures.wAkLeFbcTwU6azPK",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.iTG8ghWQ1im12Roz"
+              "uuid": "Compendium.sw5e.archetypefeatures.iTG8ghWQ1im12Roz",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.OZVyUzf8EsFsTCUB"
+              "uuid": "Compendium.sw5e.archetypefeatures.OZVyUzf8EsFsTCUB",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -51,10 +55,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.U7fGEBmunnrB19pe"
+              "uuid": "Compendium.sw5e.archetypefeatures.U7fGEBmunnrB19pe",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
@@ -66,10 +72,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.qhk4nFAwhsZinooc"
+              "uuid": "Compendium.sw5e.archetypefeatures.qhk4nFAwhsZinooc",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -81,10 +89,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.Ze0t4e7PbGB9qQ0p"
+              "uuid": "Compendium.sw5e.archetypefeatures.Ze0t4e7PbGB9qQ0p",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -112,9 +122,12 @@
             "tool:armstechsimplements",
             "armor:med"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
@@ -124,22 +137,28 @@
           "hint": "",
           "choices": {
             "3": {
-              "count": 4
+              "count": 4,
+              "replacement": false
             },
             "5": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "9": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "11": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "13": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "17": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -258,7 +277,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Armstech Modifications"
       }
     ],
@@ -280,7 +302,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959772,
-    "modifiedTime": 1720418052632,
+    "modifiedTime": 1720552689851,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!ozOP9vSQ4uwXFdGQ"

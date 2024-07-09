@@ -7,22 +7,24 @@
   "system": {
     "description": {
       "value": "<p>The hyperdrive is a propulsion system that allows a starship to reach hyperspeed and traverse the void between stars in the alternate dimension of hyperspace. For a starship to have a hyperdrive, it must have a vacant hyperdrive slot modification.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 750,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "none",
       "cost": null,
@@ -35,10 +37,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -49,16 +52,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -76,8 +80,8 @@
     },
     "armor": {
       "value": null,
-      "type": "hyper",
-      "dex": null
+      "dex": null,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -118,78 +122,40 @@
       "items": [],
       "changes": {}
     },
-    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
-    "properties": {
-      "Absorptive": 0,
-      "Agile": 0,
-      "Anchor": false,
-      "Avoidant": 0,
-      "Barbed": false,
-      "Bulky": false,
-      "Charging": 0,
-      "Concealing": false,
-      "Cumbersome": false,
-      "Gauntleted": false,
-      "Imbalanced": false,
-      "Impermeable": false,
-      "Insulated": 0,
-      "Interlocking": false,
-      "Lambent": false,
-      "Lightweight": false,
-      "Magnetic": 0,
-      "Obscured": false,
-      "Obtrusive": false,
-      "Powered": 0,
-      "Reactive": 0,
-      "Regulated": false,
-      "Reinforced": false,
-      "Responsive": 0,
-      "Rigid": false,
-      "Silent": false,
-      "Spiked": false,
-      "Steadfast": false,
-      "Strength": 0,
-      "Versatile": 0,
-      "c_Absorbing": null,
-      "c_Acessing": null,
-      "c_Amplifying": null,
-      "c_Bolstering": null,
-      "c_Constitution": null,
-      "c_Dispelling": null,
-      "c_Elongating": null,
-      "c_Enlarging": null,
-      "c_Expanding": null,
-      "c_Extending": null,
-      "c_Fading": null,
-      "c_Focused": false,
-      "c_Increasing": null,
-      "c_Inflating": null,
-      "c_Mitigating": null,
-      "c_Ranging": null,
-      "c_Rending": null,
-      "c_Repelling": false,
-      "c_Storing": null,
-      "c_Surging": null,
-      "c_Withering": null
+    "properties": [],
+    "proficient": 1,
+    "type": {
+      "value": "hyper",
+      "baseItem": ""
     },
-    "proficient": true
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "_propertyValues": {},
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494017489,
-    "modifiedTime": 1699591741050,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552913199,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "folder": null,
   "sort": 0,

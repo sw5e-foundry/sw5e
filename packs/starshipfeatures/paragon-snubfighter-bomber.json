@@ -38,7 +38,6 @@
       "name": "Paragon Snubfighter: Bomber",
       "description": "",
       "statuses": [],
-      "sort": 0,
       "_key": "!items.effects!eW3twcCUuobEJPM4.qQTMHDrpIch61Q7C"
     }
   ],
@@ -46,27 +45,29 @@
   "system": {
     "description": {
       "value": "<p>As of 5th tier, your starship is the best in its class.</p>\n<h3>Bomber</h3>\n<p>Your ship's Wisdom score increases by 2. Its maximum for this score increases by 2.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "none",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -75,18 +76,19 @@
     },
     "uses": {
       "value": null,
-      "max": 0,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -116,8 +118,16 @@
         "turn": null
       }
     },
-    "size": "Small",
-    "tier": "5"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -126,10 +136,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494017958,
-    "modifiedTime": 1699591742519,
+    "modifiedTime": 1720552913761,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!eW3twcCUuobEJPM4"

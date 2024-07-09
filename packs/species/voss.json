@@ -43,65 +43,80 @@
     },
     "advancement": [
       {
-        "_id": "EUfbpnQNoBKY2Tf3",
+        "_id": "SfVmMQff7Ki1KlaF",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.WeUmjqnpVaqntFuy"
+              "uuid": "Compendium.sw5e.speciesfeatures.88iCljtOwv4WXnl5",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.bmGFTYNpSug5yVrk"
+              "uuid": "Compendium.sw5e.speciesfeatures.jjJNfgfk3XImShUT",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.y84iMYHXlglon3tI"
+              "uuid": "Compendium.sw5e.speciesfeatures.O3vMcxCVWtUvqM0V",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.nVERCt0wNyT9iuhZ"
+              "uuid": "Compendium.sw5e.speciesfeatures.PJFH7GKQsYLdVfHA",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.5tqcEhfbTQU5Noyd"
+              "uuid": "Compendium.sw5e.speciesfeatures.n2G8qCvMN08qdDoU",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.GxZizw8VkAn9OQk4"
+              "uuid": "Compendium.sw5e.speciesfeatures.oeWbCwLatmga3phV",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.iINUNE1BFBzv2d0z"
+              "uuid": "Compendium.sw5e.speciesfeatures.jhkhmn2zZKapLJiG",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.uqKl65mEZAPNOhOE"
+              "uuid": "Compendium.sw5e.speciesfeatures.Bklfr12ncg1CA6Zr",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.SsClXoQMZAfRo8Ek"
+              "uuid": "Compendium.sw5e.speciesfeatures.hD5amXgt8shzSzNX",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.0eLjnLi1PH2FK9hE"
+              "uuid": "Compendium.sw5e.speciesfeatures.6IHHIrFSn42JPuZz",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.vHtssG3OEwj5veAz"
+              "uuid": "Compendium.sw5e.speciesfeatures.wFoFohwDQkQwikdb",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "qX1qtILuDgbi0mll",
+        "_id": "f1eTkJ7bBff14SJy",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "wis": 2,
             "con": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "cvj7mKwbN2NhMKgy",
+        "_id": "bf2bE5EXjOB1Uo6p",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -112,7 +127,7 @@
         "level": 0
       },
       {
-        "_id": "NdFGWpfu3ey1amdp",
+        "_id": "r0ye5Ef9JkY3pDaY",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -121,9 +136,12 @@
             "weapon:blaster rifle",
             "weapon:techblade"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -305,7 +323,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553796420,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!62YmHdv9qMtbAEQa"

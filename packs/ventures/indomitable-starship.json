@@ -8,11 +8,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> at least 9 levels in fighter</em></p><p>While deployed, when your ship fails a saving throw, you can use your Indomitable class feature to reroll the die.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -25,10 +26,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": null,
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -79,8 +82,15 @@
       }
     },
     "prerequisites": [
-      "at least 9 levels in fighter"
-    ]
+      null
+    ],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -89,10 +99,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494021268,
-    "modifiedTime": 1699591752616,
+    "modifiedTime": 1720552921507,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!rSOjOPxD49soIMaM"

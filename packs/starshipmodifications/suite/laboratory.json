@@ -7,40 +7,39 @@
   "system": {
     "description": {
       "value": "<p>This suite comes with a number of laboratories equal up to one-fourth the ship's suite capacity by size (minimum of one), as shown in the Starship Size Suite Capacity table. Laboratories are equipped with an integrated alchemist's kit, biotech's implements, geneticist's implements, poisoner's kit, and a spicer's kit.</p><p>While making a check with any of these tools in a laboratory, you can add your proficiency bonus to checks you make if you do not already do so. If you already add your proficiency bonus to checks you make, you instead add double your proficiency bonus. If you already double your proficiency bonus to checks you make, you instead add half of your governing ability modifier (rounded down, minimum of +1), in addition to your ability modifier.</p><p>Additionally, while crafting in a laboratory using the integrated tools, the total market value you can craft per day increases by an amount of credits equal to 5 x your character level. If you add double your proficiency bonus to checks you make with them, the market value increases by 10 x your character level.</p><p>Lastly, when a creature completes a long rest involving this suite, they gain advantage on the first Intelligence (Nature) or Wisdom (Medicine) check they make before the start of their next long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": {
-      "value": "SotG"
-    },
+    "source": {},
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -51,16 +50,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -76,13 +76,6 @@
       "dc": null,
       "scaling": "power"
     },
-    "recharge": {
-      "charged": false,
-      "value": null
-    },
-    "system": {
-      "value": "Suite"
-    },
     "grade": {
       "value": 0
     },
@@ -95,16 +88,31 @@
     "free": {
       "slot": false,
       "suite": false
-    }
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "Suite",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494018652,
-    "modifiedTime": 1706199587813,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552916529,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "k807u5IDUNJs4hhH",
   "sort": 0,

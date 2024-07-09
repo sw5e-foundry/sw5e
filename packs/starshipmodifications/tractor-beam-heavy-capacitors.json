@@ -1,0 +1,123 @@
+{
+  "name": "Tractor Beam, Heavy Capacitors",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p>As an action, a crew member can use a ship's tractor beam to move a ship or object one size category larger than the ship or smaller within 900 feet and within the tractor beam's arc. The target must make a Strength saving throw (DC = 8 + ship tier + the ship's Strength modifier). An object automatically fails this saving throw. On a failed save, the ship or object moves a number of feet in a direction of your choice based on its size. A ship or object two or more size categories smaller than your ship can be moved up to 900 feet, a ship or object one size category smaller can be moved up to 600 feet, a ship or object of the same size category can be moved up to 300 feet, and a ship or object one size category larger can be moved up to 100 feet. If at the end of this movement the ship or object strikes another ship or object, they both take 2d8 kinetic damage.</p><p>This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</p>",
+      "chat": ""
+    },
+    "source": {},
+    "quantity": 1,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": "",
+    "equipped": false,
+    "rarity": "",
+    "identified": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": "",
+      "width": null,
+      "units": "any",
+      "type": "object",
+      "prompt": true
+    },
+    "range": {
+      "value": 900,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": "",
+      "prompt": false
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "scale": false
+    },
+    "ability": "",
+    "actionType": "save",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "str",
+      "dc": null,
+      "scaling": "str"
+    },
+    "grade": {
+      "value": 2
+    },
+    "baseCost": {
+      "value": null
+    },
+    "prerequisites": {
+      "value": "Tractor Beam"
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494018681,
+    "modifiedTime": 1720552915009,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "FoIV8rGxUb1fIdBl",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!FoIV8rGxUb1fIdBl"
+}

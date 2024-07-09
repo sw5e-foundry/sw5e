@@ -43,65 +43,80 @@
     },
     "advancement": [
       {
-        "_id": "iPXyVhewG2C2NGsc",
+        "_id": "1IBNz7ys3MF1V3CZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.I0bzbqhbiqMFZPC4"
+              "uuid": "Compendium.sw5e.speciesfeatures.BYuRFELfvqklJrWQ",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.rz6VxXcZy356B2qD"
+              "uuid": "Compendium.sw5e.speciesfeatures.LlWwGFMJUe3m6v3o",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.1e0ISOZzOVD8HTJR"
+              "uuid": "Compendium.sw5e.speciesfeatures.HQpYkEkMxEc5ucv6",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.VmMCTxjlO5qk8XvZ"
+              "uuid": "Compendium.sw5e.speciesfeatures.1ZNQ39KbnIHsSHyg",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.f0C1MN7pheeNihsb"
+              "uuid": "Compendium.sw5e.speciesfeatures.hBXrCC8RhxQzE4Xe",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.IF0SqoQbDAvGSOfF"
+              "uuid": "Compendium.sw5e.speciesfeatures.6gidYr42Fc4eANnE",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.yehwswEfVSnDak36"
+              "uuid": "Compendium.sw5e.speciesfeatures.KuVg0hgxAMK7Bg3p",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.rwcGsMEJkYDGPqVA"
+              "uuid": "Compendium.sw5e.speciesfeatures.QAjAr634j2HtWqcs",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.JWWncVjrVLOGg19b"
+              "uuid": "Compendium.sw5e.speciesfeatures.HEJEEPKThzGBvDPu",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.58lg4MAzEk9NLJ6E"
+              "uuid": "Compendium.sw5e.speciesfeatures.ycxHTSUk2N5MQD8K",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.agCbRHrt2EiUPQGO"
+              "uuid": "Compendium.sw5e.speciesfeatures.Q2oBxKjnF49E9RkG",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "1jF3Qf4YjFZa7zI3",
+        "_id": "BfuiyA6SXAVxaG9C",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "wis": 2,
             "int": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "lHF1mUbppTiLYZEJ",
+        "_id": "p3NRDGZqdJQ1MtFt",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -112,7 +127,7 @@
         "level": 0
       },
       {
-        "_id": "10OC4yaWECbA1c00",
+        "_id": "voUybixVHMw1G5RM",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -120,9 +135,12 @@
             "skills:per",
             "skills:ins"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -181,7 +199,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553796775,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!Ht5H9DkrVcRPZqS3"

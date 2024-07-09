@@ -10,27 +10,29 @@
   "system": {
     "description": {
       "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">When you engage a single enemy, you duck and weave, vying for a good shot while avoiding theirs. You choose a target and make an opposed Dexterity (Maneuvering) check. On a success, you cause the next attack made against your ship by the target to suffer from disadvantage, but you grant the next attack made against your ship by a different target advantage. Additionally, you can perform a primary or tertiary weapon attack from a forward facing limited firing arc against that ship without suffering the normal disadvantage.</span></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,17 +42,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "abil",
-    "attackBonus": 0,
     "chatFlavor": "Contested by Dexterity (Maneuver)",
     "critical": {
       "threshold": null,
@@ -80,17 +83,26 @@
         "turn": null
       }
     },
-    "deployment": "pilot"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494016677,
-    "modifiedTime": 1699591738025,
+    "modifiedTime": 1720552912969,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!iz9DVRm7QxoNVU0Q"

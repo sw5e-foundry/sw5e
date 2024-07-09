@@ -43,62 +43,76 @@
     },
     "advancement": [
       {
-        "_id": "Dln1NAb0boL1wEXG",
+        "_id": "oLqnVAlFSy4gEJmX",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.P9R9IdBAi0HzpSVl"
+              "uuid": "Compendium.sw5e.speciesfeatures.7P3q21d2GmACeCo0",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.ykuc7WSpOsXjqIp5"
+              "uuid": "Compendium.sw5e.speciesfeatures.9g4JpkaFwX5kuWfo",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.hh9MxkXbJTN9ZvxS"
+              "uuid": "Compendium.sw5e.speciesfeatures.b4IgSqwF1yrKIG3O",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.kA06Wc8GYEgh5Pyh"
+              "uuid": "Compendium.sw5e.speciesfeatures.rnvrpfK05TPbIjq3",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.iwQTETADEaIy1n9X"
+              "uuid": "Compendium.sw5e.speciesfeatures.TcQwjOiBXd25Quzc",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.c1QOqM8jdv19NdOl"
+              "uuid": "Compendium.sw5e.speciesfeatures.xy1d4oLrl3IGW2Sv",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.2qQs6xPeVRS5wI7a"
+              "uuid": "Compendium.sw5e.speciesfeatures.iRU7U8Pt5YKBGS8C",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.tWJ4K6rB4BDi1A8l"
+              "uuid": "Compendium.sw5e.speciesfeatures.rXdVDlIxvpKucbfz",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.rNOGn7lPOotZrJGF"
+              "uuid": "Compendium.sw5e.speciesfeatures.9bePDXlHGpFxmUEt",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.VKQAZ0adcOyWLKGj"
+              "uuid": "Compendium.sw5e.speciesfeatures.eLaI9F6smsqizuGY",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "1SO22rEibM0Us0QI",
+        "_id": "2zD0I6rPt91NEyjk",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "int": 2,
             "cha": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "gKGM2uVw7JMhylDl",
+        "_id": "TALdvktQbUb1Te0N",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -109,7 +123,7 @@
         "level": 0
       },
       {
-        "_id": "10f4ZbyWtKJ1125k",
+        "_id": "P9pNuvz9inJU5UfQ",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -120,9 +134,12 @@
             "weapon:sniper rifle",
             "skills:ins"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -278,7 +295,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553796975,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!O9dk9A3jr01PjJkm"

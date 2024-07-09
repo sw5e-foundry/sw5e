@@ -60,7 +60,10 @@
               "value": 6
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Superiority Dice Quantity"
@@ -72,37 +75,35 @@
           "identifier": "superiority-dice-size",
           "scale": {
             "2": {
-              "n": 1,
-              "die": 4,
               "number": 1,
-              "faces": 4
+              "faces": 4,
+              "modifiers": []
             },
             "5": {
-              "n": 1,
-              "die": 6,
               "number": 1,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "9": {
-              "n": 1,
-              "die": 8,
               "number": 1,
-              "faces": 8
+              "faces": 8,
+              "modifiers": []
             },
             "13": {
-              "n": 1,
-              "die": 10,
               "number": 1,
-              "faces": 10
+              "faces": 10,
+              "modifiers": []
             },
             "17": {
-              "n": 1,
-              "die": 12,
               "number": 1,
-              "faces": 12
+              "faces": 12,
+              "modifiers": []
             }
           },
-          "type": "dice"
+          "type": "dice",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Superiority Dice Size"
@@ -126,7 +127,10 @@
               "value": 4
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Strategies Known"
@@ -136,9 +140,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 4
       },
       {
@@ -146,9 +153,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 6
       },
       {
@@ -156,9 +166,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 8
       },
       {
@@ -166,9 +179,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 12
       },
       {
@@ -176,9 +192,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 14
       },
       {
@@ -186,9 +205,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 16
       },
       {
@@ -196,9 +218,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 19
       },
       {
@@ -211,9 +236,12 @@
             "armor:med",
             "armor:hvy"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -228,9 +256,12 @@
             "weapon:svb",
             "weapon:mvb"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -243,9 +274,12 @@
             "saves:str",
             "saves:con"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -269,9 +303,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -288,9 +325,12 @@
             "weapon:mvb",
             "armor:med"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "secondary",
         "level": 1,
         "title": "Multiclass Proficiencies"
@@ -301,13 +341,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.ey3X8gw845wlsp28"
+              "uuid": "Compendium.sw5e.classfeatures.ey3X8gw845wlsp28",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.mrFQ2l9wzPmfb0dv"
+              "uuid": "Compendium.sw5e.classfeatures.mrFQ2l9wzPmfb0dv",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 1,
@@ -319,13 +362,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.xLtohqChteKV2564"
+              "uuid": "Compendium.sw5e.classfeatures.xLtohqChteKV2564",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.6DoNOdDSRNvjTVmo"
+              "uuid": "Compendium.sw5e.classfeatures.6DoNOdDSRNvjTVmo",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 2,
@@ -337,13 +383,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.PpwSwjWSlOARJyk6"
+              "uuid": "Compendium.sw5e.classfeatures.PpwSwjWSlOARJyk6",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.tWugmEinnqu8mESB"
+              "uuid": "Compendium.sw5e.classfeatures.tWugmEinnqu8mESB",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -355,10 +404,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.6oInSSCQn3zDmjDi"
+              "uuid": "Compendium.sw5e.classfeatures.6oInSSCQn3zDmjDi",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 5,
@@ -370,10 +421,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.DWwrLeysfW2VPx3m"
+              "uuid": "Compendium.sw5e.classfeatures.DWwrLeysfW2VPx3m",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
@@ -385,10 +438,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.Q7qPuL7FOn0DQWtD"
+              "uuid": "Compendium.sw5e.classfeatures.Q7qPuL7FOn0DQWtD",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
@@ -400,10 +455,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.0L38TGkU8ViI7klt"
+              "uuid": "Compendium.sw5e.classfeatures.0L38TGkU8ViI7klt",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
@@ -416,16 +473,20 @@
           "hint": "You've adopted a fighter strategy, as detailed at the end of the class description, and you adopt more at higher levels, as shown in the Strategies Known column of the fighter table.",
           "choices": {
             "3": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "7": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "13": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "17": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -472,7 +533,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Fighter Strategies"
       },
       {
@@ -482,7 +546,8 @@
           "hint": "Different fighters choose different approaches to perfecting their fighting prowess. The fighter specialty you choose to emulate reflects your approach. Your specialty grants you features at 3rd, 7th, 10th, 15th, and 18th level.",
           "choices": {
             "3": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -547,7 +612,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Fighter Specialties"
       }
     ],
@@ -570,7 +638,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961822,
-    "modifiedTime": 1720418053923,
+    "modifiedTime": 1720552692771,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!N7adJQsbRDhNO1ie"

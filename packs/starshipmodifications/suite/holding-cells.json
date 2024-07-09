@@ -7,40 +7,39 @@
   "system": {
     "description": {
       "value": "<p>This suite includes a security post and a number of individual holding cells equal to the ship's suite capacity by size, as shown in the Starship Size Suite Capacity table, equipped with both a key and a code lock. Holding cell doors are magnetically sealed to prevent them opening in the event of power failure.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": {
-      "value": "SotG"
-    },
+    "source": {},
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -51,16 +50,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -76,13 +76,6 @@
       "dc": null,
       "scaling": "power"
     },
-    "recharge": {
-      "charged": false,
-      "value": null
-    },
-    "system": {
-      "value": "Suite"
-    },
     "grade": {
       "value": 0
     },
@@ -95,16 +88,31 @@
     "free": {
       "slot": false,
       "suite": false
-    }
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "Suite",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494018642,
-    "modifiedTime": 1706199587761,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552915713,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "Rm8iN6nQeOGOb3an",
   "sort": 0,

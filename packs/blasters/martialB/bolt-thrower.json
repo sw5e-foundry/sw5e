@@ -112,14 +112,14 @@
         "bolt"
       ]
     },
-    "properties": {
-      "0": "rel",
-      "1": "sil",
-      "2": "spc",
-      "3": "str",
-      "4": "two",
-      "5": "spz"
-    },
+    "properties": [
+      "rel",
+      "sil",
+      "spc",
+      "str",
+      "two",
+      "spz"
+    ],
     "proficient": null,
     "type": {
       "value": "martialB",
@@ -132,7 +132,14 @@
       "bonus": "",
       "flat": false
     },
-    "_propertyValues": {},
+    "_propertyValues": {
+      "rel": 1,
+      "sil": true,
+      "spc": "range 90/360",
+      "str": 13,
+      "two": true,
+      "spz": true
+    },
     "container": null,
     "attuned": false,
     "enchantment": null,
@@ -148,7 +155,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961239,
-    "modifiedTime": 1720418047021,
+    "modifiedTime": 1720553653784,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!9VhsUL3z9o62lUsT"

@@ -107,10 +107,14 @@ function cleanPackEntry(data, { clearSourceId=true, ownership=0 }={}) {
   if ( data.system?.save?.dc === 0 ) data.system.save.dc = null;
   if ( data.system?.capacity?.value === 0 ) data.system.capacity.value = null;
   if ( data.system?.strength === 0 ) data.system.strength = null;
-  if (data.system?.properties)
-    data.system.properties = Object.fromEntries(
-      Object.entries(data.system.properties).filter(([k, v]) => !k.startsWith("c_c_"))
-    );
+  if ( data.system?.properties && !( data.system.properties instanceof Array ) ) {
+    if ( Object.keys(data.system.properties)[0] == 0 ) {
+      data.system.properties = Object.values(data.system.properties);
+    } else {
+      data.system.properties = Object.entries(data.system.properties).filter(([k, v]) => v).map(([k, v]) => k);
+    }
+  }
+  if ( data.system?.properties ) data.system.properties = data.system.properties.filter(k => !k.startsWith("c_c_"));
   if (typeof data.system?.price === "number") data.system.price = { denomination: "gc", value: data.system.price };
 
 
@@ -278,9 +282,9 @@ async function extractPacks(packName, entryName) {
       log: false, transformEntry: entry => {
         if ( entryName && (entryName !== entry.name.toLowerCase()) ) return false;
         cleanPackEntry(entry);
-        // logger.info(`Path ${transformName(entry, packInfo.name, dest)}`);
-        if (!checkChanges(entry, transformName(entry, packInfo.name, dest))) return false;
-      }, transformName: entry => transformName(entry, packInfo.name, dest) + ".json"
+        const name = path.join(dest, transformName(entry, packInfo.name)) + ".json";
+        if (!checkChanges(entry, name)) return false;
+      }, transformName: entry => transformName(entry, packInfo.name) + ".json"
     });
   }
 }
@@ -309,7 +313,7 @@ function sortObject(obj) {
   if (isArray) {
     sortedObj = obj.map(item => sortObject(item));
   } else {
-    var keys = obj.keys(obj);
+    var keys = Object.keys(obj);
     // console.log(keys);
     keys.sort(function (key1, key2) {
       (key1 = key1.toLowerCase()), (key2 = key2.toLowerCase());
@@ -363,7 +367,7 @@ function checkChanges(entry, dest) {
   return true;
 }
 
-function transformName(entry, packName, dest) {
+function transformName(entry, packName) {
   const iID = entry.flags["sw5e-importer"]?.uid ?? "";
   const iData = Object.fromEntries(`type-${iID}`.split(".").map(s => s.split("-")));
   let parts = new Set();

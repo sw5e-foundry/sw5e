@@ -45,37 +45,35 @@
           "identifier": "rangers-quarry",
           "scale": {
             "1": {
-              "n": 1,
-              "die": 4,
               "number": 1,
-              "faces": 4
+              "faces": 4,
+              "modifiers": []
             },
             "5": {
-              "n": 1,
-              "die": 6,
               "number": 1,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "9": {
-              "n": 1,
-              "die": 8,
               "number": 1,
-              "faces": 8
+              "faces": 8,
+              "modifiers": []
             },
             "13": {
-              "n": 1,
-              "die": 10,
               "number": 1,
-              "faces": 10
+              "faces": 10,
+              "modifiers": []
             },
             "17": {
-              "n": 1,
-              "die": 12,
               "number": 1,
-              "faces": 12
+              "faces": 12,
+              "modifiers": []
             }
           },
-          "type": "dice"
+          "type": "dice",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Ranger's Quarry"
@@ -96,7 +94,10 @@
               "value": 3
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Routines Known"
@@ -130,9 +131,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 4
       },
       {
@@ -140,9 +144,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 8
       },
       {
@@ -150,9 +157,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 12
       },
       {
@@ -160,9 +170,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 16
       },
       {
@@ -170,9 +183,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 19
       },
       {
@@ -184,9 +200,12 @@
             "armor:lgt",
             "armor:med"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -201,9 +220,12 @@
             "weapon:svb",
             "weapon:mvb"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -216,9 +238,12 @@
             "saves:str",
             "saves:dex"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -243,9 +268,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -262,9 +290,12 @@
             "weapon:mvb",
             "armor:med"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "secondary",
         "level": 1,
         "title": "Multiclass Proficiencies"
@@ -275,13 +306,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.LJx9u00u8Ee2nkVe"
+              "uuid": "Compendium.sw5e.classfeatures.LJx9u00u8Ee2nkVe",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.IvWufgONo62OsPU4"
+              "uuid": "Compendium.sw5e.classfeatures.IvWufgONo62OsPU4",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 1,
@@ -293,13 +327,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.MCFfbVPkLynTypaI"
+              "uuid": "Compendium.sw5e.classfeatures.MCFfbVPkLynTypaI",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.MUKouuqlJhzRsDlD"
+              "uuid": "Compendium.sw5e.classfeatures.MUKouuqlJhzRsDlD",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 2,
@@ -311,13 +348,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.Ng5u3C0YeS3vNtKw"
+              "uuid": "Compendium.sw5e.classfeatures.Ng5u3C0YeS3vNtKw",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.rL2gk9g7aa7QPvog"
+              "uuid": "Compendium.sw5e.classfeatures.rL2gk9g7aa7QPvog",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -329,10 +369,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.GphBywk9rzMDxJN1"
+              "uuid": "Compendium.sw5e.classfeatures.GphBywk9rzMDxJN1",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 5,
@@ -344,10 +386,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.h6D6ptItOrdsbbjw"
+              "uuid": "Compendium.sw5e.classfeatures.h6D6ptItOrdsbbjw",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
@@ -359,10 +403,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.v0M0YzfzDYC4vtnQ"
+              "uuid": "Compendium.sw5e.classfeatures.v0M0YzfzDYC4vtnQ",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
@@ -374,10 +420,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.oVBWvEtkrpjis9Nw"
+              "uuid": "Compendium.sw5e.classfeatures.oVBWvEtkrpjis9Nw",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -389,10 +437,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.OjWfqAlyGh1aMclE"
+              "uuid": "Compendium.sw5e.classfeatures.OjWfqAlyGh1aMclE",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -404,10 +454,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.KAVTEkNRyWghicEE"
+              "uuid": "Compendium.sw5e.classfeatures.KAVTEkNRyWghicEE",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
@@ -420,13 +472,16 @@
           "hint": "You've developed one routine, as detailed at the end of the class description, and you gain more at higher levels, as shown in the Routines Known column of the scout table. Your routine has a radius of 5 feet, which increases at higher levels, as shown in the Routine Radius column of the scout table.",
           "choices": {
             "3": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "7": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "15": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -473,7 +528,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Scout Routines"
       },
       {
@@ -483,7 +541,8 @@
           "hint": "Scouts tend to share knowledge amongst them selves, focusing on specific techniques and honing them to perfection. Your technique grants you features at 3rd, 7th, 11th, and 15th level.",
           "choices": {
             "3": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -551,7 +610,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Scout Techniques"
       }
     ],
@@ -574,7 +636,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961822,
-    "modifiedTime": 1720418053923,
+    "modifiedTime": 1720552692784,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!S2HEMAGG6DUXqMir"

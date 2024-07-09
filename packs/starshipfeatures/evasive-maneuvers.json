@@ -8,11 +8,12 @@
   "system": {
     "description": {
       "value": "<p>Also at 1st tier, when a crew member at the helm rolls for initiative, they can immediately move the ship. This movement happens before the initiative order is determined.</p><p>The amount the ship moves is determined by rolling an Evasive Maneuvers die, which is a [[/r 1d4]], and multiplying it by 50 feet. The ship then gains that many feet that it can move or spend to turn.</p><p>Your ship's Evasive Maneuvers die changes when it reaches certain tiers. The die becomes a [[/r 1d6]] at 2nd tier, a [[/r 1d8]] at 3rd tier, a [[/r 1d10]] at 4th tier, and a [[/r 1d12]] at 5th tier.</p><p>This feature can be used a number of times equal to 2 x your ship's tier. All expended uses are regained when the ship is refitted.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -25,10 +26,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,16 +41,17 @@
       "value": null,
       "max": "2*@details.tier",
       "per": "refitting",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,8 +81,16 @@
         "turn": null
       }
     },
-    "size": "Medium",
-    "tier": "1"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -88,10 +99,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494017916,
-    "modifiedTime": 1699591742516,
+    "modifiedTime": 1720552913533,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!BsyAajkYG8yoCLvj"

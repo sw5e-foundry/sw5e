@@ -43,65 +43,80 @@
     },
     "advancement": [
       {
-        "_id": "T2NKSmQYgODSwGhQ",
+        "_id": "1xAR507t4IsBmBCf",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.lgT65dkEPlSchoOP"
+              "uuid": "Compendium.sw5e.speciesfeatures.mP7VMW35N4m45VL2",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.bc4TbExAmN13PnOL"
+              "uuid": "Compendium.sw5e.speciesfeatures.ResP9JYp99vtNHlh",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.uEOlgzMKjxkBBMcj"
+              "uuid": "Compendium.sw5e.speciesfeatures.V5kGNIfoo6buBrdf",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.pqPTXxE60dVPOHcV"
+              "uuid": "Compendium.sw5e.speciesfeatures.7G86H0t3hoCJ90nc",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.MQrlRQAKsiOxK0HQ"
+              "uuid": "Compendium.sw5e.speciesfeatures.fwtHpe4kttRxLZpR",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.tlNBKB70I1loT175"
+              "uuid": "Compendium.sw5e.speciesfeatures.yma15Rq1k2AGFs7u",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.TY2kKokZiuLeZHDS"
+              "uuid": "Compendium.sw5e.speciesfeatures.MfowkZipGGZ0odtB",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.BGMLPdB0jNAUVCe7"
+              "uuid": "Compendium.sw5e.speciesfeatures.bzSlIBoqpaG9PrLA",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.PkweEDQGyoc2UBZP"
+              "uuid": "Compendium.sw5e.speciesfeatures.flPB6mxpFlvf7Ac5",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.evH8dSgvMNi4VMEk"
+              "uuid": "Compendium.sw5e.speciesfeatures.NOoiOt2Ygz5hGP7o",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.prBXfffQioeqPhrj"
+              "uuid": "Compendium.sw5e.speciesfeatures.NqPXZl5vogoohbmw",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "rliNfuhYOyX1IKeo",
+        "_id": "1uy3pI3PBvByXp3c",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "cha": 2,
             "int": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "1TIB6X4WpNzQ1UIa",
+        "_id": "mEZdn1TQl8h1BIDD",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -112,7 +127,7 @@
         "level": 0
       },
       {
-        "_id": "1vDWUjY6v49GSCLQ",
+        "_id": "1764HilyADB5JenM",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -137,9 +152,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -289,7 +307,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553797570,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!mbPOGIOplmsD8hrv"

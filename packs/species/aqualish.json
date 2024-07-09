@@ -43,65 +43,80 @@
     },
     "advancement": [
       {
-        "_id": "YWuS8TDXSXYRVQlQ",
+        "_id": "1BnZzLVSvByPbeyf",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.V6wrWfV4FcukjezP"
+              "uuid": "Compendium.sw5e.speciesfeatures.4JqHhBhl01xXYLY5",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.THLlqZi5yAQCxfBC"
+              "uuid": "Compendium.sw5e.speciesfeatures.8ky5kwBi27JdaNYy",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.51raISm0xXhYgAgo"
+              "uuid": "Compendium.sw5e.speciesfeatures.wMBXnWqCDCHKuv1J",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.rruPXsYWipgTtzhV"
+              "uuid": "Compendium.sw5e.speciesfeatures.rVrK7HR7dNQ0RZO7",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.FacYVrbcyZVaQyrb"
+              "uuid": "Compendium.sw5e.speciesfeatures.mK3I2oKo4zlwZEtH",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.U3v0EwxzyhmO1Ta4"
+              "uuid": "Compendium.sw5e.speciesfeatures.5VIfJd24gbGKZu0L",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.BMJLIIo0E0goEFY8"
+              "uuid": "Compendium.sw5e.speciesfeatures.CGoowHImQIPAp6Dt",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.pX03gAfPMG9cwNGE"
+              "uuid": "Compendium.sw5e.speciesfeatures.Ugzv1yHcrfqPceJp",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.kR4rHT7o1s4W9kaN"
+              "uuid": "Compendium.sw5e.speciesfeatures.JtmOWqkXKBw6BQR0",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.fNJxpqMrywJKsl0K"
+              "uuid": "Compendium.sw5e.speciesfeatures.IMWpdg68U96X1kUQ",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.VzLm6Qg1sGYVP5yl"
+              "uuid": "Compendium.sw5e.speciesfeatures.laEc6yLZbqLHQpfY",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "1ghvLRGc1cQ93P20",
+        "_id": "AsBBUmO68om1yfbu",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "str": 2,
             "cha": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "Q9JzUbGHVqefUSd4",
+        "_id": "14xJNEdjkvqtL6tr",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -112,16 +127,19 @@
         "level": 0
       },
       {
-        "_id": "cG4OVShb4vX20MAH",
+        "_id": "7PeGNs6rHBg10U8Q",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "skills:itm"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -259,7 +277,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553797780,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!u7wtAMico4j4oViH"

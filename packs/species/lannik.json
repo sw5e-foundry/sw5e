@@ -43,65 +43,80 @@
     },
     "advancement": [
       {
-        "_id": "1J7KrADMAwie1rZA",
+        "_id": "y229QDM9E9Q1RqSd",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.h3E7F53cSoFl17Wj"
+              "uuid": "Compendium.sw5e.speciesfeatures.urWBBzSMU0i9cCTL",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.xr1avrKlwJecJiIa"
+              "uuid": "Compendium.sw5e.speciesfeatures.DxM8CgsHRcRYIaig",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.U7shMwKFXwdJaIxH"
+              "uuid": "Compendium.sw5e.speciesfeatures.ktRMXKW3ztOZ6PyK",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.TybZzkesKtheNyBo"
+              "uuid": "Compendium.sw5e.speciesfeatures.P1vYHymr3iUEgkVo",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.ksHLrq0JwBdhFJAv"
+              "uuid": "Compendium.sw5e.speciesfeatures.sMmzOwDuuusL4gMx",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.0JqbCivxwyV3PnPG"
+              "uuid": "Compendium.sw5e.speciesfeatures.KFgacR1dtZoo6gKJ",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.Av9PQFq4zqya8Il7"
+              "uuid": "Compendium.sw5e.speciesfeatures.tsHp2dDWpqhMOx9d",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.OEo6okOpaCHMuBba"
+              "uuid": "Compendium.sw5e.speciesfeatures.rp6OA1opkRc2GrUI",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.IMcBomUCkJfaWEOh"
+              "uuid": "Compendium.sw5e.speciesfeatures.nlWgqrRg083aUnd5",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.E7bRzivl0MPRhQRx"
+              "uuid": "Compendium.sw5e.speciesfeatures.EDGNQCZdcjsQoYHK",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.zsUTMHEqkw0VUFz7"
+              "uuid": "Compendium.sw5e.speciesfeatures.evSzQqpUbxDScb2h",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "HfgrTCC1sgp1RlgM",
+        "_id": "IRNCMS0rqYl1ufOY",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "wis": 2,
             "int": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "118CXdK3Ifq01mAI",
+        "_id": "qpfYnXkcGtC1NCla",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -112,16 +127,19 @@
         "level": 0
       },
       {
-        "_id": "HDHuiZ2hWeN1FgBS",
+        "_id": "QbQTHoV3BakkQ5fI",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "skills:lor"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -291,7 +309,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553796998,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!PKsYV5up6Jwqwjxs"

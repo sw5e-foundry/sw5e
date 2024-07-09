@@ -63,7 +63,10 @@
               "value": 10000
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Rages"
@@ -75,19 +78,22 @@
           "identifier": "rage-damage",
           "scale": {
             "1": {
-              "value": "2"
+              "value": 2
             },
             "9": {
-              "value": "3"
+              "value": 3
             },
             "13": {
-              "value": "4"
+              "value": 4
             },
             "17": {
-              "value": "5"
+              "value": 5
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Rage Damage"
@@ -111,7 +117,10 @@
               "value": 5
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Berserker Instincts"
@@ -121,9 +130,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 4
       },
       {
@@ -131,9 +143,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 8
       },
       {
@@ -141,9 +156,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 12
       },
       {
@@ -151,9 +169,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 16
       },
       {
@@ -161,9 +182,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 19
       },
       {
@@ -175,9 +199,12 @@
             "armor:lgt",
             "armor:med"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -191,9 +218,12 @@
             "weapon:mvb",
             "weapon:smb"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -206,9 +236,12 @@
             "saves:str",
             "saves:con"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -230,9 +263,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -246,9 +282,12 @@
             "weapon:svb",
             "weapon:mvb"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "secondary",
         "level": 1,
         "title": "Multiclass Proficiencies"
@@ -259,13 +298,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.DAk6NKEfJq4gEyhB"
+              "uuid": "Compendium.sw5e.classfeatures.DAk6NKEfJq4gEyhB",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.QJSwQtintcLy1YUO"
+              "uuid": "Compendium.sw5e.classfeatures.QJSwQtintcLy1YUO",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 1,
@@ -277,13 +319,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.DqNRgYsYggcj2Shl"
+              "uuid": "Compendium.sw5e.classfeatures.DqNRgYsYggcj2Shl",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.77eHwAtyGrVLTCvb"
+              "uuid": "Compendium.sw5e.classfeatures.77eHwAtyGrVLTCvb",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 2,
@@ -295,13 +340,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.tt5qug0uGnvi19Xi"
+              "uuid": "Compendium.sw5e.classfeatures.tt5qug0uGnvi19Xi",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.G3mrrttiYK7MfPpm"
+              "uuid": "Compendium.sw5e.classfeatures.G3mrrttiYK7MfPpm",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -313,10 +361,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.97xuqW9D3Lgaq4em"
+              "uuid": "Compendium.sw5e.classfeatures.97xuqW9D3Lgaq4em",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 5,
@@ -328,10 +378,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.n9JNlRdzYfwhOtUm"
+              "uuid": "Compendium.sw5e.classfeatures.n9JNlRdzYfwhOtUm",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
@@ -343,10 +395,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.qv4Qv2DztxkC39ZA"
+              "uuid": "Compendium.sw5e.classfeatures.qv4Qv2DztxkC39ZA",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
@@ -358,10 +412,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.h1uexL9lDORqFdB4"
+              "uuid": "Compendium.sw5e.classfeatures.h1uexL9lDORqFdB4",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
@@ -373,10 +429,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.yHvI5IboTp2Dy9X0"
+              "uuid": "Compendium.sw5e.classfeatures.yHvI5IboTp2Dy9X0",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
@@ -388,10 +446,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.oMiKebarZkBqCjh8"
+              "uuid": "Compendium.sw5e.classfeatures.oMiKebarZkBqCjh8",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -403,10 +463,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.FgJJanWEm8ruwcLk"
+              "uuid": "Compendium.sw5e.classfeatures.FgJJanWEm8ruwcLk",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
@@ -419,16 +481,20 @@
           "hint": "You've honed two instincts, as detailed at the end of the class description, and you hone more at higher levels, as shown in the Berserker Instincts column of the berserker table.",
           "choices": {
             "2": {
-              "count": 2
+              "count": 2,
+              "replacement": false
             },
             "7": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "13": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "17": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -502,7 +568,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Berserker Instincts"
       },
       {
@@ -512,7 +581,8 @@
           "hint": "For berserkers, rage is an internal reservoir where pain, grief, and anger are forged into a fury hard as steel. Your approach grants you features at 3rd, 6th, 10th, and 14th level.",
           "choices": {
             "3": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -580,7 +650,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Berserker Approaches"
       }
     ],
@@ -603,7 +676,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961827,
-    "modifiedTime": 1720418053923,
+    "modifiedTime": 1720552692874,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!yjYA3wf0LsgfTiS2"

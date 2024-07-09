@@ -43,65 +43,80 @@
     },
     "advancement": [
       {
-        "_id": "11YDHuTEP4ns1BuV",
+        "_id": "x4fGqBFzb5dmdCj7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.owFChvGUu15O0xfY"
+              "uuid": "Compendium.sw5e.speciesfeatures.tiHxmBVQVRIpUIGP",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.r8yLFDQEd8xKFb3f"
+              "uuid": "Compendium.sw5e.speciesfeatures.f6kwBoZHcvtO9WjU",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.6zYQ0aau9i9hxVIC"
+              "uuid": "Compendium.sw5e.speciesfeatures.S3I4uqy5gTzPblcj",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.Qxqak6nVtaBXRuXT"
+              "uuid": "Compendium.sw5e.speciesfeatures.jvUdL9k140xpdroW",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.pVSEACuq8qFjkAXH"
+              "uuid": "Compendium.sw5e.speciesfeatures.g0IWRsfPy48ky6xm",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.WQpPFvewXIrJi0XA"
+              "uuid": "Compendium.sw5e.speciesfeatures.ubcYpt3G4J4maQrI",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.bgo4Nh9bfT525RZD"
+              "uuid": "Compendium.sw5e.speciesfeatures.c4CYehhPznbmPz2J",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.Og2KMvlz3To6Ctrt"
+              "uuid": "Compendium.sw5e.speciesfeatures.KNDjtni0NH5ym2Os",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.9OHu51olyKq26GLm"
+              "uuid": "Compendium.sw5e.speciesfeatures.g2jcU7dQixjgvy05",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.Pv3m6Ej4ebyYUWMv"
+              "uuid": "Compendium.sw5e.speciesfeatures.j18nNs2t1Z3tLbrU",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.gWjgcvrRbeBmAvhe"
+              "uuid": "Compendium.sw5e.speciesfeatures.pPxpcCqlij0MPL8q",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "hHQ2S1bBXQv1vKUv",
+        "_id": "1Ujt02YvzCNv1sRw",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "wis": 2,
             "int": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "1rccrGWElNKEDniH",
+        "_id": "k7NgUIWqZf3zt3gy",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -112,7 +127,7 @@
         "level": 0
       },
       {
-        "_id": "GyAdC3AcK7q1OgNW",
+        "_id": "1Ok3T6BwTSF05x0f",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -127,9 +142,12 @@
           "grants": [
             "skills:prc"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -188,7 +206,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553796357,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!2wdslNgUZfSMFN1A"

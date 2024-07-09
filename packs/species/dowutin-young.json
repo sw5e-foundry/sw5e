@@ -43,65 +43,80 @@
     },
     "advancement": [
       {
-        "_id": "lhKNULewnYr11QEW",
+        "_id": "1yGgHoDWyrR2I2TW",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.d8mOnKS5bJYuJrG1"
+              "uuid": "Compendium.sw5e.speciesfeatures.i0f8DI2rNzafcP55",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.F66nyTwCgOhfcYGy"
+              "uuid": "Compendium.sw5e.speciesfeatures.RffSGAH2zUghb1io",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.HA01btWaJxly0NgB"
+              "uuid": "Compendium.sw5e.speciesfeatures.9GIEcSyfNoORfsVS",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.FUdQ6WNwphlXifEO"
+              "uuid": "Compendium.sw5e.speciesfeatures.niCnWPx18Nekw5jj",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.7lEnSkIgGYepHqFk"
+              "uuid": "Compendium.sw5e.speciesfeatures.DTnf2pNQxQBTW5WK",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.jQhMc1K8Vo5XcxpP"
+              "uuid": "Compendium.sw5e.speciesfeatures.zHb8W5N7MC6saywE",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.ddR1uxlTpuZ0An2E"
+              "uuid": "Compendium.sw5e.speciesfeatures.JZVy3936u75EAkF4",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.ldwVlA0uRsXiJA4P"
+              "uuid": "Compendium.sw5e.speciesfeatures.zHMOXWnIVzoZbVOq",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.5aa37NrWTqmmZWGq"
+              "uuid": "Compendium.sw5e.speciesfeatures.E3YTsi2gdHjH6ZgO",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.ZDhhUTPUlwwtJi4Y"
+              "uuid": "Compendium.sw5e.speciesfeatures.MMa3vTHElWMiLsvg",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.ijuUnDuHef7jd1p1"
+              "uuid": "Compendium.sw5e.speciesfeatures.VAuyqlcjH5Ra4V5z",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "1xwfQJkOrtBQGo2M",
+        "_id": "1M7dgjSKyaEp1TBk",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "str": 2,
             "con": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "1j2wMbpgKIYQMpFo",
+        "_id": "1N4B1T1PUc8jKCES",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -112,16 +127,19 @@
         "level": 0
       },
       {
-        "_id": "JHsF6r8yEgG3aij6",
+        "_id": "16qQncrQVzJHBjKp",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "skills:sur"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -180,7 +198,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553796585,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!9x6k3uQQMaErKZHx"

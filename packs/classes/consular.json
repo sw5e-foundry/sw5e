@@ -54,7 +54,10 @@
               "value": 4
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Force-Empowered Casting Options"
@@ -64,9 +67,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 4
       },
       {
@@ -74,9 +80,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 8
       },
       {
@@ -84,9 +93,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 12
       },
       {
@@ -94,9 +106,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 16
       },
       {
@@ -104,9 +119,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 19
       },
       {
@@ -118,9 +136,12 @@
             "weapon:slw",
             "weapon:svb"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -133,9 +154,12 @@
             "saves:wis",
             "saves:cha"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -158,9 +182,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -172,9 +199,12 @@
           "grants": [
             "weapon:slw"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "secondary",
         "level": 1,
         "title": "Multiclass Proficiencies"
@@ -185,13 +215,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.OBlzHWiHNoPMpQG9"
+              "uuid": "Compendium.sw5e.classfeatures.OBlzHWiHNoPMpQG9",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.qNvcODTcxVtFhwHF"
+              "uuid": "Compendium.sw5e.classfeatures.qNvcODTcxVtFhwHF",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 1,
@@ -203,13 +236,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.1dcnnju3Pw7uz3WX"
+              "uuid": "Compendium.sw5e.classfeatures.1dcnnju3Pw7uz3WX",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.Rkeqzwdy1u70ReDg"
+              "uuid": "Compendium.sw5e.classfeatures.Rkeqzwdy1u70ReDg",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 2,
@@ -221,13 +257,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.t3UEHRDOMZPqqpxG"
+              "uuid": "Compendium.sw5e.classfeatures.t3UEHRDOMZPqqpxG",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.nF3FKSnOMrPr2zmi"
+              "uuid": "Compendium.sw5e.classfeatures.nF3FKSnOMrPr2zmi",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -239,10 +278,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.SRvdjRxU3cpcEdcw"
+              "uuid": "Compendium.sw5e.classfeatures.SRvdjRxU3cpcEdcw",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
@@ -255,13 +296,16 @@
           "hint": "You gain the ability to twist your powers to suit your needs. When you cast a force power, you can expend additional force points to modify the power. You gain two Force-Empowered Casting options, located at the end of the class description, and you learn more at higher levels, as shown in the Force-Empowered Casting Options of the cnosular table.\nYou can use only one Force-Empowered Casting option on a power when you cast it, unless otherwise noted.",
           "choices": {
             "2": {
-              "count": 2
+              "count": 2,
+              "replacement": false
             },
             "9": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "17": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -317,7 +361,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Force-Empowered Castings"
       },
       {
@@ -327,7 +374,8 @@
           "hint": "Different consulars select different traditions, called Ways, to follow as they hone their powers. Your tradition grants you features at 3rd, 6th, 10th, 14th, and 18th level.",
           "choices": {
             "3": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -386,7 +434,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Consular Traditions"
       }
     ],
@@ -409,7 +460,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961825,
-    "modifiedTime": 1720418053923,
+    "modifiedTime": 1720552692828,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!dNmwCgz4jAlXBln0"

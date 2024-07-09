@@ -117,12 +117,12 @@
         "powerCell"
       ]
     },
-    "properties": {
-      "0": "pcl",
-      "1": "mig",
-      "2": "rel",
-      "3": "two"
-    },
+    "properties": [
+      "pcl",
+      "mig",
+      "rel",
+      "two"
+    ],
     "proficient": null,
     "type": {
       "value": "simpleB",
@@ -135,7 +135,12 @@
       "bonus": "",
       "flat": false
     },
-    "_propertyValues": {},
+    "_propertyValues": {
+      "pcl": "range 80/320",
+      "mig": true,
+      "rel": 4,
+      "two": true
+    },
     "container": null,
     "attuned": false,
     "enchantment": null,
@@ -151,7 +156,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961303,
-    "modifiedTime": 1720418047021,
+    "modifiedTime": 1720553654693,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!lb1KS1SOtmf384Xv"

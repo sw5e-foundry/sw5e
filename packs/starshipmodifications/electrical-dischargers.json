@@ -1,0 +1,128 @@
+{
+  "name": "Electrical Dischargers",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">As an action a crewmember may cause your ship to emit a burst of electricity. Each ship within 150 feet, other than you, must succeed on a Dexterity saving throw (DC = 8 + prof. bonus + ship's strength modifier) or take 1d6 lightning damage.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This power's damage increases by 1d6 for every tier your ship is above first tier: 2nd tier (2d6), 3rd tier (3d6), 4th tier (4d6), and 5th tier (5d6).</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</span></p>",
+      "chat": ""
+    },
+    "source": {},
+    "quantity": 1,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": "",
+    "equipped": false,
+    "rarity": "",
+    "identified": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": "50",
+      "width": null,
+      "units": "ft",
+      "type": "radius",
+      "prompt": true
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": "",
+      "prompt": false
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "scale": false
+    },
+    "ability": "",
+    "actionType": "save",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d6",
+          "lightning"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": null,
+      "scaling": "str"
+    },
+    "grade": {
+      "value": 0
+    },
+    "baseCost": {
+      "value": null
+    },
+    "prerequisites": {
+      "value": ""
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494018606,
+    "modifiedTime": 1720552915758,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "T616WC5yZV5NyvQD",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!T616WC5yZV5NyvQD"
+}

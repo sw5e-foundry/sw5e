@@ -1,0 +1,123 @@
+{
+  "name": "Power Harpoon",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">As an action, a crewmember may make a ship weapon attack with the power harpoon. The harpoon's range is 400/1600 ft. On a hit, the target is harpooned, connecting your ship to the target by a 1,600 foot cable.</span><span style=\"font-family:'Open Sans', sans-serif\"><br style=\"background-repeat:no-repeat;box-sizing:inherit;padding:0px;margin:0px;color:rgba(0, 0, 0, 0.87);font-family:'Open Sans', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:center;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgb(255, 255, 255);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\" /></span>At any time as a free action, if the connected objects are closer than 1600 feet, a crewmember on your ship can choose whether the cable is slack or taught. When the cable is taught, any movement by one object away from the other, tows the other object. When the cable is taught, movement by the first object away from the other object is considered movement through difficult terrain if the first object is within one size category of the other object. An object two or more size categories smaller than the other object cannot move away from the other object when the cable is taught. If the objects are 1600 feet apart, the cable is always taught.</p><p>While connected by the cable, a crewmember can use a bonus action to reel, pulling your ship towards the target (if larger than your ship), or the target to-wards your ship (if the same size or smaller than your ship) by 200 feet. At any time, a crewmember on your ship can release the cable (no action required).</p><p>As an action, a crewmember of a harpooned ship can attempt to remove the harpoon. To do so, the ship must succeed on a Strength (Boost) check contested by your Strength (Boost) or Dexterity (Maneuvering) check.<span style=\"font-family:'Open Sans', sans-serif\"><br style=\"background-repeat:no-repeat;box-sizing:inherit;padding:0px;margin:0px;color:rgba(0, 0, 0, 0.87);font-family:'Open Sans', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:center;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgb(255, 255, 255);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\" /></span>Once this feature has been used, it can't be used again until the ship recharges.</p>",
+      "chat": ""
+    },
+    "source": {},
+    "quantity": 1,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": "",
+    "equipped": false,
+    "rarity": "",
+    "identified": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": "1",
+      "width": null,
+      "units": "",
+      "type": "enemy",
+      "prompt": true
+    },
+    "range": {
+      "value": 400,
+      "long": 1600,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": "",
+      "prompt": false
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "scale": false
+    },
+    "ability": "",
+    "actionType": "rwak",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "grade": {
+      "value": 0
+    },
+    "baseCost": {
+      "value": null
+    },
+    "prerequisites": {
+      "value": ""
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494018682,
+    "modifiedTime": 1720552914769,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "ALZGz03ZwgRyJKNt",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!ALZGz03ZwgRyJKNt"
+}

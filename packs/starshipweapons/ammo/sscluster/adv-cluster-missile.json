@@ -8,38 +8,41 @@
   "system": {
     "description": {
       "value": "<p>(Range 600/2400), auto, burst 6, explosive, rapid 6</p>\n<p>20 (40) lb</p>\n<p>3d6 (6d6) kinetic</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 200,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "none",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": 600,
@@ -49,20 +52,24 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
+      "per": null,
       "recovery": "",
-      "autoDestroy": false
+      "autoDestroy": false,
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "rwak",
-    "attackBonus": "0",
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -78,84 +85,29 @@
       "dc": null,
       "scaling": "power"
     },
-    "consumableType": "ammo",
-    "ammoType": "sscluster",
-    "properties": {
-      "amm": false,
-      "aut": true,
-      "bur": 6,
-      "con": null,
-      "def": null,
-      "dex": null,
-      "dir": null,
-      "drm": false,
-      "dgd": false,
-      "dis": null,
-      "dpt": false,
-      "dou": false,
-      "exp": true,
-      "fin": false,
-      "fix": false,
-      "foc": false,
-      "hvy": false,
-      "hid": false,
-      "hom": false,
-      "ion": false,
-      "ken": null,
-      "lgt": false,
-      "lum": false,
-      "mlt": false,
-      "mig": false,
-      "ovr": null,
-      "pic": null,
-      "pow": false,
-      "rap": 6,
-      "rch": false,
-      "rel": null,
-      "ret": false,
-      "sat": false,
-      "shk": null,
-      "sil": false,
-      "spc": false,
-      "str": null,
-      "thr": false,
-      "two": false,
-      "ver": false,
-      "vic": null,
-      "zon": false,
-      "mgc": false,
-      "ran": false,
-      "smr": false
+    "properties": [
+      "aut",
+      "bur",
+      "exp",
+      "rap"
+    ],
+    "attuned": false,
+    "type": {
+      "value": "ammo",
+      "subtype": "sscluster"
     },
-    "armor": {
-      "value": 10
+    "unidentified": {
+      "description": ""
     },
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "modify": {
-      "chassis": "none",
-      "augmentSlots": 0,
-      "modSlots": 4,
-      "items": [],
-      "changes": {},
-      "type": null
-    },
-    "weaponType": "ammo",
-    "baseItem": "",
-    "ammo": {
-      "target": null,
-      "value": null,
-      "use": null,
-      "types": [
-        "powerCell"
-      ]
-    },
-    "proficient": true,
-    "attuned": false
+    "_propertyValues": {},
+    "container": null,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "ownership": {
     "default": 0
@@ -164,11 +116,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494019802,
-    "modifiedTime": 1699591748135,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552917599,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!5kpivuc8zKnAdtxS"
 }

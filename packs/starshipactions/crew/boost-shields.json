@@ -10,27 +10,29 @@
   "system": {
     "description": {
       "value": "<p>You can attempt to boost your shields. When you take the Boost Shields action, you make a  DC 10 Strength (Boost) check. On a success, you roll a shield die, without expending it, and gain temporary shield points equal to the result that last until the start of your ship's next turn.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": "self"
+      "type": "self",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,17 +42,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "heal",
-    "attackBonus": 0,
     "chatFlavor": "DC 10",
     "critical": {
       "threshold": null,
@@ -85,17 +88,26 @@
         "turn": null
       }
     },
-    "deployment": "crew"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494016671,
-    "modifiedTime": 1699591738024,
+    "modifiedTime": 1720552912934,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!Jmp4QznVg3PSEK86"

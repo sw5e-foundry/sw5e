@@ -8,27 +8,29 @@
   "system": {
     "description": {
       "value": "<p>Also at 2nd tier, when an attacker that a crew member can see deals damage to your ship with a weapon, they can use their reaction to immediately move the ship up to 50 feet in a direction of their choice, halving the damage your ship takes. The orientation of the ship does not change.</p><p>Once this feature has been used, it can't be used again until the ship recharges.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
       "condition": "when an attacker that a crew member can see deals damage to your ship with a weapon"
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -36,19 +38,20 @@
       "units": ""
     },
     "uses": {
-      "value": "1",
+      "value": 1,
       "max": "1",
       "per": "recharge",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,8 +81,16 @@
         "turn": null
       }
     },
-    "size": "Small",
-    "tier": "2"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -88,10 +99,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494017981,
-    "modifiedTime": 1699591742522,
+    "modifiedTime": 1720552913882,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!wcrP5FTiW9MIUG5G"

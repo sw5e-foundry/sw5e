@@ -45,37 +45,35 @@
           "identifier": "kinetic-combat",
           "scale": {
             "2": {
-              "n": 1,
-              "die": 4,
               "number": 1,
-              "faces": 4
+              "faces": 4,
+              "modifiers": []
             },
             "5": {
-              "n": 1,
-              "die": 6,
               "number": 1,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "9": {
-              "n": 1,
-              "die": 8,
               "number": 1,
-              "faces": 8
+              "faces": 8,
+              "modifiers": []
             },
             "13": {
-              "n": 1,
-              "die": 10,
               "number": 1,
-              "faces": 10
+              "faces": 10,
+              "modifiers": []
             },
             "17": {
-              "n": 1,
-              "die": 12,
               "number": 1,
-              "faces": 12
+              "faces": 12,
+              "modifiers": []
             }
           },
-          "type": "dice"
+          "type": "dice",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Kinetic Combat"
@@ -96,7 +94,10 @@
               "value": 4
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Ideals Known"
@@ -117,7 +118,10 @@
               "value": 4
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Ideal Manifests"
@@ -127,9 +131,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 4
       },
       {
@@ -137,9 +144,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 8
       },
       {
@@ -147,9 +157,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 12
       },
       {
@@ -157,9 +170,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 16
       },
       {
@@ -167,9 +183,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 19
       },
       {
@@ -180,9 +199,12 @@
           "grants": [
             "armor:lgt"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -197,9 +219,12 @@
             "weapon:mlw",
             "weapon:mvb"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -216,9 +241,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -231,9 +259,12 @@
             "saves:dex",
             "saves:cha"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -258,9 +289,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -274,9 +308,12 @@
             "weapon:slw",
             "weapon:svb"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "secondary",
         "level": 1,
         "title": "Multiclass Proficiencies"
@@ -287,13 +324,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.zysnaJwbNrYiEbXb"
+              "uuid": "Compendium.sw5e.classfeatures.zysnaJwbNrYiEbXb",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.C1UAdaL6DzVkJBiV"
+              "uuid": "Compendium.sw5e.classfeatures.C1UAdaL6DzVkJBiV",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 1,
@@ -305,13 +345,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.4obIpzhQVjzV203q"
+              "uuid": "Compendium.sw5e.classfeatures.4obIpzhQVjzV203q",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.2BtuxZqgiBUJwgJj"
+              "uuid": "Compendium.sw5e.classfeatures.2BtuxZqgiBUJwgJj",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 2,
@@ -323,10 +366,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.naRAU6qvgDvktTV4"
+              "uuid": "Compendium.sw5e.classfeatures.naRAU6qvgDvktTV4",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -338,10 +383,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.LaRxCNespONqb3Mb"
+              "uuid": "Compendium.sw5e.classfeatures.LaRxCNespONqb3Mb",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 5,
@@ -353,10 +400,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.59fmNR7GZhUw4ofI"
+              "uuid": "Compendium.sw5e.classfeatures.59fmNR7GZhUw4ofI",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
@@ -368,10 +417,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.RPvmlGBBhy5pKwxn"
+              "uuid": "Compendium.sw5e.classfeatures.RPvmlGBBhy5pKwxn",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
@@ -383,10 +434,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.jTKDvLAy0d52oVjL"
+              "uuid": "Compendium.sw5e.classfeatures.jTKDvLAy0d52oVjL",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
@@ -399,13 +452,16 @@
           "hint": "You adopt ideals that exemplify your bond with the Force. You adopt two ideals of your choice, as detailed at the end of the class description, and you adopt more at higher levels, as shown in the Ideals Known column of the sentinel table.\nYou can manifest your ideals a combined total of twice, and you can manifest them more times at higher levels as shown in the Ideal Manifests column of the sentinel table.",
           "choices": {
             "2": {
-              "count": 2
+              "count": 2,
+              "replacement": false
             },
             "6": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "11": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -455,7 +511,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Sentinel Ideals"
       },
       {
@@ -465,7 +524,8 @@
           "hint": "Different sentinels select different callings, called Paths, to follow as they hone their powers. Your calling grants you features at 3rd, 7th, 13th, and 18th level.",
           "choices": {
             "3": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -527,7 +587,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Sentinel Callings"
       }
     ],
@@ -550,7 +613,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961819,
-    "modifiedTime": 1720418053923,
+    "modifiedTime": 1720552692758,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!Me7s9qQT3WLmFGHq"

@@ -45,37 +45,35 @@
           "identifier": "martial-arts",
           "scale": {
             "1": {
-              "n": 1,
-              "die": 4,
               "number": 1,
-              "faces": 4
+              "faces": 4,
+              "modifiers": []
             },
             "5": {
-              "n": 1,
-              "die": 6,
               "number": 1,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "9": {
-              "n": 1,
-              "die": 8,
               "number": 1,
-              "faces": 8
+              "faces": 8,
+              "modifiers": []
             },
             "13": {
-              "n": 1,
-              "die": 10,
               "number": 1,
-              "faces": 10
+              "faces": 10,
+              "modifiers": []
             },
             "17": {
-              "n": 1,
-              "die": 12,
               "number": 1,
-              "faces": 12
+              "faces": 12,
+              "modifiers": []
             }
           },
-          "type": "dice"
+          "type": "dice",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Martial Arts"
@@ -144,7 +142,10 @@
               "value": 20
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Focus Points"
@@ -168,7 +169,10 @@
               "value": 5
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Monastic Vows"
@@ -208,9 +212,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 4
       },
       {
@@ -218,9 +225,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 8
       },
       {
@@ -228,9 +238,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 10
       },
       {
@@ -238,9 +251,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 12
       },
       {
@@ -248,9 +264,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 16
       },
       {
@@ -258,9 +277,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 19
       },
       {
@@ -273,9 +295,12 @@
             "weapon:svb",
             "weapon:mvb"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -288,9 +313,12 @@
             "saves:str",
             "saves:dex"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -312,9 +340,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -327,9 +358,12 @@
             "weapon:svb",
             "weapon:techblade"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "secondary",
         "level": 1,
         "title": "Multiclass Proficiencies"
@@ -340,13 +374,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.xLRbVvyf6SZqI0IR"
+              "uuid": "Compendium.sw5e.classfeatures.xLRbVvyf6SZqI0IR",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.oZApI8GlhbASPGO8"
+              "uuid": "Compendium.sw5e.classfeatures.oZApI8GlhbASPGO8",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 1,
@@ -358,13 +395,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.bdi8Z3rZZGkQVSEc"
+              "uuid": "Compendium.sw5e.classfeatures.bdi8Z3rZZGkQVSEc",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.yIs1spX5tGcjpoA0"
+              "uuid": "Compendium.sw5e.classfeatures.yIs1spX5tGcjpoA0",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 2,
@@ -376,16 +416,20 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.j3MilBSO0RDAKpK1"
+              "uuid": "Compendium.sw5e.classfeatures.j3MilBSO0RDAKpK1",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.4Ff9Vf3RcIKutLAY"
+              "uuid": "Compendium.sw5e.classfeatures.4Ff9Vf3RcIKutLAY",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.8vTlVwgsujIvk9mn"
+              "uuid": "Compendium.sw5e.classfeatures.8vTlVwgsujIvk9mn",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -397,10 +441,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.VA6oFF0teIsE1gcI"
+              "uuid": "Compendium.sw5e.classfeatures.VA6oFF0teIsE1gcI",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 4,
@@ -412,13 +458,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.MZPn1mydA645VDDE"
+              "uuid": "Compendium.sw5e.classfeatures.MZPn1mydA645VDDE",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.eYYdXnO1zUk4XpFW"
+              "uuid": "Compendium.sw5e.classfeatures.eYYdXnO1zUk4XpFW",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 5,
@@ -430,10 +479,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.FA0638Swi8vJIPUk"
+              "uuid": "Compendium.sw5e.classfeatures.FA0638Swi8vJIPUk",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
@@ -445,13 +496,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.kIGVBSr0fq6o00Iq"
+              "uuid": "Compendium.sw5e.classfeatures.kIGVBSr0fq6o00Iq",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.BRxLHkDX9NfN35WG"
+              "uuid": "Compendium.sw5e.classfeatures.BRxLHkDX9NfN35WG",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
@@ -463,10 +517,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.Y4d7NX1lWQiLdVFn"
+              "uuid": "Compendium.sw5e.classfeatures.Y4d7NX1lWQiLdVFn",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
@@ -478,10 +534,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.bwKnBonjwJc5c2Kx"
+              "uuid": "Compendium.sw5e.classfeatures.bwKnBonjwJc5c2Kx",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -493,10 +551,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.xHiGKhyvu88g5Ixh"
+              "uuid": "Compendium.sw5e.classfeatures.xHiGKhyvu88g5Ixh",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
@@ -508,10 +568,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.h4WPdGXUliSHbSWW"
+              "uuid": "Compendium.sw5e.classfeatures.h4WPdGXUliSHbSWW",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -523,10 +585,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.z517Qm5VFOUCEYyk"
+              "uuid": "Compendium.sw5e.classfeatures.z517Qm5VFOUCEYyk",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
@@ -545,9 +609,12 @@
             "saves:wis",
             "saves:cha"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 14
       },
       {
@@ -557,16 +624,20 @@
           "hint": "You've sworn two vows, as detailed at the end of the class description. You swear an additional vow at 7th, 13th, and 17th level.",
           "choices": {
             "2": {
-              "count": 2
+              "count": 2,
+              "replacement": false
             },
             "7": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "13": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "17": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -643,7 +714,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Monastic Vows"
       },
       {
@@ -653,7 +727,8 @@
           "hint": "Orders of monastic pursuit are common in the locales scattered across the galaxy. Each order is based in a specific culture and is mutually exclusive, despite relying on the same basic techniques. Your order grants you features at 3rd, 6th, 11th, and 17th level.",
           "choices": {
             "3": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -715,7 +790,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Monastic Orders"
       }
     ],
@@ -738,7 +816,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961826,
-    "modifiedTime": 1720418053923,
+    "modifiedTime": 1720552692844,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!vT9bTQKS2NL1xn73"

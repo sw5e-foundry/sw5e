@@ -1,0 +1,123 @@
+{
+  "name": "Shield Disruptor",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">This modification adds a shield disruptor to a ship, which is used to interfere with another ship's shield. As an action, a crewmember can activate the shield disruptor and choose a ship they can see within 1,000 feet. You make a Charisma (Interfere) check contested by the target's Constitution (Regulate) check. On a failed save, the ship's shield regeneration rate is reduced by half for 1 minute. Additionally they take damage to their shields equal to two of their shield dice.</span></p><p>At the start of each of the target ship's turns, a crewmember can use an action to repeat the saving throw, ending the effect on a success.</p><p>If a ship is targeted by a larger ship, it has disadvantage on the saving throw. If targeted by a smaller ship, it instead has advantage.</p><p>You can end the shield disruptor at any time (no action required). This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship recharges.</p>",
+      "chat": ""
+    },
+    "source": {},
+    "quantity": 1,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": "",
+    "equipped": false,
+    "rarity": "",
+    "identified": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": "1",
+      "width": null,
+      "units": "",
+      "type": "enemy",
+      "prompt": true
+    },
+    "range": {
+      "value": 1000,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": "",
+      "prompt": false
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "scale": false
+    },
+    "ability": "",
+    "actionType": "",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "grade": {
+      "value": 2
+    },
+    "baseCost": {
+      "value": null
+    },
+    "prerequisites": {
+      "value": ""
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494018727,
+    "modifiedTime": 1720552914675,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "8f4aA9xI5lGtQmcE",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!8f4aA9xI5lGtQmcE"
+}

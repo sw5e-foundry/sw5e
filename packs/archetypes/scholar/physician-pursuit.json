@@ -30,13 +30,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.ADu31iAcdO57ggLT"
+              "uuid": "Compendium.sw5e.archetypefeatures.ADu31iAcdO57ggLT",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.l4baMhJrCvAZQAw2"
+              "uuid": "Compendium.sw5e.archetypefeatures.l4baMhJrCvAZQAw2",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -48,10 +51,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.pSbkArj1o3Z7WRCS"
+              "uuid": "Compendium.sw5e.archetypefeatures.pSbkArj1o3Z7WRCS",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
@@ -63,10 +68,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.hnc259js63blUqkB"
+              "uuid": "Compendium.sw5e.archetypefeatures.hnc259js63blUqkB",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
@@ -78,10 +85,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.eAem3vy3uo6k4AQE"
+              "uuid": "Compendium.sw5e.archetypefeatures.eAem3vy3uo6k4AQE",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
@@ -103,9 +112,12 @@
           "grants": [
             "tool:biochemistskit"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
@@ -115,25 +127,32 @@
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
             "2": {
-              "count": 2
+              "count": 2,
+              "replacement": false
             },
             "3": {
-              "count": 2
+              "count": 2,
+              "replacement": false
             },
             "5": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "9": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "11": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "13": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "17": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -177,7 +196,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Physician Discoveries"
       }
     ],
@@ -199,7 +221,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959728,
-    "modifiedTime": 1720418052632,
+    "modifiedTime": 1720552689226,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!E3s4Z8jsY2Q4KHHU"

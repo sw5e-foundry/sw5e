@@ -141,11 +141,11 @@
       "conditions": ""
     },
     "strength": null,
-    "properties": {
-      "0": "Bulky",
-      "1": "Strength",
-      "2": "stealthDisadvantage"
-    },
+    "properties": [
+      "Bulky",
+      "Strength",
+      "stealthDisadvantage"
+    ],
     "proficient": null,
     "type": {
       "value": "heavy",
@@ -158,7 +158,11 @@
       "bonus": "",
       "flat": false
     },
-    "_propertyValues": {},
+    "_propertyValues": {
+      "Bulky": true,
+      "Strength": 17,
+      "stealthDisadvantage": true
+    },
     "container": null,
     "attuned": false,
     "enchantment": null,
@@ -172,7 +176,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493964876,
-    "modifiedTime": 1720418048515,
+    "modifiedTime": 1720553676016,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!feQIX3p3KVvujy4M"

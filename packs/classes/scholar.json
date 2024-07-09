@@ -75,7 +75,10 @@
               "value": 12
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Superiority Dice Quantity"
@@ -87,37 +90,35 @@
           "identifier": "superiority-dice-size",
           "scale": {
             "1": {
-              "n": 1,
-              "die": 4,
               "number": 1,
-              "faces": 4
+              "faces": 4,
+              "modifiers": []
             },
             "5": {
-              "n": 1,
-              "die": 6,
               "number": 1,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "9": {
-              "n": 1,
-              "die": 8,
               "number": 1,
-              "faces": 8
+              "faces": 8,
+              "modifiers": []
             },
             "13": {
-              "n": 1,
-              "die": 10,
               "number": 1,
-              "faces": 10
+              "faces": 10,
+              "modifiers": []
             },
             "17": {
-              "n": 1,
-              "die": 12,
               "number": 1,
-              "faces": 12
+              "faces": 12,
+              "modifiers": []
             }
           },
-          "type": "dice"
+          "type": "dice",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Superiority Dice Size"
@@ -150,7 +151,10 @@
               "value": 9
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Discoveries"
@@ -160,9 +164,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 4
       },
       {
@@ -170,9 +177,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 8
       },
       {
@@ -180,9 +190,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 12
       },
       {
@@ -190,9 +203,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 16
       },
       {
@@ -200,9 +216,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 19
       },
       {
@@ -213,9 +232,12 @@
           "grants": [
             "armor:lgt"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -229,9 +251,12 @@
             "weapon:svb",
             "weapon:mvb"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -248,9 +273,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -263,9 +291,12 @@
             "saves:int",
             "saves:wis"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -290,9 +321,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -304,9 +338,12 @@
           "grants": [
             "armor:lgt"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "secondary",
         "level": 1,
         "title": "Multiclass Proficiencies"
@@ -317,13 +354,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.aiD0jaJJZzmoHESz"
+              "uuid": "Compendium.sw5e.classfeatures.aiD0jaJJZzmoHESz",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.julwa4Ma5myCpsZa"
+              "uuid": "Compendium.sw5e.classfeatures.julwa4Ma5myCpsZa",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 1,
@@ -335,13 +375,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.B6NJI9z0SkEMMJFh"
+              "uuid": "Compendium.sw5e.classfeatures.B6NJI9z0SkEMMJFh",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.myRBcNnOr8RVAWhp"
+              "uuid": "Compendium.sw5e.classfeatures.myRBcNnOr8RVAWhp",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 2,
@@ -353,13 +396,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.XQPJBvLrsacGI1tT"
+              "uuid": "Compendium.sw5e.classfeatures.XQPJBvLrsacGI1tT",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.VJDGJuow6V6gNqv7"
+              "uuid": "Compendium.sw5e.classfeatures.VJDGJuow6V6gNqv7",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -371,10 +417,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.vwAX7gH2U9C2cgRh"
+              "uuid": "Compendium.sw5e.classfeatures.vwAX7gH2U9C2cgRh",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 5,
@@ -386,10 +434,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.gBTZEQNzearHcftD"
+              "uuid": "Compendium.sw5e.classfeatures.gBTZEQNzearHcftD",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -401,10 +451,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.ibQTjE4laa1vJuUf"
+              "uuid": "Compendium.sw5e.classfeatures.ibQTjE4laa1vJuUf",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -416,10 +468,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.j0CGv1G7GU5WtLhh"
+              "uuid": "Compendium.sw5e.classfeatures.j0CGv1G7GU5WtLhh",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
@@ -432,25 +486,32 @@
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
             "2": {
-              "count": 2
+              "count": 2,
+              "replacement": false
             },
             "3": {
-              "count": 2
+              "count": 2,
+              "replacement": false
             },
             "5": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "9": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "11": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "13": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "17": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -542,7 +603,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Discoveries"
       },
       {
@@ -552,7 +616,8 @@
           "hint": "Your pursuit is a representation of which fields you have studied or how you practically apply your knowledge. Your pursuit grants you features at 3rd, 6th, 9th, and 17th level.",
           "choices": {
             "3": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -611,7 +676,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Academic Pursuits"
       }
     ],
@@ -634,7 +702,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961824,
-    "modifiedTime": 1720418053923,
+    "modifiedTime": 1720552692815,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!ZHxuZ0IOqwdM727e"

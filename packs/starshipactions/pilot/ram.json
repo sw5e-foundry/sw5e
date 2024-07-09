@@ -10,27 +10,29 @@
   "system": {
     "description": {
       "value": "<p>You can attempt to ram another ship while flying through its space. When you take the ram action, you make a Strength (Ram) check opposed by the target's Dexterity (Maneuvering) check. On a failed check the ramming action fails. On a success, both you and the target ship take kinetic damage equal to two of your ship's Hull Dice + your ship's Strength modifier. If your ship has shield points remaining, your ship instead takes half this damage.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "starship"
+      "type": "starship",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,17 +42,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "abil",
-    "attackBonus": 0,
     "chatFlavor": "Contested by Dexterity (Maneuver)",
     "critical": {
       "threshold": null,
@@ -85,17 +88,26 @@
         "turn": null
       }
     },
-    "deployment": "pilot"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494016675,
-    "modifiedTime": 1699591738025,
+    "modifiedTime": 1720552912949,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!bIpGPTNtTQBB4Oo5"

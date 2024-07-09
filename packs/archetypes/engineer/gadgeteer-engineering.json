@@ -30,16 +30,20 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.xVu1g0z3mnl8RAPt"
+              "uuid": "Compendium.sw5e.archetypefeatures.xVu1g0z3mnl8RAPt",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.DUJPUaDKKRh3BjPB"
+              "uuid": "Compendium.sw5e.archetypefeatures.DUJPUaDKKRh3BjPB",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.RH6chmr8R2fN3Krm"
+              "uuid": "Compendium.sw5e.archetypefeatures.RH6chmr8R2fN3Krm",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -51,10 +55,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.OgenAoFLPl4P15AE"
+              "uuid": "Compendium.sw5e.archetypefeatures.OgenAoFLPl4P15AE",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
@@ -66,10 +72,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.E3RQkBmawtaJJDfc"
+              "uuid": "Compendium.sw5e.archetypefeatures.E3RQkBmawtaJJDfc",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -81,10 +89,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.ameiUgcoTly17A28"
+              "uuid": "Compendium.sw5e.archetypefeatures.ameiUgcoTly17A28",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -98,9 +108,12 @@
           "grants": [
             "tool:gadgeteersimplements"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
@@ -110,22 +123,28 @@
           "hint": "",
           "choices": {
             "3": {
-              "count": 4
+              "count": 4,
+              "replacement": false
             },
             "5": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "9": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "11": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "13": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "17": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -244,7 +263,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Gadgeteer Modifications"
       }
     ],
@@ -266,7 +288,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959749,
-    "modifiedTime": 1720418052632,
+    "modifiedTime": 1720552689516,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!TkSzn6cSCBsySMql"

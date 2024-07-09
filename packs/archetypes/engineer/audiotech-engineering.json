@@ -30,16 +30,20 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.RctYIqnHj2t14axe"
+              "uuid": "Compendium.sw5e.archetypefeatures.RctYIqnHj2t14axe",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.qBF3hSgQmoXEE1xa"
+              "uuid": "Compendium.sw5e.archetypefeatures.qBF3hSgQmoXEE1xa",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.kmcrjj0s9p4KfNEM"
+              "uuid": "Compendium.sw5e.archetypefeatures.kmcrjj0s9p4KfNEM",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -51,10 +55,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.xVKm3UMya6KyNQOx"
+              "uuid": "Compendium.sw5e.archetypefeatures.xVKm3UMya6KyNQOx",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
@@ -66,10 +72,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.nDpXaAiMpFjx71ym"
+              "uuid": "Compendium.sw5e.archetypefeatures.nDpXaAiMpFjx71ym",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -81,10 +89,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.NKOEhauwGTSiMLrm"
+              "uuid": "Compendium.sw5e.archetypefeatures.NKOEhauwGTSiMLrm",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -105,9 +115,12 @@
           "grants": [
             "tool:audiotechsimplements"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
@@ -117,22 +130,28 @@
           "hint": "",
           "choices": {
             "3": {
-              "count": 4
+              "count": 4,
+              "replacement": false
             },
             "5": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "9": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "11": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "13": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "17": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -227,7 +246,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Audiotech Modifications"
       }
     ],
@@ -249,7 +271,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959710,
-    "modifiedTime": 1720418052632,
+    "modifiedTime": 1720552688988,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!4WitHCdI0QiCuS8A"

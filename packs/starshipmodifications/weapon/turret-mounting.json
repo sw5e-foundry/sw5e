@@ -7,40 +7,39 @@
   "system": {
     "description": {
       "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">Turret Mounting is a modification to a Hardpoint that grants an improved firing arc. The weapon attached to the chosen Hardpoint now has an unlimited firing arc in addition to its limited arc, as described in chapter 9.</span></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": {
-      "value": "SotG"
-    },
+    "source": {},
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -51,16 +50,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -76,13 +76,6 @@
       "dc": null,
       "scaling": "power"
     },
-    "recharge": {
-      "charged": false,
-      "value": null
-    },
-    "system": {
-      "value": "Weapon"
-    },
     "grade": {
       "value": 2
     },
@@ -95,16 +88,31 @@
     "free": {
       "slot": false,
       "suite": false
-    }
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "Weapon",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494018664,
-    "modifiedTime": 1706199587842,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552917036,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "ul8lqdjxOXqhVXY3",
   "sort": 0,

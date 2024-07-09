@@ -43,65 +43,80 @@
     },
     "advancement": [
       {
-        "_id": "1PjdEVguglZv1mw3",
+        "_id": "Y3epQT32Kp0iBzNn",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.EdNJEuC1uCHFZVB3"
+              "uuid": "Compendium.sw5e.speciesfeatures.iTaWC3dhP191ChLy",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.7jTt9AOfQ3hrIj4B"
+              "uuid": "Compendium.sw5e.speciesfeatures.admFBPJqMsk7acps",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.pG3uZ0vsFHIkTvJQ"
+              "uuid": "Compendium.sw5e.speciesfeatures.XCq1q6INNZvxBONe",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.Jm5jepjUPcNu9k2M"
+              "uuid": "Compendium.sw5e.speciesfeatures.dDHMxPFHvjse9JJQ",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.ukklbs48RPyZseWP"
+              "uuid": "Compendium.sw5e.speciesfeatures.7Au297VyT9womaw2",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.rCKE4NQKJKnkFwXl"
+              "uuid": "Compendium.sw5e.speciesfeatures.fKm7oTArDAOwoUuk",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.R1lXIzt7VIrI01lP"
+              "uuid": "Compendium.sw5e.speciesfeatures.v2ukgfAJLUoigOFJ",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.IdL0YS2icEoMHBan"
+              "uuid": "Compendium.sw5e.speciesfeatures.xS6zPk0cr8Of3GIT",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.4ssVwY25BKpJGnST"
+              "uuid": "Compendium.sw5e.speciesfeatures.rY1NZt9FpHO9fRyR",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.r1sdj8aTALga7g1w"
+              "uuid": "Compendium.sw5e.speciesfeatures.a27bbQREhVHgaj3r",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.kd0O81H8Ye6Aiyyw"
+              "uuid": "Compendium.sw5e.speciesfeatures.1vMJtpHWzSsgjX7x",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "7HnQw52z6x9HRqiw",
+        "_id": "XWquHDWLFmP1fXqi",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "wis": 2,
             "con": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "1DoeK831fJcYHotk",
+        "_id": "xQwTv7p08LO1hiPm",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -112,7 +127,7 @@
         "level": 0
       },
       {
-        "_id": "1MDuKVWaBzAIWLXY",
+        "_id": "Chy1JexMh3a1bR1S",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -127,9 +142,12 @@
           "grants": [
             "skills:lor"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -255,7 +273,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553796316,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!0uQpxva9Ga3v2k10"

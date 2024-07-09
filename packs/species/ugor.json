@@ -43,65 +43,80 @@
     },
     "advancement": [
       {
-        "_id": "1TIgPspao3fh1OkH",
+        "_id": "1wzIC9zWZNr21fvj",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.vkAlBzvvJJj1QXOD"
+              "uuid": "Compendium.sw5e.speciesfeatures.5brXZ6ZvpqWhWovU",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.DsBUiJWzAoa8ktji"
+              "uuid": "Compendium.sw5e.speciesfeatures.WZDGmfLFQq88ORkA",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.xofhEbXXYb2df6ZT"
+              "uuid": "Compendium.sw5e.speciesfeatures.r9djNejUPWK6WLN6",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.lUcekn4JCfgGcYfY"
+              "uuid": "Compendium.sw5e.speciesfeatures.qHac4u88i8tyx3AU",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.rlZ6Y7f6dlcHWqNt"
+              "uuid": "Compendium.sw5e.speciesfeatures.4LrC1v5dilWaAWmP",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.zAqWFj5GWlYRmMbT"
+              "uuid": "Compendium.sw5e.speciesfeatures.nwQKZd8lAq3oCPGC",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.zDJyN4D1qmqfi7W0"
+              "uuid": "Compendium.sw5e.speciesfeatures.9VBdGSpEewfKCMVo",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.FxAow9TGLgjrqAWU"
+              "uuid": "Compendium.sw5e.speciesfeatures.xN8piebRc549kjDr",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.8SciXMYRSYPzesxn"
+              "uuid": "Compendium.sw5e.speciesfeatures.OglwTyTCN5aRzD4a",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.AfFwd9fb9JLpZ83N"
+              "uuid": "Compendium.sw5e.speciesfeatures.tlyNePd68IaUwYcK",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.Kk03QEm5JpCY8jHF"
+              "uuid": "Compendium.sw5e.speciesfeatures.EVj3FMgxi3cubUiC",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "13Lo7FHdfNlt13C6",
+        "_id": "D9Shyf1TGakAmoQV",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "con": 2,
             "int": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "D0yhiOzPO2m1ULIR",
+        "_id": "Vak0H9p9mgF11LCk",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -112,7 +127,7 @@
         "level": 0
       },
       {
-        "_id": "7hFNfvg33l61hBkO",
+        "_id": "ztArG5OoAbO1sSsL",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -125,9 +140,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -186,7 +204,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553796596,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!A1UwKriEQ0L3mIAK"

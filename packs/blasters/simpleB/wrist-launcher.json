@@ -116,12 +116,12 @@
         "snare"
       ]
     },
-    "properties": {
-      "0": "fix",
-      "1": "rel",
-      "2": "spc",
-      "3": "spz"
-    },
+    "properties": [
+      "fix",
+      "rel",
+      "spc",
+      "spz"
+    ],
     "proficient": null,
     "type": {
       "value": "simpleB",
@@ -134,7 +134,12 @@
       "bonus": "",
       "flat": false
     },
-    "_propertyValues": {},
+    "_propertyValues": {
+      "fix": true,
+      "rel": 1,
+      "spc": "range 30/120",
+      "spz": true
+    },
     "container": null,
     "attuned": false,
     "enchantment": null,
@@ -150,7 +155,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961292,
-    "modifiedTime": 1720418047021,
+    "modifiedTime": 1720553654534,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!fhQ3oxD0XojwKnVN"

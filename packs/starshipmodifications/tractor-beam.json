@@ -1,0 +1,123 @@
+{
+  "name": "Tractor Beam",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p>This modification adds a tractor beam to a ship, which can be used to grasp and guide vessels and debris.</p>\n<p>As an action, you can activate the tractor beam, which has a range of 600 feet and a limited firing arc, as described in Chapter 9. Each ship or object of your size or smaller within the firing arc must make a Strength saving throw (DC = 8 + ship tier + the ship's Strength modifier). On a failed save, a ship is tractored. An object automatically fails this saving throw. As a bonus action, a player can move a tractored ship in any direction. A ship or object two or more sizes smaller than your ship can be moved up to 200 feet, a ship or object one size category smaller than your ship can be moved up to 100 feet, and a ship or object your size can be moved up to 50 feet. If at the end of this movement the ship or object strikes another ship or object, it must make a Dexterity saving throw. An object automatically fails this saving throw. On a failed save, they both take 1d4 kinetic damage. As <span style=\"font-family:var(--font-primary);font-size:var(--font-size-14)\">an action, a pilot of a tractored ship can repeat the saving throw, ending the effect on a success.</span></p>\n<p>The saving throws are made with disadvantage if the ship is smaller than you.</p>\n<p>If you attempt to tractor a ship or object larger than you, you can choose to gain the tractored condition and move yourself.</p>\n<p>You can end the tractor beam at any time (no action required).</p>\n<p>This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges. If you have more than one Tractor Beam installed, they all share this amount of uses, and each Tractor Beam past the first grants an additional use.</p>",
+      "chat": ""
+    },
+    "source": {},
+    "quantity": 1,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": "",
+    "equipped": false,
+    "rarity": "",
+    "identified": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": "",
+      "width": null,
+      "units": "any",
+      "type": "object",
+      "prompt": true
+    },
+    "range": {
+      "value": 600,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": "",
+      "prompt": false
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "scale": false
+    },
+    "ability": "",
+    "actionType": "save",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "str",
+      "dc": null,
+      "scaling": "str"
+    },
+    "grade": {
+      "value": 0
+    },
+    "baseCost": {
+      "value": null
+    },
+    "prerequisites": {
+      "value": ""
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494018755,
+    "modifiedTime": 1720552916944,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "tJCELj5ftLidRlpi",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!tJCELj5ftLidRlpi"
+}

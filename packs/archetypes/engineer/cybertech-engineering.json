@@ -30,16 +30,20 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.LOvhhdrch9KFgkIc"
+              "uuid": "Compendium.sw5e.archetypefeatures.LOvhhdrch9KFgkIc",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.8odrtKOlTeo4WEsr"
+              "uuid": "Compendium.sw5e.archetypefeatures.8odrtKOlTeo4WEsr",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.kxOWjaI2uhux0jSu"
+              "uuid": "Compendium.sw5e.archetypefeatures.kxOWjaI2uhux0jSu",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -51,10 +55,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.cxwXHpsjxTOGh3aG"
+              "uuid": "Compendium.sw5e.archetypefeatures.cxwXHpsjxTOGh3aG",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
@@ -66,10 +72,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.XvUPZ0OWc1KTLgZt"
+              "uuid": "Compendium.sw5e.archetypefeatures.XvUPZ0OWc1KTLgZt",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -81,10 +89,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.RhgLSBN7PDwunvA1"
+              "uuid": "Compendium.sw5e.archetypefeatures.RhgLSBN7PDwunvA1",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -98,9 +108,12 @@
           "grants": [
             "tool:cybertechsimplements"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
@@ -110,22 +123,28 @@
           "hint": "",
           "choices": {
             "3": {
-              "count": 4
+              "count": 4,
+              "replacement": false
             },
             "5": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "9": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "11": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "13": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "17": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -247,7 +266,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Cybertech Modifications"
       }
     ],
@@ -269,7 +291,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959755,
-    "modifiedTime": 1720418052632,
+    "modifiedTime": 1720552689608,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!Y8uZyqAuOWmUZEDP"

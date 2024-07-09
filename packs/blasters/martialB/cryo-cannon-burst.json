@@ -117,15 +117,15 @@
         "powerCell"
       ]
     },
-    "properties": {
-      "0": "aut",
-      "1": "bur",
-      "2": "pcl",
-      "3": "rel",
-      "4": "str",
-      "5": "two",
-      "6": "vic"
-    },
+    "properties": [
+      "aut",
+      "bur",
+      "pcl",
+      "rel",
+      "str",
+      "two",
+      "vic"
+    ],
     "proficient": null,
     "type": {
       "value": "martialB",
@@ -138,7 +138,15 @@
       "bonus": "",
       "flat": false
     },
-    "_propertyValues": {},
+    "_propertyValues": {
+      "aut": true,
+      "bur": 2,
+      "pcl": "range 75/300",
+      "rel": 4,
+      "str": 13,
+      "two": true,
+      "vic": 1
+    },
     "container": null,
     "attuned": false,
     "enchantment": null,
@@ -154,7 +162,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961276,
-    "modifiedTime": 1720418047021,
+    "modifiedTime": 1720553654236,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!UXvCoqvuoLnjj73U"

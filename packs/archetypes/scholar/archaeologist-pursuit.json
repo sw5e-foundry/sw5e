@@ -30,16 +30,20 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.MWo1kqA0ba5Ta43R"
+              "uuid": "Compendium.sw5e.archetypefeatures.MWo1kqA0ba5Ta43R",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.KL57sS7jcwOWdqZ8"
+              "uuid": "Compendium.sw5e.archetypefeatures.KL57sS7jcwOWdqZ8",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.HuWC6nLw7bmqQz4H"
+              "uuid": "Compendium.sw5e.archetypefeatures.HuWC6nLw7bmqQz4H",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -51,10 +55,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.pANZh0AtuI6THv2S"
+              "uuid": "Compendium.sw5e.archetypefeatures.pANZh0AtuI6THv2S",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
@@ -66,10 +72,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.pJ8e1i2GwBP8yRum"
+              "uuid": "Compendium.sw5e.archetypefeatures.pJ8e1i2GwBP8yRum",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
@@ -81,10 +89,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.archetypefeatures.wNQS0Ptg34IyGxZZ"
+              "uuid": "Compendium.sw5e.archetypefeatures.wNQS0Ptg34IyGxZZ",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
@@ -98,9 +108,12 @@
           "grants": [
             "tool:archaeologistkit"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
@@ -110,25 +123,32 @@
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
             "2": {
-              "count": 2
+              "count": 2,
+              "replacement": false
             },
             "3": {
-              "count": 2
+              "count": 2,
+              "replacement": false
             },
             "5": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "9": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "11": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "13": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "17": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -175,7 +195,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Archaeologist Discoveries"
       }
     ],
@@ -197,7 +220,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959744,
-    "modifiedTime": 1720418052632,
+    "modifiedTime": 1720552689446,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!Qlp03hPWaKZwxUa4"

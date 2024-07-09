@@ -45,67 +45,60 @@
           "identifier": "sneak-attack",
           "scale": {
             "1": {
-              "n": 1,
-              "die": 6,
               "number": 1,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "3": {
-              "n": 2,
-              "die": 6,
               "number": 2,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "5": {
-              "n": 3,
-              "die": 6,
               "number": 3,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "7": {
-              "n": 4,
-              "die": 6,
               "number": 4,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "9": {
-              "n": 5,
-              "die": 6,
               "number": 5,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "11": {
-              "n": 6,
-              "die": 6,
               "number": 6,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "13": {
-              "n": 7,
-              "die": 6,
               "number": 7,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "15": {
-              "n": 8,
-              "die": 6,
               "number": 8,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "17": {
-              "n": 9,
-              "die": 6,
               "number": 9,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             },
             "19": {
-              "n": 10,
-              "die": 6,
               "number": 10,
-              "faces": 6
+              "faces": 6,
+              "modifiers": []
             }
           },
-          "type": "dice"
+          "type": "dice",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Sneak Attack"
@@ -129,7 +122,10 @@
               "value": 5
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Operative Exploits"
@@ -139,9 +135,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 4
       },
       {
@@ -149,9 +148,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 8
       },
       {
@@ -159,9 +161,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 10
       },
       {
@@ -169,9 +174,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 12
       },
       {
@@ -179,9 +187,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 16
       },
       {
@@ -189,9 +200,12 @@
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 19
       },
       {
@@ -202,9 +216,12 @@
           "grants": [
             "armor:lgt"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -219,9 +236,12 @@
             "weapon:mrb",
             "weapon:mvb"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -238,9 +258,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -253,9 +276,12 @@
             "saves:dex",
             "saves:int"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -272,9 +298,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
@@ -286,9 +315,12 @@
           "grants": [
             "armor:lgt"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "secondary",
         "level": 1,
         "title": "Multiclass Proficiencies"
@@ -299,13 +331,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.z2LMg7qOrKp3qmCe"
+              "uuid": "Compendium.sw5e.classfeatures.z2LMg7qOrKp3qmCe",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.QnmqVZ7cnRibd1f3"
+              "uuid": "Compendium.sw5e.classfeatures.QnmqVZ7cnRibd1f3",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 1,
@@ -317,13 +352,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.fJvRFUztczOJ4mPs"
+              "uuid": "Compendium.sw5e.classfeatures.fJvRFUztczOJ4mPs",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.G6LXhxh4DFUd3yNO"
+              "uuid": "Compendium.sw5e.classfeatures.G6LXhxh4DFUd3yNO",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 2,
@@ -335,13 +373,16 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.3KWuo8gkmF0TFmef"
+              "uuid": "Compendium.sw5e.classfeatures.3KWuo8gkmF0TFmef",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.classfeatures.muRZAsQSyLgD4ozR"
+              "uuid": "Compendium.sw5e.classfeatures.muRZAsQSyLgD4ozR",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
@@ -353,10 +394,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.XeKoDZH0WEW8GLAX"
+              "uuid": "Compendium.sw5e.classfeatures.XeKoDZH0WEW8GLAX",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 5,
@@ -368,10 +411,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.jmf0uHe7tWGfNoeI"
+              "uuid": "Compendium.sw5e.classfeatures.jmf0uHe7tWGfNoeI",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
@@ -383,10 +428,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.SICFNyKCxZ45o0QE"
+              "uuid": "Compendium.sw5e.classfeatures.SICFNyKCxZ45o0QE",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
@@ -398,10 +445,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.8BwZePoKXPfDCElj"
+              "uuid": "Compendium.sw5e.classfeatures.8BwZePoKXPfDCElj",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -413,10 +462,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.agVlC70rzKNh3nnW"
+              "uuid": "Compendium.sw5e.classfeatures.agVlC70rzKNh3nnW",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
@@ -428,10 +479,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.zZxSGT2MTqvezUli"
+              "uuid": "Compendium.sw5e.classfeatures.zZxSGT2MTqvezUli",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -443,10 +496,12 @@
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.classfeatures.b5o43ocdxaR9Ed7f"
+              "uuid": "Compendium.sw5e.classfeatures.b5o43ocdxaR9Ed7f",
+              "optional": false
             }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
@@ -468,9 +523,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 15
       },
       {
@@ -480,16 +538,20 @@
           "hint": "You've adopted two exploits, as detailed at the end of the class description. You adopt an additional exploit at 7th, 13th, and 17th level.",
           "choices": {
             "2": {
-              "count": 2
+              "count": 2,
+              "replacement": false
             },
             "7": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "13": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             },
             "17": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -545,7 +607,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Operative Exploits"
       },
       {
@@ -555,7 +620,8 @@
           "hint": "Operatives share, including their emphasis on perfecting their skills, their precise and deadly approach to combat, and their increasingly quick reflexes, though their practices differ. Your practice grants you features at 3rd, 9th, 13th, and 17th level.",
           "choices": {
             "3": {
-              "count": 1
+              "count": 1,
+              "replacement": false
             }
           },
           "allowDrops": true,
@@ -623,7 +689,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Operative Practices"
       }
     ],
@@ -646,7 +715,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961823,
-    "modifiedTime": 1720418053923,
+    "modifiedTime": 1720552692799,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!Y1B1UJwXgLnYLe4e"

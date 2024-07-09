@@ -141,12 +141,12 @@
       "conditions": ""
     },
     "strength": null,
-    "properties": {
-      "0": "Bulky",
-      "1": "Reinforced",
-      "2": "Rigid",
-      "3": "stealthDisadvantage"
-    },
+    "properties": [
+      "Bulky",
+      "Reinforced",
+      "Rigid",
+      "stealthDisadvantage"
+    ],
     "proficient": null,
     "type": {
       "value": "medium",
@@ -159,7 +159,12 @@
       "bonus": "",
       "flat": false
     },
-    "_propertyValues": {},
+    "_propertyValues": {
+      "Bulky": true,
+      "Reinforced": true,
+      "Rigid": true,
+      "stealthDisadvantage": true
+    },
     "container": null,
     "attuned": false,
     "enchantment": null,
@@ -173,7 +178,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493960312,
-    "modifiedTime": 1720418051102,
+    "modifiedTime": 1720553652483,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!v0jLF6qG2IVMWrpU"

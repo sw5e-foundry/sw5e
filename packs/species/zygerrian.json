@@ -43,65 +43,80 @@
     },
     "advancement": [
       {
-        "_id": "1Np6frqrRtz31KKf",
+        "_id": "1xDYJcQVcJI2j0sq",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.VWOYOfEcMBXWlzFh"
+              "uuid": "Compendium.sw5e.speciesfeatures.ZUVxtqfhkKZM3rI0",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.QCNdJxUq4vUnYRv6"
+              "uuid": "Compendium.sw5e.speciesfeatures.qVt5ziFzkEaf7N93",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.PKECvbXn9DBof0he"
+              "uuid": "Compendium.sw5e.speciesfeatures.fUz7KO1kY3caYxDQ",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.LW5mpLrZsgvLSYEn"
+              "uuid": "Compendium.sw5e.speciesfeatures.rn4sRb0TsYp8d9DX",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.CPTmyOKJvn50hpVE"
+              "uuid": "Compendium.sw5e.speciesfeatures.vIlhHgCNtxdlLNdH",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.AcXUDWwBMIFdOyH7"
+              "uuid": "Compendium.sw5e.speciesfeatures.qnigB354nfJQQjEz",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.YlBinYRdgAqjCdJp"
+              "uuid": "Compendium.sw5e.speciesfeatures.JjzF120A8WMSTDqx",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.he7S9DXu74b7Dicj"
+              "uuid": "Compendium.sw5e.speciesfeatures.GuNJhxno2Ly0EkRB",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.Cx0reC9nUSyoGFjU"
+              "uuid": "Compendium.sw5e.speciesfeatures.0TKHKTTmZjOzasUy",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.HWM0NPJTg89iV0Br"
+              "uuid": "Compendium.sw5e.speciesfeatures.La3M9eN9MqOzc11V",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.2esUYWy57CC6Plbs"
+              "uuid": "Compendium.sw5e.speciesfeatures.HdwuwCfHlYNKfE5X",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "1lwBnMGLCwEpultN",
+        "_id": "1BJngvyd4WB51FwR",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "cha": 2,
             "int": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "1Qh3IEtCyqzFjZTD",
+        "_id": "16mgZnJmbpXZHDq0",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -112,7 +127,7 @@
         "level": 0
       },
       {
-        "_id": "14AEfdnLBjuH1NLF",
+        "_id": "P3ei83FUEWg5ioHf",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -122,9 +137,12 @@
             "weapon:saberwhip",
             "weapon:vibrowhip"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -268,7 +286,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553797855,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!ySvJbzOEqDDwV9TV"

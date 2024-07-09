@@ -43,65 +43,80 @@
     },
     "advancement": [
       {
-        "_id": "FgDScfEDQBv18hus",
+        "_id": "Dbi70AlbuLg1xuRO",
         "type": "ItemGrant",
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.4ohyQzfTD9WdkY9p"
+              "uuid": "Compendium.sw5e.speciesfeatures.8XRhCE2wqCryM11P",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.IEaAX9HIG7w5Zd7M"
+              "uuid": "Compendium.sw5e.speciesfeatures.VBdnlRx7dzRsSZL7",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.fXOg8kvAgjqYlcby"
+              "uuid": "Compendium.sw5e.speciesfeatures.uqvJhD66sISRNYCO",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.TIAHHtsjOoA0MKZL"
+              "uuid": "Compendium.sw5e.speciesfeatures.ZQjWfhr7TQBRE2jH",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.vVniG90o1Aexb3vx"
+              "uuid": "Compendium.sw5e.speciesfeatures.2TuRL1ZmF85cZnif",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.OvCsy2PMGSOxmoZp"
+              "uuid": "Compendium.sw5e.speciesfeatures.mvCqEfNcfcJ57xKW",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.Rj6plWtEGbbQz5F2"
+              "uuid": "Compendium.sw5e.speciesfeatures.Q7VhIrC53B5KNJCT",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.owfh9xEhrVrv3s8y"
+              "uuid": "Compendium.sw5e.speciesfeatures.ZZZVuhI9ravdlNef",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.WiuDu3GhIm7UkJjz"
+              "uuid": "Compendium.sw5e.speciesfeatures.Pt1LiMSrLNP7Gtil",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.ZyJyNYbee6PMcdkl"
+              "uuid": "Compendium.sw5e.speciesfeatures.cUdH07pId7hMdI2h",
+              "optional": false
             },
             {
-              "uuid": "Compendium.sw5e.speciesfeatures.Q3NCaiPIc8WeXdNo"
+              "uuid": "Compendium.sw5e.speciesfeatures.exeeXG3rOXugjqqH",
+              "optional": false
             }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "6yDkI3k6dyYuhzkG",
+        "_id": "12dvNcxqdYHVlwIQ",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "con": 2,
             "cha": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "TkM0H5kG4iHQa0oq",
+        "_id": "CkNCXkeTS6ri49lx",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -112,16 +127,19 @@
         "level": 0
       },
       {
-        "_id": "sfYTvWZiBWbD8myE",
+        "_id": "8SzdHtnmR9A1lS8R",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "skills:itm"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
@@ -259,7 +277,7 @@
     "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1720296028336,
-    "modifiedTime": 1720418054876,
+    "modifiedTime": 1720553797440,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!huaZdadYq0WDFQjt"

@@ -35,7 +35,6 @@
       "name": "Role: Worker",
       "description": "",
       "statuses": [],
-      "sort": 0,
       "_key": "!items.effects!1Lx1A9P1GUA8hyTx.qQTMHDrpIch61Q7C"
     }
   ],
@@ -43,8 +42,7 @@
   "system": {
     "description": {
       "value": "<p>At tier 0, you adopt a particular style of design for your ship.</p><h3>Worker</h3><p>Your ship gains a +1 bonus to the <span style=\"font-family:'Open Sans', sans-serif\">Strength </span>attribute.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Tiny Starship",
     "source": {
@@ -62,7 +60,7 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
       "type": "",
@@ -88,7 +86,6 @@
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -117,17 +114,27 @@
         "space": 350,
         "turn": 100
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.0.2.7.0",
-    "coreVersion": "11.313",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494017965,
-    "modifiedTime": 1701986862080,
+    "modifiedTime": 1720552913445,
     "lastModifiedBy": "sw5ebuilder00000"
   },
   "folder": null,

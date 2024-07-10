@@ -35,26 +35,26 @@
       "name": "Villainous Exhaustion",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!fkEHkxzrOZQlgnH2.gsSffWZqSvwYHFu3",
-      "sort": 0
+      "_key": "!items.effects!fkEHkxzrOZQlgnH2.gsSffWZqSvwYHFu3"
     }
   ],
   "flags": {},
   "system": {
     "description": {
       "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> rolls initiative with advantage. </p><p><span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> starts with a number of villainous actions equal to one less than it's villainous multiplier. If a hit point pool is depleted, <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> also loses one villainous action. <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> may use a villainous action after any other creature takes a turn. If <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> does so, it regains its reaction. A villainous action is a complete turn. They have an action, bonus action and may move up to their full speed. The villainous actions refresh at the start of <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span>'s turn and any remaining actions from the previous turn are lost.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": 0,
+      "value": "",
       "units": ""
     },
     "cover": null,
@@ -63,31 +63,33 @@
       "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "",
-      "long": "",
+      "value": null,
+      "long": null,
       "units": ""
     },
     "uses": {
       "value": null,
-      "max": 0,
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
-      "damage": null
+      "damage": ""
     },
     "damage": {
       "parts": [],
@@ -104,7 +106,7 @@
       "subtype": ""
     },
     "recharge": {
-      "value": 0,
+      "value": null,
       "charged": false
     },
     "attributes": {
@@ -113,21 +115,27 @@
         "turn": null
       }
     },
-    "powercasting": {
-      "force": "none",
-      "tech": "none"
-    }
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1669754707123,
-    "modifiedTime": 1699591681500,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368816259,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "folder": null,
   "sort": 0,

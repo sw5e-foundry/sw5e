@@ -1,8 +1,191 @@
 {
-  "_id": "zvgGckxGwU5tgd1L",
   "name": "Vurk",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:11.9003529+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-vurk"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Vurk.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Vurks are the predominant sentient species of the planet Sembla. They are tall, reptilian humanoids with bulbous dark eyes and sweeping head crests. Their hands and feet have three digits each, one of which was opposable. They have distinguishing gray-green, leathery skin. Being able to breathe both water and air, they are perfectly adapted to travel Sembla's warm, shallow seas dotted with volcanic islands. They share a strong nomadic instinct with their amphibious ancestors.  </p>\n<h2>Society and Culture</h2>\n<p>Young Vurk males are married off by their parents; those who failed to marry before reaching adulthood remain bachelors for the rest of their lives. Because their way of living resulted in virtually no sizable permanent settlement whatsoever, Vurks were generally considered primitive by the rest of the galaxy; however, that was not true. They are very intelligent and believe in a highly developed philosophical tradition that emphasizes personal integrity and individual freedom and encourage personal honesty. Their compassionate and calm manner made them better than average diplomats.</p>\n<p>Vurks are very family-oriented. It is common for multiple generations to remain in the same location as a single household, with the eldest family member being the patriarch or matriarch and making the decision for the entire family.</p>\n<h2>Names</h2>\n<p>Vurk names are traditionally two to three syllables. Female names typically end with a vowel, while male names vary. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Coleman, Jadran, Milanko, Zlatko</p>\n<p><strong>Female Names.</strong> Elka, Iryna, Miglena, Tanya, Verka</p>\n<p><strong>Surnames.</strong> Cheevochik, Provric, Trebor, Vorgecz</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "vurk",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 35,
+      "swim": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "nc1GYxvWjCDF7xQ7",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6tv6UbWeP3wb81yN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WiyUQYfiHzNeNGrC",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PErmkGfqnzkfPtuf",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BUgnXkQlk5q0oUze",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ngEbaVfkxpozX4mG",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.dQ0wBXH6eqgKeTmv",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.opHfOVGmur2pNcws",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.kh9JgKvxZQSv15oC",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LToF6JQF2YxWXEfc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5m7SQr3yBufS9AKX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hgVFaSUeIwFNVPMY",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "QBisqyTQqB61NVS4",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2,
+            "con": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "7uOM9jQy1tOoVvn8",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "8HioMTcMECNFnFwl",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:ath"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Dark blues, greens, greys, or reds"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Bulbous eyes, head crests, three-fingered hands"
+    },
+    "heightAverage": {
+      "value": "5'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "130 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Sembla"
+    },
+    "slanguage": {
+      "value": "Semblan"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "Q0QM1el7ltMmxAt5",
@@ -80,145 +263,22 @@
       "name": "Vurk",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!zvgGckxGwU5tgd1L.Q0QM1el7ltMmxAt5"
+      "_key": "!items.effects!E9PQl0AG7sdLt0IP.Q0QM1el7ltMmxAt5"
     }
   ],
+  "_id": "E9PQl0AG7sdLt0IP",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:11.9003529+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-vurk"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Vurks are the predominant sentient species of the planet Sembla. They are tall, reptilian humanoids with bulbous dark eyes and sweeping head crests. Their hands and feet have three digits each, one of which was opposable. They have distinguishing gray-green, leathery skin. Being able to breathe both water and air, they are perfectly adapted to travel Sembla's warm, shallow seas dotted with volcanic islands. They share a strong nomadic instinct with their amphibious ancestors.  </p>\n<h2>Society and Culture</h2>\n<p>Young Vurk males are married off by their parents; those who failed to marry before reaching adulthood remain bachelors for the rest of their lives. Because their way of living resulted in virtually no sizable permanent settlement whatsoever, Vurks were generally considered primitive by the rest of the galaxy; however, that was not true. They are very intelligent and believe in a highly developed philosophical tradition that emphasizes personal integrity and individual freedom and encourage personal honesty. Their compassionate and calm manner made them better than average diplomats.</p>\n<p>Vurks are very family-oriented. It is common for multiple generations to remain in the same location as a single household, with the eldest family member being the patriarch or matriarch and making the decision for the entire family.</p>\n<h2>Names</h2>\n<p>Vurk names are traditionally two to three syllables. Female names typically end with a vowel, while male names vary. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Coleman, Jadran, Milanko, Zlatko</p>\n<p><strong>Female Names.</strong> Elka, Iryna, Miglena, Tanya, Verka</p>\n<p><strong>Surnames.</strong> Cheevochik, Provric, Trebor, Vorgecz</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "vurk",
-    "advancement": [
-      {
-        "_id": "1tUUPDVaLtpL1iPX",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.6tv6UbWeP3wb81yN",
-            "Compendium.sw5e.speciesfeatures.WiyUQYfiHzNeNGrC",
-            "Compendium.sw5e.speciesfeatures.PErmkGfqnzkfPtuf",
-            "Compendium.sw5e.speciesfeatures.BUgnXkQlk5q0oUze",
-            "Compendium.sw5e.speciesfeatures.ngEbaVfkxpozX4mG",
-            "Compendium.sw5e.speciesfeatures.dQ0wBXH6eqgKeTmv",
-            "Compendium.sw5e.speciesfeatures.opHfOVGmur2pNcws",
-            "Compendium.sw5e.speciesfeatures.kh9JgKvxZQSv15oC",
-            "Compendium.sw5e.speciesfeatures.LToF6JQF2YxWXEfc",
-            "Compendium.sw5e.speciesfeatures.5m7SQr3yBufS9AKX",
-            "Compendium.sw5e.speciesfeatures.hgVFaSUeIwFNVPMY"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "fPpf4h6jO6zUxwHF",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "wis": 2,
-            "con": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1Seg3hGLJJ691gWZ",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "ViYEbLmgorm3HRuH",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:ath"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Dark blues, greens, greys, or reds"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Bulbous eyes, head crests, three-fingered hands"
-    },
-    "heightAverage": {
-      "value": "5'9\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "130 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Sembla"
-    },
-    "slanguage": {
-      "value": "Semblan"
-    },
-    "movement": {
-      "walk": 35,
-      "swim": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002151,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796713,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!zvgGckxGwU5tgd1L"
+  "_key": "!items!E9PQl0AG7sdLt0IP"
 }

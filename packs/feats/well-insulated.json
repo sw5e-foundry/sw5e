@@ -13,48 +13,50 @@
   "system": {
     "description": {
       "value": "<p>You can tolerate extremely cold temperatures. You gain the following benefits:</p>\n<ul>\n<li>Increase your Dexterity, Constitution, or Intelligence score by 1, to a maximum of 20.</li>\n<li>You have advantage on Constitution saving throws made to avoid exhaustion due to extreme cold, and each slowed level only reduces your speed by 5 feet, unless it would reduce your speed to 0.</li>\n<li>You have advantage on saving throws made to avoid cold damage.</li></ul>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": null,
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -83,7 +85,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -92,11 +104,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426107521,
-    "modifiedTime": 1695981493697,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418056409,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "JZRILXtXDHV22WcY",
   "_key": "!items!JZRILXtXDHV22WcY"

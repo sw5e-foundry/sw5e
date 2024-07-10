@@ -1,0 +1,23 @@
+:is(.sw5e-theme-dark, .theme-dark) .sw5e2,
+.sw5e2.sw5e-theme-dark {
+  .items-section {
+    border: none;
+
+    .item {
+      .item-name .tags {
+        --icon-fill: var(--color-text-light-6);
+        opacity: unset;
+      }
+
+      .item-controls .item-control {
+        color: var(--sw5e-color-blue-gray-3);
+        &[data-context-menu] { color: var(--color-text-light-6); }
+        &.active { color: var(--sw5e-color-gold); }
+      }
+    }
+
+    .item-controls .info-control { color: var(--sw5e-color-gold); }
+  }
+
+  .editable .items-section .item-controls .item-control { color: var(--color-text-light-6); }
+}

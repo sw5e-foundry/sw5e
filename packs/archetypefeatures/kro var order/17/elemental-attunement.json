@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Kro Var Order:</strong> 3rd, 11th, and 17th level</em></p>\n<p>You gain the ability to bend the elements to your will. As an action, you can manipulate these forces to create one of the following effects of your choice at a space within 10 feet of you:</p>\n<ul>\n<li>Create a harmless, instantaneous sensory effect related to air, earth, fire, or water, such as a shower of sparks, a puff of wind, a spray of light mist, or a gentle rumbling of stone.</li>\n<li>Instantaneously light or snuff out a candle, a torch, or a small campfire.</li>\n<li>Chill or warm up to 1 pound of nonliving material for up to 1 hour.</li>\n<li>Cause earth, fire, water, or mist that can fit within a 1-foot cube to shape itself into a crude form you designate for 1 minute.</li>\n</ul>\n<p>This range increases to 30 feet at 11th level and 60 feet at 17th level.</p>\n<p>Additionally, as a bonus action on your turn, you can spend 1 focus point to conjure a weapon made of one of the four elements—air, earth, fire, or water—which lasts for 1 minute. Your weapon takes an appearance of your choice, it can only be used by you, and you can't be disarmed of it while you are conscious. You are proficient in this weapon, which counts as a monk weapon for you and uses your Martial Arts die for its damage rolls. You can only have one of these weapons at a time, and if you summon a new one the old one immediately disappears.</p>\n<h3>Air</h3>\n<p>Your whistling weapon has the returning property, the thrown property with a range of 20/60, and deals sonic damage on a hit. Additionally, when you hit a creature with the weapon, it is deafened until the end of its next turn.</p>\n<h3>Earth</h3>\n<p>Your earthen weapon takes the form of stone, and deals kinetic damage on a hit. Additionally, when you hit a creature with it, you can force the target to make a Strength saving throw. On a failed save, the target is pushed back 5 feet. Lastly, while active, you can use Strength instead of Dexterity when determining your AC, as long as it doesn't already include that modifier.</p>\n<h3>Fire</h3>\n<p>Your flaming weapon sheds bright light in a 10-foot radius and dim light for an additional 10 feet, deals fire damage, and when you hit a creature with it, the creature takes additional damage equal to half your focus ability modifier (minimum of one).</p>\n<h3>Water</h3>\n<p>Your watery weapon has the reach property, deals cold damage on a hit, and you can use your focus ability modifier instead of Dexterity or Strength for its attack and damage rolls. You must use the same modifier for both rolls. Additionally, when you would make a melee weapon attack, you can instead use your weapon to wet a 5-foot square within your weapon's reach. The affected area is difficult terrain. Each creature who starts its turn in the square or enters it for the first time must make a Dexterity saving throw, falling prone on a failed save.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 10,
+      "value": "10",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
       "value": 10,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -91,11 +104,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1679609438413,
-    "modifiedTime": 1699591595234,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368717872,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "vQ5cHrAbaF05tKB3",
   "_key": "!items!vQ5cHrAbaF05tKB3"

@@ -9,21 +9,20 @@ import { ScaleValueConfigurationData, TYPES } from "../../data/advancement/scale
 export default class ScaleValueAdvancement extends Advancement {
   /** @inheritdoc */
   static get metadata() {
-    return foundry.utils.mergeObject(super.metadata, {
+    return foundry.utils.mergeObject( super.metadata, {
       dataModels: {
         configuration: ScaleValueConfigurationData
       },
       order: 60,
       icon: "systems/sw5e/icons/svg/scale-value.svg",
-      title: game.i18n.localize("SW5E.AdvancementScaleValueTitle"),
-      hint: game.i18n.localize("SW5E.AdvancementScaleValueHint"),
+      title: game.i18n.localize( "SW5E.AdvancementScaleValueTitle" ),
+      hint: game.i18n.localize( "SW5E.AdvancementScaleValueHint" ),
       multiLevel: true,
-      validItemTypes: new Set(["background", "class", "species", "archetype"]),
       apps: {
         config: ScaleValueConfig,
         flow: ScaleValueFlow
       }
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -40,8 +39,8 @@ export default class ScaleValueAdvancement extends Advancement {
 
   /** @inheritdoc */
   get levels() {
-    return Array.from(Object.keys(this.configuration.scale).map(l => Number(l)))
-      .filter(l => !["class", "archetype"].includes(this.item.type) ? true : l !== 0);
+    return Array.from( Object.keys( this.configuration.scale ).map( l => Number( l ) ) )
+      .filter( l => !["class", "archetype"].includes( this.item.type ) ? true : l !== 0 );
   }
 
   /* -------------------------------------------- */
@@ -59,9 +58,9 @@ export default class ScaleValueAdvancement extends Advancement {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  titleForLevel(level, { configMode = false } = {}) {
-    const value = this.valueForLevel(level)?.display;
-    if (!value) return this.title;
+  titleForLevel( level, { configMode = false } = {} ) {
+    const value = this.valueForLevel( level )?.display;
+    if ( !value ) return this.title;
     return `${this.title}: <strong>${value}</strong>`;
   }
 
@@ -72,14 +71,14 @@ export default class ScaleValueAdvancement extends Advancement {
    * @param {number} level      Level for which to get the scale value.
    * @returns {ScaleValueType}  Scale value at the given level or null if none exists.
    */
-  valueForLevel(level) {
-    const key = Object.keys(this.configuration.scale)
+  valueForLevel( level ) {
+    const key = Object.keys( this.configuration.scale )
       .reverse()
-      .find(l => Number(l) <= level);
+      .find( l => Number( l ) <= level );
     const data = this.configuration.scale[key];
     const TypeClass = this.constructor.TYPES[this.configuration.type];
-    if (!data || !TypeClass) return null;
-    return new TypeClass(data, { parent: this });
+    if ( !data || !TypeClass ) return null;
+    return new TypeClass( data, { parent: this } );
   }
 
   /* -------------------------------------------- */
@@ -90,11 +89,11 @@ export default class ScaleValueAdvancement extends Advancement {
    * @param {*} b
    * @returns {boolean}
    */
-  testEquality(a, b) {
-    const keys = Object.keys(a ?? {});
-    if (keys.length !== Object.keys(b ?? {}).length) return false;
-    for (const k of keys) {
-      if (a[k] !== b[k]) return false;
+  testEquality( a, b ) {
+    const keys = Object.keys( a ?? {} );
+    if ( keys.length !== Object.keys( b ?? {} ).length ) return false;
+    for ( const k of keys ) {
+      if ( a[k] !== b[k] ) return false;
     }
     return true;
   }

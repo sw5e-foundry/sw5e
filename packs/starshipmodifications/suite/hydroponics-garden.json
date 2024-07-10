@@ -7,40 +7,39 @@
   "system": {
     "description": {
       "value": "<p>This suite grows plants for either consumption or commerce.</p><p>If the Garden is configured for consumption, every day it produces common food in an amount capable of supporting a number of civilians, crewmembers, or troopers equal to one-eighth the ship's suite capacity, as shown in the Starship Size Suite Capacity table.</p><p>If the Garden is configured for commerce, at the end of every month (7 weeks of 5 days) it produces plant goods with a market value in Credits of 10 times the ship's suite capacity, as shown in the Starship Size Suite Capacity table. In some cases, a GM may determine that this value could be increased if a particularly rare plant good is produced. In such cases, the players may need to procure rare starter material such as seeds or cuttings to start or continue production.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": {
-      "value": "SotG"
-    },
+    "source": {},
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -51,16 +50,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -76,13 +76,6 @@
       "dc": null,
       "scaling": "power"
     },
-    "recharge": {
-      "charged": false,
-      "value": null
-    },
-    "system": {
-      "value": "Suite"
-    },
     "grade": {
       "value": 0
     },
@@ -95,16 +88,31 @@
     "free": {
       "slot": false,
       "suite": false
-    }
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "Suite",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494018635,
-    "modifiedTime": 1706199587674,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552914412,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "3aUO9RcmfHQfaNFS",
   "sort": 0,

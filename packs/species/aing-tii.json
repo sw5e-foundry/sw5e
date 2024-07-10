@@ -1,8 +1,191 @@
 {
-  "_id": "OcLoaaEdqNz5y4js",
   "name": "Aing-Tii",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2701392+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-aing_tii"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Aing-Tii.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The aing-tii are a species of sentient, toothless mammals who stand on two clawed feet with two spindly arms, each with three large digits. Their bodies are covered in jointed white, bony plates covered in unique painted motifs. The aing-tii head is small and juts out perpendicularly from their chest, featuring two large eyes and six long, thin, green tongues extending from their mouths. They have a long, prehensile tail. The species is incapable of producing sound and conveys information via tasting, smelling and touching each other with their tongues.</p>\n<h2>Society and Culture</h2>\n<p>The aing-tii are native to a planet whose location in the Kathol Rift is a closely guarded secret. Although in a dangerous area of space, the majority of Aing-Tii never leave their homeworld nor have any contact with the outside world. Those who do—commonly called aing-tii warrior monks—are often xenophobic and reclusive. The monks spend their entire lives performing errands for their gods, in the hope that they will receive \"an answer\" from them. The aing-tii hate slavery, and often attack slavers who roam the Kathol Outback.</p>\n<p>While the aing-tii are Force-sensitive, they avoid wielding the Force, which they see as sacred. The aing-tii believe that everything is somehow guided by the Force. They do not believe in the light or dark sides of the Force. Instead, they hold that there are many different aspects to the Force.</p>\n<h2>Names</h2>\n<p>Aing-tii names are, in reality, non-verbal and only truly understandable via taste, smell, and touch.  The few aing-tii who have been known to the outside world have used translators to convey an auditory identifier. </p>\n<p><strong>Male Names.</strong> Ben'Sur, Looshen'Fel, Tadar'Ro</p>\n<p><strong>Female Names.</strong> Kulan'Pa, Laman'So, Te'Nuriel </p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "aing-tii",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "GGo8bs5GxJ5GBFDH",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.m18ECBZXwrXNsp6T",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KZf9TvSmcTaq7h7v",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.0MoHlH0jlYFZmhv6",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zLPX9y2zF8O9rsbr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fOIhRihRoVlabrGd",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vmowW0EYFxeEKLG1",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lYLKVsq3sjJN2jZA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.50jrpGuCRn5TLJEP",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rgT4IDKh1yK7IamE",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RdcFLYRVUcnQiphA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7W5ejH6ELsEeKGoB",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1ezwvwCcHTRxWQ9j",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2,
+            "con": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1TISAnfLH1JUeSbR",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1NK4AybIWoFZ15dM",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:lor"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "White"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Force-sensitivity, unique technology, six green tongues"
+    },
+    "heightAverage": {
+      "value": "5'7\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "145 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Aing-Tii homeworld in the Kathol Rift"
+    },
+    "slanguage": {
+      "value": "Non-verbal communication  via taste, smell, and touch"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "3aUdsUbBSwi6cZH0",
@@ -80,141 +263,22 @@
       "name": "Aing-Tii",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!OcLoaaEdqNz5y4js.3aUdsUbBSwi6cZH0"
+      "_key": "!items.effects!p1YZDGVCtL2ChMJn.3aUdsUbBSwi6cZH0"
     }
   ],
+  "_id": "p1YZDGVCtL2ChMJn",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2701392+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-aing_tii"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The aing-tii are a species of sentient, toothless mammals who stand on two clawed feet with two spindly arms, each with three large digits. Their bodies are covered in jointed white, bony plates covered in unique painted motifs. The aing-tii head is small and juts out perpendicularly from their chest, featuring two large eyes and six long, thin, green tongues extending from their mouths. They have a long, prehensile tail. The species is incapable of producing sound and conveys information via tasting, smelling and touching each other with their tongues.</p>\n<h2>Society and Culture</h2>\n<p>The aing-tii are native to a planet whose location in the Kathol Rift is a closely guarded secret. Although in a dangerous area of space, the majority of Aing-Tii never leave their homeworld nor have any contact with the outside world. Those who do—commonly called aing-tii warrior monks—are often xenophobic and reclusive. The monks spend their entire lives performing errands for their gods, in the hope that they will receive \"an answer\" from them. The aing-tii hate slavery, and often attack slavers who roam the Kathol Outback.</p>\n<p>While the aing-tii are Force-sensitive, they avoid wielding the Force, which they see as sacred. The aing-tii believe that everything is somehow guided by the Force. They do not believe in the light or dark sides of the Force. Instead, they hold that there are many different aspects to the Force.</p>\n<h2>Names</h2>\n<p>Aing-tii names are, in reality, non-verbal and only truly understandable via taste, smell, and touch.  The few aing-tii who have been known to the outside world have used translators to convey an auditory identifier. </p>\n<p><strong>Male Names.</strong> Ben'Sur, Looshen'Fel, Tadar'Ro</p>\n<p><strong>Female Names.</strong> Kulan'Pa, Laman'So, Te'Nuriel </p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "aing-tii",
-    "advancement": [
-      {
-        "_id": "nfxEnuZa6pO1eZlF",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.m18ECBZXwrXNsp6T",
-            "Compendium.sw5e.speciesfeatures.KZf9TvSmcTaq7h7v",
-            "Compendium.sw5e.speciesfeatures.0MoHlH0jlYFZmhv6",
-            "Compendium.sw5e.speciesfeatures.zLPX9y2zF8O9rsbr",
-            "Compendium.sw5e.speciesfeatures.fOIhRihRoVlabrGd",
-            "Compendium.sw5e.speciesfeatures.vmowW0EYFxeEKLG1",
-            "Compendium.sw5e.speciesfeatures.lYLKVsq3sjJN2jZA",
-            "Compendium.sw5e.speciesfeatures.50jrpGuCRn5TLJEP",
-            "Compendium.sw5e.speciesfeatures.rgT4IDKh1yK7IamE",
-            "Compendium.sw5e.speciesfeatures.RdcFLYRVUcnQiphA",
-            "Compendium.sw5e.speciesfeatures.7W5ejH6ELsEeKGoB"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "eIScblnPZTd1ODA5",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "wis": 2,
-            "con": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "JMRt5S5tnw2na4O6",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "Xnq1hpLTuxe1m0zO",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:lor"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "White"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Force-sensitivity, unique technology, six green tongues"
-    },
-    "heightAverage": {
-      "value": "5'7\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "145 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Aing-Tii homeworld in the Kathol Rift"
-    },
-    "slanguage": {
-      "value": "Non-verbal communication  via taste, smell, and touch"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002092,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797603,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!OcLoaaEdqNz5y4js"
+  "_key": "!items!p1YZDGVCtL2ChMJn"
 }

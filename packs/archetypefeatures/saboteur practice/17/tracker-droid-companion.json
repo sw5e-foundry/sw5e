@@ -13,48 +13,50 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Saboteur Practice:</strong> 3rd, 5th, 9th, 13th, and 17th level</em></p>\n<p>You learn to employ all the knowledge you've accumulated to create and customize your own tracker droid companion.</p>\n<p>Create your tracker droid companion as detailed in the Companions section of the Customization Options document for Expanded Content. You must have astrotech's implements in order to create your droid.</p>\n<p>In addition to its traits and features, your tracker droid companion gains an additional benefit while it is bonded to you:</p>\n<ul>\n<li>Your tracker droid gains two additional traits. It gains one more additional trait when you reach 11th level in this class. For each droid trait in excess of your proficiency bonus, your tech point maximum is reduced by 1. Over the course of a long rest, you can install, replace, or remove a number of tracker droid traits equal to half your Intelligence modifier (minimum of one).</li>\n</ul>\n<p>Lastly, when you cast a tech power of 1st-level or higher that would affect only one target, and your tracker droid companion is bonded and within 10 feet of you or your target, your tracker droid companion can use its reaction to increase the level at which you are casting your power by 1. This feature can increase a power's level above your Max Power Level, and using this feature does not cost additional tech points.</p>\n<p>At 11th level, your tracker droid companion must be within 30 feet of you or your target to benefit from this feature. At 17th level, your tracker droid companion must be within 60 feet.</p>\n<p>You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you complete a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Saboteur Practice) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "10",
+      "value": 10,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 2,
+      "max": "2",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -84,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -93,11 +104,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426104215,
-    "modifiedTime": 1699591595227,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368715695,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "sjSzeK4Ni0jCkifa",
   "_key": "!items!sjSzeK4Ni0jCkifa"

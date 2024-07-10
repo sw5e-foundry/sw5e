@@ -16,81 +16,104 @@
   "system": {
     "description": {
       "value": "<h1>Saboteur Practice</h1>\n<p>Those operatives who choose the Saboteur Practice enhance their fine-honed skills of stealth and agility with tech, using advanced technology with the aid of a tracker droid to sustain a longer assault.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "saboteurpractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "1SIdf1mzd2ny104Q",
+        "_id": "kunJ7lJOKYq1kXFe",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.q93sIka7LsEsayiK",
-            "Compendium.sw5e.archetypefeatures.LO0IMVSYMxrSFwwI",
-            "Compendium.sw5e.archetypefeatures.jKpa9qNwN0waz11m"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.q93sIka7LsEsayiK",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.LO0IMVSYMxrSFwwI",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.jKpa9qNwN0waz11m",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "9R708hQm0ZVAA1dJ",
+        "_id": "6UISDhSBevf1coVn",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.EE1oGHpxlBjwjjQ3"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.EE1oGHpxlBjwjjQ3",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "12lOGUUA1rscr5Fc",
+        "_id": "LxM9vBaAQLDdP00E",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Rx1uGVF1Vb66WT2A"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Rx1uGVF1Vb66WT2A",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "1DcnC4UFsvVN1Lnb",
+        "_id": "2QrBy0E0yBzBArcI",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.hfJ9bRUFa6D2oKle"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hfJ9bRUFa6D2oKle",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "zPO7XtrHvO91jK5B",
+        "_id": "15NeVIe3gPJdk3uC",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "tool:astrotechsimplements"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -101,7 +124,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -109,11 +132,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959705,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552688927,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!0kQtvtpbENlLU6Wn"
 }

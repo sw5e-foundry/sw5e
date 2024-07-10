@@ -16,8 +16,7 @@
   "system": {
     "description": {
       "value": "<img style=\"float:right;margin:5px;border:0px\" src=\"systems/sw5e/packs/Icons/Classes/guardian_01.webp\" />\n<p>A dark-skinned human quickly runs down a corridor, the metal armor under his grey cloak clanking with each step. He rounds the corner into the prison while the lights and power are still out, urging the weakened prisoners to escape. Just then a handful of slavers arrive and ready their blasters. The man draws and ignites a white-bladed lightsaber, ready to die for the strangers behind him. </p>\n<p>A sith pureblood, clad head to toe in black and red armor, charges towards a line of soldiers. Shot after shot deflects off his armor until he reaches his prey, where he unleashes his fury in a series of devastating lightsaber sweeps. </p>\n<p>A zabrak general dramatically leaps to his soon-to-be overrun squad, landing with a flurry of lightsaber attacks. At the arrival of this powerful Jedi, the attackers fall back.</p>\n<p>Guardians are the master of the art of lightsaber combat. They focus on utilizing the everpresent power of the Force to enable devastating attacks, often single-handedly turning the tide of battle.</p>\n<h2>Protector or Destroyer</h2>\n<p>An unstoppable agent of the Force, the guardian channels the power flowing through him into his weapons. Their skills with a lightsaber are unrivalled. Subduing their enemies and bolstering their allies, the guardian uses the Force to control what happens around them.</p>\n<h2>Natural Leaders</h2>\n<p>The guardian's command of the Force lends them a powerful presence. Whether through fear and intimidation or respect and admiration, the guardian is one of the greatest generals on the battlefield. They are a symbol of power to their followers.</p>\n<p>While creating your guardian, consider your attraction to the Force and its most famous practitioners — the Jedi and the Sith. Are you a member of one of the two orders, or do you walk a different path? Are you a soldier tapping into a latent Force-sensitivity? Were you trained in the force from a young age, or did you discover it as an adult? How do you treat those weaker than you? What was your family like? Do you see the Force as light and dark, or an impartial river of gray?</p>\n<h3>Quick Build</h3>\n<p>You can make a guardian quickly by following these suggestions. First, make Strength your highest ability score, followed by Constitution. Second, choose the Jedi or Sith background.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "atFlavorText": {
       "value": "<h1>Guardian Foci</h1>\n<p>Different guardians focus on different lightsaber styles, called Forms, as they hone their powers. Your focus grants you features at 3rd, 7th, 15th, and 20th level.</p>\n<ul>\n<li>@Compendium[sw5e.archetypes.YgIJacJUsc2MSQ7C]{Makashi form}</li>\n<li>@Compendium[sw5e.archetypes.Zw2G0DDXo3uaDN4r]{Niman form}</li>\n<li>@Compendium[sw5e.archetypes.qXYcepno6c5cYqZC]{Shien/djem so form}</li>\n<li>@Compendium[sw5e.archetypes.HT7t6njBrKPe6dB1]{Soresu form}</li>\n<li>@Compendium[sw5e.archetypes.tte2PRr3ou7adFjZ]{Aqinos form}</li>\n<li>@Compendium[sw5e.archetypes.Mgp8Eo9BqTJtu6s6]{Ataru form}</li>\n<li>@Compendium[sw5e.archetypes.MzyAyoDzy2DBadru]{Jar'kai form}</li>\n<li>@Compendium[sw5e.archetypes.odCsSvAG0Tmn6AoK]{Juyo/vaapad form}</li>\n<li>@Compendium[sw5e.archetypes.9FkoSl6i5rQwWnLk]{Shii-cho form}</li>\n<li>@Compendium[sw5e.archetypes.pU28YNzK3zCzxIPv]{Sokan form}</li>\n<li>@Compendium[sw5e.archetypes.SZB325oKrWryDexC]{Trakata form}</li>\n<li>@Compendium[sw5e.archetypes.Yt9gDW1G5GDaVAJd]{Vonil/ishu form}</li>\n<li>@Compendium[sw5e.archetypes.5gfIN2jExDwxmY15]{Vonil/ishu form (companion)}</li>\n<li>@Compendium[sw5e.archetypes.XKpKuW4WGO0M31co]{Ysannanite form}</li>\n</ul>"
@@ -25,52 +24,62 @@
     "invocations": {
       "value": "<h1>Guardian Auras</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.6a5x09cmtiNUxIaS]{Aura of conquest}</li>\n<li>@Compendium[sw5e.invocations.IKvPm9KSasMXBYf4]{Aura of conviction}</li>\n<li>@Compendium[sw5e.invocations.IRr9SZnIRP05mxTE]{Aura of hatred}</li>\n<li>@Compendium[sw5e.invocations.VFSJrfOZXd7yKvec]{Aura of presence}</li>\n<li>@Compendium[sw5e.invocations.0RnJECNGdGTiaaB6]{Aura of protection}</li>\n<li>@Compendium[sw5e.invocations.IqoO3lGbY1tI6j1W]{Aura of vigor}</li>\n<li>@Compendium[sw5e.invocations.RnL9f6keUkIO790f]{Aura of warding}</li>\n</ul>"
     },
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "identifier": "guardian",
     "levels": 1,
     "hitDice": "d10",
     "hitDiceUsed": 0,
     "advancement": [
       {
-        "_id": "geRhtTKIQrIJDFeY",
+        "_id": "1uwUQdZEbaGw4aAK",
         "type": "HitPoints",
         "configuration": {},
         "value": {}
       },
       {
-        "_id": "OfrQbpFdehR11Xc0",
+        "_id": "1ruKCCIa2fajQYsy",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "focused-strikes",
           "scale": {
             "2": {
-              "n": 2,
-              "die": 8
+              "number": 2,
+              "faces": 8,
+              "modifiers": []
             },
             "5": {
-              "n": 3,
-              "die": 8
+              "number": 3,
+              "faces": 8,
+              "modifiers": []
             },
             "9": {
-              "n": 4,
-              "die": 8
+              "number": 4,
+              "faces": 8,
+              "modifiers": []
             },
             "13": {
-              "n": 5,
-              "die": 8
+              "number": 5,
+              "faces": 8,
+              "modifiers": []
             },
             "17": {
-              "n": 6,
-              "die": 8
+              "number": 6,
+              "faces": 8,
+              "modifiers": []
             }
           },
-          "type": "dice"
+          "type": "dice",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Focused Strikes"
       },
       {
-        "_id": "1P05Jfdz0CWv12u1",
+        "_id": "1J3ytLXgvyIc1FvG",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "auras-known",
@@ -85,13 +94,16 @@
               "value": 3
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Auras Known"
       },
       {
-        "_id": "azyHmbnQo5xnzRAR",
+        "_id": "Pk2NABOdyIxbKFGk",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "aura-radius",
@@ -115,57 +127,72 @@
         "title": "Aura Radius"
       },
       {
-        "_id": "1FDPaoRb4ytd1OZV",
+        "_id": "4eR1OCM63VC1unXt",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 4
       },
       {
-        "_id": "V2TW8C6jfXp1xA9Y",
+        "_id": "1Lb8U6bzRQA4qJ9C",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 8
       },
       {
-        "_id": "LVPPWsV1p3hZIUW0",
+        "_id": "1tTFZjwJItBM1PAC",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 12
       },
       {
-        "_id": "1MSJoeDFJcvG1P7p",
+        "_id": "3LEdd5lCwpN1qC5s",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 16
       },
       {
-        "_id": "78UT0jUv5a817u8l",
+        "_id": "Ul7kuly1mRf1cs4q",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 19
       },
       {
-        "_id": "kmuG1xolVeoxbQtY",
+        "_id": "1ey8qP1wCrYjOLuf",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -173,14 +200,17 @@
             "armor:lgt",
             "armor:med"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
       {
-        "_id": "FhztD4tthxx1fe1T",
+        "_id": "1G6Gb5gt80qj1Ihs",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -190,14 +220,17 @@
             "weapon:svb",
             "weapon:mvb"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
       {
-        "_id": "OGvnPF7wEcN26XAN",
+        "_id": "sp3jEkZrSmpBSfqD",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -205,14 +238,17 @@
             "saves:con",
             "saves:cha"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
       {
-        "_id": "GCVsCDCUuLU7qnV0",
+        "_id": "1K1IMAS7igaKV3OP",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -232,14 +268,17 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "primary",
         "level": 1
       },
       {
-        "_id": "1kraRwa2vGAU1EBy",
+        "_id": "Rtq3Kco4Yzu1b0h3",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -251,130 +290,195 @@
             "weapon:mvb",
             "armor:med"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "classRestriction": "secondary",
         "level": 1,
         "title": "Multiclass Proficiencies"
       },
       {
-        "_id": "zUkEo3Gn2ZC1afGT",
+        "_id": "9KG50glgp616XjFv",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.AGNoaKsGxlc276qv",
-            "Compendium.sw5e.classfeatures.ck9f8sKVbhB6S4di"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.AGNoaKsGxlc276qv",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.classfeatures.ck9f8sKVbhB6S4di",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 1,
         "title": "Features"
       },
       {
-        "_id": "1PUEVCwueQc21g27",
+        "_id": "14NofHlugkkgckaF",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.SZHiVKoVz7176B07",
-            "Compendium.sw5e.classfeatures.pAVn06LQeCw6dLJt"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.SZHiVKoVz7176B07",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.classfeatures.pAVn06LQeCw6dLJt",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 2,
         "title": "Features"
       },
       {
-        "_id": "vu8MIbzlWTS2oIyU",
+        "_id": "dVifLFY9vpC19ony",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.vXzXE8x75rjyq56U",
-            "Compendium.sw5e.classfeatures.lYSJOc81sMhbpfSE"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.vXzXE8x75rjyq56U",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.classfeatures.lYSJOc81sMhbpfSE",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "GjWMiJ00dep8pDMw",
+        "_id": "1qEuMPzwxLkN16Ap",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.Hh1XR8YvJZLcD1Pm"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.Hh1XR8YvJZLcD1Pm",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 5,
         "title": "Features"
       },
       {
-        "_id": "jNgL1GzhcnlrSkDM",
+        "_id": "9T7kZyNjU0J1LTlA",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.vJyaoVAzhzpowWD8"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.vJyaoVAzhzpowWD8",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "6SC9bBpesnE2SGMo",
+        "_id": "16h1UaTmxGwN1Tuw",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.Dxysqok8UKhgvVai"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.Dxysqok8UKhgvVai",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "18Xy6ZahMJAI17XS",
+        "_id": "1P7ufFDSOue6laX4",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.7P9odvqB70JlZVMa"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.7P9odvqB70JlZVMa",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
       },
       {
-        "_id": "TwZQKTIzR6S1MVfy",
+        "_id": "1h6OORhbiqOA1TEM",
         "type": "ItemChoice",
         "configuration": {
           "hint": "You gain an aura of your choice, as detailed at the end of the class description, and you gain more at higher levels, as shown in the Auras Known column of the guardian table. Your aura has a radius of 5 feet, which increases at higher levels, as shown in the Aura Radius column of the guardian table.",
           "choices": {
-            "3": 1,
-            "10": 1,
-            "18": 1
+            "3": {
+              "count": 1,
+              "replacement": false
+            },
+            "10": {
+              "count": 1,
+              "replacement": false
+            },
+            "18": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.6a5x09cmtiNUxIaS",
-            "Compendium.sw5e.invocations.IKvPm9KSasMXBYf4",
-            "Compendium.sw5e.invocations.IRr9SZnIRP05mxTE",
-            "Compendium.sw5e.invocations.VFSJrfOZXd7yKvec",
-            "Compendium.sw5e.invocations.0RnJECNGdGTiaaB6",
-            "Compendium.sw5e.invocations.IqoO3lGbY1tI6j1W",
-            "Compendium.sw5e.invocations.RnL9f6keUkIO790f"
+            {
+              "uuid": "Compendium.sw5e.invocations.6a5x09cmtiNUxIaS"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.IKvPm9KSasMXBYf4"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.IRr9SZnIRP05mxTE"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.VFSJrfOZXd7yKvec"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.0RnJECNGdGTiaaB6"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.IqoO3lGbY1tI6j1W"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.RnL9f6keUkIO790f"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -387,37 +491,73 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Guardian Auras"
       },
       {
-        "_id": "147PSo3dbKpW5WXZ",
+        "_id": "1kr3N9tWhob2YgWG",
         "type": "ItemChoice",
         "configuration": {
           "hint": "Different guardians focus on different lightsaber styles, called Forms, as they hone their powers. Your focus grants you features at 3rd, 7th, 15th, and 20th level.",
           "choices": {
-            "3": 1
+            "3": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "archetype",
           "pool": [
-            "Compendium.sw5e.archetypes.YgIJacJUsc2MSQ7C",
-            "Compendium.sw5e.archetypes.Zw2G0DDXo3uaDN4r",
-            "Compendium.sw5e.archetypes.qXYcepno6c5cYqZC",
-            "Compendium.sw5e.archetypes.HT7t6njBrKPe6dB1",
-            "Compendium.sw5e.archetypes.tte2PRr3ou7adFjZ",
-            "Compendium.sw5e.archetypes.Mgp8Eo9BqTJtu6s6",
-            "Compendium.sw5e.archetypes.MzyAyoDzy2DBadru",
-            "Compendium.sw5e.archetypes.odCsSvAG0Tmn6AoK",
-            "Compendium.sw5e.archetypes.9FkoSl6i5rQwWnLk",
-            "Compendium.sw5e.archetypes.pU28YNzK3zCzxIPv",
-            "Compendium.sw5e.archetypes.SZB325oKrWryDexC",
-            "Compendium.sw5e.archetypes.Yt9gDW1G5GDaVAJd",
-            "Compendium.sw5e.archetypes.5gfIN2jExDwxmY15",
-            "Compendium.sw5e.archetypes.XKpKuW4WGO0M31co"
+            {
+              "uuid": "Compendium.sw5e.archetypes.YgIJacJUsc2MSQ7C"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.Zw2G0DDXo3uaDN4r"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.qXYcepno6c5cYqZC"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.HT7t6njBrKPe6dB1"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.tte2PRr3ou7adFjZ"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.Mgp8Eo9BqTJtu6s6"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.MzyAyoDzy2DBadru"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.odCsSvAG0Tmn6AoK"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.9FkoSl6i5rQwWnLk"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.pU28YNzK3zCzxIPv"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.SZB325oKrWryDexC"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.Yt9gDW1G5GDaVAJd"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.5gfIN2jExDwxmY15"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.XKpKuW4WGO0M31co"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -430,7 +570,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Guardian Foci"
       }
     ],
@@ -441,39 +584,20 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     },
-    "saves": [
-      "con",
-      "cha"
-    ],
-    "skills": {
-      "number": 2,
-      "choices": [
-        "acr",
-        "ath",
-        "dec",
-        "ins",
-        "itm",
-        "lor",
-        "prc",
-        "per",
-        "pil"
-      ],
-      "value": []
-    },
-    "archetype": ""
+    "startingEquipment": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.0.2.7.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493961817,
-    "modifiedTime": 1700848701769,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552692743,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!HMLQmcBNtOv6r3oL"
 }

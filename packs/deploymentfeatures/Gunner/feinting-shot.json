@@ -9,28 +9,30 @@
   "flags": {},
   "system": {
     "description": {
-      "value": "<p><em><strong>Power Die Location:</strong> Weapons</em><br>You can expend one power die and use a bonus action on your turn to feint, choosing one ship within your primary weapon's normal range as your target. You have advantage on your next attack roll against that ship. If that attack hits, add the power die to the attack's damage roll.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p><em><strong>Power Die Location:</strong> Weapons</em><br />You can expend one power die and use a bonus action on your turn to feint, choosing one ship within your primary weapon's normal range as your target. You have advantage on your next attack roll against that ship. If that attack hits, add the power die to the attack's damage roll.</p>",
+      "chat": ""
     },
     "requirements": "Gunner 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,17 +42,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "powerdice",
       "target": "attributes.power.weapons.value",
-      "amount": 1
+      "amount": 1,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,26 +83,27 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Gunner"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": "Gambit"
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963426,
-    "modifiedTime": 1699591629484,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368729929,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!GjPn4M3GHYmpNjNz"
 }

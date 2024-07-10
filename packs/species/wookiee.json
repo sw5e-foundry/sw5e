@@ -1,8 +1,195 @@
 {
-  "_id": "uKMXMqGjahK8dV5A",
   "name": "Wookiee",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9176205+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-wookiee"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Wookiee.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Wookiees are a tall species of furry giants from the planet Kashyyyk, who can grow to a height of over eight feet. They are covered from head to toe in a thick, shaggy coat of hair with water-shedding properties that notably came in shades of brown, black, gray, and white. The species has two sexes, female and male. The latter grows long beards in adult life. Wookiee eye colors are usually blue, green, yellow, golden, brown, or red.</p>\n<h2>Society and Culture</h2>\n<p>Wookiees greatly value honor and loyalty. Therefore, their notion of \"family\" encompassed much more than just blood ties. A part of that most sacred tradition was the social institution of life debt: when a wookiee's life was saved by someone else, regardless of the species, they would frequently devote themselves to a lifetime of service to their savior and their family. Through the mechanism of the life debt, the People of the Trees used to develop unbreakable bonds with their boon companions and true friends, forming a \"honor family.\"</p>\n<h2>Names</h2>\n<p>Wookiee names are diverse; some names are simple and short while others are long and complicated. The majority of names often have softer big sounds and more melodic tones to them. Since offworlders have trouble using wookiees' real names, they often adopt simpler nicknames to go by.</p>\n<p><strong>Male Names.</strong> Fubbodrrl, Gurrfupayyc, Kioerrr, Lavgaeffoak, Snrowbishutchuh, Zufiaarkaykkk</p>\n<p><strong>Female Names.</strong> Bulabba, Bonbaegnh, Hopakleupo, Keumnebheu, Onninh, Osstatiemmyock</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "wookiee",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "climb": 30,
+      "burrow": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "14ZyUkDljss2oqg4",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IXofn4D8VTinIILF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.dNWTSjSAxawJL2bJ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.o2P4IKI81LgIUSPm",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.F55akHA6xoWo9Pt9",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rLEZaJQe1JTRVQAl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.kwEe0SubChkZjXDJ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.n1RwGPBGip7MeOC9",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zrhXbDv2tpw4Sj9E",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.qBBt5yQLZSfCChWb",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lG0XbwtmPt0qthse",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.c8YgrPvjFQNL1Dkz",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.qEv4ynkr3xcwJmes",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "mNxGJfCbRjwTy0sP",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "con": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "BlhrMmh1LVX1ggKm",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "16ypr0sV82fgFl0K",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:itm"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Gray"
+    },
+    "hairColorOptions": {
+      "value": "Different shades of black, brown, and white in varying combinations"
+    },
+    "eyeColorOptions": {
+      "value": "Blue, green, yellow, golden, brown, or red"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Tall, hair covered, retractable climbing claws, long life spans"
+    },
+    "heightAverage": {
+      "value": "6'3\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "190 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d6) lb."
+    },
+    "homeworld": {
+      "value": "Kashyyyk"
+    },
+    "slanguage": {
+      "value": "Shyriiwook"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "KUCISI8H3Sy2dc98",
@@ -74,146 +261,22 @@
       "name": "Wookiee",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!uKMXMqGjahK8dV5A.KUCISI8H3Sy2dc98"
+      "_key": "!items.effects!fifmIMaMfFdamTys.KUCISI8H3Sy2dc98"
     }
   ],
+  "_id": "fifmIMaMfFdamTys",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9176205+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-wookiee"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Wookiees are a tall species of furry giants from the planet Kashyyyk, who can grow to a height of over eight feet. They are covered from head to toe in a thick, shaggy coat of hair with water-shedding properties that notably came in shades of brown, black, gray, and white. The species has two sexes, female and male. The latter grows long beards in adult life. Wookiee eye colors are usually blue, green, yellow, golden, brown, or red.</p>\n<h2>Society and Culture</h2>\n<p>Wookiees greatly value honor and loyalty. Therefore, their notion of \"family\" encompassed much more than just blood ties. A part of that most sacred tradition was the social institution of life debt: when a wookiee's life was saved by someone else, regardless of the species, they would frequently devote themselves to a lifetime of service to their savior and their family. Through the mechanism of the life debt, the People of the Trees used to develop unbreakable bonds with their boon companions and true friends, forming a \"honor family.\"</p>\n<h2>Names</h2>\n<p>Wookiee names are diverse; some names are simple and short while others are long and complicated. The majority of names often have softer big sounds and more melodic tones to them. Since offworlders have trouble using wookiees' real names, they often adopt simpler nicknames to go by.</p>\n<p><strong>Male Names.</strong> Fubbodrrl, Gurrfupayyc, Kioerrr, Lavgaeffoak, Snrowbishutchuh, Zufiaarkaykkk</p>\n<p><strong>Female Names.</strong> Bulabba, Bonbaegnh, Hopakleupo, Keumnebheu, Onninh, Osstatiemmyock</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "wookiee",
-    "advancement": [
-      {
-        "_id": "sdOqPypwcyoH4YIj",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.IXofn4D8VTinIILF",
-            "Compendium.sw5e.speciesfeatures.dNWTSjSAxawJL2bJ",
-            "Compendium.sw5e.speciesfeatures.o2P4IKI81LgIUSPm",
-            "Compendium.sw5e.speciesfeatures.F55akHA6xoWo9Pt9",
-            "Compendium.sw5e.speciesfeatures.rLEZaJQe1JTRVQAl",
-            "Compendium.sw5e.speciesfeatures.kwEe0SubChkZjXDJ",
-            "Compendium.sw5e.speciesfeatures.n1RwGPBGip7MeOC9",
-            "Compendium.sw5e.speciesfeatures.zrhXbDv2tpw4Sj9E",
-            "Compendium.sw5e.speciesfeatures.qBBt5yQLZSfCChWb",
-            "Compendium.sw5e.speciesfeatures.lG0XbwtmPt0qthse",
-            "Compendium.sw5e.speciesfeatures.c8YgrPvjFQNL1Dkz",
-            "Compendium.sw5e.speciesfeatures.qEv4ynkr3xcwJmes"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "14u6J0pBHNYKeyyP",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "str": 2,
-            "con": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1TunAtrm5RityIS9",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "kG1kIh2m9l9At5aw",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:itm"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Gray"
-    },
-    "hairColorOptions": {
-      "value": "Different shades of black, brown, and white in varying combinations"
-    },
-    "eyeColorOptions": {
-      "value": "Blue, green, yellow, golden, brown, or red"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Tall, hair covered, retractable climbing claws, long life spans"
-    },
-    "heightAverage": {
-      "value": "6'3\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "190 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d6) lb."
-    },
-    "homeworld": {
-      "value": "Kashyyyk"
-    },
-    "slanguage": {
-      "value": "Shyriiwook"
-    },
-    "movement": {
-      "walk": 30,
-      "climb": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002142,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797384,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!uKMXMqGjahK8dV5A"
+  "_key": "!items!fifmIMaMfFdamTys"
 }

@@ -16,71 +16,88 @@
   "system": {
     "description": {
       "value": "<h1>Detective Pursuit</h1>\n<p>Some individuals learn to hone their instincts to investigate and discover that which others can't see. Those scholars who choose the Detective Pursuit train themselves to see the things that others miss, gaining a unique—and powerful—perspective.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Detective Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.JrNXO4IXWTrSrjoC]{Athletic}</li>\n<li>@Compendium[sw5e.invocations.iCBrBoDdNWmdUIBn]{Brawler adept}</li>\n<li>@Compendium[sw5e.invocations.S6cgCkkLzPH4BhdC]{Eye for attire}</li>\n<li>@Compendium[sw5e.invocations.9DECdDtn3CmaT2Hb]{Eye for detail}</li>\n<li>@Compendium[sw5e.invocations.0QIdgRNScMmjC5Ri]{Ear for deceit}</li>\n<li>@Compendium[sw5e.invocations.Vmx5MsNAJ9q83C8c]{Fighting style}</li>\n<li>@Compendium[sw5e.invocations.vxfEJBtnlkIIdV7C]{Scrapper's armor}</li>\n<li>@Compendium[sw5e.invocations.stnR95FyxAfb3aoq]{Steady eye}</li>\n<li>@Compendium[sw5e.invocations.CHxJTJgacEsd3ZTa]{Thirst for justice}</li>\n<li>@Compendium[sw5e.invocations.ajyvq8oI5fa2Qbci]{Unerring eye}</li>\n</ul>"
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "detectivepursuit",
     "classIdentifier": "scholar",
     "advancement": [
       {
-        "_id": "1sDUsmuevSVk12SZ",
+        "_id": "jZ77XOngTXU1aww9",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.W5u2eDcPKOToaldJ",
-            "Compendium.sw5e.archetypefeatures.3xIaG9crc9GhsCA6"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.W5u2eDcPKOToaldJ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.3xIaG9crc9GhsCA6",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "ebVWmZF0Lto15WXK",
+        "_id": "EMQnwOB4ZGytgaCC",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.qTmxhbveE0VYfCGt"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.qTmxhbveE0VYfCGt",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1aSCepdpfKcy1biy",
+        "_id": "soHme91CWCE1zKQe",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.CBXMcglIi2IMS7WM"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.CBXMcglIi2IMS7WM",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "1juTz4tqBXbzmpbw",
+        "_id": "dlhK4bpztCx1myXC",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.i77R0HxIcTGrzhnx"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.i77R0HxIcTGrzhnx",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "TbBmIVhinliG6m7Q",
+        "_id": "Ma8E2nsMtA6bjisi",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -94,41 +111,87 @@
           "grants": [
             "skills:inv"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
-        "_id": "g5qhWTuDzHUO5tbV",
+        "_id": "1NOmeBcNt6jE15CL",
         "type": "ItemChoice",
         "configuration": {
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
-            "2": 2,
-            "3": 2,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "2": {
+              "count": 2,
+              "replacement": false
+            },
+            "3": {
+              "count": 2,
+              "replacement": false
+            },
+            "5": {
+              "count": 1,
+              "replacement": false
+            },
+            "9": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            },
+            "13": {
+              "count": 1,
+              "replacement": false
+            },
+            "17": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.JrNXO4IXWTrSrjoC",
-            "Compendium.sw5e.invocations.iCBrBoDdNWmdUIBn",
-            "Compendium.sw5e.invocations.S6cgCkkLzPH4BhdC",
-            "Compendium.sw5e.invocations.9DECdDtn3CmaT2Hb",
-            "Compendium.sw5e.invocations.0QIdgRNScMmjC5Ri",
-            "Compendium.sw5e.invocations.gQk7kcSxPMtgfvNo",
-            "Compendium.sw5e.invocations.vxfEJBtnlkIIdV7C",
-            "Compendium.sw5e.invocations.stnR95FyxAfb3aoq",
-            "Compendium.sw5e.invocations.CHxJTJgacEsd3ZTa",
-            "Compendium.sw5e.invocations.ajyvq8oI5fa2Qbci"
+            {
+              "uuid": "Compendium.sw5e.invocations.JrNXO4IXWTrSrjoC"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.iCBrBoDdNWmdUIBn"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.S6cgCkkLzPH4BhdC"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.9DECdDtn3CmaT2Hb"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.0QIdgRNScMmjC5Ri"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.gQk7kcSxPMtgfvNo"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.vxfEJBtnlkIIdV7C"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.stnR95FyxAfb3aoq"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.CHxJTJgacEsd3ZTa"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.ajyvq8oI5fa2Qbci"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -141,7 +204,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Detective Discoveries"
       }
     ],
@@ -152,7 +218,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -160,11 +226,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959739,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689370,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!McHpJx05RXVxK4gq"
 }

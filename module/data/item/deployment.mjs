@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import { AdvancementField, IdentifierField } from "../fields.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 
@@ -10,25 +10,25 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {number} rank                         Current rank in this deployment.
  * @property {object[]} advancement                Advancement objects for this deployment.
  */
-export default class DeploymentData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
+export default class DeploymentData extends ItemDataModel.mixin( ItemDescriptionTemplate ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      identifier: new IdentifierField({ required: true, label: "SW5E.Identifier" }),
-      rank: new foundry.data.fields.NumberField({
+    return this.mergeSchema( super.defineSchema(), {
+      identifier: new IdentifierField( { required: true, label: "SW5E.Identifier" } ),
+      rank: new foundry.data.fields.NumberField( {
         required: true,
         nullable: false,
         integer: true,
         min: 0,
         initial: 1,
         label: "SW5E.Rank"
-      }),
-      advancement: new foundry.data.fields.ArrayField(new AdvancementField(), { label: "SW5E.AdvancementTitle" }),
+      } ),
+      advancement: new foundry.data.fields.ArrayField( new AdvancementField(), { label: "SW5E.AdvancementTitle" } ),
       flavorText: new foundry.data.fields.SchemaField(
-        { value: new foundry.data.fields.StringField({ required: true, initial: "" }) },
+        { value: new foundry.data.fields.StringField( { required: true, initial: "" } ) },
         { label: "SW5E.ChatFlavor" }
       )
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -36,9 +36,9 @@ export default class DeploymentData extends SystemDataModel.mixin(ItemDescriptio
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    DeploymentData.#migrateRank(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    DeploymentData.#migrateRank( source );
   }
 
   /* -------------------------------------------- */
@@ -47,9 +47,9 @@ export default class DeploymentData extends SystemDataModel.mixin(ItemDescriptio
    * Migrate the deployment rank.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateRank(source) {
-    if (typeof source.rank !== "string") return;
-    if (source.rank === "") source.rank = 1;
-    else if (Number.isNumeric(source.rank)) source.rank = Number(source.rank);
+  static #migrateRank( source ) {
+    if ( typeof source.rank !== "string" ) return;
+    if ( source.rank === "" ) source.rank = 1;
+    else if ( Number.isNumeric( source.rank ) ) source.rank = Number( source.rank );
   }
 }

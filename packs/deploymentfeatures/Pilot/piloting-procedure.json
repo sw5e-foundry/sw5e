@@ -8,27 +8,29 @@
   "system": {
     "description": {
       "value": "<p>Also at 1st rank, you learn tactics that are fueled by special dice called power dice.</p><h3>Tactics</h3><p>You learn two tactics of your choice, which are detailed under \"Tactics\" below. You can use only one tactic per turn, and you can only use each tactic once per round.</p><p>You learn an additional tactic at 2nd, 3rd, 4th, and 5th rank in this deployment. Each time you learn a new tactic, you can also replace one tactic you know with a different one.</p><h3>Power Dice</h3><p>A power die is expended when you use it. Your ship must have a power die at the required system in order to use the tactic.</p><p>Your ship gains power dice based primarily on reactor production.  These power dice are stored in a central and/or system capacitors to power abilities of deployed crew members.  Your power die type is determined by your ship tier.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Pilot 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,15 +81,16 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Pilot"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -95,11 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963427,
-    "modifiedTime": 1699591629485,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368729936,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!HPbueMMRtKK6TcG2"
 }

@@ -16,71 +16,88 @@
   "system": {
     "description": {
       "value": "<h1>Performance Practice</h1>\n<p>Some operatives choose to master finesse and timing through performance art. Those operatives who choose the Performance Practice become skilled performers who prove especially deadly in close combat, able to find the rhythm of an attacker's strikes as easily as any song.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "performancepractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "LeOMo43Z5J93t7en",
+        "_id": "15H2NWGO9ueoyhb1",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Hs70CSkFwtmp6rsI",
-            "Compendium.sw5e.archetypefeatures.q5oRw0VY6iFzFD5m"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Hs70CSkFwtmp6rsI",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.q5oRw0VY6iFzFD5m",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "OBeiyXSFcbeICzS0",
+        "_id": "Ck9lcGE2eQfRaXFw",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.VjW1AOzY7omnzZed"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.VjW1AOzY7omnzZed",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "UTJmYHImxez1MjVR",
+        "_id": "lXTEBhbSwny1lrJI",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.3oAeNXG09ceHHtZt"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.3oAeNXG09ceHHtZt",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "OZUb0DIWSd2jr9Ux",
+        "_id": "1m89anxkxZ5u1Bcl",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.pqpMDla2xTiLKmQz"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pqpMDla2xTiLKmQz",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "1tyks4yLgp9kccOW",
+        "_id": "A4vpItOnKmz13n7Y",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -94,9 +111,12 @@
           "grants": [
             "skills:prf"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -107,7 +127,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -115,11 +135,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959747,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689492,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!SlLYGmp4cj1rfVtu"
 }

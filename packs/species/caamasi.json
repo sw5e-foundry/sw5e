@@ -1,11 +1,5 @@
 {
-  "_id": "uVarC996IzFjX2Vu",
   "name": "Caamasi",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Caamasi.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2731369+00:00",
@@ -13,55 +7,116 @@
       "uid": "Species.name-caamasi"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Caamasi.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>A species of furry mammalians, the caamasi are covered in dense fur and have a spicy, woody body scent that is similar to that of Corellian whiskey. They have long arms with three-fingered hands, and pointed ears which stick out from the sides of their heads. They also have extremely acute senses of smell, with their nose positioned at the end of a tooth-filled snout. Caamasi have the interesting ability to share vivid memories called memnii with their near relatives and Force-sensitives. A memnis is as vivid to one who receives it as it was to the one who participated in the event remembered. Their peace-loving natures are in part due to memnii, as having a memory of killing or harming will be particularly strong, becoming unbearable in time, and something caamasi will seek to avoid except in defense of themselves or others, for which case they would accept their burden.</p>\n<h2>Society and Culture</h2>\n<p>A pacifist race, culture on Caamas evolved around the basic tenets of peace and social justice; influencing the evolution of the Jedi Order. Working as explorers, diplomats, and artists, the caamasi are a monogamous people who value single partners while mating and starting a family. However following the devastation of their homeworld by the Empire, caamasi who were off-world at the time considered evolving to a position of polygamy so as to regrow the population. While the argument is one of survival, many sociologists familiar with the culture of the caamasi believe that they will not accept the idea.</p>\n<h2>Names</h2>\n<p>Caamasi surnames are often composed of two parts, with the second part designating clan membership.</p>\n<p><strong>Male Names.</strong> Althanic, Gelerit, Ryg'gos, Shren</p>\n<p><strong>Female Names.</strong> Eeshraq, Heshrisa, Nulana, Yr'na</p>\n<p><strong>Surnames.</strong> A'kriy, I'tela, O'Tul, Sho'cyl</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "caamasi",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
     "advancement": [
       {
-        "_id": "9ohlYL381E1rtVYX",
+        "_id": "1IBNz7ys3MF1V3CZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.speciesfeatures.BYuRFELfvqklJrWQ",
-            "Compendium.sw5e.speciesfeatures.LlWwGFMJUe3m6v3o",
-            "Compendium.sw5e.speciesfeatures.HQpYkEkMxEc5ucv6",
-            "Compendium.sw5e.speciesfeatures.1ZNQ39KbnIHsSHyg",
-            "Compendium.sw5e.speciesfeatures.hBXrCC8RhxQzE4Xe",
-            "Compendium.sw5e.speciesfeatures.6gidYr42Fc4eANnE",
-            "Compendium.sw5e.speciesfeatures.KuVg0hgxAMK7Bg3p",
-            "Compendium.sw5e.speciesfeatures.QAjAr634j2HtWqcs",
-            "Compendium.sw5e.speciesfeatures.HEJEEPKThzGBvDPu",
-            "Compendium.sw5e.speciesfeatures.ycxHTSUk2N5MQD8K",
-            "Compendium.sw5e.speciesfeatures.Q2oBxKjnF49E9RkG"
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BYuRFELfvqklJrWQ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LlWwGFMJUe3m6v3o",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HQpYkEkMxEc5ucv6",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1ZNQ39KbnIHsSHyg",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hBXrCC8RhxQzE4Xe",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6gidYr42Fc4eANnE",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KuVg0hgxAMK7Bg3p",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QAjAr634j2HtWqcs",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HEJEEPKThzGBvDPu",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ycxHTSUk2N5MQD8K",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Q2oBxKjnF49E9RkG",
+              "optional": false
+            }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "1jDic7jvTdyt1p0Y",
+        "_id": "BfuiyA6SXAVxaG9C",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "wis": 2,
             "int": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "tHV5og0Qto5e8WFF",
+        "_id": "p3NRDGZqdJQ1MtFt",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -72,7 +127,7 @@
         "level": 0
       },
       {
-        "_id": "A0UZVpuShBr1m2XV",
+        "_id": "voUybixVHMw1G5RM",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -80,15 +135,15 @@
             "skills:per",
             "skills:ins"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
-    "details": {
-      "isDroid": false
-    },
     "skinColorOptions": {
       "value": "Pink and gray"
     },
@@ -99,7 +154,7 @@
       "value": "Yellow or red"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Snouts, memnii, distinct scent"
@@ -122,20 +177,30 @@
     "slanguage": {
       "value": "Caamasi"
     },
-    "movement": {
-      "walk": 30
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "Ht5H9DkrVcRPZqS3",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002143,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796775,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!uVarC996IzFjX2Vu"
+  "_key": "!items!Ht5H9DkrVcRPZqS3"
 }

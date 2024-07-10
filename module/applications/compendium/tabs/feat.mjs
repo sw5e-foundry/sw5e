@@ -76,8 +76,11 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
 
             // Prepare source
             const source = featData.system.source.label ?? featData.system.source.custom ?? featData.system.source;
-            const sourceSlug = sluggify(source ?? "");
-            if (source) sources.add(source);
+            var sourceSlug;
+            if (source && foundry.utils.getType(source) === "string") {
+              sourceSlug = sluggify(source);
+              sources.add(source);
+            }
 
             // Only store essential data
             feats.push({
@@ -89,7 +92,7 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
               level: p_level,
               category: featData.system.type.value,
               subcategory: featData.system.type.subtype,
-              source: sourceSlug
+              source: sourceSlug ?? ""
             });
           }
         }
@@ -100,7 +103,11 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
 
       // Filters
       this.filterData.checkboxes.category.options = this.generateCheckboxOptions(
-        Object.fromEntries(Object.entries(CONFIG.SW5E.featureTypes).map(([k, v]) => [k, v.label]))
+        Object.fromEntries(
+          Object.entries(CONFIG.SW5E.featureTypes)
+          .map(([k, v]) => [k, v.label])
+          .filter(([k, v]) => v)
+        )
       );
       this.filterData.checkboxes.subcategory.options = this.generateCheckboxOptions(
         Object.fromEntries(Object.values(CONFIG.SW5E.featureTypes).map(v => Object.entries(v.subtypes ?? {})).flat())

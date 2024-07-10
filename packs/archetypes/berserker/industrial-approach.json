@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:15.1654594+00:00",
+      "timestamp": "2023-05-30T20:14:19.991125+00:00",
       "importer_version": 3,
       "uid": "Archetype.name-industrial_approach"
     }
@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Industrial Approach</h1>\n<p>While some berserkers are content to surrender to their rage, others prefer a more tactful approach. Berserkers of the Industrial Approach augment their rage with the versatility of technology, adding elemental explosions to their already fearsome arsenal.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "industrialapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "1KbwzzFCWKAw1nkD",
+        "_id": "Az2zD4k5Cp41UZGj",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.dR3JBEK6uHhf4QKc",
-            "Compendium.sw5e.archetypefeatures.TibDm2g8xFkS6Jqt"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.dR3JBEK6uHhf4QKc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.TibDm2g8xFkS6Jqt",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "XOj22vCp78K1gMoA",
+        "_id": "1dpq3f1vVCXE1r0y",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.sofKTOzfdd0bJF2E"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.sofKTOzfdd0bJF2E",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "3zusNWO9iI4zCXwB",
+        "_id": "wyv7XB5hQcHtnYQX",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.r0nbaq3ZkbLxSes8"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.r0nbaq3ZkbLxSes8",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "18QjA3C3G26eTNx0",
+        "_id": "59QC1o7wqJL1zDaV",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.CnVQJRpnRpsY0OFA"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.CnVQJRpnRpsY0OFA",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,11 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959716,
-    "modifiedTime": 1695981489837,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689074,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!8bApUVZRgQjPC3VY"
 }

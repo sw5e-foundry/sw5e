@@ -16,52 +16,54 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Teras Kasi Order:</strong> 17th level</em></p>\n<p>You have learned to harness your strikes in a blistering fury. On your turn, when a creature takes damage from you three times, you can make up to three additional unarmed strikes against the creature (no action required). The first additional unarmed strike costs 1 focus point and deals [[/r 1d12]] additional psychic damage on a hit, and each unarmed strike after the first costs 1 additional focus point and deals [[/r 1d12]] additional psychic damage on a hit, cumulatively.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Teras Kasi Order) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
-      "damage": null
+      "damage": ""
     },
     "damage": {
       "parts": [
@@ -96,18 +98,27 @@
         "turn": null
       }
     },
-    "className": "Monk"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957363,
-    "modifiedTime": 1699591595136,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368683045,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!5SN4Kh5zKl7oGkXk"
 }

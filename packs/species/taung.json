@@ -1,11 +1,5 @@
 {
-  "_id": "upWeT0htm7X1KySj",
   "name": "Taung",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Taung.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2921258+00:00",
@@ -13,56 +7,120 @@
       "uid": "Species.name-taung"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Taung.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Taung are a humanoid species of tall and strong sentient simians. Physically, the taung are extremely resilient and are able to endure hardships many other species are unable to, which benefits their warlike nature as well as their tendencies to conquer planets.</p>\n<h2>Society and Culture</h2>\n<p>Taung society is one steeped in war, and the taung are warriors above all else. Nomadic and clan-based, the taung greatly value strength and honor, with pragmatism and ruthlessness being common traits amongst them. Originally waging war as a means of ritual worship to their god Kad Ha'rangir, the taung eventually became the Mandalorians, and - under the leadership of Mandalore the Indomitable - the act of war itself became the center of Mandalorian worship, and to wage war is to <em>be</em> divine.</p>\n<p>Despite their volatile nature, the taung are far from primitive, and maintain a high priority in procuring the latest technological advancements whenever possible.</p>\n<p>The Mandalorian armor that has become iconic throughout the galaxy originally began with the culture's taung founders, with their unique helmets and war masks being forged in the image of the taung's face, including slanted outer angles and a pointed chin. However, the armor is quite sparse among the taung as they believe that unarmed combat brings the highest honor.</p>\n<h2>Names</h2>\n<p>Taung names reflect their practical nature, typically choosing names that correspond to traits they deem desirable. Their names are rarely gender specific and can apply to either male or female. Their surnames reflect that of the clan they hail from.</p>\n<p><strong>First Names.</strong> Adenn (merciless), Atin (stubborn), Kot (strength), Kotep (brave), Tor (justice), Verd (soldier)</p>\n<p><strong>Surnames.</strong> Cadera, Fett, Keldau, Lok, Ordo, Vizla</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "taung",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
     "advancement": [
       {
-        "_id": "lNqBkr7VbMz1Fppa",
+        "_id": "i9JictZEdmB15vim",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.speciesfeatures.lMT92NkaBT4ZIheZ",
-            "Compendium.sw5e.speciesfeatures.JKfxzR8xO2yjzHgN",
-            "Compendium.sw5e.speciesfeatures.i6CRIFaWS3sUWGFn",
-            "Compendium.sw5e.speciesfeatures.eVZ6UZm6V05kbvUu",
-            "Compendium.sw5e.speciesfeatures.8OxAxsIY6UYwQgKB",
-            "Compendium.sw5e.speciesfeatures.ZzOS9MLjAyaRn8Qd",
-            "Compendium.sw5e.speciesfeatures.4g6gRSk30MpztgTZ",
-            "Compendium.sw5e.speciesfeatures.l5Zq36WG2M9qlbfs",
-            "Compendium.sw5e.speciesfeatures.6Oyv6GeoQFgxlZA4",
-            "Compendium.sw5e.speciesfeatures.WHL30BEcZtpAFDdi",
-            "Compendium.sw5e.speciesfeatures.mimhuZdqZEufPCE5",
-            "Compendium.sw5e.speciesfeatures.1eUs2hfVguT0ed5B"
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lMT92NkaBT4ZIheZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JKfxzR8xO2yjzHgN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.i6CRIFaWS3sUWGFn",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.eVZ6UZm6V05kbvUu",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.8OxAxsIY6UYwQgKB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZzOS9MLjAyaRn8Qd",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.4g6gRSk30MpztgTZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.l5Zq36WG2M9qlbfs",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6Oyv6GeoQFgxlZA4",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WHL30BEcZtpAFDdi",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mimhuZdqZEufPCE5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1eUs2hfVguT0ed5B",
+              "optional": false
+            }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "1OnKqaVVdmDW1B5w",
+        "_id": "oiEXJFv8FlB89ZlT",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "con": 2,
             "str": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "1CjymCgV9J5VdKHO",
+        "_id": "3129AiGskGxDgyIn",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -73,7 +131,7 @@
         "level": 0
       },
       {
-        "_id": "eKw7tGNPZx0I5z18",
+        "_id": "1Bk8qT8BqQff1AnQ",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -95,15 +153,15 @@
           "grants": [
             "skills:itm"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
-    "details": {
-      "isDroid": false
-    },
     "skinColorOptions": {
       "value": "Gray"
     },
@@ -114,7 +172,7 @@
       "value": "Yellow"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Bony and ridged skulls, tendrils  and fin-like protrusions on the back of their heads"
@@ -137,20 +195,30 @@
     "slanguage": {
       "value": "Mando'a"
     },
-    "movement": {
-      "walk": 30
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "lDvNFa7mAcJytBOn",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002144,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797549,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!upWeT0htm7X1KySj"
+  "_key": "!items!lDvNFa7mAcJytBOn"
 }

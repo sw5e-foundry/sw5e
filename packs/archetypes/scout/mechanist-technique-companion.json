@@ -16,81 +16,104 @@
   "system": {
     "description": {
       "value": "<h1>Mechanist Technique (Companion)</h1>\n<p>Some scouts are peerless inventors, skilled at working with droids and other forms of technology. Followers of the Mechanist Technique utilize the assistance of a tracker droid companion to make up for the weakness of organics with the strength and purity of their creations.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "mechanisttechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "ID0F4OZFVTUBncyB",
+        "_id": "mZt9T0LOQ5FVwvgK",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.RR2lHOW913NVPhmS",
-            "Compendium.sw5e.archetypefeatures.PrzlaH9SDZpQpCL7",
-            "Compendium.sw5e.archetypefeatures.r6vbetRPJRkH4T33"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.RR2lHOW913NVPhmS",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.PrzlaH9SDZpQpCL7",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.r6vbetRPJRkH4T33",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "81bNu4QZiGStcPhj",
+        "_id": "19TmOdOxST8gNAHI",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.nscmGga7GrAqtS2J"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.nscmGga7GrAqtS2J",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1BNdPeuv5Ww21d1Z",
+        "_id": "1TOUbcWd0OH61SoD",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.UvLhp8gL3SIcKxOa"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UvLhp8gL3SIcKxOa",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "X85TPWEYYTOMpLjn",
+        "_id": "Qungx2UpGg21kSfA",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.SJOo9dvI40Gl2ll4"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.SJOo9dvI40Gl2ll4",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "WcxE75A1A61AOArE",
+        "_id": "1pogpUpwIBOh1pfh",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "tool:astrotechsimplements"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -101,7 +124,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -109,11 +132,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959741,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689403,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!NdmBGQIL4dFm7prB"
 }

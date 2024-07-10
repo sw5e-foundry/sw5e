@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Monk:</strong> 3rd and 9th level</em></p>\n<p>Your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels, as shown in the Unarmored Movement column of the monk table.</p>\n<p>At 9th level, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the move.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk 3",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
-      "units": null,
-      "type": ""
+      "units": "",
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [
     {
@@ -116,7 +129,6 @@
       "name": "Walk Speed",
       "description": "",
       "statuses": [],
-      "sort": 0,
       "_key": "!items.effects!j3MilBSO0RDAKpK1.d0vaTfluRWKVZJkk"
     }
   ],
@@ -127,11 +139,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1680288496560,
-    "modifiedTime": 1700066910152,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368728457,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "j3MilBSO0RDAKpK1",
   "_key": "!items!j3MilBSO0RDAKpK1"

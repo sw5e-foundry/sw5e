@@ -23,22 +23,26 @@
         {
           "key": "system.abilities.int.max",
           "mode": 2,
-          "value": "2"
+          "value": "2",
+          "priority": null
         },
         {
           "key": "system.abilities.int.value",
           "mode": 2,
-          "value": "2"
+          "value": "2",
+          "priority": null
         },
         {
           "key": "system.abilities.con.max",
           "mode": 2,
-          "value": "2"
+          "value": "2",
+          "priority": null
         },
         {
           "key": "system.abilities.con.value",
           "mode": 2,
-          "value": "2"
+          "value": "2",
+          "priority": null
         }
       ],
       "description": "",
@@ -46,8 +50,7 @@
       "statuses": [],
       "flags": {},
       "tint": null,
-      "_key": "!items.effects!f1XeMafaqejD02MW.M19oSc9G4Qx56F6h",
-      "sort": 0
+      "_key": "!items.effects!f1XeMafaqejD02MW.M19oSc9G4Qx56F6h"
     }
   ],
   "folder": null,
@@ -62,50 +65,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Engineer:</strong> 20th level</em></p>\n<p>Your mastery of technology is unrivaled. Your Constitution and Intelligence scores increase by 2. Your maximum for those scores increases by 2.</p>\n<p>Additionally, when you roll initiative and have no uses of Potent Aptitude left, you regain one use.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer 20",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -130,18 +138,27 @@
         "turn": null
       }
     },
-    "className": null
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493962349,
-    "modifiedTime": 1700066668040,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368728323,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!f1XeMafaqejD02MW"
 }

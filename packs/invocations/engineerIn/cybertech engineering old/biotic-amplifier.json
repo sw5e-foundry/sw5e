@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p>You integrate a biotic amplifier in your wristpad that increases the potency of your healing tech powers. While wielding this amplifier, when a creature regains hit points from a tech power you cast, you can grant them temporary hit points equal to the amount of tech points spent. This amount can't exceed the number of hit points restored.</p>\n<p>You can use this amplifier a number of times equal to your Intelligence modifier. You regain all expended uses when you complete a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Cybertech Engineering (Old))",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "@abilities.int.mod",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "_id": "mZ09e52sSmTF5Og6",
@@ -92,11 +105,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.3",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1698185225687,
-    "modifiedTime": 1698185225687,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368790865,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!mZ09e52sSmTF5Og6"
 }

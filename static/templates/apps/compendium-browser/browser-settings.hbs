@@ -5,7 +5,10 @@
                 <h3>{{localize "SW5E.CompendiumBrowser.TabAction"}}</h3>
                 <dl>
                     {{#each action as |conf pack|}}
-                        <label><dt><input type="checkbox" name="action-{{pack}}" {{checked conf.load}}></dt><dd>{{conf.name}}</dd></label>
+                    <label>
+                        <dt><input type="checkbox" name="action-{{pack}}" {{checked conf.load}}></dt>
+                        <dd>{{conf.name}}</dd>
+                    </label>
                     {{/each}}
                 </dl>
             </div>
@@ -14,7 +17,10 @@
                 <h3>{{localize "SW5E.CompendiumBrowser.TabBestiary"}}</h3>
                 <dl>
                     {{#each bestiary as |conf pack|}}
-                        <label><dt><input type="checkbox" name="bestiary-{{pack}}" {{checked conf.load}}></dt><dd>{{conf.name}}</dd></label>
+                    <label>
+                        <dt><input type="checkbox" name="bestiary-{{pack}}" {{checked conf.load}}></dt>
+                        <dd>{{conf.name}}</dd>
+                    </label>
                     {{/each}}
                 </dl>
             </div>
@@ -23,7 +29,10 @@
                 <h3>{{localize "SW5E.CompendiumBrowser.TabEquipment"}}</h3>
                 <dl>
                     {{#each equipment as |conf pack|}}
-                        <label><dt><input type="checkbox" name="equipment-{{pack}}" {{checked conf.load}}></dt><dd>{{conf.name}}</dd></label>
+                    <label>
+                        <dt><input type="checkbox" name="equipment-{{pack}}" {{checked conf.load}}></dt>
+                        <dd>{{conf.name}}</dd>
+                    </label>
                     {{/each}}
                 </dl>
             </div>
@@ -32,7 +41,10 @@
                 <h3>{{localize "SW5E.CompendiumBrowser.TabFeat"}}</h3>
                 <dl>
                     {{#each feat as |conf pack|}}
-                        <label><dt><input type="checkbox" name="feat-{{pack}}" {{checked conf.load}}></dt><dd>{{conf.name}}</dd></label>
+                    <label>
+                        <dt><input type="checkbox" name="feat-{{pack}}" {{checked conf.load}}></dt>
+                        <dd>{{conf.name}}</dd>
+                    </label>
                     {{/each}}
                 </dl>
             </div>
@@ -41,7 +53,10 @@
                 <h3>{{localize "SW5E.CompendiumBrowser.TabHazard"}}</h3>
                 <dl>
                     {{#each hazard as |conf pack|}}
-                        <label><dt><input type="checkbox" name="hazard-{{pack}}" {{checked conf.load}}></dt><dd>{{conf.name}}</dd></label>
+                    <label>
+                        <dt><input type="checkbox" name="hazard-{{pack}}" {{checked conf.load}}></dt>
+                        <dd>{{conf.name}}</dd>
+                    </label>
                     {{/each}}
                 </dl>
             </div>
@@ -50,7 +65,10 @@
                 <h3>{{localize "SW5E.CompendiumBrowser.TabSpell"}}</h3>
                 <dl>
                     {{#each spell as |conf pack|}}
-                        <label><dt><input type="checkbox" name="spell-{{pack}}" {{checked conf.load}}></dt><dd>{{conf.name}}</dd></label>
+                    <label>
+                        <dt><input type="checkbox" name="spell-{{pack}}" {{checked conf.load}}></dt>
+                        <dd>{{conf.name}}</dd>
+                    </label>
                     {{/each}}
                 </dl>
             </div>

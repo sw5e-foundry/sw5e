@@ -13,48 +13,50 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Shadow Killer Practice:</strong> 17th level</em></p>\n<p>Your familiarity with poisons and the spirit realm has opened up new paths of life and death for you. Your Evasion feature now applies to Constitution saving throws as well as Dexterity saving throws.</p>\n<p>Additionally, whenever you create poison using your Venomous feature, you can change the damage type to acid, cold, fire, lightning or necrotic. When you do so, and you deal Sneak Attack damage with a weapon coated with your poison, you can also change your Sneak Attack damage to the chosen type.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Shadow Killer Practice) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -84,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -93,11 +104,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426104230,
-    "modifiedTime": 1699591595210,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368709489,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "lVz2FVvCG2q65gxG",
   "_key": "!items!lVz2FVvCG2q65gxG"

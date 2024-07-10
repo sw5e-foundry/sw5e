@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Beastmaster Approach</h1>\n<p>Many berserkers feel a primal attunement to nature. For berserkers of the Beastmaster Approach, that attunement manifests itself in bestial marks and manifestations that grant the berserker newfound abilities.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "beastmasterapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "1w3fm2M16ufM1sns",
+        "_id": "xe67DyE4VUQ43quG",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.JmxNU4GhxU4TvefX",
-            "Compendium.sw5e.archetypefeatures.ivhkeE5y7sMy5pQC"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.JmxNU4GhxU4TvefX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ivhkeE5y7sMy5pQC",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "CRJnX5pozBzyDcF5",
+        "_id": "6KG9KNbXlEh1JH7D",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.O9rfChL7dTIj8N0s"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.O9rfChL7dTIj8N0s",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "2OZHnj7Z8t11U1Ut",
+        "_id": "fOAeLnKcoFj1PlEE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.zPefcpvQYV1o1ooJ"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.zPefcpvQYV1o1ooJ",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "1px6tr8n9Jo41P5h",
+        "_id": "rfQBpvQVMyyltK89",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.gGamflBb8bvq9N0u"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.gGamflBb8bvq9N0u",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,11 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959779,
-    "modifiedTime": 1695981489837,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689945,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!tKOHqrcuSdjhuy3K"
 }

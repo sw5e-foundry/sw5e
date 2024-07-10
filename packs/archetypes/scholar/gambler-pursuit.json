@@ -16,71 +16,88 @@
   "system": {
     "description": {
       "value": "<h1>Gambler Pursuit</h1>\n<p>Not all studied men and women use their intelligence and skill for the pursuit of knowledge, but instead turn to the various casinos and betting halls of the galaxy. Those scholars who choose the Gambler Pursuit use their knowledge of probability and risk to attempt to master games of chance and build their fortune, or lose it all along the way.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Gambler Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.UQIp04koFlSzXmw1]{Ace up your sleeve}</li>\n<li>@Compendium[sw5e.invocations.Z23XvHOzFBVQQUK2]{Against the house}</li>\n<li>@Compendium[sw5e.invocations.O1KEIGAB1uz9A4su]{Ante up}</li>\n<li>@Compendium[sw5e.invocations.NWgOyPFuKyb9shgA]{Calculated bluff}</li>\n<li>@Compendium[sw5e.invocations.xuDzUYvNT3r7zAlW]{Cold read}</li>\n<li>@Compendium[sw5e.invocations.NH3Cx8VlkgW5Nf1H]{Feeling the pressure}</li>\n<li>@Compendium[sw5e.invocations.1CSf0wnfLnjFJCtK]{Take a chance}</li>\n<li>@Compendium[sw5e.invocations.yqMlRcaj9l3EdxXg]{The magic number}</li>\n</ul>"
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "gamblerpursuit",
     "classIdentifier": "scholar",
     "advancement": [
       {
-        "_id": "o9TcrlTE9Xj1828q",
+        "_id": "Z33bfLHl96M12ZEG",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.fJm2hbth4x8MjcaE",
-            "Compendium.sw5e.archetypefeatures.fN2aMnXymr47k0PK"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.fJm2hbth4x8MjcaE",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.fN2aMnXymr47k0PK",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "iT2t1IUImLD1sZbx",
+        "_id": "1CKDYSDVJTeR1rXn",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.JDQX7iHuOBK2MFNE"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.JDQX7iHuOBK2MFNE",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1pXFGvWaWEuhQD8E",
+        "_id": "1UY6ojTGBkiCfwV2",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.oOR0EGzlGILqjiZ7"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.oOR0EGzlGILqjiZ7",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "1oGu8tHsnOtK1HdS",
+        "_id": "1yx9ANy23Uvk1sur",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ROtT8JPFQoU1aXZr"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ROtT8JPFQoU1aXZr",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "QRzqfkQpkcR1JaAS",
+        "_id": "LUF2FzfcK6h1uKH9",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -101,39 +118,81 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
-        "_id": "5T6nwqPA54w1Adon",
+        "_id": "1h5kMzFXDt6Y1n5D",
         "type": "ItemChoice",
         "configuration": {
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
-            "2": 2,
-            "3": 2,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "2": {
+              "count": 2,
+              "replacement": false
+            },
+            "3": {
+              "count": 2,
+              "replacement": false
+            },
+            "5": {
+              "count": 1,
+              "replacement": false
+            },
+            "9": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            },
+            "13": {
+              "count": 1,
+              "replacement": false
+            },
+            "17": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.UQIp04koFlSzXmw1",
-            "Compendium.sw5e.invocations.Z23XvHOzFBVQQUK2",
-            "Compendium.sw5e.invocations.O1KEIGAB1uz9A4su",
-            "Compendium.sw5e.invocations.NWgOyPFuKyb9shgA",
-            "Compendium.sw5e.invocations.xuDzUYvNT3r7zAlW",
-            "Compendium.sw5e.invocations.NH3Cx8VlkgW5Nf1H",
-            "Compendium.sw5e.invocations.1CSf0wnfLnjFJCtK",
-            "Compendium.sw5e.invocations.yqMlRcaj9l3EdxXg"
+            {
+              "uuid": "Compendium.sw5e.invocations.UQIp04koFlSzXmw1"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Z23XvHOzFBVQQUK2"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.O1KEIGAB1uz9A4su"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.NWgOyPFuKyb9shgA"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.xuDzUYvNT3r7zAlW"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.NH3Cx8VlkgW5Nf1H"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.1CSf0wnfLnjFJCtK"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.yqMlRcaj9l3EdxXg"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -146,7 +205,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Gambler Discoveries"
       }
     ],
@@ -157,7 +219,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -165,11 +227,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959717,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689081,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!8qXNiCP8VTmXggz9"
 }

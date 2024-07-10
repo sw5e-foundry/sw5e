@@ -6,18 +6,18 @@ import AdvancementConfig from "./advancement-config.mjs";
 export default class HitPointsConfig extends AdvancementConfig {
   /** @inheritdoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       template: "systems/sw5e/templates/advancement/hit-points-config.hbs"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
   getData() {
-    return foundry.utils.mergeObject(super.getData(), {
+    return foundry.utils.mergeObject( super.getData(), {
       hitDie: this.advancement.hitDie,
       label: "SW5E.HitDie"
-    });
+    } );
   }
 }

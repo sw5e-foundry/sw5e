@@ -16,132 +16,235 @@
   "system": {
     "description": {
       "value": "<h1>Astrotech Engineering</h1>\n<p>Those engineers who choose the Astrotech Engineering discipline focus on utilizing their vast knowledge of droid technology to confuse, confound, and destroy enemy tech, droids and constructs.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Astrotech Modifications</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.byFFYe4nyHrvIKcI]{Ai amplifier}</li>\n<li>@Compendium[sw5e.invocations.1IzBHr46UKBo1F1s]{Ai rangefinder}</li>\n<li>@Compendium[sw5e.invocations.pP9HVL8UKDTgJUhB]{Advanced hardening}</li>\n<li>@Compendium[sw5e.invocations.VcjavCW5UEP5PiTT]{Advanced grounding system}</li>\n<li>@Compendium[sw5e.invocations.oUuHQ6tZ6KeDFz3k]{Advanced jamming phased array}</li>\n<li>@Compendium[sw5e.invocations.hxSOIkkOEzKnYtJO]{Advanced ionizing phased array}</li>\n<li>@Compendium[sw5e.invocations.jKaCzw8u728fDagb]{Advanced targeting phased array}</li>\n<li>@Compendium[sw5e.invocations.LcHGVpErzCopwcSu]{Droid restraints}</li>\n<li>@Compendium[sw5e.invocations.TpksBIhLh0mY7TgN]{Flashlight attachment}</li>\n<li>@Compendium[sw5e.invocations.inCAD97O39KQAnyE]{Fadecasting controller}</li>\n<li>@Compendium[sw5e.invocations.ezLs4U3w1PNAr8P6]{Grounding system}</li>\n<li>@Compendium[sw5e.invocations.HJpEpyEqnF86ptep]{Hacked communications}</li>\n<li>@Compendium[sw5e.invocations.BImuQi1qp4paOfux]{Hardening}</li>\n<li>@Compendium[sw5e.invocations.bhxf3j7RdH0pAJbV]{Intelligence core override}</li>\n<li>@Compendium[sw5e.invocations.utCPlGuP6wF4vcAt]{Ionizing phased array}</li>\n<li>@Compendium[sw5e.invocations.3dWwFKH5VJTKYLSk]{Jamming phased array}</li>\n<li>@Compendium[sw5e.invocations.MvDHlBQb9lp9VIMP]{Miniaturized repulsor coils}</li>\n<li>@Compendium[sw5e.invocations.Ndedfz0G2cQCHG4b]{Prototype transmitter}</li>\n<li>@Compendium[sw5e.invocations.YEr0MmYaKM5v8DaM]{Prototype grounding system}</li>\n<li>@Compendium[sw5e.invocations.gwRFGDnMTm1wSsoU]{Prototype jamming phased array}</li>\n<li>@Compendium[sw5e.invocations.lqGBvuUkMQvNCZER]{Prototype ionizing phased array}</li>\n<li>@Compendium[sw5e.invocations.ybEepB3rQsjUVLDg]{Prototype targeting phased array}</li>\n<li>@Compendium[sw5e.invocations.8fLJBViQNcXazz08]{Redundant circuits}</li>\n<li>@Compendium[sw5e.invocations.7vqESrJ8VNaaXGhX]{Rendcasting controller}</li>\n<li>@Compendium[sw5e.invocations.Z396jy4DKzofPyNs]{Sensor scramblers}</li>\n<li>@Compendium[sw5e.invocations.IrKKNZIZbpfU3x2Y]{Stealth field generator}</li>\n<li>@Compendium[sw5e.invocations.IGZVj8dw7pUhzlrO]{Targeting phased array}</li>\n<li>@Compendium[sw5e.invocations.UgBZy3xik8t7pALR]{Truelight attachment}</li>\n<li>@Compendium[sw5e.invocations.hvmSINLSFrGHNCGz]{Withercasting controller}</li>\n<li>@Compendium[sw5e.invocations.zVnrpWfBfYPY110N]{X-ray targeting}</li>\n</ul>"
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "astrotechengineering",
     "classIdentifier": "engineer",
     "advancement": [
       {
-        "_id": "lxr1Is9c0zq1xbyJ",
+        "_id": "1ntQwC9Ft1aP1IAU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.2FYPkRvMNfhTbZW2",
-            "Compendium.sw5e.archetypefeatures.t5VEtUiKXiOctTPc",
-            "Compendium.sw5e.archetypefeatures.6RT32klOd7URbApH"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.2FYPkRvMNfhTbZW2",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.t5VEtUiKXiOctTPc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.6RT32klOd7URbApH",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "P0PVNcJ5qGhU14x9",
+        "_id": "1ikq1CKA9GuqKS52",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.1GX1mIt9D2aPGgE2"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.1GX1mIt9D2aPGgE2",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1rP6FIU1xOaD1md8",
+        "_id": "WPTzkMiN1kl1F1pg",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.OSgJOkqjq0sGDnoI"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.OSgJOkqjq0sGDnoI",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
       },
       {
-        "_id": "ABqhbSZ1KRs1eUj4",
+        "_id": "dfOgbcQagtQ1um2s",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.uvNnBOOtYFjrq9AV"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.uvNnBOOtYFjrq9AV",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
         "title": "Features"
       },
       {
-        "_id": "PgdOFeVUNlN1d1Da",
+        "_id": "Pl02iB6lLA5GUXt9",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "tool:astrotechsimplements"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
-        "_id": "1ixniOqE9mRAXeHy",
+        "_id": "y7WfMaJXNdT1fNJo",
         "type": "ItemChoice",
         "configuration": {
           "hint": "",
           "choices": {
-            "3": 4,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "3": {
+              "count": 4,
+              "replacement": false
+            },
+            "5": {
+              "count": 1,
+              "replacement": false
+            },
+            "9": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            },
+            "13": {
+              "count": 1,
+              "replacement": false
+            },
+            "17": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.byFFYe4nyHrvIKcI",
-            "Compendium.sw5e.invocations.1IzBHr46UKBo1F1s",
-            "Compendium.sw5e.invocations.pP9HVL8UKDTgJUhB",
-            "Compendium.sw5e.invocations.VcjavCW5UEP5PiTT",
-            "Compendium.sw5e.invocations.oUuHQ6tZ6KeDFz3k",
-            "Compendium.sw5e.invocations.hxSOIkkOEzKnYtJO",
-            "Compendium.sw5e.invocations.jKaCzw8u728fDagb",
-            "Compendium.sw5e.invocations.LcHGVpErzCopwcSu",
-            "Compendium.sw5e.invocations.TpksBIhLh0mY7TgN",
-            "Compendium.sw5e.invocations.inCAD97O39KQAnyE",
-            "Compendium.sw5e.invocations.ezLs4U3w1PNAr8P6",
-            "Compendium.sw5e.invocations.HJpEpyEqnF86ptep",
-            "Compendium.sw5e.invocations.BImuQi1qp4paOfux",
-            "Compendium.sw5e.invocations.bhxf3j7RdH0pAJbV",
-            "Compendium.sw5e.invocations.utCPlGuP6wF4vcAt",
-            "Compendium.sw5e.invocations.3dWwFKH5VJTKYLSk",
-            "Compendium.sw5e.invocations.MvDHlBQb9lp9VIMP",
-            "Compendium.sw5e.invocations.Ndedfz0G2cQCHG4b",
-            "Compendium.sw5e.invocations.3jSpDTcxDcJLpUDE",
-            "Compendium.sw5e.invocations.gwRFGDnMTm1wSsoU",
-            "Compendium.sw5e.invocations.lqGBvuUkMQvNCZER",
-            "Compendium.sw5e.invocations.ybEepB3rQsjUVLDg",
-            "Compendium.sw5e.invocations.8fLJBViQNcXazz08",
-            "Compendium.sw5e.invocations.7vqESrJ8VNaaXGhX",
-            "Compendium.sw5e.invocations.Z396jy4DKzofPyNs",
-            "Compendium.sw5e.invocations.Xq6xb9dgawCO8ISy",
-            "Compendium.sw5e.invocations.IGZVj8dw7pUhzlrO",
-            "Compendium.sw5e.invocations.UgBZy3xik8t7pALR",
-            "Compendium.sw5e.invocations.hvmSINLSFrGHNCGz",
-            "Compendium.sw5e.invocations.zVnrpWfBfYPY110N"
+            {
+              "uuid": "Compendium.sw5e.invocations.byFFYe4nyHrvIKcI"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.1IzBHr46UKBo1F1s"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.pP9HVL8UKDTgJUhB"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.VcjavCW5UEP5PiTT"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.oUuHQ6tZ6KeDFz3k"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.hxSOIkkOEzKnYtJO"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.jKaCzw8u728fDagb"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.LcHGVpErzCopwcSu"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.TpksBIhLh0mY7TgN"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.inCAD97O39KQAnyE"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.ezLs4U3w1PNAr8P6"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.HJpEpyEqnF86ptep"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.BImuQi1qp4paOfux"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.bhxf3j7RdH0pAJbV"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.utCPlGuP6wF4vcAt"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.3dWwFKH5VJTKYLSk"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.MvDHlBQb9lp9VIMP"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Ndedfz0G2cQCHG4b"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.3jSpDTcxDcJLpUDE"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.gwRFGDnMTm1wSsoU"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.lqGBvuUkMQvNCZER"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.ybEepB3rQsjUVLDg"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.8fLJBViQNcXazz08"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.7vqESrJ8VNaaXGhX"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Z396jy4DKzofPyNs"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Xq6xb9dgawCO8ISy"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.IGZVj8dw7pUhzlrO"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.UgBZy3xik8t7pALR"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.hvmSINLSFrGHNCGz"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.zVnrpWfBfYPY110N"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -154,7 +257,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Astrotech Modifications"
       }
     ],
@@ -165,7 +271,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -173,11 +279,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959772,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689860,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!p5sUTfZ2GnjkmpdC"
 }

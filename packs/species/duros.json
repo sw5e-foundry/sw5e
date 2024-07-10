@@ -1,8 +1,193 @@
 {
-  "_id": "JKY9oduwDnq2aYJZ",
   "name": "Duros",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9146224+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-duros"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Duros.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearence</h2>\n<p>The duros are humanoids with smooth blue-green skin, red eyes, lipless mouths, long thin noseless faces and green blood. Olfactory organs beneath their eyes are responsible for their sense of smell. Both females and males are bald, though both genders are easily distinguished. Their large red goggle-like eyes have slit pupils. Duros females lay eggs as they are descended from ancient reptiles, and they are born in a larval grub stage. Unlike similar species, the duros take care of their offspring from birth.</p>\n<h2>Society and Culture</h2>\n<p>Their home planet Duro is primarily uninhabited due to massive pollution on the world over time. Instead, it is covered with automated farms for food production. The duros live in twenty orbital space cities above the planet.</p>\n<p>The duros also established a vast, grand starship construction industry in the Duro system. The duros set up their government around a consortium of starship construction corporations, with all important political decisions made by the stockholders of the corporations. This meant that any duros that held stock in a company could participate in the administration of the system.</p>\n<p>With their strong memories, some duros also choose to become extraordinary storytellers, renowned galaxy-wide for their ability to learn a wide range of narratives by heart, and perform them all with stunning accuracy. </p>\n<h2>Names</h2>\n<p>Duros names are generally melodic, with female names having softer intonations. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Cir, Fod, Mom, Rur, Zim</p>\n<p><strong>Female Names.</strong> Chochi, Fumsu, Kaleshef, Raada</p>\n<p><strong>Surnames.</strong> Dektuks, Jimoks, Silt, Tuzig, Zhoks</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "duros",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1bPYjDLvbbLg1MoD",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DrQv7RlloxWGELIF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6ivKZyw9rocD20qQ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3hxnPwAPzlcyxDyu",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HMg2129JIyebZQ23",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.m7GQ9ghTM8sI6VT7",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xZek1sYp0wDvuULD",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rUPQ1XmeC4ahOO8h",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.gWSBjqt3Ocn7sB9Y",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fHO8yJy0NVRaoqOc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xp3vRKqT1lMET4Kg",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GF520Vxtm7rjqJPm",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "7amLtwZBlZp1TO1D",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "int": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "UKmrIZCpKu17Ux1g",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "HCclgjY5s3CwSUGR",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:pil",
+            "skills:lor",
+            "tool:surveyorsimplements"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Blue, green"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Red"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Noseless, large red eyes, affinity for space travel"
+    },
+    "heightAverage": {
+      "value": "5'5\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "115 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Duro"
+    },
+    "slanguage": {
+      "value": "Durese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "sz5oR4T4w3PXpQR9",
@@ -86,146 +271,22 @@
       "name": "Duros",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!JKY9oduwDnq2aYJZ.sz5oR4T4w3PXpQR9"
+      "_key": "!items.effects!ZV7JJYogvpLgoGLW.sz5oR4T4w3PXpQR9"
     }
   ],
+  "_id": "ZV7JJYogvpLgoGLW",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9146224+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-duros"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearence</h2>\n<p>The duros are humanoids with smooth blue-green skin, red eyes, lipless mouths, long thin noseless faces and green blood. Olfactory organs beneath their eyes are responsible for their sense of smell. Both females and males are bald, though both genders are easily distinguished. Their large red goggle-like eyes have slit pupils. Duros females lay eggs as they are descended from ancient reptiles, and they are born in a larval grub stage. Unlike similar species, the duros take care of their offspring from birth.</p>\n<h2>Society and Culture</h2>\n<p>Their home planet Duro is primarily uninhabited due to massive pollution on the world over time. Instead, it is covered with automated farms for food production. The duros live in twenty orbital space cities above the planet.</p>\n<p>The duros also established a vast, grand starship construction industry in the Duro system. The duros set up their government around a consortium of starship construction corporations, with all important political decisions made by the stockholders of the corporations. This meant that any duros that held stock in a company could participate in the administration of the system.</p>\n<p>With their strong memories, some duros also choose to become extraordinary storytellers, renowned galaxy-wide for their ability to learn a wide range of narratives by heart, and perform them all with stunning accuracy. </p>\n<h2>Names</h2>\n<p>Duros names are generally melodic, with female names having softer intonations. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Cir, Fod, Mom, Rur, Zim</p>\n<p><strong>Female Names.</strong> Chochi, Fumsu, Kaleshef, Raada</p>\n<p><strong>Surnames.</strong> Dektuks, Jimoks, Silt, Tuzig, Zhoks</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "duros",
-    "advancement": [
-      {
-        "_id": "lhEIwL6rs1pDG0pE",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.DrQv7RlloxWGELIF",
-            "Compendium.sw5e.speciesfeatures.6ivKZyw9rocD20qQ",
-            "Compendium.sw5e.speciesfeatures.3hxnPwAPzlcyxDyu",
-            "Compendium.sw5e.speciesfeatures.HMg2129JIyebZQ23",
-            "Compendium.sw5e.speciesfeatures.m7GQ9ghTM8sI6VT7",
-            "Compendium.sw5e.speciesfeatures.xZek1sYp0wDvuULD",
-            "Compendium.sw5e.speciesfeatures.rUPQ1XmeC4ahOO8h",
-            "Compendium.sw5e.speciesfeatures.gWSBjqt3Ocn7sB9Y",
-            "Compendium.sw5e.speciesfeatures.fHO8yJy0NVRaoqOc",
-            "Compendium.sw5e.speciesfeatures.xp3vRKqT1lMET4Kg",
-            "Compendium.sw5e.speciesfeatures.GF520Vxtm7rjqJPm"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "gXBYeGt9iecI9Ng3",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "dex": 2,
-            "int": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "YGAIlHPjDHA1TNjG",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "hSK6ngzhdpNAMLNw",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:pil",
-            "skills:lor",
-            "tool:surveyorsimplements"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Blue, green"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Red"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Noseless, large red eyes, affinity for space travel"
-    },
-    "heightAverage": {
-      "value": "5'5\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "115 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Duro"
-    },
-    "slanguage": {
-      "value": "Durese"
-    },
-    "movement": {
-      "walk": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002079,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797244,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!JKY9oduwDnq2aYJZ"
+  "_key": "!items!ZV7JJYogvpLgoGLW"
 }

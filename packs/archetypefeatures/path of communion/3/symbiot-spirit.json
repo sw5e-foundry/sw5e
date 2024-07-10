@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Path of Communion:</strong> 3rd, 5th, 9th, 13th, and 17th level</em></p>\n<p>You attract the attention of the spirit of a Force ghost. Over the course of one hour, you can attune to the spirit, forging a lasting connection. While attuned to a spirit, you gain the following benefits:</p>\n<ul>\n<li>Your spirit is always audible and visible to you. Your spirit can choose to make itself audible and visible or inaudible and invisible to other creatures (no action required), but it is always visible to beings with truesight.</li>\n<li>Your spirit can not interact with the corporeal world, but it is also not impeded by unenhanced walls or barriers.</li>\n<li>Your spirit acts independently of you, and it only obeys your commands if it chooses to. In combat, it rolls its own initiative and acts on its own turn. Your spirit can't attack, but it can take other actions as normal.</li>\n<li>While your spirit is within 100 feet of you, you can telepathically communicate with it. Additionally, as an action, you can see through your spirit's vision and hear what it hears until the start of your next turn. During this time, you are deaf and blind with regard to your own senses.</li>\n<li>When you cast a force power with a range of touch, your spirit can deliver the power as if it had cast it. Your spirit must be within 100 feet of you, and it must use its reaction to deliver the power when you cast it. If the power requires an attack roll, you use your attack modifier for the roll.</li>\n</ul>\n<p>You can only attune to one spirit at a time. If you attempt to attune to another spirit, you immediately break the bond with your current spirit.</p>\n<p>&gt; #### Generating Your Spirit</p>\n<p>&gt; Your spirit might be the ghost of a benevolent Jedi, discovered in the ruins of a Jedi temple, or a powerful Sith spirit lingering in an ancient artifact. It might be the spirit of a Nightsister sorceress, or a paragon of a long-forgotten monastic order. Work with your GM to determine the nature of your spirit.</p>\n<p>Additionally, your spirit can briefly interact with the physical world. When you would make a melee attack, your spirit can deliver the attack as if it had made it. Your spirit must be within 100 feet of you, and it must use its reaction to deliver the attack. It uses your modifiers for the attack and damage rolls. You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you complete a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Sentinel (Path of Communion) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 100,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "2",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -91,11 +104,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1680288495965,
-    "modifiedTime": 1695981490773,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418053762,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "X6TVdZMcu1hlgH7l",
   "_key": "!items!X6TVdZMcu1hlgH7l"

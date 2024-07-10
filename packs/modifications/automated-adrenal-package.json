@@ -13,38 +13,39 @@
   "system": {
     "description": {
       "value": "<h4>Cybernetic Augmentation (Enhancement)</h4>\n <p><em>Prerequisite:  Constitution 15</em></p>\n<hr />\n<p>Once on your turn, you can activate this implant to gain the effects of an adrenal (no action required). This effect lasts for one minute, or until a different adrenal is chosen. You can choose from the following types of adrenals:</p>\n<p><em></em>_</p>\n<ul>\n<li><strong>Strength Adrenal:</strong> You gain a +1 bonus to the damage rolls of melee weapon attacks, and your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples.</li>\n<li><strong>Alacrity Adrenal:</strong> You gain a +1 bonus to the damage rolls of ranged weapon attacks, and your speed increases by 10 feet. </li>\n<li><strong>Stamina Adrenal:</strong> You gain 2 temporary hit points and a +2 bonus to Constitution saving throws. </li>\n</ul>\n<p><strong>Side Effect:</strong> You can no longer benefit from other adrenals. </p>\n<p><em>This clear plasti-polymer implant has an appearance vaguely resembling a multi-limbed cephalopod, and must be carefully installed by a master cybertech. It attaches by wrapping around the medulla, and produces a variety of combat adrenals for its user's consumption. It also performs blood-cleansing work to reduce the liver damage (for species that have a liver) caused by long-term adrenal use.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "advanced",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "minute"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -55,16 +56,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "heal",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -85,15 +87,26 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "cybernetic",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {}
-    }
+    "properties": [],
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "cybernetic",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -102,11 +115,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1673970648616,
-    "modifiedTime": 1695981488156,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418050632,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "fMLhlgqrkmhZ1bpQ",
   "_key": "!items!fMLhlgqrkmhZ1bpQ"

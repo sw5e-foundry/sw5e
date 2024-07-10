@@ -16,81 +16,104 @@
   "system": {
     "description": {
       "value": "<h1>Teleportation Technique</h1>\n<p>Whether through experimentation or discovery of an ancient technology, followers of the Teleportation Technique have learned to create brief teleportation portals, allowing them to maneuver and attack both quickly and unpredictably throughout the battlefield.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "teleportationtechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "1PJSAaiNsiOd1CQg",
+        "_id": "15ashjHEDKN64Ied",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.OtSw0vjPa3qScmRF",
-            "Compendium.sw5e.archetypefeatures.pBjEkawG1z0Kfgv3",
-            "Compendium.sw5e.archetypefeatures.Y9bdZJOPS2k29Vnu"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.OtSw0vjPa3qScmRF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pBjEkawG1z0Kfgv3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Y9bdZJOPS2k29Vnu",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "BPI4eTkAh7L1p3PD",
+        "_id": "16tVzwJXjEZrRMuB",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.yRcP6NMkwl2cdtDA"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.yRcP6NMkwl2cdtDA",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1JOZhHbNfBie5uxd",
+        "_id": "mgPd1Mqv3Cqqd28W",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Zy1lZOSKK4qcSKQp"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Zy1lZOSKK4qcSKQp",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "1ifTy4NKVFdj15Ql",
+        "_id": "18mHDMQx1o6M1eL2",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.WxaVGJlPlo1kCQ4w"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.WxaVGJlPlo1kCQ4w",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "VO0KSMNkcQ7Mt3fZ",
+        "_id": "4CeQjupyXmz1c72M",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "tool:tinkersimplements"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -101,7 +124,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -109,11 +132,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959742,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689421,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!OdXeuVLVdK7O0H24"
 }

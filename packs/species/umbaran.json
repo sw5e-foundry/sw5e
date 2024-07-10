@@ -1,8 +1,198 @@
 {
-  "_id": "sm8q9UjqMxguQcG2",
   "name": "Umbaran",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:11.8993534+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-umbaran"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Umbaran.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Umbarans, called the \"Shadow People\" by some, are a near-human species characterized by their pale, bluish skin and colorless, sunken eyes. Their homeworld, Umbara, is situated deep within the Ghost Nebula, and receives almost no direct light from the planet's primary star. As a result, Umbaran eyes are well-adjusted to seeing in low light, and can see into the ultraviolet spectrum, but can be disoriented by bright light.</p>\n<h2>Society and Culture</h2>\n<p>Umbaran society is strictly divided into a leveled caste system, with most Umbarans constantly scheming to improve their social rank, using tactics such as blackmail, subterfuege, and even assassination if necessary. Only those within the ten highest caste tiers were given opportunities to leave their homeworld. Because of the cutthroat machinations required to get there, Umbarans in the wider galaxy are known as skilled, ruthless politicians. This reputation is enhanced by the Umbarans' talents for reading and influencing the emotions of others.</p>\n<p>Umbara developed its own technological advances separate from galactic society, and possessed technology that was in many fields far more advanced than the galactic standard. </p>\n<h2>Names</h2>\n<p>Umbaran names are typically no more than one or two syllables. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Mee, Pir, Nyss, Moshenu  </p>\n<p><strong>Female Names.</strong> Sly, Syll, Myn, Sata </p>\n<p> </p>\n<p><strong>Surnames.</strong> Deechi, Moore, Phobi, Nenn</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "umbaran",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 120,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1ALjKlTLcA6w1ioE",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.iq3F8LcUwZIWVA1M",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.YgmQzo1WC7tkIuDl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MQkXnTYUdGDTXwAz",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HJlon36EdXvWFeai",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6neJ7XuNdbEdAG3u",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bEqTk6uh5wGewQMO",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yvYdFbpqvWYJzJC4",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ErwkrEb9nFwigms5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.biIMV2cz9ynzkajl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.pdKFSeE2Lcg6r2ix",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.i4pLGZdlCCYzEx5u",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "DhDpUHa7KaW18FCY",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1xOZKaa8E0OJ1rPN",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "C2tIRjKcHNeOMhud",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:ins",
+                "skills:tec",
+                "skills:dec",
+                "skills:prc"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Pale grey or white"
+    },
+    "hairColorOptions": {
+      "value": "White"
+    },
+    "eyeColorOptions": {
+      "value": "White"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Blue tinted skin and sunken, colorless eyes"
+    },
+    "heightAverage": {
+      "value": "4'11\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "105 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Umbara"
+    },
+    "slanguage": {
+      "value": "Umbaran"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "bZfvXqxEtFLb9Mcw",
@@ -66,8 +256,7 @@
       "name": "Umbaran",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!sm8q9UjqMxguQcG2.bZfvXqxEtFLb9Mcw"
+      "_key": "!items.effects!qww09F4xL7Wmoye6.bZfvXqxEtFLb9Mcw"
     },
     {
       "_id": "fGimngedPaLedZyI",
@@ -107,151 +296,22 @@
       "name": "Sunlight Sensitivity - you or your target is in sunlight",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!sm8q9UjqMxguQcG2.fGimngedPaLedZyI"
+      "_key": "!items.effects!qww09F4xL7Wmoye6.fGimngedPaLedZyI"
     }
   ],
+  "_id": "qww09F4xL7Wmoye6",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:11.8993534+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-umbaran"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Umbarans, called the \"Shadow People\" by some, are a near-human species characterized by their pale, bluish skin and colorless, sunken eyes. Their homeworld, Umbara, is situated deep within the Ghost Nebula, and receives almost no direct light from the planet's primary star. As a result, Umbaran eyes are well-adjusted to seeing in low light, and can see into the ultraviolet spectrum, but can be disoriented by bright light.</p>\n<h2>Society and Culture</h2>\n<p>Umbaran society is strictly divided into a leveled caste system, with most Umbarans constantly scheming to improve their social rank, using tactics such as blackmail, subterfuege, and even assassination if necessary. Only those within the ten highest caste tiers were given opportunities to leave their homeworld. Because of the cutthroat machinations required to get there, Umbarans in the wider galaxy are known as skilled, ruthless politicians. This reputation is enhanced by the Umbarans' talents for reading and influencing the emotions of others.</p>\n<p>Umbara developed its own technological advances separate from galactic society, and possessed technology that was in many fields far more advanced than the galactic standard. </p>\n<h2>Names</h2>\n<p>Umbaran names are typically no more than one or two syllables. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Mee, Pir, Nyss, Moshenu  </p>\n<p><strong>Female Names.</strong> Sly, Syll, Myn, Sata </p>\n<p> </p>\n<p><strong>Surnames.</strong> Deechi, Moore, Phobi, Nenn</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "umbaran",
-    "advancement": [
-      {
-        "_id": "1TK12o1a5TW1QIUw",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.iq3F8LcUwZIWVA1M",
-            "Compendium.sw5e.speciesfeatures.YgmQzo1WC7tkIuDl",
-            "Compendium.sw5e.speciesfeatures.MQkXnTYUdGDTXwAz",
-            "Compendium.sw5e.speciesfeatures.HJlon36EdXvWFeai",
-            "Compendium.sw5e.speciesfeatures.6neJ7XuNdbEdAG3u",
-            "Compendium.sw5e.speciesfeatures.bEqTk6uh5wGewQMO",
-            "Compendium.sw5e.speciesfeatures.yvYdFbpqvWYJzJC4",
-            "Compendium.sw5e.speciesfeatures.ErwkrEb9nFwigms5",
-            "Compendium.sw5e.speciesfeatures.biIMV2cz9ynzkajl",
-            "Compendium.sw5e.speciesfeatures.pdKFSeE2Lcg6r2ix",
-            "Compendium.sw5e.speciesfeatures.i4pLGZdlCCYzEx5u"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "Us55aN9uPGvYjGJr",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "qMZmxcDqv1ijznL1",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "pItGXEC5G6mFtl0x",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "skills:ins",
-                "skills:tec",
-                "skills:dec",
-                "skills:prc"
-              ]
-            }
-          ],
-          "grants": [],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Pale grey or white"
-    },
-    "hairColorOptions": {
-      "value": "White"
-    },
-    "eyeColorOptions": {
-      "value": "White"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Blue tinted skin and sunken, colorless eyes"
-    },
-    "heightAverage": {
-      "value": "4'11\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "105 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Umbara"
-    },
-    "slanguage": {
-      "value": "Umbaran"
-    },
-    "movement": {
-      "walk": 30
-    },
-    "senses": {
-      "darkvision": 120
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002141,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797658,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!sm8q9UjqMxguQcG2"
+  "_key": "!items!qww09F4xL7Wmoye6"
 }

@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:15.1704569+00:00",
+      "timestamp": "2023-05-30T20:14:19.9971224+00:00",
       "importer_version": 3,
       "uid": "Archetype.name-fireteam_specialist"
     }
@@ -16,77 +16,98 @@
   "system": {
     "description": {
       "value": "<h1>Fireteam Specialist</h1>\n<p>When charging onto the frontlines of the galaxy's harshest conflicts, it pays to have people you can trust at your side. Those fighters who choose to become Fireteam Specialists command the respect and loyalty of those beside them by guiding their squad through thick and thin.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "fireteamspecialist",
     "classIdentifier": "fighter",
     "advancement": [
       {
-        "_id": "wPY6KwbbugT1Ui4m",
+        "_id": "YhDNpbrkapQ1GBSG",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.lBZFfW5vg8NbHXui",
-            "Compendium.sw5e.archetypefeatures.CQONzjtXOVsfoN8y"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.lBZFfW5vg8NbHXui",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.CQONzjtXOVsfoN8y",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1TgOpCGW8PUOrf38",
+        "_id": "11iWlSqOBTOCZX2d",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.oL6RGaXHq6zd4Dlj"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.oL6RGaXHq6zd4Dlj",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "4mXHcdG51Xp10YdY",
+        "_id": "1KTf5ALjUbV0Vsr2",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.g2hXtNGesqE691pH"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.g2hXtNGesqE691pH",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "1euAWwDbNxvg1sii",
+        "_id": "1Dd6dLb0LxnaA8qv",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.1TUWUKxSp7Enyn1g"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.1TUWUKxSp7Enyn1g",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "6hluuc67rHh1IFbN",
+        "_id": "1umFuMUjDSJH1opc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Q35iYNvBzQWVbLWh"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Q35iYNvBzQWVbLWh",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -100,7 +121,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -108,11 +129,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959720,
-    "modifiedTime": 1695981489837,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689119,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!AjQlu5orqGkxLmpc"
 }

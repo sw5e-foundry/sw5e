@@ -1,5 +1,5 @@
 import Actor5e from "../../documents/actor/actor.mjs";
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import { AdvancementField, IdentifierField } from "../fields.mjs";
 import { CreatureTypeField, MovementField, SensesField } from "../shared/_module.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
@@ -8,7 +8,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * Data definition for Species items.
  * @mixes ItemDescriptionTemplate
  *
- * @property {string} identifier        Identifier slug for this class.
+ * @property {string} identifier        Identifier slug for this species.
  * @property {object[]} advancement     Advancement objects for this species.
  * @property {MovementField} movement
  * @property {SensesField} senses
@@ -30,83 +30,83 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {string} manufacturer
  * @property {string} droidLanguage
  */
-export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
+export default class SpeciesData extends ItemDataModel.mixin( ItemDescriptionTemplate ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      identifier: new IdentifierField({ label: "SW5E.Identifier" }),
-      advancement: new foundry.data.fields.ArrayField(new AdvancementField(), { label: "SW5E.AdvancementTitle" }),
+    return this.mergeSchema( super.defineSchema(), {
+      identifier: new IdentifierField( { label: "SW5E.Identifier" } ),
+      advancement: new foundry.data.fields.ArrayField( new AdvancementField(), { label: "SW5E.AdvancementTitle" } ),
       movement: new MovementField(),
       senses: new SensesField(),
-      type: new CreatureTypeField({ swarm: false }, { initial: { value: "humanoid" } }),
+      type: new CreatureTypeField( { swarm: false }, { initial: { value: "humanoid" } } ),
 
       details: new foundry.data.fields.SchemaField(
         {
-          isDroid: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.IsDroid" })
+          isDroid: new foundry.data.fields.BooleanField( { required: true, label: "SW5E.IsDroid" } )
         },
         { label: "SW5E.Details" }
       ),
 
       // Non-droid visual characteristics
-      skinColorOptions: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.skinColorOptions" })
-      }),
-      hairColorOptions: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.hairColorOptions" })
-      }),
-      eyeColorOptions: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.eyeColorOptions" })
-      }),
-      distinctions: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.distinctions" })
-      }),
+      skinColorOptions: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.skinColorOptions" } )
+      } ),
+      hairColorOptions: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.hairColorOptions" } )
+      } ),
+      eyeColorOptions: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.eyeColorOptions" } )
+      } ),
+      distinctions: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.distinctions" } )
+      } ),
 
       // Droid visual characteristics
-      colorScheme: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.ColorScheme" })
-      }),
-      droidDistinctions: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.DroidDistinctions" })
-      }),
+      colorScheme: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.ColorScheme" } )
+      } ),
+      droidDistinctions: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.DroidDistinctions" } )
+      } ),
 
       // Physical characteristics
-      heightAverage: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.HeightAverage" })
-      }),
-      heightRollMod: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.HeightRollMod" })
-      }),
-      weightAverage: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.WeightAverage" })
-      }),
-      weightRollMod: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.WeightRollMod" })
-      }),
+      heightAverage: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.HeightAverage" } )
+      } ),
+      heightRollMod: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.HeightRollMod" } )
+      } ),
+      weightAverage: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.WeightAverage" } )
+      } ),
+      weightRollMod: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.WeightRollMod" } )
+      } ),
 
       // Non-droid sociocultural characteristics
-      homeworld: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.homeworld" })
-      }),
-      slanguage: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.slanguage" })
-      }),
+      homeworld: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.homeworld" } )
+      } ),
+      slanguage: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.slanguage" } )
+      } ),
 
       // Droid sociocultural characteristics
-      manufacturer: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.manufacturer" })
-      }),
-      droidLanguage: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.slanguage" })
-      })
-    });
+      manufacturer: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.manufacturer" } )
+      } ),
+      droidLanguage: new foundry.data.fields.SchemaField( {
+        value: new foundry.data.fields.StringField( { required: true, label: "SW5E.slanguage" } )
+      } )
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static metadata = Object.freeze({
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
     singleton: true
-  });
+  }, {inplace: false} ) );
 
   /* -------------------------------------------- */
   /*  Properties                                  */
@@ -117,12 +117,12 @@ export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTe
    * @returns {Object<string>}
    */
   get movementLabels() {
-    const units = CONFIG.SW5E.movementUnits[this.movement.units || Object.keys(CONFIG.SW5E.movementUnits)[0]];
-    return Object.entries(CONFIG.SW5E.movementTypes).reduce((obj, [k, label]) => {
+    const units = CONFIG.SW5E.movementUnits[this.movement.units || Object.keys( CONFIG.SW5E.movementUnits )[0]];
+    return Object.entries( CONFIG.SW5E.movementTypes ).reduce( ( obj, [k, label] ) => {
       const value = this.movement[k];
       if ( value ) obj[k] = `${label} ${value} ${units}`;
       return obj;
-    }, {});
+    }, {} );
   }
 
   /* -------------------------------------------- */
@@ -132,12 +132,12 @@ export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTe
    * @returns {Object<string>}
    */
   get sensesLabels() {
-    const units = CONFIG.SW5E.movementUnits[this.senses.units || Object.keys(CONFIG.SW5E.movementUnits)[0]];
-    return Object.entries(CONFIG.SW5E.senses).reduce((arr, [k, label]) => {
+    const units = CONFIG.SW5E.movementUnits[this.senses.units || Object.keys( CONFIG.SW5E.movementUnits )[0]];
+    return Object.entries( CONFIG.SW5E.senses ).reduce( ( arr, [k, label] ) => {
       const value = this.senses[k];
-      if ( value ) arr.push(`${label} ${value} ${units}`);
+      if ( value ) arr.push( `${label} ${value} ${units}` );
       return arr;
-    }, []).concat(this.senses.special.split(";").filter(l => l));
+    }, [] ).concat( this.senses.special.split( ";" ).filter( l => l ) );
   }
 
   /* -------------------------------------------- */
@@ -147,7 +147,7 @@ export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTe
    * @returns {Object<string>}
    */
   get typeLabel() {
-    return Actor5e.formatCreatureType(this.type);
+    return Actor5e.formatCreatureType( this.type );
   }
 
   /* -------------------------------------------- */
@@ -163,16 +163,17 @@ export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTe
    * @see {Document#_preCreate}
    * @protected
    */
-  async _preCreate(data, options, user) {
-    if ( data._id || foundry.utils.hasProperty(data, "system.advancement") ) return;
+  async _preCreate( data, options, user ) {
+    if ( data._id || foundry.utils.hasProperty( data, "system.advancement" ) ) return;
     const toCreate = [
       { type: "AbilityScoreImprovement" }, { type: "Size" },
       { type: "Trait", configuration: { grants: ["languages:standard:common"] } }
     ];
-    this.parent.updateSource({"system.advancement": toCreate.map(c => {
-      const AdvancementClass = CONFIG.SW5E.advancementTypes[c.type];
-      return new AdvancementClass(c, { parent: this.parent }).toObject();
-    })});
+    this.parent.updateSource( {"system.advancement": toCreate.map( c => {
+      const config = CONFIG.SW5E.advancementTypes[c.type];
+      const cls = config.documentClass ?? config;
+      return new cls( c, { parent: this.parent } ).toObject();
+    } )} );
   }
 
   /* -------------------------------------------- */
@@ -185,9 +186,9 @@ export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTe
    * @see {Document#_onCreate}
    * @protected
    */
-  _onCreate(data, options, userId) {
-    if ( (game.user.id !== userId) || this.parent.actor?.type !== "character" ) return;
-    this.parent.actor.update({ "system.details.species": this.parent.id });
+  _onCreate( data, options, userId ) {
+    if ( ( game.user.id !== userId ) || !["character", "npc"].includes( this.parent.actor?.type ) ) return;
+    this.parent.actor.update( { "system.details.species": this.parent.id } );
   }
 
   /* -------------------------------------------- */
@@ -200,8 +201,8 @@ export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTe
    * @see {Document#_preDelete}
    * @protected
    */
-  async _preDelete(options, user) {
-    if ( (this.parent.actor?.type !== "character") ) return;
-    await this.parent.actor.update({ "system.details.species": null });
+  async _preDelete( options, user ) {
+    if ( !["character", "npc"].includes( this.parent.actor?.type ) ) return;
+    await this.parent.actor.update( { "system.details.species": null } );
   }
 }

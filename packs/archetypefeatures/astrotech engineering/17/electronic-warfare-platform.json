@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Astrotech Engineering:</strong> 3rd, 9th, and 17th level</em></p>\n<p>You learn to modify your astrotech's implements into a mobile electronic warfare platform. Over the course of a long rest, you can modify your astrotech's implements. You must have astrotech's implements in order to perform this modification.</p>\n<p>Your electronic warfare platform is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. Your electronic warfare platform has 4 modification slots, and it gains more at higher levels, as shown in the Modification Slots column of the engineer table. For each modification installed in excess of your proficiency bonus, your tech point maximum is reduced by 1. Over the course of a long rest, you can install, replace, or remove a number of modifications up to your Intelligence modifier (minimum of one).</p>\n<p>Some modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.</p>\n<p>Your electronic warfare platform comes equipped with electromagnetic projection and sensing systems, enabling three fields: ionizing, jamming, and targeting. As a bonus action, you can activate a field, which lasts for 1 minute, causing an effect determined by the field. Only one field can be active at a time, and you can end your field at any time on your turn, no action required. The range of your barriers increases to 15 feet at 9th level and 30 feet at 17th level. You can use these fields a combined number of times equal to your proficiency bonus, as shown in the engineer table. You regain all expended uses when you complete a long rest.</p>\n<h3>Ionizing Field</h3>\n<p>Whenever a droid or construct other than you starts its turn within 5 feet of you, it gains 4 slowed levels and takes ion damage equal to half your engineer level. </p>\n<h3>Jamming Field</h3>\n<p>Whenever you or a friendly creature within 10 feet of you are forced to make a saving throw by a tech power, the creature gains a bonus to the saving throw equal to your Intelligence modifier (minimum of +1). </p>\n<h3>Targeting Field</h3>\n<p>You and friendly creatures within 5 feet of you gain a bonus to the first ranged weapon damage rolls you </p>\n<p>make each round equal to your Intelligence modifier (minimum of +1). </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Astrotech Engineering) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 5,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -91,11 +104,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1680288495940,
-    "modifiedTime": 1699591595132,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368681400,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "2YhxQAavnYhms4Sn",
   "_key": "!items!2YhxQAavnYhms4Sn"

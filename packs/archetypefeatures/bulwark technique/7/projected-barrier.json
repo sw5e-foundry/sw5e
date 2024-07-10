@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Bulwark Technique:</strong> 7th, 11th, and 17th level</em></p>\n<p>You've learned how to manipulate your barrier to create new effects. As an action, you can spend three of your barrier's hit points to create a unique effect. You have three such effects: Projected Sphere, Projected Maelstrom, and Projected Wave. When you use your Projected Barrier, you choose which effect to create.</p>\n<p>Some Projected Barrier Effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.</p>\n<p>If your barrier's hit points are reduced to 0, any Projected Barrier features immediately end.</p>\n<h3>Projected Sphere</h3>\n<p>You create a protective spherical barrier in a 5-foot-radius sphere a point you can see within 30 feet that lasts until the start of your next turn. Creatures within the barrier have three-quarters cover from attacks originating from outside the barrier. You can maintain the barrier by spending an additional barrier hit point at the start of each of your turns (no action required).</p>\n<h3>Projected Maelstrom</h3>\n<p>You create an unstable energy maelstrom in a 5-foot cube at a point you can see within 30 feet that lasts until the start of your next turn. A creature takes [[/r 4d4]] energy damage when it enters the area for the first time on a turn or starts its turn there. You can maintain the barrier by spending an additional barrier hit point at the start of each of your turns (no action required). </p>\n<p>This feature's damage increases by [[/r 1d4]] when you reach 11th level ([[/r 5d4]]) and 17th level ([[/r 6d4]]).</p>\n<h3>Projected Wave</h3>\n<p>You create a wave of barrier energy in a 15-foot cone. Each creature within the cone must make a Dexterity saving throw. On a failed save, a creature takes [[/r 2d6]] energy damage and is pushed back to the edge of the cone. On a success, they take half damage and aren't pushed.</p>\n<p>This feature's damage increases by [[/r 1d6]] when you reach 11th level ([[/r 3d6]]) and 17th level ([[/r 4d6]]).</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scout (Bulwark Technique) 7",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 5,
+      "value": "5",
       "width": null,
       "units": "ft",
-      "type": "sphere"
+      "type": "sphere",
+      "prompt": true
     },
     "range": {
       "value": 30,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -90,7 +93,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -100,11 +113,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1679609438353,
-    "modifiedTime": 1699591595216,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368711737,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "oWnJ0vssqOQZl6cC",
   "_key": "!items!oWnJ0vssqOQZl6cC"

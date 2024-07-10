@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Path of Focus</h1>\n<p>The ways of the Force can reveal themselves to a sentinel through intense concentration and, most importantly, focus. Those sentinels who follow the Path of Focus use debilitating bursts of lightsaber strikes and force powers to exhaust their foes, crushing any hopes they had of mounting an effective defense.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "pathoffocus",
     "classIdentifier": "sentinel",
     "advancement": [
       {
-        "_id": "148RjHgu6eWM1GTR",
+        "_id": "10YL4s58MMtU1gQq",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.M4TvPat9RcWb3Lld",
-            "Compendium.sw5e.archetypefeatures.krcbHJIBAzzgQQjG"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.M4TvPat9RcWb3Lld",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.krcbHJIBAzzgQQjG",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1hozAZkpJDOL18ev",
+        "_id": "ty5g1zh7Oiac6d1Y",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.wv6tHoPoz1VvOIsT"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.wv6tHoPoz1VvOIsT",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1ujOBpMycGm62TUw",
+        "_id": "1jhW34w0XPhG1hHk",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.1JcvqmPhP8g4pDaD"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.1JcvqmPhP8g4pDaD",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "s46GLk6U6Igneqqr",
+        "_id": "18z9PFO8Kn0v89Bn",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.2gNENhRMngBSCGae"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.2gNENhRMngBSCGae",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,11 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959733,
-    "modifiedTime": 1695981489837,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689296,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!Hk9X8z1pVJThH5wV"
 }

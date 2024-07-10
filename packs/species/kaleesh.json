@@ -1,8 +1,191 @@
 {
-  "_id": "RFOrxqZ3boFYO4PY",
   "name": "Kaleesh",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2811327+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-kaleesh"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Kaleesh.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Tusks protrude from a Kaleesh's upper jaw, and shorter ones jut from their chins. Kaleesh have large pointed ears and long nostrils that stretched close to their eyes. They have very keen olfactory sense and were able to produce pheromones. Most of their facial features are obscured behind the traditional masks they wear, and outsiders rarely see Kaleesh unmasked. They are known to practice polygyny, a form of polygamy, where a male courts multiple wives. </p>\n<h2>Society and Culture</h2>\n<p>Kaleesh society is divided into numerous autonomous tribes. War is viewed as an essential and sacred practice, and the culture's large emphasis on honor is known to spur many acts of vengeance among the various tribes. However, when necessary, the tribes will put aside their differences and bond to fend off a common enemy.</p>\n<p>The Kaleesh are a spiritual people, believing that those who perform great deeds in life became gods in death; therefore, burial places are sacred to them. A large number of temples are devoted to their ancestor gods, the holiest of which was called Shrupak. </p>\n<p>Abesmi, a great monolith of stone in the Jenuwaa Sea, is the place the Kaleesh believed the gods ascended to the heavens. Pilgrims take the perilous voyage to Abesmi to beseech the gods.</p>\n<h2>Names</h2>\n<p>Male Kaleesh names are typically one syllable while female are two. Kaleesh surnames are tribal and often use two words.</p>\n<p><strong>Male Names.</strong> Bir, Grost, Jick, Xygh, Yles</p>\n<p><strong>Female Names.</strong> Dduzu, Glaglo, Runda, Yugdo, Zodey</p>\n<p><strong>Surnames.</strong> Jal Greennath, Lij Jum, San Syrro,</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "kaleesh",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1gg0BFfQ9ftybEyn",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.XzOiiNqWrgiHoBG5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.18jDPjB8M7hdj6EO",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yMO5KnwiykhtNC6G",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.89RKNt5RnaiyGysH",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GFVhwwi6FVRpxwoJ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.XNthzm1PLPdkLrzq",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KEU04OPaDABJHi9Q",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.kevMk7dc7yCVIpHx",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LyGjZbOPfEFLOPJn",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.AVZfB8KWGf6I6sUf",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1AXfd9ul5t1k16h8",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "dex": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1cpJqzv8huED19E3",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1H41kjvD1SJEYPd5",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "weapon:blaster carbine",
+            "weapon:vibroblade",
+            "weapon:vibropike",
+            "weapon:vibrospear",
+            "skills:sur"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Orange, red, or yellow"
+    },
+    "hairColorOptions": {
+      "value": "Black or brown"
+    },
+    "eyeColorOptions": {
+      "value": "Yellow"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Bone masks, elongated ears, flat nose, tusks"
+    },
+    "heightAverage": {
+      "value": "5'1\""
+    },
+    "heightRollMod": {
+      "value": "+2d6\""
+    },
+    "weightAverage": {
+      "value": "105 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Kalee"
+    },
+    "slanguage": {
+      "value": "Kaleesh"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "HRnJjfYiLrAdD5dg",
@@ -96,8 +279,7 @@
       "name": "Kaleesh",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!RFOrxqZ3boFYO4PY.HRnJjfYiLrAdD5dg"
+      "_key": "!items.effects!BGLfHFh5mYSs3nDT.HRnJjfYiLrAdD5dg"
     },
     {
       "_id": "Zl8vs9WkiOoL83ih",
@@ -131,147 +313,22 @@
       "name": "Keen Smell",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!RFOrxqZ3boFYO4PY.Zl8vs9WkiOoL83ih"
+      "_key": "!items.effects!BGLfHFh5mYSs3nDT.Zl8vs9WkiOoL83ih"
     }
   ],
+  "_id": "BGLfHFh5mYSs3nDT",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2811327+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-kaleesh"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Tusks protrude from a Kaleesh's upper jaw, and shorter ones jut from their chins. Kaleesh have large pointed ears and long nostrils that stretched close to their eyes. They have very keen olfactory sense and were able to produce pheromones. Most of their facial features are obscured behind the traditional masks they wear, and outsiders rarely see Kaleesh unmasked. They are known to practice polygyny, a form of polygamy, where a male courts multiple wives. </p>\n<h2>Society and Culture</h2>\n<p>Kaleesh society is divided into numerous autonomous tribes. War is viewed as an essential and sacred practice, and the culture's large emphasis on honor is known to spur many acts of vengeance among the various tribes. However, when necessary, the tribes will put aside their differences and bond to fend off a common enemy.</p>\n<p>The Kaleesh are a spiritual people, believing that those who perform great deeds in life became gods in death; therefore, burial places are sacred to them. A large number of temples are devoted to their ancestor gods, the holiest of which was called Shrupak. </p>\n<p>Abesmi, a great monolith of stone in the Jenuwaa Sea, is the place the Kaleesh believed the gods ascended to the heavens. Pilgrims take the perilous voyage to Abesmi to beseech the gods.</p>\n<h2>Names</h2>\n<p>Male Kaleesh names are typically one syllable while female are two. Kaleesh surnames are tribal and often use two words.</p>\n<p><strong>Male Names.</strong> Bir, Grost, Jick, Xygh, Yles</p>\n<p><strong>Female Names.</strong> Dduzu, Glaglo, Runda, Yugdo, Zodey</p>\n<p><strong>Surnames.</strong> Jal Greennath, Lij Jum, San Syrro,</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "kaleesh",
-    "advancement": [
-      {
-        "_id": "igpxOWwOwc110Om7",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.XzOiiNqWrgiHoBG5",
-            "Compendium.sw5e.speciesfeatures.18jDPjB8M7hdj6EO",
-            "Compendium.sw5e.speciesfeatures.yMO5KnwiykhtNC6G",
-            "Compendium.sw5e.speciesfeatures.89RKNt5RnaiyGysH",
-            "Compendium.sw5e.speciesfeatures.GFVhwwi6FVRpxwoJ",
-            "Compendium.sw5e.speciesfeatures.XNthzm1PLPdkLrzq",
-            "Compendium.sw5e.speciesfeatures.KEU04OPaDABJHi9Q",
-            "Compendium.sw5e.speciesfeatures.kevMk7dc7yCVIpHx",
-            "Compendium.sw5e.speciesfeatures.LyGjZbOPfEFLOPJn",
-            "Compendium.sw5e.speciesfeatures.AVZfB8KWGf6I6sUf"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1lX6PcV6kLoq1tQh",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "str": 2,
-            "dex": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "vPulQr9U3V41feVI",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "4xiRriHc4iOhzrdA",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "weapon:blaster carbine",
-            "weapon:vibroblade",
-            "weapon:vibropike",
-            "weapon:vibrospear",
-            "skills:sur"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Orange, red, or yellow"
-    },
-    "hairColorOptions": {
-      "value": "Black or brown"
-    },
-    "eyeColorOptions": {
-      "value": "Yellow"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Bone masks, elongated ears, flat nose, tusks"
-    },
-    "heightAverage": {
-      "value": "5'1\""
-    },
-    "heightRollMod": {
-      "value": "+2d6\""
-    },
-    "weightAverage": {
-      "value": "105 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Kalee"
-    },
-    "slanguage": {
-      "value": "Kaleesh"
-    },
-    "movement": {
-      "walk": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002097,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796629,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!RFOrxqZ3boFYO4PY"
+  "_key": "!items!BGLfHFh5mYSs3nDT"
 }

@@ -1,8 +1,195 @@
 {
-  "_id": "Nhk7H4YrE05zsDqT",
   "name": "Chadra-Fan",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2731369+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-chadra_fan"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Chadra-Fan.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Chadra-Fan are covered from head to foot in fur. Their species evolved from small, arboreal rodents. The two different sexes of Chadra-Fan are indistinguishable to other species, though the Chadra-Fan could readily tell the difference using their powerful sense of smell. Chadra-Fan also have involuntary pheromones that conveyed information about their family line and created an aura of attractiveness. Other voluntary pheromones often conveyed a Chadra-Fan's state of emotion-anger, fear, or joy. Chadra-Fan even create more complex messages using their pheromones, though the pheromones when mixed sometimes caused confusion. They are unique in the fact that they had clear blood.</p>\n<h2>Society and Culture</h2>\n<p>The society of Chadra-Fan is divided into a clan structure in which every member is responsible for parenting the clan's children; a fact of life is that every household is open at any time. Leadership within the clan is a temporary role that is passed from one individual to another as the situation calls for a particular expertise. Children are the centerpiece of a Chadra-Fan community, and only leave when wed. However the new Chadra-Fan couple remain with the smaller clan so it was possible that a Chadra-Fan never leaves his or her home.</p>\n<p>Chadra-Fan left by themselves suffer depression, so they regularly seek the company of others; thus, Chadra-Fan are not very picky when it came to friends and prefer complete strangers to loneliness</p>\n<h2>Names</h2>\n<p>Chadra-Fan names do not vary significantly based on sex. Surnames are clan based.</p>\n<p><strong>First Names.</strong>  Dubi, Kattar, Naska, T'yabah, O'yasha</p>\n<p><strong>Surnames.</strong> Abalomm, Fandy, Nemm, Nuz, Yedit</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "chadra-fan",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "climb": 25,
+      "burrow": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "vJdgeD50BOYX9s10",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jdK7F6kiHaQy1B2E",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vinxX2KGioJHVC7H",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wKcmLzsSemXbHhy2",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.SMPIvn2kQMbCOgox",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.iyu4Zgz04M3PvKYl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.s6wGXmHMBHInZTiq",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.potz7AygV9TBhV3z",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WjxTAk9WF2CEeMcc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cpUgOvGN0JAvmNuk",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.F2ETf3ezlKsHcVpA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.D6g3Z6Sba7OMURvI",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.NIeocE9rSXgj14yw",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "BepClkloYsR1i9U3",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "cha": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "51oYPQu8ewdnzA7c",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "FTgh7iEBNPT1auRF",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "tool:tinkersimplements"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Black, brown, or grey"
+    },
+    "hairColorOptions": {
+      "value": "Black, brown, or grey"
+    },
+    "eyeColorOptions": {
+      "value": "Dark"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Large ears, flat noses with four nostrils"
+    },
+    "heightAverage": {
+      "value": "2'8\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "35 lb."
+    },
+    "weightRollMod": {
+      "value": "x1 lb."
+    },
+    "homeworld": {
+      "value": "Chad"
+    },
+    "slanguage": {
+      "value": "Chadra-Fan"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "Sb2vQ8ADsGynND7i",
@@ -78,8 +265,7 @@
       "name": "Chadra-Fan",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!Nhk7H4YrE05zsDqT.Sb2vQ8ADsGynND7i"
+      "_key": "!items.effects!ZXWykoqQ51xhirEn.Sb2vQ8ADsGynND7i"
     },
     {
       "_id": "DZ1AIMRGrytCLsfV",
@@ -113,143 +299,22 @@
       "name": "Keen Hearing and Smell",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!Nhk7H4YrE05zsDqT.DZ1AIMRGrytCLsfV"
+      "_key": "!items.effects!ZXWykoqQ51xhirEn.DZ1AIMRGrytCLsfV"
     }
   ],
+  "_id": "ZXWykoqQ51xhirEn",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2731369+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-chadra_fan"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Chadra-Fan are covered from head to foot in fur. Their species evolved from small, arboreal rodents. The two different sexes of Chadra-Fan are indistinguishable to other species, though the Chadra-Fan could readily tell the difference using their powerful sense of smell. Chadra-Fan also have involuntary pheromones that conveyed information about their family line and created an aura of attractiveness. Other voluntary pheromones often conveyed a Chadra-Fan's state of emotion-anger, fear, or joy. Chadra-Fan even create more complex messages using their pheromones, though the pheromones when mixed sometimes caused confusion. They are unique in the fact that they had clear blood.</p>\n<h2>Society and Culture</h2>\n<p>The society of Chadra-Fan is divided into a clan structure in which every member is responsible for parenting the clan's children; a fact of life is that every household is open at any time. Leadership within the clan is a temporary role that is passed from one individual to another as the situation calls for a particular expertise. Children are the centerpiece of a Chadra-Fan community, and only leave when wed. However the new Chadra-Fan couple remain with the smaller clan so it was possible that a Chadra-Fan never leaves his or her home.</p>\n<p>Chadra-Fan left by themselves suffer depression, so they regularly seek the company of others; thus, Chadra-Fan are not very picky when it came to friends and prefer complete strangers to loneliness</p>\n<h2>Names</h2>\n<p>Chadra-Fan names do not vary significantly based on sex. Surnames are clan based.</p>\n<p><strong>First Names.</strong>  Dubi, Kattar, Naska, T'yabah, O'yasha</p>\n<p><strong>Surnames.</strong> Abalomm, Fandy, Nemm, Nuz, Yedit</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "chadra-fan",
-    "advancement": [
-      {
-        "_id": "1BeaThILbjtz1Ej0",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.jdK7F6kiHaQy1B2E",
-            "Compendium.sw5e.speciesfeatures.vinxX2KGioJHVC7H",
-            "Compendium.sw5e.speciesfeatures.wKcmLzsSemXbHhy2",
-            "Compendium.sw5e.speciesfeatures.SMPIvn2kQMbCOgox",
-            "Compendium.sw5e.speciesfeatures.iyu4Zgz04M3PvKYl",
-            "Compendium.sw5e.speciesfeatures.s6wGXmHMBHInZTiq",
-            "Compendium.sw5e.speciesfeatures.potz7AygV9TBhV3z",
-            "Compendium.sw5e.speciesfeatures.WjxTAk9WF2CEeMcc",
-            "Compendium.sw5e.speciesfeatures.cpUgOvGN0JAvmNuk",
-            "Compendium.sw5e.speciesfeatures.F2ETf3ezlKsHcVpA",
-            "Compendium.sw5e.speciesfeatures.D6g3Z6Sba7OMURvI",
-            "Compendium.sw5e.speciesfeatures.NIeocE9rSXgj14yw"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "dkQrjKhYNERgUnGl",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2,
-            "cha": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1jXBXBAQCOffixhb",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "sm"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "c85DZEQMru71Ut1e",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "tool:tinkersimplements"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Black, brown, or grey"
-    },
-    "hairColorOptions": {
-      "value": "Black, brown, or grey"
-    },
-    "eyeColorOptions": {
-      "value": "Dark"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Large ears, flat noses with four nostrils"
-    },
-    "heightAverage": {
-      "value": "2'8\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "35 lb."
-    },
-    "weightRollMod": {
-      "value": "x1 lb."
-    },
-    "homeworld": {
-      "value": "Chad"
-    },
-    "slanguage": {
-      "value": "Chadra-Fan"
-    },
-    "movement": {
-      "walk": 25,
-      "climb": 25
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002090,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797254,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!Nhk7H4YrE05zsDqT"
+  "_key": "!items!ZXWykoqQ51xhirEn"
 }

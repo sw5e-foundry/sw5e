@@ -2,19 +2,19 @@
     {{> "sw5e.trait-list" prefix="choices"}}
 
     {{#if customPath}}
-        <div class="form-group stacked">
-            <label>{{localize "SW5E.TraitSelectorSpecial"}}</label>
-            <div class="form-fields">
-                <input type="text" name="{{customPath}}" value="{{custom}}">
-            </div>
+    <div class="form-group stacked">
+        <label>{{localize "SW5E.TraitSelectorSpecial"}}</label>
+        <div class="form-fields">
+            <input type="text" name="{{customPath}}" value="{{custom}}">
         </div>
+    </div>
     {{/if}}
 
     {{#if bypassesPath}}
-        <h3>{{localize "SW5E.DamagePhysicalBypass"}}</h3>
-        <p class="note">{{localize "SW5E.DamagePhysicalBypassHint"}}</p>
-        {{> "sw5e.trait-list" choices=bypasses prefix="bypasses"}}
+    <h3>{{localize "SW5E.DamagePhysicalBypass"}}</h3>
+    <p class="note">{{localize "SW5E.DamagePhysicalBypassHint"}}</p>
+    {{> "sw5e.trait-list" choices=bypasses prefix="bypasses"}}
     {{/if}}
 
-    <button type="submit"><i class="far fa-save"></i> {{ localize "SW5E.TraitSave"}}</button>
+    <button type="submit"><i class="far fa-save"></i> {{localize "SW5E.TraitSave"}}</button>
 </form>

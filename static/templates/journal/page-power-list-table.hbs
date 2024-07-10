@@ -1,0 +1,18 @@
+<div>
+    <table class="powers">
+        <thead>
+            <tr>
+                <th>{{ localize "SW5E.PowerLevel" }}</th>
+                <th>{{ localize "TYPES.Item.powerPl" }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each sections}}
+            <tr>
+                <th scope="row">{{ header }}</th>
+                <td>{{{ powerList }}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

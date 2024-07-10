@@ -16,80 +16,100 @@
   "system": {
     "description": {
       "value": "<h1>Juggernaut Approach</h1>\n<p>Certain berserkers find that the strongest offense is a good defense. Berserkers of the Juggernaut Approach wear the heaviest of armor not because they fear injury, but to strike fear in their hapless attackers.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "juggernautapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "1u3Bymv4Ednp147e",
+        "_id": "XBExX3UXqKE1oBZB",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.6OxOqwyYkKrRxO0q",
-            "Compendium.sw5e.archetypefeatures.x0t57C4j52n0fviK"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.6OxOqwyYkKrRxO0q",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.x0t57C4j52n0fviK",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1qv6Wem8NzYSeQ00",
+        "_id": "1qe27tyDNZUWcic0",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.YpfHnbbecdt4nzYr"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.YpfHnbbecdt4nzYr",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1dX57q9WU99512mR",
+        "_id": "emhIilI91dYICMLy",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ysGth3KGrTcWz6DX"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ysGth3KGrTcWz6DX",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "l4HcNIXifvc15cdp",
+        "_id": "1wRV8JYOH8ll17ue",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.hwww57Bl4DAqvd5q"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hwww57Bl4DAqvd5q",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
       },
       {
-        "_id": "dBd7cw8Cde91IpTV",
+        "_id": "K4QUQ6qSqyC1fyIJ",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "armor:hvy"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -100,7 +120,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -108,11 +128,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959709,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552688974,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!2SJLPnV6FSZF9tR0"
 }

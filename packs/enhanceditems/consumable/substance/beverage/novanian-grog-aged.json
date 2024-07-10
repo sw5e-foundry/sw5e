@@ -1,0 +1,122 @@
+{
+  "_id": "rkuUfl35n2pWZBh9",
+  "name": "Novanian Grog (Aged)",
+  "type": "consumable",
+  "img": "systems/sw5e/packs/Icons/Storage/Canteen.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:04.8164607+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-novanian_grog_aged.subtype-substance"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Consumable (Substance)</h4>\n <p>This grog features a pungent odor and a strong kick. As an action, you can apply this substance to a creature within 5 feet. For the next 10 minutes, the creature experiences a high that increases their current and maximum tech points by [[/r 2d8]]. At the end of the high, the creature must succeed on a DC 20 Constitution saving throw or experience a low that lasts 4 hours, their current and maximum tech points are reduced by [[/r 2d8]]. At the end of the low, the creature must make a DC 20 Wisdom saving throw to resist addiction.</p>\n<p> </p>\n<h2>Novanian grog</h2>\n<p>This grog features a pungent odor and a strong kick. As an action, you can apply this substance to a creature within 5 feet. For the next minute, the creature experiences a high that increases their current and maximum tech points by [[/r 2d3]]. At the end of the high, the creature must succeed on a DC 14 Constitution saving throw or experience a low that lasts 10 minutes, their current and maximum tech points are reduced by [[/r 2d3]]. At the end of the low, the creature must make a DC 14 Wisdom saving throw to resist addiction.</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "WH"
+    },
+    "quantity": 1,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
+    "price": {
+      "value": 70,
+      "denomination": "gc"
+    },
+    "attunement": "",
+    "equipped": false,
+    "rarity": "advanced",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "10",
+      "units": "minute"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": "",
+      "width": null,
+      "units": "",
+      "type": "",
+      "prompt": true
+    },
+    "range": {
+      "value": 5,
+      "long": null,
+      "units": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false,
+      "prompt": true
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": "",
+    "actionType": "save",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "2d8",
+    "save": {
+      "ability": "con",
+      "dc": 20,
+      "scaling": "flat"
+    },
+    "properties": [],
+    "type": {
+      "value": "substance",
+      "subtype": "beverage"
+    },
+    "_propertyValues": {},
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674493964983,
+    "modifiedTime": 1720418048515,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!rkuUfl35n2pWZBh9"
+}

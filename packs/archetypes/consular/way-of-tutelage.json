@@ -16,84 +16,105 @@
   "system": {
     "description": {
       "value": "<h1>Way of Tutelage</h1>\n<p>With the Force, knowledge is most often passed from a master to an apprentice. Those consulars who follow the Way of Tutelage know the strength of working together exceeds that of working alone.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "wayoftutelage",
     "classIdentifier": "consular",
     "advancement": [
       {
-        "_id": "eYIGGS3TFmmiZfQm",
+        "_id": "1JTxre7cqOIR8UYh",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.qj30oDvuxAeE5dDT",
-            "Compendium.sw5e.archetypefeatures.tMH9nk8BcPjhdGpx"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.qj30oDvuxAeE5dDT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.tMH9nk8BcPjhdGpx",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "14RtLFVZsCQstM9x",
+        "_id": "fzNQAXIVWRZaB7LN",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.aFi5QjHFdex1KgUF"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.aFi5QjHFdex1KgUF",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "nUtebTSIlb21LvW6",
+        "_id": "pKPucQodKoY1Qy8l",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.QbjPXbvMzzeKBhZ8"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.QbjPXbvMzzeKBhZ8",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "PjSdslU6wjC11wpM",
+        "_id": "BatXVJCKLHM1Mzjq",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.tfdhGE8jEUW6b4C2"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.tfdhGE8jEUW6b4C2",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
       },
       {
-        "_id": "9UuL4rwcadcPQYJ5",
+        "_id": "1Bk70zkWLRcUI0BH",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.pPyeqnE1GnMeG1og"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pPyeqnE1GnMeG1og",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
         "title": "Features"
       },
       {
-        "_id": "KEvP0tPsFER1x80q",
+        "_id": "9BGMG6K0zeHZZISG",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -106,9 +127,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -119,7 +143,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -127,11 +151,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959713,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689036,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!61riK6l2zP6h2eaG"
 }

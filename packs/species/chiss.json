@@ -1,8 +1,191 @@
 {
-  "_id": "JrTt6KD14Paqfg3c",
   "name": "Chiss",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9136241+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-chiss"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Chiss.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The chiss are a near-human species distinguished by their blue skin and glowing red eyes. Genetic analysis indicate that they are an offshoot of humanity, and it is believed that moving underground led to a divergence between them and baseline Humans. Their blue skin, jet black hair and red eyes generally command attention; these features make them physically striking and instantly recognizable.</p>\n<h2>Society and Culture</h2>\n<p>Chiss society is highly structured and ordered with the rule of law being enforced by a group of four affiliations known as the Ruling Families: the Csapla, Nuruodo, Inrokini and Sabosen. These are not biological family groupings but instead different branches of their government. Every chiss claims affiliation to one of the four families, as determined by both tradition and place of birth. The family names are more of a cultural holdover; the bloodlines had grown so co-meddled that any chiss could claim affiliation to any of the ruling families. In spite of the outward impression of calm and order that the chiss like to project to outsiders, there were evidently tensions within the Families; political assassinations are a real part of chiss political life for the Ruling Families.</p>\n<h2>Names</h2>\n<p>A chiss true-name has 3 parts, each separated by an apostrophe. The first part is their family name, the second part is their root name, and the third part is their occupation. Chiss rarely share their true-name with non-chiss, and usually go by their root name. Male and female names do not significantly deviate.</p>\n<p><strong>Names.</strong> Crorcu'ecuk'unist, Dash'esoru'ishur, Jerd'ecer'lonii, Kisk'egauw'eqhi, Marag'aliphil'eduo, Pommo'icuote'nlerme, Vornu'wuzi'lerdim</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "chiss",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 120,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "oLqnVAlFSy4gEJmX",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7P3q21d2GmACeCo0",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9g4JpkaFwX5kuWfo",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.b4IgSqwF1yrKIG3O",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rnvrpfK05TPbIjq3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TcQwjOiBXd25Quzc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xy1d4oLrl3IGW2Sv",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.iRU7U8Pt5YKBGS8C",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rXdVDlIxvpKucbfz",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9bePDXlHGpFxmUEt",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.eLaI9F6smsqizuGY",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "2zD0I6rPt91NEyjk",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "cha": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "TALdvktQbUb1Te0N",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "P9pNuvz9inJU5UfQ",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "armor:lgt",
+            "armor:med",
+            "weapon:heavy pistol",
+            "weapon:sniper rifle",
+            "skills:ins"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Blue or silver"
+    },
+    "hairColorOptions": {
+      "value": "Black, blue, or silver"
+    },
+    "eyeColorOptions": {
+      "value": "Red"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Glowing red eyes, above-average night vision"
+    },
+    "heightAverage": {
+      "value": "4'11\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "110 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Csilla"
+    },
+    "slanguage": {
+      "value": "Cheunh"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "VaDVQFvsbGNJ3yew",
@@ -98,147 +281,22 @@
       "name": "Chiss",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!JrTt6KD14Paqfg3c.VaDVQFvsbGNJ3yew"
+      "_key": "!items.effects!O9dk9A3jr01PjJkm.VaDVQFvsbGNJ3yew"
     }
   ],
+  "_id": "O9dk9A3jr01PjJkm",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9136241+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-chiss"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The chiss are a near-human species distinguished by their blue skin and glowing red eyes. Genetic analysis indicate that they are an offshoot of humanity, and it is believed that moving underground led to a divergence between them and baseline Humans. Their blue skin, jet black hair and red eyes generally command attention; these features make them physically striking and instantly recognizable.</p>\n<h2>Society and Culture</h2>\n<p>Chiss society is highly structured and ordered with the rule of law being enforced by a group of four affiliations known as the Ruling Families: the Csapla, Nuruodo, Inrokini and Sabosen. These are not biological family groupings but instead different branches of their government. Every chiss claims affiliation to one of the four families, as determined by both tradition and place of birth. The family names are more of a cultural holdover; the bloodlines had grown so co-meddled that any chiss could claim affiliation to any of the ruling families. In spite of the outward impression of calm and order that the chiss like to project to outsiders, there were evidently tensions within the Families; political assassinations are a real part of chiss political life for the Ruling Families.</p>\n<h2>Names</h2>\n<p>A chiss true-name has 3 parts, each separated by an apostrophe. The first part is their family name, the second part is their root name, and the third part is their occupation. Chiss rarely share their true-name with non-chiss, and usually go by their root name. Male and female names do not significantly deviate.</p>\n<p><strong>Names.</strong> Crorcu'ecuk'unist, Dash'esoru'ishur, Jerd'ecer'lonii, Kisk'egauw'eqhi, Marag'aliphil'eduo, Pommo'icuote'nlerme, Vornu'wuzi'lerdim</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "chiss",
-    "advancement": [
-      {
-        "_id": "zjQ7Tg1sGO0ModHo",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.7P3q21d2GmACeCo0",
-            "Compendium.sw5e.speciesfeatures.9g4JpkaFwX5kuWfo",
-            "Compendium.sw5e.speciesfeatures.b4IgSqwF1yrKIG3O",
-            "Compendium.sw5e.speciesfeatures.rnvrpfK05TPbIjq3",
-            "Compendium.sw5e.speciesfeatures.TcQwjOiBXd25Quzc",
-            "Compendium.sw5e.speciesfeatures.xy1d4oLrl3IGW2Sv",
-            "Compendium.sw5e.speciesfeatures.iRU7U8Pt5YKBGS8C",
-            "Compendium.sw5e.speciesfeatures.rXdVDlIxvpKucbfz",
-            "Compendium.sw5e.speciesfeatures.9bePDXlHGpFxmUEt",
-            "Compendium.sw5e.speciesfeatures.eLaI9F6smsqizuGY"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "WaM55VwVw5DSk1QU",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2,
-            "cha": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1RRUWSNHL4ow1tbJ",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "KoZw6Ry8HdutzJGU",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "armor:lgt",
-            "armor:med",
-            "weapon:heavy pistol",
-            "weapon:sniper rifle",
-            "skills:ins"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Blue or silver"
-    },
-    "hairColorOptions": {
-      "value": "Black, blue, or silver"
-    },
-    "eyeColorOptions": {
-      "value": "Red"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Glowing red eyes, above-average night vision"
-    },
-    "heightAverage": {
-      "value": "4'11\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "110 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Csilla"
-    },
-    "slanguage": {
-      "value": "Cheunh"
-    },
-    "movement": {
-      "walk": 30
-    },
-    "senses": {
-      "darkvision": 120
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002081,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796975,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!JrTt6KD14Paqfg3c"
+  "_key": "!items!O9dk9A3jr01PjJkm"
 }

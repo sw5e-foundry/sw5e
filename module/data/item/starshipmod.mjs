@@ -1,24 +1,39 @@
-import { MappingField } from "../fields.mjs";
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import EquippableItemTemplate from "./templates/equippable-item.mjs";
+import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
-import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
+import ItemTypeField from "./fields/item-type-field.mjs";
+
+const { BooleanField, NumberField, SchemaField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Starship Modification items.
  * @mixes ItemDescriptionTemplate
+ * @mixes ItemTypeTemplate
+ * @mixes IdentifiableTemplate
  * @mixes PhysicalItemTemplate
  * @mixes EquippableItemTemplate
  * @mixes ActivatedEffectTemplate
  * @mixes ActionTemplate
  *
- * @property {string} modificationType      Modification type as defined in `SW5E.modificationTypes`.
+ * @property {object} grade                The starship modification grade information.
+ * @property {string} grade.value          The grade of the modification.
+ * @property {object} baseCost             The starship modification base cost information.
+ * @property {number} baseCost.value       The base cost of the modification.
+ * @property {object} free
+ * @property {number} free.slot
+ * @property {object} free.suite
+ * @property {object} prerequisites        The starship modification prerequisite information.
+ * @property {string} prerequisites.value  The prerequisite of the modification.
  */
-export default class StarshipModData extends SystemDataModel.mixin(
+export default class StarshipModData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
+  IdentifiableTemplate,
+  ItemTypeTemplate,
   PhysicalItemTemplate,
   EquippableItemTemplate,
   ActivatedEffectTemplate,
@@ -26,60 +41,51 @@ export default class StarshipModData extends SystemDataModel.mixin(
 ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      system: new foundry.data.fields.SchemaField(
+    return this.mergeSchema( super.defineSchema(), {
+      type: new ItemTypeField( { baseItem: false }, { label: "SW5E.ModSystem" } ),
+      grade: new SchemaField(
         {
-          value: new foundry.data.fields.StringField({
-            required: true,
-            initial: "",
-            label: "SW5E.ModSystem"
-          })
-        },
-        { label: "SW5E.ModSystem" }
-      ),
-      grade: new foundry.data.fields.SchemaField(
-        {
-          value: new foundry.data.fields.NumberField({
+          value: new NumberField( {
             required: true,
             min: 0,
             max: 5,
             integer: true,
             initial: 0,
             label: "SW5E.ModGrade"
-          }),
+          } )
         },
         { label: "SW5E.ModGrade" }
       ),
-      baseCost: new foundry.data.fields.SchemaField(
+      baseCost: new SchemaField(
         {
-          value: new foundry.data.fields.NumberField({
+          value: new NumberField( {
             required: true,
             min: 0,
             integer: true,
             initial: null,
             nullable: true,
             label: "SW5E.ModBaseCost"
-          })
+          } )
         },
         { label: "SW5E.ModBaseCost" }
       ),
-      free: new foundry.data.fields.SchemaField(
+      free: new SchemaField(
         {
-          slot: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.ModFreeSlot" }),
-          suite: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.ModFreeSuite" })
+          slot: new BooleanField( { required: true, label: "SW5E.ModFreeSlot" } ),
+          suite: new BooleanField( { required: true, label: "SW5E.ModFreeSuite" } )
         }
       ),
-      prerequisites: new foundry.data.fields.SchemaField(
+      prerequisites: new SchemaField(
         {
-          value: new foundry.data.fields.StringField({
+          value: new StringField( {
             required: true,
             initial: "",
             label: "SW5E.PrerequisitePl"
-          })
+          } )
         },
         { label: "SW5E.PrerequisitePl" }
       )
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -100,7 +106,7 @@ export default class StarshipModData extends SystemDataModel.mixin(
    * @type {string[]}
    */
   get chatProperties() {
-    return [CONFIG.SW5E.ssModSystems[this.system.value]];
+    return [CONFIG.SW5E.ssModSystems[this.type.value]];
   }
 
   /**

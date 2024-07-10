@@ -16,84 +16,105 @@
   "system": {
     "description": {
       "value": "<h1>Praetorian Specialist</h1>\n<p>Those fighters who choose to become Praetorian Specialists seek perfection of both body and mind. These warriors master the art of warfare, and are often sought as bodyguards for the galaxy's elite. They are engines of destruction and resilience, able to fight on to their last breath.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "praetorianspecialist",
     "classIdentifier": "fighter",
     "advancement": [
       {
-        "_id": "D5kHHeSKHTe1FYIJ",
+        "_id": "s2tSSn9Vnz2lefBt",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.3Bxaqj9U1C39HAsr",
-            "Compendium.sw5e.archetypefeatures.hI3wZV9oGJN66MkG"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.3Bxaqj9U1C39HAsr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hI3wZV9oGJN66MkG",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "10wATrlEcrM71KXm",
+        "_id": "MKCVGAcPf5RRAYEa",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.XyVKlChrOQxpq3wT"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.XyVKlChrOQxpq3wT",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "ZVF2ULbasBG1e8c9",
+        "_id": "Nbgh807BFP15n8nx",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.58S0eDY8LbWcyLUA"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.58S0eDY8LbWcyLUA",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "O1iTeodMSzt1h7cr",
+        "_id": "1aHVBmIhJNRE1Av7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.5eGZeGH5yvM23qaX"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.5eGZeGH5yvM23qaX",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "TaVi2Zsffio1m5wZ",
+        "_id": "Zo2AEDyTfCA129h6",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.WayeFkeZ0UZogQXl"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.WayeFkeZ0UZogQXl",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
         "title": "Features"
       },
       {
-        "_id": "PTn4LdEUN7upL96J",
+        "_id": "1GoHyEzP4Y1L1l1h",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -108,13 +129,16 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
-        "_id": "G7DKlOWhQ2A1uDtY",
+        "_id": "1p93YMy5bpExr6ZK",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -146,9 +170,12 @@
           "grants": [
             "skills:per"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 7
       }
     ],
@@ -159,7 +186,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -167,11 +194,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959785,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552690040,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!yUx9ULyHJ85dUe1v"
 }

@@ -8,38 +8,41 @@
   "system": {
     "description": {
       "value": "<p>2000 (4000) cr</p><p>30 (60) lb</p><p>Rather than exploding on contact, gravity mines detonate any time a ship comes within range of it. When a gravity mine detonates, it creates a mass shadow centered on the point of detonation with a radius of 50 [100] feet that lasts for 10 minutes. Any ships touching this mass shadow are unable to activate their hyperdrives.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "none",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 10,
+      "value": "10",
       "units": "minute"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 50,
+      "value": "50",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
       "value": 50,
@@ -49,20 +52,24 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
+      "per": null,
       "recovery": "",
-      "autoDestroy": false
+      "autoDestroy": false,
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -73,84 +80,24 @@
       "dc": null,
       "scaling": "power"
     },
-    "consumableType": "ammo",
-    "ammoType": "ssbomb",
-    "properties": {
-      "amm": false,
-      "aut": false,
-      "bur": null,
-      "con": null,
-      "def": null,
-      "dex": null,
-      "dir": null,
-      "drm": false,
-      "dgd": false,
-      "dis": null,
-      "dpt": false,
-      "dou": false,
-      "exp": false,
-      "fin": false,
-      "fix": false,
-      "foc": false,
-      "hvy": false,
-      "hid": false,
-      "hom": false,
-      "ion": false,
-      "ken": null,
-      "lgt": false,
-      "lum": false,
-      "mlt": false,
-      "mig": false,
-      "ovr": null,
-      "pic": null,
-      "pow": false,
-      "rap": null,
-      "rch": false,
-      "rel": null,
-      "ret": false,
-      "sat": false,
-      "shk": null,
-      "sil": false,
-      "spc": false,
-      "str": null,
-      "thr": false,
-      "two": false,
-      "ver": false,
-      "vic": null,
-      "zon": false,
-      "mgc": false,
-      "ran": false,
-      "smr": false
+    "properties": [],
+    "attuned": false,
+    "type": {
+      "value": "ammo",
+      "subtype": "ssbomb"
     },
-    "armor": {
-      "value": 10
+    "unidentified": {
+      "description": ""
     },
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "modify": {
-      "chassis": "none",
-      "augmentSlots": 0,
-      "modSlots": 4,
-      "items": [],
-      "changes": {},
-      "type": null
-    },
-    "weaponType": "ammo",
-    "baseItem": "",
-    "ammo": {
-      "target": null,
-      "value": null,
-      "use": null,
-      "types": [
-        "powerCell"
-      ]
-    },
-    "proficient": true,
-    "attuned": false
+    "_propertyValues": {},
+    "container": null,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "ownership": {
     "default": 0
@@ -159,11 +106,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494019807,
-    "modifiedTime": 1699591748136,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552917672,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!FL93LvbHgyARDJfL"
 }

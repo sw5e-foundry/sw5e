@@ -1,10 +1,14 @@
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import { AdvancementField, IdentifierField } from "../fields.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import StartingEquipmentTemplate from "./templates/starting-equipment.mjs";
+
+const { ArrayField, NumberField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Starship Size items.
  * @mixes ItemDescriptionTemplate
+ * @mixes StartingEquipmentTemplate
  *
  * @property {string} identifier         Identifier slug for this.
  * @property {number} tier               Current tier.
@@ -34,246 +38,258 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {number} fuelCost           Cost per unit of fuel for a starship of this size.
  * @property {number} fuelCap            Starship's fuel capacity.
  */
-export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
+export default class StarshipSizeData extends ItemDataModel.mixin( ItemDescriptionTemplate, StartingEquipmentTemplate ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      identifier: new IdentifierField({ required: true, label: "SW5E.Identifier" }),
-      tier: new foundry.data.fields.NumberField({
+    return this.mergeSchema( super.defineSchema(), {
+      identifier: new IdentifierField( { required: true, label: "SW5E.Identifier" } ),
+      tier: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         // Min: 0, // Min removed because of advancements
         initial: 0,
         label: "SW5E.StarshipTiers"
-      }),
-      size: new foundry.data.fields.StringField({
+      } ),
+      size: new StringField( {
         required: true,
         initial: "med",
         blank: false,
         label: "SW5E.StarshipSize"
-      }),
-      hullDice: new foundry.data.fields.StringField({
+      } ),
+      hullDice: new StringField( {
         required: true,
         initial: "d6",
         blank: false,
         label: "SW5E.HullDice",
-        validate: v => /d\d+/.test(v),
+        validate: v => /d\d+/.test( v ),
         validationError: "must be a dice value in the format d#"
-      }),
-      hullDiceStart: new foundry.data.fields.NumberField({
+      } ),
+      hullDiceStart: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 3,
         min: 0,
         label: "SW5E.HullDiceStart"
-      }),
-      hullDiceUsed: new foundry.data.fields.NumberField({
+      } ),
+      hullDiceUsed: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 0,
         min: 0,
         label: "SW5E.HullDiceUsed"
-      }),
-      shldDice: new foundry.data.fields.StringField({
+      } ),
+      shldDice: new StringField( {
         required: true,
         initial: "d6",
         blank: false,
         label: "SW5E.ShieldDice",
-        validate: v => /d\d+/.test(v),
+        validate: v => /d\d+/.test( v ),
         validationError: "must be a dice value in the format d#"
-      }),
-      shldDiceStart: new foundry.data.fields.NumberField({
+      } ),
+      shldDiceStart: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 3,
         min: 0,
         label: "SW5E.ShieldDiceStart"
-      }),
-      shldDiceUsed: new foundry.data.fields.NumberField({
+      } ),
+      shldDiceUsed: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 0,
         min: 0,
         label: "SW5E.ShieldDiceUsed"
-      }),
-      advancement: new foundry.data.fields.ArrayField(new AdvancementField(), { label: "SW5E.AdvancementTitle" }),
+      } ),
+      advancement: new ArrayField( new AdvancementField(), { label: "SW5E.AdvancementTitle" } ),
 
-      buildBaseCost: new foundry.data.fields.NumberField({
+      buildBaseCost: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 50000,
         min: 0,
         label: "SW5E.BuildBaseCost"
-      }),
-      buildMinWorkforce: new foundry.data.fields.NumberField({
+      } ),
+      buildMinWorkforce: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 5,
         min: 0,
         label: "SW5E.BuildMinWorkforce"
-      }),
-      upgrdCostMult: new foundry.data.fields.NumberField({
+      } ),
+      upgrdCostMult: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 1,
         min: 0,
         label: "SW5E.UpgrdCostMult"
-      }),
-      upgrdMinWorkforce: new foundry.data.fields.NumberField({
+      } ),
+      upgrdMinWorkforce: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 1,
         min: 0,
         label: "SW5E.UpgrdMinWorkforce"
-      }),
-      baseSpaceSpeed: new foundry.data.fields.NumberField({
+      } ),
+      baseSpaceSpeed: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 300,
         min: 0,
         label: "SW5E.BaseSpaceSpeed"
-      }),
-      baseTurnSpeed: new foundry.data.fields.NumberField({
+      } ),
+      baseTurnSpeed: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 250,
         min: 0,
         label: "SW5E.BaseTurnSpeed"
-      }),
-      crewMinWorkforce: new foundry.data.fields.NumberField({
+      } ),
+      crewMinWorkforce: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 1,
         min: 0,
         label: "SW5E.CrewMinWorkforce"
-      }),
-      modBaseCap: new foundry.data.fields.NumberField({
+      } ),
+      modBaseCap: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 20,
         min: 0,
         label: "SW5E.ModBaseCap"
-      }),
-      modMaxSuitesBase: new foundry.data.fields.NumberField({
+      } ),
+      modMaxSuitesBase: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 0,
         min: 0,
         label: "SW5E.ModMaxSuitesBase"
-      }),
-      modMaxSuitesMult: new foundry.data.fields.NumberField({
+      } ),
+      modMaxSuitesMult: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 1,
         min: 0,
         label: "SW5E.ModMaxSuitesMult"
-      }),
-      modCostMult: new foundry.data.fields.NumberField({
+      } ),
+      modCostMult: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 1,
         min: 0,
         label: "SW5E.ModCostMult"
-      }),
-      modMinWorkforce: new foundry.data.fields.NumberField({
+      } ),
+      modMinWorkforce: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 2,
         min: 0,
         label: "SW5E.ModMinWorkforce"
-      }),
-      hardpointMult: new foundry.data.fields.NumberField({
+      } ),
+      hardpointMult: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 2,
         min: 0,
         label: "SW5E.HardpointMult"
-      }),
-      equipCostMult: new foundry.data.fields.NumberField({
+      } ),
+      equipCostMult: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 1,
         min: 0,
         label: "SW5E.EquipCostMult"
-      }),
-      equipMinWorkforce: new foundry.data.fields.NumberField({
+      } ),
+      equipMinWorkforce: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 1,
         min: 0,
         label: "SW5E.EquipMinWorkforce"
-      }),
-      cargoCap: new foundry.data.fields.NumberField({
+      } ),
+      cargoCap: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 2,
         min: 0,
         label: "SW5E.CargoCap"
-      }),
-      fuelCost: new foundry.data.fields.NumberField({
+      } ),
+      fuelCost: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 50,
         min: 0,
         label: "SW5E.FuelCost"
-      }),
-      fuelCap: new foundry.data.fields.NumberField({
+      } ),
+      fuelCap: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 10,
         min: 0,
         label: "SW5E.FuelCap"
-      }),
-      foodCap: new foundry.data.fields.NumberField({
+      } ),
+      foodCap: new NumberField( {
         required: true,
         nullable: false,
         integer: true,
         initial: 10,
         min: 0,
         label: "SW5E.FoodCap"
-      }),
-      source: new foundry.data.fields.StringField({ required: true, label: "SW5E.Source", initial: "SotG" })
-    });
+      } ),
+      source: new StringField( { required: true, label: "SW5E.Source", initial: "SotG" } )
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static metadata = Object.freeze({
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
     singleton: true
-  });
+  }, {inplace: false} ) );
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async getFavoriteData() {
+    const context = await super.getFavoriteData();
+    if ( this.parent.archetype ) context.subtitle = this.parent.archetype.name;
+    context.value = this.levels;
+    return context;
+  }
 
   /* -------------------------------------------- */
   /*  Migrations                                  */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    StarshipSizeData.#migrateSize(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    StarshipSizeData.#migrateSize( source );
   }
 
   /* -------------------------------------------- */
@@ -282,11 +298,11 @@ export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescript
    * Apply migrations to the size field.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateSize(source) {
+  static #migrateSize( source ) {
     const sizes = CONFIG.SW5E.actorSizes;
-    if (source.size in sizes) return;
-    for (const [key, label] of Object.entries(sizes)) {
-      if (label.toLowerCase().match(source.identifier)) {
+    if ( source.size in sizes ) return;
+    for ( const [key, label] of Object.entries( sizes ) ) {
+      if ( label.toLowerCase().match( source.identifier ) ) {
         source.size = key;
         return;
       }
@@ -299,6 +315,27 @@ export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescript
   /* -------------------------------------------- */
 
   /**
+   * Create default advancement items when starship size is created.
+   * @param {object} data               The initial data object provided to the document creation request.
+   * @param {object} options            Additional options which modify the creation request.
+   * @param {User} user                 The User requesting the document creation.
+   * @returns {Promise<boolean|void>}   A return value of false indicates the creation operation should be cancelled.
+   * @see {Document#_preCreate}
+   * @protected
+   */
+  async _preCreate( data, options, user ) {
+    if ( data._id || foundry.utils.hasProperty( data, "system.advancement" ) ) return;
+    const toCreate = [
+      { type: "AbilityScoreImprovement" }, { type: "Size" }
+    ];
+    this.parent.updateSource( {"system.advancement": toCreate.map( c => {
+      const config = CONFIG.SW5E.advancementTypes[c.type];
+      const cls = config.documentClass ?? config;
+      return new cls( c, { parent: this.parent } ).toObject();
+    } )} );
+  }
+
+  /**
    * Set the size reference in actor data.
    * @param {object} data     The initial data object provided to the document creation request
    * @param {object} options  Additional options which modify the creation request
@@ -306,9 +343,9 @@ export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescript
    * @see {Document#_onCreate}
    * @protected
    */
-  _onCreate(data, options, userId) {
-    if ( (game.user.id !== userId) || this.parent.actor?.type !== "starship" ) return;
-    this.parent.actor.update({"system.details.starshipsize": this.parent.id});
+  _onCreate( data, options, userId ) {
+    if ( ( game.user.id !== userId ) || this.parent.actor?.type !== "starship" ) return;
+    this.parent.actor.update( {"system.details.starshipsize": this.parent.id} );
   }
 
   /* -------------------------------------------- */
@@ -321,8 +358,8 @@ export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescript
    * @see {Document#_preDelete}
    * @protected
    */
-  async _preDelete(options, user) {
+  async _preDelete( options, user ) {
     if ( this.parent.actor?.type !== "starship" ) return;
-    await this.parent.actor.update({"system.details.starshipsize": null});
+    await this.parent.actor.update( {"system.details.starshipsize": null} );
   }
 }

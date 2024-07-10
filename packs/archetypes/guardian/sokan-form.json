@@ -16,82 +16,108 @@
   "system": {
     "description": {
       "value": "<h1>Sokan Form</h1>\n<p>Sokan Form, also known as Persistence Form, uses determined movements followed by swift strokes to keep their opponents' footing unsteady. Those guardians who focus on Persistence Form make use of the terrain, trying to maneuver their opponents into vulnerable areas before dispatching them.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "sokanform",
     "classIdentifier": "guardian",
     "advancement": [
       {
-        "_id": "IHnb4fqUXWX87URd",
+        "_id": "SQEBygae7Oa4CkLj",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.vcCfPn459mAj3Bz7",
-            "Compendium.sw5e.archetypefeatures.q89fgwHVSXJwvQRp",
-            "Compendium.sw5e.archetypefeatures.Cx7C4yeNeRrqY3Ji",
-            "Compendium.sw5e.archetypefeatures.WapvBdGqMhOj0huz"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.vcCfPn459mAj3Bz7",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.q89fgwHVSXJwvQRp",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Cx7C4yeNeRrqY3Ji",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.WapvBdGqMhOj0huz",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1fLblr4qbLaZiKod",
+        "_id": "a5sCbJDLkogdjJWN",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ZsuJe4MphUvdXTHb"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ZsuJe4MphUvdXTHb",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1kD3Yex3JxfL1qil",
+        "_id": "1bSVWSxSrVxRXOKP",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.WLOFj0n75wMYMwUM"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.WLOFj0n75wMYMwUM",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "4cciJ5PPtdxORfqz",
+        "_id": "fv0bXZj4AqG1GgKJ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.PSsCniigbIjrk6EX"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.PSsCniigbIjrk6EX",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
         "title": "Features"
       },
       {
-        "_id": "JsXSsi26si0nvlwr",
+        "_id": "1llCmVosMWLa3VDF",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "armor:hvy"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -102,7 +128,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -110,11 +136,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959773,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689870,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!pU28YNzK3zCzxIPv"
 }

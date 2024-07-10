@@ -16,65 +16,85 @@
   "system": {
     "description": {
       "value": "<h1>Ataru Form</h1>\n<p>Ataru Form, also know as Aggression Form, is a kinetically active form that relies on speed, acrobatics, and power. Those guardians who focus on Ataru Form utilize high energy tactics to confuse and distract their opponents, quickly moving about the battlefield.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "ataruform",
     "classIdentifier": "guardian",
     "advancement": [
       {
-        "_id": "x1jgFhQrtjn809jZ",
+        "_id": "1HEHFFBwc1tOarPr",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.O6eB0N7MDGaEUWzB",
-            "Compendium.sw5e.archetypefeatures.RKjHaIE5W6h9okyV",
-            "Compendium.sw5e.archetypefeatures.UHBl6VfFeqsByyEX"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.O6eB0N7MDGaEUWzB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.RKjHaIE5W6h9okyV",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UHBl6VfFeqsByyEX",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1m42JCPhBeDi1QLt",
+        "_id": "f4uHxaPz0Q119BWB",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.pSIYfBgzCCVYDmII"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pSIYfBgzCCVYDmII",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1JKHNVgGQuuJUU31",
+        "_id": "mN85nzTUw4p1JRe9",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.dQcSiWpPxD1zSSE1"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.dQcSiWpPxD1zSSE1",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "L6bvIe4wZQRiKOfh",
+        "_id": "CWCxV9sjhTBLJW7x",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Aic1hLLhk3cIH4QI"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Aic1hLLhk3cIH4QI",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
@@ -88,7 +108,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -96,11 +116,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959740,
-    "modifiedTime": 1695981489837,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689378,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!Mgp8Eo9BqTJtu6s6"
 }

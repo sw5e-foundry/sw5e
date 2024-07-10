@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Brawling Approach</h1>\n<p>Most berserkers require weapons. For berserkers of the Brawling Approach, however, everything is their weapon.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "brawlingapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "umnQl562xpr1E1AR",
+        "_id": "FEOxLL834OWVc0AP",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.2EFKQR8uB0Q45bfq",
-            "Compendium.sw5e.archetypefeatures.pWFFSFny78mzQ40m"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.2EFKQR8uB0Q45bfq",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pWFFSFny78mzQ40m",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1152bVGfiZmi1gpc",
+        "_id": "vL8iVAnTHldihXs8",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.JhNJZ4XPOLYYM86B"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.JhNJZ4XPOLYYM86B",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1to34LinxVCg1IuJ",
+        "_id": "1AAdz2JPeG48NcYc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.vl9pSe18a4NGegzs"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.vl9pSe18a4NGegzs",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "1KOwjNZQTS101wkO",
+        "_id": "fYKgsEmfEMiA5pY6",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ktNY0EzlYaTBkNs1"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ktNY0EzlYaTBkNs1",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,11 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959737,
-    "modifiedTime": 1695981489837,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689361,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!MWqcWWxHnZ2bkxEE"
 }

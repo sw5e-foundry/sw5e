@@ -1,8 +1,171 @@
 {
-  "_id": "ytbUrJGQL1JCiaEi",
   "name": "Falleen",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2781349+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-falleen"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Falleen.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The Falleen are distinguished by their mottled green or red skin, ridged skulls, and their long, black hair which they typically wear in ponytails. The sleek symmetry of their features, calculating and cold demeanors, their exotic looks, and their ability to alter their skin pigmentation make the Falleen often considered to be among the most aesthetically pleasing beings in the galaxy. In addition to their strikingly beautiful appearance, the Falleen exude pheromones which makes them all but irresistible to both sexes.</p>\n<p>The Falleen are semi-aquatic, being able to hold their breath underwater for an extended period of time. Fallen are one of few species that are resistant to manipulation by the Force.</p>\n<h2>Society and Culture</h2>\n<p>Falleen society is of a feudal nature, with noble houses ruling over the lower classes. The upper echelons of Falleen aristocracy are rife with politics and intrigue, though they rarely spill blood over disputes or reduce themselves to open warfare.</p>\n<p>As a cold-blooded species, the Falleen respect discipline and control, particularly self-control. They tend to shun public displays of emotion, and are very patient. As a result of this attitude, they tend to look down on the more openly passionate, whom they see as lacking self-control. Indeed, the Falleen as a species have a towering sense of superiority, reflecting on their view of Falleen as the civilized and cultural center of the galaxy, rather than Coruscant.</p>\n<h2>Names</h2>\n<p>Falleen favor names with Z and X sounds. They are usually accompanied by a surname, which is familial.</p>\n<p><strong>Male Names.</strong> Xomit, Xizor, Xist, Zenex, Zurros</p>\n<p><strong>Female Names.</strong> Xora, Trezza, Mylla, Zule, Annaz</p>\n<p><strong>Surnames.</strong> Grunseit, Croom, Moz, Xiss, Mythric</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "falleen",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1FHuWy1TeOAA1v3X",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.OFFbdtlvinwvEqCq",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.T5fuAuE2oFC8shQ0",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.khqSfPPhAJQeO3wn",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xJ7a9ve2pjqCs6fJ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yAyvqees7XQjzef7",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.8sKHPlJx32HWXOLw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VCH5IPhphnipYO0J",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IBHcEl3ow3SttPwy",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.UtWA6meTBpTVVzQX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.up6ND1MhMQAZaDxy",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "3zWbNrYKrkekUiik",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "dex": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1iL7fQ25iHGd1LTh",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Green, red"
+    },
+    "hairColorOptions": {
+      "value": "Black"
+    },
+    "eyeColorOptions": {
+      "value": "Black, brown"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Ridged skulls, dorsal spine"
+    },
+    "heightAverage": {
+      "value": "4'7\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "110 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Falleen"
+    },
+    "slanguage": {
+      "value": "Falleen"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "MG89qb6cGFBKJaYv",
@@ -80,127 +243,22 @@
       "name": "Falleen",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!ytbUrJGQL1JCiaEi.MG89qb6cGFBKJaYv"
+      "_key": "!items.effects!kjXDjCn6OVoKWp2P.MG89qb6cGFBKJaYv"
     }
   ],
+  "_id": "kjXDjCn6OVoKWp2P",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2781349+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-falleen"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The Falleen are distinguished by their mottled green or red skin, ridged skulls, and their long, black hair which they typically wear in ponytails. The sleek symmetry of their features, calculating and cold demeanors, their exotic looks, and their ability to alter their skin pigmentation make the Falleen often considered to be among the most aesthetically pleasing beings in the galaxy. In addition to their strikingly beautiful appearance, the Falleen exude pheromones which makes them all but irresistible to both sexes.</p>\n<p>The Falleen are semi-aquatic, being able to hold their breath underwater for an extended period of time. Fallen are one of few species that are resistant to manipulation by the Force.</p>\n<h2>Society and Culture</h2>\n<p>Falleen society is of a feudal nature, with noble houses ruling over the lower classes. The upper echelons of Falleen aristocracy are rife with politics and intrigue, though they rarely spill blood over disputes or reduce themselves to open warfare.</p>\n<p>As a cold-blooded species, the Falleen respect discipline and control, particularly self-control. They tend to shun public displays of emotion, and are very patient. As a result of this attitude, they tend to look down on the more openly passionate, whom they see as lacking self-control. Indeed, the Falleen as a species have a towering sense of superiority, reflecting on their view of Falleen as the civilized and cultural center of the galaxy, rather than Coruscant.</p>\n<h2>Names</h2>\n<p>Falleen favor names with Z and X sounds. They are usually accompanied by a surname, which is familial.</p>\n<p><strong>Male Names.</strong> Xomit, Xizor, Xist, Zenex, Zurros</p>\n<p><strong>Female Names.</strong> Xora, Trezza, Mylla, Zule, Annaz</p>\n<p><strong>Surnames.</strong> Grunseit, Croom, Moz, Xiss, Mythric</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "falleen",
-    "advancement": [
-      {
-        "_id": "1UxV7mZfJYCXyZIi",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.OFFbdtlvinwvEqCq",
-            "Compendium.sw5e.speciesfeatures.T5fuAuE2oFC8shQ0",
-            "Compendium.sw5e.speciesfeatures.khqSfPPhAJQeO3wn",
-            "Compendium.sw5e.speciesfeatures.xJ7a9ve2pjqCs6fJ",
-            "Compendium.sw5e.speciesfeatures.yAyvqees7XQjzef7",
-            "Compendium.sw5e.speciesfeatures.8sKHPlJx32HWXOLw",
-            "Compendium.sw5e.speciesfeatures.VCH5IPhphnipYO0J",
-            "Compendium.sw5e.speciesfeatures.IBHcEl3ow3SttPwy",
-            "Compendium.sw5e.speciesfeatures.UtWA6meTBpTVVzQX",
-            "Compendium.sw5e.speciesfeatures.up6ND1MhMQAZaDxy"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "fMMLRoXpCi8UU7vR",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "cha": 2,
-            "dex": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1EYCV69koGJ51NOy",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Green, red"
-    },
-    "hairColorOptions": {
-      "value": "Black"
-    },
-    "eyeColorOptions": {
-      "value": "Black, brown"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Ridged skulls, dorsal spine"
-    },
-    "heightAverage": {
-      "value": "4'7\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "110 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Falleen"
-    },
-    "slanguage": {
-      "value": "Falleen"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002150,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797539,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!ytbUrJGQL1JCiaEi"
+  "_key": "!items!kjXDjCn6OVoKWp2P"
 }

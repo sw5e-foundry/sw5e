@@ -1,8 +1,202 @@
 {
-  "_id": "WQrjYmqGB0tHwxeE",
   "name": "Kage",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2811327+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-kage"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Kage.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The kage are a pale-skinned sentient species native to the caverns in the planet of Quarzite. The kage have a long-time conflict with the belugans, consistently at odds with them. During the Clone Wars, Otua Blank ordered the capture of Pluma Sodi to marry her, she was later given back to the Kage Warriors by Asajj Ventress. </p>\n<h2>Society and Culture</h2>\n<p>The kage are a dedicated people of physical excellence; they train tireless and elite fighter-monks known as Kage warriors. They tend to use weapons with electric or disruptive properties, but they are also great fighters in unarmed combat. Kage warriors are respected in Kage society as the greatest calling a kage might follow.</p>\n<p>Kage also share an affinity with animals, most notably the native multi-legged milodon, developing a symbiotic relationship. They use the milodon as transport; they can keep pace with the subtram transports that supply belugan strongholds, and launch raids that often catch the belugan security forces off-guard.</p>\n<h2>Names</h2>\n<p>Kage names are generally multisyllable with melodic intonations. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Baalin, Forta, Krismo, Rafa, Timko</p>\n<p><strong>Female Names.</strong> Chena, Fari, Moora, Ooni, Pluma</p>\n<p><strong>Surnames.</strong> Buno, Keeli, Nima, Sodi, Tani</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "kage",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 120,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1ldsnndyVX1E14bF",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1zWL2e6WEmaucdp2",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2kzmRC47qQZCfjvB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.iBYO3EI8gQEHXIJF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.OGJo3lYnJwTAdrTV",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QboBr82a3lA4ddiY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.sWuVXJviEyJLSscQ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.C6EjGKbbInq8K66P",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.kVimdz5mVsNR9KUS",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.uB7xFkHSWJOWP5jb",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.q0j7V7fH0JvHOX5r",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JDr90Bc9idi7vMXU",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.o5wYvfkXu9tkFNfT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.nnsNbhfI4cysRi5I",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "5JbrX8mU7Dw100eL",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "wis": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "AnUNDk8Fcb6rlzpw",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1gldumuMATKe1cZe",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:ani",
+            "skills:ath",
+            "weapon:electroprod",
+            "weapon:electrostaff"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Gray, white"
+    },
+    "hairColorOptions": {
+      "value": "Gray, pale yellow, white"
+    },
+    "eyeColorOptions": {
+      "value": "Green, pink, red, yellow"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Athleticism, pale skin, piercing eyes"
+    },
+    "heightAverage": {
+      "value": "4'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "95 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Quarzite"
+    },
+    "slanguage": {
+      "value": "Galactic Basic"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "G3YZPkTcIi4dDM7Y",
@@ -84,8 +278,7 @@
       "name": "Kage",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!WQrjYmqGB0tHwxeE.G3YZPkTcIi4dDM7Y"
+      "_key": "!items.effects!fGtLhzk1Q5XzLtKs.G3YZPkTcIi4dDM7Y"
     },
     {
       "_id": "fQtntxWSsAPYiSJL",
@@ -125,149 +318,22 @@
       "name": "Sunlight Sensitivity - you or your target is in sunlight",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!WQrjYmqGB0tHwxeE.fQtntxWSsAPYiSJL"
+      "_key": "!items.effects!fGtLhzk1Q5XzLtKs.fQtntxWSsAPYiSJL"
     }
   ],
+  "_id": "fGtLhzk1Q5XzLtKs",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2811327+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-kage"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The kage are a pale-skinned sentient species native to the caverns in the planet of Quarzite. The kage have a long-time conflict with the belugans, consistently at odds with them. During the Clone Wars, Otua Blank ordered the capture of Pluma Sodi to marry her, she was later given back to the Kage Warriors by Asajj Ventress. </p>\n<h2>Society and Culture</h2>\n<p>The kage are a dedicated people of physical excellence; they train tireless and elite fighter-monks known as Kage warriors. They tend to use weapons with electric or disruptive properties, but they are also great fighters in unarmed combat. Kage warriors are respected in Kage society as the greatest calling a kage might follow.</p>\n<p>Kage also share an affinity with animals, most notably the native multi-legged milodon, developing a symbiotic relationship. They use the milodon as transport; they can keep pace with the subtram transports that supply belugan strongholds, and launch raids that often catch the belugan security forces off-guard.</p>\n<h2>Names</h2>\n<p>Kage names are generally multisyllable with melodic intonations. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Baalin, Forta, Krismo, Rafa, Timko</p>\n<p><strong>Female Names.</strong> Chena, Fari, Moora, Ooni, Pluma</p>\n<p><strong>Surnames.</strong> Buno, Keeli, Nima, Sodi, Tani</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "kage",
-    "advancement": [
-      {
-        "_id": "xGW8oNGtUvU1idM7",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.1zWL2e6WEmaucdp2",
-            "Compendium.sw5e.speciesfeatures.2kzmRC47qQZCfjvB",
-            "Compendium.sw5e.speciesfeatures.iBYO3EI8gQEHXIJF",
-            "Compendium.sw5e.speciesfeatures.OGJo3lYnJwTAdrTV",
-            "Compendium.sw5e.speciesfeatures.QboBr82a3lA4ddiY",
-            "Compendium.sw5e.speciesfeatures.sWuVXJviEyJLSscQ",
-            "Compendium.sw5e.speciesfeatures.C6EjGKbbInq8K66P",
-            "Compendium.sw5e.speciesfeatures.kVimdz5mVsNR9KUS",
-            "Compendium.sw5e.speciesfeatures.uB7xFkHSWJOWP5jb",
-            "Compendium.sw5e.speciesfeatures.q0j7V7fH0JvHOX5r",
-            "Compendium.sw5e.speciesfeatures.JDr90Bc9idi7vMXU",
-            "Compendium.sw5e.speciesfeatures.o5wYvfkXu9tkFNfT",
-            "Compendium.sw5e.speciesfeatures.nnsNbhfI4cysRi5I"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1218iQFp5Iv01TPR",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "dex": 2,
-            "wis": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1PchD8Xa7NdZbZB2",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "DjN9J7zNWOl18TP1",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:ani",
-            "skills:ath",
-            "weapon:electroprod",
-            "weapon:electrostaff"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Gray, white"
-    },
-    "hairColorOptions": {
-      "value": "Gray, pale yellow, white"
-    },
-    "eyeColorOptions": {
-      "value": "Green, pink, red, yellow"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Athleticism, pale skin, piercing eyes"
-    },
-    "heightAverage": {
-      "value": "4'9\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "95 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Quarzite"
-    },
-    "slanguage": {
-      "value": "Galactic Basic"
-    },
-    "movement": {
-      "walk": 30
-    },
-    "senses": {
-      "darkvision": 120
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002102,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797352,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!WQrjYmqGB0tHwxeE"
+  "_key": "!items!fGtLhzk1Q5XzLtKs"
 }

@@ -3,8 +3,8 @@
  * @extends {Dialog}
  */
 export default class ExpendPowerDiceDialog extends Dialog {
-  constructor(actor, dialogData = {}, options = {}) {
-    super(dialogData, options);
+  constructor( actor, dialogData = {}, options = {} ) {
+    super( dialogData, options );
     this.actor = actor;
   }
 
@@ -12,10 +12,10 @@ export default class ExpendPowerDiceDialog extends Dialog {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return mergeObject( super.defaultOptions, {
       template: "systems/sw5e/templates/apps/expend-power-dice.hbs",
       classes: ["sw5e", "dialog"]
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -28,7 +28,7 @@ export default class ExpendPowerDiceDialog extends Dialog {
 
     data.slots = {};
 
-    for (const [id, str] of Object.entries(slots)) {
+    for ( const [id, str] of Object.entries( slots ) ) {
       data.slots[id] = {
         id,
         str,
@@ -47,29 +47,29 @@ export default class ExpendPowerDiceDialog extends Dialog {
    * @param {Actor5e} actor
    * @returns {Promise}
    */
-  static async expendPowerDice(actor) {
-    return new Promise((resolve, reject) => {
-      const dlg = new this(actor, {
-        title: `${game.i18n.localize("SW5E.ExpendPowerDice")}: ${actor.name}`,
+  static async expendPowerDice( actor ) {
+    return new Promise( ( resolve, reject ) => {
+      const dlg = new this( actor, {
+        title: `${game.i18n.localize( "SW5E.ExpendPowerDice" )}: ${actor.name}`,
         buttons: {
           expend: {
             icon: '<i class="fas fa-wrench"></i>',
-            label: game.i18n.localize("SW5E.ExpendPowerDice"),
+            label: game.i18n.localize( "SW5E.ExpendPowerDice" ),
             callback: html => {
-              const chosen = html.find("select[name=\"slot\"]")[0];
-              resolve(chosen.value);
+              const chosen = html.find( "select[name=\"slot\"]" )[0];
+              resolve( chosen.value );
             }
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: game.i18n.localize("Cancel"),
+            label: game.i18n.localize( "Cancel" ),
             callback: reject
           }
         },
         default: "expend",
         close: reject
-      });
-      dlg.render(true);
-    });
+      } );
+      dlg.render( true );
+    } );
   }
 }

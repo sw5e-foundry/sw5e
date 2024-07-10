@@ -9,56 +9,114 @@
   },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Ugor.webp",
-  "effects": [],
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Ugors are sentient, unicellular protozoans. Considered exotic for being one of the few sentient species to fall outside the standard classificiations of birds, mammals, etc. Their bodies consist of cytoplasm, which can vary in colors and shade, bound by a slime-coated membrane. Being amorphic, ugors can assume nearly any shape, and can exude pseudopodia limbs such as crude arms, mouths, and sensory organs, although a globular form was the most comfortable and easy to maintain. Due to their unique physiology and evolution, they are able to digest substances that would prove toxic to other species, and can subsist on other species' trash. While most maintain globular form, some who interact with humanoid species will wear EVA suits or armor to give themselves a humanoid appearence. </p>\n<h2>Society and Culture</h2>\n<p>Ugor society revolves around trading and scavenging; they are famed for providing equipment to nascent civilizations and for salvaging wreckage from failed ones. The beings are supremely adaptable and astutely able to get what they want from others. Ugor business deals are extremely complex, incorporating opaque knots of loans, interest, and payment plans. Ugors have an intense love of trash, which they base their religions off, and excel at those skills that are useful in their pursuit of rubbish collection: a member of the species' education emphasizes skills related to scavenging and starship operation (although members of the species rarely became more than passable pilots).</p>\n<h2>Names</h2>\n<p>Ugor names typically consisted of two parts, with no notable difference between the genders. Ugor do not use surnames.</p>\n<p><strong>Names.</strong> ArrGack, GrrKack, SplrMuck</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "ugor",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
     "advancement": [
       {
-        "_id": "1DpTexn7CVgQCKU2",
+        "_id": "1wzIC9zWZNr21fvj",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.speciesfeatures.5brXZ6ZvpqWhWovU",
-            "Compendium.sw5e.speciesfeatures.WZDGmfLFQq88ORkA",
-            "Compendium.sw5e.speciesfeatures.r9djNejUPWK6WLN6",
-            "Compendium.sw5e.speciesfeatures.qHac4u88i8tyx3AU",
-            "Compendium.sw5e.speciesfeatures.4LrC1v5dilWaAWmP",
-            "Compendium.sw5e.speciesfeatures.nwQKZd8lAq3oCPGC",
-            "Compendium.sw5e.speciesfeatures.9VBdGSpEewfKCMVo",
-            "Compendium.sw5e.speciesfeatures.xN8piebRc549kjDr",
-            "Compendium.sw5e.speciesfeatures.OglwTyTCN5aRzD4a",
-            "Compendium.sw5e.speciesfeatures.tlyNePd68IaUwYcK",
-            "Compendium.sw5e.speciesfeatures.EVj3FMgxi3cubUiC"
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5brXZ6ZvpqWhWovU",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WZDGmfLFQq88ORkA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.r9djNejUPWK6WLN6",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.qHac4u88i8tyx3AU",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.4LrC1v5dilWaAWmP",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.nwQKZd8lAq3oCPGC",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9VBdGSpEewfKCMVo",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xN8piebRc549kjDr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.OglwTyTCN5aRzD4a",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.tlyNePd68IaUwYcK",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.EVj3FMgxi3cubUiC",
+              "optional": false
+            }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "1kKBEaHJJjtH16Ze",
+        "_id": "D9Shyf1TGakAmoQV",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "con": 2,
             "int": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "9HLPZL3rgWj2E4BQ",
+        "_id": "Vak0H9p9mgF11LCk",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -69,7 +127,7 @@
         "level": 0
       },
       {
-        "_id": "owwrZF4SRhTxbRHn",
+        "_id": "ztArG5OoAbO1sSsL",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -82,16 +140,15 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
-    "details": {
-      "isDroid": false
-    },
-    "-=traits": null,
     "skinColorOptions": {
       "value": "Clear, green, blue, or brown"
     },
@@ -102,7 +159,7 @@
       "value": "Varies"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Unicellular organism"
@@ -125,16 +182,18 @@
     "slanguage": {
       "value": "Ugor"
     },
-    "-=damage": null,
-    "-=armorproperties": null,
-    "-=weaponproperties": null,
-    "movement": {
-      "walk": 25
+    "droidDistinctions": {
+      "value": ""
     },
-    "senses": {
-      "darkvision": 60
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "A1UwKriEQ0L3mIAK",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -142,12 +201,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1667426105596,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796596,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "siHUGVpX00uZcqId",
-  "_key": "!items!siHUGVpX00uZcqId"
+  "_key": "!items!A1UwKriEQ0L3mIAK"
 }

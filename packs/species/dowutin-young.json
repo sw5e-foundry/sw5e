@@ -1,11 +1,5 @@
 {
-  "_id": "2tUfXUIhXxaWcSmi",
   "name": "Dowutin, Young",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Dowutin-Young.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2761355+00:00",
@@ -13,55 +7,116 @@
       "uid": "Species.name-dowutin_young"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Dowutin-Young.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>The Dowutin species evolved from a type of omnivorous herd animal on the planet Dowut. They were large, aggressive-looking humanoids with chin horns, sharp claws, thick skin, and had poor eyesight but superior senses of hearing and smell. Dowutin are massive humanoids who can live for centuries, and dying of old age is unheard of for them. While most other species become frail as they age, Dowutin never stop growing and getting stronger. As teenagers, Dowutin resemble Wookiees in size and strength, but by their fifth century, they are a mountain of muscle weighing a metric ton, with loud footsteps and voices warning other species away.</p>\n<h2>Society and Culture</h2>\n<p>Dowutin are a very straightforward people, and their society is among the most simple in the galaxy. They have few cities, governments, or even organized social structures, as they often survive entirely on their own. Children are left behind by their families at a very young age and must learn to fend for themselves. Because of this, those who quickly learned hunting skills survived. Their size and strength made them prized as hired muscle, but most Dowutins' pride dissuaded them from such work, as they viewed other species as weak, absolutely refusing to take orders from anyone who is physically weaker than them. As such, those who employ Dowutin will command them in more subtle ways, typically phrasing their commands as suggestions or advice. Strength in the literal sense is very important to them; it is a measure of worth and earns them respect. </p>\n<h2>Names</h2>\n<p>Dowutin names are harsh and guttural, and roll off the tongue like a rock slide. Dowutin do not use surnames.</p>\n<p><strong>First Names.</strong> Dursuc, Grimgorl, Maucro, Tornak</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "dowutin-young",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
     "advancement": [
       {
-        "_id": "LcQhYyEFkiv1Sg2C",
+        "_id": "1yGgHoDWyrR2I2TW",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.speciesfeatures.i0f8DI2rNzafcP55",
-            "Compendium.sw5e.speciesfeatures.RffSGAH2zUghb1io",
-            "Compendium.sw5e.speciesfeatures.9GIEcSyfNoORfsVS",
-            "Compendium.sw5e.speciesfeatures.niCnWPx18Nekw5jj",
-            "Compendium.sw5e.speciesfeatures.DTnf2pNQxQBTW5WK",
-            "Compendium.sw5e.speciesfeatures.zHb8W5N7MC6saywE",
-            "Compendium.sw5e.speciesfeatures.JZVy3936u75EAkF4",
-            "Compendium.sw5e.speciesfeatures.zHMOXWnIVzoZbVOq",
-            "Compendium.sw5e.speciesfeatures.E3YTsi2gdHjH6ZgO",
-            "Compendium.sw5e.speciesfeatures.MMa3vTHElWMiLsvg",
-            "Compendium.sw5e.speciesfeatures.VAuyqlcjH5Ra4V5z"
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.i0f8DI2rNzafcP55",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RffSGAH2zUghb1io",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9GIEcSyfNoORfsVS",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.niCnWPx18Nekw5jj",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DTnf2pNQxQBTW5WK",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zHb8W5N7MC6saywE",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JZVy3936u75EAkF4",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zHMOXWnIVzoZbVOq",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.E3YTsi2gdHjH6ZgO",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MMa3vTHElWMiLsvg",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VAuyqlcjH5Ra4V5z",
+              "optional": false
+            }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "1bj7NlRLoztf1CWX",
+        "_id": "1M7dgjSKyaEp1TBk",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "str": 2,
             "con": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "1zIYxPTfeZjEo2qF",
+        "_id": "1N4B1T1PUc8jKCES",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -72,22 +127,22 @@
         "level": 0
       },
       {
-        "_id": "qV6DmqWpgeFl5A32",
+        "_id": "16qQncrQVzJHBjKp",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "skills:sur"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
-    "details": {
-      "isDroid": false
-    },
     "skinColorOptions": {
       "value": "Brown, orange, or orange-green"
     },
@@ -98,7 +153,7 @@
       "value": "Black or white"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Chin horns, thick skin, imposing build, never stop growing"
@@ -121,20 +176,30 @@
     "slanguage": {
       "value": "Dowuta"
     },
-    "movement": {
-      "walk": 30
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "9x6k3uQQMaErKZHx",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002058,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796585,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!2tUfXUIhXxaWcSmi"
+  "_key": "!items!9x6k3uQQMaErKZHx"
 }

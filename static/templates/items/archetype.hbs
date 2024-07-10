@@ -2,11 +2,11 @@
 
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img">
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ArchetypeName' }}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ArchetypeName' }}">
             </h1>
 
             <div class="item-subtitle">
@@ -36,18 +36,22 @@
 
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
-            {{editor enriched.description target="system.description.value" button=true editable=editable engine="prosemirror"
-               collaborate=false}}
+            {{editor enriched.description target="system.description.value" button=true editable=editable
+            engine="prosemirror"
+            collaborate=false}}
         </div>
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
+
             {{!-- Identifier --}}
             <div class="form-group">
                 <label>{{localize "SW5E.Identifier"}}</label>
                 <div class="form-fields">
-                    <input type="text" name="system.identifier" value="{{system.identifier}}" placeholder="{{item.identifier}}">
+                    <input type="text" name="system.identifier" value="{{system.identifier}}"
+                        placeholder="{{item.identifier}}">
                 </div>
+                <p class="hint">{{ localize "SW5E.IdentifierError" }}</p>
             </div>
 
             <div class="form-group">
@@ -56,7 +60,7 @@
                     <input type="text" name="system.classIdentifier" value="{{system.classIdentifier}}">
                 </div>
                 <p class="hint">
-                        {{localize "SW5E.ArchetypeIdentifierHint"}}
+                    {{localize "SW5E.ArchetypeIdentifierHint"}}
                 </p>
             </div>
 

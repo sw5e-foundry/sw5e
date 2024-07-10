@@ -9,56 +9,114 @@
   },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Quermian.webp",
-  "effects": [],
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Created by arkanian scientists from the DNA of the xexto species, the quermians were designed to be taller than their fore-bearers and were left to evolve without any predators on their terraformed garden homeworld. Equipped with long necks for peering over vegetation mats, bulbous heads with a permanently bemused smile, and two sets of spindly arms, they also have two brains, one located in the chest cavity. Their two brains can cause mental problems when each brain developed a different personality, but also gives them a type of \"telepathy\" which they attribute to an ability to better observe and understand body language. Possessing no noses, the olfactory glands of this species are found in the hands.</p>\n<h2>Society and Culture</h2>\n<p>Quermians are a gentle, unassuming people. They embrace reason, shun violence, and enjoy interacting with members of other species and cultures. A peaceful society developed on Quermia without arkanian interference, as the quermians evolved on their own in the absence of any predators or outside intervention. As a race they are dedicated to complex philosophical ideas, and many of the galaxy's most prominent diplomats and thinkers are found among their ranks. While they have four arms and are capable of using both sets with ease, they prefer to keep the lower set hidden beneath their robes when dealing with offworlders.</p>\n<h2>Names</h2>\n<p>Quermian names are usually one to three syllables long, featuring hard or soft consonants.</p>\n<p><strong>Male Names.</strong> Murk, Koa, Jedoo, Vinian </p>\n<p><strong>Female Names.</strong> Gouren, Kindee, Meroo, Kiaa  </p>\n<p><strong>Surnames.</strong> Kreen, Lundi, Raelo, Bactra</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "quermian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
     "advancement": [
       {
-        "_id": "ZvECJgVyBD61jnD7",
+        "_id": "x4fGqBFzb5dmdCj7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.speciesfeatures.tiHxmBVQVRIpUIGP",
-            "Compendium.sw5e.speciesfeatures.f6kwBoZHcvtO9WjU",
-            "Compendium.sw5e.speciesfeatures.S3I4uqy5gTzPblcj",
-            "Compendium.sw5e.speciesfeatures.jvUdL9k140xpdroW",
-            "Compendium.sw5e.speciesfeatures.g0IWRsfPy48ky6xm",
-            "Compendium.sw5e.speciesfeatures.ubcYpt3G4J4maQrI",
-            "Compendium.sw5e.speciesfeatures.c4CYehhPznbmPz2J",
-            "Compendium.sw5e.speciesfeatures.KNDjtni0NH5ym2Os",
-            "Compendium.sw5e.speciesfeatures.g2jcU7dQixjgvy05",
-            "Compendium.sw5e.speciesfeatures.j18nNs2t1Z3tLbrU",
-            "Compendium.sw5e.speciesfeatures.pPxpcCqlij0MPL8q"
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.tiHxmBVQVRIpUIGP",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.f6kwBoZHcvtO9WjU",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.S3I4uqy5gTzPblcj",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jvUdL9k140xpdroW",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.g0IWRsfPy48ky6xm",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ubcYpt3G4J4maQrI",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.c4CYehhPznbmPz2J",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KNDjtni0NH5ym2Os",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.g2jcU7dQixjgvy05",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.j18nNs2t1Z3tLbrU",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.pPxpcCqlij0MPL8q",
+              "optional": false
+            }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "miMynjph0JTnRmuj",
+        "_id": "1Ujt02YvzCNv1sRw",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "wis": 2,
             "int": 1
           },
-          "points": 0
+          "points": 0,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "QQrYuuBVpAaWCWTj",
+        "_id": "k7NgUIWqZf3zt3gy",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -69,7 +127,7 @@
         "level": 0
       },
       {
-        "_id": "1RUTgTPPN7vY1zlJ",
+        "_id": "1Ok3T6BwTSF05x0f",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -84,16 +142,15 @@
           "grants": [
             "skills:prc"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
-    "details": {
-      "isDroid": false
-    },
-    "-=traits": null,
     "skinColorOptions": {
       "value": "Grey to pasty white"
     },
@@ -104,7 +161,7 @@
       "value": "Brown or Red"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Long necks, two brains, two pairs of arms"
@@ -127,13 +184,18 @@
     "slanguage": {
       "value": "Quermian"
     },
-    "-=damage": null,
-    "-=armorproperties": null,
-    "-=weaponproperties": null,
-    "movement": {
-      "walk": 30
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "2wdslNgUZfSMFN1A",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -141,12 +203,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1667426105595,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796357,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "uuQ3PGBLgHt7Oy8I",
-  "_key": "!items!uuQ3PGBLgHt7Oy8I"
+  "_key": "!items!2wdslNgUZfSMFN1A"
 }

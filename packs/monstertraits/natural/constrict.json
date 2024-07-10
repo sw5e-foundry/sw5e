@@ -7,22 +7,24 @@
   "system": {
     "description": {
       "value": "<p></p><section id=\"secret-XmgDZgs9F7aXYVal\" class=\"secret\"><p><em>Melee Weapon Attack </em>+9, Reach 10 ft., One target. <em>Hit : </em>9 (1d8+5) kinetic damage.</p><p>If the target is a Large or smaller creature is Grappled (escape DC 16).</p></section><p>The {creature} uses its appendages to constrict its opponent.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "quantity": 1,
-    "weight": 1,
+    "weight": {
+      "value": 1,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": true,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
@@ -35,10 +37,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 10,
@@ -47,18 +50,19 @@
     },
     "uses": {
       "value": null,
-      "max": "0",
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "str",
     "actionType": "mwak",
-    "attackBonus": "4",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -93,13 +97,9 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "weaponType": "natural",
     "weaponClass": "",
-    "baseItem": "",
     "ammo": {
       "target": null,
       "value": null,
@@ -108,71 +108,37 @@
         "powerCell"
       ]
     },
-    "properties": {
-      "hvy": false,
-      "fin": false,
-      "lgt": false,
-      "rch": false,
-      "rel": null,
-      "ret": false,
-      "spc": false,
-      "thr": false,
-      "two": false,
-      "ver": false,
-      "aut": false,
-      "bur": null,
-      "dir": null,
-      "hid": false,
-      "ken": null,
-      "pic": null,
-      "ran": false,
-      "rap": null,
-      "smr": false,
-      "vic": null,
-      "bit": null,
-      "bri": null,
-      "bru": null,
-      "cor": null,
-      "def": null,
-      "dex": null,
-      "drm": false,
-      "dgd": false,
-      "dis": null,
-      "dpt": false,
-      "dou": false,
-      "fix": false,
-      "ilk": false,
-      "lum": false,
-      "mig": false,
-      "mod": false,
-      "neu": null,
-      "pen": null,
-      "pcl": false,
-      "rck": null,
-      "shk": null,
-      "sil": false,
-      "slg": false,
-      "son": null,
-      "spz": null,
-      "str": null,
-      "swi": false
+    "properties": [],
+    "proficient": 1,
+    "_propertyValues": {},
+    "type": {
+      "value": "natural",
+      "subtype": ""
     },
-    "proficient": true,
-    "powercasting": {
-      "force": "none",
-      "tech": "none"
-    }
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "4",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "firingArc": ""
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1669750499805,
-    "modifiedTime": 1699591681502,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368816362,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "folder": null,
   "sort": 0,

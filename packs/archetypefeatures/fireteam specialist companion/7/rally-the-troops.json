@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Fireteam Specialist:</strong> 7th level</em></p>\n<p>When you use your Second Wind feature while your companion is within 10 feet of you, your companion regains hit points and gains temporary hit points equal to your fighter level.</p>\n<p>This radius increases to 30 feet at 11th level, and 60 feet at 17th level. </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Fighter (Fireteam Specialist (Companion)) 7",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 10,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "heal",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -86,7 +89,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -96,11 +109,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438400,
-    "modifiedTime": 1698794203484,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368708466,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "k5FWh0AqBi5j9oTJ",
   "_key": "!items!k5FWh0AqBi5j9oTJ"

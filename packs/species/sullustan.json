@@ -1,8 +1,187 @@
 {
-  "_id": "3YMAETyv0Sm0OdRf",
   "name": "Sullustan",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2921258+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-sullustan"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Sullustan.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>A diminutive species of near-humans, Sullustans bear round, tapered skulls. Sullustans are distinguishable for their almond-shaped black eyes, facial jowls called dewflaps and large, round ears. Their wide earlobes provide excellent hearing, and their large eyes provide exceptional low-light vision. Due to their relative lack of exposure to natural light, Sullustans begin to suffer from corneal defects after 30 standard years. Many choose to wear special visors to prevent further damage. Some Sullustans tattoo their heads as a form of individual expression.</p>\n<h2>Society and Culture</h2>\n<p>Sullustans are outgoing and mercantile, friendly and pragmatic. As a species they are altogether lacking in xenophobia. Though fond of practical jokes and extremely shrewd in their business dealings, they are eager to explore and travel the galaxy. Inquisitive by nature, some have described Sullustans as reckless, especially for their preference to learn and discover whenever possible through personal experience. Sullustans organize themselves into familial units known as Warren-clans. Each clan consists of one polyandrous female, several husbands, and their young. Unmated females, known as \"Fems\", are active members of their communities until they reach breeding status, called \"Ready\", when they choose their mates.</p>\n<h2>Names</h2>\n<p>Male names are typically longer than female names. Surnames are based on Warren-clan.</p>\n<p><strong>Male Names.</strong> Duedt, Oshror, Partheen, Throthinnitz</p>\n<p><strong>Female Names.</strong> Asulu, Eldo, Tri, Vo, We</p>\n<p><strong>Surnames.</strong> Frovarr, Jeard, Plonr, Tsah, Vhiibb</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "sullustan",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "eVVBzgFT1t91vUoT",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.py4yaBrRMyT0M96S",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PxyBkhwaguvbERs5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IMOqDLc6w0X66Ed5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2yZUDrz0NkbdUEdO",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FX3uHTLfKjoAsWfC",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.REhMW0tOlmN0yaIZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rtStPIvBrXONwC2m",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MRB6eKuVd7W60pSN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.flP3SUnh0CR2k9nF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.a3scuUx7HFcTeps4",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1rDzikPDM2T75goR",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "dex": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "bm7QwcBXhXt1kZlt",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "djQLdgiZPy3iH3xU",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:pil"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Gray, pink, or light green"
+    },
+    "hairColorOptions": {
+      "value": "Brown"
+    },
+    "eyeColorOptions": {
+      "value": "Black or brown"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Large ears, scarns, ultra-sensitive hearing, jet-black eyes, two flaps of jowls around their cheeks"
+    },
+    "heightAverage": {
+      "value": "3'11\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "60 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Sullust"
+    },
+    "slanguage": {
+      "value": "Sullestese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "R30RcPR3JR2NURpz",
@@ -72,8 +251,7 @@
       "name": "Sullustan",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!3YMAETyv0Sm0OdRf.R30RcPR3JR2NURpz"
+      "_key": "!items.effects!euWRFujG7PPswmYU.R30RcPR3JR2NURpz"
     },
     {
       "_id": "Olkrr0lY5hrJVL5a",
@@ -107,143 +285,22 @@
       "name": "Keen Hearing",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!3YMAETyv0Sm0OdRf.Olkrr0lY5hrJVL5a"
+      "_key": "!items.effects!euWRFujG7PPswmYU.Olkrr0lY5hrJVL5a"
     }
   ],
+  "_id": "euWRFujG7PPswmYU",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2921258+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-sullustan"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>A diminutive species of near-humans, Sullustans bear round, tapered skulls. Sullustans are distinguishable for their almond-shaped black eyes, facial jowls called dewflaps and large, round ears. Their wide earlobes provide excellent hearing, and their large eyes provide exceptional low-light vision. Due to their relative lack of exposure to natural light, Sullustans begin to suffer from corneal defects after 30 standard years. Many choose to wear special visors to prevent further damage. Some Sullustans tattoo their heads as a form of individual expression.</p>\n<h2>Society and Culture</h2>\n<p>Sullustans are outgoing and mercantile, friendly and pragmatic. As a species they are altogether lacking in xenophobia. Though fond of practical jokes and extremely shrewd in their business dealings, they are eager to explore and travel the galaxy. Inquisitive by nature, some have described Sullustans as reckless, especially for their preference to learn and discover whenever possible through personal experience. Sullustans organize themselves into familial units known as Warren-clans. Each clan consists of one polyandrous female, several husbands, and their young. Unmated females, known as \"Fems\", are active members of their communities until they reach breeding status, called \"Ready\", when they choose their mates.</p>\n<h2>Names</h2>\n<p>Male names are typically longer than female names. Surnames are based on Warren-clan.</p>\n<p><strong>Male Names.</strong> Duedt, Oshror, Partheen, Throthinnitz</p>\n<p><strong>Female Names.</strong> Asulu, Eldo, Tri, Vo, We</p>\n<p><strong>Surnames.</strong> Frovarr, Jeard, Plonr, Tsah, Vhiibb</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "sullustan",
-    "advancement": [
-      {
-        "_id": "1diYk837w3Ktylry",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.py4yaBrRMyT0M96S",
-            "Compendium.sw5e.speciesfeatures.PxyBkhwaguvbERs5",
-            "Compendium.sw5e.speciesfeatures.IMOqDLc6w0X66Ed5",
-            "Compendium.sw5e.speciesfeatures.2yZUDrz0NkbdUEdO",
-            "Compendium.sw5e.speciesfeatures.FX3uHTLfKjoAsWfC",
-            "Compendium.sw5e.speciesfeatures.REhMW0tOlmN0yaIZ",
-            "Compendium.sw5e.speciesfeatures.rtStPIvBrXONwC2m",
-            "Compendium.sw5e.speciesfeatures.MRB6eKuVd7W60pSN",
-            "Compendium.sw5e.speciesfeatures.flP3SUnh0CR2k9nF",
-            "Compendium.sw5e.speciesfeatures.a3scuUx7HFcTeps4"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "s0dERHvZyuGNmC8c",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2,
-            "dex": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1m6OgQiCSbhGUvz4",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1nIWsqVozeW8MJuJ",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:pil"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Gray, pink, or light green"
-    },
-    "hairColorOptions": {
-      "value": "Brown"
-    },
-    "eyeColorOptions": {
-      "value": "Black or brown"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Large ears, scarns, ultra-sensitive hearing, jet-black eyes, two flaps of jowls around their cheeks"
-    },
-    "heightAverage": {
-      "value": "3'11\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "60 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Sullust"
-    },
-    "slanguage": {
-      "value": "Sullestese"
-    },
-    "movement": {
-      "walk": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002060,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797341,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!3YMAETyv0Sm0OdRf"
+  "_key": "!items!euWRFujG7PPswmYU"
 }

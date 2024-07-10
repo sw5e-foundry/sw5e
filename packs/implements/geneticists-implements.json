@@ -16,25 +16,25 @@
   "system": {
     "description": {
       "value": null,
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 900,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
-    "toolType": "artisan",
-    "baseItem": "geneticistsimplements",
-    "ability": "int",
+    "ability": "",
     "chatFlavor": "",
     "proficient": null,
     "bonus": "",
@@ -44,47 +44,58 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
-    "target": {},
-    "range": {},
+    "target": {
+      "value": "",
+      "width": null,
+      "units": "",
+      "type": "",
+      "prompt": true
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
     "uses": {
       "value": null,
-      "max": null,
-      "per": null
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {},
-    "damage": {
-      "parts": [],
-      "versatile": ""
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
     },
-    "save": {},
-    "armor": {},
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "properties": [],
+    "_propertyValues": {},
+    "type": {
+      "value": "artisan",
+      "baseItem": "geneticistsimplements"
     },
-    "properties": {},
-    "equiped": false,
-    "actionType": "",
-    "attackBonus": 0,
-    "critical": null,
-    "formula": "",
-    "weaponType": ""
+    "unidentified": {
+      "description": ""
+    },
+    "container": null,
+    "attuned": false,
+    "cover": null,
+    "crewed": false
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493980395,
-    "modifiedTime": 1693589988199,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368783906,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!80xuLufR1m7kpNRs"
 }

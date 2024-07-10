@@ -1,11 +1,5 @@
 {
-  "_id": "3liZTdUnj62pELdi",
   "name": "Zilkin",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Zilkin.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:11.9013525+00:00",
@@ -13,57 +7,127 @@
       "uid": "Species.name-zilkin"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Zilkin.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>The zilkins are a bipedal, amphibious species discernible by their diminutive stature and stalk eyes. Their homeworld, Zilk, has many dense jungles and swamps deemed impossible to navigate by most species. Only the zilkins themselves, evolved from worm-like creatures, were able to easily slip through the gaps in the tangled, coarse foliage. Their powerful legs make them adept at swimming and leaping.</p>\n<p>Zilkin also have bulbous chins which inflate with excess air while they are speaking.</p>\n<h2>Society and Culture</h2>\n<p>Their short lifespans cause zilkins to be one of the fastest learners in the galaxy, capable of learning in weeks what takes other species months. Zilkins live in large communities woven into the thick clumps of trees on Zilk. Whenever a dispute occurs, zilkins turn to a ritualistic form of debate where everyone affected voices their opinion on the matter. Whoever croaks their views the loudest and most confidently, wins. As a result, zilkins tend to be quite opinionated.</p>\n<p>For a long time, the zilkins remained unknown to the galaxy at large, simply because few individuals had any interest in visiting Zilk, let alone exploring its notoriously impenetrable jungles. Having lived in isolation for so many generations, and often mocked for their size, zilkins tend to exhibit cantankerous behavior toward other species. Despite this, a number of zilkins leave their homeworld and take an active role in galactic politics, gaining the planet representation in the Senate.</p>\n<h2>Names</h2>\n<p>Zilkin names are usually clear and concise. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Belip, Jegg, Meebur, Ponix</p>\n<p><strong>Female Names.</strong> Fula, Nili, Sia, Vo</p>\n<p><strong>Surnames.</strong> Bestrein, Cruu, Odebre, Telvet</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "zilkin",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 20,
+      "swim": 20,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
     "advancement": [
       {
-        "_id": "1po4Ilchbbua1AYS",
+        "_id": "3aMZQpo4vi91CoGy",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.speciesfeatures.z6Txu8xVxV0QX9RA",
-            "Compendium.sw5e.speciesfeatures.iEKaLBKGp4CEB97r",
-            "Compendium.sw5e.speciesfeatures.LwwKPCEmE7EoqNhG",
-            "Compendium.sw5e.speciesfeatures.IQNywMp5rZL09APK",
-            "Compendium.sw5e.speciesfeatures.WqMzveZU9ug2olYq",
-            "Compendium.sw5e.speciesfeatures.r417O2wjtwn2sAM8",
-            "Compendium.sw5e.speciesfeatures.iNTnlY3NLVk747D1",
-            "Compendium.sw5e.speciesfeatures.j8oUIssntif4vxuu",
-            "Compendium.sw5e.speciesfeatures.lEoQf92SsbryMlAF",
-            "Compendium.sw5e.speciesfeatures.BhHpnqkV6WZlEV4G",
-            "Compendium.sw5e.speciesfeatures.eMryKC2TeyJjMGUn",
-            "Compendium.sw5e.speciesfeatures.jI1LkeWxxdMLHgMc",
-            "Compendium.sw5e.speciesfeatures.lf96n0Uv0NEmsmbf",
-            "Compendium.sw5e.speciesfeatures.cCX686ftztI4EQQE"
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.z6Txu8xVxV0QX9RA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.iEKaLBKGp4CEB97r",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LwwKPCEmE7EoqNhG",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IQNywMp5rZL09APK",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WqMzveZU9ug2olYq",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.r417O2wjtwn2sAM8",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.iNTnlY3NLVk747D1",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.j8oUIssntif4vxuu",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lEoQf92SsbryMlAF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BhHpnqkV6WZlEV4G",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.eMryKC2TeyJjMGUn",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jI1LkeWxxdMLHgMc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lf96n0Uv0NEmsmbf",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cCX686ftztI4EQQE",
+              "optional": false
+            }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "1pdZLn5TapWS1vtj",
+        "_id": "1tGE8U75KV7K1Ba2",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "dex": 2
           },
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "1axHRuiz9ceu1JEn",
+        "_id": "1rLr8lfc8GpL1bwz",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -74,9 +138,6 @@
         "level": 0
       }
     ],
-    "details": {
-      "isDroid": false
-    },
     "skinColorOptions": {
       "value": "Green"
     },
@@ -87,7 +148,7 @@
       "value": "Turquoise"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Four-fingered hands, three-toed feet, stalk eyes"
@@ -110,24 +171,30 @@
     "slanguage": {
       "value": "Zilkin"
     },
-    "movement": {
-      "walk": 20,
-      "swim": 20
+    "droidDistinctions": {
+      "value": ""
     },
-    "senses": {
-      "darkvision": 60
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "JOTKjludk95sqFy4",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002061,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796843,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!3liZTdUnj62pELdi"
+  "_key": "!items!JOTKjludk95sqFy4"
 }

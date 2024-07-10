@@ -1,15 +1,19 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
+
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ClassName' }}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ClassName' }}" />
             </h1>
+
             <div class="item-subtitle">
                 <h4 class="item-type">{{itemType}}</h4>
                 <span class="item-status">{{itemStatus}}</span>
             </div>
+
             <ul class="summary flexrow">
                 <li>
                     {{> "sw5e.item-source"}}
@@ -17,27 +21,30 @@
             </ul>
         </div>
     </header>
+
     {{!-- Item Sheet Navigation --}}
+
     <!-- TODO: remove the style on the tabs once either the archetype or invocations tab is no longer needed -->
     <nav class="sheet-navigation tabs" data-group="primary">
-        <a style="margin: 0 0px"class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
-        <a style="margin: 0 0px"class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
-        <a style="margin: 0 0px"class="item" data-tab="archetypes">{{ localize "SW5E.Archetypes" }}</a>
-        <a style="margin: 0 0px"class="item" data-tab="invocations">{{ localize "SW5E.Invocations" }}</a>
-        <a style="margin: 0 0px"class="item" data-tab="advancement">{{ localize "SW5E.AdvancementTitle" }}</a>
-        <a style="margin: 0 0px"class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
+        <a style="margin: 0 0px" class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
+        <a style="margin: 0 0px" class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
+        <a style="margin: 0 0px" class="item" data-tab="archetypes">{{ localize "SW5E.Archetypes" }}</a>
+        <a style="margin: 0 0px" class="item" data-tab="invocations">{{ localize "SW5E.Invocations" }}</a>
+        <a style="margin: 0 0px" class="item" data-tab="advancement">{{ localize "SW5E.AdvancementTitle" }}</a>
+        <a style="margin: 0 0px" class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
     </nav>
+
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
-            {{editor 
-                enriched.description
-                target="system.description.value"
-                button=true editable=editable
-                engine="prosemirror"
-                collaborate=false
+            {{editor
+            enriched.description
+            target="system.description.value"
+            button=true editable=editable
+            engine="prosemirror"
+            collaborate=false
             }}
         </div>
 
@@ -48,10 +55,12 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.Identifier" }}</label>
                 <div class="form-fields">
-                    <input type="text" name="system.identifier" value="{{system.identifier}}" placeholder="{{item.identifier}}">
+                    <input type="text" name="system.identifier" value="{{ system.identifier }}"
+                        placeholder="{{ item.identifier }}">
                 </div>
                 <p class="hint">
-                    {{{localize "SW5E.ClassIdentifierHint" identifier=item.identifier}}}
+                    {{{ localize "SW5E.ClassIdentifierHint" identifier=item.identifier }}}
+                    {{ localize "SW5E.IdentifierError" }}
                 </p>
             </div>
 
@@ -68,6 +77,7 @@
                     </select>
                 </div>
             </div>
+
             <div class="form-group">
                 <label>{{localize "SW5E.HitDiceUsed"}}</label>
                 <div class="form-fields">
@@ -88,39 +98,58 @@
                     </select>
                 </div>
             </div>
+
+            {{!-- Starting Equipment --}}
+            <h3 class="form-header">
+                {{ localize "SW5E.StartingEquipment.Title" }}
+                <a class="config-button" data-action="starting-equipment"
+                    data-tooltip="SW5E.StartingEquipment.Action.Configure"
+                    aria-label="{{ localize 'SW5E.StartingEquipment.Action.Configure' }}">
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                </a>
+            </h3>
+            {{#with system.startingEquipmentDescription}}{{{ this }}}{{else}}{{ localize "None" }}{{/with}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.StartingEquipment.Wealth.Label" }}</label>
+                <div class="form-fields">
+                    <input type="text" name="system.wealth" value="{{ system.wealth }}">
+                </div>
+                <p class="hint">{{ localize "SW5E.StartingEquipment.Wealth.Hint" }}</p>
+            </div>
+
         </div>
 
         {{!-- Archetypes Tab --}}
         <div class="tab flexrow" data-group="primary" data-tab="archetypes">
-            {{editor 
-                enriched.atFlavorText
-                target="system.atFlavorText.value"
-                button=true editable=editable
-                engine="prosemirror"
-                collaborate=false
+            {{editor
+            enriched.atFlavorText
+            target="system.atFlavorText.value"
+            button=true editable=editable
+            engine="prosemirror"
+            collaborate=false
             }}
 
-            {{editor 
-                enriched.description
-                target="system.description.value"
-                button=true editable=editable
-                engine="prosemirror"
-                collaborate=false
+            {{editor
+            enriched.description
+            target="system.description.value"
+            button=true editable=editable
+            engine="prosemirror"
+            collaborate=false
             }}
         </div>
 
         {{!-- Invocations Tab --}}
         <div class="tab flexrow" data-group="primary" data-tab="invocations">
-            {{editor 
-                enriched.invocations
-                target="system.invocations.value" 
-                button=true editable=editable
-                engine="prosemirror"
-                collaborate=false
+            {{editor
+            enriched.invocations
+            target="system.invocations.value"
+            button=true editable=editable
+            engine="prosemirror"
+            collaborate=false
             }}
         </div>
 
-        {{!-- Advancement Tab --}} 
+        {{!-- Advancement Tab --}}
         {{> "sw5e.item-advancement"}}
 
         {{!-- Effects Tab --}}

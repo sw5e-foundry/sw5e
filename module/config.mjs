@@ -22,6 +22,7 @@ SW5E.ASCII = `
  * @property {string} label                               Localized label.
  * @property {string} abbreviation                        Localized abbreviation.
  * @property {string} fullKey                             Fully written key used as alternate for enrichers.
+ * @property {string} [reference]                         Reference to a rule page describing this ability.
  * @property {string} [type]                              Whether this is a "physical" or "mental" ability.
  * @property {Object<string, number|string>}  [defaults]  Default values for this ability based on actor type.
  *                                                        If a string is used, the system will attempt to fetch.
@@ -89,31 +90,88 @@ SW5E.abilities = {
     improvement: false
   }
 };
-preLocalize("abilities", { keys: ["label", "abbreviation"] });
+preLocalize( "abilities", { keys: ["label", "abbreviation"] } );
 
 /**
- * Configure which ability score is used as the default modifier for initiative rolls.
- * @type {string}
+ * Configure which ability score is used as the default modifier for initiative rolls,
+ * when calculating hit points per level and hit dice, hull points per tier, shield points
+ * per tier, and as the default modifier for saving throws to maintain concentration.
+ * @enum {string}
  */
-SW5E.initiativeAbility = "dex";
+SW5E.defaultAbilities = {
+  initiative: "dex",
+  hitPoints: "con",
+  hullPoints: "con",
+  shieldPoints: "str",
+  concentration: "con"
+};
 
-/**
- * Configure which ability score is used when calculating hit points per level.
- * @type {string}
- */
-SW5E.hitPointsAbility = "con";
-
-/**
- * Configure which ability score is used when calculating hull points.
- * @type {string}
- */
-SW5E.hullPointsAbility = "con";
-
-/**
- * Configure which ability score is used when calculating shield points.
- * @type {string}
- */
-SW5E.shieldPointsAbility = "str";
+Object.defineProperties( SW5E, {
+  hitPointsAbility: {
+    get: function() {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hitPoints.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      return SW5E.defaultAbilities.hitPoints;
+    },
+    set: function( value ) {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hitPoints.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      SW5E.defaultAbilities.hitPoints = value;
+    }
+  },
+  hullPointsAbility: {
+    get: function() {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.hullPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hullPoints.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      return SW5E.defaultAbilities.hullPoints;
+    },
+    set: function( value ) {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hullPoints.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      SW5E.defaultAbilities.hullPoints = value;
+    }
+  },
+  shieldPointsAbility: {
+    get: function() {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.shieldPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.shieldPoints.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      return SW5E.defaultAbilities.shieldPoints;
+    },
+    set: function( value ) {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.shieldPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.shieldPoints.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      SW5E.defaultAbilities.shieldPoints = value;
+    }
+  },
+  initiativeAbility: {
+    get: function() {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.initiativeAbility has been deprecated and is now accessible through SW5E.defaultAbilities.initiative.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      return SW5E.defaultAbilities.initiative;
+    },
+    set: function( value ) {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.initiativeAbility has been deprecated and is now accessible through SW5E.defaultAbilities.initiative.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      SW5E.defaultAbilities.initiative = value;
+    }
+  }
+} );
 
 /* -------------------------------------------- */
 
@@ -121,9 +179,10 @@ SW5E.shieldPointsAbility = "str";
  * Configuration data for skills.
  *
  * @typedef {object} SkillConfiguration
- * @property {string} label    Localized label.
- * @property {string} ability  Key for the default ability used by this skill.
- * @property {string} fullKey  Fully written key used as alternate for enrichers.
+ * @property {string} label        Localized label.
+ * @property {string} ability      Key for the default ability used by this skill.
+ * @property {string} fullKey      Fully written key used as alternate for enrichers.
+ * @property {string} [reference]  Reference to a rule page describing this skill.
  */
 
 /**
@@ -150,7 +209,7 @@ SW5E.skills = {
   sur: { label: "SW5E.SkillSur", ability: "wis", fullKey: "survival" },
   tec: { label: "SW5E.SkillTec", ability: "int", fullKey: "technology" }
 };
-preLocalize("skills", { key: "label", sort: true });
+preLocalize( "skills", { key: "label", sort: true } );
 
 /**
  * The set of skills which can be trained on starships with their default ability scores.
@@ -172,7 +231,7 @@ SW5E.starshipSkills = {
   scn: { label: "SW5E.StarshipSkillScn", ability: "wis", fullKey: "scan" },
   swn: { label: "SW5E.StarshipSkillSwn", ability: "cha", fullKey: "swindle" }
 };
-preLocalize("starshipSkills", { key: "label", sort: true });
+preLocalize( "starshipSkills", { key: "label", sort: true } );
 
 /**
  * The set of skills which can be trained by characters or starships with their default ability scores.
@@ -200,30 +259,31 @@ SW5E.alignments = {
   nd: "SW5E.AlignmentND",
   cd: "SW5E.AlignmentCD"
 };
-preLocalize("alignments");
+preLocalize( "alignments" );
 
 /* -------------------------------------------- */
 
 /**
  * An enumeration of item attunement types.
- * @enum {number}
+ * @enum {string}
  */
 SW5E.attunementTypes = {
-  NONE: 0,
-  REQUIRED: 1,
-  ATTUNED: 2
+  required: "SW5E.AttunementRequired",
+  optional: "SW5E.AttunementOptional"
 };
+preLocalize( "attunementTypes" );
 
 /**
  * An enumeration of item attunement states.
  * @type {{"0": string, "1": string, "2": string}}
+ * @deprecated since 3.2, available until 3.4
  */
 SW5E.attunements = {
   0: "SW5E.AttunementNone",
   1: "SW5E.AttunementRequired",
   2: "SW5E.AttunementAttuned"
 };
-preLocalize("attunements");
+preLocalize( "attunements" );
 
 /* -------------------------------------------- */
 
@@ -244,7 +304,7 @@ SW5E.weaponProficiencies = {
   slw: "SW5E.WeaponSimpleLightweaponProficiency",
   svb: "SW5E.WeaponSimpleVibroweaponProficiency"
 };
-preLocalize("weaponProficiencies");
+preLocalize( "weaponProficiencies" );
 
 /**
  * A mapping between `SW5E.weaponTypes` and `SW5E.weaponProficiencies` that
@@ -542,7 +602,7 @@ SW5E.toolTypes = {
   game: "SW5E.ToolGamingSet",
   music: "SW5E.ToolMusicalInstrument"
 };
-preLocalize("toolTypes", { sort: true });
+preLocalize( "toolTypes", { sort: true } );
 
 /**
  * The categories of tool proficiencies that a character can gain.
@@ -553,69 +613,500 @@ SW5E.toolProficiencies = {
   ...SW5E.toolTypes,
   vehicle: "SW5E.ToolVehicle"
 };
-preLocalize("toolProficiencies", { sort: true });
+preLocalize( "toolProficiencies", { sort: true } );
 
 /**
  * The basic tool types in sw5e. This enables specific tool proficiencies or
  * starting equipment provided by classes and backgrounds.
  * @enum {string}
- **/
+ */
 SW5E.toolIds = {
-  constructorsimplements: "sw5e.implements.5HKxptQKBFED544u",
-  geneticistsimplements: "sw5e.implements.80xuLufR1m7kpNRs",
-  cybertechsimplements: "sw5e.implements.9w7V1PCf2aD4caVP",
-  jewelersimplements: "sw5e.implements.EYpkyPlywQaH9Ivy",
-  gadgeteersimplements: "sw5e.implements.GJrYc9KQ22o7qTlz",
-  tinkersimplements: "sw5e.implements.IkmQFQjGc4xq0Czd",
-  armstechsimplements: "sw5e.implements.Mrwh3CEneCPnPP1T",
-  artistsimplements: "sw5e.implements.OXlKtbL29bLUluf2",
-  biotechsimplements: "sw5e.implements.QTg2sCpSdPfyUoCq",
-  astrotechsimplements: "sw5e.implements.RlQ4zlWA7EdohcEh",
-  surveyorsimplements: "sw5e.implements.SvureMOX5qo6LqGt",
-  audiotechsimplements: "sw5e.implements.VNto9t3diElKRHWG",
   armormechsimplements: "sw5e.implements.sjsX3NYk7eZ4udlw",
-  synthweaversimplements: "sw5e.implements.uP1rZHmbOmg8BUaX",
+  armstechsimplements: "sw5e.implements.Mrwh3CEneCPnPP1T",
   artificersimplements: "sw5e.implements.w7lWDrGgZeYbwiSH",
+  artistsimplements: "sw5e.implements.OXlKtbL29bLUluf2",
+  astrotechsimplements: "sw5e.implements.RlQ4zlWA7EdohcEh",
+  audiotechsimplements: "sw5e.implements.VNto9t3diElKRHWG",
+  biotechsimplements: "sw5e.implements.QTg2sCpSdPfyUoCq",
+  constructorsimplements: "sw5e.implements.5HKxptQKBFED544u",
+  cybertechsimplements: "sw5e.implements.9w7V1PCf2aD4caVP",
+  gadgeteersimplements: "sw5e.implements.GJrYc9KQ22o7qTlz",
+  geneticistsimplements: "sw5e.implements.80xuLufR1m7kpNRs",
+  jewelersimplements: "sw5e.implements.EYpkyPlywQaH9Ivy",
+  surveyorsimplements: "sw5e.implements.SvureMOX5qo6LqGt",
+  synthweaversimplements: "sw5e.implements.uP1rZHmbOmg8BUaX",
+  tinkersimplements: "sw5e.implements.IkmQFQjGc4xq0Czd",
+  writersimplements: "sw5e.implements.tkJEw4ZB5EbFJHPG",
 
-  chefskit: "sw5e.kits.BnhGtUc9G7issUcW",
-  disguisekit: "sw5e.kits.ChmVrypurts3VY7i",
-  scavengingkit: "sw5e.kits.NVxy5wBSpJcHxPEm",
-  spicerskit: "sw5e.kits.NlppEcEGpDVDyPiH",
-  mechanicskit: "sw5e.kits.NubaMVVv3vNwbtuj",
-  brewerskit: "sw5e.kits.OAt131yAvZYPlUmO",
-  munitionskit: "sw5e.kits.VJL0ue7Bpl3s0MHx",
+  alchemiststkit: "sw5e.kits.9DWrsRqwXfHN47Nk",
   archaeologistkit: "sw5e.kits.WrJhpfymps4yRBdk",
-  slicerskit: "sw5e.kits.Yonb0zHFV9asPJHq",
-  bioanalysiskit: "sw5e.kits.fWoNUuZCNLG8W67s",
-  demolitionskit: "sw5e.kits.gyhyVW4PEUWLpZTL",
   artilleristskit: "sw5e.kits.jJ1CiyKVXOlyjn8h",
-  forgerykit: "sw5e.kits.ksrKs7yvm7X7CMxA",
-  securitykit: "sw5e.kits.nqf9reJDGplVaeac",
-  poisonerskit: "sw5e.kits.ofea5VziX4jBg5So",
+  bioanalysiskit: "sw5e.kits.fWoNUuZCNLG8W67s",
   biochemistskit: "sw5e.kits.pq0o4lUKg8Nl08yf",
+  brewerskit: "sw5e.kits.OAt131yAvZYPlUmO",
+  chefskit: "sw5e.kits.BnhGtUc9G7issUcW",
+  demolitionskit: "sw5e.kits.gyhyVW4PEUWLpZTL",
+  disguisekit: "sw5e.kits.ChmVrypurts3VY7i",
+  forgerykit: "sw5e.kits.ksrKs7yvm7X7CMxA",
+  mechanicskit: "sw5e.kits.NubaMVVv3vNwbtuj",
+  munitionskit: "sw5e.kits.VJL0ue7Bpl3s0MHx",
+  poisonerskit: "sw5e.kits.ofea5VziX4jBg5So",
+  scavengingkit: "sw5e.kits.NVxy5wBSpJcHxPEm",
+  securitykit: "sw5e.kits.nqf9reJDGplVaeac",
+  slicerskit: "sw5e.kits.Yonb0zHFV9asPJHq",
+  spicerskit: "sw5e.kits.NlppEcEGpDVDyPiH",
+  trapperskit: "sw5e.kits.cIfzetKEwhczahBr",
 
-  sabaccdeck: "sw5e.gamingsets.RvFP7y8VWPMROQWv",
-  pazaakdeck: "sw5e.gamingsets.XfClqzNPbjJxHqil",
-  dejarikset: "sw5e.gamingsets.dKho3HXE7XfS4iRU",
   chancecubes: "sw5e.gamingsets.kqt52rtjpaz6jiCf",
+  chattaragulset: "sw5e.gamingsets.3qg5pm5AHt80Rnvi",
+  dejarikset: "sw5e.gamingsets.dKho3HXE7XfS4iRU",
+  kirfatzset: "sw5e.gamingsets.vKrWBDhbSZDtdiTv",
+  pazaakdeck: "sw5e.gamingsets.XfClqzNPbjJxHqil",
+  sabaccdeck: "sw5e.gamingsets.RvFP7y8VWPMROQWv",
 
-  mandoviol: "sw5e.musicalinstruments.9hYtv8pguNI8aae9",
-  lute: "sw5e.musicalinstruments.BE1Tg7LCM7yfwypT",
-  shawm: "sw5e.musicalinstruments.BLDVxPfj8jQw1DUN",
-  fizzz: "sw5e.musicalinstruments.IZEi9N6YzWFBHpNh",
+  bandfill: "sw5e.musicalinstruments.ic6PBK7VxBLk24rZ",
   chindinkaluhorn: "sw5e.musicalinstruments.NgKMduBdltQQqgnC",
+  drum: "sw5e.musicalinstruments.sryr7sQ5IeUny6cd",
+  fanfar: "sw5e.musicalinstruments.wASdyFsdQEJHhXeC",
+  fizzz: "sw5e.musicalinstruments.IZEi9N6YzWFBHpNh",
+  flute: "sw5e.musicalinstruments.mumHDhvGww117xoq",
   kloohorn: "sw5e.musicalinstruments.PfxeK6e5htdyzDEP",
-  xantha: "sw5e.musicalinstruments.WVSGXxzBoTUoPvi9",
+  lute: "sw5e.musicalinstruments.BE1Tg7LCM7yfwypT",
+  mandoviol: "sw5e.musicalinstruments.9hYtv8pguNI8aae9",
+  ommnibox: "sw5e.musicalinstruments.e9nNVlBmPvPD6cbU",
+  shawm: "sw5e.musicalinstruments.BLDVxPfj8jQw1DUN",
   slitherhorn: "sw5e.musicalinstruments.WZbBxDVRLynROWbf",
   traz: "sw5e.musicalinstruments.XwLhLqUJMahD3fo6",
-  ommnibox: "sw5e.musicalinstruments.e9nNVlBmPvPD6cbU",
-  bandfill: "sw5e.musicalinstruments.ic6PBK7VxBLk24rZ",
-  flute: "sw5e.musicalinstruments.mumHDhvGww117xoq",
   valahorn: "sw5e.musicalinstruments.sNnvwOZrUp5xJuHe",
-  drum: "sw5e.musicalinstruments.sryr7sQ5IeUny6cd",
-  fanfar: "sw5e.musicalinstruments.wASdyFsdQEJHhXeC"
+  xantha: "sw5e.musicalinstruments.WVSGXxzBoTUoPvi9"
 };
-preLocalize("toolIds");
+preLocalize( "toolIds" );
+
+/* -------------------------------------------- */
+
+/**
+ * Time periods that accept a numeric value.
+ * @enum {string}
+ */
+SW5E.scalarTimePeriods = {
+  turn: "SW5E.TimeTurn",
+  round: "SW5E.TimeRound",
+  minute: "SW5E.TimeMinute",
+  hour: "SW5E.TimeHour",
+  day: "SW5E.TimeDay",
+  month: "SW5E.TimeMonth",
+  year: "SW5E.TimeYear"
+};
+preLocalize( "scalarTimePeriods" );
+
+/* -------------------------------------------- */
+
+/**
+ * Time periods for powers that don't have a defined ending.
+ * @enum {string}
+ */
+SW5E.permanentTimePeriods = {
+  disp: "SW5E.TimeDisp",
+  dstr: "SW5E.TimeDispTrig",
+  perm: "SW5E.TimePerm"
+};
+preLocalize( "permanentTimePeriods" );
+
+/* -------------------------------------------- */
+
+/**
+ * Time periods that don't accept a numeric value.
+ * @enum {string}
+ */
+SW5E.specialTimePeriods = {
+  inst: "SW5E.TimeInst",
+  spec: "SW5E.Special"
+};
+preLocalize( "specialTimePeriods" );
+
+/* -------------------------------------------- */
+
+/**
+ * The various lengths of time over which effects can occur.
+ * @enum {string}
+ */
+SW5E.timePeriods = {
+  ...SW5E.specialTimePeriods,
+  ...SW5E.permanentTimePeriods,
+  ...SW5E.scalarTimePeriods
+};
+preLocalize( "timePeriods" );
+
+/* -------------------------------------------- */
+
+/**
+ * Ways in which to activate an item that cannot be labeled with a cost.
+ * @enum {string}
+ */
+SW5E.staticAbilityActivationTypes = {
+  none: "SW5E.NoneActionLabel",
+  special: SW5E.timePeriods.spec
+};
+
+/**
+ * Various ways in which an item or ability can be activated.
+ * @enum {string}
+ */
+SW5E.abilityActivationTypes = {
+  ...SW5E.staticAbilityActivationTypes,
+  action: "SW5E.Action",
+  bonus: "SW5E.BonusAction",
+  reaction: "SW5E.Reaction",
+  minute: SW5E.timePeriods.minute,
+  hour: SW5E.timePeriods.hour,
+  day: SW5E.timePeriods.day,
+  legendary: "SW5E.LegendaryActionLabel",
+  mythic: "SW5E.MythicActionLabel",
+  lair: "SW5E.LairActionLabel",
+  crew: "SW5E.VehicleCrewAction"
+};
+preLocalize( "abilityActivationTypes" );
+
+/* -------------------------------------------- */
+
+/**
+ * Different things that an ability can consume upon use.
+ * @enum {string}
+ */
+SW5E.abilityConsumptionTypes = {
+  ammo: "SW5E.ConsumeAmmunition",
+  attribute: "SW5E.ConsumeAttribute",
+  hitDice: "SW5E.ConsumeHitDice",
+  material: "SW5E.ConsumeMaterial",
+  charges: "SW5E.ConsumeCharges",
+  powerdice: "SW5E.PowerDiePl"
+};
+preLocalize( "abilityConsumptionTypes", { sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for actor sizes.
+ *
+ * @typedef {object} ActorSizeConfiguration
+ * @property {string} label                   Localized label.
+ * @property {string} abbreviation            Localized abbreviation.
+ * @property {number} hitDie                  Default hit die denomination for NPCs of this size.
+ * @property {number} [token=1]               Default token size.
+ * @property {number} [capacityMultiplier=1]  Multiplier used to calculate carrying capacities.
+ */
+
+/**
+ * Creature sizes ordered from smallest to largest.
+ * @enum {ActorSizeConfiguration}
+ */
+SW5E.actorSizes = {
+  tiny: {
+    label: "SW5E.SizeTiny",
+    abbreviation: "SW5E.SizeTinyAbbr",
+    hitDie: 4,
+    token: 0.5,
+    capacityMultiplier: 0.5
+  },
+  sm: {
+    label: "SW5E.SizeSmall",
+    abbreviation: "SW5E.SizeSmallAbbr",
+    hitDie: 6,
+    dynamicTokenScale: 0.8
+  },
+  med: {
+    label: "SW5E.SizeMedium",
+    abbreviation: "SW5E.SizeMediumAbbr",
+    hitDie: 8
+  },
+  lg: {
+    label: "SW5E.SizeLarge",
+    abbreviation: "SW5E.SizeLargeAbbr",
+    hitDie: 10,
+    token: 2,
+    capacityMultiplier: 2
+  },
+  huge: {
+    label: "SW5E.SizeHuge",
+    abbreviation: "SW5E.SizeHugeAbbr",
+    hitDie: 12,
+    token: 3,
+    capacityMultiplier: 4
+  },
+  grg: {
+    label: "SW5E.SizeGargantuan",
+    abbreviation: "SW5E.SizeGargantuanAbbr",
+    hitDie: 20,
+    token: 4,
+    capacityMultiplier: 8
+  }
+};
+preLocalize( "actorSizes", { keys: ["label", "abbreviation"] } );
+
+/* -------------------------------------------- */
+/*  Canvas                                      */
+/* -------------------------------------------- */
+
+/**
+ * Colors used to visualize temporary and temporary maximum HP in token health bars.
+ * @enum {number}
+ */
+SW5E.tokenHPColors = {
+  damage: 0xff0000,
+  healing: 0x00ff00,
+  temp: 0x66ccff,
+  tempmax: 0x440066,
+  negmax: 0x550000
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Colors used when a dynamic token ring effects.
+ * @enum {number}
+ */
+SW5E.tokenRingColors = {
+  damage: 0xFF0000,
+  defeated: 0x000000,
+  healing: 0x00FF00,
+  temp: 0x33AAFF
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for a map marker style. Options not included will fall back to the value set in `default` style.
+ *
+ * @typedef {object} MapLocationMarkerStyle
+ * @property {number} [backgroundColor]      Color of the background inside the circle.
+ * @property {number} [borderColor]          Color of the border in normal state.
+ * @property {number} [borderHoverColor]     Color of the border when hovering over the marker.
+ * @property {string} [fontFamily]           Font used for rendering the code on the marker.
+ * @property {number} [shadowColor]          Color of the shadow under the marker.
+ * @property {number} [textColor]            Color of the text on the marker.
+ */
+
+/**
+ * Settings used to render map location markers on the canvas.
+ * @enum {MapLocationMarkerStyle}
+ */
+SW5E.mapLocationMarker = {
+  default: {
+    backgroundColor: 0xFBF8F5,
+    borderColor: 0x000000,
+    borderHoverColor: 0xFF5500,
+    fontFamily: "Roboto Slab",
+    shadowColor: 0x000000,
+    textColor: 0x000000
+  }
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for creature types.
+ *
+ * @typedef {object} CreatureTypeConfiguration
+ * @property {string} label               Localized label.
+ * @property {string} plural              Localized plural form used in swarm name.
+ * @property {string} [reference]         Reference to a rule page describing this type.
+ * @property {boolean} [detectAlignment]  Is this type detectable by powers such as "Detect Evil and Good"?
+ */
+
+/**
+ * Default types of creatures.
+ * @enum {CreatureTypeConfiguration}
+ */
+SW5E.creatureTypes = {
+  aberration: {
+    label: "SW5E.CreatureAberration",
+    plural: "SW5E.CreatureAberrationPl",
+    icon: "icons/creatures/tentacles/tentacle-eyes-yellow-pink.webp",
+    detectAlignment: true
+  },
+  beast: {
+    label: "SW5E.CreatureBeast",
+    plural: "SW5E.CreatureBeastPl",
+    icon: "icons/creatures/claws/claw-bear-paw-swipe-red.webp"
+  },
+  construct: {
+    label: "SW5E.CreatureConstruct",
+    plural: "SW5E.CreatureConstructPl",
+    icon: "icons/creatures/magical/construct-stone-earth-gray.webp"
+  },
+  droid: {
+    label: "SW5E.CreatureDroid",
+    plural: "SW5E.CreatureDroidPl"
+  },
+  force: {
+    label: "SW5E.CreatureForceEntity",
+    plural: "SW5E.CreatureForceEntityPl"
+  },
+  humanoid: {
+    label: "SW5E.CreatureHumanoid",
+    plural: "SW5E.CreatureHumanoidPl",
+    icon: "icons/magic/unholy/strike-body-explode-disintegrate.webp"
+  },
+  plant: {
+    label: "SW5E.CreaturePlant",
+    plural: "SW5E.CreaturePlantPl",
+    icon: "icons/magic/nature/tree-animated-strike.webp"
+  },
+  undead: {
+    label: "SW5E.CreatureUndead",
+    plural: "SW5E.CreatureUndeadPl",
+    icon: "icons/magic/death/skull-horned-worn-fire-blue.webp",
+    detectAlignment: true
+  }
+};
+preLocalize( "creatureTypes", { keys: ["label", "plural"], sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * Classification types for item action types that are attacks.
+ * @enum {string}
+ */
+SW5E.itemActionTypesAttack = {
+  mwak: "SW5E.ActionMWAK",
+  rwak: "SW5E.ActionRWAK",
+  mpak: "SW5E.ActionMPAK",
+  rpak: "SW5E.ActionRPAK"
+};
+preLocalize( "itemActionTypesAttack" );
+
+/* -------------------------------------------- */
+
+/**
+ * Classification types for item action types.
+ * @enum {string}
+ */
+SW5E.itemActionTypes = {
+  ...SW5E.itemActionTypesAttack,
+  abil: "SW5E.ActionAbil",
+  save: "SW5E.ActionSave",
+  ench: "SW5E.ActionEnch",
+  summ: "SW5E.ActionSumm",
+  heal: "SW5E.ActionHeal",
+  util: "SW5E.ActionUtil",
+  other: "SW5E.ActionOther"
+};
+preLocalize( "itemActionTypes" );
+
+/* -------------------------------------------- */
+
+/**
+ * Different ways in which item capacity can be limited.
+ * @enum {string}
+ */
+SW5E.itemCapacityTypes = {
+  items: "SW5E.ItemContainerCapacityItems",
+  weight: "SW5E.ItemContainerCapacityWeight"
+};
+preLocalize( "itemCapacityTypes", { sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * List of various item rarities.
+ * @enum {string}
+ */
+SW5E.itemRarity = {
+  standard: "SW5E.ItemRarityStandard",
+  premium: "SW5E.ItemRarityPremium",
+  prototype: "SW5E.ItemRarityPrototype",
+  advanced: "SW5E.ItemRarityAdvanced",
+  legendary: "SW5E.ItemRarityLegendary",
+  artifact: "SW5E.ItemRarityArtifact"
+};
+preLocalize( "itemRarity" );
+
+/* -------------------------------------------- */
+
+/**
+ * The limited use periods that support a recovery formula.
+ * @deprecated since SW5e 3.1, available until SW5e 3.3
+ * @enum {string}
+ */
+SW5E.limitedUseFormulaPeriods = {
+  charges: "SW5E.Charges",
+  dawn: "SW5E.Dawn",
+  dusk: "SW5E.Dusk"
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for limited use periods.
+ *
+ * @typedef {object} LimitedUsePeriodConfiguration
+ * @property {string} label           Localized label.
+ * @property {string} abbreviation    Shorthand form of the label.
+ * @property {boolean} [formula]      Whether this limited use period restores charges via formula.
+ */
+
+/**
+ * Enumerate the lengths of time over which an item can have limited use ability.
+ * @enum {LimitedUsePeriodConfiguration}
+ */
+SW5E.limitedUsePeriods = {
+  sr: {
+    label: "SW5E.UsesPeriods.Sr",
+    abbreviation: "SW5E.UsesPeriods.SrAbbreviation"
+  },
+  lr: {
+    label: "SW5E.UsesPeriods.Lr",
+    abbreviation: "SW5E.UsesPeriods.LrAbbreviation"
+  },
+  day: {
+    label: "SW5E.UsesPeriods.Day",
+    abbreviation: "SW5E.UsesPeriods.DayAbbreviation"
+  },
+  recharge: {
+    label: "SW5E.UsesPeriods.Recharge",
+    abbreviation: "SW5E.UsesPeriods.RechargeAbbreviation"
+  },
+  refitting: {
+    label: "SW5E.UsesPeriods.Refitting",
+    abbreviation: "SW5E.UsesPeriods.RefittingAbbreviation"
+  },
+  charges: {
+    label: "SW5E.UsesPeriods.Charges",
+    abbreviation: "SW5E.UsesPeriods.ChargesAbbreviation",
+    formula: true
+  },
+  dawn: {
+    label: "SW5E.UsesPeriods.Dawn",
+    abbreviation: "SW5E.UsesPeriods.DawnAbbreviation",
+    formula: true
+  },
+  dusk: {
+    label: "SW5E.UsesPeriods.Dusk",
+    abbreviation: "SW5E.UsesPeriods.DuskAbbreviation",
+    formula: true
+  }
+};
+preLocalize( "limitedUsePeriods", { keys: ["label", "abbreviation"] } );
+patchConfig( "limitedUsePeriods", "label", { since: "SW5e 3.1", until: "SW5e 3.3" } );
+
+/* -------------------------------------------- */
+
+/**
+ * Periods at which enchantments can be re-bound to new items.
+ * @enum {{ label: string }}
+ */
+SW5E.enchantmentPeriods = {
+  sr: {
+    label: "SW5E.UsesPeriods.Sr"
+  },
+  lr: {
+    label: "SW5E.UsesPeriods.Lr"
+  },
+  atwill: {
+    label: "SW5E.UsesPeriods.AtWill"
+  }
+};
+preLocalize( "enchantmentPeriods", { key: "label" } );
 
 /* -------------------------------------------- */
 
@@ -631,7 +1122,9 @@ SW5E.armorTypes = {
   starship: "SW5E.EquipmentStarshipArmor",
   shield: "SW5E.EquipmentShield"
 };
-preLocalize("armorTypes");
+preLocalize( "armorTypes" );
+
+/* -------------------------------------------- */
 
 /**
  * Casting Focus equipment types
@@ -641,7 +1134,9 @@ SW5E.castingEquipmentTypes = {
   wristpad: "SW5E.EquipmentWristpad",
   focusgenerator: "SW5E.EquipmentFocusGenerator"
 };
-preLocalize("castingEquipmentTypes", { sort: true });
+preLocalize( "castingEquipmentTypes", { sort: true } );
+
+/* -------------------------------------------- */
 
 /**
  * Equipment types that aren't armor.
@@ -653,7 +1148,9 @@ SW5E.miscEquipmentTypes = {
   vehicle: "SW5E.EquipmentVehicle",
   ...SW5E.castingEquipmentTypes
 };
-preLocalize("miscEquipmentTypes", { sort: true });
+preLocalize( "miscEquipmentTypes", { sort: true } );
+
+/* -------------------------------------------- */
 
 /**
  * Starship specific equipment types that aren't armor.
@@ -665,7 +1162,7 @@ SW5E.ssEquipmentTypes = {
   reactor: "SW5E.EquipmentReactor",
   ssshield: "SW5E.EquipmentStarshipShield"
 };
-preLocalize("ssEquipmentTypes", { sort: true });
+preLocalize( "ssEquipmentTypes", { sort: true } );
 
 /**
  * The set of equipment types for armor, clothing, and other objects which can be worn by the character.
@@ -676,19 +1173,35 @@ SW5E.equipmentTypes = {
   ...SW5E.ssEquipmentTypes,
   ...SW5E.armorTypes
 };
-preLocalize("equipmentTypes", { sort: true });
+preLocalize( "equipmentTypes", { sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * The various types of vehicles in which characters can be proficient.
+ * @enum {string}
+ */
+SW5E.vehicleTypes = {
+  air: "SW5E.VehicleTypeAir",
+  land: "SW5E.VehicleTypeLand",
+  space: "SW5E.VehicleTypeSpace",
+  water: "SW5E.VehicleTypeWater"
+};
+preLocalize( "vehicleTypes", { sort: true } );
+
+/* -------------------------------------------- */
 
 /**
  * The set of Armor Proficiencies which a character may have.
  * @type {object}
  */
 SW5E.armorProficiencies = {
-  lgt: SW5E.equipmentTypes.light,
-  med: SW5E.equipmentTypes.medium,
-  hvy: SW5E.equipmentTypes.heavy,
+  lgt: "SW5E.ArmorLightProficiency",
+  med: "SW5E.ArmorMediumProficiency",
+  hvy: "SW5E.ArmorHeavyProficiency",
   shl: "SW5E.EquipmentShieldProficiency"
 };
-preLocalize("armorProficiencies");
+preLocalize( "armorProficiencies" );
 
 /**
  * A mapping between `SW5E.equipmentTypes` and `SW5E.armorProficiencies` that
@@ -721,7 +1234,7 @@ SW5E.armorIds = {
   assaultarmor: "sw5e.armor.GO4yvhWLgLTrU0xb",
   heavyexoskeleton: "sw5e.armor.ggFMzbQrwkGZCoaQ"
 };
-preLocalize("armorIds");
+preLocalize( "armorIds" );
 
 /**
  * The basic shield types in sw5e. This enables specific shield proficiencies,
@@ -737,7 +1250,7 @@ SW5E.shieldIds = {
   mediumphysicalshield: "sw5e.armor.4vGeVWgLIUfN9YiB",
   heavyphysicalshield: "sw5e.armor.KvzKRKNWATwdzxjz"
 };
-preLocalize("shieldIds");
+preLocalize( "shieldIds" );
 
 /**
  * Common armor class calculations.
@@ -780,327 +1293,45 @@ SW5E.armorClasses = {
     label: "SW5E.ArmorClassCustom"
   }
 };
-preLocalize("armorClasses", { key: "label" });
+preLocalize( "armorClasses", { key: "label" } );
 
 /* -------------------------------------------- */
 
 /**
- * Time periods that accept a numeric value.
- * @enum {string}
- */
-SW5E.scalarTimePeriods = {
-  turn: "SW5E.TimeTurn",
-  round: "SW5E.TimeRound",
-  minute: "SW5E.TimeMinute",
-  hour: "SW5E.TimeHour",
-  day: "SW5E.TimeDay",
-  month: "SW5E.TimeMonth",
-  year: "SW5E.TimeYear"
-};
-preLocalize("scalarTimePeriods");
-
-/* -------------------------------------------- */
-
-/**
- * Time periods for powers that don't have a defined ending.
- * @enum {string}
- */
-SW5E.permanentTimePeriods = {
-  disp: "SW5E.TimeDisp",
-  dstr: "SW5E.TimeDispTrig",
-  perm: "SW5E.TimePerm"
-};
-preLocalize("permanentTimePeriods");
-
-/* -------------------------------------------- */
-
-/**
- * Time periods that don't accept a numeric value.
- * @enum {string}
- */
-SW5E.specialTimePeriods = {
-  inst: "SW5E.TimeInst",
-  spec: "SW5E.Special"
-};
-preLocalize("specialTimePeriods");
-
-/* -------------------------------------------- */
-
-/**
- * The various lengths of time over which effects can occur.
- * @enum {string}
- */
-SW5E.timePeriods = {
-  ...SW5E.specialTimePeriods,
-  ...SW5E.permanentTimePeriods,
-  ...SW5E.scalarTimePeriods
-};
-preLocalize("timePeriods");
-
-/* -------------------------------------------- */
-
-/**
- * Ways in which to activate an item that cannot be labeled with a cost.
- * @enum {string}
- */
-SW5E.staticAbilityActivationTypes = {
-  none: "SW5E.NoneActionLabel",
-  special: SW5E.timePeriods.spec
-};
-
-/**
- * Various ways in which an item or ability can be activated.
- * @enum {string}
- */
-SW5E.abilityActivationTypes = {
-  ...SW5E.staticAbilityActivationTypes,
-  action: "SW5E.Action",
-  bonus: "SW5E.BonusAction",
-  reaction: "SW5E.Reaction",
-  minute: SW5E.timePeriods.minute,
-  hour: SW5E.timePeriods.hour,
-  day: SW5E.timePeriods.day,
-  legendary: "SW5E.LegendaryActionLabel",
-  mythic: "SW5E.MythicActionLabel",
-  lair: "SW5E.LairActionLabel",
-  crew: "SW5E.VehicleCrewAction"
-};
-preLocalize("abilityActivationTypes");
-
-/* -------------------------------------------- */
-
-/**
- * Different things that an ability can consume upon use.
- * @enum {string}
- */
-SW5E.abilityConsumptionTypes = {
-  ammo: "SW5E.ConsumeAmmunition",
-  attribute: "SW5E.ConsumeAttribute",
-  hitDice: "SW5E.ConsumeHitDice",
-  material: "SW5E.ConsumeMaterial",
-  charges: "SW5E.ConsumeCharges",
-  powerdice: "SW5E.PowerDiePl"
-};
-preLocalize("abilityConsumptionTypes", { sort: true });
-
-/* -------------------------------------------- */
-
-/**
- * Creature sizes.
- * @enum {string}
- */
-SW5E.actorSizes = {
-  tiny: "SW5E.SizeTiny",
-  sm: "SW5E.SizeSmall",
-  med: "SW5E.SizeMedium",
-  lg: "SW5E.SizeLarge",
-  huge: "SW5E.SizeHuge",
-  grg: "SW5E.SizeGargantuan"
-};
-preLocalize("actorSizes");
-
-/**
- * Default token image size for the values of `SW5E.actorSizes`.
- * @enum {number}
- */
-SW5E.tokenSizes = {
-  tiny: 0.5,
-  sm: 1,
-  med: 1,
-  lg: 2,
-  huge: 3,
-  grg: 4
-};
-
-/* -------------------------------------------- */
-
-/**
- * Colors used to visualize temporary and temporary maximum HP in token health bars.
- * @enum {number}
- */
-SW5E.tokenHPColors = {
-  damage: 0xff0000,
-  healing: 0x00ff00,
-  temp: 0x66ccff,
-  tempmax: 0x440066,
-  negmax: 0x550000
-};
-
-/* -------------------------------------------- */
-
-/**
- * Default types of creatures.
- * *Note: Not pre-localized to allow for easy fetching of pluralized forms.*
- * @enum {string}
- */
-SW5E.creatureTypes = {
-  aberration: "SW5E.CreatureAberration",
-  beast: "SW5E.CreatureBeast",
-  construct: "SW5E.CreatureConstruct",
-  droid: "SW5E.CreatureDroid",
-  force: "SW5E.CreatureForceEntity",
-  humanoid: "SW5E.CreatureHumanoid",
-  plant: "SW5E.CreaturePlant",
-  undead: "SW5E.CreatureUndead"
-};
-
-/* -------------------------------------------- */
-
-/**
- * Classification types for item action types that are attacks.
- * @enum {string}
- */
-SW5E.itemActionTypesAttack = {
-  mwak: "SW5E.ActionMWAK",
-  rwak: "SW5E.ActionRWAK",
-  mpak: "SW5E.ActionMPAK",
-  rpak: "SW5E.ActionRPAK"
-};
-preLocalize("itemActionTypesAttack");
-
-/* -------------------------------------------- */
-
-/**
- * Classification types for item action types.
- * @enum {string}
- */
-SW5E.itemActionTypes = {
-  ...SW5E.itemActionTypesAttack,
-  save: "SW5E.ActionSave",
-  heal: "SW5E.ActionHeal",
-  abil: "SW5E.ActionAbil",
-  util: "SW5E.ActionUtil",
-  other: "SW5E.ActionOther"
-};
-preLocalize("itemActionTypes");
-
-/* -------------------------------------------- */
-
-/**
- * Different ways in which item capacity can be limited.
- * @enum {string}
- */
-SW5E.itemCapacityTypes = {
-  items: "SW5E.ItemContainerCapacityItems",
-  weight: "SW5E.ItemContainerCapacityWeight"
-};
-preLocalize("itemCapacityTypes", { sort: true });
-
-/* -------------------------------------------- */
-
-/**
- * List of various item rarities.
- * @enum {string}
- */
-SW5E.itemRarity = {
-  standard: "SW5E.ItemRarityStandard",
-  premium: "SW5E.ItemRarityPremium",
-  prototype: "SW5E.ItemRarityPrototype",
-  advanced: "SW5E.ItemRarityAdvanced",
-  legendary: "SW5E.ItemRarityLegendary",
-  artifact: "SW5E.ItemRarityArtifact"
-};
-preLocalize("itemRarity");
-
-/* -------------------------------------------- */
-
-/**
- * The limited use periods that support a recovery formula.
- * @enum {string}
- */
-SW5E.limitedUseFormulaPeriods = {
-  charges: "SW5E.Charges",
-  dawn: "SW5E.Dawn",
-  dusk: "SW5E.Dusk"
-};
-
-/* -------------------------------------------- */
-
-/**
- * Enumerate the lengths of time over which an item can have limited use ability
- * @enum {string}
- */
-SW5E.limitedUsePeriods = {
-  sr: "SW5E.ShortRest",
-  lr: "SW5E.LongRest",
-  day: "SW5E.Day",
-  recharge: "SW5E.Recharge",
-  refitting: "SW5E.Refitting",
-  ...SW5E.limitedUseFormulaPeriods
-};
-preLocalize("limitedUsePeriods");
-
-/* -------------------------------------------- */
-
-/**
- * The various types of vehicles in which characters can be proficient.
- * @enum {string}
- */
-SW5E.vehicleTypes = {
-  air: "SW5E.VehicleTypeAir",
-  land: "SW5E.VehicleTypeLand",
-  space: "SW5E.VehicleTypeSpace",
-  water: "SW5E.VehicleTypeWater"
-};
-preLocalize("vehicleTypes", { sort: true });
-
-/* -------------------------------------------- */
-
-/**
- * Enumerate the valid consumable types which are recognized by the system.
- * @enum {string}
- */
-SW5E.consumableTypes = {
-  adrenal: "SW5E.ConsumableAdrenal",
-  poison: "SW5E.ConsumablePoison",
-  explosive: "SW5E.ConsumableExplosive",
-  food: "SW5E.ConsumableFood",
-  medpac: "SW5E.ConsumableMedpac",
-  technology: "SW5E.ConsumableTechnology",
-  ammo: "SW5E.ConsumableAmmo",
-  trinket: "SW5E.ConsumableTrinket",
-  force: "SW5E.ConsumableForce",
-  tech: "SW5E.ConsumableTech"
-};
-preLocalize("consumableTypes", { sort: true });
-
-/* -------------------------------------------- */
-
-/**
- * Enumerate the valid ammunition types which are recognized by the system.
+ * Enumerate the valid standard ammunition types which are recognized by the system.
  * @enum {string}
  */
 SW5E.ammoStandardTypes = {
-  arrow: "SW5E.AmmoArrow",
-  bolt: "SW5E.AmmoBolt",
-  cartridge: "SW5E.AmmoCartridge",
-  dart: "SW5E.AmmoDart",
-  flechetteClip: "SW5E.AmmoFlechetteClip",
-  flechetteMag: "SW5E.AmmoFlechetteMag",
-  missile: "SW5E.AmmoMissile",
-  powerCell: "SW5E.AmmoPowerCell",
-  powerGenerator: "SW5E.AmmoPowerGenerator",
-  projectorCanister: "SW5E.AmmoProjectorCanister",
-  projectorTank: "SW5E.AmmoProjectorTank",
-  rocket: "SW5E.AmmoRocket",
-  snare: "SW5E.AmmoSnare",
-  torpedo: "SW5E.AmmoTorpedo"
+  arrow: "SW5E.ConsumableAmmoArrow",
+  bolt: "SW5E.ConsumableAmmoBolt",
+  cartridge: "SW5E.ConsumableAmmoCartridge",
+  dart: "SW5E.ConsumableAmmoDart",
+  flechetteClip: "SW5E.ConsumableAmmoFlechetteClip",
+  flechetteMag: "SW5E.ConsumableAmmoFlechetteMag",
+  missile: "SW5E.ConsumableAmmoMissile",
+  powerCell: "SW5E.ConsumableAmmoPowerCell",
+  powerGenerator: "SW5E.ConsumableAmmoPowerGenerator",
+  projectorCanister: "SW5E.ConsumableAmmoProjectorCanister",
+  projectorTank: "SW5E.ConsumableAmmoProjectorTank",
+  rocket: "SW5E.ConsumableAmmoRocket",
+  snare: "SW5E.ConsumableAmmoSnare",
+  torpedo: "SW5E.ConsumableAmmoTorpedo"
 };
-preLocalize("ammoStandardTypes", { sort: true });
+preLocalize( "ammoStandardTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
 /**
- * Enumerate the valid ammunition types which are recognized by the system.
+ * Enumerate the valid starship ammunition types which are recognized by the system.
  * @enum {string}
  */
 SW5E.ammoStarshipTypes = {
-  sscluster: "SW5E.AmmoSsCluster",
-  ssmissile: "SW5E.AmmoSsMissile",
-  sstorpedo: "SW5E.AmmoSsTorpedo",
-  ssbomb: "SW5E.AmmoSsBomb"
+  sscluster: "SW5E.ConsumableAmmoSsCluster",
+  ssmissile: "SW5E.ConsumableAmmoSsMissile",
+  sstorpedo: "SW5E.ConsumableAmmoSsTorpedo",
+  ssbomb: "SW5E.ConsumableAmmoSsBomb"
 };
-preLocalize("ammoStarshipTypes", { sort: true });
+preLocalize( "ammoStarshipTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1112,7 +1343,62 @@ SW5E.ammoTypes = {
   ...SW5E.ammoStandardTypes,
   ...SW5E.ammoStarshipTypes
 };
-preLocalize("ammoTypes", { sort: true });
+preLocalize( "ammoTypes", { sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for an items that have sub-types.
+ *
+ * @typedef {object} SubtypeTypeConfiguration
+ * @property {string} label                       Localized label for this type.
+ * @property {Record<string, string>} [subtypes]  Enum containing localized labels for subtypes.
+ */
+
+/**
+ * Enumerate the valid consumable types which are recognized by the system.
+ * @enum {SubtypeTypeConfiguration}
+ */
+SW5E.consumableTypes = {
+  ammo: {
+    label: "SW5E.ConsumableAmmo",
+    subtypes: {
+      ...SW5E.ammoTypes
+    }
+  },
+  medpac: {
+    label: "SW5E.ConsumableMedpac"
+  },
+  poison: {
+    label: "SW5E.ConsumablePoison"
+  },
+  food: {
+    label: "SW5E.ConsumableFood"
+  },
+  scroll: {
+    label: "SW5E.ConsumableScroll"
+  },
+  trinket: {
+    label: "SW5E.ConsumableTrinket"
+  },
+  adrenal: {
+    label: "SW5E.ConsumableAdrenal"
+  },
+  explosive: {
+    label: "SW5E.ConsumableExplosive"
+  },
+  force: {
+    label: "SW5E.ConsumableForce"
+  },
+  tech: {
+    label: "SW5E.ConsumableTech"
+  },
+  technology: {
+    label: "SW5E.ConsumableTechnology"
+  }
+};
+preLocalize( "consumableTypes", { key: "label", sort: true } );
+preLocalize( "consumableTypes.ammo.subtypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1168,6 +1454,7 @@ SW5E.focusTypes = {
     }
   }
 };
+preLocalize( "focusTypes", { key: "label" } );
 
 /* -------------------------------------------- */
 
@@ -1211,72 +1498,72 @@ SW5E.featLikeItemsMigration = {
 /*
  * List of deprecated item types
  */
-SW5E.deprecatedItemTypes = [...Object.keys(SW5E.featLikeItemsMigration), "starship"];
+SW5E.deprecatedItemTypes = [...Object.keys( SW5E.featLikeItemsMigration ), "starship"];
 
 /**
  * Categorization of all item types.
  */
 SW5E.itemTypes = {
-  inventory: ["weapon", "equipment", "consumable", "tool", "backpack", "modification", "loot", "starshipmod"],
+  inventory: ["weapon", "equipment", "consumable", "tool", "container", "modification", "loot", "starshipmod"],
   class: ["archetype", "background", "class", "deployment", "starshipsize", "species"],
   other: ["feat", "maneuver", "power"]
 };
 
 /* -------------------------------------------- */
 
-/**
- * Configuration data for an item with the "feature" type.
- *
- * @typedef {object} FeatureTypeConfiguration
- * @property {string} label                       Localized label for this type.
- * @property {Object<string, string>} [subtypes]  Enum containing localized labels for subtypes.
- */
 
 /**
  * Types of "features" items.
- * @enum {FeatureTypeConfiguration}
+ * @enum {SubtypeTypeConfiguration}
  */
 SW5E.featureTypes = {
   background: {
     label: "SW5E.Feature.Background"
   },
   class: {
-    label: "SW5E.Feature.Class",
+    label: "SW5E.Feature.Class.Label",
     subtypes: {
-      berserkerInvocation: "SW5E.ClassFeature.BerserkerInstinct",
-      consularForceAffinity: "SW5E.ClassFeature.ConsularForceAffinity",
-      consularInvocation: "SW5E.ClassFeature.ConsularFEC",
-      engineerInvocation: "SW5E.ClassFeature.EngineerModification",
-      fighterInvocation: "SW5E.ClassFeature.FighterStrategy",
-      guardianInvocation: "SW5E.ClassFeature.GuardianAura",
-      guardianCTF: "SW5E.ClassFeature.GuardianCTF",
-      monkFocus: "SW5E.ClassFeature.MonkFocus",
-      monkInvocation: "SW5E.ClassFeature.MonkVow",
-      multiattack: "SW5E.ClassFeature.Multiattack",
-      operativeInvocation: "SW5E.ClassFeature.OperativeExploit",
-      scholarInvocation: "SW5E.ClassFeature.ScholarDiscovery",
-      scoutInvocation: "SW5E.ClassFeature.ScoutRoutine",
-      sentinelInvocation: "SW5E.ClassFeature.SentinelIdeal",
-      sentinelFES: "SW5E.ClassFeature.SentinelFES"
+      berserkerInvocation: "SW5E.Feature.Class.BerserkerInstinct",
+      consularForceAffinity: "SW5E.Feature.Class.ConsularForceAffinity",
+      consularInvocation: "SW5E.Feature.Class.ConsularFEC",
+      engineerInvocation: "SW5E.Feature.Class.EngineerModification",
+      fighterInvocation: "SW5E.Feature.Class.FighterStrategy",
+      guardianInvocation: "SW5E.Feature.Class.GuardianAura",
+      guardianCTF: "SW5E.Feature.Class.GuardianCTF",
+      monkFocus: "SW5E.Feature.Class.MonkFocus",
+      monkInvocation: "SW5E.Feature.Class.MonkVow",
+      multiattack: "SW5E.Feature.Class.Multiattack",
+      operativeInvocation: "SW5E.Feature.Class.OperativeExploit",
+      scholarInvocation: "SW5E.Feature.Class.ScholarDiscovery",
+      scoutInvocation: "SW5E.Feature.Class.ScoutRoutine",
+      sentinelInvocation: "SW5E.Feature.Class.SentinelIdeal",
+      sentinelFES: "SW5E.Feature.Class.SentinelFES"
     }
   },
   customizationOption: {
-    label: "SW5E.Feature.CustomizationOption",
+    label: "SW5E.Feature.CustomizationOption.Label",
     subtypes: {
-      classImprovement: "SW5E.CustomizationOption.ClassImprovement",
-      fightingMastery: "SW5E.CustomizationOption.FightingMastery",
-      fightingStyle: "SW5E.CustomizationOption.FightingStyle",
-      lightsaberForm: "SW5E.CustomizationOption.LightsaberForm",
-      multiclassImprovement: "SW5E.CustomizationOption.MulticlassImprovement",
-      splashclassImprovement: "SW5E.CustomizationOption.SplashclassImprovement",
-      weaponFocus: "SW5E.CustomizationOption.WeaponFocus",
-      weaponSupremacy: "SW5E.CustomizationOption.WeaponSupremacy"
+      classImprovement: "SW5E.Feature.CustomizationOption.ClassImprovement",
+      fightingMastery: "SW5E.Feature.CustomizationOption.FightingMastery",
+      fightingStyle: "SW5E.Feature.CustomizationOption.FightingStyle",
+      lightsaberForm: "SW5E.Feature.CustomizationOption.LightsaberForm",
+      multiclassImprovement: "SW5E.Feature.CustomizationOption.MulticlassImprovement",
+      splashclassImprovement: "SW5E.Feature.CustomizationOption.SplashclassImprovement",
+      weaponFocus: "SW5E.Feature.CustomizationOption.WeaponFocus",
+      weaponSupremacy: "SW5E.Feature.CustomizationOption.WeaponSupremacy"
     }
   },
   deployment: {
-    label: "SW5E.Feature.Deployment",
+    label: "SW5E.Feature.Deployment.Label",
     subtypes: {
-      venture: "SW5E.DeploymentFeature.Venture"
+      venture: "SW5E.Feature.Deployment.Venture"
+    }
+  },
+  enchantment: {
+    label: "SW5E.Enchantment.Label",
+    subtypes: {
+      artificerInfusion: "SW5E.Feature.Class.ArtificerInfusion",
+      rune: "SW5E.Feature.Class.Rune"
     }
   },
   monster: {
@@ -1286,30 +1573,1041 @@ SW5E.featureTypes = {
     label: "SW5E.Feature.Species"
   },
   starship: {
-    label: "SW5E.Feature.Starship",
+    label: "SW5E.Feature.Starship.Label",
     subtypes: {
-      role: "SW5E.StarshipFeature.Role",
-      roleSpecialization: "SW5E.StarshipFeature.RoleSpecialization",
-      roleMastery: "SW5E.StarshipFeature.RoleMastery"
+      role: "SW5E.Feature.Starship.Role",
+      roleSpecialization: "SW5E.Feature.Starship.RoleSpecialization",
+      roleMastery: "SW5E.Feature.Starship.RoleMastery"
     }
   },
   starshipAction: {
-    label: "SW5E.Feature.StarshipAction",
+    label: "SW5E.Feature.StarshipAction.Label",
     subtypes: {
-      pilot: "SW5E.StarshipActionFeature.Pilot",
-      crew: "SW5E.StarshipActionFeature.Crew",
-      passenger: "SW5E.StarshipActionFeature.Passenger"
+      pilot: "SW5E.Feature.StarshipAction.Pilot",
+      crew: "SW5E.Feature.StarshipAction.Crew",
+      passenger: "SW5E.Feature.StarshipAction.Passenger"
     }
   },
   feat: {
     label: "SW5E.Feature.Feat"
+  },
+  maneuver: {
+    general: "SW5E.ManeuverTypeGeneral",
+    physical: "SW5E.ManeuverTypePhysical",
+    mental: "SW5E.ManeuverTypeMental"
   }
 };
-preLocalize("featureTypes", { key: "label" });
-for (const [key, type] of Object.entries(SW5E.featureTypes)) if ("subtypes" in type) preLocalize(`featureTypes.${key}.subtypes`, { sort: true });
+preLocalize( "featureTypes", { key: "label" } );
+for ( const [key, type] of Object.entries( SW5E.featureTypes ) ) if ( "subtypes" in type ) preLocalize( `featureTypes.${key}.subtypes`, { sort: true } );
 
 /* -------------------------------------------- */
 
+/**
+ * Configuration data for item properties.
+ *
+ * @typedef {object} ItemPropertyConfiguration
+ * @property {string} label                 Localized label.
+ * @property {string} full                  Localized label with values.
+ * @property {string} [type="Boolean"]      Type of property (Boolean or Number).
+ * @property {string} [abbreviation]        Localized abbreviation.
+ * @property {string} [icon]                Icon that can be used in certain places to represent this property.
+ * @property {string} [reference]           Reference to a rule page describing this property.
+ * @property {number} [max]                 If type is a Number and has a maximum value
+ * @property {number} [min]                 If type is a Number and has a minimum value
+ * @property {boolean} [isPhysical]         Is this property one that can cause damage resistance bypasses?
+ * @property {boolean} [isTag]              Is this power property a tag, rather than a component?
+ * @property {boolean} [isCharacter=false]  Is this property one that can be on a character item?
+ * @property {boolean} [isStarship=false]   Is this property one that can be on a starship item?
+ * @property {boolean} [isCasting=false]    Is this property one that can be on a casting focus item?
+ */
+
+/**
+ * The various properties of all item types.
+ * @enum {ItemPropertyConfiguration}
+ */
+SW5E.itemProperties = {
+  auto: {
+    label: "SW5E.Item.Property.Auto",
+    full: "SW5E.Item.Property.AutoFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.AutoDesc",
+    isCharacter: true,
+    isStarship: true
+  },
+  burst: {
+    label: "SW5E.Item.Property.Burst",
+    full: "SW5E.Item.Property.BurstFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.BurstDesc",
+    min: 2,
+    isCharacter: true,
+    isStarship: true
+  },
+  dire: {
+    label: "SW5E.Item.Property.Dire",
+    full: "SW5E.Item.Property.DireFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.DireDesc",
+    min: 0,
+    max: 3,
+    isCharacter: true,
+    isStarship: true
+  },
+  heavy: {
+    label: "SW5E.Item.Property.Heavy",
+    full: "SW5E.Item.Property.HeavyFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.HeavyDesc",
+    isCharacter: true,
+    isStarship: true
+  },
+  hidden: {
+    label: "SW5E.Item.Property.Hidden",
+    full: "SW5E.Item.Property.HiddenFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.HiddenDesc",
+    isCharacter: true,
+    isStarship: true
+  },
+  keen: {
+    label: "SW5E.Item.Property.Keen",
+    full: "SW5E.Item.Property.KeenFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.KeenDesc",
+    min: 0,
+    max: 3,
+    isCharacter: true,
+    isStarship: true
+  },
+  piercing: {
+    label: "SW5E.Item.Property.Piercing",
+    full: "SW5E.Item.Property.PiercingFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.PiercingDesc",
+    min: 0,
+    max: 3,
+    isCharacter: true,
+    isStarship: true
+  },
+  range: {
+    label: "SW5E.Item.Property.Range",
+    full: "SW5E.Item.Property.RangeFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.RangeDesc",
+    isCharacter: true,
+    isStarship: true
+  },
+  rapid: {
+    label: "SW5E.Item.Property.Rapid",
+    full: "SW5E.Item.Property.RapidFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.RapidDesc",
+    min: 2,
+    isCharacter: true,
+    isStarship: true
+  },
+  reload: {
+    label: "SW5E.Item.Property.Reload",
+    full: "SW5E.Item.Property.ReloadFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.ReloadDesc",
+    min: 0,
+    isCharacter: true,
+    isStarship: true
+  },
+  smart: {
+    label: "SW5E.Item.Property.Smart",
+    full: "SW5E.Item.Property.SmartFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.SmartDesc",
+    isCharacter: true,
+    isStarship: true
+  },
+  special: {
+    label: "SW5E.Item.Property.Special",
+    full: "SW5E.Item.Property.SpecialFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.SpecialDesc",
+    isCharacter: true,
+    isStarship: true
+  },
+  vicious: {
+    label: "SW5E.Item.Property.Vicious",
+    full: "SW5E.Item.Property.ViciousFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.ViciousDesc",
+    min: 0,
+    max: 3,
+    isCharacter: true,
+    isStarship: true
+  },
+  biting: {
+    label: "SW5E.Item.Property.Biting",
+    full: "SW5E.Item.Property.BitingFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.BitingDesc",
+    min: 0,
+    isCharacter: true
+  },
+  bright: {
+    label: "SW5E.Item.Property.Bright",
+    full: "SW5E.Item.Property.BrightFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.BrightDesc",
+    min: 0,
+    isCharacter: true
+  },
+  brutal: {
+    label: "SW5E.Item.Property.Brutal",
+    full: "SW5E.Item.Property.BrutalFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.BrutalDesc",
+    min: 0,
+    max: 3,
+    isCharacter: true
+  },
+  corruption: {
+    label: "SW5E.Item.Property.Corruption",
+    full: "SW5E.Item.Property.CorruptionFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.CorruptionDesc",
+    min: 0,
+    isCharacter: true
+  },
+  defensive: {
+    label: "SW5E.Item.Property.Defensive",
+    full: "SW5E.Item.Property.DefensiveFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.DefensiveDesc",
+    min: 0,
+    max: 3,
+    isCharacter: true
+  },
+  dexRq: {
+    label: "SW5E.Item.Property.DexRq",
+    full: "SW5E.Item.Property.DexRqFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.DexRqDesc",
+    min: 0,
+    isCharacter: true
+  },
+  disarming: {
+    label: "SW5E.Item.Property.Disarming",
+    full: "SW5E.Item.Property.DisarmingFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.DisarmingDesc",
+    isCharacter: true
+  },
+  disguised: {
+    label: "SW5E.Item.Property.Disguised",
+    full: "SW5E.Item.Property.DisguisedFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.DisguisedDesc",
+    isCharacter: true
+  },
+  disintegrate: {
+    label: "SW5E.Item.Property.Disintegrate",
+    full: "SW5E.Item.Property.DisintegrateFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.DisintegrateDesc",
+    min: 0,
+    isCharacter: true
+  },
+  disruptive: {
+    label: "SW5E.Item.Property.Disruptive",
+    full: "SW5E.Item.Property.DisruptiveFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.DisruptiveDesc",
+    isCharacter: true
+  },
+  double: {
+    label: "SW5E.Item.Property.Double",
+    full: "SW5E.Item.Property.DoubleFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.DoubleDesc",
+    isCharacter: true
+  },
+  finesse: {
+    label: "SW5E.Item.Property.Finesse",
+    full: "SW5E.Item.Property.FinesseFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.FinesseDesc",
+    isCharacter: true
+  },
+  fixed: {
+    label: "SW5E.Item.Property.Fixed",
+    full: "SW5E.Item.Property.FixedFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.FixedDesc",
+    isCharacter: true
+  },
+  interlockingWeapon: {
+    label: "SW5E.Item.Property.InterlockingWeapon",
+    full: "SW5E.Item.Property.InterlockingWeaponFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.InterlockingWeaponDesc",
+    isCharacter: true
+  },
+  light: {
+    label: "SW5E.Item.Property.Light",
+    full: "SW5E.Item.Property.LightFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.LightDesc",
+    isCharacter: true
+  },
+  luminous: {
+    label: "SW5E.Item.Property.Luminous",
+    full: "SW5E.Item.Property.LuminousFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.LuminousDesc",
+    isCharacter: true
+  },
+  mighty: {
+    label: "SW5E.Item.Property.Mighty",
+    full: "SW5E.Item.Property.MightyFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.MightyDesc",
+    isCharacter: true
+  },
+  modal: {
+    label: "SW5E.Item.Property.Modal",
+    full: "SW5E.Item.Property.ModalFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.ModalDesc",
+    isCharacter: true
+  },
+  neuralizing: {
+    label: "SW5E.Item.Property.Neuralizing",
+    full: "SW5E.Item.Property.NeuralizingFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.NeuralizingDesc",
+    min: 0,
+    isCharacter: true
+  },
+  penetrating: {
+    label: "SW5E.Item.Property.Penetrating",
+    full: "SW5E.Item.Property.PenetratingFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.PenetratingDesc",
+    min: 0,
+    isCharacter: true
+  },
+  powerCell: {
+    label: "SW5E.Item.Property.PowerCell",
+    full: "SW5E.Item.Property.PowerCellFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.PowerCellDesc",
+    isCharacter: true
+  },
+  reach: {
+    label: "SW5E.Item.Property.Reach",
+    full: "SW5E.Item.Property.ReachFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.ReachDesc",
+    isCharacter: true
+  },
+  reckless: {
+    label: "SW5E.Item.Property.Reckless",
+    full: "SW5E.Item.Property.RecklessFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.RecklessDesc",
+    min: 0,
+    isCharacter: true
+  },
+  returning: {
+    label: "SW5E.Item.Property.Returning",
+    full: "SW5E.Item.Property.ReturningFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.ReturningDesc",
+    isCharacter: true
+  },
+  shocking: {
+    label: "SW5E.Item.Property.Shocking",
+    full: "SW5E.Item.Property.ShockingFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.ShockingDesc",
+    min: 0,
+    isCharacter: true
+  },
+  silentWeapon: {
+    label: "SW5E.Item.Property.SilentWeapon",
+    full: "SW5E.Item.Property.SilentWeaponFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.SilentWeaponDesc",
+    isCharacter: true
+  },
+  slug: {
+    label: "SW5E.Item.Property.Slug",
+    full: "SW5E.Item.Property.SlugFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.SlugDesc",
+    isCharacter: true
+  },
+  sonorous: {
+    label: "SW5E.Item.Property.Sonorous",
+    full: "SW5E.Item.Property.SonorousFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.SonorousDesc",
+    min: 0,
+    isCharacter: true
+  },
+  specialized: {
+    label: "SW5E.Item.Property.Specialized",
+    full: "SW5E.Item.Property.SpecializedFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.SpecializedDesc",
+    min: 0,
+    isCharacter: true
+  },
+  strRq: {
+    label: "SW5E.Item.Property.StrRq",
+    full: "SW5E.Item.Property.StrRqFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.StrRqDesc",
+    min: 0,
+    isCharacter: true
+  },
+  switch: {
+    label: "SW5E.Item.Property.Switch",
+    full: "SW5E.Item.Property.SwitchFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.SwitchDesc",
+    isCharacter: true
+  },
+  thrown: {
+    label: "SW5E.Item.Property.Thrown",
+    full: "SW5E.Item.Property.ThrownFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.ThrownDesc",
+    isCharacter: true
+  },
+  twoHanded: {
+    label: "SW5E.Item.Property.TwoHanded",
+    full: "SW5E.Item.Property.TwoHandedFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.TwoHandedDesc",
+    isCharacter: true
+  },
+  versatileWeapon: {
+    label: "SW5E.Item.Property.VersatileWeapon",
+    full: "SW5E.Item.Property.VersatileWeaponFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.VersatileWeaponDesc",
+    isCharacter: true
+  },
+  conRq: {
+    label: "SW5E.Item.Property.ConRq",
+    full: "SW5E.Item.Property.ConRqFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.ConRqDesc",
+    min: 0,
+    isStarship: true
+  },
+  explosive: {
+    label: "SW5E.Item.Property.Explosive",
+    full: "SW5E.Item.Property.ExplosiveFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.ExplosiveDesc",
+    isStarship: true
+  },
+  homing: {
+    label: "SW5E.Item.Property.Homing",
+    full: "SW5E.Item.Property.HomingFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.HomingDesc",
+    isStarship: true
+  },
+  ionizing: {
+    label: "SW5E.Item.Property.Ionizing",
+    full: "SW5E.Item.Property.IonizingFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.IonizingDesc",
+    isStarship: true
+  },
+  melt: {
+    label: "SW5E.Item.Property.Melt",
+    full: "SW5E.Item.Property.MeltFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.MeltDesc",
+    isStarship: true
+  },
+  overheat: {
+    label: "SW5E.Item.Property.Overheat",
+    full: "SW5E.Item.Property.OverheatFull",
+    type: "Number",
+    reference: "SW5E.Item.Property.OverheatDesc",
+    min: 0,
+    isStarship: true
+  },
+  power: {
+    label: "SW5E.Item.Property.Power",
+    full: "SW5E.Item.Property.PowerFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.PowerDesc",
+    isStarship: true
+  },
+  saturate: {
+    label: "SW5E.Item.Property.Saturate",
+    full: "SW5E.Item.Property.SaturateFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.SaturateDesc",
+    isStarship: true
+  },
+  zone: {
+    label: "SW5E.Item.Property.Zone",
+    full: "SW5E.Item.Property.ZoneFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.ZoneDesc",
+    isStarship: true
+  },
+  concentration: {
+    label: "SW5E.Item.Property.Concentration",
+    full: "SW5E.Item.Property.Concentration",
+    type: "Boolean",
+    abbreviation: "SW5E.ConcentrationAbbr",
+    icon: "systems/sw5e/icons/svg/statuses/concentrating.svg",
+    isTag: true
+  },
+  freeLearn: {
+    label: "SW5E.FreeLearn",
+    full: "SW5E.FreeLearn",
+    type: "Boolean",
+    abbreviation: "SW5E.FreeLearnAbbr",
+    isTag: true
+  },
+  material: {
+    label: "SW5E.Item.Property.Material",
+    full: "SW5E.Item.Property.Material",
+    type: "Boolean",
+    abbreviation: "SW5E.ComponentMaterialAbbr"
+  },
+  mgc: {
+    label: "SW5E.Item.Property.Enhanced",
+    full: "SW5E.Item.Property.EnhancedFull",
+    type: "Boolean",
+    reference: "SW5E.Item.Property.EnhancedDesc",
+    icon: "systems/sw5e/icons/svg/properties/enhanced.svg",
+    isPhysical: true
+  },
+  ritual: {
+    label: "SW5E.Item.Property.Ritual",
+    full: "SW5E.Item.Property.Ritual",
+    type: "Boolean",
+    abbreviation: "SW5E.RitualAbbr",
+    icon: "systems/sw5e/icons/svg/items/power.svg",
+    isTag: true
+  },
+  somatic: {
+    label: "SW5E.Item.Property.Somatic",
+    full: "SW5E.Item.Property.Somatic",
+    type: "Boolean",
+    abbreviation: "SW5E.ComponentSomaticAbbr"
+  },
+  stealthDisadvantage: {
+    label: "SW5E.Item.Property.StealthDisadvantage"
+  },
+  vocal: {
+    label: "SW5E.Item.Property.Verbal",
+    full: "SW5E.Item.Property.Verbal",
+    type: "Boolean",
+    abbreviation: "SW5E.ComponentVerbalAbbr"
+  },
+  absorptive: {
+    label: "SW5E.Item.Property.Absorptive",
+    full: "SW5E.Item.Property.AbsorptiveFull",
+    reference: "SW5E.Item.Property.AbsorptiveDesc",
+    type: "Number",
+    min: 0,
+    max: 3
+  },
+  agile: {
+    label: "SW5E.Item.Property.Agile",
+    full: "SW5E.Item.Property.AgileFull",
+    reference: "SW5E.Item.Property.AgileDesc",
+    type: "Number",
+    min: 0
+  },
+  anchor: {
+    label: "SW5E.Item.Property.Anchor",
+    full: "SW5E.Item.Property.AnchorFull",
+    reference: "SW5E.Item.Property.AnchorDesc",
+    type: "Boolean"
+  },
+  avoidant: {
+    label: "SW5E.Item.Property.Avoidant",
+    full: "SW5E.Item.Property.AvoidantFull",
+    reference: "SW5E.Item.Property.AvoidantDesc",
+    type: "Number",
+    min: 0,
+    max: 3
+  },
+  barbed: {
+    label: "SW5E.Item.Property.Barbed",
+    full: "SW5E.Item.Property.BarbedFull",
+    reference: "SW5E.Item.Property.BarbedDesc",
+    type: "Boolean"
+  },
+  bulky: {
+    label: "SW5E.Item.Property.Bulky",
+    full: "SW5E.Item.Property.BulkyFull",
+    reference: "SW5E.Item.Property.BulkyDesc",
+    type: "Boolean"
+  },
+  charging: {
+    label: "SW5E.Item.Property.Charging",
+    full: "SW5E.Item.Property.ChargingFull",
+    reference: "SW5E.Item.Property.ChargingDesc",
+    type: "Number",
+    min: 0,
+    max: 3
+  },
+  concealing: {
+    label: "SW5E.Item.Property.Concealing",
+    full: "SW5E.Item.Property.ConcealingFull",
+    reference: "SW5E.Item.Property.ConcealingDesc",
+    type: "Boolean"
+  },
+  cumbersome: {
+    label: "SW5E.Item.Property.Cumbersome",
+    full: "SW5E.Item.Property.CumbersomeFull",
+    reference: "SW5E.Item.Property.CumbersomeDesc",
+    type: "Boolean"
+  },
+  gauntleted: {
+    label: "SW5E.Item.Property.Gauntleted",
+    full: "SW5E.Item.Property.GauntletedFull",
+    reference: "SW5E.Item.Property.GauntletedDesc",
+    type: "Boolean"
+  },
+  imbalanced: {
+    label: "SW5E.Item.Property.Imbalanced",
+    full: "SW5E.Item.Property.ImbalancedFull",
+    reference: "SW5E.Item.Property.ImbalancedDesc",
+    type: "Boolean"
+  },
+  impermeable: {
+    label: "SW5E.Item.Property.Impermeable",
+    full: "SW5E.Item.Property.ImpermeableFull",
+    reference: "SW5E.Item.Property.ImpermeableDesc",
+    type: "Boolean"
+  },
+  insulated: {
+    label: "SW5E.Item.Property.Insulated",
+    full: "SW5E.Item.Property.InsulatedFull",
+    reference: "SW5E.Item.Property.InsulatedDesc",
+    type: "Number",
+    min: 0,
+    max: 3
+  },
+  interlockingEquipment: {
+    label: "SW5E.Item.Property.InterlockingEquipment",
+    full: "SW5E.Item.Property.InterlockingEquipmentFull",
+    reference: "SW5E.Item.Property.InterlockingEquipmentDesc",
+    type: "Boolean"
+  },
+  lambent: {
+    label: "SW5E.Item.Property.Lambent",
+    full: "SW5E.Item.Property.LambentFull",
+    reference: "SW5E.Item.Property.LambentDesc",
+    type: "Boolean"
+  },
+  lightweight: {
+    label: "SW5E.Item.Property.Lightweight",
+    full: "SW5E.Item.Property.LightweightFull",
+    reference: "SW5E.Item.Property.LightweightDesc",
+    type: "Boolean"
+  },
+  magnetic: {
+    label: "SW5E.Item.Property.Magnetic",
+    full: "SW5E.Item.Property.MagneticFull",
+    reference: "SW5E.Item.Property.MagneticDesc",
+    type: "Number"
+  },
+  obscured: {
+    label: "SW5E.Item.Property.Obscured",
+    full: "SW5E.Item.Property.ObscuredFull",
+    reference: "SW5E.Item.Property.ObscuredDesc",
+    type: "Boolean"
+  },
+  obtrusive: {
+    label: "SW5E.Item.Property.Obtrusive",
+    full: "SW5E.Item.Property.ObtrusiveFull",
+    reference: "SW5E.Item.Property.ObtrusiveDesc",
+    type: "Boolean"
+  },
+  powered: {
+    label: "SW5E.Item.Property.Powered",
+    full: "SW5E.Item.Property.PoweredFull",
+    reference: "SW5E.Item.Property.PoweredDesc",
+    type: "Number",
+    min: 0
+  },
+  reactive: {
+    label: "SW5E.Item.Property.Reactive",
+    full: "SW5E.Item.Property.ReactiveFull",
+    reference: "SW5E.Item.Property.ReactiveDesc",
+    type: "Number",
+    min: 0,
+    max: 3
+  },
+  regulated: {
+    label: "SW5E.Item.Property.Regulated",
+    full: "SW5E.Item.Property.RegulatedFull",
+    reference: "SW5E.Item.Property.RegulatedDesc",
+    type: "Boolean"
+  },
+  reinforced: {
+    label: "SW5E.Item.Property.Reinforced",
+    full: "SW5E.Item.Property.ReinforcedFull",
+    reference: "SW5E.Item.Property.ReinforcedDesc",
+    type: "Boolean"
+  },
+  responsive: {
+    label: "SW5E.Item.Property.Responsive",
+    full: "SW5E.Item.Property.ResponsiveFull",
+    reference: "SW5E.Item.Property.ResponsiveDesc",
+    type: "Number",
+    min: 0,
+    max: 3
+  },
+  rigid: {
+    label: "SW5E.Item.Property.Rigid",
+    full: "SW5E.Item.Property.RigidFull",
+    reference: "SW5E.Item.Property.RigidDesc",
+    type: "Boolean"
+  },
+  silentEquipment: {
+    label: "SW5E.Item.Property.SilentEquipment",
+    full: "SW5E.Item.Property.SilentEquipmentFull",
+    reference: "SW5E.Item.Property.SilentEquipmentDesc",
+    type: "Boolean"
+  },
+  spiked: {
+    label: "SW5E.Item.Property.Spiked",
+    full: "SW5E.Item.Property.SpikedFull",
+    reference: "SW5E.Item.Property.SpikedDesc",
+    type: "Boolean"
+  },
+  strength: {
+    label: "SW5E.Item.Property.Strength",
+    full: "SW5E.Item.Property.StrengthFull",
+    reference: "SW5E.Item.Property.StrengthDesc",
+    type: "Number",
+    min: 0
+  },
+  steadfast: {
+    label: "SW5E.Item.Property.Steadfast",
+    full: "SW5E.Item.Property.SteadfastFull",
+    reference: "SW5E.Item.Property.SteadfastDesc",
+    type: "Boolean"
+  },
+  versatileEquipment: {
+    label: "SW5E.Item.Property.VersatileEquipment",
+    full: "SW5E.Item.Property.VersatileEquipmentFull",
+    reference: "SW5E.Item.Property.VersatileEquipmentDesc",
+    type: "Number"
+  },
+  absorbing: {
+    label: "SW5E.Item.Property.Absorbing",
+    full: "SW5E.Item.Property.AbsorbingFull",
+    reference: "SW5E.Item.Property.AbsorbingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  accessing: {
+    label: "SW5E.Item.Property.Accessing",
+    full: "SW5E.Item.Property.AccessingFull",
+    reference: "SW5E.Item.Property.AccessingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  amplifying: {
+    label: "SW5E.Item.Property.Amplifying",
+    full: "SW5E.Item.Property.AmplifyingFull",
+    reference: "SW5E.Item.Property.AmplifyingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  bolstering: {
+    label: "SW5E.Item.Property.Bolstering",
+    full: "SW5E.Item.Property.BolsteringFull",
+    reference: "SW5E.Item.Property.BolsteringDesc",
+    type: "Number",
+    isCasting: true
+  },
+  constitution: {
+    label: "SW5E.Item.Property.Constitution",
+    full: "SW5E.Item.Property.ConstitutionFull",
+    dreferenceesc: "SW5E.Item.Property.ConstitutionDesc",
+    type: "Number",
+    isCasting: true
+  },
+  dispelling: {
+    label: "SW5E.Item.Property.Dispelling",
+    full: "SW5E.Item.Property.DispellingFull",
+    reference: "SW5E.Item.Property.DispellingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  elongating: {
+    label: "SW5E.Item.Property.Elongating",
+    full: "SW5E.Item.Property.ElongatingFull",
+    reference: "SW5E.Item.Property.ElongatingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  enlarging: {
+    label: "SW5E.Item.Property.Enlarging",
+    full: "SW5E.Item.Property.EnlargingFull",
+    reference: "SW5E.Item.Property.EnlargingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  expanding: {
+    label: "SW5E.Item.Property.Expanding",
+    full: "SW5E.Item.Property.ExpandingFull",
+    reference: "SW5E.Item.Property.ExpandingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  extending: {
+    label: "SW5E.Item.Property.Extending",
+    full: "SW5E.Item.Property.ExtendingFull",
+    reference: "SW5E.Item.Property.ExtendingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  fading: {
+    label: "SW5E.Item.Property.Fading",
+    full: "SW5E.Item.Property.FadingFull",
+    reference: "SW5E.Item.Property.FadingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  focused: {
+    label: "SW5E.Item.Property.Focused",
+    full: "SW5E.Item.Property.FocusedFull",
+    reference: "SW5E.Item.Property.FocusedDesc",
+    type: "Number",
+    isCasting: true
+  },
+  increasing: {
+    label: "SW5E.Item.Property.Increasing",
+    full: "SW5E.Item.Property.IncreasingFull",
+    reference: "SW5E.Item.Property.IncreasingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  inflating: {
+    label: "SW5E.Item.Property.Inflating",
+    full: "SW5E.Item.Property.InflatingFull",
+    reference: "SW5E.Item.Property.InflatingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  mitigating: {
+    label: "SW5E.Item.Property.Mitigating",
+    full: "SW5E.Item.Property.MitigatingFull",
+    reference: "SW5E.Item.Property.MitigatingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  ranging: {
+    label: "SW5E.Item.Property.Ranging",
+    full: "SW5E.Item.Property.RangingFull",
+    reference: "SW5E.Item.Property.RangingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  rending: {
+    label: "SW5E.Item.Property.Rending",
+    full: "SW5E.Item.Property.RendingFull",
+    reference: "SW5E.Item.Property.RendingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  repelling: {
+    label: "SW5E.Item.Property.Repelling",
+    full: "SW5E.Item.Property.RepellingFull",
+    reference: "SW5E.Item.Property.RepellingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  storing: {
+    label: "SW5E.Item.Property.Storing",
+    full: "SW5E.Item.Property.StoringFull",
+    reference: "SW5E.Item.Property.StoringDesc",
+    type: "Number",
+    isCasting: true
+  },
+  surging: {
+    label: "SW5E.Item.Property.Surging",
+    full: "SW5E.Item.Property.SurgingFull",
+    reference: "SW5E.Item.Property.SurgingDesc",
+    type: "Number",
+    isCasting: true
+  },
+  withering: {
+    label: "SW5E.Item.Property.Withering",
+    full: "SW5E.Item.Property.WitheringFull",
+    reference: "SW5E.Item.Property.WitheringDesc",
+    type: "Number",
+    isCasting: true
+  },
+  weightlessContents: {
+    label: "SW5E.Item.Property.WeightlessContents"
+  }
+};
+preLocalize( "itemProperties", { keys: ["label", "abbreviation"], sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * The various properties of an item per item type.
+ * @enum {object}
+ */
+SW5E.validProperties = {
+  consumable: new Set( [
+    "mgc"
+  ] ),
+  container: new Set( [
+    "mgc",
+    "weightlessContents"
+  ] ),
+  equipment: new Set( [
+    "concentration",
+    "mgc",
+    "absorptive",
+    "agile",
+    "anchor",
+    "avoidant",
+    "barbed",
+    "bulky",
+    "charging",
+    "concealing",
+    "cumbersome",
+    "gauntleted",
+    "imbalanced",
+    "impermeable",
+    "insulated",
+    "interlockingEquipment",
+    "lambent",
+    "lightweight",
+    "magnetic",
+    "obscured",
+    "obtrusive",
+    "powered",
+    "reactive",
+    "regulated",
+    "reinforced",
+    "responsive",
+    "rigid",
+    "silentEquipment",
+    "spiked",
+    "strength",
+    "steadfast",
+    "versatileEquipment",
+    "absorbing",
+    "accessing",
+    "amplifying",
+    "bolstering",
+    "constitution",
+    "dispelling",
+    "elongating",
+    "enlarging",
+    "expanding",
+    "extending",
+    "fading",
+    "focused",
+    "increasing",
+    "inflating",
+    "mitigating",
+    "ranging",
+    "rending",
+    "repelling",
+    "storing",
+    "surging",
+    "withering",
+    "stealthDisadvantage"
+  ] ),
+  feat: new Set( [
+    "concentration",
+    "mgc"
+  ] ),
+  loot: new Set( [
+    "mgc"
+  ] ),
+  weapon: new Set( [
+    "mgc",
+    "auto",
+    "burst",
+    "dire",
+    "heavy",
+    "hidden",
+    "keen",
+    "piercing",
+    "range",
+    "rapid",
+    "reload",
+    "smart",
+    "special",
+    "vicious",
+    "biting",
+    "bright",
+    "brutal",
+    "corruption",
+    "defensive",
+    "dexRq",
+    "disarming",
+    "disguised",
+    "disintegrate",
+    "disruptive",
+    "double",
+    "finesse",
+    "fixed",
+    "interlockingWeapon",
+    "light",
+    "luminous",
+    "mighty",
+    "modal",
+    "neuralizing",
+    "penetrating",
+    "powerCell",
+    "reach",
+    "reckless",
+    "returning",
+    "shocking",
+    "silentWeapon",
+    "slug",
+    "sonorous",
+    "specialized",
+    "strRq",
+    "switch",
+    "thrown",
+    "twoHanded",
+    "versatileWeapon",
+    "conRq",
+    "explosive",
+    "homing",
+    "ionizing",
+    "melt",
+    "overheat",
+    "power",
+    "saturate",
+    "zone"
+  ] ),
+  power: new Set( [
+    "concentration",
+    "ritual",
+    "freeLearn"
+  ] ),
+  tool: new Set( [
+    "concentration",
+    "mgc"
+  ] )
+};
+
+/* -------------------------------------------- */
 
 /**
  * Configuration data for an item with the "loot" type.
@@ -1345,7 +2643,7 @@ SW5E.lootTypes = {
     label: "SW5E.Loot.Treasure"
   }
 };
-preLocalize("lootTypes", { key: "label" });
+preLocalize( "lootTypes", { key: "label" } );
 
 /* -------------------------------------------- */
 
@@ -1367,21 +2665,7 @@ SW5E.currencies = {
     conversion: 1
   }
 };
-preLocalize("currencies", { keys: ["label", "abbreviation"] });
-
-/* -------------------------------------------- */
-
-/**
- * The set of possible sensory perception types which an Actor may have.
- * @enum {string}
- */
-SW5E.senses = {
-  blindsight: "SW5E.SenseBlindsight",
-  darkvision: "SW5E.SenseDarkvision",
-  tremorsense: "SW5E.SenseTremorsense",
-  truesight: "SW5E.SenseTruesight"
-};
-preLocalize("senses", { sort: true });
+preLocalize( "currencies", { keys: ["label", "abbreviation"] } );
 
 /* -------------------------------------------- */
 /*  Modifications                               */
@@ -1395,7 +2679,7 @@ SW5E.chassisTypes = {
   chassis: "SW5E.ItemChassisChassis",
   engineer: "SW5E.ItemChassisEngineer"
 };
-preLocalize("chassisTypes", { sort: true });
+preLocalize( "chassisTypes", { sort: true } );
 
 /**
  * The number of base augment slots based on chassis rarity.
@@ -1419,26 +2703,26 @@ SW5E.modificationTypesEquipment = {
   clothing: "SW5E.ModTypeClothing",
   shield: "SW5E.ModTypeShield"
 };
-preLocalize("modificationTypesEquipment", { sort: true });
+preLocalize( "modificationTypesEquipment", { sort: true } );
 
 SW5E.modificationTypesWeapon = {
   blaster: "SW5E.ModTypeBlaster",
   lightweapon: "SW5E.ModTypeLightweapon",
   vibroweapon: "SW5E.ModTypeVibroweapon"
 };
-preLocalize("modificationTypesWeapon", { sort: true });
+preLocalize( "modificationTypesWeapon", { sort: true } );
 
 SW5E.modificationTypesCasting = {
   focusgenerator: "SW5E.ModTypeFocusgenerator",
   wristpad: "SW5E.ModTypeWristpad"
 };
-preLocalize("modificationTypesCasting", { sort: true });
+preLocalize( "modificationTypesCasting", { sort: true } );
 
 SW5E.modificationTypesCreature = {
   cybernetic: "SW5E.ModTypeCybernetic",
   droidcustomization: "SW5E.ModTypeDroidCustomization"
 };
-preLocalize("modificationTypesCreature", { sort: true });
+preLocalize( "modificationTypesCreature", { sort: true } );
 
 SW5E.modificationTypes = {
   ...SW5E.modificationTypesEquipment,
@@ -1447,7 +2731,7 @@ SW5E.modificationTypes = {
   ...SW5E.modificationTypesCreature,
   augment: "SW5E.ModTypeAugment"
 };
-preLocalize("modificationTypes");
+preLocalize( "modificationTypes" );
 
 /* -------------------------------------------- */
 
@@ -1505,60 +2789,105 @@ SW5E.modificationSlots = {
     slot4: "SW5E.ModSlotDataport"
   }
 };
-preLocalize("modificationSlots", { keys: ["slot1", "slot2", "slot3", "slot4"] });
+preLocalize( "modificationSlots", { keys: ["slot1", "slot2", "slot3", "slot4"] } );
 
 /* -------------------------------------------- */
 /*  Damage Types                                */
 /* -------------------------------------------- */
 
 /**
- * Types of damage that are considered physical.
- * @enum {string}
+ * Configuration data for damage types.
+ *
+ * @typedef {object} DamageTypeConfiguration
+ * @property {string} label          Localized label.
+ * @property {string} icon           Icon representing this type.
+ * @property {boolean} [isPhysical]  Is this a type that can be bypassed by magical or silvered weapons?
+ * @property {string} [reference]    Reference to a rule page describing this damage type.
+ * @property {Color} Color           Visual color of the damage type.
  */
-SW5E.physicalDamageTypes = {
-  kinetic: "SW5E.DamageKinetic"
-};
-preLocalize("physicalDamageTypes", { sort: true });
 
 /**
  * Types of damage the can be caused by abilities.
- * @enum {string}
+ * @enum {DamageTypeConfiguration}
  */
 SW5E.damageTypes = {
-  ...SW5E.physicalDamageTypes,
-  acid: "SW5E.DamageAcid",
-  cold: "SW5E.DamageCold",
-  energy: "SW5E.DamageEnergy",
-  fire: "SW5E.DamageFire",
-  force: "SW5E.DamageForce",
-  ion: "SW5E.DamageIon",
-  lightning: "SW5E.DamageLightning",
-  necrotic: "SW5E.DamageNecrotic",
-  poison: "SW5E.DamagePoison",
-  psychic: "SW5E.DamagePsychic",
-  sonic: "SW5E.DamageSonic"
+  acid: {
+    label: "SW5E.DamageAcid",
+    icon: "systems/sw5e/icons/svg/damage/acid.svg",
+    color: new Color( 0x839D50 )
+  },
+  cold: {
+    label: "SW5E.DamageCold",
+    icon: "systems/sw5e/icons/svg/damage/cold.svg",
+    color: new Color( 0xADD8E6 )
+  },
+  energy: {
+    label: "SW5E.DamageEnergy",
+    icon: "systems/sw5e/icons/svg/damage/energy.svg"
+  },
+  fire: {
+    label: "SW5E.DamageFire",
+    icon: "systems/sw5e/icons/svg/damage/fire.svg",
+    color: new Color( 0xFF4500 )
+  },
+  force: {
+    label: "SW5E.DamageForce",
+    icon: "systems/sw5e/icons/svg/damage/force.svg",
+    color: new Color( 0x800080 )
+  },
+  ion: {
+    label: "SW5E.DamageIon",
+    icon: "systems/sw5e/icons/svg/damage/ion.svg"
+  },
+  kinteic: {
+    label: "SW5E.DamageKinetic",
+    icon: "systems/sw5e/icons/svg/damage/kinetic.svg"
+  },
+  lightning: {
+    label: "SW5E.DamageLightning",
+    icon: "systems/sw5e/icons/svg/damage/lightning.svg",
+    color: new Color( 0x1E90FF )
+  },
+  necrotic: {
+    label: "SW5E.DamageNecrotic",
+    icon: "systems/sw5e/icons/svg/damage/necrotic.svg",
+    color: new Color( 0x006400 )
+  },
+  poison: {
+    label: "SW5E.DamagePoison",
+    icon: "systems/sw5e/icons/svg/damage/poison.svg",
+    color: new Color( 0x8A2BE2 )
+  },
+  psychic: {
+    label: "SW5E.DamagePsychic",
+    icon: "systems/sw5e/icons/svg/damage/psychic.svg",
+    color: new Color( 0xFF1493 )
+  },
+  sonic: {
+    label: "SW5E.DamageSonic",
+    icon: "systems/sw5e/icons/svg/damage/sonic.svg"
+  }
 };
-preLocalize("damageTypes", { sort: true });
+preLocalize( "damageTypes", { keys: ["label"], sort: true } );
 
-/**
- * Types of damage to which an actor can possess resistance, immunity, or vulnerability.
- * @enum {string}
- * @deprecated
- */
-SW5E.damageResistanceTypes = {
-  ...SW5E.damageTypes
-};
-preLocalize("damageResistanceTypes", { sort: true });
 
 /**
  * Different types of healing that can be applied using abilities.
  * @enum {string}
  */
 SW5E.healingTypes = {
-  healing: "SW5E.Healing",
-  temphp: "SW5E.HealingTemp"
+  healing: {
+    label: "SW5E.Healing",
+    icon: "systems/sw5e/icons/svg/damage/healing.svg",
+    color: new Color( 0x46C252 )
+  },
+  temphp: {
+    label: "SW5E.HealingTemp",
+    icon: "systems/sw5e/icons/svg/damage/temphp.svg",
+    color: new Color( 0x4B66DE )
+  }
 };
-preLocalize("healingTypes");
+preLocalize( "healingTypes", { keys: ["label"] } );
 
 /* -------------------------------------------- */
 /*  Movement                                    */
@@ -1580,7 +2909,7 @@ SW5E.movementTypes = {
   turn: "SW5E.MovementTurn",
   walk: "SW5E.MovementWalk"
 };
-preLocalize("movementTypes", { sort: true });
+preLocalize( "movementTypes", { sort: true } );
 
 /* -------------------------------------------- */
 /*  Measurement                                 */
@@ -1597,7 +2926,7 @@ SW5E.movementUnits = {
   m: "SW5E.DistM",
   km: "SW5E.DistKm"
 };
-preLocalize("movementUnits");
+preLocalize( "movementUnits" );
 
 /* -------------------------------------------- */
 
@@ -1611,7 +2940,7 @@ SW5E.rangeTypes = {
   spec: "SW5E.Special",
   any: "SW5E.DistAny"
 };
-preLocalize("rangeTypes");
+preLocalize( "rangeTypes" );
 
 /* -------------------------------------------- */
 
@@ -1624,28 +2953,132 @@ SW5E.distanceUnits = {
   ...SW5E.movementUnits,
   ...SW5E.rangeTypes
 };
-preLocalize("distanceUnits");
+preLocalize( "distanceUnits" );
 
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for a weight unit.
+ *
+ * @typedef {object} WeightUnitConfiguration
+ * @property {string} label         Localized label for the unit.
+ * @property {string} abbreviation  Localized abbreviation for the unit.
+ * @property {number} conversion    Number that by which this unit should be multiplied to arrive at a standard value.
+ * @property {string} type          Whether this is an "imperial" or "metric" unit.
+ */
+
+/**
+ * The valid units for measurement of weight.
+ * @enum {WeightUnitConfiguration}
+ */
+SW5E.weightUnits = {
+  lb: {
+    label: "SW5E.WeightUnit.Pounds.Label",
+    abbreviation: "SW5E.WeightUnit.Pounds.Abbreviation",
+    conversion: 1,
+    type: "imperial"
+  },
+  tn: {
+    label: "SW5E.WeightUnit.Tons.Label",
+    abbreviation: "SW5E.WeightUnit.Tons.Abbreviation",
+    conversion: 2000,
+    type: "imperial"
+  },
+  kg: {
+    label: "SW5E.WeightUnit.Kilograms.Label",
+    abbreviation: "SW5E.WeightUnit.Kilograms.Abbreviation",
+    conversion: 2.5,
+    type: "metric"
+  },
+  Mg: {
+    label: "SW5E.WeightUnit.Megagrams.Label",
+    abbreviation: "SW5E.WeightUnit.Megagrams.Abbreviation",
+    conversion: 2500,
+    type: "metric"
+  }
+};
+preLocalize( "weightUnits", { keys: ["label", "abbreviation"] } );
+
+/* -------------------------------------------- */
+
+/**
+ * Encumbrance configuration data.
+ *
+ * @typedef {object} EncumbranceConfiguration
+ * @property {Record<string, number>} currencyPerWeight  Pieces of currency that equal a base weight (lbs or kgs).
+ * @property {Record<string, object>} effects            Data used to create encumbrance-related Active Effects.
+ * @property {object} threshold                          Amount to multiply strength to get given capacity threshold.
+ * @property {Record<string, number>} threshold.encumbered
+ * @property {Record<string, number>} threshold.heavilyEncumbered
+ * @property {Record<string, number>} threshold.maximum
+ * @property {Record<string, {ft: number, m: number}>} speedReduction  Speed reduction caused by encumbered status.
+ * @property {Record<string, number>} vehicleWeightMultiplier  Multiplier used to determine vehicle carrying capacity.
+ * @property {Record<string, Record<string, string>>} baseUnits  Base units used to calculate carrying weight.
+ */
+
+/**
  * Configure aspects of encumbrance calculation so that it could be configured by modules.
- * @enum {{ imperial: number, metric: number }}
+ * @type {EncumbranceConfiguration}
  */
 SW5E.encumbrance = {
   currencyPerWeight: {
     imperial: 50,
     metric: 110
   },
-  strMultiplier: {
-    imperial: 15,
-    metric: 6.8
+  effects: {
+    encumbered: {
+      name: "EFFECT.SW5E.StatusEncumbered",
+      icon: "systems/sw5e/icons/svg/statuses/encumbered.svg"
+    },
+    heavilyEncumbered: {
+      name: "EFFECT.SW5E.StatusHeavilyEncumbered",
+      icon: "systems/sw5e/icons/svg/statuses/heavily-encumbered.svg"
+    },
+    exceedingCarryingCapacity: {
+      name: "EFFECT.SW5E.StatusExceedingCarryingCapacity",
+      icon: "systems/sw5e/icons/svg/statuses/exceeding-carrying-capacity.svg"
+    }
   },
-  vehicleWeightMultiplier: {
-    imperial: 2000, // 2000 lbs in an imperial ton
-    metric: 1000 // 1000 kg in a metric ton
+  threshold: {
+    encumbered: {
+      imperial: 5,
+      metric: 2.5
+    },
+    heavilyEncumbered: {
+      imperial: 10,
+      metric: 5
+    },
+    maximum: {
+      imperial: 15,
+      metric: 7.5
+    }
+  },
+  speedReduction: {
+    encumbered: {
+      ft: 10,
+      m: 3
+    },
+    heavilyEncumbered: {
+      ft: 20,
+      m: 6
+    },
+    exceedingCarryingCapacity: {
+      ft: 5,
+      m: 1.5
+    }
+  },
+  baseUnits: {
+    default: {
+      imperial: "lb",
+      metric: "kg"
+    },
+    vehicle: {
+      imperial: "tn",
+      metric: "Mg"
+    }
   }
 };
+preLocalize( "encumbrance.effects", { key: "name" } );
 
 /* -------------------------------------------- */
 /*  Targeting                                   */
@@ -1669,7 +3102,7 @@ SW5E.individualTargetTypes = {
   starship: "SW5E.TargetStarship",
   weapon: "SW5E.TargetWeapon"
 };
-preLocalize("individualTargetTypes", { sort: true });
+preLocalize( "individualTargetTypes" );
 
 /* -------------------------------------------- */
 
@@ -1677,8 +3110,9 @@ preLocalize("individualTargetTypes", { sort: true });
  * Information needed to represent different area of effect target types.
  *
  * @typedef {object} AreaTargetDefinition
- * @property {string} label     Localized label for this type.
- * @property {string} template  Type of `MeasuredTemplate` create for this target type.
+ * @property {string} label        Localized label for this type.
+ * @property {string} template     Type of `MeasuredTemplate` create for this target type.
+ * @property {string} [reference]  Reference to a rule page describing this area of effect.
  */
 
 /**
@@ -1719,7 +3153,7 @@ SW5E.areaTargetTypes = {
     template: "ray"
   }
 };
-preLocalize("areaTargetTypes", { key: "label", sort: true });
+preLocalize( "areaTargetTypes", { key: "label", sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1729,9 +3163,9 @@ preLocalize("areaTargetTypes", { key: "label", sort: true });
  */
 SW5E.targetTypes = {
   ...SW5E.individualTargetTypes,
-  ...Object.fromEntries(Object.entries(SW5E.areaTargetTypes).map(([k, v]) => [k, v.label]))
+  ...Object.fromEntries( Object.entries( SW5E.areaTargetTypes ).map( ( [k, v] ) => [k, v.label] ) )
 };
-preLocalize("targetTypes", { sort: true });
+preLocalize( "targetTypes", { sort: true } );
 
 /* -------------------------------------------- */
 /*  Hit Dice                                    */
@@ -1759,6 +3193,80 @@ SW5E.hitDieAvg = {
 };
 
 /* -------------------------------------------- */
+
+/**
+ * Configuration data for rest types.
+ *
+ * @typedef {object} RestConfiguration
+ * @property {Record<string, number>} duration  Duration of different rest variants in minutes.
+ */
+
+/**
+ * Types of rests.
+ * @enum {RestConfiguration}
+ */
+SW5E.restTypes = {
+  short: {
+    duration: {
+      normal: 60,
+      gritty: 480,
+      epic: 1
+    }
+  },
+  long: {
+    duration: {
+      normal: 480,
+      gritty: 10080,
+      epic: 60
+    }
+  }
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for repair types.
+ *
+ * @typedef {object} RepairConfiguration
+ * @property {Record<string, number>} duration  Duration of different repair variants in minutes.
+ */
+
+/**
+ * Types of repairs.
+ * @enum {RepairConfiguration}
+ */
+SW5E.repairTypes = {
+  recharge: {
+    duration: {
+      normal: 60,
+      gritty: 480,
+      epic: 1
+    }
+  },
+  refitting: {
+    duration: {
+      normal: 480,
+      gritty: 10080,
+      epic: 60
+    }
+  }
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of possible sensory perception types which an Actor may have.
+ * @enum {string}
+ */
+SW5E.senses = {
+  blindsight: "SW5E.SenseBlindsight",
+  darkvision: "SW5E.SenseDarkvision",
+  tremorsense: "SW5E.SenseTremorsense",
+  truesight: "SW5E.SenseTruesight"
+};
+preLocalize( "senses", { sort: true } );
+
+/* -------------------------------------------- */
 /*  Starships                                   */
 /* -------------------------------------------- */
 
@@ -1782,7 +3290,7 @@ SW5E.powerDieSlots = {
   shields: "SW5E.PowerDieSlotShields",
   weapons: "SW5E.PowerDieSlotWeapons"
 };
-preLocalize("powerDieSlots");
+preLocalize( "powerDieSlots" );
 
 /* -------------------------------------------- */
 
@@ -1795,7 +3303,7 @@ SW5E.powerRoutingOpts = {
   shields: "SW5E.PowerRoutingShields",
   weapons: "SW5E.PowerRoutingWeapons"
 };
-preLocalize("powerRoutingOpts", { sort: true });
+preLocalize( "powerRoutingOpts", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1820,7 +3328,7 @@ SW5E.powerRoutingEffects = {
     negative: "SW5E.PowerRoutingWeaponsNegative"
   }
 };
-preLocalize("powerRoutingEffects", { keys: ["positive", "neutral", "negative"] });
+preLocalize( "powerRoutingEffects", { keys: ["positive", "neutral", "negative"] } );
 
 /* -------------------------------------------- */
 
@@ -1835,7 +3343,7 @@ SW5E.ssModSystems = {
   Universal: "SW5E.ModSystemUniversal",
   Weapon: "SW5E.ModSystemWeapon"
 };
-preLocalize("ssModSystems", { sort: true });
+preLocalize( "ssModSystems", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1870,7 +3378,7 @@ SW5E.ssCrewStationTypes = {
   crew: "SW5E.CrewStationTypeCrew",
   passenger: "SW5E.CrewStationTypePassenger"
 };
-preLocalize("ssCrewStationTypes", { sort: true });
+preLocalize( "ssCrewStationTypes", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1883,7 +3391,7 @@ SW5E.ssCrewStationTypesPlural = {
   crew: "SW5E.CrewStationTypeCrewPl",
   passenger: "SW5E.CrewStationTypePassengerPl"
 };
-preLocalize("ssCrewStationTypesPlural", { sort: true });
+preLocalize( "ssCrewStationTypesPlural", { sort: true } );
 
 /* -------------------------------------------- */
 
@@ -1952,28 +3460,69 @@ SW5E.ssTypeDetails = {
   fuelCap: { name: "SW5E.FuelCapacity" },
   foodCap: { name: "SW5E.FoodCap" }
 };
-preLocalize("ssTypeDetails", { key: "name" });
+preLocalize( "ssTypeDetails", { key: "name" } );
 
 /* -------------------------------------------- */
 /*  Powercasting                                */
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for power preparation modes.
+ *
+ * @typedef {object} PowerPreparationModeConfiguration
+ * @property {string} label           Localized name of this power preparation type.
+ * @property {boolean} [upcast]       Whether this preparation mode allows for upcasting.
+ * @property {boolean} [atwills]     Whether this mode allows for atwills in a powerbook.
+ * @property {number} [order]         The sort order of this mode in a powerbook.
+ * @property {boolean} [prepares]     Whether this preparation mode prepares powers.
+ */
+
+/**
  * Various different ways a power can be prepared.
- * @enum {string}
+ * @enum {PowerPreparationModeConfiguration}
  */
 SW5E.powerPreparationModes = {
-  prepared: "SW5E.PowerPrepPrepared",
-  always: "SW5E.PowerPrepAlways",
-  atwill: "SW5E.PowerPrepAtWill",
-  innate: "SW5E.PowerPrepInnate"
+  prepared: {
+    label: "SW5E.PowerPrepPrepared",
+    upcast: true,
+    prepares: true
+  },
+  force: {
+    label: "SW5e.PowerPrepForce",
+    upcast: true,
+    prepares: true
+  },
+  tech: {
+    label: "SW5e.PowerPrepTech",
+    upcast: true,
+    prepares: true
+  },
+  always: {
+    label: "SW5E.PowerPrepAlways",
+    upcast: true,
+    prepares: true
+  },
+  atwill: {
+    label: "SW5E.PowerPrepAtWill",
+    order: -30
+  },
+  innate: {
+    label: "SW5E.PowerPrepInnate",
+    order: -20
+  },
+  ritual: {
+    label: "SW5E.PowerPrepRitual",
+    order: -10
+  }
 };
-preLocalize("powerPreparationModes");
+preLocalize( "powerPreparationModes", { key: "label" } );
+patchConfig( "powerPreparationModes", "label", { since: "SW5e 3.1", until: "SW5e 3.3" } );
 
 /* -------------------------------------------- */
 
 /**
- * Subset of `SW5E.powerPreparationModes` that consume power points.
+ * Subset of `SW5E.powerPreparationModes` that consume power slots.
+ * @deprecated since SW5e 3.1, available until SW5e 3.3
  * @type {string[]}
  */
 SW5E.powerUpcastModes = ["always", "prepared"];
@@ -1981,7 +3530,191 @@ SW5E.powerUpcastModes = ["always", "prepared"];
 /* -------------------------------------------- */
 
 /**
- * The available choices for power progression for a character class
+ * Configuration data for different types of powercasting supported.
+ *
+ * @typedef {object} PowercastingTypeConfiguration
+ * @property {string} label                               Localized label.
+ * @property {string} img                                 Image used when rendered as a favorite on the sheet.
+ * @property {Object<string, PowercastingProgressionConfiguration>} [progression]  Any progression modes for this type.
+ * @property {boolean} [shortRest]                        Are these power slots/points additionally restored on a short rest?
+ */
+
+/**
+ * Configuration data for a powercasting progression mode.
+ *
+ * @typedef {object} PowercastingProgressionConfiguration
+ * @property {string} label                       Localized label.
+ * @property {number} powerPointsBase             The number of base power points available to each class per level
+ * @property {number[]} powerMaxLevel[classLevel] The max level of a known/overpowered power available to each class per level
+ * @property {number} powerLimit                  The first level for which you can only cast once per long rest
+ * @property {number} [divisor=1]                 Value by which the class levels are divided to determine powercasting level.
+ * @property {boolean} [roundUp=false]            Should fractional values should be rounded up by default?
+ * @property {number[]} powersKnown[classLevel]   The max number of known powers available to each class per level
+ */
+
+/**
+ * Different powercasting types and their progression.
+ * @type {PowercastingTypeConfiguration}
+ */
+SW5E.powercastingTypes = {
+  leveled: {
+    label: "SW5E.PowerProgLeveled",
+    img: "systems/sw5e/icons/power-tiers/{id}.webp",
+    progression: {
+      full: {
+        label: "SW5E.PowerProgFull",
+        powerPointsBase: 4,
+        powerMaxLevel: [0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
+        powerLimit: 6,
+        divisor: 1,
+        force: {
+          label: "SW5E.Force",
+          powersKnown: [0, 9, 11, 13, 15, 17, 19, 21, 23, 25, 26, 28, 29, 31, 32, 34, 35, 37, 38, 39, 40]
+        },
+        tech: {
+          label: "SW5E.Tech",
+          powersKnown: [0, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+          shortRest: true
+        }
+      },
+      "3/4": {
+        label: "SW5E.PowerProg3/4",
+        powerPointsBase: 3,
+        powerMaxLevel: [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7],
+        powerLimit: 5,
+        divisor: 4 / 3,
+        force: {
+          label: "SW5E.Force",
+          powersKnown: [0, 7, 9, 11, 13, 15, 17, 18, 19, 21, 22, 24, 25, 26, 28, 29, 30, 32, 33, 34, 35]
+        },
+        tech: {
+          label: "SW5E.Tech",
+          powersKnown: [0, 0, 0, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
+          shortRest: true
+        }
+      },
+      half: {
+        label: "SW5E.PowerProgHalf",
+        powerPointsBase: 2,
+        powerMaxLevel: [0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5],
+        powerLimit: 4,
+        divisor: 2,
+        force: {
+          label: "SW5E.Force",
+          powersKnown: [0, 5, 7, 9, 10, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25, 27, 28, 29, 30]
+        },
+        tech: {
+          label: "SW5E.Tech",
+          powersKnown: [0, 0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+          shortRest: true
+        }
+      },
+      arch: {
+        label: "SW5E.PowerProgArch",
+        powerPointsBase: 1,
+        powerMaxLevel: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4],
+        powerLimit: 4,
+        divisor: 1,
+        roundUp: true,
+        force: {
+          label: "SW5E.Force",
+          powersKnown: [0, 0, 0, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25]
+        },
+        tech: {
+          label: "SW5E.Tech",
+          powersKnown: [0, 0, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+          shortRest: true
+        }
+      }
+    }
+  },
+  force: {
+    label: "SW5E.PowerProgForceLeveled",
+    img: "systems/sw5e/icons/power-tiers/{id}.webp",
+    progression: {
+      full: {
+        label: "SW5E.PowerProgFull",
+        powerPointsBase: 4,
+        powerMaxLevel: [0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
+        powerLimit: 6,
+        divisor: 1,
+        powersKnown: [0, 9, 11, 13, 15, 17, 19, 21, 23, 25, 26, 28, 29, 31, 32, 34, 35, 37, 38, 39, 40]
+      },
+      "3/4": {
+        label: "SW5E.PowerProg3/4",
+        powerPointsBase: 3,
+        powerMaxLevel: [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7],
+        powerLimit: 5,
+        divisor: 4 / 3,
+        powersKnown: [0, 7, 9, 11, 13, 15, 17, 18, 19, 21, 22, 24, 25, 26, 28, 29, 30, 32, 33, 34, 35]
+      },
+      half: {
+        label: "SW5E.PowerProgHalf",
+        powerPointsBase: 2,
+        powerMaxLevel: [0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5],
+        powerLimit: 4,
+        divisor: 2,
+        powersKnown: [0, 5, 7, 9, 10, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25, 27, 28, 29, 30]
+      },
+      arch: {
+        label: "SW5E.PowerProgArch",
+        powerPointsBase: 1,
+        powerMaxLevel: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4],
+        powerLimit: 4,
+        divisor: 1,
+        roundUp: true,
+        powersKnown: [0, 0, 0, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25]
+      }
+    }
+  },
+  tech: {
+    label: "SW5E.PowerProgTechLeveled",
+    img: "systems/sw5e/icons/power-tiers/{id}.webp",
+    progression: {
+      full: {
+        label: "SW5E.PowerProgFull",
+        powerPointsBase: 4,
+        powerMaxLevel: [0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
+        powerLimit: 6,
+        divisor: 1,
+        powersKnown: [0, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+      },
+      "3/4": {
+        label: "SW5E.PowerProg3/4",
+        powerPointsBase: 3,
+        powerMaxLevel: [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7],
+        powerLimit: 5,
+        divisor: 4 / 3,
+        powersKnown: [0, 0, 0, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+      },
+      half: {
+        label: "SW5E.PowerProgHalf",
+        powerPointsBase: 2,
+        powerMaxLevel: [0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5],
+        powerLimit: 4,
+        divisor: 2,
+        powersKnown: [0, 0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+      },
+      arch: {
+        label: "SW5E.PowerProgArch",
+        powerPointsBase: 1,
+        powerMaxLevel: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4],
+        powerLimit: 4,
+        divisor: 1,
+        roundUp: true,
+        powersKnown: [0, 0, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+      }
+    },
+    shortRest: true
+  }
+};
+preLocalize( "powercastingTypes", { key: "label", sort: true } );
+preLocalize( "powercastingTypes.leveled.progression", { key: "label" } );
+
+/* -------------------------------------------- */
+
+/**
+ * Ways in which a class can contribute to powercasting levels.
  * @enum {string}
  */
 SW5E.powerProgression = {
@@ -1991,12 +3724,13 @@ SW5E.powerProgression = {
   half: "SW5E.PowerProgHalf",
   arch: "SW5E.PowerProgArch"
 };
-preLocalize("powerProgression");
+preLocalize( "powerProgression", { key: "label" } );
 
 /* -------------------------------------------- */
 
 /**
  * The max number of known powers available to each class per level
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
  * @type {number[]}  progressionType[classLevel]
  */
 SW5E.powersKnown = {
@@ -2018,6 +3752,7 @@ SW5E.powersKnown = {
 
 /**
  * The number of base force/tech points available to each class per level
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
  * @type {number} progressionType
  */
 SW5E.powerPointsBase = {
@@ -2026,43 +3761,11 @@ SW5E.powerPointsBase = {
   half: 2,
   arch: 1
 };
-
-/* -------------------------------------------- */
-
-/**
- * The attributes you can add to your force/tech points maximum
- * @type {number} progressionType
- */
-SW5E.powerPointsBonus = {
-  force: ["wis", "cha"],
-  tech: ["int"]
-};
-
-/* -------------------------------------------- */
-
-/**
- * The focus that affects this type of powercasting
- * @type {string} progressionType
- */
-SW5E.powerFocus = {
-  force: "focusgenerator",
-  tech: "wristpad"
-};
-
-/* -------------------------------------------- */
-/**
- * The focus property that adds bonus power points
- * @type {string} progressionType
- */
-SW5E.powerFocusBonus = {
-  force: "c_Bolstering",
-  tech: "c_Surging"
-};
-
 /* -------------------------------------------- */
 
 /**
  * The max level of a known/overpowered power available to each class per level
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
  * @type {number[]} progressionType[classLevel]
  */
 SW5E.powerMaxLevel = {
@@ -2076,7 +3779,8 @@ SW5E.powerMaxLevel = {
 
 /**
  * The first level for which you can only cast once per long rest
- * @type {number} progressionType[powerLevel]
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
+ * @type {number} progressionType
  */
 SW5E.powerLimit = {
   full: 6,
@@ -2088,97 +3792,69 @@ SW5E.powerLimit = {
 /* -------------------------------------------- */
 
 /**
- * The available choices for how power damage scaling may be computed.
- * @enum {string}
+ * Configuration data for different types of powercasting supported.
+ *
+ * @typedef {object} PowercastingSubtypeConfiguration
+ * @property {string} label               Localized label.
+ * @property {string[]} powerPointsBonus  The attributes you can add to your force/tech points maximum
+ * @property {string} powerFocus          The focus that affects this type of powercasting
+ * @property {string} powerFocusBonus     The focus property that adds bonus power points
  */
-SW5E.powerScalingModes = {
-  none: "SW5E.PowerNone",
-  atwill: "SW5E.PowerAtWill",
-  level: "SW5E.PowerLevel"
-};
-preLocalize("powerScalingModes", { sort: true });
-
-/* -------------------------------------------- */
 
 /**
- * Types of components that can be required when casting a power.
- * @enum {object}
+ * Different powercasting subtypes.
+ * @type {PowercastingSubtypeConfiguration}
  */
-SW5E.powerComponents = {
-  vocal: {
-    label: "SW5E.ComponentVerbal",
-    abbr: "SW5E.ComponentVerbalAbbr"
+SW5E.powercastingSubtypes = {
+  force: {
+    label: "SW5E.Force",
+    powerPointsBonus: ["wis", "cha"],
+    powerFocus: "focusgenerator",
+    powerFocusBonus: "bolstering"
   },
-  somatic: {
-    label: "SW5E.ComponentSomatic",
-    abbr: "SW5E.ComponentSomaticAbbr"
-  },
-  material: {
-    label: "SW5E.ComponentMaterial",
-    abbr: "SW5E.ComponentMaterialAbbr"
+  tech: {
+    label: "SW5E.Tech",
+    powerPointsBonus: ["int"],
+    powerFocus: "wristpad",
+    powerFocusBonus: "surging"
   }
 };
-preLocalize("powerComponents", { keys: ["label", "abbr"] });
+preLocalize( "powercastingSubtypes", { key: "label", sort: true } );
 
 /* -------------------------------------------- */
 
 /**
- * Supplementary rules keywords that inform a power's use.
- * @enum {object}
+ * The attributes you can add to your force/tech points maximum
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
+ * @type {number} progressionType
  */
-SW5E.powerTags = {
-  concentration: {
-    label: "SW5E.Concentration",
-    abbr: "SW5E.ConcentrationAbbr",
-    filter: true
-  },
-  ritual: {
-    label: "SW5E.Ritual",
-    abbr: "SW5E.RitualAbbr"
-  },
-  freeLearn: {
-    label: "SW5E.FreeLearn",
-    abbr: "SW5E.FreeLearnAbbr"
-  }
+SW5E.powerPointsBonus = {
+  force: ["wis", "cha"],
+  tech: ["int"]
 };
-preLocalize("powerTags", { keys: ["label", "abbr"] });
 
 /* -------------------------------------------- */
 
 /**
- * Schools to which a force power can belong.
- * @enum {string}
+ * The focus that affects this type of powercasting
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
+ * @type {string} progressionType
  */
-SW5E.powerSchoolsForce = {
-  lgt: "SW5E.SchoolLgt",
-  uni: "SW5E.SchoolUni",
-  drk: "SW5E.SchoolDrk"
+SW5E.powerFocus = {
+  force: "focusgenerator",
+  tech: "wristpad"
 };
-preLocalize("powerSchoolsForce");
 
 /* -------------------------------------------- */
-
 /**
- * Schools to which a tech power can belong.
- * @enum {string}
+ * The focus property that adds bonus power points
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
+ * @type {string} progressionType
  */
-SW5E.powerSchoolsTech = {
-  tec: "SW5E.SchoolTec"
+SW5E.powerFocusBonus = {
+  force: "c_Bolstering",
+  tech: "c_Surging"
 };
-preLocalize("powerSchoolsTech");
-
-/* -------------------------------------------- */
-
-/**
- * Schools to which a power can belong.
- * @enum {string}
- */
-SW5E.powerSchools = {
-  ...SW5E.powerSchoolsForce,
-  ...SW5E.powerSchoolsTech,
-  enh: "SW5E.SchoolEnh"
-};
-preLocalize("powerSchools");
 
 /* -------------------------------------------- */
 
@@ -2198,13 +3874,172 @@ SW5E.powerLevels = {
   8: "SW5E.PowerLevel8",
   9: "SW5E.PowerLevel9"
 };
-preLocalize("powerLevels");
+preLocalize( "powerLevels" );
+
+/* -------------------------------------------- */
+
+/**
+ * The available choices for how power damage scaling may be computed.
+ * @enum {string}
+ */
+SW5E.powerScalingModes = {
+  none: "SW5E.PowerNone",
+  atwill: "SW5E.PowerAtWill",
+  level: "SW5E.PowerLevel"
+};
+preLocalize( "powerScalingModes", { sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for power components.
+ *
+ * @typedef {object} PowerComponentConfiguration
+ * @property {string} label         Localized label.
+ * @property {string} abbr          Localized abbreviation.
+ * @property {string} [reference]   Reference to a rule page describing this component.
+ */
+
+/**
+ * Types of components that can be required when casting a power.
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
+ * @enum {PowerComponentConfiguration}
+ */
+SW5E.powerComponents = {
+  vocal: {
+    label: "SW5E.ComponentVerbal",
+    abbr: "SW5E.ComponentVerbalAbbr"
+  },
+  somatic: {
+    label: "SW5E.ComponentSomatic",
+    abbr: "SW5E.ComponentSomaticAbbr"
+  },
+  material: {
+    label: "SW5E.ComponentMaterial",
+    abbr: "SW5E.ComponentMaterialAbbr"
+  }
+};
+preLocalize( "powerComponents", { keys: ["label", "abbr"] } );
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for power tags.
+ *
+ * @typedef {object} PowerTagConfiguration
+ * @property {string} label         Localized label.
+ * @property {string} abbr          Localized abbreviation.
+ * @property {string} icon          Icon representing this tag.
+ * @property {string} [reference]   Reference to a rule page describing this tag.
+ */
+
+/**
+ * Supplementary rules keywords that inform a power's use.
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
+ * @enum {PowerTagConfiguration}
+ */
+SW5E.powerTags = {
+  concentration: {
+    label: "SW5E.Concentration",
+    abbr: "SW5E.ConcentrationAbbr",
+    icon: "systems/sw5e/icons/svg/statuses/concentrating.svg"
+  },
+  ritual: {
+    label: "SW5E.Ritual",
+    abbr: "SW5E.RitualAbbr",
+    icon: "systems/sw5e/icons/svg/items/power.svg"
+  },
+  freeLearn: {
+    label: "SW5E.FreeLearn",
+    abbr: "SW5E.FreeLearnAbbr",
+    icon: "systems/sw5e/icons/svg/items/power.svg"
+  }
+};
+preLocalize( "powerTags", { keys: ["label", "abbr"] } );
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for power schools.
+ *
+ * @typedef {object} PowerSchoolConfiguration
+ * @property {string} label        Localized label.
+ * @property {string} icon         Power school icon.
+ * @property {string} fullKey      Fully written key used as alternate for enrichers.
+ * @property {string} [reference]  Reference to a rule page describing this school.
+ */
+
+/**
+ * Schools to which a force power can belong.
+ * @enum {PowerSchoolConfiguration}
+ */
+SW5E.powerSchoolsForce = {
+  lgt: {
+    label: "SW5E.SchoolLgt",
+    fullKey: "light"
+  },
+  uni: {
+    label: "SW5E.SchoolUni",
+    fullKey: "universal"
+  },
+  drk: {
+    label: "SW5E.SchoolDrk",
+    fullKey: "dark"
+  }
+};
+preLocalize( "powerSchoolsForce", { key: "label", sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * Schools to which a tech power can belong.
+ * @enum {PowerSchoolConfiguration}
+ */
+SW5E.powerSchoolsTech = {
+  tec: {
+    label: "SW5E.SchoolTec",
+    fullKey: "tech"
+  }
+};
+preLocalize( "powerSchoolsTech", { key: "label", sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * Schools to which a power can belong.
+ * @enum {PowerSchoolConfiguration}
+ */
+SW5E.powerSchools = {
+  ...SW5E.powerSchoolsForce,
+  ...SW5E.powerSchoolsTech,
+  enh: {
+    label: "SW5E.SchoolEnh",
+    fullKey: "enhanced"
+  }
+};
+preLocalize( "powerSchools", { key: "label", sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * Types of power lists.
+ * @enum {string}
+ */
+SW5E.powerListTypes = {
+  class: "ITEM.TypeClass",
+  archetype: "ITEM.TypeArchetype",
+  background: "ITEM.TypeBackground",
+  species: "ITEM.TypeSpecies",
+  other: "JOURNALENTRYPAGE.SW5E.PowerList.Type.Other"
+};
+preLocalize( "powerListTypes" );
+
+/* -------------------------------------------- */
 
 // TODO SW5E: This is used for spell scrolls, it maps the level to the compendium ID of the item the spell would be bound to
 // We could use this with, say, holocrons to produce scrolls
 /**
- * Power Scroll Compendium UUIDs
- * Power scroll item ID within the `SW5E.sourcePacks` compendium for each level.
+ * Power scroll item ID within the `SW5E.sourcePacks` compendium or a full UUID for each power level.
  * @enum {string}
 
 SW5E.powerScrollIds = {
@@ -2234,7 +4069,7 @@ SW5E.maneuverTypes = {
   physical: "SW5E.ManeuverTypePhysical",
   mental: "SW5E.ManeuverTypeMental"
 };
-preLocalize("maneuverTypes");
+preLocalize( "maneuverTypes" );
 
 /**
  * Enumerate the denominations of superiority dice which can apply to characters in the SW5E system
@@ -2253,7 +4088,7 @@ SW5E.superiorityProgression = {
   0.5: "SW5E.Half",
   1: "SW5E.Full"
 };
-preLocalize("superiorityProgression");
+preLocalize( "superiorityProgression" );
 
 /**
  * The max number of superiority dice available per superiority level
@@ -2318,7 +4153,7 @@ SW5E.weaponStandardTypes = {
   simpleLW: "SW5E.WeaponSimpleLW",
   simpleVW: "SW5E.WeaponSimpleVW"
 };
-preLocalize("weaponStandardTypes");
+preLocalize( "weaponStandardTypes" );
 
 /**
  * The set of types which a starship weapon item can take.
@@ -2330,7 +4165,7 @@ SW5E.weaponStarshipTypes = {
   "tertiary (starship)": "SW5E.WeaponTertiarySW",
   "quaternary (starship)": "SW5E.WeaponQuaternarySW"
 };
-preLocalize("weaponStarshipTypes");
+preLocalize( "weaponStarshipTypes" );
 
 /**
  * The set of types which a weapon item can take.
@@ -2340,7 +4175,7 @@ SW5E.weaponTypes = {
   ...SW5E.weaponStandardTypes,
   ...SW5E.weaponStarshipTypes
 };
-preLocalize("weaponTypes");
+preLocalize( "weaponTypes" );
 
 /**
  * The set of weapon size flags which can exist on a starship weapon.
@@ -2354,7 +4189,7 @@ SW5E.weaponSizes = {
   huge: "SW5E.SizeHuge",
   grg: "SW5E.SizeGargantuan"
 };
-preLocalize("weaponSizes");
+preLocalize( "weaponSizes" );
 
 /**
  * The set of melee weapon classifications.
@@ -2366,7 +4201,7 @@ SW5E.meleeWeaponClasses = {
   polearm: "SW5E.WeaponClassPolearm",
   trip: "SW5E.WeaponClassTrip"
 };
-preLocalize("meleeWeaponClasses");
+preLocalize( "meleeWeaponClasses" );
 
 /**
  * The set of ranged weapon classifications.
@@ -2378,7 +4213,7 @@ SW5E.rangedWeaponClasses = {
   rifle: "SW5E.WeaponClassRifle",
   sidearm: "SW5E.WeaponClassSidearm"
 };
-preLocalize("rangedWeaponClasses");
+preLocalize( "rangedWeaponClasses" );
 
 /**
  * The set of weapon classifications.
@@ -2388,7 +4223,7 @@ SW5E.weaponClasses = {
   ...SW5E.meleeWeaponClasses,
   ...SW5E.rangedWeaponClasses
 };
-preLocalize("weaponClasses");
+preLocalize( "weaponClasses" );
 
 /**
  * The set of firing arcs for starship weapons.
@@ -2428,13 +4263,14 @@ SW5E.weaponFiringArcs = {
     label: "SW5E.FiringArcBroadside"
   }
 };
-preLocalize("weaponFiringArcs", { keys: ["label"], sort: false });
+preLocalize( "weaponFiringArcs", { keys: ["label"], sort: false } );
 
 /* -------------------------------------------- */
 
 /**
  * A subset of weapon properties that determine the physical characteristics of the weapon.
  * These properties are used for determining physical resistance bypasses.
+ * @deprecated since SW5e 3.0, available until SW5e 3.2
  * @enum {{
  *   name: string,
  *   full: string,
@@ -2445,16 +4281,17 @@ preLocalize("weaponFiringArcs", { keys: ["label"], sort: false });
  */
 SW5E.physicalWeaponProperties = {
   mgc: {
-    name: "SW5E.WeaponPropertyEnh",
-    full: "SW5E.WeaponPropertyEnhFull",
-    desc: "SW5E.WeaponPropertyEnhDesc",
+    name: "SW5E.Item.Property.Enhanced",
+    full: "SW5E.Item.Property.EnhancedFull",
+    desc: "SW5E.Item.Property.EnhancedDesc",
     type: "Boolean"
   }
 };
-preLocalize("physicalWeaponProperties", { keys: ["name", "full", "desc"] });
+preLocalize( "physicalWeaponProperties", { keys: ["name", "full", "desc"] } );
 
 /**
  * The set of weapon property flags which can exist on any weapon.
+ * @deprecated since SW5e 3.0, available until SW5e 3.2
  * @enum {{
  *   name: string,
  *   full: string,
@@ -2466,99 +4303,100 @@ preLocalize("physicalWeaponProperties", { keys: ["name", "full", "desc"] });
 SW5E.weaponCommonProperties = {
   ...SW5E.physicalWeaponProperties,
   aut: {
-    name: "SW5E.WeaponPropertyAut",
-    full: "SW5E.WeaponPropertyAutFull",
-    desc: "SW5E.WeaponPropertyAutDesc",
+    name: "SW5E.Item.Property.Auto",
+    full: "SW5E.Item.Property.AutoFull",
+    desc: "SW5E.Item.Property.AutoDesc",
     type: "Boolean"
   },
   bur: {
-    name: "SW5E.WeaponPropertyBur",
-    full: "SW5E.WeaponPropertyBurFull",
-    desc: "SW5E.WeaponPropertyBurDesc",
+    name: "SW5E.Item.Property.Burst",
+    full: "SW5E.Item.Property.BurstFull",
+    desc: "SW5E.Item.Property.BurstDesc",
     type: "Number",
     min: 2
   },
   dir: {
-    name: "SW5E.WeaponPropertyDir",
-    full: "SW5E.WeaponPropertyDirFull",
-    desc: "SW5E.WeaponPropertyDirDesc",
+    name: "SW5E.Item.Property.Dire",
+    full: "SW5E.Item.Property.DireFull",
+    desc: "SW5E.Item.Property.DireDesc",
     type: "Number",
     min: 0,
     max: 3
   },
   hvy: {
-    name: "SW5E.WeaponPropertyHvy",
-    full: "SW5E.WeaponPropertyHvyFull",
-    desc: "SW5E.WeaponPropertyHvyDesc",
+    name: "SW5E.Item.Property.Heavy",
+    full: "SW5E.Item.Property.HeavyFull",
+    desc: "SW5E.Item.Property.HeavyDesc",
     type: "Boolean"
   },
   hid: {
-    name: "SW5E.WeaponPropertyHid",
-    full: "SW5E.WeaponPropertyHidFull",
-    desc: "SW5E.WeaponPropertyHidDesc",
+    name: "SW5E.Item.Property.Hidden",
+    full: "SW5E.Item.Property.HiddenFull",
+    desc: "SW5E.Item.Property.HiddenDesc",
     type: "Boolean"
   },
   ken: {
-    name: "SW5E.WeaponPropertyKen",
-    full: "SW5E.WeaponPropertyKenFull",
-    desc: "SW5E.WeaponPropertyKenDesc",
+    name: "SW5E.Item.Property.Keen",
+    full: "SW5E.Item.Property.KeenFull",
+    desc: "SW5E.Item.Property.KeenDesc",
     type: "Number",
     min: 0,
     max: 3
   },
   pic: {
-    name: "SW5E.WeaponPropertyPic",
-    full: "SW5E.WeaponPropertyPicFull",
-    desc: "SW5E.WeaponPropertyPicDesc",
+    name: "SW5E.Item.Property.Piercing",
+    full: "SW5E.Item.Property.PiercingFull",
+    desc: "SW5E.Item.Property.PiercingDesc",
     type: "Number",
     min: 0,
     max: 3
   },
   ran: {
-    name: "SW5E.WeaponPropertyRan",
-    full: "SW5E.WeaponPropertyRanFull",
-    desc: "SW5E.WeaponPropertyRanDesc",
+    name: "SW5E.Item.Property.Range",
+    full: "SW5E.Item.Property.RangeFull",
+    desc: "SW5E.Item.Property.RangeDesc",
     type: "Boolean"
   },
   rap: {
-    name: "SW5E.WeaponPropertyRap",
-    full: "SW5E.WeaponPropertyRapFull",
-    desc: "SW5E.WeaponPropertyRapDesc",
+    name: "SW5E.Item.Property.Rapid",
+    full: "SW5E.Item.Property.RapidFull",
+    desc: "SW5E.Item.Property.RapidDesc",
     type: "Number",
     min: 2
   },
   rel: {
-    name: "SW5E.WeaponPropertyRel",
-    full: "SW5E.WeaponPropertyRelFull",
-    desc: "SW5E.WeaponPropertyRelDesc",
+    name: "SW5E.Item.Property.Reload",
+    full: "SW5E.Item.Property.ReloadFull",
+    desc: "SW5E.Item.Property.ReloadDesc",
     type: "Number",
     min: 0
   },
   smr: {
-    name: "SW5E.WeaponPropertySmr",
-    full: "SW5E.WeaponPropertySmrFull",
-    desc: "SW5E.WeaponPropertySmrDesc",
+    name: "SW5E.Item.Property.Smart",
+    full: "SW5E.Item.Property.SmartFull",
+    desc: "SW5E.Item.Property.SmartDesc",
     type: "Boolean"
   },
   spc: {
-    name: "SW5E.WeaponPropertySpc",
-    full: "SW5E.WeaponPropertySpcFull",
-    desc: "SW5E.WeaponPropertySpcDesc",
+    name: "SW5E.Item.Property.Special",
+    full: "SW5E.Item.Property.SpecialFull",
+    desc: "SW5E.Item.Property.SpecialDesc",
     type: "Boolean"
   },
   vic: {
-    name: "SW5E.WeaponPropertyVic",
-    full: "SW5E.WeaponPropertyVicFull",
-    desc: "SW5E.WeaponPropertyVicDesc",
+    name: "SW5E.Item.Property.Vicious",
+    full: "SW5E.Item.Property.ViciousFull",
+    desc: "SW5E.Item.Property.ViciousDesc",
     type: "Number",
     min: 0,
     max: 3
   }
 };
-preLocalize("weaponCommonProperties", { keys: ["name", "full", "desc"] });
+preLocalize( "weaponCommonProperties", { keys: ["name", "full", "desc"] } );
 
 /**
  * The set of weapon property flags which can exist only on a character (non-starship) weapon.
+ * @deprecated since SW5e 3.0, available until SW5e 3.2
  * @enum {{
  *   name: string,
  *   full: string,
@@ -2570,230 +4408,231 @@ preLocalize("weaponCommonProperties", { keys: ["name", "full", "desc"] });
  */
 SW5E.weaponCharacterProperties = {
   bit: {
-    name: "SW5E.WeaponPropertyBit",
-    full: "SW5E.WeaponPropertyBitFull",
-    desc: "SW5E.WeaponPropertyBitDesc",
+    name: "SW5E.Item.Property.Biting",
+    full: "SW5E.Item.Property.BitingFull",
+    desc: "SW5E.Item.Property.BitingDesc",
     type: "Number",
     min: 0
   },
   bri: {
-    name: "SW5E.WeaponPropertyBri",
-    full: "SW5E.WeaponPropertyBriFull",
-    desc: "SW5E.WeaponPropertyBriDesc",
+    name: "SW5E.Item.Property.Bright",
+    full: "SW5E.Item.Property.BrightFull",
+    desc: "SW5E.Item.Property.BrightDesc",
     type: "Number",
     min: 0
   },
   bru: {
-    name: "SW5E.WeaponPropertyBru",
-    full: "SW5E.WeaponPropertyBruFull",
-    desc: "SW5E.WeaponPropertyBruDesc",
+    name: "SW5E.Item.Property.Brutal",
+    full: "SW5E.Item.Property.BrutalFull",
+    desc: "SW5E.Item.Property.BrutalDesc",
     type: "Number",
     min: 0,
     max: 3
   },
   cor: {
-    name: "SW5E.WeaponPropertyCor",
-    full: "SW5E.WeaponPropertyCorFull",
-    desc: "SW5E.WeaponPropertyCorDesc",
+    name: "SW5E.Item.Property.Corruption",
+    full: "SW5E.Item.Property.CorruptionFull",
+    desc: "SW5E.Item.Property.CorruptionDesc",
     type: "Number",
     min: 0
   },
   def: {
-    name: "SW5E.WeaponPropertyDef",
-    full: "SW5E.WeaponPropertyDefFull",
-    desc: "SW5E.WeaponPropertyDefDesc",
+    name: "SW5E.Item.Property.Defensive",
+    full: "SW5E.Item.Property.DefensiveFull",
+    desc: "SW5E.Item.Property.DefensiveDesc",
     type: "Number",
     min: 0,
     max: 3
   },
   dex: {
-    name: "SW5E.WeaponPropertyDex",
-    full: "SW5E.WeaponPropertyDexFull",
-    desc: "SW5E.WeaponPropertyDexDesc",
+    name: "SW5E.Item.Property.DexRq",
+    full: "SW5E.Item.Property.DexRqFull",
+    desc: "SW5E.Item.Property.DexRqDesc",
     type: "Number",
     min: 0
   },
   drm: {
-    name: "SW5E.WeaponPropertyDrm",
-    full: "SW5E.WeaponPropertyDrmFull",
-    desc: "SW5E.WeaponPropertyDrmDesc",
+    name: "SW5E.Item.Property.Disarming",
+    full: "SW5E.Item.Property.DisarmingFull",
+    desc: "SW5E.Item.Property.DisarmingDesc",
     type: "Boolean"
   },
   dgd: {
-    name: "SW5E.WeaponPropertyDgd",
-    full: "SW5E.WeaponPropertyDgdFull",
-    desc: "SW5E.WeaponPropertyDgdDesc",
+    name: "SW5E.Item.Property.Disguised",
+    full: "SW5E.Item.Property.DisguisedFull",
+    desc: "SW5E.Item.Property.DisguisedDesc",
     type: "Boolean"
   },
   dis: {
-    name: "SW5E.WeaponPropertyDis",
-    full: "SW5E.WeaponPropertyDisFull",
-    desc: "SW5E.WeaponPropertyDisDesc",
+    name: "SW5E.Item.Property.Disintegrate",
+    full: "SW5E.Item.Property.DisintegrateFull",
+    desc: "SW5E.Item.Property.DisintegrateDesc",
     type: "Number",
     min: 0
   },
   dpt: {
-    name: "SW5E.WeaponPropertyDpt",
-    full: "SW5E.WeaponPropertyDptFull",
-    desc: "SW5E.WeaponPropertyDptDesc",
+    name: "SW5E.Item.Property.Disruptive",
+    full: "SW5E.Item.Property.DisruptiveFull",
+    desc: "SW5E.Item.Property.DisruptiveDesc",
     type: "Boolean"
   },
   dou: {
-    name: "SW5E.WeaponPropertyDou",
-    full: "SW5E.WeaponPropertyDouFull",
-    desc: "SW5E.WeaponPropertyDouDesc",
+    name: "SW5E.Item.Property.Double",
+    full: "SW5E.Item.Property.DoubleFull",
+    desc: "SW5E.Item.Property.DoubleDesc",
     type: "Boolean"
   },
   fin: {
-    name: "SW5E.WeaponPropertyFin",
-    full: "SW5E.WeaponPropertyFinFull",
-    desc: "SW5E.WeaponPropertyFinDesc",
+    name: "SW5E.Item.Property.Finesse",
+    full: "SW5E.Item.Property.FinesseFull",
+    desc: "SW5E.Item.Property.FinesseDesc",
     type: "Boolean"
   },
   fix: {
-    name: "SW5E.WeaponPropertyFix",
-    full: "SW5E.WeaponPropertyFixFull",
-    desc: "SW5E.WeaponPropertyFixDesc",
+    name: "SW5E.Item.Property.Fixed",
+    full: "SW5E.Item.Property.FixedFull",
+    desc: "SW5E.Item.Property.FixedDesc",
     type: "Boolean"
   },
   ilk: {
-    name: "SW5E.WeaponPropertyIlk",
-    full: "SW5E.WeaponPropertyIlkFull",
-    desc: "SW5E.WeaponPropertyIlkDesc",
+    name: "SW5E.Item.Property.InterlockingWeapon",
+    full: "SW5E.Item.Property.InterlockingWeaponFull",
+    desc: "SW5E.Item.Property.InterlockingWeaponDesc",
     type: "Boolean"
   },
   lgt: {
-    name: "SW5E.WeaponPropertyLgt",
-    full: "SW5E.WeaponPropertyLgtFull",
-    desc: "SW5E.WeaponPropertyLgtDesc",
+    name: "SW5E.Item.Property.Light",
+    full: "SW5E.Item.Property.LightFull",
+    desc: "SW5E.Item.Property.LightDesc",
     type: "Boolean"
   },
   lum: {
-    name: "SW5E.WeaponPropertyLum",
-    full: "SW5E.WeaponPropertyLumFull",
-    desc: "SW5E.WeaponPropertyLumDesc",
+    name: "SW5E.Item.Property.Luminous",
+    full: "SW5E.Item.Property.LuminousFull",
+    desc: "SW5E.Item.Property.LuminousDesc",
     type: "Boolean"
   },
   mig: {
-    name: "SW5E.WeaponPropertyMig",
-    full: "SW5E.WeaponPropertyMigFull",
-    desc: "SW5E.WeaponPropertyMigDesc",
+    name: "SW5E.Item.Property.Mighty",
+    full: "SW5E.Item.Property.MightyFull",
+    desc: "SW5E.Item.Property.MightyDesc",
     type: "Boolean"
   },
   mod: {
-    name: "SW5E.WeaponPropertyMod",
-    full: "SW5E.WeaponPropertyModFull",
-    desc: "SW5E.WeaponPropertyModDesc",
+    name: "SW5E.Item.Property.Modal",
+    full: "SW5E.Item.Property.ModalFull",
+    desc: "SW5E.Item.Property.ModalDesc",
     type: "Boolean"
   },
   neu: {
-    name: "SW5E.WeaponPropertyNeu",
-    full: "SW5E.WeaponPropertyNeuFull",
-    desc: "SW5E.WeaponPropertyNeuDesc",
+    name: "SW5E.Item.Property.Neuralizing",
+    full: "SW5E.Item.Property.NeuralizingFull",
+    desc: "SW5E.Item.Property.NeuralizingDesc",
     type: "Number",
     min: 0
   },
   pen: {
-    name: "SW5E.WeaponPropertyPen",
-    full: "SW5E.WeaponPropertyPenFull",
-    desc: "SW5E.WeaponPropertyPenDesc",
+    name: "SW5E.Item.Property.Penetrating",
+    full: "SW5E.Item.Property.PenetratingFull",
+    desc: "SW5E.Item.Property.PenetratingDesc",
     type: "Number",
     min: 0
   },
   pcl: {
-    name: "SW5E.WeaponPropertyPcl",
-    full: "SW5E.WeaponPropertyPclFull",
-    desc: "SW5E.WeaponPropertyPclDesc",
+    name: "SW5E.Item.Property.PowerCell",
+    full: "SW5E.Item.Property.PowerCellFull",
+    desc: "SW5E.Item.Property.PowerCellDesc",
     type: "Boolean"
   },
   rch: {
-    name: "SW5E.WeaponPropertyRch",
-    full: "SW5E.WeaponPropertyRchFull",
-    desc: "SW5E.WeaponPropertyRchDesc",
+    name: "SW5E.Item.Property.Reach",
+    full: "SW5E.Item.Property.ReachFull",
+    desc: "SW5E.Item.Property.ReachDesc",
     type: "Boolean"
   },
   rck: {
-    name: "SW5E.WeaponPropertyRck",
-    full: "SW5E.WeaponPropertyRckFull",
-    desc: "SW5E.WeaponPropertyRckDesc",
+    name: "SW5E.Item.Property.Reckless",
+    full: "SW5E.Item.Property.RecklessFull",
+    desc: "SW5E.Item.Property.RecklessDesc",
     type: "Number",
     min: 0
   },
   ret: {
-    name: "SW5E.WeaponPropertyRet",
-    full: "SW5E.WeaponPropertyRetFull",
-    desc: "SW5E.WeaponPropertyRetDesc",
+    name: "SW5E.Item.Property.Returning",
+    full: "SW5E.Item.Property.ReturningFull",
+    desc: "SW5E.Item.Property.ReturningDesc",
     type: "Boolean"
   },
   shk: {
-    name: "SW5E.WeaponPropertyShk",
-    full: "SW5E.WeaponPropertyShkFull",
-    desc: "SW5E.WeaponPropertyShkDesc",
+    name: "SW5E.Item.Property.Shocking",
+    full: "SW5E.Item.Property.ShockingFull",
+    desc: "SW5E.Item.Property.ShockingDesc",
     type: "Number",
     min: 0
   },
   sil: {
-    name: "SW5E.WeaponPropertySil",
-    full: "SW5E.WeaponPropertySilFull",
-    desc: "SW5E.WeaponPropertySilDesc",
+    name: "SW5E.Item.Property.SilentWeapon",
+    full: "SW5E.Item.Property.SilentWeaponFull",
+    desc: "SW5E.Item.Property.SilentWeaponDesc",
     type: "Boolean"
   },
   slg: {
-    name: "SW5E.WeaponPropertySlg",
-    full: "SW5E.WeaponPropertySlgFull",
-    desc: "SW5E.WeaponPropertySlgDesc",
+    name: "SW5E.Item.Property.Slug",
+    full: "SW5E.Item.Property.SlugFull",
+    desc: "SW5E.Item.Property.SlugDesc",
     type: "Boolean"
   },
   son: {
-    name: "SW5E.WeaponPropertySon",
-    full: "SW5E.WeaponPropertySonFull",
-    desc: "SW5E.WeaponPropertySonDesc",
+    name: "SW5E.Item.Property.Sonorous",
+    full: "SW5E.Item.Property.SonorousFull",
+    desc: "SW5E.Item.Property.SonorousDesc",
     type: "Number",
     min: 0
   },
   spz: {
-    name: "SW5E.WeaponPropertySpz",
-    full: "SW5E.WeaponPropertySpzFull",
-    desc: "SW5E.WeaponPropertySpzDesc",
+    name: "SW5E.Item.Property.Specialized",
+    full: "SW5E.Item.Property.SpecializedFull",
+    desc: "SW5E.Item.Property.SpecializedDesc",
     type: "Number",
     min: 0
   },
   str: {
-    name: "SW5E.WeaponPropertyStr",
-    full: "SW5E.WeaponPropertyStrFull",
-    desc: "SW5E.WeaponPropertyStrDesc",
+    name: "SW5E.Item.Property.StrRq",
+    full: "SW5E.Item.Property.StrRqFull",
+    desc: "SW5E.Item.Property.StrRqDesc",
     type: "Number",
     min: 0
   },
   swi: {
-    name: "SW5E.WeaponPropertySwi",
-    full: "SW5E.WeaponPropertySwiFull",
-    desc: "SW5E.WeaponPropertySwiDesc",
+    name: "SW5E.Item.Property.Switch",
+    full: "SW5E.Item.Property.SwitchFull",
+    desc: "SW5E.Item.Property.SwitchDesc",
     type: "Boolean"
   },
   thr: {
-    name: "SW5E.WeaponPropertyThr",
-    full: "SW5E.WeaponPropertyThrFull",
-    desc: "SW5E.WeaponPropertyThrDesc",
+    name: "SW5E.Item.Property.Thrown",
+    full: "SW5E.Item.Property.ThrownFull",
+    desc: "SW5E.Item.Property.ThrownDesc",
     type: "Boolean"
   },
   two: {
-    name: "SW5E.WeaponPropertyTwo",
-    full: "SW5E.WeaponPropertyTwoFull",
-    desc: "SW5E.WeaponPropertyTwoDesc",
+    name: "SW5E.Item.Property.TwoHanded",
+    full: "SW5E.Item.Property.TwoHandedFull",
+    desc: "SW5E.Item.Property.TwoHandedDesc",
     type: "Boolean"
   },
   ver: {
-    name: "SW5E.WeaponPropertyVer",
-    full: "SW5E.WeaponPropertyVerFull",
-    desc: "SW5E.WeaponPropertyVerDesc",
+    name: "SW5E.Item.Property.VersatileWeapon",
+    full: "SW5E.Item.Property.VersatileWeaponFull",
+    desc: "SW5E.Item.Property.VersatileWeaponDesc",
     type: "Boolean"
   }
 };
-preLocalize("weaponCharacterProperties", { keys: ["name", "full", "desc"] });
+preLocalize( "weaponCharacterProperties", { keys: ["name", "full", "desc"] } );
 
 /**
  * The set of weapon property flags which can exist only on a starship weapon.
+ * @deprecated since SW5e 3.0, available until SW5e 3.2
  * @enum {{
  *   name: string,
  *   full: string,
@@ -2805,68 +4644,69 @@ preLocalize("weaponCharacterProperties", { keys: ["name", "full", "desc"] });
  */
 SW5E.weaponStarshipProperties = {
   con: {
-    name: "SW5E.WeaponPropertyCon",
-    full: "SW5E.WeaponPropertyConFull",
-    desc: "SW5E.WeaponPropertyConDesc",
+    name: "SW5E.Item.Property.ConRq",
+    full: "SW5E.Item.Property.ConRqFull",
+    desc: "SW5E.Item.Property.ConRqDesc",
     type: "Number",
     min: 0
   },
   exp: {
-    name: "SW5E.WeaponPropertyExp",
-    full: "SW5E.WeaponPropertyExpFull",
-    desc: "SW5E.WeaponPropertyExpDesc",
+    name: "SW5E.Item.Property.Explosive",
+    full: "SW5E.Item.Property.ExplosiveFull",
+    desc: "SW5E.Item.Property.ExplosiveDesc",
     type: "Boolean"
   },
   hom: {
-    name: "SW5E.WeaponPropertyHom",
-    full: "SW5E.WeaponPropertyHomFull",
-    desc: "SW5E.WeaponPropertyHomDesc",
+    name: "SW5E.Item.Property.Homing",
+    full: "SW5E.Item.Property.HomingFull",
+    desc: "SW5E.Item.Property.HomingDesc",
     type: "Boolean"
   },
   ion: {
-    name: "SW5E.WeaponPropertyIon",
-    full: "SW5E.WeaponPropertyIonFull",
-    desc: "SW5E.WeaponPropertyIonDesc",
+    name: "SW5E.Item.Property.Ionizing",
+    full: "SW5E.Item.Property.IonizingFull",
+    desc: "SW5E.Item.Property.IonizingDesc",
     type: "Boolean"
   },
   mlt: {
-    name: "SW5E.WeaponPropertyMlt",
-    full: "SW5E.WeaponPropertyMltFull",
-    desc: "SW5E.WeaponPropertyMltDesc",
+    name: "SW5E.Item.Property.Melt",
+    full: "SW5E.Item.Property.MeltFull",
+    desc: "SW5E.Item.Property.MeltDesc",
     type: "Boolean"
   },
   ovr: {
-    name: "SW5E.WeaponPropertyOvr",
-    full: "SW5E.WeaponPropertyOvrFull",
-    desc: "SW5E.WeaponPropertyOvrDesc",
+    name: "SW5E.Item.Property.Overheat",
+    full: "SW5E.Item.Property.OverheatFull",
+    desc: "SW5E.Item.Property.OverheatDesc",
     type: "Number",
     min: 0
   },
   pow: {
-    name: "SW5E.WeaponPropertyPow",
-    full: "SW5E.WeaponPropertyPowFull",
-    desc: "SW5E.WeaponPropertyPowDesc",
+    name: "SW5E.Item.Property.Power",
+    full: "SW5E.Item.Property.PowerFull",
+    desc: "SW5E.Item.Property.PowerDesc",
     type: "Boolean"
   },
   sat: {
-    name: "SW5E.WeaponPropertySat",
-    full: "SW5E.WeaponPropertySatFull",
-    desc: "SW5E.WeaponPropertySatDesc",
+    name: "SW5E.Item.Property.Saturate",
+    full: "SW5E.Item.Property.SaturateFull",
+    desc: "SW5E.Item.Property.SaturateDesc",
     type: "Boolean"
   },
   zon: {
-    name: "SW5E.WeaponPropertyZon",
-    full: "SW5E.WeaponPropertyZonFull",
-    desc: "SW5E.WeaponPropertyZonDesc",
+    name: "SW5E.Item.Property.Zone",
+    full: "SW5E.Item.Property.ZoneFull",
+    desc: "SW5E.Item.Property.ZoneDesc",
     type: "Boolean"
   }
 };
-preLocalize("weaponStarshipProperties", { keys: ["name", "full", "desc"] });
+preLocalize( "weaponStarshipProperties", { keys: ["name", "full", "desc"] } );
 
 /* -------------------------------------------- */
 
 /**
  * The set of weapon property flags which can exist on a weapon.
+ * @deprecated since SW5e 3.0, available until SW5e 3.2
  * @enum {{
  *   name: string,
  *   full: string,
@@ -2884,6 +4724,7 @@ SW5E.weaponProperties = {
 
 /**
  * The full set of weapon property flags which can exist on a character (non-starship) weapon.
+ * @deprecated since SW5e 3.0, available until SW5e 3.2
  * @enum {{
  *   name: string,
  *   full: string,
@@ -2900,6 +4741,7 @@ SW5E.weaponFullCharacterProperties = {
 
 /**
  * The full set of weapon property flags which can exist on a starship weapon.
+ * @deprecated since SW5e 3.0, available until SW5e 3.2
  * @enum {{
  *   name: string,
  *   full: string,
@@ -2920,6 +4762,7 @@ SW5E.weaponFullStarshipProperties = {
 
 /**
  * The set of armor property flags which can exist on any armor.
+ * @deprecated since SW5e 3.0, available until SW5e 3.2
  * @enum {{
  *   name: string,
  *   full: string,
@@ -2930,202 +4773,202 @@ SW5E.weaponFullStarshipProperties = {
  */
 SW5E.armorProperties = {
   Absorptive: {
-    name: "SW5E.ArmorPropertyAbsorptive",
-    full: "SW5E.ArmorPropertyAbsorptiveFull",
-    desc: "SW5E.ArmorPropertyAbsorptiveDesc",
+    name: "SW5E.Item.Property.Absorptive",
+    full: "SW5E.Item.Property.AbsorptiveFull",
+    desc: "SW5E.Item.Property.AbsorptiveDesc",
     type: "Number",
     min: 0,
     max: 3
   },
   Agile: {
-    name: "SW5E.ArmorPropertyAgile",
-    full: "SW5E.ArmorPropertyAgileFull",
-    desc: "SW5E.ArmorPropertyAgileDesc",
+    name: "SW5E.Item.Property.Agile",
+    full: "SW5E.Item.Property.AgileFull",
+    desc: "SW5E.Item.Property.AgileDesc",
     type: "Number",
     min: 0
   },
   Anchor: {
-    name: "SW5E.ArmorPropertyAnchor",
-    full: "SW5E.ArmorPropertyAnchorFull",
-    desc: "SW5E.ArmorPropertyAnchorDesc",
+    name: "SW5E.Item.Property.Anchor",
+    full: "SW5E.Item.Property.AnchorFull",
+    desc: "SW5E.Item.Property.AnchorDesc",
     type: "Boolean"
   },
   Avoidant: {
-    name: "SW5E.ArmorPropertyAvoidant",
-    full: "SW5E.ArmorPropertyAvoidantFull",
-    desc: "SW5E.ArmorPropertyAvoidantDesc",
+    name: "SW5E.Item.Property.Avoidant",
+    full: "SW5E.Item.Property.AvoidantFull",
+    desc: "SW5E.Item.Property.AvoidantDesc",
     type: "Number",
     min: 0,
     max: 3
   },
   Barbed: {
-    name: "SW5E.ArmorPropertyBarbed",
-    full: "SW5E.ArmorPropertyBarbedFull",
-    desc: "SW5E.ArmorPropertyBarbedDesc",
+    name: "SW5E.Item.Property.Barbed",
+    full: "SW5E.Item.Property.BarbedFull",
+    desc: "SW5E.Item.Property.BarbedDesc",
     type: "Boolean"
   },
   Bulky: {
-    name: "SW5E.ArmorPropertyBulky",
-    full: "SW5E.ArmorPropertyBulkyFull",
-    desc: "SW5E.ArmorPropertyBulkyDesc",
+    name: "SW5E.Item.Property.Bulky",
+    full: "SW5E.Item.Property.BulkyFull",
+    desc: "SW5E.Item.Property.BulkyDesc",
     type: "Boolean"
   },
   Charging: {
-    name: "SW5E.ArmorPropertyCharging",
-    full: "SW5E.ArmorPropertyChargingFull",
-    desc: "SW5E.ArmorPropertyChargingDesc",
+    name: "SW5E.Item.Property.Charging",
+    full: "SW5E.Item.Property.ChargingFull",
+    desc: "SW5E.Item.Property.ChargingDesc",
     type: "Number",
     min: 0,
     max: 3
   },
   Concealing: {
-    name: "SW5E.ArmorPropertyConcealing",
-    full: "SW5E.ArmorPropertyConcealingFull",
-    desc: "SW5E.ArmorPropertyConcealingDesc",
+    name: "SW5E.Item.Property.Concealing",
+    full: "SW5E.Item.Property.ConcealingFull",
+    desc: "SW5E.Item.Property.ConcealingDesc",
     type: "Boolean"
   },
   Cumbersome: {
-    name: "SW5E.ArmorPropertyCumbersome",
-    full: "SW5E.ArmorPropertyCumbersomeFull",
-    desc: "SW5E.ArmorPropertyCumbersomeDesc",
+    name: "SW5E.Item.Property.Cumbersome",
+    full: "SW5E.Item.Property.CumbersomeFull",
+    desc: "SW5E.Item.Property.CumbersomeDesc",
     type: "Boolean"
   },
   Gauntleted: {
-    name: "SW5E.ArmorPropertyGauntleted",
-    full: "SW5E.ArmorPropertyGauntletedFull",
-    desc: "SW5E.ArmorPropertyGauntletedDesc",
+    name: "SW5E.Item.Property.Gauntleted",
+    full: "SW5E.Item.Property.GauntletedFull",
+    desc: "SW5E.Item.Property.GauntletedDesc",
     type: "Boolean"
   },
   Imbalanced: {
-    name: "SW5E.ArmorPropertyImbalanced",
-    full: "SW5E.ArmorPropertyImbalancedFull",
-    desc: "SW5E.ArmorPropertyImbalancedDesc",
+    name: "SW5E.Item.Property.Imbalanced",
+    full: "SW5E.Item.Property.ImbalancedFull",
+    desc: "SW5E.Item.Property.ImbalancedDesc",
     type: "Boolean"
   },
   Impermeable: {
-    name: "SW5E.ArmorPropertyImpermeable",
-    full: "SW5E.ArmorPropertyImpermeableFull",
-    desc: "SW5E.ArmorPropertyImpermeableDesc",
+    name: "SW5E.Item.Property.Impermeable",
+    full: "SW5E.Item.Property.ImpermeableFull",
+    desc: "SW5E.Item.Property.ImpermeableDesc",
     type: "Boolean"
   },
   Insulated: {
-    name: "SW5E.ArmorPropertyInsulated",
-    full: "SW5E.ArmorPropertyInsulatedFull",
-    desc: "SW5E.ArmorPropertyInsulatedDesc",
+    name: "SW5E.Item.Property.Insulated",
+    full: "SW5E.Item.Property.InsulatedFull",
+    desc: "SW5E.Item.Property.InsulatedDesc",
     type: "Number",
     min: 0,
     max: 3
   },
   Interlocking: {
-    name: "SW5E.ArmorPropertyInterlocking",
-    full: "SW5E.ArmorPropertyInterlockingFull",
-    desc: "SW5E.ArmorPropertyInterlockingDesc",
+    name: "SW5E.Item.Property.InterlockingEquipment",
+    full: "SW5E.Item.Property.InterlockingEquipmentFull",
+    desc: "SW5E.Item.Property.InterlockingEquipmentDesc",
     type: "Boolean"
   },
   Lambent: {
-    name: "SW5E.ArmorPropertyLambent",
-    full: "SW5E.ArmorPropertyLambentFull",
-    desc: "SW5E.ArmorPropertyLambentDesc",
+    name: "SW5E.Item.Property.Lambent",
+    full: "SW5E.Item.Property.LambentFull",
+    desc: "SW5E.Item.Property.LambentDesc",
     type: "Boolean"
   },
   Lightweight: {
-    name: "SW5E.ArmorPropertyLightweight",
-    full: "SW5E.ArmorPropertyLightweightFull",
-    desc: "SW5E.ArmorPropertyLightweightDesc",
+    name: "SW5E.Item.Property.Lightweight",
+    full: "SW5E.Item.Property.LightweightFull",
+    desc: "SW5E.Item.Property.LightweightDesc",
     type: "Boolean"
   },
   Magnetic: {
-    name: "SW5E.ArmorPropertyMagnetic",
-    full: "SW5E.ArmorPropertyMagneticFull",
-    desc: "SW5E.ArmorPropertyMagneticDesc",
+    name: "SW5E.Item.Property.Magnetic",
+    full: "SW5E.Item.Property.MagneticFull",
+    desc: "SW5E.Item.Property.MagneticDesc",
     type: "Number"
   },
   Obscured: {
-    name: "SW5E.ArmorPropertyObscured",
-    full: "SW5E.ArmorPropertyObscuredFull",
-    desc: "SW5E.ArmorPropertyObscuredDesc",
+    name: "SW5E.Item.Property.Obscured",
+    full: "SW5E.Item.Property.ObscuredFull",
+    desc: "SW5E.Item.Property.ObscuredDesc",
     type: "Boolean"
   },
   Obtrusive: {
-    name: "SW5E.ArmorPropertyObtrusive",
-    full: "SW5E.ArmorPropertyObtrusiveFull",
-    desc: "SW5E.ArmorPropertyObtrusiveDesc",
+    name: "SW5E.Item.Property.Obtrusive",
+    full: "SW5E.Item.Property.ObtrusiveFull",
+    desc: "SW5E.Item.Property.ObtrusiveDesc",
     type: "Boolean"
   },
   Powered: {
-    name: "SW5E.ArmorPropertyPowered",
-    full: "SW5E.ArmorPropertyPoweredFull",
-    desc: "SW5E.ArmorPropertyPoweredDesc",
+    name: "SW5E.Item.Property.Powered",
+    full: "SW5E.Item.Property.PoweredFull",
+    desc: "SW5E.Item.Property.PoweredDesc",
     type: "Number",
     min: 0
   },
   Reactive: {
-    name: "SW5E.ArmorPropertyReactive",
-    full: "SW5E.ArmorPropertyReactiveFull",
-    desc: "SW5E.ArmorPropertyReactiveDesc",
+    name: "SW5E.Item.Property.Reactive",
+    full: "SW5E.Item.Property.ReactiveFull",
+    desc: "SW5E.Item.Property.ReactiveDesc",
     type: "Number",
     min: 0,
     max: 3
   },
   Regulated: {
-    name: "SW5E.ArmorPropertyRegulated",
-    full: "SW5E.ArmorPropertyRegulatedFull",
-    desc: "SW5E.ArmorPropertyRegulatedDesc",
+    name: "SW5E.Item.Property.Regulated",
+    full: "SW5E.Item.Property.RegulatedFull",
+    desc: "SW5E.Item.Property.RegulatedDesc",
     type: "Boolean"
   },
   Reinforced: {
-    name: "SW5E.ArmorPropertyReinforced",
-    full: "SW5E.ArmorPropertyReinforcedFull",
-    desc: "SW5E.ArmorPropertyReinforcedDesc",
+    name: "SW5E.Item.Property.Reinforced",
+    full: "SW5E.Item.Property.ReinforcedFull",
+    desc: "SW5E.Item.Property.ReinforcedDesc",
     type: "Boolean"
   },
   Responsive: {
-    name: "SW5E.ArmorPropertyResponsive",
-    full: "SW5E.ArmorPropertyResponsiveFull",
-    desc: "SW5E.ArmorPropertyResponsiveDesc",
+    name: "SW5E.Item.Property.Responsive",
+    full: "SW5E.Item.Property.ResponsiveFull",
+    desc: "SW5E.Item.Property.ResponsiveDesc",
     type: "Number",
     min: 0,
     max: 3
   },
   Rigid: {
-    name: "SW5E.ArmorPropertyRigid",
-    full: "SW5E.ArmorPropertyRigidFull",
-    desc: "SW5E.ArmorPropertyRigidDesc",
+    name: "SW5E.Item.Property.Rigid",
+    full: "SW5E.Item.Property.RigidFull",
+    desc: "SW5E.Item.Property.RigidDesc",
     type: "Boolean"
   },
   Silent: {
-    name: "SW5E.ArmorPropertySilent",
-    full: "SW5E.ArmorPropertySilentFull",
-    desc: "SW5E.ArmorPropertySilentDesc",
+    name: "SW5E.Item.Property.SilentEquipment",
+    full: "SW5E.Item.Property.SilentEquipmentFull",
+    desc: "SW5E.Item.Property.SilentEquipmentDesc",
     type: "Boolean"
   },
   Spiked: {
-    name: "SW5E.ArmorPropertySpiked",
-    full: "SW5E.ArmorPropertySpikedFull",
-    desc: "SW5E.ArmorPropertySpikedDesc",
+    name: "SW5E.Item.Property.Spiked",
+    full: "SW5E.Item.Property.SpikedFull",
+    desc: "SW5E.Item.Property.SpikedDesc",
     type: "Boolean"
   },
   Strength: {
-    name: "SW5E.ArmorPropertyStrength",
-    full: "SW5E.ArmorPropertyStrengthFull",
-    desc: "SW5E.ArmorPropertyStrengthDesc",
+    name: "SW5E.Item.Property.Strength",
+    full: "SW5E.Item.Property.StrengthFull",
+    desc: "SW5E.Item.Property.StrengthDesc",
     type: "Number",
     min: 0
   },
   Steadfast: {
-    name: "SW5E.ArmorPropertySteadfast",
-    full: "SW5E.ArmorPropertySteadfastFull",
-    desc: "SW5E.ArmorPropertySteadfastDesc",
+    name: "SW5E.Item.Property.Steadfast",
+    full: "SW5E.Item.Property.SteadfastFull",
+    desc: "SW5E.Item.Property.SteadfastDesc",
     type: "Boolean"
   },
   Versatile: {
-    name: "SW5E.ArmorPropertyVersatile",
-    full: "SW5E.ArmorPropertyVersatileFull",
-    desc: "SW5E.ArmorPropertyVersatileDesc",
+    name: "SW5E.Item.Property.VersatileEquipment",
+    full: "SW5E.Item.Property.VersatileEquipmentFull",
+    desc: "SW5E.Item.Property.VersatileEquipmentDesc",
     type: "Number"
   }
 };
-preLocalize("armorProperties", { keys: ["name", "full", "desc"] });
+preLocalize( "armorProperties", { keys: ["name", "full", "desc"] } );
 
 /**
  * The set of casting property flags which can exist on any casting focus.
@@ -3139,133 +4982,133 @@ preLocalize("armorProperties", { keys: ["name", "full", "desc"] });
  */
 SW5E.castingProperties = {
   c_Absorbing: {
-    name: "SW5E.CastingPropertyAbsorbing",
-    full: "SW5E.CastingPropertyAbsorbingFull",
-    desc: "SW5E.CastingPropertyAbsorbingDesc",
+    name: "SW5E.Item.Property.Absorbing",
+    full: "SW5E.Item.Property.AbsorbingFull",
+    desc: "SW5E.Item.Property.AbsorbingDesc",
     type: "Number"
   },
-  c_Acessing: {
-    name: "SW5E.CastingPropertyAcessing",
-    full: "SW5E.CastingPropertyAcessingFull",
-    desc: "SW5E.CastingPropertyAcessingDesc",
+  c_Accessing: {
+    name: "SW5E.Item.Property.Accessing",
+    full: "SW5E.Item.Property.AccessingFull",
+    desc: "SW5E.Item.Property.AccessingDesc",
     type: "Number"
   },
   c_Amplifying: {
-    name: "SW5E.CastingPropertyAmplifying",
-    full: "SW5E.CastingPropertyAmplifyingFull",
-    desc: "SW5E.CastingPropertyAmplifyingDesc",
+    name: "SW5E.Item.Property.Amplifying",
+    full: "SW5E.Item.Property.AmplifyingFull",
+    desc: "SW5E.Item.Property.AmplifyingDesc",
     type: "Number"
   },
   c_Bolstering: {
-    name: "SW5E.CastingPropertyBolstering",
-    full: "SW5E.CastingPropertyBolsteringFull",
-    desc: "SW5E.CastingPropertyBolsteringDesc",
+    name: "SW5E.Item.Property.Bolstering",
+    full: "SW5E.Item.Property.BolsteringFull",
+    desc: "SW5E.Item.Property.BolsteringDesc",
     type: "Number"
   },
   c_Constitution: {
-    name: "SW5E.CastingPropertyConstitution",
-    full: "SW5E.CastingPropertyConstitutionFull",
-    desc: "SW5E.CastingPropertyConstitutionDesc",
+    name: "SW5E.Item.Property.Constitution",
+    full: "SW5E.Item.Property.ConstitutionFull",
+    desc: "SW5E.Item.Property.ConstitutionDesc",
     type: "Number"
   },
   c_Dispelling: {
-    name: "SW5E.CastingPropertyDispelling",
-    full: "SW5E.CastingPropertyDispellingFull",
-    desc: "SW5E.CastingPropertyDispellingDesc",
+    name: "SW5E.Item.Property.Dispelling",
+    full: "SW5E.Item.Property.DispellingFull",
+    desc: "SW5E.Item.Property.DispellingDesc",
     type: "Number"
   },
   c_Elongating: {
-    name: "SW5E.CastingPropertyElongating",
-    full: "SW5E.CastingPropertyElongatingFull",
-    desc: "SW5E.CastingPropertyElongatingDesc",
+    name: "SW5E.Item.Property.Elongating",
+    full: "SW5E.Item.Property.ElongatingFull",
+    desc: "SW5E.Item.Property.ElongatingDesc",
     type: "Number"
   },
   c_Enlarging: {
-    name: "SW5E.CastingPropertyEnlarging",
-    full: "SW5E.CastingPropertyEnlargingFull",
-    desc: "SW5E.CastingPropertyEnlargingDesc",
+    name: "SW5E.Item.Property.Enlarging",
+    full: "SW5E.Item.Property.EnlargingFull",
+    desc: "SW5E.Item.Property.EnlargingDesc",
     type: "Number"
   },
   c_Expanding: {
-    name: "SW5E.CastingPropertyExpanding",
-    full: "SW5E.CastingPropertyExpandingFull",
-    desc: "SW5E.CastingPropertyExpandingDesc",
+    name: "SW5E.Item.Property.Expanding",
+    full: "SW5E.Item.Property.ExpandingFull",
+    desc: "SW5E.Item.Property.ExpandingDesc",
     type: "Number"
   },
   c_Extending: {
-    name: "SW5E.CastingPropertyExtending",
-    full: "SW5E.CastingPropertyExtendingFull",
-    desc: "SW5E.CastingPropertyExtendingDesc",
+    name: "SW5E.Item.Property.Extending",
+    full: "SW5E.Item.Property.ExtendingFull",
+    desc: "SW5E.Item.Property.ExtendingDesc",
     type: "Number"
   },
   c_Fading: {
-    name: "SW5E.CastingPropertyFading",
-    full: "SW5E.CastingPropertyFadingFull",
-    desc: "SW5E.CastingPropertyFadingDesc",
+    name: "SW5E.Item.Property.Fading",
+    full: "SW5E.Item.Property.FadingFull",
+    desc: "SW5E.Item.Property.FadingDesc",
     type: "Number"
   },
   c_Focused: {
-    name: "SW5E.CastingPropertyFocused",
-    full: "SW5E.CastingPropertyFocusedFull",
-    desc: "SW5E.CastingPropertyFocusedDesc",
+    name: "SW5E.Item.Property.Focused",
+    full: "SW5E.Item.Property.FocusedFull",
+    desc: "SW5E.Item.Property.FocusedDesc",
     type: "Boolean"
   },
   c_Increasing: {
-    name: "SW5E.CastingPropertyIncreasing",
-    full: "SW5E.CastingPropertyIncreasingFull",
-    desc: "SW5E.CastingPropertyIncreasingDesc",
+    name: "SW5E.Item.Property.Increasing",
+    full: "SW5E.Item.Property.IncreasingFull",
+    desc: "SW5E.Item.Property.IncreasingDesc",
     type: "Number"
   },
   c_Inflating: {
-    name: "SW5E.CastingPropertyInflating",
-    full: "SW5E.CastingPropertyInflatingFull",
-    desc: "SW5E.CastingPropertyInflatingDesc",
+    name: "SW5E.Item.Property.Inflating",
+    full: "SW5E.Item.Property.InflatingFull",
+    desc: "SW5E.Item.Property.InflatingDesc",
     type: "Number"
   },
   c_Mitigating: {
-    name: "SW5E.CastingPropertyMitigating",
-    full: "SW5E.CastingPropertyMitigatingFull",
-    desc: "SW5E.CastingPropertyMitigatingDesc",
+    name: "SW5E.Item.Property.Mitigating",
+    full: "SW5E.Item.Property.MitigatingFull",
+    desc: "SW5E.Item.Property.MitigatingDesc",
     type: "Number"
   },
   c_Ranging: {
-    name: "SW5E.CastingPropertyRanging",
-    full: "SW5E.CastingPropertyRangingFull",
-    desc: "SW5E.CastingPropertyRangingDesc",
+    name: "SW5E.Item.Property.Ranging",
+    full: "SW5E.Item.Property.RangingFull",
+    desc: "SW5E.Item.Property.RangingDesc",
     type: "Number"
   },
   c_Rending: {
-    name: "SW5E.CastingPropertyRending",
-    full: "SW5E.CastingPropertyRendingFull",
-    desc: "SW5E.CastingPropertyRendingDesc",
+    name: "SW5E.Item.Property.Rending",
+    full: "SW5E.Item.Property.RendingFull",
+    desc: "SW5E.Item.Property.RendingDesc",
     type: "Number"
   },
   c_Repelling: {
-    name: "SW5E.CastingPropertyRepelling",
-    full: "SW5E.CastingPropertyRepellingFull",
-    desc: "SW5E.CastingPropertyRepellingDesc",
+    name: "SW5E.Item.Property.Repelling",
+    full: "SW5E.Item.Property.RepellingFull",
+    desc: "SW5E.Item.Property.RepellingDesc",
     type: "Boolean"
   },
   c_Storing: {
-    name: "SW5E.CastingPropertyStoring",
-    full: "SW5E.CastingPropertyStoringFull",
-    desc: "SW5E.CastingPropertyStoringDesc",
+    name: "SW5E.Item.Property.Storing",
+    full: "SW5E.Item.Property.StoringFull",
+    desc: "SW5E.Item.Property.StoringDesc",
     type: "Number"
   },
   c_Surging: {
-    name: "SW5E.CastingPropertySurging",
-    full: "SW5E.CastingPropertySurgingFull",
-    desc: "SW5E.CastingPropertySurgingDesc",
+    name: "SW5E.Item.Property.Surging",
+    full: "SW5E.Item.Property.SurgingFull",
+    desc: "SW5E.Item.Property.SurgingDesc",
     type: "Number"
   },
   c_Withering: {
-    name: "SW5E.CastingPropertyWithering",
-    full: "SW5E.CastingPropertyWitheringFull",
-    desc: "SW5E.CastingPropertyWitheringDesc",
+    name: "SW5E.Item.Property.Withering",
+    full: "SW5E.Item.Property.WitheringFull",
+    desc: "SW5E.Item.Property.WitheringDesc",
     type: "Number"
   }
 };
-preLocalize("castingProperties", { keys: ["name", "full", "desc"] });
+preLocalize( "castingProperties", { keys: ["name", "full", "desc"] } );
 
 /**
  * The set of equipment property flags which can exist on an equipment.
@@ -3290,7 +5133,10 @@ SW5E.equipmentProperties = {
  * @enum {string}
  */
 SW5E.sourcePacks = {
-  ITEMS: "sw5e.items"
+  BACKGROUNDS: "sw5e.backgrounds",
+  CLASSES: "sw5e.classes",
+  ITEMS: "sw5e.items",
+  SPECIES: "sw5e.species"
 };
 
 /* -------------------------------------------- */
@@ -3316,7 +5162,7 @@ SW5E.polymorphSettings = {
   keepVision: "SW5E.PolymorphKeepVision",
   keepSelf: "SW5E.PolymorphKeepSelf"
 };
-preLocalize("polymorphSettings", { sort: true });
+preLocalize( "polymorphSettings", { sort: true } );
 
 /**
  * Settings to configure how actors are effects are merged when polymorphing is applied.
@@ -3332,7 +5178,7 @@ SW5E.polymorphEffectSettings = {
   keepClassAE: "SW5E.PolymorphKeepClassAE",
   keepBackgroundAE: "SW5E.PolymorphKeepBackgroundAE"
 };
-preLocalize("polymorphEffectSettings", { sort: true });
+preLocalize( "polymorphEffectSettings", { sort: true } );
 
 /**
  * Settings to configure how actors are merged when preset polymorphing is applied.
@@ -3369,7 +5215,7 @@ SW5E.transformationPresets = {
     }
   }
 };
-preLocalize("transformationPresets", { sort: true, keys: ["label"] });
+preLocalize( "transformationPresets", { sort: true, keys: ["label"] } );
 
 /* -------------------------------------------- */
 
@@ -3422,14 +5268,14 @@ SW5E.proficiencyLevels = {
     sort: "6"
   }
 };
-preLocalize("proficiencyLevels", { key: "label" });
+preLocalize( "proficiencyLevels", { key: "label" } );
 
-SW5E.proficiencyLevelsOrdered = Object.keys(SW5E.proficiencyLevels)
-  .map(p => Number(p))
-  .sort((a, b) => a - b);
+SW5E.proficiencyLevelsOrdered = Object.keys( SW5E.proficiencyLevels )
+  .map( p => Number( p ) )
+  .sort( ( a, b ) => a - b );
 
-SW5E.proficiencyLevelsLabels = Object.fromEntries(Object.entries(SW5E.proficiencyLevels).map(([k, v]) => [k, v.label]));
-preLocalize("proficiencyLevelsLabels");
+SW5E.proficiencyLevelsLabels = Object.fromEntries( Object.entries( SW5E.proficiencyLevels ).map( ( [k, v] ) => [k, v.label] ) );
+preLocalize( "proficiencyLevelsLabels" );
 
 /* -------------------------------------------- */
 
@@ -3441,7 +5287,7 @@ SW5E.weaponAndArmorProficiencyLevels = {
   0: "SW5E.NotProficient",
   1: "SW5E.Proficient"
 };
-preLocalize("weaponAndArmorProficiencyLevels");
+preLocalize( "weaponAndArmorProficiencyLevels" );
 
 /* -------------------------------------------- */
 
@@ -3456,7 +5302,7 @@ SW5E.cover = {
   0.75: "SW5E.CoverThreeQuarters",
   1: "SW5E.CoverTotal"
 };
-preLocalize("cover");
+preLocalize( "cover" );
 
 /* -------------------------------------------- */
 
@@ -3495,33 +5341,262 @@ SW5E.consumableResources = [
 /* -------------------------------------------- */
 
 /**
+ * @typedef {object} _StatusEffectConfig5e
+ * @property {string} icon            Icon used to represent the condition on the token.
+ * @property {string} [reference]     UUID of a journal entry with details on this condition.
+ * @property {string} [special]       Set this condition as a special status effect under this name.
+ * @property {string[]} [riders]      Additional conditions, by id, to apply as part of this condition.
+ */
+
+/**
+ * Configuration data for system status effects.
+ * @typedef {Omit<StatusEffectConfig, "img"> & _StatusEffectConfig5e} StatusEffectConfig5e
+ */
+
+/**
+ * @typedef {object} _ConditionConfiguration
+ * @property {string} label        Localized label for the condition.
+ * @property {boolean} [pseudo]    Is this a pseudo-condition, i.e. one that does not appear in the conditions appendix
+ *                                 but acts as a status effect?
+ * @property {number} [levels]     The number of levels of the condition an actor can obtain.
+ */
+
+/**
+ * Configuration data for system conditions.
+ * @typedef {Omit<StatusEffectConfig5e, "name"> & _ConditionConfiguration} ConditionConfiguration
+ */
+
+/**
  * Conditions that can affect an actor.
- * @enum {string}
+ * @enum {ConditionConfiguration}
  */
 SW5E.conditionTypes = {
-  blinded: "SW5E.ConBlinded",
-  charmed: "SW5E.ConCharmed",
-  corroded: "SW5E.ConCorroded",
-  deafened: "SW5E.ConDeafened",
-  diseased: "SW5E.ConDiseased",
-  exhaustion: "SW5E.ConExhaustion",
-  frightened: "SW5E.ConFrightened",
-  grappled: "SW5E.ConGrappled",
-  ignited: "SW5E.ConIgnited",
-  incapacitated: "SW5E.ConIncapacitated",
-  invisible: "SW5E.ConInvisible",
-  paralyzed: "SW5E.ConParalyzed",
-  petrified: "SW5E.ConPetrified",
-  poisoned: "SW5E.ConPoisoned",
-  prone: "SW5E.ConProne",
-  restrained: "SW5E.ConRestrained",
-  shocked: "SW5E.ConShocked",
-  slowed: "SW5E.ConSlowed",
-  stunned: "SW5E.ConStunned",
-  unconscious: "SW5E.ConUnconscious",
-  weakened: "SW5E.ConWeakened"
+  bleeding: {
+    label: "EFFECT.SW5E.StatusBleeding",
+    icon: "systems/sw5e/icons/svg/statuses/bleeding.svg",
+    pseudo: true
+  },
+  blinded: {
+    label: "SW5E.ConBlinded",
+    icon: "systems/sw5e/icons/svg/statuses/blinded.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.XNjuuloYOfesNbbZ.JournalEntryPage.0000000000000000",
+    special: "BLIND"
+  },
+  charmed: {
+    label: "SW5E.ConCharmed",
+    icon: "systems/sw5e/icons/svg/statuses/charmed.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.xlfP4WiC8dt2mHXv.JournalEntryPage.0000000000000000"
+  },
+  corroded: {
+    label: "SW5E.ConCorroded",
+    icon: "systems/sw5e/icons/svg/statuses/corroded.svg"
+  },
+  deafened: {
+    label: "SW5E.ConDeafened",
+    icon: "systems/sw5e/icons/svg/statuses/deafened.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.y0QASIZcnC8e30lr.JournalEntryPage.0000000000000000"
+  },
+  diseased: {
+    label: "SW5E.ConDiseased",
+    icon: "systems/sw5e/icons/svg/statuses/diseased.svg",
+    pseudo: true
+  },
+  exhaustion: {
+    label: "SW5E.ConExhaustion",
+    icon: "systems/sw5e/icons/svg/statuses/exhaustion.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.EpnBWP4VKrmHICaa.JournalEntryPage.0000000000000000",
+    levels: 6
+  },
+  frightened: {
+    label: "SW5E.ConFrightened",
+    icon: "systems/sw5e/icons/svg/statuses/frightened.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.9P1kVYb1U3WElbKS.JournalEntryPage.0000000000000000"
+  },
+  grappled: {
+    label: "SW5E.ConGrappled",
+    icon: "systems/sw5e/icons/svg/statuses/grappled.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.PQ0MUIr3IzvMXEu5.JournalEntryPage.0000000000000000"
+  },
+  ignited: {
+    label: "SW5E.ConIgnited",
+    icon: "systems/sw5e/icons/svg/statuses/ignited.svg"
+  },
+  incapacitated: {
+    label: "SW5E.ConIncapacitated",
+    icon: "systems/sw5e/icons/svg/statuses/incapacitated.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.COPoH4lzofPVzIiK.JournalEntryPage.0000000000000000"
+  },
+  invisible: {
+    label: "SW5E.ConInvisible",
+    icon: "systems/sw5e/icons/svg/statuses/invisible.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.eQD2ubHBnMNlMIR0.JournalEntryPage.0000000000000000"
+  },
+  paralyzed: {
+    label: "SW5E.ConParalyzed",
+    icon: "systems/sw5e/icons/svg/statuses/paralyzed.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.OZn3BCm8cHO8G3cT.JournalEntryPage.0000000000000000",
+    statuses: ["incapacitated"]
+  },
+  petrified: {
+    label: "SW5E.ConPetrified",
+    icon: "systems/sw5e/icons/svg/statuses/petrified.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.aalhUc7zItsYml45.JournalEntryPage.0000000000000000",
+    statuses: ["incapacitated"]
+  },
+  poisoned: {
+    label: "SW5E.ConPoisoned",
+    icon: "systems/sw5e/icons/svg/statuses/poisoned.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.fGgXKHClM9aTq8t7.JournalEntryPage.0000000000000000"
+  },
+  prone: {
+    label: "SW5E.ConProne",
+    icon: "systems/sw5e/icons/svg/statuses/prone.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.r2bQT0RrvwFIWKGh.JournalEntryPage.0000000000000000"
+  },
+  restrained: {
+    label: "SW5E.ConRestrained",
+    icon: "systems/sw5e/icons/svg/statuses/restrained.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.MtoBPQrFn6PSrNyb.JournalEntryPage.0000000000000000"
+  },
+  shocked: {
+    label: "SW5E.ConShocked",
+    icon: "systems/sw5e/icons/svg/statuses/shocked.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.HBSJojgAGu9Gsctd.JournalEntryPage.0000000000000000"
+  },
+  silenced: {
+    label: "EFFECT.SW5E.StatusSilenced",
+    icon: "systems/sw5e/icons/svg/statuses/silenced.svg",
+    pseudo: true
+  },
+  slowed: {
+    label: "SW5E.ConSlowed",
+    icon: "systems/sw5e/icons/svg/statuses/slowed.svg",
+    levels: 4,
+    speedReduction: [
+      {
+        ft: 0,
+        m: 0
+      },
+      {
+        ft: 15,
+        m: 4.5
+      },
+      {
+        ft: 25,
+        m: 7.5
+      },
+      {
+        ft: 30,
+        m: 9
+      }
+    ]
+  },
+  stunned: {
+    label: "SW5E.ConStunned",
+    icon: "systems/sw5e/icons/svg/statuses/stunned.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.HgKfTdiUxEEQ9Ebp.JournalEntryPage.0000000000000000",
+    statuses: ["incapacitated"]
+  },
+  surprised: {
+    label: "EFFECT.SW5E.StatusSurprised",
+    icon: "systems/sw5e/icons/svg/statuses/surprised.svg",
+    pseudo: true
+  },
+  transformed: {
+    label: "EFFECT.SW5E.StatusTransformed",
+    icon: "systems/sw5e/icons/svg/statuses/transformed.svg",
+    pseudo: true
+  },
+  unconscious: {
+    label: "SW5E.ConUnconscious",
+    icon: "systems/sw5e/icons/svg/statuses/unconscious.svg",
+    reference: "Compendium.sw5e.conditions.JournalEntry.EpQxbma06eaNVsQB.JournalEntryPage.0000000000000000",
+    statuses: ["incapacitated"],
+    riders: ["prone"]
+  },
+  weakened: {
+    label: "SW5E.ConWeakened",
+    icon: "systems/sw5e/icons/svg/statuses/weakened.svg"
+  }
 };
-preLocalize("conditionTypes", { sort: true });
+preLocalize( "conditionTypes", { key: "label", sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * Various effects of conditions and which conditions apply it. Either keys for the conditions,
+ * and with a number appended for a level of a condition.
+ * @enum {object}
+ */
+SW5E.conditionEffects = {
+  noMovement: new Set( ["exhaustion-5", "slowed-4", "grappled", "paralyzed", "petrified", "restrained", "stunned", "unconscious"] ),
+  halfMovement: new Set(),
+  slowedMovement1: new Set( ["slowed-1"] ),
+  slowedMovement2: new Set( ["slowed-2"] ),
+  slowedMovement3: new Set( ["slowed-3"] ),
+  crawl: new Set( ["prone", "exceedingCarryingCapacity"] ),
+  halfHealth: new Set( ["exhaustion-4"] )
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Extra status effects not specified in `conditionTypes`. If the ID matches a core-provided effect, then this
+ * data will be merged into the core data.
+ * @enum {Omit<StatusEffectConfig5e, "img"> & {icon: string}}
+ */
+SW5E.statusEffects = {
+  burrowing: {
+    name: "EFFECT.SW5E.StatusBurrowing",
+    icon: "systems/sw5e/icons/svg/statuses/burrowing.svg",
+    special: "BURROW"
+  },
+  concentrating: {
+    name: "EFFECT.SW5E.StatusConcentrating",
+    icon: "systems/sw5e/icons/svg/statuses/concentrating.svg",
+    special: "CONCENTRATING"
+  },
+  dead: {
+    name: "EFFECT.SW5E.StatusDead",
+    icon: "systems/sw5e/icons/svg/statuses/dead.svg",
+    special: "DEFEATED"
+  },
+  dodging: {
+    name: "EFFECT.SW5E.StatusDodging",
+    icon: "systems/sw5e/icons/svg/statuses/dodging.svg"
+  },
+  ethereal: {
+    name: "EFFECT.SW5E.StatusEthereal",
+    icon: "systems/sw5e/icons/svg/statuses/ethereal.svg"
+  },
+  flying: {
+    name: "EFFECT.SW5E.StatusFlying",
+    icon: "systems/sw5e/icons/svg/statuses/flying.svg",
+    special: "FLY"
+  },
+  hiding: {
+    name: "EFFECT.SW5E.StatusHiding",
+    icon: "systems/sw5e/icons/svg/statuses/hiding.svg"
+  },
+  hovering: {
+    name: "EFFECT.SW5E.StatusHovering",
+    icon: "systems/sw5e/icons/svg/statuses/hovering.svg",
+    special: "HOVER"
+  },
+  marked: {
+    name: "EFFECT.SW5E.StatusMarked",
+    icon: "systems/sw5e/icons/svg/statuses/marked.svg"
+  },
+  sleeping: {
+    name: "EFFECT.SW5E.StatusSleeping",
+    icon: "systems/sw5e/icons/svg/statuses/sleeping.svg",
+    statuses: ["incapacitated", "unconscious"]
+  },
+  stable: {
+    name: "EFFECT.SW5E.StatusStable",
+    icon: "systems/sw5e/icons/svg/statuses/stable.svg"
+  }
+};
 
 /* -------------------------------------------- */
 /*  Languages                                   */
@@ -3648,10 +5723,10 @@ SW5E.languages = {
     children: {}
   }
 };
-preLocalize("languages", { key: "label" });
-preLocalize("languages.standard.children", { sort: true });
-preLocalize("languages.exotic.children", { key: "label", sort: true });
-patchConfig("languages", "label", { since: "SW5e 2.4", until: "SW5e 2.6" });
+preLocalize( "languages", { key: "label" } );
+preLocalize( "languages.standard.children", { key: "label", sort: true } );
+preLocalize( "languages.exotic.children", { key: "label", sort: true } );
+patchConfig( "languages", "label", { since: "SW5e 2.4", until: "SW5e 3.1" } );
 
 /* -------------------------------------------- */
 
@@ -3709,7 +5784,7 @@ SW5E.CR_EXP_LEVELS = [
  * Rank Level Prestige Requirements.
  * @type {number[]}
  */
-SW5E.CHARACTER_RANK_LEVELS = [
+SW5E.CHARACTER_PRESTIGE_RANKS = [
   0, 1, 5, 20, 50, 100, 200, 350, 550, 800, 1100, 1450, 1850, 2300, 2800, 3350, 3950, 4600, 5300, 6050, 6850, 7700,
   8600, 9550, 10550, 11600, 12700, 13850, 15050, 16300, 17600
 ];
@@ -3746,6 +5821,7 @@ SW5E.CHARACTER_RANK_LEVELS = [
  * @property {string} [labelKeyPath]       If config is an enum of objects, where can the label be found?
  * @property {object} [subtypes]           Configuration for traits that take some sort of base item.
  * @property {string} [subtypes.keyPath]   Path to subtype value on base items, should match a category key.
+ *                                         Deprecated in favor of the standardized `system.type.value`.
  * @property {string[]} [subtypes.ids]     Key for base item ID objects within `CONFIG.SW5E`.
  * @property {object} [children]           Mapping of category key to an object defining its children.
  * @property {boolean} [sortCategories]    Whether top-level categories should be sorted.
@@ -3843,7 +5919,7 @@ SW5E.traits = {
   },
   sdi: {
     labels: {
-      title: "SW5E.ShldDamImm",
+      title: "SW5E.ShieldDamImm",
       localization: "SW5E.TraitSDIPlural"
     },
     icon: "systems/sw5e/icons/svg/trait-damage-immunities.svg",
@@ -3851,7 +5927,7 @@ SW5E.traits = {
   },
   sdr: {
     labels: {
-      title: "SW5E.ShldDamRes",
+      title: "SW5E.ShieldDamRes",
       localization: "SW5E.TraitSDRPlural"
     },
     icon: "systems/sw5e/icons/svg/trait-damage-resistances.svg",
@@ -3859,7 +5935,7 @@ SW5E.traits = {
   },
   sdv: {
     labels: {
-      title: "SW5E.ShldDamVuln",
+      title: "SW5E.ShieldDamVuln",
       localization: "SW5E.TraitSDVPlural"
     },
     icon: "systems/sw5e/icons/svg/trait-damage-vulnerabilities.svg",
@@ -3874,7 +5950,7 @@ SW5E.traits = {
     configKey: "conditionTypes"
   }
 };
-preLocalize("traits", { key: "labels.title" });
+preLocalize( "traits", { key: "labels.title" } );
 
 /* -------------------------------------------- */
 
@@ -3901,7 +5977,7 @@ SW5E.traitModes = {
   }
   // TODO SW5E: Mastery proficiencies?
 };
-preLocalize("traitModes", { keys: ["label", "hint"] });
+preLocalize( "traitModes", { keys: ["label", "hint"] } );
 
 /* -------------------------------------------- */
 
@@ -3919,7 +5995,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.itemActionTypesAttack ).map( ( key => [
     `advantage.attack.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Attack.${key}.Name`,
@@ -3927,8 +6003,8 @@ SW5E.midiFlags = {
       midiClone: true,
       type: Boolean
     }
-  ]))),
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
+  ] ) ) ),
+  ...Object.fromEntries( Object.keys( SW5E.abilities ).map( ( key => [
     `advantage.attack.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Attack.${key}.Name`,
@@ -3936,14 +6012,14 @@ SW5E.midiFlags = {
       midiClone: true,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
   "grants.advantage.attack.all": {
     name: "SW5E.CharacterFlags.Grants.Advantage.Attack.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.itemActionTypesAttack ).map( ( key => [
     `grants.advantage.attack.${key}`,
     {
       name: `SW5E.CharacterFlags.Grants.Advantage.Attack.${key}.Name`,
@@ -3951,7 +6027,7 @@ SW5E.midiFlags = {
       midiClone: true,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
 
   // Critical
   // "critical.all": {
@@ -4028,7 +6104,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.abilities ).map( ( key => [
     `advantage.ability.check.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Check.${key}.Name`,
@@ -4036,7 +6112,7 @@ SW5E.midiFlags = {
       midiClone: true,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
 
   // Skill Checks
   "advantage.skill.all": {
@@ -4045,7 +6121,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.allSkills).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.allSkills ).map( ( key => [
     `advantage.skill.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Skill.${key}.Name`,
@@ -4053,7 +6129,7 @@ SW5E.midiFlags = {
       midiClone: true,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
 
   // Tool Checks
   "advantage.tool.all": {
@@ -4062,7 +6138,7 @@ SW5E.midiFlags = {
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.toolTypes).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.toolTypes ).map( ( key => [
     `advantage.tool.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Tool.${key}.Name`,
@@ -4070,7 +6146,7 @@ SW5E.midiFlags = {
       midiClone: false,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
 
   // Saving Throws
   "advantage.ability.save.all": {
@@ -4079,7 +6155,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.abilities ).map( ( key => [
     `advantage.ability.save.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.${key}.Name`,
@@ -4087,14 +6163,14 @@ SW5E.midiFlags = {
       midiClone: true,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
   "advantage.ability.save.dmg.all": {
     name: "SW5E.CharacterFlags.Advantage.Ability.Save.Dmg.all.Name",
     section: "midiFlags",
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.damageTypes).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.damageTypes ).map( ( key => [
     `advantage.ability.save.dmg.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.Dmg.${key}.Name`,
@@ -4102,14 +6178,14 @@ SW5E.midiFlags = {
       midiClone: false,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
   "advantage.ability.save.tech.all": {
     name: "SW5E.CharacterFlags.Advantage.Ability.Save.Tech.all.Name",
     section: "midiFlags",
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.abilities ).map( ( key => [
     `advantage.ability.save.tech.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.Tech.${key}.Name`,
@@ -4117,14 +6193,14 @@ SW5E.midiFlags = {
       midiClone: false,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
   "advantage.ability.save.force.all": {
     name: "SW5E.CharacterFlags.Advantage.Ability.Save.Force.all.Name",
     section: "midiFlags",
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
+  ...Object.fromEntries( Object.keys( SW5E.abilities ).map( ( key => [
     `advantage.ability.save.force.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.Force.${key}.Name`,
@@ -4132,7 +6208,7 @@ SW5E.midiFlags = {
       midiClone: false,
       type: Boolean
     }
-  ]))),
+  ] ) ) ),
   "advantage.deathSave": {
     name: "SW5E.CharacterFlags.Advantage.DeathSave.Name",
     section: "midiFlags",
@@ -4140,24 +6216,24 @@ SW5E.midiFlags = {
     type: Boolean
   }
 };
-for (const [id, flag] of Object.entries(SW5E.midiFlags)) {
-  if (!(id.startsWith("advantage") || id.startsWith("grants.advantage"))) continue;
-  SW5E.midiFlags[id.replace("advantage", "disadvantage")] = {
-    name: flag.name.replace("Advantage", "Disadvantage"),
+for ( const [id, flag] of Object.entries( SW5E.midiFlags ) ) {
+  if ( !( id.startsWith( "advantage" ) || id.startsWith( "grants.advantage" ) ) ) continue;
+  SW5E.midiFlags[id.replace( "advantage", "disadvantage" )] = {
+    name: flag.name.replace( "Advantage", "Disadvantage" ),
     section: flag.section,
     midiClone: flag.midiClone,
     type: flag.type
   };
 }
-for (const [id, flag] of Object.entries(SW5E.midiFlags)) {
+for ( const [id, flag] of Object.entries( SW5E.midiFlags ) ) {
   SW5E.midiFlags[`situational.${id}`] = {
-    name: flag.name.replace("CharacterFlags", "CharacterFlags.Situational"),
+    name: flag.name.replace( "CharacterFlags", "CharacterFlags.Situational" ),
     section: flag.section,
     midiClone: false,
     type: flag.type
   };
 }
-preLocalize("midiFlags", { keys: ["name", "condition", "section"] });
+preLocalize( "midiFlags", { keys: ["name", "condition", "section"] } );
 
 /**
  * Special character flags.
@@ -4337,31 +6413,347 @@ SW5E.characterFlags = {
     placeholder: 1
   }
 };
-preLocalize("characterFlags", { keys: ["name", "hint", "condition", "section"] });
+preLocalize( "characterFlags", { keys: ["name", "hint", "condition", "section"] } );
 
 /**
  * Flags allowed on actors. Any flags not in the list may be deleted during a migration.
  * @type {string[]}
  */
-SW5E.allowedActorFlags = ["isPolymorphed", "originalActor", "dataVersion"].concat(Object.keys(SW5E.characterFlags));
+SW5E.allowedActorFlags = ["isPolymorphed", "originalActor", "dataVersion"].concat( Object.keys( SW5E.characterFlags ) );
 
 /* -------------------------------------------- */
 
 /**
+ * Different types of actor structures that groups can represent.
+ * @enum {object}
+ */
+SW5E.groupTypes = {
+  party: "SW5E.Group.TypeParty",
+  encounter: "SW5E.Group.TypeEncounter"
+};
+preLocalize( "groupTypes" );
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration information for advancement types.
+ *
+ * @typedef {object} AdvancementTypeConfiguration
+ * @property {typeof Advancement} documentClass  The advancement's document class.
+ * @property {Set<string>} validItemTypes        What item types this advancement can be used with.
+ * @property {boolean} [hidden]                  Should this advancement type be hidden in the selection dialog?
+ */
+
+const _ALL_ITEM_TYPES = ["background", "class", "species", "archetype", "deployment", "starshipsize"];
+
+/**
  * Advancement types that can be added to items.
- * @enum {*}
+ * @enum {AdvancementTypeConfiguration}
  */
 SW5E.advancementTypes = {
-  AbilityScoreImprovement: advancement.AbilityScoreImprovementAdvancement,
-  HitPoints: advancement.HitPointsAdvancement,
-  HullPoints: advancement.HullPointsAdvancement,
-  ShieldPoints: advancement.ShieldPointsAdvancement,
-  ItemChoice: advancement.ItemChoiceAdvancement,
-  ItemGrant: advancement.ItemGrantAdvancement,
-  ScaleValue: advancement.ScaleValueAdvancement,
-  Size: advancement.SizeAdvancement,
-  Trait: advancement.TraitAdvancement
+  AbilityScoreImprovement: {
+    documentClass: advancement.AbilityScoreImprovementAdvancement,
+    validItemTypes: new Set( ["background", "class", "species", "starshipsize"] )
+  },
+  HitPoints: {
+    documentClass: advancement.HitPointsAdvancement,
+    validItemTypes: new Set( ["class"] )
+  },
+  HullPoints: {
+    documentClass: advancement.HullPointsAdvancement,
+    validItemTypes: new Set( ["starshipsize"] )
+  },
+  ShieldPoints: {
+    documentClass: advancement.ShieldPointsAdvancement,
+    validItemTypes: new Set( ["starshipsize"] )
+  },
+  ItemChoice: {
+    documentClass: advancement.ItemChoiceAdvancement,
+    validItemTypes: new Set( _ALL_ITEM_TYPES )
+  },
+  ItemGrant: {
+    documentClass: advancement.ItemGrantAdvancement,
+    validItemTypes: new Set( _ALL_ITEM_TYPES )
+  },
+  ScaleValue: {
+    documentClass: advancement.ScaleValueAdvancement,
+    validItemTypes: new Set( _ALL_ITEM_TYPES )
+  },
+  Size: {
+    documentClass: advancement.SizeAdvancement,
+    validItemTypes: new Set( ["species", "starshipsize"] )
+  },
+  Trait: {
+    documentClass: advancement.TraitAdvancement,
+    validItemTypes: new Set( _ALL_ITEM_TYPES )
+  }
 };
+
+/* -------------------------------------------- */
+
+/**
+ * Default artwork configuration for each Document type and sub-type.
+ * @type {Record<string, Record<string, string>>}
+ */
+SW5E.defaultArtwork = {
+  Item: {
+    background: "systems/sw5e/icons/svg/items/background.svg",
+    class: "systems/sw5e/icons/svg/items/class.svg",
+    consumable: "systems/sw5e/icons/svg/items/consumable.svg",
+    container: "systems/sw5e/icons/svg/items/container.svg",
+    equipment: "systems/sw5e/icons/svg/items/equipment.svg",
+    feat: "systems/sw5e/icons/svg/items/feature.svg",
+    loot: "systems/sw5e/icons/svg/items/loot.svg",
+    species: "systems/sw5e/icons/svg/items/species.svg",
+    power: "systems/sw5e/icons/svg/items/power.svg",
+    archetype: "systems/sw5e/icons/svg/items/archetype.svg",
+    tool: "systems/sw5e/icons/svg/items/tool.svg",
+    weapon: "systems/sw5e/icons/svg/items/weapon.svg"
+  }
+};
+
+/* -------------------------------------------- */
+/*  Rules                                       */
+/* -------------------------------------------- */
+
+/**
+ * Configuration information for rule types.
+ *
+ * @typedef {object} RuleTypeConfiguration
+ * @property {string} label         Localized label for the rule type.
+ * @property {string} [references]  Key path for a configuration object that contains reference data.
+ */
+
+/**
+ * Types of rules that can be used in rule pages and the &Reference enricher.
+ * @enum {RuleTypeConfiguration}
+ */
+SW5E.ruleTypes = {
+  rule: {
+    label: "SW5E.Rule.Type.Rule",
+    references: "rules"
+  },
+  ability: {
+    label: "SW5E.Ability",
+    references: "enrichmentLookup.abilities"
+  },
+  areaOfEffect: {
+    label: "SW5E.AreaOfEffect",
+    references: "areaTargetTypes"
+  },
+  condition: {
+    label: "SW5E.Rule.Type.Condition",
+    references: "conditionTypes"
+  },
+  creatureType: {
+    label: "SW5E.CreatureType",
+    references: "creatureTypes"
+  },
+  damage: {
+    label: "SW5E.DamageType",
+    references: "damageTypes"
+  },
+  skill: {
+    label: "SW5E.Skill",
+    references: "enrichmentLookup.skills"
+  },
+  powerComponent: {
+    label: "SW5E.PowerComponent",
+    references: "itemProperties"
+  },
+  powerSchool: {
+    label: "SW5E.PowerSchool",
+    references: "enrichmentLookup.powerSchools"
+  },
+  powerTag: {
+    label: "SW5E.PowerTag",
+    references: "itemProperties"
+  }
+};
+preLocalize( "ruleTypes", { key: "label" } );
+
+/* -------------------------------------------- */
+
+/**
+ * List of rules that can be referenced from enrichers.
+ * @enum {string}
+ */
+SW5E.rules = {
+  inspiration: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.nkEPI89CiQnOaLYh",
+  carryingcapacity: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.1PnjDBKbQJIVyc2t",
+  push: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Hni8DjqLzoqsVjb6",
+  lift: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Hni8DjqLzoqsVjb6",
+  drag: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Hni8DjqLzoqsVjb6",
+  encumbrance: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.JwqYf9qb6gJAWZKs",
+  hiding: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.plHuoNdS0j3umPNS",
+  passiveperception: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.988C2hQNyvqkdbND",
+  time: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.eihqNjwpZ3HM4IqY",
+  speed: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.HhqeIiSj8sE1v1qZ",
+  travelpace: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.eFAISahBloR2X8MX",
+  forcedmarch: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.uQWQpRKQ1kWhuvjZ",
+  difficultterrainpace: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hFW5BR2yHHwwgurD",
+  climbing: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.KxUXbMrUCIAhv4AF",
+  swimming: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.KxUXbMrUCIAhv4AF",
+  longjump: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.1U0myNrOvIVBUdJV",
+  highjump: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.raPwIkqKSv60ELmy",
+  falling: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.kREHL5pgNUOhay9f",
+  suffocating: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.BIlnr0xYhqt4TGsi",
+  vision: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.O6hamUbI9kVASN8b",
+  light: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.O6hamUbI9kVASN8b",
+  lightlyobscured: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.MAxtfJyvJV7EpzWN",
+  heavilyobscured: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.wPFjfRruboxhtL4b",
+  brightlight: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.RnMokVPyKGbbL8vi",
+  dimlight: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.n1Ocpbyhr6HhgbCG",
+  darkness: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4dfREIDjG5N4fvxd",
+  blindsight: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.sacjsfm9ZXnw4Tqc",
+  darkvision: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ldmA1PbnEGVkmE11",
+  tremorsense: "Compendium.sw5e.rules.JournalEntry.eVtpEGXjA2tamEIJ.JournalEntryPage.8AIlZ95v54mL531X",
+  truesight: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.kNa8rJFbtaTM3Rmk",
+  food: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.jayo7XVgGnRCpTW0",
+  water: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.iIEI87J7lr2sqtb5",
+  resting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.dpHJXYLigIdEseIb",
+  shortrest: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.1s2swI3UsjUUgbt2",
+  longrest: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6cLtjbHn4KV2R7G9",
+  surprise: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.YmOt8HderKveA19K",
+  initiative: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.RcwElV4GAcVXKWxo",
+  bonusaction: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.2fu2CXsDg8gQmGGw",
+  reaction: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.2VqLyxMyMxgXe2wC",
+  difficultterrain: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6tqz947qO8vPyxvD",
+  beingprone: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.bV8akkBdVUUG21CO",
+  droppingprone: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hwTLpAtSS5OqQsI1",
+  standingup: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hwTLpAtSS5OqQsI1",
+  crawling: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.VWG9qe8PUNtS28Pw",
+  movingaroundothercreatures: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9ZWCknaXCOdhyOrX",
+  flying: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.0B1fxfmw0a48tPsc",
+  size: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.HWHRQVBVG7K0RVVW",
+  space: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.WIA5bs3P45PmO3OS",
+  squeezing: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.wKtOwagDAiNfVoPS",
+  attack: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.u4GQCzoBig20yRLj",
+  castapower: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.GLwN36E4WXn3Cp4Z",
+  dash: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Jqn0MEvq6fduYNo6",
+  disengage: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ZOPRfI48NyjoloEF",
+  dodge: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.V1BkwK2HQrtEfa4d",
+  help: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.KnrD3u2AnQfmtOWj",
+  hide: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.BXlHhE4ZoiFwiXLK",
+  ready: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.8xJzZVelP2AmQGfU",
+  search: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.5cn1ZTLgQq95vfZx",
+  useanobject: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ljqhJx8Qxu2ivo69",
+  attackrolls: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.5wkqEqhbBD5kDeE7",
+  unseenattackers: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.5ZJNwEPlsGurecg5",
+  unseentargets: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.5ZJNwEPlsGurecg5",
+  rangedattacks: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.S9aclVOCbusLE3kC",
+  range: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.HjKXuB8ndjcqOds7",
+  rangedattacksinclosecombat: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.qEZvxW0NM7ixSQP5",
+  meleeattacks: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.GTk6emvzNxl8Oosl",
+  reach: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hgZ5ZN4B3y7tmFlt",
+  unarmedstrike: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.xJjJ4lhymAYXAOvO",
+  opportunityattacks: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.zeU0NyCyP10lkLg3",
+  twoweaponfighting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.FQTS08uH74A6psL2",
+  grappling: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Sl4bniSPSbyrakM2",
+  escapingagrapple: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.2TZKy9YbMN3ZY3h8",
+  movingagrappledcreature: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.x5bUdhAD7u5Bt2rg",
+  shoving: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hrdqMF8hRXJdNzJx",
+  cover: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.W7f7PcRubNUMIq2S",
+  halfcover: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hv0J61IAfofuhy3Q",
+  threequarterscover: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.zAMStUjUrPV10dFm",
+  totalcover: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.BKUAxXuPEzxiEOeL",
+  hitpoints: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.PFbzoMBviI2DD9QP",
+  damagerolls: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hd26AqKrCqtcQBWy",
+  criticalhits: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.gFL1VhSEljL1zvje",
+  damagetypes: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.jVOgf7DNEhkzYNIe",
+  damageresistance: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.v0WE18nT5SJO8Ft7",
+  damagevulnerability: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.v0WE18nT5SJO8Ft7",
+  healing: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ICketFqbFslqKiX9",
+  instantdeath: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.8BG05mA0mEzwmrHU",
+  deathsavingthrows: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.JL8LePEJQYFdNuLL",
+  deathsaves: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.JL8LePEJQYFdNuLL",
+  stabilizing: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.r1CgZXLcqFop6Dlx",
+  knockingacreatureout: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.uEwjgKGuCRTNADYv",
+  temporaryhitpoints: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.AW6HpJZHqxfESXaq",
+  temphp: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.AW6HpJZHqxfESXaq",
+  mounting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.MFpyvUIdcBpC9kIE",
+  dismounting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.MFpyvUIdcBpC9kIE",
+  controllingamount: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.khmR2xFk1NxoQUgZ",
+  underwatercombat: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6zVOeLyq4iMnrQT4",
+  powerlevel: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.A6k5fS0kFqPXTW3v",
+  knownpowers: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.oezg742GlxmEwT85",
+  preparedpowers: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.oezg742GlxmEwT85",
+  powerslots: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Su6wbb0O9UN4ZDIH",
+  castingatahigherlevel: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4H9SLM95OCLfFizz",
+  upcasting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4H9SLM95OCLfFizz",
+  castinginarmor: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.z4A8vHSK2pb8YA9X",
+  atwills: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.jZD5mCTnMPJ9jW67",
+  rituals: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.FjWqT5iyJ89kohdA",
+  castingtime: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.zRVW8Tvyk6BECjZD",
+  bonusactioncasting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.RP1WL9FXI3aknlxZ",
+  reactioncasting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.t62lCfinwU9H7Lji",
+  longercastingtimes: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.gOAIRFCyPUx42axn",
+  powerrange: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.RBYPyE5z5hAZSbH6",
+  components: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.xeHthAF9lxfn2tII",
+  verbal: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6UXTNWMCQ0nSlwwx",
+  powerduration: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9mp0SRsptjvJcq1e",
+  instantaneous: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.kdlgZOpRMB6bGCod",
+  concentrating: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ow58p27ctAnr4VPH",
+  powertargets: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.G80AIQr04sxdVpw4",
+  areaofeffect: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.wvtCeGHgnUmh0cuj",
+  pointoforigin: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.8HxbRceQQUAhyWRt",
+  powersavingthrows: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.8DajfNll90eeKcmB",
+  powerattackrolls: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.qAFzmGZKhVvAEUF3",
+  combiningmagicaleffects: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.TMIN963hG773yZzO",
+  schoolsofmagic: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.TeF6CKMDRpYpsLd4",
+  detectingtraps: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.DZ7AhdQ94xggG4bj",
+  disablingtraps: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.DZ7AhdQ94xggG4bj",
+  curingmadness: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6Icem7G3CICdNOkM",
+  damagethreshold: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9LJZhqvCburpags3",
+  poisontypes: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.I6OMMWUaYCWR9xip",
+  contactpoison: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.kXnCEqqGUWRZeZDj",
+  ingestedpoison: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Y0vsJYSWeQcFpJ27",
+  inhaledpoison: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.KUyN4eK1xTBzXsjP",
+  injurypoison: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.LUL48OUq6SJeMGc7",
+  attunement: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.UQ65OwIyGK65eiOK",
+  wearingitems: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.iPB8mGKuQx3X0Z2J",
+  wieldingitems: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.iPB8mGKuQx3X0Z2J",
+  multipleitemsofthesamekind: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.rLJdvz4Mde8GkEYQ",
+  paireditems: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.rd9pCH8yFraSGN34",
+  commandword: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.HiXixxLYesv6Ff3t",
+  consumables: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.UEPAcZFzQ5x196zE",
+  itempowers: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.DABoaeeF6w31UCsj",
+  charges: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.NLRXcgrpRCfsA5mO",
+  powerscroll: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.gi8IKhtOlBVhMJrN",
+  creaturetags: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9jV1fFF163dr68vd",
+  telepathy: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.geTidcFIYWuUvD2L",
+  legendaryactions: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.C1awOyZh78pq1xmY",
+  lairactions: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.07PtjpMxiRIhkBEp",
+  regionaleffects: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.uj8W27NKFyzygPUd",
+  disease: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.oNQWvyRZkTOJ8PBq"
+};
+
+/* -------------------------------------------- */
+/*  Token Rings Framework                       */
+/* -------------------------------------------- */
+
+/**
+ * Token Rings configuration data
+ *
+ * @typedef {object} TokenRingsConfiguration
+ * @property {Record<string, string>} effects        Localized names of the configurable ring effects.
+ * @property {string} spriteSheet                    The sprite sheet json source.
+ * @property {typeof BaseSamplerShader} shaderClass  The shader class definition associated with the token ring.
+ */
+
+/**
+ * @type {TokenRingsConfiguration}
+ */
+SW5E.tokenRings = {
+  effects: {
+    RING_PULSE: "SW5E.TokenRings.Effects.RingPulse",
+    RING_GRADIENT: "SW5E.TokenRings.Effects.RingGradient",
+    BKG_WAVE: "SW5E.TokenRings.Effects.BackgroundWave"
+  },
+  spriteSheet: "systems/sw5e/tokens/composite/token-rings.json",
+  shaderClass: null
+};
+preLocalize( "tokenRings.effects" );
 
 /* -------------------------------------------- */
 /*  Sources                                     */
@@ -4378,28 +6770,48 @@ SW5E.sourceBooks = {
   WH: "SOURCE.BOOK.WH",
   EC: "SOURCE.BOOK.EC"
 };
-preLocalize("sourceBooks", { sort: true });
+preLocalize( "sourceBooks", { sort: true } );
+
+/* -------------------------------------------- */
+/*  Themes                                      */
+/* -------------------------------------------- */
+
+/**
+ * Themes that can be set for the system or on sheets.
+ * @enum {string}
+ */
+SW5E.themes = {
+  light: "SHEETS.SW5E.THEME.Light",
+  dark: "SHEETS.SW5E.THEME.Dark"
+};
+preLocalize( "themes" );
 
 /* -------------------------------------------- */
 /*  Enrichment                                  */
 /* -------------------------------------------- */
 
 let _enrichmentLookup;
-Object.defineProperty(SW5E, "enrichmentLookup", {
+Object.defineProperty( SW5E, "enrichmentLookup", {
   get() {
+    const slugify = value => value?.slugify().replaceAll( "-", "" );
     if ( !_enrichmentLookup ) {
       _enrichmentLookup = {
-        abilities: foundry.utils.deepClone(SW5E.abilities),
-        skills: foundry.utils.deepClone(SW5E.skills),
-        tools: foundry.utils.deepClone(SW5E.toolIds)
+        abilities: foundry.utils.deepClone( SW5E.abilities ),
+        skills: foundry.utils.deepClone( SW5E.skills ),
+        powerSchools: foundry.utils.deepClone( SW5E.powerSchools ),
+        tools: foundry.utils.deepClone( SW5E.toolIds )
       };
-      Object.entries(SW5E.abilities).forEach(([k, a]) => _enrichmentLookup.abilities[a.fullKey] = { ...a, key: k });
-      Object.entries(SW5E.skills).forEach(([k, s]) => _enrichmentLookup.skills[s.fullKey] = { ...s, key: k });
+      const addFullKeys = key => Object.entries( SW5E[key] ).forEach( ( [k, v] ) =>
+        _enrichmentLookup[key][slugify( v.fullKey )] = { ...v, key: k }
+      );
+      addFullKeys( "abilities" );
+      addFullKeys( "skills" );
+      addFullKeys( "powerSchools" );
     }
     return _enrichmentLookup;
   },
   enumerable: true
-});
+} );
 
 /* -------------------------------------------- */
 
@@ -4410,20 +6822,20 @@ Object.defineProperty(SW5E, "enrichmentLookup", {
  * @param {string} fallbackKey  Key within the new config object from which to get the fallback value.
  * @param {object} [options]    Additional options passed through to logCompatibilityWarning.
  */
-function patchConfig(key, fallbackKey, options) {
+function patchConfig( key, fallbackKey, options ) {
   /** @override */
   function toString() {
     const message =
       `The value of CONFIG.SW5E.${key} has been changed to an object.`
       + ` The former value can be acccessed from .${fallbackKey}.`;
-    foundry.utils.logCompatibilityWarning(message, options);
+    foundry.utils.logCompatibilityWarning( message, options );
     return this[fallbackKey];
   }
 
-  Object.values(SW5E[key]).forEach(o => {
-    if ( foundry.utils.getType(o) !== "Object" ) return;
-    o.toString = toString;
-  });
+  Object.values( SW5E[key] ).forEach( o => {
+    if ( foundry.utils.getType( o ) !== "Object" ) return;
+    Object.defineProperty( o, "toString", { value: toString } );
+  } );
 }
 
 /* -------------------------------------------- */

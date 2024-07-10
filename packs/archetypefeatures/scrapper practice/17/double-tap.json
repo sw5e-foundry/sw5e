@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Scrapper Practice:</strong> 17th level</em></p>\n<p>You can deal Sneak Attack damage twice per turn, but you can't deal more than your total Sneak Attack dice to a single target per turn.</p>\n<h1>Shadow Killer Practice</h1>\n<p>Those operatives who choose the Shadow Killer Practice are master assassins, the spiritual practitioners who combine their finely honed skills with mystical aid to vanish from sight and neutralize their targets with poison-coated weapons.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Scrapper Practice) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -84,18 +89,27 @@
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493958188,
-    "modifiedTime": 1699591595228,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368715945,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!t55c7OyiSdmENJIM"
 }

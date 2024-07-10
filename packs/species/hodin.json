@@ -1,8 +1,217 @@
 {
-  "_id": "x97YOPdsDzT93Uiy",
   "name": "Ho'din",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2801331+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-hodin"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/HoDin.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Ho'dins are tall humanoids with multi-colored skin, naturally webbed and suction cup-tipped fingers and toes, and temperature-sensing red-violet \"snake hair\". Ho'dins are, on average, over nine feet tall—nearly a full head taller than wookiees. Renowned throughout the galaxy as botanists and healers, the ho'din claim an ancestry derived from the plants of their home planet, Moltok—in fact, \"ho'din\" translates as \"walking flower\" in Galactic Basic. They are, in fact, reptilian, as their natural climbing skills and cold-bloodedness seem to indicate, and boast a second heart to enhance their survivability. Their \"snake hair\" is temperature-sensitive, allowing ho'din to sense changes in ambient temperature.</p>\n<h2>Society and Culture</h2>\n<p>Ho'dins are known to be self-conscious and vain, particularly when it comes to their looks and their work, and do not take criticism or insults well. Their religion, Dinante Fli'R, is centered around worshipping and communing with nature, a trait that has sent many ho'din out into the galaxy to rejuvenate damaged planets. The ho'din have an aversion to technology and avoid surface mining and manufacturing, opting instead to dwell in trees. They have learned to make incredibly advanced pharmaceuticals and gardens using their botanical skills to concoct natural medicines, some of which have cured plagues on distant worlds. The title of \"Master Gardener\" is one of high esteem and great respect in ho'din society.</p>\n<h2>Names</h2>\n<p>Ho'din names are quite diverse. Some names look complicated and difficult to pronounce, while others are quite simple. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Baji, Gra'tau, Iwo, Oojoh, Thrung, Vala</p>\n<p><strong>Female Names.</strong> Chela, Kutu, Lohje, Par'tah, Sirta, Tal</p>\n<p><strong>Surnames.</strong> Alewune, Kulko, Oolos, Plett, Ustu, Wen</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "hodin",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "climb": 30,
+      "burrow": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "Ai1dlzeRP8DpIpoo",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jV7zLGxcliQ5dNkv",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.sm3tNVxNenMjrJlK",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.sx2bXzfPt6q7Z6cw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ytPkSkKePdHNBmyL",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.me5VCGvOMRwJldTr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GyLYzjS8Ghxu6yPg",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vQQTAooqmebkgaNR",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wkiyxl5u1odwOee8",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FZkA2wRzdpSDtW8A",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DBk6jOrj3lJblC1I",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.CHytQYhWNnbgg29f",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.t3VHEkSYrko06Md6",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RB8iFvxt7R3nRW7l",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2F6Zr2Y8agM52KMA",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "TyjJYZSrNAPlEHVd",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "wis": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "nCj0GCjeKkc1KhYV",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "lcQnCZ5We4R1Nvzc",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:med",
+                "skills:sur"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "tool:artisan:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:nat"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Green, yellow, blue, orange"
+    },
+    "hairColorOptions": {
+      "value": "Red-violet"
+    },
+    "eyeColorOptions": {
+      "value": "Black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Snake-like \"hair\", suction-cupped fingers"
+    },
+    "heightAverage": {
+      "value": "7'10\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "150 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d6) lb."
+    },
+    "homeworld": {
+      "value": "Moltok"
+    },
+    "slanguage": {
+      "value": "Ho'Din"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "BtKp61FR6tISnPzc",
@@ -74,159 +283,22 @@
       "name": "Ho'Din",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!x97YOPdsDzT93Uiy.BtKp61FR6tISnPzc"
+      "_key": "!items.effects!8K45InD6ZRWSdHVh.BtKp61FR6tISnPzc"
     }
   ],
+  "_id": "8K45InD6ZRWSdHVh",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2801331+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-hodin"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Ho'dins are tall humanoids with multi-colored skin, naturally webbed and suction cup-tipped fingers and toes, and temperature-sensing red-violet \"snake hair\". Ho'dins are, on average, over nine feet tall—nearly a full head taller than wookiees. Renowned throughout the galaxy as botanists and healers, the ho'din claim an ancestry derived from the plants of their home planet, Moltok—in fact, \"ho'din\" translates as \"walking flower\" in Galactic Basic. They are, in fact, reptilian, as their natural climbing skills and cold-bloodedness seem to indicate, and boast a second heart to enhance their survivability. Their \"snake hair\" is temperature-sensitive, allowing ho'din to sense changes in ambient temperature.</p>\n<h2>Society and Culture</h2>\n<p>Ho'dins are known to be self-conscious and vain, particularly when it comes to their looks and their work, and do not take criticism or insults well. Their religion, Dinante Fli'R, is centered around worshipping and communing with nature, a trait that has sent many ho'din out into the galaxy to rejuvenate damaged planets. The ho'din have an aversion to technology and avoid surface mining and manufacturing, opting instead to dwell in trees. They have learned to make incredibly advanced pharmaceuticals and gardens using their botanical skills to concoct natural medicines, some of which have cured plagues on distant worlds. The title of \"Master Gardener\" is one of high esteem and great respect in ho'din society.</p>\n<h2>Names</h2>\n<p>Ho'din names are quite diverse. Some names look complicated and difficult to pronounce, while others are quite simple. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Baji, Gra'tau, Iwo, Oojoh, Thrung, Vala</p>\n<p><strong>Female Names.</strong> Chela, Kutu, Lohje, Par'tah, Sirta, Tal</p>\n<p><strong>Surnames.</strong> Alewune, Kulko, Oolos, Plett, Ustu, Wen</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "hodin",
-    "advancement": [
-      {
-        "_id": "17MMxiQc0rkJ1V3M",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.jV7zLGxcliQ5dNkv",
-            "Compendium.sw5e.speciesfeatures.sm3tNVxNenMjrJlK",
-            "Compendium.sw5e.speciesfeatures.sx2bXzfPt6q7Z6cw",
-            "Compendium.sw5e.speciesfeatures.ytPkSkKePdHNBmyL",
-            "Compendium.sw5e.speciesfeatures.me5VCGvOMRwJldTr",
-            "Compendium.sw5e.speciesfeatures.GyLYzjS8Ghxu6yPg",
-            "Compendium.sw5e.speciesfeatures.vQQTAooqmebkgaNR",
-            "Compendium.sw5e.speciesfeatures.wkiyxl5u1odwOee8",
-            "Compendium.sw5e.speciesfeatures.FZkA2wRzdpSDtW8A",
-            "Compendium.sw5e.speciesfeatures.DBk6jOrj3lJblC1I",
-            "Compendium.sw5e.speciesfeatures.CHytQYhWNnbgg29f",
-            "Compendium.sw5e.speciesfeatures.t3VHEkSYrko06Md6",
-            "Compendium.sw5e.speciesfeatures.RB8iFvxt7R3nRW7l",
-            "Compendium.sw5e.speciesfeatures.2F6Zr2Y8agM52KMA"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "nQfRgjzeTpj1nm36",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2,
-            "wis": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1meXyDzeSh1Qa5nh",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "SC4UVUCNChXfZS6k",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "skills:med",
-                "skills:sur"
-              ]
-            },
-            {
-              "count": 1,
-              "pool": [
-                "tool:artisan:*"
-              ]
-            }
-          ],
-          "grants": [
-            "skills:nat"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Green, yellow, blue, orange"
-    },
-    "hairColorOptions": {
-      "value": "Red-violet"
-    },
-    "eyeColorOptions": {
-      "value": "Black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Snake-like \"hair\", suction-cupped fingers"
-    },
-    "heightAverage": {
-      "value": "7'10\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "150 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d6) lb."
-    },
-    "homeworld": {
-      "value": "Moltok"
-    },
-    "slanguage": {
-      "value": "Ho'Din"
-    },
-    "movement": {
-      "walk": 30,
-      "climb": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002148,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796532,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!x97YOPdsDzT93Uiy"
+  "_key": "!items!8K45InD6ZRWSdHVh"
 }

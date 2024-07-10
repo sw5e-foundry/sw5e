@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Lethality Practice</h1>\n<p>Those operatives who choose the Lethality Practice hone their skills in the art of death. They use precise and surprising attacks to dispatch their foes with fatal efficiency.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "lethalitypractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "12XggNFnOn8bmJKf",
+        "_id": "J9efzUeycAS1O6eh",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.3QsYHEnhJ3Hty7F2",
-            "Compendium.sw5e.archetypefeatures.cqeZk5OadMKS0gvx"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.3QsYHEnhJ3Hty7F2",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.cqeZk5OadMKS0gvx",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "G4JaXJgfSpVa3SsC",
+        "_id": "fGYDjUXBNDc19I1I",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.RShTX7yCj59hZ91b"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.RShTX7yCj59hZ91b",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "1IX6oMCzbA9m1ejr",
+        "_id": "S95QQQMMtRrILTWD",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.98M4tvVK5PwgLHzb"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.98M4tvVK5PwgLHzb",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "d7NJKBxkR5lpvelZ",
+        "_id": "15DJjBgY09831LTd",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.gLqYREO8Q8p6DPRT"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.gLqYREO8Q8p6DPRT",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,11 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959731,
-    "modifiedTime": 1695981489837,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689272,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!GfADEq3tsfkR3vpU"
 }

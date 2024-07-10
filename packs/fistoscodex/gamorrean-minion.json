@@ -15,18 +15,19 @@
       "system": {
         "description": {
           "value": "<p>At the start of its turn, The Gammorean Warrior can gain advantage on all melee weapon attack rolls during that turn, but attack rolls against it have advantage until the start of its next turn.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -35,31 +36,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -76,7 +79,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -85,10 +88,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -119,18 +128,19 @@
       "system": {
         "description": {
           "value": "<p>When the Gammorean Warrior scores a critical hit with a melee weapon attack, roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -139,31 +149,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -180,7 +192,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -189,10 +201,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -219,29 +237,31 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+4, Reach 5 ft., One target. <em>Hit : </em>8 (1d10+3) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
@@ -250,31 +270,33 @@
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
-          "long": "",
+          "long": null,
           "units": "ft"
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -305,12 +327,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
         "weaponClass": "",
-        "baseItem": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -319,61 +338,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -408,14 +392,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "dex": {
         "value": 12,
@@ -424,14 +401,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "con": {
         "value": 16,
@@ -440,14 +410,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 3,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 13
+        }
       },
       "int": {
         "value": 10,
@@ -456,14 +419,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "wis": {
         "value": 10,
@@ -472,14 +428,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "cha": {
         "value": 7,
@@ -488,14 +437,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -2,
-        "save": 0,
-        "prof": 2,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 8
+        }
       },
       "hon": {
         "value": 7,
@@ -503,7 +445,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 10,
@@ -511,41 +454,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 15,
         "calc": "natural",
-        "formula": "natural armor",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 23,
         "max": 23,
         "temp": 0,
         "tempmax": 0,
-        "formula": "3d8+9",
-        "min": 0
+        "formula": "3d8+9"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 1,
-        "prof": 0,
-        "total": 1
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 40,
         "units": "ft",
         "hover": false
@@ -568,16 +507,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -586,16 +518,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -606,57 +531,49 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 2,
-      "powerdc": 10,
-      "bar1": {
-        "value": 23,
-        "min": 0,
-        "max": 23
-      },
-      "bar2": {
-        "value": 15,
-        "min": 0,
-        "max": 0
-      },
-      "encumbrance": {
-        "value": 1,
-        "max": 225,
-        "pct": 0.4444444444444444,
-        "encumbered": false
-      },
-      "powerForceLightDC": 10,
-      "powerForceDarkDC": 8,
-      "powerForceUnivDC": 10,
-      "powerTechDC": 10,
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      },
+      "slowed": 0
     },
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"The boars are about as smart as the average cement extruder, and aren't good for much besides getting into fights and making little Gamorreans.\"</i></p><p>- Callista Ming</p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Designation</u></td><td style=\"line-height:1.42857\">Sentient</td></tr><tr><td style=\"line-height:1.42857\"><u>Average height</u></td><td style=\"line-height:1.42857\">1,7 - 1,8 meters</td></tr><tr><td style=\"line-height:1.42857\"><u>Average mass</u></td><td style=\"line-height:1.42857\">100 kg</td></tr><tr><td style=\"line-height:1.42857\"><u>Skin color</u></td><td style=\"line-height:1.42857\"><p>Green (typical)</p></td></tr><tr><td style=\"line-height:1.42857\"><u>Hair color</u></td><td style=\"line-height:1.42857\">None</td></tr><tr><td style=\"line-height:1.42857\"><u>Distinctions</u><br /></td><td style=\"line-height:1.42857\"><ul><li>Porcine humanoids</li><li>Tusks</li><li>Horns</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Homeworld</u></td><td style=\"line-height:1.42857\">Gamorr</td></tr><tr><td style=\"line-height:1.42857\"><u>Language</u></td><td style=\"line-height:1.42857\"><p>Gamorrese</p></td></tr></tbody></table><p>Gamorreans (derogatorily known as pig-lizards) were porcine, brutish humanoids from Gamorr, a lush jungle-world in the Outer Rim. Gamorr's technological level was equivalent to the low-tech periods which Human civilizations had experienced circa 25,000 BBY. The Gamorreans colonized the planet Pzob in the K749 system, and were the majority sentient species on Lanthrym in the Elrood sector. Their vessels provided only essential amenities, in addition to shields and weaponry. Gamorreans were typically green-skinned, with a large and powerful physique; they had a well-deserved reputation as fierce warriors, prized much more for their strength and personal combat prowess than for their wits. They were organized into clans headed by a Council of Matrons. In Gamorrean society, sows (females) performed all the productive work...while the boars (males) concentrated on martial training and waging war. They spoke Gamorrese (also called Gamorrean). One of their favorite weapons was a traditional war axe called an arg'garok, which was designed specifically for beings with extraordinary strength as well as a low center of gravity. (They could, however, point and shoot if someone shoved a blaster into their hands.)</p><p>The Galactic Registry entry for Gamorreans on Pzob was 011-733-800-022.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Biology and appearance</h3><blockquote><p><i>\"Skinny v'lch. Not find husband, all skinny. Morrts can't live on skinny. Feed you. Make you Gweek. Good husband; two tuskers; nine morrts.\"</i></p><p>- Captain Ugmush suggests making Callista Ming into a proper Gamorrean sow</p></blockquote><p>Gamorrean males averaged about 1.8 meters in height and could weigh more than 100 kilograms. They had thick snouts, close set eyes, tusks, and two small horns on their heads. Their average body temperature was 40.56 °C (105 °F) and their verbal tones ranged from 50 to 13,000 hertz.</p><p>Although a typical Gamorrean was squat, green, and heavily built not all shared these characteristics. Most Gamorreans had a dark greenish coloration over a large portion of their bodies; however skin coloration did vary, particularly among females, with light skinned and two-toned pigmentation not uncommon. Black, brown, pinkish yellow, and even a rare white pigmentation were possible. Boars tended to have less skin variation and had a greater tendency towards dark green skin perhaps because of their higher exposure to the radiation of the Gamorr Star. Eye coloration varied evenly between gold-yellow, blue, black and brown. The Gamorreans generally put no importance on skin or eye coloration although there were some superstitions linked to certain markings.<br /></p><p>Not all Gamorreans were heavy and squat. Although this was the most common and generally the desirable appearance in Gamorrean society some individuals were comparatively lean and tall. Greel, co-owner of the The Broken Tusk on Reuss VIII, was quite undersized compared to his brother Gorge who represented a more conventional Gamorrean appearance.</p><p>They were largely viewed as mindless, intellectually inferior brutes by the wider galactic community. This perception may have been partly due to their physiology, which made it nearly impossible for them to speak Galactic Basic. Their vocal apparatus made it impossible for them to speak clearly in any language other than their native language.<br /></p><p>Gamorreans were typically covered by a number of parasitic bloodsuckers native to Gamorr called morrts. They showed great affection for the creatures and considered them adorable pets. The number of morrts that a Gamorrean hosted was related to their status within a clan. A clan Warlord or Matron could have up to 20 of these parasites feeding on them.<br /></p><p>The Gamorrean diet mainly consisted of fungus that grew plentifully on their homeworld. A species of mobile mushrooms called Snoruuk was one of the most widely eaten varieties along with Fug. They drank an alcoholic beverage called Potwa beer.</p><p>Newly born Gamorreans were called \"feeders\" until they were weaned. Once weaned the younglings were called \"shoats\" until the age of 3 when they began gender specific training. Gamorrean childhood ended after about 6 years from which point they were considered young adults. When they reached the age of 13 they were considered mature adults and the boars would go to war. Biologically they were capable of living beyond the age of 45 but the violent nature of their existence meant that very few boars reached that age.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Society and culture</h3><p><b>Clan Society</b></p><blockquote><p><i>\"All this—gweek. Husbands and tuskers and fields and children—gweek. Sometimes … I want gweek. Gweek for me. More so in slushtime, in the cold and the dark.\"</i></p><p>- Kufbrug</p></blockquote><p>Gamorreans were organized into clans ruled by a male warlord and his wife, a head sow who was the most powerful of the clan matrons. While the warlord and his boars were solely concerned with preparing and participating in battle with rival clans, the matrons of the clan performed all the productive work including farming, hunting, manufacturing weapons and running businesses.</p><p><u>Gamorrean sows</u></p><blockquote><p><i>\"Stupid, Aurra! Should have checked for that storm! Making mistakes like some Gamorrean sow!\"</i></p><p>- Aurra Sing talking to herself on Tatooine 32 BBY</p></blockquote><p>Females within a clan were all related to each other and could trace their lineage back to a common matriarch. Boars, however, were exchanged between clans at an early age and some would change their allegiance during their adult lives. Clans ranged in size from a few dozen to over a hundred but typically a clan constituted about 20 sows, fifty boars and the young. The young were mostly born in the spring (\"slushtime\") and the litters typically ranged between three and nine. The male to female ratio was about ten-to-one with females only being born about every second litter. Despite this, a high fatality rate among boars, due to their violent lives, resulted in a predominance of older females.</p><p>Clans owned and controlled areas of land and were always interested in acquiring more. Land was gained by either colonizing unclaimed areas or more commonly taking land from rival clans. Since the amount of available arable land on Gamorr was scarce several clans often laid claim to the same piece of land, and they spent their time fighting over possession. A female typically had up to a dozen husbands during their lifetime since a boar's lifespan was limited by his violent lifestyle.</p><p>Sows did all the useful work within Gamorrean society and they owned and leased all property. They were capable of being as rough as the males and they actively encouraged boars to engage in bloody act of violence to demonstrate their virility. Daughters inherited their mother's land evenly and therefore over generations these holdings diminished in size. A matron consolidating land was a critical reason for the ongoing wars between clans.</p><p>Clan matrons were a select group of sows with the greatest of land who constituted the clan council of matrons. They usually had a number of clan Tusker boars in admiration of their beauty and status. A matron could often be distinguished from a lesser clan sow by the presence of a small number of bodyguards and the relatively large number of morrts that they hosted. The council of matrons was led by a head sow who were the richest and most powerful of the clan matrons.</p><p>Sows were responsible for all trading with non-Gamorreans. They were typically interested in obtaining weapons and food supplies with long lives. They would pay for such goods with gold or other precious metals if they had any or by boar mercenary contract.</p><p><u>Gamorrean boars</u></p><p>There were four classes of male boars within Gamorrean society: Warlords, Clan boars, Tuskers and Veterans. Warlords were the most socially and physically powerful boars in a clan and held their position by way of their marriage to a clan matron. The greatest of the warlords was selected by the head sow for his combat prowess and past successes. He was absolute ruler in all matter of war and general of the clan armies. The lesser warlord served as clan captains. A typical warlord could host up to twenty morrts and they were known to bestow them on other warriors for acts of heroism. Warlords almost always came from the ranks of the household boars (otherwise known as Tuskers).</p><p>Clan boars were males married to clan sows (not matrons) and they made up the core of the clan-guard and the clan army. They were important individuals because the income provided by their wives enabled them to afford good weapons and armor. Their relatively high status (below warlords) was indicated by the 10 or so morrts that lived on their bodies. They could generally not attain the position of warlord unless their wife died and they married a matron or she inherited a matronage, both rare events in Gamorrean society.</p><p>Tuskers or household boars were unmarried males who were pledged to a clan. They formed the bulk of the clan armies and generally lived off the plunder of military campaigns. While a tusker was customarily poor they could hope to gain the attention of a sow or perhaps even a clan matron and therefore enter the ranks of the Clan boars or Warlords. They typically hosted about half a dozen morrts but a successful tusker could amass a much larger trove. They would often give a clan matron their morrts as tribute. Tuskers were not totally loyal and would occasionally change their allegiance to another clan particularly if the clan matron was looking to increase the size of her clan.</p><p>The fourth basic variety of boars in Gamorrean society was the Veteran. They were retired from campaign due to old age or more commonly from a maiming or injury. A veteran could often be identified by the lack of a body part and the presence of about twelve or so morrts. They were typically very tough, experienced boars who were well respected within their clan. They were responsible for the training of the young boars before they first marched off to war and were trusted advisors to clan Warlords. They also often commanded the clan-guard.</p><p>Gamorrean youths often kept gelatinous slimes from the planet Saclas as pets.</p><p><u>Clan fortresses</u></p><p>Gamorrean clans constructed fortresses that varied in size dramatically. They all tended to follow the basic design. The simplest fortresses consisted of a stockade surrounded by a small village of huts and long houses. The clan-guard controlled the boundary of the fortress and kept unwanted visitors away. They domesticated dangerous predators called Watch-beasts to help protect these strongholds. Access to the settlement was through a gate and at the center of the village was typically the clan-house. This was a well constructed, heavily fortified building where the matrons and warlords resided. A small fortress would be inhabited by about 10 sows and 20 boars.</p><p>An average fortress consisted of a village with a stockade that could be surrounded by a moat or other boundary defense. An internal sub-fortress was usually built around the village on a built-up or naturally occurring mount.</p><p>The sub-fortress was a well-built construction that was sometimes built of stone and it was well guarded. In its function, the sub-fortress was a large version of the clan-house. An average Gamorrean village of this size would typically be inhabited by between 30 and 50 sow and as many as 100 boars. Immediately inside the main gate of the village was located a common area. This was a place where markets were held and it represented a safe area for other clan members. It was a serious crime to violate the strict no fighting rules in this area.</p><p>Some of the most powerful and prestigious Gamorrean clans had larger fortresses that were effectively townships. The town was surrounded by an outer wall fortifications and a broad moat. It was often also divided internally by walls to reduce the impact of an enemy that advanced passed the main gate. There were several clan-houses in the internal structure and a sub-fortress that acted as a final refuge against an advancing army. Only about a dozen townships of this size existed on Gamorr and was populated by as many as 100 sows and 300 boars.</p><p>Several of these larger fortresses have constructed a foreigners' quarter within their boundaries where other clans could deal with each other in safety. Like the common area of smaller settlements there was a strict prohibition of combat in this area. Non-Gamorreans were often found trading in these areas. Most towns maintained a large landing field outside of their boundaries.</p><p>Some of the larger clan-towns formed sub-clans that still considered themselves part of the parent clan although local rivalries between sub-clans did develop. It was debated among Xenosociologists whether the development of these large clan-towns marked a societal change within the Gamorrean clan structure or whether these clan-towns would eventually collapse under population and social pressure.</p><ul><li>Bolgoink clan (Gamorr)<br /></li><li>Bk'trugh clan</li><li>Gakfedd clan (Pzob)</li><li>Glonnk clan (Gamorr)</li><li>Groogrun clan (Gamorr)</li><li>Jugsmuk clan (Gamorr)</li><li>Klagg clan (Pzob)</li><li>Norgk clan (Gamorr)</li><li>Rogak clan (Gamorr)</li></ul><p>Some clans formed small professional mercenary bands that move around selling their combat services to the higher bidder. Although it was not exceptional for fashionable clans to occasionally fight for another clan for pay, these mercenary clans did it professionally. They were, however, not totally driven by greed and the warlords of these clans still adhered to the tradition of fighting a blood-battle to complete a deal. Since these clans would go somewhere to carry out a contract they constituted a significant quantification of Gamorrean mercenaries in the galaxy.</p><p>The warring clans of Gamorr never united under the banner of one planetary government and therefore the Gamorreans did not have representation in the Galactic Federation of Free Alliances.<br /></p><p>Although Gamorreans were not known for their sensitive nature they were especially demonstrative when it came to their morrts and were particularly loving toward their children and mates. Signs of affection included a tackling hug and a punch on the snout. Indeed, knocking a mate unconscious was considered a prelude to mating, although the initiator had to make sure they had smelling salts at hand if copulation was the intention.<br /></p><p><b>Calendar</b><br /></p><blockquote><p><i>\"Winter is when the boars can't get out and fight one another either, so they get all cozy and pleasant—they really do—and write songs and poems to their sows. Or, they hire me to write songs and poems.\"</i></p><p>- Sebastin Onyx</p></blockquote><p>The activities of the Gamorrean clans on Gamorr were dominated by the seasons. Spring was called slushtime because of the melting of the winter snow and the abundance of rain and resultant perpetual mud. The wet conditions of early slushtime resulted in plentiful harvests of short-term fungi and provided a start for the longer growing moulds. During this period the veteran boars trained the younglings in combat and the unattached tusker boars roamed the land looking for adventure and opportunities. Early slushtime on Gamorr was a depressing time, the constant rain and dark gray skies often resulted in many Gamorreans feeling grumpy and miserable. Since Gamorreans idealized emotions of strength and ferocity it was not a polite subject to discuss their emotional degeneration in this regard. Most sows gave birth at this time which was about a gestation period from the return of the boars from campaigning in autumn. Mid-slushtime was also traditionally the time for marriage and for negotiating and finalizing Clan alliances and mercenary contracts. It was also the time when young boars were exchanged for fostering and the clan matrons readied their warriors for war in the summer. Toward the end of this season clans tuskers tended to initiate raids against rival clans in order to prove their boarness.</p><p>The summer season was called Wartime and initiated a period of military campaigning, often in retaliation for the raids in late-slushtime. The boars, unmarried sows (sometimes derogatorily called \"v'lch\") and young boars in training marched off to war. They left behind the matrons, married sows, elders and a small guard of boars to defend the settlements and fortresses. The military strategy of Gamorrean warfare was quite basic and involved attacking, plundering and the occupation of land. In early-wartime the clans participated in a number of small scale battles during which time each side probed the strength of the opposition for weaknesses. By the middle of the campaigning season the Gamorrean warriors had settled into the business of besieging opponents fortresses and as the temperature increase toward late-summer grand battles were fought as forces attempted to break from a besieged position.</p><p>By the end of the summer period the clans had spent the majority of their strength. There were a few late skirmishes in autumn (Croptime) as the clans made their way back to their homes in triumph or otherwise and by mid-croptime they had settled in for the winter. During this period the sows and drafted tuskers harvested the crops and autumn fairs occurred as newly wealthy clans traded plundered goods and crops. The fairs also operated as a forum for the forming of new clan alliances. Also during this season widowed sows advertised their availability and married, tales of heroic battles were told, wounded boars ceremoniously join the ranks of the veterans and the clans feasted for the last time before the coming of winter.</p><p>Winter was called Coldtime and was a period of freezing temperatures and fierce storms on Gamorr. Clans that were too depleted during the summer campaigning season would often find themselves starving and this sometimes resulted in sporadic winter raids. In the more successful and affluent clans life was more comfortable. Boars became docile and romantic, courting their wives as young tusker males did. This behavior by the boars continued into early spring when the first seasons flowers were picked and presented as gifts to the sows. The unmarried tuskers spent the winter worshiping a matron from a distance, planning for the next seasons combat and playing table games. During the winter and early slushtime some skilled Gamorreans would ride sleds pulled by semi-domesticated Dwoobs as a method for transporting goods. They were generally only used by skilled sled drivers and most used simple wheel barrows to transport goods.</p><p><b>Beliefs</b></p><blockquote><p><i>\"It is true also, V'Ich Muh, that Lady Gundruk, and Lugh, and others of the household have heard the spirit of Vrokk moving about at night in the room in which he died. Spirits only walk if murder was done.\"</i></p><p>- A scholar sow explains Gamorrean beliefs to Callista Ming.</p></blockquote><p>Gamorreans were Animistic and believed that everything such as natural features, animals, sites of past battles and people had an enduring spirit that could affect the physical worlds. The superstitious beliefs of the Gamorreans, however, decreased over the last hundred years or so before the Battle of Yavin. Although they believed that everything had a lingering spirit they were generally only concerned with powerful spirits that could pose a threat.</p><p>Famous long-dead heroes, giant trees, large fungi, the spirits of murdered individuals and ancient fortresses are an example of things that Gamorreans believed could help or hinder the living. The association with how these spirits affected the physical world was based on the nature of the source in Gamorreans lives. For example tree and mountain spirit were generally considered good because the source, with which they reside, provides wood and stone for building. This, however, did not mean that they believed that they were totally benign since trees would drop branches on individual and mountains would shed landslides onto unsuspecting Gamorreans.</p><p>The spirits of the sea and forest were considered incomprehensible. Sometimes they would let a traveler past and other times they would hinder their progress. Forests were viewed as mischievous, they would change the path and on occasion swallow an entire fellowship whole. Gamorreans didn't like the oceans as they saw them as incredibly unpredictable. If treated correctly they thought that the spirits would send favorable wind and if angered would unleash a ferocious storm. Even if the spirits sent favorable wind and current they believed that the spirit, on occasion, decided to sweep the traveler far out to sea or draw the vessel into a watery grave.</p><p>They believed that ancient fortresses had powerful and good spirits that could fortify the strength of defenders during an attack. Famous warriors who fell during an attack on a fortress were also invoked to increase the defenders strength. Such spirits were thought to protect a certain clan and they also included a powerful warlord who fell in combat, who was invoked to ensure victory in battle, and most importantly the spirit of the clan founder. The clan founder was a matron and it was believed that she sent dreams to the incumbent clan matron to advice in time of strife.</p><p>An ancient clan fortress and giant fungi were thought to house fertility spirits. In the case of the fortress spirit it was believed to increase the fertility of sows during slushtime and croptime. They believed that Giant carnivorous fungi such as the Algark stalks contained fertility spirits because they would dispense their spores (offspring) when approached. As such the Gamorreans respected these spirits from afar.</p><p>The spirit of a murdered individual was greatly feared by most Gamorreans. They were thought to be angry at being killed by underhand means and intent on seeking revenge against the murderer. These spirits were believed to walk the land of the living during the night seeking retribution and killing all that they came across. According to the Gamorrean beliefs they were exceptionally strong and dangerous but did not possess supernatural abilities such as invulnerability or the ability to fly and could therefore be physically fought by a warrior. Since the surest way to prevent the spirit from entering the physical plane was to kill the murderer, justice was often swift on Gamorr and Pzob.</p><p>The fallen in great battles were thought to reside at the site of their demise and were believed to return during stormy winter weather to re-fight the battles. Since battles typically took place near settlements and fortresses storm damage to these dwelling were often attributed to the spirits.</p><p><b>Combat and honor</b></p><blockquote><p><i>\"Rog not happy, he said. Rog say, fight and kill Guth, fight and kill Ugmush, fight and kill you, then go home.\"</i></p><p>- A veteran warns Callista Ming</p></blockquote><p>Gamorrean combat was almost entirely hand-to-hand with or without a melee weapons and typically relied on physical power. Clans in regular contact with offworlders did not consider vibroblades as magical objects as they did for a long time and their increase in cutting power was considered a sign that they were a superior weapon. Vibro-axes were popular weapons among the Gamorreans and two examples were the Arg'garok and the Clan Groogrun vibro-ax. The latter was built on Gamorr by members of the Groogrun clan such as the master weapon maker Snogrutt. Another commonly used weapon was the Thogk, a traditional Gamorrean club that literally translated as \"log with a spike in it\". They were crafted with pride by pounding a metal spike through a long chunk of gorgt wood. Gamorreans also frequently wore armor called M'uhk'gfa. Traditionally each suit of battle plate was constructed from fragments of metals collected as trophies on a battlefield and bound by leather straps. A segmented collar protected the neck while plates surrounded the torso and shoulders. Thinner plates were often attached to the arms that allowed a weapon to be freely swung. A helmet was also worn that took into account the Gamorreans horns. Since their introduction to the Republic and later the Empire, the traditional skill of constructing M'uhk'gfa battle plates diminished and many Gamorreans started to acquire pre-fabricated armor.</p><p>The Gamorreans had little interest in ranged weapons such as blasters. When Republic scouts introduced them to weapons they rejected them completely. The only way for a Gamorrean male to demonstrate his \"boarness\" was through close combat. The use of a ranged weapon against another honorable Gamorrean opponent was considered dishonorable. It was, however, acceptable to use blasters and other ranged weapons against other species and dishonored Gamorreans. Gamorrean honor was governed by a set of simple rules and mainly concerns the code of conduct for combat and warfare. Boars were born and bred to fight and if they refused to or could not, they were killed by older boars (assuming that their mother allowed them to survive childhood).</p><p>It was honorable for a boar to face an opponent in combat to first blood, defeat or death. Fair tournament fights were usually only to first blood since their purpose was to attract attention and show off not to risk life. Tournaments were also the scenes of pre-arranged death matches, often concerned with a suitor challenging a husband for the right to marry a sow.</p><p>The use of \"magic\" in combat with an honorable opponent was considered dishonorable. In addition to the use of blasters, it also included any other advanced technology, the Force, natural abilities considered magical and anything else that could not be comprehended. It was also dishonorable to kill an opponent stealthily. In Gamorrean society it was acceptable to challenge an opponent, fight and kill him for no reason at all but it was an unforgivable wrong to sneak up and kill while they were not looking.</p><p>Intellectual thought was moderately discouraged in Gamorrean society and although some used intelligence and strategic planning to win battles, it was generally frowned upon. Sows were generally more intelligent than boars but it was still not socially acceptable for a sow to be overtly intelligent.</p><p>Sows did not commonly fight in pitched battles although they did fight in single combat against raiders and occasionally in duels to settle vendettas. Sows gained honor in Gamorrean society by being gweek, a term that translated as being matronly protective, having many children and tuskers, owning land and property and managing it well.</p><p>Regarding working with non-Gamorreans, they also stated they'd only work alongside them should their opponent best them in single combat, as otherwise they prefer death to servitude. This was how the first of the Gamorrean guards were recruited under the payroll of Jabba the Hutt, as well as how Thok was recruited by Arden Lyn.</p><p>Most Gamorreans had a hatred of droids and other mechanical devices and they would often needlessly destroy a droid if given the opportunity.</p><p><u>Personal weaponry at a glance</u></p><ul><li>Arg'garok vibro-axe (mid-range)</li><li>Blaster carbine (long range)</li><li>Cleaver (short range)</li><li>Dueling knife (long range)</li><li>Power gauntlets (special)</li><li>Thogk club (short range)</li></ul><p><b>Language</b></p><blockquote><p><i>\"Rog will not understand this. Who would write Guth's name but Guth? Rog will avenge his brother.\"</i></p><p>- Kufbrug struggles to comprehend a forged Gamorrese rune.</p></blockquote><p>Gamorreans spoke their native language of Gamorrese, or Gamorrean. To an individual unfamiliar with the language it sounded like a string of grunts, squeals and oinks. It was, however, a complex form of communication well-suited to the lifestyle of the Gamorreans. Although Gamorrese did not have a sophisticated written language it did have a very basic runic alphabet which was used for record keeping, accounting, recording epic stories, and genealogy. Gamorrean genealogy was an extremely complex subject and was studied by a small class of scholar-lawyer sows who were known to memorize genealogical listings, heroic deeds and property transactions. The runic alphabet was only typically used by educated sows although a fair number of boars could read them slowly. There were known to be several variations of the runic alphabet. Since most Gamorreans encountered in the galaxy were males, it was generally considered that the Gamorreans had no written language.<br /></p><p>Gamorrean names were simple and were generally a guttural word that the individual made up describing what they would do if somebody made them angry. Most other species did not understand the nuances of their names and therefore did not comprehend the meaning intended. Despite this, the Gamorreans continued the practice, perhaps unaware that it was generally their size and demeanor that frightened smaller opponents and not the sound of their name.<br /></p><p><b>Music</b><br /></p><p>The Gamorreans developed a unique music genre called Gamorrean opera, composed of loud grunts, snorts and growls. Another form of music invented by the Gamorreans was called Baka rock.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">History</h3><blockquote><p><i>\"How did the Empire capture Gamorr without firing a cannon bolt? They landed backwards, and the Gamorreans thought they were retreating!\"</i></p><p>- Jacen Solo</p></blockquote><p>When the first offworld traders landed on Gamorr, five Gamorrean clans fought for the right to approach the vessel. When one clan won the right to approach after two days of battle the victorious Gamorreans walked up to the trading vessel and smashed it into pieces. Six further trading expeditions suffered the same fate before a heavily armed vessel was sent with a new aim, to take the Gamorreans as slaves. After this initial contact, the galaxy found more productive uses for the Gamorreans.</p><p>As a result of their physical characteristics and low intelligence, Gamorreans away from their home planet or colony were usually employed as mercenary fighters, guards, bounty hunters or heavy laborers. Gamorreans would generally work for anyone if the price was right and the nature of the work was to their liking. They would even accept slavery if the terms were right. A draw-back for some employers in hiring Gamorreans was their contractual requirements. They generally did not consider a contract binding if it was not sealed in blood by way of combat. Since traditionally a Gamorrean warlord would force a recruit to fight to prove his ability, they expected a prospective employer to do the same. From their perspective if an offworlder could not defeat those that they hired then they were not worth working for. Though prized as mercenaries, their strong clan allegiance and hatred for rival clans made it unwise to hire groups of Gamorrean enforcers without first inquiring about their clan backgrounds. A number of species, including Sullustans, found Gamorrean females attractive, and many found work as belly dancers.</p><p>During the Jedi Civil War, Gamorreans were known to be involved with the Exchange and to take innocent beings prisoner, keeping them as slaves, taking particular interest in Wookiees. By the time of New Sith Wars, particularly the period between 1042 BBY and 1032 BBY, large numbers of Gamorrean warriors fought alongside Sith troopers under the banner of Sith Lords such as Chagras, Odion and Daiman, participating in raids and massacres. Due to these actions Gamorreans were considered cruel and merciless monsters, and their bad reputation survived into the times of the Galactic Empire. At least one, however, was intelligent and civilized enough to be the sergeant-at-arms for the New Republic Senate.</p><p>Gamorrean sows were not as commonly sighted off Gamorr or Pzob. Notable exceptions were female traders such as Ugmush, Captain of the Zicreex, who traveled from Gamorr to nearby worlds trading goods. A Gamorrean sow also performed at the world famous Purghom Musical Performance Hall on Clak'dor VII\"[14]. A large group of sows settled on the asteroid G'aav'aar'oon and formed the religious order known as the Nuns of G'aav'aar'oon. They opened their convent as a medical facility, and took a pacifist approach to life, in contrast to the typical Gamorrean philosophy.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Gamorreans in the galaxy</h3><blockquote><p><i>\"Lord Vader, your powers are improving. See that Gamorrean over there? Kill him.\"</i></p><p>- Palpatine walking with Darth Vader while inspecting their workers' progress</p></blockquote><p>One notable Gamorrean was the mutant Gorc, one of Jerec's band of seven Dark Jedi who were looking for the lost Valley of the Jedi.</p><p>Numerous Hutts employed various Gamorreans throughout the ages. One of them was the intergalactic kingpin of crime, Jabba the Hutt. He was fond of hiring Gamorreans because they were so inexpensive, as well as because their thick mindedness made them immune to dirty tricks such as bribery. Twelve Gamorreans were brought to Tatooine by Han Solo and Chewbacca at the request of Jabba. In order to seal the contract the crimelord agreed to fight them all at once but only if they were blindfolded. They agreed and when they were unable to see Jabba, the Hutt ordered a group of his thugs to beat them. The nine that survived dutifully pledged themselves to the Hutt that they thought gave them a good thrashing. Of the nine surviving, two were named Gartog and Ortugg. Ortugg was the leader of the Gamorreans, who looked down upon Gartogg, the most unintelligent Gamorrean in the palace. Even his fellow Gamorreans shunned him.</p><p>Shortly after the reformation of the Republic into the Empire, a Gamorrean laborer worked on the construction of Emperor Palpatine's retreat on the planet Byss. The worker was killed by Darth Vader using the Force at the request of the Emperor\".</p><p>Gardulla the Hutt also employed Gamorreans. She had about 40 Gamorreans who served her. However, almost none of those Gamorreans survived after Jango Fett infiltrated Gardulla's Palace in 32 BBY. Wartogg was one of the many Gamorrean guards who Jabba put prices on following the capture of Longo Two-Guns. Gardulla was defeated and the Gamorreans that survived were never heard from again.</p><p>Grappa the Hutt had only one known Gamorrean employed in his service. His name was Tront who, like most of his kind, loathed droids. He ran off with his partner Sol Mon when Rebels came to Grappa's palace. Other Hutts, such as Ka'Pa, also had a few Gamorreans in their employment.</p><p>Members of the Klagg and Gakfedd clans native to Pzob were abducted by the battlemoon, the Eye of Palpatine. This vessel had been programmed to pick up stormtroopers who had been implanted onto certain Outer Rim planets but it was disabled by Geith Eris and Callista Ming whose essence remained with the vessel after the Jedi's sacrificed themselves to prevent the assassination of a group of Jedi children on Belsavis. When it was later reactivated 30 years later (12 ABY) the Eye of Palpatine set off to complete its stormtrooper recovery mission. The forty-five stormtroopers deposited on Pzob diminished in numbers over the decades that followed through continual battles with the local Klagg and Gakfedd clans. When the Eye of Palpatine finally arrived the stormtrooper squad was decimated and it took the natives of Pzob in their place. They were forcibly indoctrinated through a cerebral feed and turned into stormtroopers. They wore pieces of stormtrooper armor by cutting out the sleeves or had fastened chunks onto their arms and chests with engine tape. Some of them had stormtrooper helmets perched on the top of their heads like hats.</p><p>The music band Deeply Religious had a track on their self-titled album called \"Gamorrean Hard Case\".<br /></p><p>One of the most notable Gamorreans was Voort saBinring, nicknamed \"Piggy\", a member of Wraith Squadron. He joined in 7 ABY and was a member through the Yuuzhan Vong War. As part of Project Chubar he was biochemically altered by Binring Biomedical Product to bring his attention span and intelligence more in line with Humans. When he escaped the facility he joined the fight against the Empire.</p><p>As a Wraith, saBinring participated in the fight with Imperial Admiral Apwar Trigit and was an analyst on Han Solo's anti-Zsinj task force. He continued service with the Squadron when it was transferred to New Republic Intelligence. During the Vong invasion, he participated in efforts to repel the Vong from Borleias, as both a Wraith and a member of Twin Suns Squadron. Piggy would also help plan Luke Skywalker's mission to Coruscant to track down Lord Nyax.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Chaotic Dark",
-      "species": "",
+      "species": null,
       "type": {
         "value": "humanoid",
         "subtype": "Gamorrean",
@@ -668,14 +585,9 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Fisto's Codex",
-      "xp": {
-        "value": 100
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 1,
-      "originalClass": ""
+      "source": {
+        "custom": "Fisto's Codex"
+      }
     },
     "traits": {
       "size": "med",
@@ -708,15 +620,14 @@
           "gamorrese"
         ],
         "custom": "Galactic Basic (understands But Can't Speak)"
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -726,11 +637,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -739,11 +650,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 0,
@@ -752,11 +663,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -765,11 +676,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -778,11 +689,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -791,11 +702,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -804,11 +715,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -817,11 +728,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0,
-        "passive": 10
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -830,11 +741,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -843,11 +754,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -856,11 +767,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0,
-        "passive": 10
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 0,
@@ -869,11 +780,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -882,11 +793,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -895,11 +806,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -908,11 +819,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0,
@@ -921,11 +832,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -934,11 +845,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -947,11 +858,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0,
-        "passive": 10
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
     "tools": {},
@@ -960,96 +871,67 @@
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1080,9 +962,6 @@
         "forceUnivDC": "",
         "forceDarkDC": "",
         "techDC": ""
-      },
-      "spell": {
-        "dc": ""
       }
     },
     "resources": {
@@ -1171,11 +1050,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493968683,
-    "modifiedTime": 1699591654929,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552733349,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!actors!BrCD8SIBoebj6NH0"
 }

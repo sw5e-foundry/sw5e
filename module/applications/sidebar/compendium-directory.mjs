@@ -5,10 +5,10 @@ import { CompendiumBrowser } from "../compendium/_module.mjs";
  * @extends {CompendiumDirectory}
  */
 export default class CompendiumDirectory5e extends CompendiumDirectory {
-  activateListeners(html) {
-    super.activateListeners(html);
+  activateListeners( html ) {
+    super.activateListeners( html );
 
     const browseButton = CompendiumBrowser.browseButton;
-    html.find("footer.directory-footer")?.append(browseButton);
+    html.find( "footer.directory-footer" )?.append( browseButton );
   }
 }

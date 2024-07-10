@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Artillerist Technique:</strong> 3rd and 11th level</em></p>\n<p>You can now use your Ranger's Quarry feature on a 10-foot cube area within 60 feet of you that you can see. You can treat any creatures inside this cube as if they are the target of your Ranger's Quarry feature, and when a creature is hit by a tech attack or fails a saving throw against a tech power you cast that deals damage, you can apply your Ranger's Quarry damage to that creature.</p>\n<p>At 11th level, you can now use your Ranger's Quarry feature on a 15-foot cube area, instead of a 10-foot cube.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scout (Artillerist Technique) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 10,
+      "value": "10",
       "width": null,
       "units": "ft",
-      "type": "cube"
+      "type": "cube",
+      "prompt": true
     },
     "range": {
       "value": 60,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -91,11 +104,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1680288495995,
-    "modifiedTime": 1699591595196,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368704904,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "ddWHbl4kesFCln5V",
   "_key": "!items!ddWHbl4kesFCln5V"

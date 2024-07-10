@@ -13,47 +13,50 @@
   "system": {
     "description": {
       "value": "<p>You create a wave of barrier energy in a 15-foot cone. Each creature within the cone must make a Dexterity saving throw. On a failed save, a creature takes [[/r 2d6]] energy damage and is pushed back to the edge of the cone. On a success, they take half damage and aren't pushed.</p>\n<p>This feature's damage increases by [[/r 1d6]] when you reach 11th level ([[/r 3d6]]) and 17th level ([[/r 4d6]]).</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scout (Bulwark Technique) 11",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": "15",
       "width": null,
       "units": "ft",
-      "type": "cone"
+      "type": "cone",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -88,7 +91,16 @@
         "turn": null
       }
     },
-    "className": "Scout"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -97,11 +109,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426104140,
-    "modifiedTime": 1685840600062,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368703777,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "cH7yPwBWkJ2o1Trk"
+  "_id": "cH7yPwBWkJ2o1Trk",
+  "_key": "!items!cH7yPwBWkJ2o1Trk"
 }

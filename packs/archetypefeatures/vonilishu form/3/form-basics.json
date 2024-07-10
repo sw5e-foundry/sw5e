@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Vonil/Ishu Form:</strong> 3rd level</em></p>\n<p>You gain your choice of the Vonil or Ishu lightsaber form, detailed in the Lightsaber Forms section of the Customization Options document for Expanded Content. If you already know the chosen form, you can instead choose another lightsaber form.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Vonil/Ishu Form) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -27,11 +28,13 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.1",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1680288495985,
-    "modifiedTime": 1680288495985,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368708911,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "kv2AxlOf44X6zxYR"
+  "_id": "kv2AxlOf44X6zxYR",
+  "_key": "!items!kv2AxlOf44X6zxYR"
 }

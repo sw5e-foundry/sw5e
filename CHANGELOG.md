@@ -4,7 +4,156 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.3.1.2.6.2] - 2023-09-01
+## [3.2.1.2.9.0] - 2024-07-10
+
+### Changes
+
+- `Cool Down` button for starship weapons now has a different icon from the `Reload` button.
+- Compendium Updates.
+- Updated core to match [dnd5e 3.2.1](https://github.com/foundryvtt/dnd5e/releases/tag/release-3.2.1).
+
+### Fixed
+
+- Starship Modifications from the compendium should now have their base price autocalculated instead of set to 0.
+- Attribute override for techcasting will no longer be ignored.
+- Starship firing arc templates will now be correctly positioned on the ship's center.
+- Added missing tool proficiencies.
+
+## [2.4.1.2.8.0] - 2024-01-03
+
+### Added
+
+- Starship weapon firing arcs.
+- When hovering over a weapon with a firing arc, a template will be rendered in the canvas, representing that fire arc.
+- Starship Modification DataModel.
+- Starship tokens can now track passive skill values, power dice, and fuel amount.
+- (Dis)Advantage flags for starship skills.
+- Enrichment lookup '`[[/skill skillName]]`'' for starship skills.
+- `Clear` button on starship crew tab.
+
+### Changes
+
+- Starship features compendium now has all the starship roles.
+- Starship modifications compendium has been updated to match the website.
+- Updated core to match [dnd5e 2.4.1](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.4.1).
+- Actor sheet tab names are now centered.
+- Compendium Updates.
+- Item prices no longer have a 'denomination' dropdown (as there is only one currency).
+- Item properties (weight, quantity, ...) are now centered in the inventory tab.
+
+### Fixed
+
+- Starship migration should once again work.
+- Weapons should once again consume ammunition.
+- Weapon properties should now longer be weirdly spaced out vertically.
+- Character's bigraphy and description should no longer be invisible.
+- Modifying a weapon's reload value in the character sheet should once again work.
+- Supreme Accuracy/Aptitude/Durability should once again work.
+- Starship speed units should be displayed correctly.
+- NPC Powerbooks should now create items properly.
+- NPC Powerbooks should now only the display the 'no powerlevel' message if the npc really has no powerlevel.
+- Quantity of starship modifiations will be used for the modifications counter.
+- Deployments and their features should now work properly on the NPC sheet.
+- Uses for starship modifications should now appear in the inventory.
+- "Apply damage with resistances" context button should once again work.
+- Starship actors should now properly support the `bonuses` field.
+- `advantage.ability.save.dmg.all` will no longer disable itself if `midi-qol` is enabled.
+- Versatile weapons have the versatile property properly set.
+
+## [2.4.0.2.7.0] - 2033-11-30
+
+### Added
+
+- (Dis)advantage flags on saves against specific damage types.
+
+### Changes
+
+- Updated core to match [dnd5e 2.4.0](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.4.0).
+- Resource Consumption dialog when casting a power now hides # of slots you have 1000 of.
+- Resource Consumption dialog when casting a power now displays a warning if you don't have enough power points.
+- Resource Consumption dialog when casting a power now has a toggle on wheter to spend power points.
+- Casting a power no longer spends 'slots' you have 1000 of.
+
+### Fixed
+
+- SW5E specific (dis)advantage flags should now work properly with midi-qol.
+- Fixed Old NPC sheet not working on actors with damage resistance bypasses.
+
+### Removed
+
+- Character flag `sonicSensitivity`.
+
+## [2.3.1.2.6.5] - 2023-11-15
+
+### Added
+
+- Weapon classes (`carbine`, `polearm`, `sidearm`...).
+- Compendium Browser 'Classification' tab.
+- Mastery, High Mastery, and Grand Mastery proficiency will now set the default roll mode and add the additional rolls when appropriate.
+- Character flags `dangerSense`, `halflingLucky`, `sonicSensitivity`, `twoLivered`.
+- Various advantage and disadvantage character flags, similar to midi-qol. For a full list type `CONFIG.SW5E.midiFlags` in the console.
+- When the system grants (dis)advantage on a roll, a tooltip will mention where it is coming from.
+- Active Effects on most class features.
+
+### Changes
+
+- Art updates.
+- Compendium updates.
+- All feats should now have proper active effects. (Thanks to `Florenc#5173`)
+- All species should now have their ability score improvements granted by advancements instead of active effects.
+- Character flags that grant advantage on saving throws against force/tech powers should now work.
+- `Free Power` renamed to `Ignores Powers Known`.
+
+### Fixed
+
+- Rolling power die in Starship Sheet should once again work.
+- Errors about reading JSON during migration.
+- When making a roll with `Advantage` or `Disadvantage` as the default, the button should now have the proper color.
+
+### Removed
+
+- The following character flags, which had no effect: `agressive`, `amphibious`, `armorIntegration`, `businessSavy`, `canibalize`, `crudeWeaponSpecialist`, `defiant`, `detailOriented`, `enthrallingPheromones`, `foreignBiology`, `furyOfTheSmall`, `grovelCowerAndBeg`, `heatAdaptation`, `inscrutable`, `keenSenses`, `longLimbed`, `maintanenceMode`, `maskOfTheWild`, `multipleHearts`, `naturallyStealthy`, `nimbleAgility`, `nibleEscape`, `nimbleness`, `precognition`, `programmer`, `rapidReconstruction`, `rapidlyRegenerative`, `regenerative`, `savageAttacks`, `shapechanger`, `strongLegged`, `sunlightSensitivity`, `tinker`, `toughness`, `trance`, `unarmedCombatant`, `unsettlingVisage`.
+
+## [2.3.1.2.6.4] - 2023-10-16
+
+### Changes
+
+- Art updates.
+
+### Fixed
+
+- Old NPCs armor class will be properly migrated.
+- Class overview journal should once again work.
+- Clothing equipment should now have the proper artwork.
+- Website Importer should once again work.
+- Currency should no longer be reset after any update.
+- JournalEntry migration should once again work.
+
+## [2.3.1.2.6.3] - 2023-10-04
+
+### Added
+
+- #748 'Powercasting Checkbox- "Does not count against powers known"'.
+- Compendium Folders.
+- Bolstering and Surging properties on equipped focuses now properly add force/tech points.
+- Compendium Browser 'Powers', 'Maneuvers', and 'Features' tabs.
+
+### Changes
+
+- Split the 'Favorites and Notes' subtab of the 'Core' tab.
+- Notes have been merged into a single note, with proper editor support.
+- Updated Compendium Browser to match [pf2e 2.4.4](https://github.com/foundryvtt/pf2e/releases/tag/5.4.4).
+
+### Fixed
+
+- Force/Tech/Superiority points bonuses should now accept non-numeric values, like `@abilities.cha.mod`.
+- Skill bonuses on the NPC sheet should be properly aligned.
+- #737 'Powercasting Issues'.
+- Warning about migration issues related to NPC's CR.
+- Compendium browser 'Equipment' tab should now open again.
+- Species features no longer have 'None (Species name)' as their requirement.
+
+## [2.3.1.2.6.1] - 2023-09-01
 
 ### Added
 
@@ -73,7 +222,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changes
 
-- The starship actions, armor, equipment, features, and weapons compendiums have been updated to match the website. (Credits to GreyCouncil#8804).
+- The starship actions, armor, equipment, features, and weapons compendiums have been updated to match the website. (Credits to `GreyCouncil#8804`).
 - Backdrop Icons were moved to `packs/Icons/ItemBackdrop`.
 - Some items that were previously loot (rations, spikes) have been made consumables.
 - Some items that were previously equipment (life support except suits, respirators and rations) have been made loot.
@@ -98,7 +247,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - The website character importer now properly triggers all advancements.
 - Modifications can once again modify boolean properties.
 - Deprecated item types no longer show up to be created.
-- Huge and Gargantuan ships should now have the proper ammount of hull and shield dice at higher levels.
+- Huge and Gargantuan ships should now have the proper amount of hull and shield dice at higher levels.
 - Deployments can once again be ranked up.
 - Shield Damage Resistances/Immunities/Vulnerabilities should once again be editable.
 

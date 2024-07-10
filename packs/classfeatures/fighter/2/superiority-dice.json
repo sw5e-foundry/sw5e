@@ -13,62 +13,60 @@
   "system": {
     "description": {
       "value": "<p>You have two superiority dice, which are d4s, and you earn more at higher levels, as shown in the Superiority Dice Quantity column of the fighter table. This die changes as you gain fighter levels, as shown in the Superiority Dice Size column of the fighter table. A superiority die is expended when you use it. </p>\n<p>You regain all of your expended superiority dice when you finish a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Fighter 2",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 2,
+      "max": "2",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
     },
     "damage": {
-      "parts": [
-        [
-          "1d4",
-          ""
-        ]
-      ],
+      "parts": [],
       "versatile": ""
     },
-    "formula": "",
+    "formula": "1d4",
     "save": {
       "ability": "",
       "dc": null,
@@ -88,7 +86,16 @@
         "turn": null
       }
     },
-    "className": null
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -97,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426104829,
-    "modifiedTime": 1685840608604,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368728074,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "ZWJ20cvnIV3y2smR"
+  "_id": "ZWJ20cvnIV3y2smR",
+  "_key": "!items!ZWJ20cvnIV3y2smR"
 }

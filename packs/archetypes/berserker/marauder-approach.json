@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:58.3412148+00:00",
+      "timestamp": "2023-05-30T20:15:43.1806861+00:00",
       "importer_version": 3,
       "uid": "Archetype.name-marauder_approach"
     }
@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Marauder Approach</h1>\n<p>Few things are more terrifying than being in the path of a Berserker who has learned the ways of the Force. Those who follow this path unlock something deep within them, a well of untamed power from the depths of their fury. When a marauder unleashes their rage, they channel their brute strength into primal might, and uses it to devastate his foes in a hail of fire, blades, and blood. Due to the uncontrolled nature of their powers, marauders have a dangerous predilection for the strength and raw power offered by the dark side, and many fall into it's clutches. Even those who do not are always temped by the voices of fury barely contained within.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "marauderapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "dXy0LWkHTKt1KgME",
+        "_id": "1MKNsAVZFLMpHvhC",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.yAPAAJ8zHALWR0kn",
-            "Compendium.sw5e.archetypefeatures.s3NSEjWFRlUfNlT3"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.yAPAAJ8zHALWR0kn",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.s3NSEjWFRlUfNlT3",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1iplGGWs6jej1NZj",
+        "_id": "1T2Qq0UeVxsTRz4A",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.zwX26iCZadE3YGqA"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.zwX26iCZadE3YGqA",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1Fm3a9Px1lsaq73J",
+        "_id": "LdqAvskAgqicNcyZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.031GMctPEmFs4iPi"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.031GMctPEmFs4iPi",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "150P8A1OTpFs1OF9",
+        "_id": "1i1KGVlrtBW719X1",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.dtp98aDdpaAZHTnu"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.dtp98aDdpaAZHTnu",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959764,
-    "modifiedTime": 1684819093623,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689744,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!ebxtiAWCJv8uqcOi"
 }

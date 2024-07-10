@@ -7,97 +7,25 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [
-          true
-        ],
-        "altValue": [
-          true
-        ],
-        "context": []
-      },
-      "quickVersatile": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "use": false,
-          "resource": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:59.1577411+00:00",
       "importer_version": 3,
       "uid": "Power.name-guidance.level-0"
+    },
+    "sw5e": {
+      "migratedProperties": [
+        "concentration"
+      ]
     }
   },
   "system": {
     "description": {
       "value": "<p>You touch one willing creature. Once before the power ends, the target can roll a [[/r d4]] and add the number rolled to one ability check of its choice. The power then ends.</p>\n<p>This power's die increases at higher levels: to a [[/r d6]] at 5th level, a [[/r d8]] at 11th level, and a [[/r d10]] at 17th level.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -110,45 +38,42 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": ""
+      "units": "touch"
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
-    "ability": "",
+    "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
     },
     "damage": {
-      "parts": [
-        [
-          "1d(4+2*floor((@details.level+1)/6))",
-          ""
-        ]
-      ],
+      "parts": [],
       "versatile": ""
     },
-    "formula": "",
+    "formula": "1d4",
     "save": {
       "ability": "",
       "dc": null,
@@ -156,14 +81,6 @@
     },
     "level": 0,
     "school": "lgt",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": true,
-      "value": ""
-    },
     "materials": {
       "value": "",
       "consumed": false,
@@ -177,17 +94,27 @@
     "scaling": {
       "mode": "atwill",
       "formula": null
-    }
+    },
+    "properties": [
+      "concentration"
+    ],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493979179,
-    "modifiedTime": 1692402028258,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368781076,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!6j4bvKNBAxgSNr7V"
 }

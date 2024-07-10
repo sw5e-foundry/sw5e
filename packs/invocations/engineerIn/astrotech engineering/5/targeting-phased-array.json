@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:15.1674586+00:00",
+      "timestamp": "2023-05-30T20:14:19.9941241+00:00",
       "importer_version": 3,
       "uid": "Feature.name-targeting_phased_array.source-archetypeinvocation.sourceName-astrotech_engineering.level-5"
     }
@@ -16,49 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> 5th level</em></p>\n<p>While your targeting field is active, as an action, you can choose a number of creatures equal to your Intelligence modifier you can see within 60 feet (a minimum of one creaeture), and force them to make a Dexterity saving throw. On a failed save, all ranged weapon attacks made by allies within your field against the target have advantage until the beginning of your next turn.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Astrotech Engineering) 5",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -83,17 +89,27 @@
         "turn": null
       }
     },
-    "className": "Engineer"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493981048,
-    "modifiedTime": 1684777308933,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368786871,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!IGZVj8dw7pUhzlrO"
 }

@@ -16,82 +16,130 @@
   "system": {
     "description": {
       "value": "<h1>Exhibition Specialist</h1>\n<p>Those fighters who choose to become Exhibition Specialists can't help but show off. Even where there isn't an audience, these warriors take command of the battlefield as though it were a stage.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "exhibitionspecialist",
     "classIdentifier": "fighter",
     "advancement": [
       {
-        "_id": "1I25knwxfs6b1tcs",
+        "_id": "w2K9DkkRKpCDbF0b",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.UV99IRNUUIDboqRz",
-            "Compendium.sw5e.archetypefeatures.YSAfyMOlaN0NS360",
-            "Compendium.sw5e.archetypefeatures.z8n8EvW4rn2hhJ0m"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UV99IRNUUIDboqRz",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.YSAfyMOlaN0NS360",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.z8n8EvW4rn2hhJ0m",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1jGSkboW3u9Qpx3C",
+        "_id": "1bVatLMtX88HHKdL",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.mZ2yJCzil1BUJVrA"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.mZ2yJCzil1BUJVrA",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "Rl7RpFR6bzNbx8W5",
+        "_id": "N8xEbDJGcvWwSNJI",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.0pdMOOqEUsKgcjTg"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.0pdMOOqEUsKgcjTg",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "1gnTzwZcNUMB18Ub",
+        "_id": "6EsDZMJZAlOoiNIX",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.QjDWPNlBlb4AZeRD"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.QjDWPNlBlb4AZeRD",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "LU4A2cqWpWMGeIet",
+        "_id": "1Do8X6w3n3YLn2SN",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.2Pb9OITYFWjfh68F"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.2Pb9OITYFWjfh68F",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
         "title": "Features"
+      },
+      {
+        "_id": "OpPKQTvYwraZKoM8",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:dec",
+                "skills:itm",
+                "skills:prf",
+                "skills:per"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -101,7 +149,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -109,10 +157,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959725,
-    "modifiedTime": 1684819093622,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689185,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!D847Oc3BCSbSdBIF"
 }

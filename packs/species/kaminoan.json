@@ -1,8 +1,187 @@
 {
-  "_id": "nNm2XSkGbZ4w3RuV",
   "name": "Kaminoan",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2821319+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-kaminoan"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Kaminoan.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Kaminoans' evolution from aquatic creatures in the vast oceans of Kamino is reflected in their tall shape, glassy coated eyes, near luminescent skin, and long, thin necks. The almond-shaped eyes of kaminoans are also able to see color in the ultraviolet spectrum. While female kaminoans are bald, males possess headcrests and fin ridges along the rear of their small, bulbous skulls.</p>\n<h2>Society and Culture</h2>\n<p>The kaminoans see themselves as a superior form of life, but nevertheless remained polite to outsiders. To them any species seeking self-improvement is worthy of respect, but those who do not are obviously inferior; self-improvement has a central role in Kaminoan society. Through the development and mastery of selective breeding, genetics, and cloning, the kaminoans were able to overcome a cataclysm that pushed them to the brink of extinction. </p>\n<p>Kaminoans live in a caste based society, determined by the color of the kaminoan's eyes. Gray eyed individuals handle administration and are considered of the highest-level caste; middle castes had yellow eyes and handle the skilled work; and lower castes had blue eyes and perform manual labor and other menial tasks. Although it is extremely rare, kaminoans are sometimes born with green eyes. Those are viewed as genetically inferior and as a threat to the kaminoans' well ordered society and as such are exterminated shortly after birth. </p>\n<h2>Names</h2>\n<p>Kaminoan names typically are composed by around two syllables and a brief surname.</p>\n<p><strong>Male Names.</strong> Lama, Ni, Orun, Koa</p>\n<p><strong>Female Names.</strong> Taun, Ko, Nala, Kina</p>\n<p><strong>Surnames.</strong> Ha, Su, We, Sai, Wa</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "kaminoan",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "KFUu1QBaABhVFrjt",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hcfzSS8sNV3UIUn9",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fYMYiuBv6wU1aFu0",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vSn9lQd23KBuM9Oh",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KrPOIDoMgtoikZkt",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.XsSmLxMBtwDuKic9",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.uv2DXGPdxbWaTJGf",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.H4e5jQE8x5HaCOUU",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cbAjn2wXCd5aM6d5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MhWQ6sQUaDJMiajt",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hmdGzuC5rn6Iwv09",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "YoU5ltGLxa9AazhY",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "wis": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1f3e5xWR4o2zJntC",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1PshYLp9k45zaJSF",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:med"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "White"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Grey, yellow, blue, green"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Very tall, long limbs, long necks"
+    },
+    "heightAverage": {
+      "value": "6'4\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "150 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Kamino"
+    },
+    "slanguage": {
+      "value": "Kaminoan, Galactic Basic"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "bAvoarff91YbaQxe",
@@ -12,18 +191,6 @@
           "value": "Kaminoan",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -73,103 +240,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Kaminoan.webp",
-      "label": "Kaminoan",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Kaminoan",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!bRUaQsEDmIImHKap.bAvoarff91YbaQxe"
     }
   ],
+  "_id": "bRUaQsEDmIImHKap",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2821319+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-kaminoan"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Kaminoans' evolution from aquatic creatures in the vast oceans of Kamino is reflected in their tall shape, glassy coated eyes, near luminescent skin, and long, thin necks. The almond-shaped eyes of kaminoans are also able to see color in the ultraviolet spectrum. While female kaminoans are bald, males possess headcrests and fin ridges along the rear of their small, bulbous skulls.</p>\n<h2>Society and Culture</h2>\n<p>The kaminoans see themselves as a superior form of life, but nevertheless remained polite to outsiders. To them any species seeking self-improvement is worthy of respect, but those who do not are obviously inferior; self-improvement has a central role in Kaminoan society. Through the development and mastery of selective breeding, genetics, and cloning, the kaminoans were able to overcome a cataclysm that pushed them to the brink of extinction. </p>\n<p>Kaminoans live in a caste based society, determined by the color of the kaminoan's eyes. Gray eyed individuals handle administration and are considered of the highest-level caste; middle castes had yellow eyes and handle the skilled work; and lower castes had blue eyes and perform manual labor and other menial tasks. Although it is extremely rare, kaminoans are sometimes born with green eyes. Those are viewed as genetically inferior and as a threat to the kaminoans' well ordered society and as such are exterminated shortly after birth. </p>\n<h2>Names</h2>\n<p>Kaminoan names typically are composed by around two syllables and a brief surname.</p>\n<p><strong>Male Names.</strong> Lama, Ni, Orun, Koa</p>\n<p><strong>Female Names.</strong> Taun, Ko, Nala, Kina</p>\n<p><strong>Surnames.</strong> Ha, Su, We, Sai, Wa</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "kaminoan",
-    "advancement": [
-      {
-        "_id": "v6kUJNcYO1F1QlnB",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.hcfzSS8sNV3UIUn9",
-            "Compendium.sw5e.speciesfeatures.fYMYiuBv6wU1aFu0",
-            "Compendium.sw5e.speciesfeatures.vSn9lQd23KBuM9Oh",
-            "Compendium.sw5e.speciesfeatures.KrPOIDoMgtoikZkt",
-            "Compendium.sw5e.speciesfeatures.XsSmLxMBtwDuKic9",
-            "Compendium.sw5e.speciesfeatures.uv2DXGPdxbWaTJGf",
-            "Compendium.sw5e.speciesfeatures.H4e5jQE8x5HaCOUU",
-            "Compendium.sw5e.speciesfeatures.cbAjn2wXCd5aM6d5",
-            "Compendium.sw5e.speciesfeatures.MhWQ6sQUaDJMiajt",
-            "Compendium.sw5e.speciesfeatures.hmdGzuC5rn6Iwv09"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "White"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Grey, yellow, blue, green"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Very tall, long limbs, long necks"
-    },
-    "heightAverage": {
-      "value": "6'4\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "150 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Kamino"
-    },
-    "slanguage": {
-      "value": "Kaminoan, Galactic Basic"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002130,
-    "modifiedTime": 1692402505742,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797276,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!bRUaQsEDmIImHKap"
 }

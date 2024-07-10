@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Occultist Pursuit:</strong> 9th level</em></p>\n<p>Over the course of an hour, which can be done during a short rest, you can perform a ritual to construct an effigy of a creature. In order to do so, you must have at least heard of or seen the creature before, and the target must be in the same system as you. At the end of the hour, the creature must make a Wisdom saving throw against your maneuver save DC. This saving throw is modified by how well you know the target and the sort of physical connection you have to it, as shown in the Knowledge Save Modifier and Connection Save Modifier tables below. </p>\n<h4>Knowledge Save Modifier</h4>\n<p>|||</p>\n<p>|:--|--:|</p>\n<p>|Secondhand (you have heard of the target) |+5|</p>\n<p>|Firsthand (you have met the target) |+0|</p>\n<p>|Familiar (you know the target well) |-5|</p>\n<h4>Connection Save Modifier</h4>\n<p>|||</p>\n<p>|:--|--:|</p>\n<p>|Likeness or picture |-2|</p>\n<p>|Curse of Objurgation |-3|</p>\n<p>|Possession or garment |-4|</p>\n<p>|Body part, lock of hair, bit of nail, or the like |-10|</p>\n<p>On a successful save, the target isn't affected, and you can't use this ritual against it again for 24 hours. On a failed save, the ritual creates a Tiny doll that is linked to the target. The doll remains linked for 24 hours, or for 10 minutes after you first use it. It disintegrates at the end of this duration. For the duration, you can see and hear the target through the doll as if you were within 5 feet of the creature.</p>\n<p>Additionally, as action while the doll is in your possession, you can expend a Hit Die to torment the target, choosing an effect from the following options:</p>\n<ul>\n<li><strong>Burn:</strong> The target must succeed on a Wisdom saving throw. On a failed save, the target believes it is burning. While burning in this way, the target has has disadvantage on attack rolls made with Strength or Dexterity. This effect lasts for 1 hour.</li>\n<li><strong>Pain:</strong> The target must succeed on a Constitution saving throw or be wracked with pain for 1 hour. While in pain in this way, the target takes an additional [[/r 1d4]] psychic damage whenever it takes damage.</li>\n<li><strong>Stab:</strong> The target must succeed on a Dexterity saving throw or gain 2 slowed levels and fall prone. The slowed levels effect lasts for 1 hour.</li>\n</ul>\n<p>The target can only be under 1 effect at a time. When you use a new effect, any existing effects end. Placing an effect on a target requires maintaining your concentration, as if concentrating on a power.</p>\n<p>You can use this feature twice. You regain all expended uses when you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scholar (Occultist Pursuit) 9",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -31,34 +32,39 @@
       "units": "hour"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "5",
+      "value": 5,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 2,
+      "max": "2",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -78,24 +84,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Scholar"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493958241,
-    "modifiedTime": 1685840600486,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368719350,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!wokNr8mYw9khsGQK"
 }

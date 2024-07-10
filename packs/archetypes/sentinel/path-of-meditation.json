@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Path of Meditation</h1>\n<p>Throughout the Force, there is both symphonic harmony, and discordant chaos. Those sentinels who follow the Path of Meditation embody these concepts, empowering their allies and hindering their enemies through the use of the ancient Force technique of battle meditation.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "pathofmeditation",
     "classIdentifier": "sentinel",
     "advancement": [
       {
-        "_id": "DFszQyIwlH21zfAe",
+        "_id": "1GMJlt3uHI7i1bqY",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.jzk3jiTs5K4tXMgT",
-            "Compendium.sw5e.archetypefeatures.DzzBvbZTTc1CutJ7"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.jzk3jiTs5K4tXMgT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.DzzBvbZTTc1CutJ7",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1gUs75cO1eh415h9",
+        "_id": "16MevX3Fi8ryl3S3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.LL8StaGlBvMjxaER"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.LL8StaGlBvMjxaER",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1AxeXUnlKJsFbwaX",
+        "_id": "1z2UxU9OB2Pa90QY",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.10fweZVQTNSQtqX8"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.10fweZVQTNSQtqX8",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "Cz7PXOtDHeV1MZkM",
+        "_id": "rH9WJfNzW0w11Kr1",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.gZ3oAi3tQKpvQ7KD"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.gZ3oAi3tQKpvQ7KD",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959782,
-    "modifiedTime": 1684819093624,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689996,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!vJzeeptKOcyy2A3A"
 }

@@ -8,8 +8,8 @@
  * @param {object} [options={}]   Application rendering options.
  */
 export default class AdvancementFlow extends FormApplication {
-  constructor(item, advancementId, level, options = {}) {
-    super({}, options);
+  constructor( item, advancementId, level, options = {} ) {
+    super( {}, options );
 
     /**
      * The item that houses the Advancement.
@@ -42,10 +42,10 @@ export default class AdvancementFlow extends FormApplication {
 
   /** @inheritdoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       template: "systems/sw5e/templates/advancement/advancement-flow.hbs",
       popOut: false
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -79,7 +79,7 @@ export default class AdvancementFlow extends FormApplication {
    * work required for the retained data before the application is rendered.
    * @param {object} data  Retained data associated with this flow.
    */
-  async retainData(data) {
+  async retainData( data ) {
     this.retainedData = data;
   }
 
@@ -92,7 +92,7 @@ export default class AdvancementFlow extends FormApplication {
       advancement: this.advancement,
       type: this.advancement.constructor.typeName,
       title: this.title,
-      summary: this.advancement.summaryForLevel(this.level),
+      summary: this.advancement.summaryForLevel( this.level ),
       level: this.level
     };
   }
@@ -100,7 +100,24 @@ export default class AdvancementFlow extends FormApplication {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  async _updateObject(event, formData) {
-    await this.advancement.apply(this.level, formData);
+  async _render( ...args ) {
+    await super._render( ...args );
+
+    // Call setPosition on manager to adjust for size changes
+    this.options.manager?.setPosition();
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  async _updateObject( event, formData ) {
+    await this.advancement.apply( this.level, formData );
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _canDragDrop( selector ) {
+    return true;
   }
 }

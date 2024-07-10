@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p>Your flaming weapon sheds bright light in a 10-foot radius and dim light for an additional 10 feet, deals fire damage, and when you hit a creature with it, the creature takes additional damage equal to half your focus ability modifier (minimum of one).</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -27,11 +28,13 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": 10,
+      "value": "10",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438413,
-    "modifiedTime": 1685840599832,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368695922,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "QuxU8RZBpXirGxsj"
+  "_id": "QuxU8RZBpXirGxsj",
+  "_key": "!items!QuxU8RZBpXirGxsj"
 }

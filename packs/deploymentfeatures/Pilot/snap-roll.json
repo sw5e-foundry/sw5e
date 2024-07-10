@@ -9,27 +9,30 @@
   "flags": {},
   "system": {
     "description": {
-      "value": "<p><em><strong>Power Die Location:</strong> Engines</em><br>When you are hit by a ship attack, you can expend a power die and attempt to roll to mitigate the damage. When you do so, the damage you take from the attack is reduced by the amount rolled on the die.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p><em><strong>Power Die Location:</strong> Engines</em><br />When you are hit by a ship attack, you can expend a power die and attempt to roll to mitigate the damage. When you do so, the damage you take from the attack is reduced by the amount rolled on the die.</p>",
+      "chat": ""
     },
     "requirements": "Pilot 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "none",
       "cost": null,
       "condition": "When you are hit by a ship attack"
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,17 +42,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "powerdice",
       "target": "attributes.power.engines.value",
-      "amount": 1
+      "amount": 1,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -79,25 +83,27 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Pilot"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": "Tactic"
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493963453,
-    "modifiedTime": 1685840610788,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368730210,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!cUyB5pogFQW0K1vl"
 }

@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:15.1774524+00:00",
+      "timestamp": "2023-05-30T20:14:20.0051171+00:00",
       "importer_version": 3,
       "uid": "Feature.name-localized_survey.source-archetypeinvocation.sourceName-archaeologist_pursuit.level-13"
     }
@@ -16,49 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> 13th level</em></p>\n<p>Your affinity for the force allows you to key in to the recent past of an area you enter. When you would expend a use of your Psychometric Analysis, you can instead choose to target your immediate vicinity (up to a 50-foot cube) and investigate for at least 1 minute. For each minute you investigate, you see visions of recent events in the area going back a number of days equal to your scholar level, you learn about one significant event, beginning with the most recent. </p>\n<p>You can investigate in this way for a number of minutes equal to your scholar level and must maintain concentration during that time, as if you were concentrating on a power. </p>\n<p>Once you've used this feature, you can't use it again until you complete a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scholar (Archaeologist Pursuit) 13",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": "50",
       "width": null,
       "units": "ft",
-      "type": "cube"
+      "type": "cube",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -83,17 +89,27 @@
         "turn": null
       }
     },
-    "className": "Scholar"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493981149,
-    "modifiedTime": 1684777308936,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368789246,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!bS7xvsYZcZ1onGfB"
 }

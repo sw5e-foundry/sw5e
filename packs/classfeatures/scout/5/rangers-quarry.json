@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Scout:</strong> 1st, 5th, 9th, and 17th level</em></p>\n<p>You learn how to effectively read and track your prey. Once on each of your turns, you can choose a creature you can see within 120 feet and mark it as your quarry (no action required). For the next hour, you gain the following benefits:</p>\n<ul>\n<li>Once per turn, when you hit the target with a weapon attack, you can deal [[/r 1d4]] additional damage to it of the same type as the weapon's damage. This die changes as you gain scout levels, as shown in the Ranger's Quarry column of the scout table.</li>\n<li>You have advantage on any Wisdom (Perception) or Wisdom (Survival) check you make to find it while it's on the same planet as you.</li>\n</ul>\n<p>You can only have one creature marked in this way at a time. Beginning at 5th level, you can use your reaction to mark a creature when it enters your line of sight, provided it is within range of your Ranger's Quarry.</p>\n<p>The duration increases to 8 hours at 9th level and 24 hours at 17th level.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scout 5",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
@@ -27,11 +28,13 @@
       "units": "hour"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "creature"
+      "type": "creature",
+      "prompt": true
     },
     "range": {
       "value": 120,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -85,7 +89,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -95,11 +109,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.1",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1680288496554,
-    "modifiedTime": 1680288496554,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368727180,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "2pATsFx6QoXCIHRC"
+  "_id": "2pATsFx6QoXCIHRC",
+  "_key": "!items!2pATsFx6QoXCIHRC"
 }

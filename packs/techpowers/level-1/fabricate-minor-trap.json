@@ -9,31 +9,29 @@
   },
   "type": "power",
   "img": "systems/sw5e/packs/Icons/Tech%20Powers/FabricateMinorTrap.webp",
-  "effects": [],
   "system": {
     "description": {
       "value": "<p>You ward a 30-foot radius sphere centered on you with a manually-operated trap. The trap is well disguised. Any creature that can't see the area at the time the power is cast must make a Wisdom (Perception) check against your tech save DC to notice the trap before entering the area. Once after this power is cast, when a creature you can see enters or moves within the warded area, you can use your reaction to trigger the trap. The effect on the creature depends on the kind of trap you employ, which you choose when you cast this power. You can maintain a maximum number of instances of this power at once equal to your techcasting ability modifier.</p>\n<p><strong><em>Blaster.</em></strong> This power creates a blaster turret which fires at the target when triggered. The creature must make a Dexterity saving throw. It takes [[/r 2d10]] energy damage on a failed save, or half as much on a successful one.</p>\n<p><strong><em>Pitfall.</em></strong> This power creates a 5-foot diameter, 15-foot deep pitfall in the ground beneath the creature when triggered, which must make a Dexterity saving throw. On a failed saving throw, the creature falls into the pitfall. On a success, the creature falls prone in a space within 5 feet of the pitfall. This pitfall cannot be created through manufactured terrain. Otherwise, the hole is well constructed and lasts even after the power's duration. Flying creatures avoid this trap.</p>\n<p><strong><em>Snare.</em></strong> This power creates a snare of rope, wire, vine, or webs that entangle the creature. The creature must make a Strength saving throw. A Large or larger creature has advantage on this saving throw. On a failed save, the creature takes [[/r 1d6]] kinetic damage and is restrained until the start of its next turn. On a success, the creature takes half as much damage and ends its movement.</p>\n<p><strong><em>Overcharge Tech.</em></strong> When you cast this power using a tech slot of 2nd level or higher, the effects increase, based on the trap.</p>\n<p><em>Blaster.</em> The damage increases by [[/r 1d10]] for each slot level above 1st. If cast using a slot of 3rd level or higher, this power targets creatures in a sphere centered on the triggering creature within the warded area, the radius of which is 5 feet for every two slot levels above 1st.</p>\n<p><em>Pitfall.</em> The depth of the pitfall increases by 5 feet for each slot level above 1st. If cast using a slot of 3rd level or higher, the diameter of the pit is 5 feet wider for every two slot levels above 1st.</p>\n<p><em>Snare.</em> The damage increases by [[/r 1d6]] for each slot level above 1st. If cast using a slot of 3rd level or higher, Large creatures no longer have advantage on their saving throw. This size category increases for every two slot levels above 1st.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "minute",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
-    "cover": null,
-    "crewed": false,
     "target": {
       "value": "30",
       "width": null,
       "units": "ft",
-      "type": "sphere"
+      "type": "sphere",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,19 +40,13 @@
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": "int",
+    "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
-    "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
@@ -80,14 +72,7 @@
     },
     "level": 1,
     "school": "tec",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": false,
-      "value": ""
-    },
+    "properties": [],
     "materials": {
       "value": "",
       "consumed": false,
@@ -96,13 +81,30 @@
     },
     "preparation": {
       "mode": "prepared",
-      "prepared": true
+      "prepared": false
     },
     "scaling": {
       "mode": "level",
       "formula": "1d10"
-    }
+    },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "enchantment": null,
+    "summons": null
   },
+  "effects": [],
+  "_id": "hmyHJYXU4hWEWiXc",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -110,11 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1667426102814,
-    "modifiedTime": 1692402503916,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296025398,
+    "modifiedTime": 1720418052195,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "mCnc4ww0Hygv3CFU"
+  "_key": "!items!hmyHJYXU4hWEWiXc"
 }

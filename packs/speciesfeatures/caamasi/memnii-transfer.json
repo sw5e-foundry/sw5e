@@ -1,11 +1,5 @@
 {
-  "_id": "HEJEEPKThzGBvDPu",
   "name": "Memnii Transfer",
-  "type": "feat",
-  "img": "systems/sw5e/packs/Icons/Species/Caamasi.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.5769615+00:00",
@@ -13,14 +7,17 @@
       "uid": "Feature.name-memnii_transfer.source-species.sourceName-caamasi.level-None"
     }
   },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Species/Caamasi.webp",
   "system": {
     "description": {
       "value": "<p>As an action, while touching a creature, you can initiate a memnii transfer. The creature must make an Intelligence saving throw (DC = 8 + your proficiency bonus + your Intelligence modifier), a creature can choose to fail this saving throw if it wishes. On a failed save the target is stunned, and you can share vivid memories with the target as if they were their own for 1 minute or until your concentration ends (as if you were concentrating on a power). The transfer ends if you stop touching the target. At the end of each of its turns, the creature can repeat the saving throw to resist the transfer. On a success, the transfer ends. Otherwise, you may end the transfer on your turn (no action required). Once you've used this trait, you can't use it again until you finish a long rest. This feature has no effect on droids, constructs, or Force-Insensitive creatures.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "None (Caamasi)",
-    "source": "EC",
+    "requirements": "Caamasi",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -30,38 +27,26 @@
       "value": "1",
       "units": "minute"
     },
-    "cover": null,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": {
-      "threshold": null,
-      "damage": null
-    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -76,27 +61,55 @@
       "value": "species",
       "subtype": ""
     },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": [],
     "recharge": {
       "value": null,
       "charged": false
     },
     "attributes": {
       "speed": {
-        "space": null,
-        "turn": null
+        "space": 300,
+        "turn": 250
       }
-    },
-    "className": null
+    }
   },
+  "effects": [],
+  "_id": "JWWncVjrVLOGg19b",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
-    "createdTime": 1674494003048,
-    "modifiedTime": 1684777310241,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296029297,
+    "modifiedTime": 1720368889828,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!JWWncVjrVLOGg19b"
 }

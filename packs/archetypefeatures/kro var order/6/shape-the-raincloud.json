@@ -13,47 +13,50 @@
   "system": {
     "description": {
       "value": "<p>You can use your action pull water from air, and return it to the atmosphere. In an open container, you can create up to 20 gallons of drinkable water. You may also produce a rain that falls within a 30-foot cube and extinguishes open-air flames. You can destroy the same amount of water in an open container, or destroy a 30-foot cube of fog.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 6",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": "30",
       "width": null,
       "units": "ft",
-      "type": "cube"
+      "type": "cube",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -83,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Monk"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -92,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426104191,
-    "modifiedTime": 1685840600183,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368707448,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "iFC9XaVvKpqQGbIu"
+  "_id": "iFC9XaVvKpqQGbIu",
+  "_key": "!items!iFC9XaVvKpqQGbIu"
 }

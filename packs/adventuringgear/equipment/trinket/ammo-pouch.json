@@ -16,38 +16,41 @@
   "system": {
     "description": {
       "value": "<p>An ammo pouch is a small pouch, usually worn around the waist or chest, which holds 20 slug cartridges. When you reload a weapon, you can draw as much ammunition needed from this pouch without using an object interaction to do so. Instead of slug cartridges, you can instead store a power cell which takes up the space of 10 cartridges.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 15,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
-      "units": ""
+      "value": "",
+      "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -56,20 +59,24 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
-    "actionType": "",
-    "attackBonus": 0,
+    "actionType": "other",
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -82,8 +89,8 @@
     },
     "armor": {
       "value": null,
-      "type": "trinket",
-      "dex": null
+      "dex": null,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -122,30 +129,42 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "baseItem": "ammopouch",
     "speed": {
       "value": null,
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
-    "properties": {},
+    "properties": [],
     "proficient": null,
-    "weaponType": ""
+    "_propertyValues": {},
+    "type": {
+      "value": "trinket",
+      "baseItem": "ammopouch"
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493956150,
-    "modifiedTime": 1693589984311,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720418046597,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!RwuVrQzUl3edz3M9"
 }

@@ -16,38 +16,41 @@
   "system": {
     "description": {
       "value": "<h3>Power cell (range 70/280) Cell</h3>\n<p>Weapons with this property are fueled by power cells, which must be loaded in order to fire the weapon. A power cell fuels a number of attacks equal to the weapon's reload number.</p>\n<h3>Reload 16</h3>\n<p>A number of shots equal to the reload number can be made with a weapon with this property. A character must then reload it using an action or a bonus action (their choice). You must have one free hand to reload.</p>\n<h3>Switch ([[/r 1d4]] acid)</h3>\n<p>A weapon with the switch property can deal an alternate type of damage. A damage value appears in parentheses appears with the property-the damage when the weapon uses its alternate damage type. On your turn, you can use your object interaction to change the weapon's damage type.</p>\n<h3>Two-handed</h3>\n<p>A weapon with this property requires two hands to use.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "quantity": 1,
-    "weight": null,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 925,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
-      "units": ""
+      "value": "",
+      "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -56,19 +59,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": 40,
-      "ammount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "rwak",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -103,12 +106,9 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "weaponType": "simpleB",
-    "baseItem": "switchcarbine",
+    "weaponClass": "carbine",
     "ammo": {
       "target": null,
       "value": null,
@@ -117,25 +117,47 @@
         "powerCell"
       ]
     },
-    "properties": {
-      "ran": 60,
+    "properties": [
+      "pcl",
+      "rel",
+      "swi",
+      "two"
+    ],
+    "proficient": null,
+    "type": {
+      "value": "simpleB",
+      "subtype": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "_propertyValues": {
+      "pcl": "range 70/280",
       "rel": 16,
       "swi": "1d4 acid",
-      "pcl": "range 70/280",
       "two": true
     },
-    "proficient": null,
-    "equiped": false
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "firingArc": ""
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493961267,
-    "modifiedTime": 1693589984536,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720553654115,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!OZhhFSXfVaTxlvMy"
 }

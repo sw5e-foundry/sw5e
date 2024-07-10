@@ -1,100 +1,5 @@
 {
-  "_id": "jaZL0M2Xrc57PzTj",
   "name": "Ssi-Ruu",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Ssi-Ruu.webp",
-  "effects": [
-    {
-      "_id": "mHet1jKAIkSgtPbd",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Ssi-Ruu",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 0,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "35",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.skills.sur.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "ssi-ruuvi",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.forceInsensitive",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.sunlightSensitivity",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Ssi-Ruu.webp",
-      "label": "Ssi-Ruu",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.291126+00:00",
@@ -102,47 +7,155 @@
       "uid": "Species.name-ssi_ruu"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Ssi-Ruu.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Ssi-ruuk are a predatory, warm-blooded saurian species gifted with ferocious strength, remarkable speed, and sharp fangs and claws, traits that serve them well in the volcanic jungles of their homeworld of Lwhekk. Their muscular forms combined with their powerful tails make them very agile hunters, and their colorfully-scaled hides have been proven to be resistant even to blaster bolts. From their nostrils, two scent-tongues protrude that grant them enhanced olfactory senses, compensating for the poor vision afforded them by their dark, three-lidded eyes. No Ssi-ruu has ever been known to be Force-sensitive.</p>\n<h2>Society and Culture</h2>\n<p>The citizens of the Ssi-ruuvi Imperium follow a rigid caste system in which their station in society is determined by the color of the scales they are born with. Among these, the brown-scaled outcasts are regarded as the lowest of the low, and have no place in the Imperium beyond menial labor or death at birth. Deeply xenophobic and religious, the Ssi-ruuk view the rest of the galaxy as populated by lesser beings whose worlds rightfully belong to the Imperium. Despite their fierce nature, most ssi-ruuk are afraid of dying on a world unconsecrated by their priest caste, as they believe their souls would be doomed, so they harvest and \"entech\" the life-energy of other species to power droids that fight for them. The entechment process is torturous and painful to its victims, and is the main power source of Ssi-ruuvi technology.</p>\n<h2>Names</h2>\n<p>Ssi-ruuvi names are difficult to pronounce and gender neutral. Many ssi-ruuk adopt nicknames to make the lives of their associates easier. Ssi-ruuk do not have surnames.</p>\n<p><strong>Names.</strong> Firwirrung, Ivpikkis, Sh'tk'ith, Th'twirirl, Yifaii</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "ssi-ruu",
-    "advancement": [
-      {
-        "_id": "Yeu1yrMvcxr1O3Ty",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.hbxK2DCHwASRGvtr",
-            "Compendium.sw5e.speciesfeatures.DCd8cwAj1jjEhO91",
-            "Compendium.sw5e.speciesfeatures.ywciAweAw55KQfIU",
-            "Compendium.sw5e.speciesfeatures.dg4KiSA8XJOoq4rw",
-            "Compendium.sw5e.speciesfeatures.InTYaHUtcqvS3l01",
-            "Compendium.sw5e.speciesfeatures.Pz4lqpkTnwN2n1Ro",
-            "Compendium.sw5e.speciesfeatures.R3s13y6JA7EEn4bN",
-            "Compendium.sw5e.speciesfeatures.JnOz1Lz8Gty1NlPe",
-            "Compendium.sw5e.speciesfeatures.jmsdQ59FPBVNkWZe",
-            "Compendium.sw5e.speciesfeatures.8eM6wFepSLC3oEJj",
-            "Compendium.sw5e.speciesfeatures.hVt6nrFfRXDTebqw",
-            "Compendium.sw5e.speciesfeatures.9PKF4ohgtWDHm15d",
-            "Compendium.sw5e.speciesfeatures.f0ueo5rHCiUwKNF8",
-            "Compendium.sw5e.speciesfeatures.SBrW57uaH2NrePLD"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "beast",
+      "subtype": "Humanoid"
+    },
+    "movement": {
+      "walk": 35,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1qKUDC3E0R3C14WJ",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hbxK2DCHwASRGvtr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DCd8cwAj1jjEhO91",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ywciAweAw55KQfIU",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.dg4KiSA8XJOoq4rw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.InTYaHUtcqvS3l01",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Pz4lqpkTnwN2n1Ro",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.R3s13y6JA7EEn4bN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JnOz1Lz8Gty1NlPe",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jmsdQ59FPBVNkWZe",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.8eM6wFepSLC3oEJj",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hVt6nrFfRXDTebqw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9PKF4ohgtWDHm15d",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.f0ueo5rHCiUwKNF8",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.SBrW57uaH2NrePLD",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "bXBdKEjVkgTB2WBw",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "dex": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1fIklzHIVEIU1R9g",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "XODNy5LUZ2Q1AVLg",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:sur"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Brown, red, or tan scales"
     },
@@ -153,7 +166,7 @@
       "value": "Solid black"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Reptilian, tails, scent-tongues"
@@ -175,17 +188,176 @@
     },
     "slanguage": {
       "value": "Ssi-ruuvi"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "Gx9lsS3BpF2SIXCX",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Ssi-Ruu",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 0,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "35",
+          "priority": 5
+        },
+        {
+          "key": "system.skills.sur.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "ssi-ruuvi",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.forceInsensitive",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Ssi-Ruu.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.jaZL0M2Xrc57PzTj.ActiveEffect.mHet1jKAIkSgtPbd"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.jaZL0M2Xrc57PzTj",
+      "name": "Ssi-Ruu",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!LQH7GLOSw3Yh55vI.Gx9lsS3BpF2SIXCX"
+    },
+    {
+      "_id": "01RnAkk6wVZbHnyn",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Ssi-Ruu.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.jaZL0M2Xrc57PzTj.ActiveEffect.mHet1jKAIkSgtPbd"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.jaZL0M2Xrc57PzTj",
+      "name": "Keen Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!LQH7GLOSw3Yh55vI.01RnAkk6wVZbHnyn"
+    },
+    {
+      "_id": "FEGxoE3psTus1z2D",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.disadvantage.attack.all",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.situational.disadvantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Ssi-Ruu.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.jaZL0M2Xrc57PzTj.ActiveEffect.mHet1jKAIkSgtPbd"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.jaZL0M2Xrc57PzTj",
+      "name": "Sunlight Sensitivity - you or your target is in sunlight",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!LQH7GLOSw3Yh55vI.FEGxoE3psTus1z2D"
+    }
+  ],
+  "_id": "LQH7GLOSw3Yh55vI",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002123,
-    "modifiedTime": 1692402505742,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796905,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!LQH7GLOSw3Yh55vI"
 }

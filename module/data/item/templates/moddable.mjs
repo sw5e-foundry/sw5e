@@ -1,3 +1,5 @@
+import SystemDataModel from "../../abstract.mjs";
+
 /**
  * Data model template with information on moddable items.
  *
@@ -9,33 +11,33 @@
  * @property {object} changes             Precalculated 'overrides' object to apply modification changes.
  * @mixin
  */
-export default class ModdableTemplate extends foundry.abstract.DataModel {
+export default class ModdableTemplate extends SystemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
       modify: new foundry.data.fields.SchemaField(
         {
-          chassis: new foundry.data.fields.StringField({
+          chassis: new foundry.data.fields.StringField( {
             required: true,
             initial: "none",
             label: "SW5E.ItemChassisType"
-          }),
-          augmentSlots: new foundry.data.fields.NumberField({
+          } ),
+          augmentSlots: new foundry.data.fields.NumberField( {
             required: true,
             nullable: false,
             initial: 0,
             min: 0,
             label: "SW5E.ItemChassisAugmentCount"
-          }),
-          modSlots: new foundry.data.fields.NumberField({
+          } ),
+          modSlots: new foundry.data.fields.NumberField( {
             required: true,
             nullable: false,
             initial: 4,
             min: 0,
             label: "SW5E.ItemChassisModCount"
-          }),
-          items: new foundry.data.fields.ArrayField(new foundry.data.fields.ObjectField(), { required: true }),
-          changes: new foundry.data.fields.ObjectField({ required: true })
+          } ),
+          items: new foundry.data.fields.ArrayField( new foundry.data.fields.ObjectField(), { required: true } ),
+          changes: new foundry.data.fields.ObjectField( { required: true } )
         }, {}
       )
     };

@@ -1,0 +1,121 @@
+{
+  "name": "Pinpoint Subroutine",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-05-06T20:49:24.2583379+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-pinpoint_subroutine.subtype-wristpad"
+    }
+  },
+  "type": "modification",
+  "img": "systems/sw5e/packs/Icons/Modifications/WristpadMod.webp",
+  "system": {
+    "description": {
+      "value": "<h4>Item Modification (Wristpad)</h4>\n <p>When you cast a power that allows you to force creatures in an area to make a saving throw you can instead spend 1 tech point and make a ranged tech attack against a single target that would be in the range. On a hit the target suffers the effects as though they failed their saving throw. </p>\n<p>You can only spend a number of tech points in this way equal to your proficiency bonus. You regain the ability to do so when you complete a long rest. </p>\n<p>You can use only one Subroutine modification on a power when you cast it, unless otherwise noted.</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "quantity": 1,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "rarity": "premium",
+    "identified": true,
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": "",
+      "width": null,
+      "units": "",
+      "type": "",
+      "prompt": true
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "@attributes.prof",
+      "per": "lr",
+      "recovery": "",
+      "prompt": true
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "actionType": "rpak",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "modifying": {
+      "id": null,
+      "disabled": false
+    },
+    "properties": [],
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "wristpad",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
+  },
+  "effects": [],
+  "_id": "3XxzQmuRmm54Z7dH",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1698185222448,
+    "modifiedTime": 1720368834391,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!3XxzQmuRmm54Z7dH"
+}

@@ -16,68 +16,107 @@
   "system": {
     "description": {
       "value": "<h1>Path of Synthesis</h1>\n<p>There is power in diversity unknown to those of narrow mind. Those sentinels who follow the Path of Synthesis blend their intricate mastery of the Force with their understanding of technology, creating unique effects to overcome their obstacles.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "pathofsynthesis",
     "classIdentifier": "sentinel",
     "advancement": [
       {
-        "_id": "PTj1ePhJN6CtOUXJ",
+        "_id": "XLhedoLNqKgVz4T4",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Lw8sDgfB0hmIxhku",
-            "Compendium.sw5e.archetypefeatures.21Ktw6dxxFXmOh4P"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Lw8sDgfB0hmIxhku",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.21Ktw6dxxFXmOh4P",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1sEGMBMnlg5E1jS8",
+        "_id": "1kleIXjSUGsR1vtP",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.VJgOOiZqdccEI7W3"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.VJgOOiZqdccEI7W3",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "z4R84ICwVyXtBtM3",
+        "_id": "KOMXr6dFvpulnCM4",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.0fo6KzqxikFvFhsw"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.0fo6KzqxikFvFhsw",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "QiQLKZptRgR11Aad",
+        "_id": "1E55m9vO2HW1zcKW",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.GnOt6LNfEOoKjLl7"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.GnOt6LNfEOoKjLl7",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
         "title": "Features"
+      },
+      {
+        "_id": "1laDEnO1XdtrODaE",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:tec",
+                "tool:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -87,7 +126,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +134,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959724,
-    "modifiedTime": 1684819093622,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689162,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!Ciao7QEgiVgUL0P2"
 }

@@ -1,3 +1,5 @@
+import SystemDataModel from "../../abstract.mjs";
+
 /**
  * Data model template for equipment that can be mounted on a vehicle.
  *
@@ -10,42 +12,42 @@
  * @property {string} hp.conditions  Conditions that are triggered when this equipment takes damage.
  * @mixin
  */
-export default class MountableTemplate extends foundry.abstract.DataModel {
+export default class MountableTemplate extends SystemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
       armor: new foundry.data.fields.SchemaField(
         {
-          value: new foundry.data.fields.NumberField({
+          value: new foundry.data.fields.NumberField( {
             required: true,
             integer: true,
             min: 0,
             label: "SW5E.ArmorClass"
-          })
+          } )
         },
         { label: "SW5E.ArmorClass" }
       ),
       hp: new foundry.data.fields.SchemaField(
         {
-          value: new foundry.data.fields.NumberField({
+          value: new foundry.data.fields.NumberField( {
             required: true,
             integer: true,
             min: 0,
             label: "SW5E.HitPointsCurrent"
-          }),
-          max: new foundry.data.fields.NumberField({
+          } ),
+          max: new foundry.data.fields.NumberField( {
             required: true,
             integer: true,
             min: 0,
             label: "SW5E.HitPointsMax"
-          }),
-          dt: new foundry.data.fields.NumberField({
+          } ),
+          dt: new foundry.data.fields.NumberField( {
             required: true,
             integer: true,
             min: 0,
             label: "SW5E.DamageThreshold"
-          }),
-          conditions: new foundry.data.fields.StringField({ required: true, label: "SW5E.HealthConditions" })
+          } ),
+          conditions: new foundry.data.fields.StringField( { required: true, label: "SW5E.HealthConditions" } )
         },
         { label: "SW5E.HitPoints" }
       )

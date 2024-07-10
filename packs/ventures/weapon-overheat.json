@@ -10,11 +10,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> The ability to cast 2nd level tech powers</em></p>\n<p>As a bonus action, you may spend three tech points to empower a ship weapon on your ship. For up to an hour, as long as you maintain concentration, you can cool the weapon once per turn without using an action, and as a bonus action on each of your turns you can make one attack with the weapon.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -25,11 +26,13 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,16 +43,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": null,
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,18 +84,26 @@
       }
     },
     "prerequisites": [
-      "The ability to cast 2nd level tech powers"
-    ]
+      null
+    ],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494021262,
-    "modifiedTime": 1685840671138,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552921441,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!e9gE2Mr9Hu48qP2F"
 }

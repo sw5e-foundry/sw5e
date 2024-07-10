@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Vonil/Ishu Form:</strong> 3rd, 11th, and 17th level</em></p>\n<p>As a bonus action, you can enter a synchronized stance with one ally of your choice within 10 feet of you for 1 minute. While in this stance, once per turn, when you hit a creature with an attack, the chosen ally has advantage on the next attack it makes against the same target before the end of your next turn. Additionally, once per turn, when the chosen ally hits a creature with an attack, you have advantage on the next attack you make against the same target before the end of your next turn.</p>\n<p>This effect ends early if either you or the chosen ally are incapacitated or die, or if the chosen ally is ever more than 10 feet away from you. Once you've used this feature, you can't use it again until you complete a long rest.</p>\n<p>At 11th level, the chosen ally must be within 30 feet of you to benefit from this feature. At 17th level, the chosen ally must be within 60 feet.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Vonil/Ishu Form) 11",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -31,34 +32,39 @@
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "10",
+      "value": 10,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -73,24 +79,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Guardian"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493958209,
-    "modifiedTime": 1685840600433,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368716926,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!uGkIN43cjabYFnm2"
 }

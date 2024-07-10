@@ -1,15 +1,13 @@
 {
-  "_id": "Plbz6gx1TNpB3CLD",
   "name": "Super-Heavy Ion Cannon",
   "type": "starshipmod",
-  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>Your ship is equipped with a weapon designed to disable enemy ships without damaging them through use of a specialized ion cannon that delivers a powerful electromagnetic burst. A crew member can fire the super-heavy ion cannon at a target as an action, which has a range of 1,000 feet and a limited firing arc, as described in Chapter 9. The target must make a Constitution saving throw (DC = 8 + the crew member's proficiency bonus + the ship's Strength modifier). On a failed save, a ship is stunned for 1 minute. As an action on each of the ship's turns, a crew member can repeat the saving throw, ending the effect on a success.</p>\n<p>If a ship is targeted by a ship two or more sizes larger than them, it has disadvantage on the initial saving throw. If targeted by a ship two or more sizes smaller, it instead has advantage.</p>\n<p>This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges. If you have more than one Super-Heavy Ion Cannon installed, they all share this amount of uses, and each Super-Heavy Ion Cannon past the first grants an additional use.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">Your ship is equipped with a weapon designed to disable enemy ships without damaging them through use of a specialized ion cannon that delivers a powerful electromagnetic burst. A crewmember can fire the super-heavy ion cannon at a target as an action, which has a range of 1,000 feet and a limited firing arc, as described in Chapter 9. The target must make a Constitution saving throw (DC = 8 + the crewmember's proficiency bonus + the ship's Strength modifier). On a failed save, a ship is stunned for 1 minute. </span></p><p><span style=\"font-family:'Open Sans', sans-serif\">As an action on each of the ship's turns, a crewmember can repeat the saving throw, ending the effect on a success.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">If a ship is targeted by a ship two or more sizes larger than them, it has disadvantage on the initial saving throw. If targeted by a ship two or more sizes smaller, it instead has advantage.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges. If you have more than one Super-Heavy Ion Cannon installed, they all share this amount of uses, and each Super-Heavy Ion Cannon past the first grants an additional use.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -38,6 +36,7 @@
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": 1,
       "width": null,
@@ -53,7 +52,8 @@
       "value": 1,
       "max": "1",
       "per": "recharge",
-      "recovery": ""
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -82,14 +82,11 @@
       "charged": false,
       "value": null
     },
-    "system": {
-      "value": "Engineering"
-    },
     "grade": {
-      "value": "NA"
+      "value": 0
     },
-    "basecost": {
-      "value": "3500"
+    "baseCost": {
+      "value": null
     },
     "prerequisites": {
       "value": "Ship size Medium or larger"
@@ -104,53 +101,28 @@
       "dex": null
     },
     "proficient": false,
-    "properties": {
-      "Absorptive": false,
-      "Agile": false,
-      "Anchor": false,
-      "Avoidant": false,
-      "Barbed": false,
-      "Bulky": false,
-      "Charging": false,
-      "Concealing": false,
-      "Cumbersome": false,
-      "Gauntleted": false,
-      "Imbalanced": false,
-      "Impermeable": false,
-      "Insulated": false,
-      "Interlocking": false,
-      "Lambent": false,
-      "Lightweight": false,
-      "Magnetic": false,
-      "Obscured": false,
-      "Obtrusive": false,
-      "Powered": false,
-      "Reactive": false,
-      "Regulated": false,
-      "Reinforced": false,
-      "Responsive": false,
-      "Rigid": false,
-      "Silent": false,
-      "Spiked": false,
-      "Steadfast": false,
-      "Strength": false,
-      "Versatile": false
-    },
+    "properties": [],
     "attributes": {
       "dr": ""
     },
     "strength": null,
-    "stealth": false
-  },
-  "ownership": {
-    "default": 0
+    "stealth": false,
+    "type": {
+      "value": "Engineering"
+    }
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494018676,
-    "modifiedTime": 1685840666142,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1706199587663,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "0XRe9hBeEuGr93ZZ",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!0XRe9hBeEuGr93ZZ"
 }

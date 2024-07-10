@@ -15,50 +15,54 @@
       "system": {
         "description": {
           "value": "<p>As a bonus action, the trandoshan can take the Dash and Hide actions on each of his turns.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -75,7 +79,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -84,10 +88,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -99,7 +109,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.N2MyOGIxOTZlZmNi"
     },
     {
       "_id": "NjdjMWM0YmRkYzVj",
@@ -113,50 +124,54 @@
       "system": {
         "description": {
           "value": "<p>The trandoshan has advantage on Wisdom (Perception) checks that rely on sight.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -173,7 +188,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -182,10 +197,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -197,7 +218,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.NjdjMWM0YmRkYzVj"
     },
     {
       "_id": "Mjc2NzM3MDhiZmFh",
@@ -211,26 +233,29 @@
       "system": {
         "description": {
           "value": "<p>If the trandoshan fails a saving throw, it can choose to succeed instead.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "special",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -241,20 +266,21 @@
           "value": 3,
           "max": "3",
           "per": "day",
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -271,7 +297,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -280,10 +306,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -295,7 +327,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.Mjc2NzM3MDhiZmFh"
     },
     {
       "_id": "ZjYzYzA2OTg0MGVk",
@@ -309,50 +342,54 @@
       "system": {
         "description": {
           "value": "<p>As a bonus action, the trandoshan can switch the firing mode of his mortar gun between a blaster and a grenade launcher.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -369,7 +406,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -378,10 +415,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -393,7 +436,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.ZjYzYzA2OTg0MGVk"
     },
     {
       "_id": "MjA0NWY2ZTc5ZGFi",
@@ -407,26 +451,29 @@
       "system": {
         "description": {
           "value": "<p>The trandoshan can roll his next ranged attack with advantage.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "action",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -437,20 +484,21 @@
           "value": 2,
           "max": "2",
           "per": "day",
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -467,7 +515,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -476,10 +524,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -491,7 +545,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.MjA0NWY2ZTc5ZGFi"
     },
     {
       "_id": "ZTFhZmEzYTY3ZmQx",
@@ -505,50 +560,54 @@
       "system": {
         "description": {
           "value": "<p>The trandoshan regains 15 hit points at the start of its turn if it has at least 1 hit point.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "heal",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -570,7 +629,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -579,10 +638,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -594,7 +659,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.ZTFhZmEzYTY3ZmQx"
     },
     {
       "_id": "ZGU0MWM5NjBlZGFm",
@@ -608,50 +674,54 @@
       "system": {
         "description": {
           "value": "<p>The trandoshan's ranged attacks ignore half-cover and three-quarters cover, and attacking at long range doesn't impose disadvantage on his ranged weapon attack rolls.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -668,7 +738,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -677,10 +747,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -692,7 +768,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.ZGU0MWM5NjBlZGFm"
     },
     {
       "_id": "NWRlYjU2NWU0ZTIx",
@@ -706,50 +783,54 @@
       "system": {
         "description": {
           "value": "<p>As a reaction when the trandoshan takes at least 20 damage from a melee attack, it can move up to its speed without provoking opportunity attacks. Additionally, if it's Dioxus Grenade ability is available the trandoshan can choose to drop a grenade where it was before its movement. The dioxus grenade detonates after the trandoshan has completed his movement.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "reaction",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -766,7 +847,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -775,10 +856,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -790,7 +877,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.NWRlYjU2NWU0ZTIx"
     },
     {
       "_id": "YjY1MzkwMjNhN2Zj",
@@ -804,50 +892,54 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>The trandoshan makes three claw attacks. Alternatively, it can make two ranged attacks with its mortar gun (blaster form only).</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -864,7 +956,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -873,10 +965,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -888,7 +986,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.YjY1MzkwMjNhN2Zj"
     },
     {
       "_id": "NjRkMTBkZjRlZTBh",
@@ -902,61 +1001,66 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+11, Reach 5 ft., One target. <em>Hit : </em>13 (2d6+6) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
-          "long": "",
+          "long": null,
           "units": "ft"
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -987,11 +1091,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
-        "baseItem": "",
+        "weaponClass": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -1000,61 +1102,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -1066,7 +1133,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.NjRkMTBkZjRlZTBh"
     },
     {
       "_id": "NDY1NmE5ZDNlOTgy",
@@ -1080,37 +1148,41 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Ranged Weapon Attack </em>+9, Range 100/400 ft., One target. <em>Hit : </em>14 (1d12+8) energy damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 100,
@@ -1119,22 +1191,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "dex",
         "actionType": "rwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -1165,11 +1238,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
-        "baseItem": "",
+        "weaponClass": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -1178,61 +1249,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -1244,7 +1280,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.NDY1NmE5ZDNlOTgy"
     },
     {
       "_id": "NDkzNWQ3YTJhMmM0",
@@ -1258,22 +1295,24 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Ranged Weapon Attack </em>+9, Range 30/60 ft., One target. <em>Hit : </em>13 (1d10+8) kinetic damage.</p><p>Hit or miss, the target and every creature within 5 feet of it must succeed on a DC 17 Dexterity saving throw or take 14 (4d6) kinetic damage.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1284,11 +1323,13 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": 5,
+          "value": "5",
           "width": null,
           "units": "ft",
-          "type": "radius"
+          "type": "radius",
+          "prompt": true
         },
         "range": {
           "value": 30,
@@ -1297,22 +1338,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "dex",
         "actionType": "rwak",
-        "attackBonus": "0",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -1347,11 +1389,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
-        "baseItem": "",
+        "weaponClass": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -1360,61 +1400,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "aut": false,
-          "bur": null,
-          "def": null,
-          "dex": null,
-          "dir": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "hid": false,
-          "ken": null,
-          "lum": false,
-          "mig": false,
-          "pic": null,
-          "rap": null,
-          "shk": null,
-          "sil": false,
-          "str": null,
-          "vic": null,
-          "mgc": null,
-          "ran": false,
-          "smr": false,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "ilk": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "swi": false
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -1426,7 +1431,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.NDkzNWQ3YTJhMmM0"
     },
     {
       "_id": "YmVmNWI0MzE1ZjM0",
@@ -1440,11 +1446,12 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>The trandoshan throws a dioxus grenade, choosing a point within 45 ft., exploding in a 15 feet sphere. The fog lasts 1 round and the area is heavily obscured. When a creature enters the poison's area or starts its turn there, that creature must make a DC 17 Constitution saving throw. On a failure, the creature takes 22 (4d10) poison damage and is poisoned for 1 minute. On a success, the creature takes half the damage and isn't poisoned.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1455,11 +1462,13 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": 15,
+          "value": "15",
           "width": null,
           "units": "ft",
-          "type": "radius"
+          "type": "radius",
+          "prompt": true
         },
         "range": {
           "value": 45,
@@ -1468,22 +1477,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "save",
-        "attackBonus": 0,
         "chatFlavor": "poisoned for 1 minute. On a success, the creature takes half the damage and isn't poisoned.",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -1514,10 +1524,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -1529,7 +1545,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.YmVmNWI0MzE1ZjM0"
     },
     {
       "_id": "OTkzNzQ4NjYzOWUx",
@@ -1543,50 +1560,54 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>The trandoshan uses its Dioxus Grenade action. If it is unavailable, the trandoshan can roll to try and recharge it, using the grenade upon a successful recharge.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "legendary",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1603,7 +1624,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -1612,10 +1633,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -1627,7 +1654,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.OTkzNzQ4NjYzOWUx"
     },
     {
       "_id": "MTk1MDliNDhmZTE4",
@@ -1641,50 +1669,54 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>The trandoshan makes one mortar gun attack.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "legendary",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1701,7 +1733,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -1710,10 +1742,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -1725,7 +1763,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.MTk1MDliNDhmZTE4"
     },
     {
       "_id": "Yzg5N2NjMjg5Njhm",
@@ -1739,50 +1778,54 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>The trandoshan can move up to its speed without provoking opportunity attacks.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "legendary",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -1799,7 +1842,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -1808,10 +1851,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -1823,7 +1872,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!Q4gDxfMu8HloPx93.Yzg5N2NjMjg5Njhm"
     }
   ],
   "effects": [],
@@ -1840,92 +1890,56 @@
       "str": {
         "value": 23,
         "proficient": 1,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 6,
-        "save": 11,
-        "prof": 5,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 19
+        }
       },
       "dex": {
         "value": 18,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 4,
-        "save": 4,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 17
+        }
       },
       "con": {
         "value": 19,
         "proficient": 1,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 4,
-        "save": 9,
-        "prof": 5,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 17
+        }
       },
       "int": {
         "value": 13,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 14
+        }
       },
       "wis": {
         "value": 16,
         "proficient": 1,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 8,
-        "prof": 5,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 16
+        }
       },
       "cha": {
         "value": 13,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 14
+        }
       },
       "hon": {
         "value": 13,
@@ -1933,7 +1947,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 16,
@@ -1941,41 +1956,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 17,
         "calc": "natural",
-        "formula": "natural armor",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 144,
         "max": 144,
         "temp": 0,
         "tempmax": 0,
-        "formula": "17d8+68",
-        "min": 0
+        "formula": "17d8+68"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 4,
-        "prof": 0,
-        "total": 4
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -1998,16 +2009,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -2016,16 +2020,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -2036,57 +2033,49 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 5,
-      "powerdc": 13,
-      "bar1": {
-        "value": 144,
-        "min": 0,
-        "max": 144
-      },
-      "bar2": {
-        "value": 17,
-        "min": 0,
-        "max": 0
-      },
-      "encumbrance": {
-        "value": 3,
-        "max": 345,
-        "pct": 0.8695652173913043,
-        "encumbered": true
-      },
-      "powerForceLightDC": 16,
-      "powerForceDarkDC": 14,
-      "powerForceUnivDC": 16,
-      "powerTechDC": 14,
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      },
+      "slowed": 0
     },
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"When they shout and snarl, they're ready to kill. But when they whisper, they're ready to kill everything.\"</i></p><p>- Boba Fett on Trandoshans</p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Designation</u><br /></td><td style=\"line-height:1.42857\">Sentient</td></tr><tr><td style=\"line-height:1.42857\"><u>Subspecies</u></td><td style=\"line-height:1.42857\">Saurin</td></tr><tr><td style=\"line-height:1.42857\"><u>Average height</u></td><td style=\"line-height:1.42857\">2 meters</td></tr><tr><td style=\"line-height:1.42857\"><u>Skin color</u></td><td style=\"line-height:1.42857\">Sandy brown to glossy green</td></tr><tr><td style=\"line-height:1.42857\"><p><u>Distinctions</u></p></td><td style=\"line-height:1.42857\"><ul><li>Reptilian</li><li>Regenerative properties</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><p><u>Average lifespan</u></p></td><td style=\"line-height:1.42857\"><ul><li>Child: 1-11 years</li><li>Young adult: 12-14 years</li><li>Adult: 15-34 years</li><li>Middle age: 34-49 years</li><li>Old: 50-59 years</li><li>Venerable: 60+ years</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Homeworld</u></td><td style=\"line-height:1.42857\"><p>Trandosha, also referred to as Dosha or Hsskor by Trandoshans</p></td></tr><tr><td style=\"line-height:1.42857\"><u>Language</u></td><td style=\"line-height:1.42857\">Dosh</td></tr></tbody></table><p>Trandoshans, or T'doshok in Dosh, were large, bipedal reptilian humanoids from the planet of Trandosha (or Dosha). They had sensitive eyes that could see into the infrared range and the ability to regenerate lost limbs—albeit slowly—and were anatomically built heavier and stronger than most humanoids, including Humans. They would also periodically shed their skin. Unlike some other reptilian humanoids, such as the Barabels and the Ssi-ruuk, Trandoshans had no tails. The Trandoshans were a warlike species who allied early with the Empire, taking Wookiees as slaves. A notable Trandoshan was Bossk, who was a longtime enemy of Han Solo, Chewbacca the Wookiee, and Boba Fett, as well as the infamous slaver Pekt.</p><p>As a species, they were renowned across the galaxy for great strength. This is evidenced by several members of other species boasting physical prowess and power by having defeated a Trandoshan, either in battle or in a contest of strength.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Biology and appearance</h3><blockquote><p><i>\"You lizards need to learn that I'm a lot scarier than you are.\"</i></p><p>- RC-1138</p></blockquote><p>Trandoshans were a large, bipedal sentient species, with scaly skin— which ranged in color from sandy brown to glossy green, which was shed roughly once every standard year and was thought to be very durable. Cold-blooded reptiles, Trandoshans had two super-sensitive varied color eyes with horizontal black pupils, which could see far into the infrared range. Trandoshans could regenerate lost limbs and skin until they reached their Middle Ages— around fifty-four standard years. Each of their four limbs ended in three razor sharp claws. These were perfect for combat, but did not grant them manual dexterity, making a Trandoshan's finger movements somewhat clumsy and awkward. Though physically powerful, they were outmatched by their rivals, the Wookiees, in unarmed combat.</p><p>Trandoshans usually wore dark clothing, although the species' attire varied. The infamous Trandoshan bounty hunter Bossk was known to wear a yellow flight suit, something worn by several other members of the species. Trandoshan hunters and mercenaries sometimes wore either full body armor or a mixture of armor and cloth garb. Trandoshans also often wore warm jackets and baggy trousers. Their large, scaled feet also meant that it was impossible for them to wear any sort of baseline humanoid footwear, which could present impediment to hunting.</p><p>Trandoshans had a lifespan slightly shorter than that of most sentients in the galaxy. Considered younglings until they were eleven standard years old, Trandoshans were thought of as young adults until they reached the age of fifteen, when they became full adults. By thirty five standard years, Trandoshans were middle-aged, and those living past fifty were considered old. Any Trandoshan living over sixty years was thought to be venerable, and were greatly respected by society.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Society and culture</h3><p>Trandoshans worshiped their goddess, the Scorekeeper (a deity who exists beyond time and space), whom they would appease through acts which increased their jagannath points. This was done by living a lifestyle which was, by non-Trandoshan standards, overtly aggressive, leading many Trandoshans to become bounty hunters, mercenaries, or slavers. Trandoshans especially prized Wookiee pelts, which consequently played a large part in earning jagannath points—capturing the pelts of rare Wookiee breeds (such as silverbacks) or particularly infamous Wookiees would give the hunter a large increase in jagganath points. To be shamed or captured during a hunt would zero one's jagganath points—effectively making their life forfeit in the eyes of the Scorekeeper. They could, however, win all those points back by killing the one who zeroed their score.</p><p>The lack of dexterity in their hands led the Trandoshans to develop the X10-D draft droid to perform manual labor. These could only be owned by those Trandoshans with a certain number of jagannath points.</p><p>Like their neighbors, the Wookiees, the Trandoshans also honored life debts. The recipient of a Trandoshan life debt was referred to as a ghrakhowsk. Trandoshans were known to eat bowls of still live worms as a favorite meal. A traditional Trandoshan food was Trandoshani flatcake. They were known to have a lizard dance, of which Cradossk was familiar.</p><p>There were rare cases of Trandoshans not adhering to their millennia-old cultural traditions. One such was the mercenary and assassin Nakaron whose self-confidence caused him to disregard the Trandoshan class system, being rude and disrespectful towards the Elders of the Dosha city of Forak, this led to him being banned from that city, and subsequently more cities until he was virtually exiled from Dosha.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Weaponry</h3><p>The Trandoshan arsenal was composed of a variety of unique weaponry. For ranged weaponry, the Trandoshans designed Accelerated Charged Particle Guns which resembled various slugthrowers used throughout the galaxy. Examples of these were seen during the Clone Wars; quite common were the Accelerated Charged Particle Array Gun, the Accelerated Charged Particle Repeater Gun, LS-150 Heavy Accelerated Charged Particle Repeater Gun, and the Gatling gauntlet. When they wished to take their prey alive, Trandoshan Bounty Hunters favored the Slavemaster stun carbine. They also made use of the LJ-50 concussion rifle and Trandoshan Repeater Rifle.</p><p>Most cultures long ago abandoned the primitive sword in favor of the more lethal vibroblade. Trandoshans, however, wielded such archaic weapons as badges of honor. Both the Trandoshan Sword and the Trandoshan Double-Bladed Sword were traditionally forged using the rare ore Chalon which made them sharper and heavier than Republic blades.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">History</h3><blockquote><p><i>\"Smell Wookiee. Trandoshan hate Wookiee. Human ship. Should be no Wookiee there.\"</i></p><p>- Corrsk[src]</p></blockquote><p>The Trandoshans originated on Trandosha, also known as Dosha or Hsskor. It was in the same star system as Kashyyyk, the homeworld of the Wookiees. In 7000 BBY, the Trandoshans joined the Galactic Republic. During the New Sith Wars Sith troops landed on Trandosha, and the Trandoshans slaughtered many of the troopers. The Sith retaliated by invading their world and burning the homes of the Trandoshans, leading the surviving Trandoshans to save themselves from death by pledging loyalty to the Brotherhood of Darkness.</p><p>Prior to the Clone Wars, Trandoshan bandits invaded and occupied the planet of Jabiim before later moving on. At this time, Dosha was only indirectly represented in the Galactic Senate by the Wookiee Yarua, much to the Trandoshans' dismay. In response, Trandoshan terrorists attempted to assassinate Yarua in 32 BBY. In 23 BBY, a Wookiee vessel was attacked over a moon of Trandosha, resulting in a Wookiee blockade of Trandosha. Peace talks to resolve the issue were conducted 22 BBY and failed when it was revealed that the Trandoshans were pushing for Senatorial representation with Trade Federation backing. During the Clone Wars, some groups of Trandoshans involved themselves on the side of the Confederacy of Independent Systems in several engagements. One such example occurred more than one year after the onset of the Clone Wars when the Acclamator-class assault ship Prosecutor was taken over by a joint force of Trandoshan slavers and CIS battle droids. Later, the Trandoshans, with the help of CIS forces, invaded the planet of Kashyyyk to subsequently enslave the Wookiee natives. The invasion of Kashyyyk by the CIS led towards an expeditionary team of clone commandos being sent to Kashyyyk by the Galactic Republic, this act ultimately led to the Battle of Kashyyyk itself. Trandoshans also worked as mercenaries and bounty hunters during that time period. Bossk was a famous bounty hunter from the time of the Clone Wars and for decades thereafter.</p><p>At some point during the Clone Wars, a group of Trandoshans began capturing prisoners, releasing them onto the moon Wasskah, and hunting them. They captured Ahsoka Tano, Jinx, O-Mer, and Kalifa. Ahsoka managed to kill Dar, but Kalifa was killed by Garnac. Later, they brought Chewbacca to the planet, but the Wookiee proved too strong for them. He managed to contact Kashyyyk, and General Tarfful came with Wookiees to their rescue.</p><p>After the Clone Wars, the Trandoshans suggested to the Empire that they use the Wookiees as slaves. The Empire, seeing cheap labor (and possible retribution for Yoda's survival and subsequent attack on Emperor Palpatine) agreed, and hired the Trandoshans to lead slaving raids on Kashyyyk and locate runaway slaves. After the Battle of Endor, the New Republic liberated Kashyyyk, yet the Trandoshans continued the raids. In response, the New Republic placed economic sanctions on Trandosha backed by a fleet of warships. Though the Trandoshans ceased the raids, hatred between the two species continued for many years to come.</p><p>At the time of Darth Krayt's Galactic Empire, after Kashyyyk was blockaded, more commerce flowed through Trandosha. The Trandoshans gained greater military and economic power after this.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Force-sensitives</h3><p>It was uncommon, but not unheard of, that some Trandoshans were Force-sensitive. Because of their reputations as bounty hunters they weren't usually accepted as Jedi or even Sith; there were exceptions, however, such as the Jedi Lissarkh, a Padawan of Plo Koon, the rogue Jedi Kras'dohk, and Mrssk that fought during the New Sith Wars. Normally they would use their Force-sensitivity to their advantage as bounty hunters.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Saurin Subspecies</h3><p>At some time in their history, a population of Trandoshans became isolated for unknown reasons, and eventually adapted along a separate lineage and became the subspecies Saurin.</p><p>They were notably different in their physiology for featuring translucent eyes, and having adapted four-fingered hands, with longer fingers than their genetic cousins.</p><p>It is unknown if Saurins carried the Trandoshan ability to regenerate lost limbs, though they did hold the same basic traditions and beliefs, such as bounty hunting and scoring kills to appease the deity The Scorekeeper.</p><p>Saurins claimed the planet Durkteel as their homeworld.</p><p><br /></p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Trandoshans in the galaxy</h3><blockquote><p><i>\"I was told the Trandoshan were an impossible race to command, yet watch how obediently they follow a simple instruction. Kill them!\"</i></p><p>- Tagta the Hutt</p></blockquote><p>One of the most well-known Trandoshans to leave their homeworld was the infamous bounty hunter Bossk. The son of Bounty Hunters' Guild leader Cradossk, Bossk devoured his siblings when he hatched, and in his youth he became one of the most celebrated Wookiee-hunters on Dosha. Bossk then joined his father as a bounty-hunter and became a respected member of the Bounty Hunters Guild. Some time later, Bossk's ship was destroyed by human smuggler Han Solo and his Wookiee sidekick Chewbacca; this encounter made Bossk desperate to claim Chewbacca's pelt.</p><p>Many years later, Bossk was one of the bounty hunters chosen by Darth Vader to hunt down and capture Han Solo. Bossk begrudgingly teamed up with Wookiee bounty hunter Chenlambec and his human sidekick, Tinian I'att, believing they had inside information on the whereabouts of the two outlaws. However, the two mercenaries led Bossk into a trap, and he was left in an Imperial prison on Lomabu III. Bossk managed to escape and to steal his ship, the Hound's Tooth, back from the two double-crossers. Several months later, Bossk teamed up with fellow hunters Zuckuss and 4-LOM in an attempt to steal the carbonite-encased Solo from Fett en route to Jabba's Palace on Tatooine, however the attempt failed, and Bossk's ship was left badly damaged.</p><p>Bossk fought once again with Fett after the Mandalorian's apparent death in 4 ABY. Bossk's ship was destroyed, and he returned to Mos Eisley dejected, so he was surprised when Boba Fett offered him a fortune for some old information. Bossk was responsible for the death of Corran Horn's father Hal Horn, gunning him down along with the actual target, with whom the CorSec agent was speaking. Though Horn succeeded in hunting down and arresting Bossk, Imperial officer to CorSec Kirtan Loor manipulated the justice system against Horn for personal reasons by finding that since his target was death-marked by a valid Imperial bounty and given poor Trandoshan manual dexterity, Hal Horn and the other victims were unfortunate \"collateral damage\" since the underlying act was legal. Therefore, Bossk was released. Bossk made several more high-profile captures before retiring from bounty hunting around 19 ABY.</p><p>Pekt was a dark-skinned Trandoshan slaver, known for his sadistic nature and experimental slave capture techniques. As a youth, a Wookiee slave escaped and tore Pekt's arms off; the Wookiee was executed and Pekt's arms soon grew back. In 32 BBY he helped the Trade Federation colonize Alaris Prime, although they were driven off by Jedi Master Qui-Gon Jinn, though Pekt vowed to return. Pekt's reputation as a slaver grew until he eventually worked for an assortment of gangsters, mercenaries and bounty hunters, and even the Empire. After the Imperial invasion of Kashyyyk, Pekt was selected to oversee the entire slaving operation. In 4 ABY, Pekt was pursued to a fortress by Luke Skywalker, Han Solo and Chewbacca. Pekt perished when the fortress was destroyed.</p><p>C. 129 BBY, the Trandoshan blacksmith Khreenk arrived to Bartyn's Landing, in Lamaredd, and set up his business, Khreenk's Smithy. He was still in charge of it one hundred years later.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Lawful Dark",
-      "species": "",
+      "species": null,
       "type": {
         "value": "humanoid",
         "subtype": "",
@@ -2098,13 +2087,9 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 11500
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 14
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "med",
@@ -2134,15 +2119,14 @@
           "huttese"
         ],
         "custom": ""
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -2152,11 +2136,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 4,
-        "passive": 14,
-        "prof": 0,
-        "total": 4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -2165,11 +2149,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 1,
@@ -2178,11 +2162,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 6,
-        "passive": 21,
-        "prof": 5,
-        "total": 11
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -2191,11 +2175,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -2204,11 +2188,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 1,
@@ -2217,11 +2201,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 16,
-        "prof": 5,
-        "total": 6
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -2230,11 +2214,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -2243,11 +2227,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "prof": 0,
-        "total": 1,
-        "passive": 11
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -2256,11 +2240,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -2269,11 +2253,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -2282,11 +2266,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "prof": 0,
-        "total": 1,
-        "passive": 11
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 1,
@@ -2295,11 +2279,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 18,
-        "prof": 5,
-        "total": 8
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -2308,11 +2292,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -2321,11 +2305,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -2334,11 +2318,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 4,
-        "passive": 14,
-        "prof": 0,
-        "total": 4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 2,
@@ -2347,11 +2331,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 4,
-        "passive": 24,
-        "prof": 10,
-        "total": 14
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 1,
@@ -2360,11 +2344,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 18,
-        "prof": 5,
-        "total": 8
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -2373,108 +2357,80 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "prof": 0,
-        "total": 1,
-        "passive": 11
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
+    "tools": {},
     "powers": {
       "power1": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -2587,14 +2543,17 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": []
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493984196,
-    "modifiedTime": 1685840636854,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552770380,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!actors!Q4gDxfMu8HloPx93"
 }

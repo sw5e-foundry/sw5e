@@ -7,87 +7,6 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [
-          true,
-          true
-        ],
-        "altValue": [
-          true,
-          true
-        ],
-        "context": []
-      },
-      "quickVersatile": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "quantity": false,
-          "use": true,
-          "resource": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:05.377136+00:00",
       "importer_version": 3,
@@ -97,38 +16,41 @@
   "system": {
     "description": {
       "value": "<h4>Weapon (Blaster Pistol)</h4>\n <p>You have a +1 bonus to attack and damage rolls with this weapon. Additionally, it has the disarming property, and when a creature tries to reduce the damage of a shot from this weapon with a feature or power, such as monk—s Deflect Missiles or the <em>saber reflect</em> force power, they have disadvantage on the reduction roll. Lastly, on a hit, if the target is wearing heavy armor, it deals an additional [[/r 1d6]] lightning damage.</p>\n<p><em>The proprietary Charric pistol was the standard issue weapon of all of the soldiers in the Chiss Expansionary Defense Force.</em></p>\n<p> </p>\n<h2>Blaster pistol</h2>\n<h3>Power cell (range 50/200) Cell</h3>\n<p>Weapons with this property are fueled by power cells, which must be loaded in order to fire the weapon. A power cell fuels a number of attacks equal to the weapon's reload number.</p>\n<h3>Reload 16</h3>\n<p>A number of shots equal to the reload number can be made with a weapon with this property. A character must then reload it using an action or a bonus action (their choice). You must have one free hand to reload.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": null,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 175,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "prototype",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
-      "units": ""
+      "value": "",
+      "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -137,19 +59,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
       "amount": null,
-      "ammount": null
+      "scale": false
     },
     "ability": "",
     "actionType": "rwak",
-    "attackBonus": "1",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -188,12 +110,9 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "weaponType": "simpleB",
-    "baseItem": "blasterpistol",
+    "weaponClass": "sidearm",
     "ammo": {
       "target": null,
       "value": null,
@@ -202,24 +121,45 @@
         "powerCell"
       ]
     },
-    "properties": {
-      "ran": 40,
-      "rel": 16,
-      "drm": true,
-      "pcl": "range 50/200"
-    },
+    "properties": [
+      "pcl",
+      "rel",
+      "drm"
+    ],
     "proficient": null,
-    "equiped": false
+    "type": {
+      "value": "simpleB",
+      "subtype": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "1",
+      "flat": false
+    },
+    "_propertyValues": {
+      "pcl": "range 50/200",
+      "rel": 16,
+      "drm": true
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "firingArc": ""
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493964547,
-    "modifiedTime": 1693589985904,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720553666466,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!H59HMnOGBVhlVuX8"
 }

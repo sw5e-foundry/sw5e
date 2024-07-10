@@ -20,26 +20,29 @@
       "system": {
         "description": {
           "value": "<p>When you move at least 150 feet towards a target, you may declare an Attack Run as an action. You must have a clear path towards your target, and nothing should hinder your path (such as difficult terrain or obstacles). If you finish this movement within range of your target, you may follow it with one of these options:</p>\n<p><strong>Fire</strong>. You may make a ship weapon attack from a forward-facing limited arc without suffering the normal disadvantage. If you attack with a tertiary or quartenary weapon, the attack deals additional damage equal to the distance of your attack run divided by 50, up to your ship's Strength modifier (minimum of 1).</p>\n<p><strong>Ram</strong>. You may make a Ram attempt with advantage on your Strength (Ram) check. If you succeed, the target ship takes additional damage equal to the distance of your Attack Run divided by 50, up to your ship's Constitution modifier (minimum of +1), or is damaged as normal and becomes stunned until the end of its next turn.</p>\n<p>Only a deployed pilot can take the Attack Run action.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": "you move at least 150 feet towards a target"
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -49,17 +52,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -89,51 +93,16 @@
             "turn": null
           }
         },
-        "deployment": "pilot",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -144,8 +113,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319318,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.0M01aaKXqjBWBPja"
     },
     {
       "_id": "QNU7QucuX8P5ejKC",
@@ -163,26 +133,29 @@
       "system": {
         "description": {
           "value": "<p>You can attempt to boost your speed. When you take the Boost Engines action, you make a DC 12 Strength (Boost) check. On a success you increase your speed by 50 until the end of your ship's next turn.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 1,
+          "value": "1",
           "units": "turn"
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": "self"
+          "type": "self",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -192,17 +165,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "abil",
-        "attackBonus": 0,
         "chatFlavor": "DC 12",
         "critical": {
           "threshold": null,
@@ -232,51 +206,16 @@
             "turn": null
           }
         },
-        "deployment": "crew",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -287,8 +226,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319361,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.QNU7QucuX8P5ejKC"
     },
     {
       "_id": "JLXhe5cOK2dNEkaw",
@@ -306,26 +246,29 @@
       "system": {
         "description": {
           "value": "<p>You can attempt to boost your shields. When you take the Boost Shields action, you make a  DC 12 Strength (Boost) check. On a success, you roll a shield die, without expending it, and gain temporary shield points equal to the result that last until the start of your ship's next turn.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": "self"
+          "type": "self",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -335,17 +278,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "heal",
-        "attackBonus": 0,
         "chatFlavor": "DC 12",
         "critical": {
           "threshold": null,
@@ -380,51 +324,16 @@
             "turn": null
           }
         },
-        "deployment": "crew",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -435,8 +344,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319401,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.JLXhe5cOK2dNEkaw"
     },
     {
       "_id": "DviYmFmAby6FBAuM",
@@ -454,26 +364,29 @@
       "system": {
         "description": {
           "value": "<p>You can attempt to boost your weapon output. When you take the Boost Weapons action, the next time this turn your ship deals damage, you make a DC 12 Strength (Boost) check. On a success, you have advantage on the damage roll.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": "self"
+          "type": "self",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -483,17 +396,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "other",
-        "attackBonus": 0,
         "chatFlavor": "DC 12",
         "critical": {
           "threshold": null,
@@ -523,51 +437,16 @@
             "turn": null
           }
         },
-        "deployment": "crew",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -578,8 +457,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319443,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.DviYmFmAby6FBAuM"
     },
     {
       "_id": "WyYXd3Di0fcbpCwV",
@@ -597,26 +477,29 @@
       "system": {
         "description": {
           "value": "<p>As normal, you can cast force or tech powers. You cannot target a hostile creature with a power unless you are aware of their presence and location. The Cast a Power action can be taken multiple times on a ship's turn.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -626,17 +509,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -666,51 +550,16 @@
             "turn": null
           }
         },
-        "deployment": "crew",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -721,8 +570,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319484,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.WyYXd3Di0fcbpCwV"
     },
     {
       "_id": "9VDyGIoPoYeAKZe0",
@@ -740,26 +590,29 @@
       "system": {
         "description": {
           "value": "<p>When you take the Conceal action, you make a Dexterity (Hide) check in an attempt to conceal your ship, following the rules in chapter 7 for hiding. If you succeed, you gain certain benefits, as described in the \"Unseen Attackers and Targets\" section later in this chapter.</p>\n<p>Only a deployed pilot can take the Conceal action.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -769,17 +622,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "abil",
-        "attackBonus": 0,
         "chatFlavor": "Contested by passive Wisdom (Scan)",
         "critical": {
           "threshold": null,
@@ -809,51 +663,16 @@
             "turn": null
           }
         },
-        "deployment": "pilot",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -864,8 +683,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319531,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.9VDyGIoPoYeAKZe0"
     },
     {
       "_id": "nNt3lAHtzVjY2TaE",
@@ -883,26 +703,29 @@
       "system": {
         "description": {
           "value": "<p>When you take the Direct action, one creature can see or hear you gains advantage on the next ability check it makes to perform the task you are helping with, provided that it makes the check before the start of your next turn. Alternatively, you can direct a friendly creature that can hear you in attacking another target. If your ally attacks the target before the start of your next turn, the first attack roll is made with advantage. The Direct action can be taken multiple times on a ship's turn.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 1,
+          "value": "1",
           "units": "turn"
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -912,17 +735,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -952,51 +776,16 @@
             "turn": null
           }
         },
-        "deployment": "crew",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -1007,8 +796,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319575,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.nNt3lAHtzVjY2TaE"
     },
     {
       "_id": "mBOtzYijHwmouEo5",
@@ -1026,26 +816,29 @@
       "system": {
         "description": {
           "value": "<p>When you take the Dogfight action, you engage an enemy, ducking and weaving, vying for a good shot while avoiding theirs. You choose a target you can see and make an opposed Dexterity (Maneuver) check. On a success, you cause the next attack made against your ship by the target to suffer from disadvantage, but you grant the next attack made against your ship by a different target advantage. Additionally, you can perform a primary or tertiary weapon attack from a forward-facing limited firing arc against that ship without suffering the normal disadvantage.</p>\n<p>Only a deployed pilot can take the Dogfight action.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1055,17 +848,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "abil",
-        "attackBonus": 0,
         "chatFlavor": "Contested by Dexterity (Maneuver)",
         "critical": {
           "threshold": null,
@@ -1095,51 +889,16 @@
             "turn": null
           }
         },
-        "deployment": "pilot",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -1150,8 +909,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319618,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.mBOtzYijHwmouEo5"
     },
     {
       "_id": "hjiTewn0IbUTU3D3",
@@ -1169,26 +929,29 @@
       "system": {
         "description": {
           "value": "<p>When you take the Evade action, you focus entirely on avoiding attacks. Until the start of your next turn, any attack made against you has disadvantage if you can see the attacker on your instruments, and you make Dexterity Saving Throws with advantage.</p>\n<p>This action affects your entire ship: any skill check or attack made by your ship or anyone on it also has disadvantage until the end of your ship's next turn. The effects of Evade end if you are Incapacitated or if your speed drops to 0.</p>\n<p>Only a deployed pilot can take the Evade action.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 1,
+          "value": "1",
           "units": "turn"
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1198,17 +961,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -1238,51 +1002,16 @@
             "turn": null
           }
         },
-        "deployment": "pilot",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -1293,8 +1022,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319661,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.hjiTewn0IbUTU3D3"
     },
     {
       "_id": "ATApKDGbmIC0rYAS",
@@ -1312,26 +1042,29 @@
       "system": {
         "description": {
           "value": "<p>The most common action to take in combat is the Fire action. With this action, you can make an attack (or attacks) with one ship weapon. See the \"Making an Attack\" section for the rules that govern attacks. The Fire action may be taken multiple times on a ship's turn, but normally only once per weapon. A pilot taking the attack action attacks at disadvantage.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 1,
+          "value": "1",
           "units": "turn"
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1341,17 +1074,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -1381,51 +1115,16 @@
             "turn": null
           }
         },
-        "deployment": "crew",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -1436,8 +1135,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319704,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.ATApKDGbmIC0rYAS"
     },
     {
       "_id": "cEXOq31GwvBdcHGC",
@@ -1455,26 +1155,29 @@
       "system": {
         "description": {
           "value": "<p>When you take the Fly action, you gain extra Movement for the current turn. The increase equals your speed, after applying any modifiers. With a speed of 300 feet, for example, your ship can move up to 600 feet on its turn if you Fly. Any increase or decrease to your speed changes this additional Movement by the same amount. If your ship's speed of 300 feet is reduced to 150 feet, for instance, your ship can move up to 300 feet this turn if you Fly.</p>\n<p>This action affects your entire ship: any skill check or attack made by your ship or anyone on it also has disadvantage until the end of your ship's next turn.</p>\n<p>Only a deployed pilot can take the Fly action.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 1,
+          "value": "1",
           "units": "turn"
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1484,17 +1187,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -1524,51 +1228,16 @@
             "turn": null
           }
         },
-        "deployment": "pilot",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -1579,8 +1248,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319748,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.cEXOq31GwvBdcHGC"
     },
     {
       "_id": "OFA9ylKfKoAWKZx8",
@@ -1598,26 +1268,29 @@
       "system": {
         "description": {
           "value": "<p>You can harass an enemy and lock them into a series of close-combat maneuvers in order to prevent their escape. When you take the Harass action, make a contested Dexterity (Maneuver) check against a target within one size category of you and within normal range of at least one of your forward-facing primary weapons. This weapon cannot be used for a Fire action this turn. On a success, if the target voluntarily leaves its square before the beginning of your next turn, it takes damage as though it suffered a critical hit with the primary weapon used to harass.</p>\n<p>Only a deployed pilot can take the Harass action.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1627,17 +1300,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "abil",
-        "attackBonus": 0,
         "chatFlavor": "Contested by Dexterity (Maneuver)",
         "critical": {
           "threshold": null,
@@ -1667,51 +1341,16 @@
             "turn": null
           }
         },
-        "deployment": "pilot",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -1722,8 +1361,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319791,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.OFA9ylKfKoAWKZx8"
     },
     {
       "_id": "r7dj0Pwd2T9JrkI4",
@@ -1741,11 +1381,12 @@
       "system": {
         "description": {
           "value": "<p>You can attempt to interfere with another creature within 1,000 feet that is deployed on a ship, if you are aware of their presence and location, in the attempt of a task. When you take the Interfere action, you make a Charisma (Interfere) check contested by the target's Wisdom (Scan) check. If you succeed, the subject has disadvantage on the next ability check or attack roll it makes before the start of your next turn. The Interfere action can be taken multiple times on a ship's turn.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -1756,11 +1397,13 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "creature"
+          "type": "creature",
+          "prompt": true
         },
         "range": {
           "value": 1000,
@@ -1769,18 +1412,19 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "abil",
-        "attackBonus": 0,
         "chatFlavor": "Contested by Wisdom (Scan)",
         "critical": {
           "threshold": null,
@@ -1810,51 +1454,16 @@
             "turn": null
           }
         },
-        "deployment": "crew",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -1865,8 +1474,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319836,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.r7dj0Pwd2T9JrkI4"
     },
     {
       "_id": "W1afJDOZjWDxNmZW",
@@ -1884,26 +1494,29 @@
       "system": {
         "description": {
           "value": "<p>You can attempt to have the ship patch up damage it has taken, using one of its Hull Dice. When you take the Patch action, you make a Constitution (Patch) check (DC = 10 or half the ship's missing hull points, whichever number is higher). On a failure, you have disadvantage on the Hull Dice roll. On a success you roll the Hull Die normally. When you would make a Constitution (Patch) check, you may instead make an Intelligence (Mechanic's Kit) check at disadvantage. The Patch action can be taken multiple times on a ship's turn.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": "self"
+          "type": "self",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -1913,17 +1526,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "heal",
-        "attackBonus": 0,
         "chatFlavor": "DC = 10 or half the ship’s missing hull points, whichever number is higher",
         "critical": {
           "threshold": null,
@@ -1958,51 +1572,16 @@
             "turn": null
           }
         },
-        "deployment": "crew",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -2013,8 +1592,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319882,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.W1afJDOZjWDxNmZW"
     },
     {
       "_id": "NEAZnl7KpvyRJR5N",
@@ -2032,26 +1612,29 @@
       "system": {
         "description": {
           "value": "<p>You can attempt to ram another ship while flying through its space. When you take the ram action, you make a Strength (Ram) check opposed by the target's Dexterity (Maneuvering) check. On a failed check the ramming action fails. On a success, both you and the target ship take kinetic damage equal to two of your ship's Hull Dice + your ship's Strength modifier. If your ship has shield points remaining, your ship instead takes half this damage.</p>\n<p>Only a deployed pilot can take the Ram action.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "starship"
+          "type": "starship",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -2061,17 +1644,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "abil",
-        "attackBonus": 0,
         "chatFlavor": "Contested by Dexterity (Maneuver)",
         "critical": {
           "threshold": null,
@@ -2106,51 +1690,16 @@
             "turn": null
           }
         },
-        "deployment": "pilot",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -2161,8 +1710,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319925,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.NEAZnl7KpvyRJR5N"
     },
     {
       "_id": "Zm0CyyyIZFdOuZb5",
@@ -2180,26 +1730,29 @@
       "system": {
         "description": {
           "value": "<p>Sometimes you want to get the jump on a foe or wait for a particular circumstance before you act. To do so, you can take the Ready action on your turn so that you can act later in the round using your reaction.</p>\n<p>First, you decide what perceivable circumstance will trigger your reaction. Then, you choose the action you will take in response to that trigger. For instance, \"When the enemy appears, I'll fire my railgun at it.\"</p>\n<p>When the trigger occurs, you can either take your reaction right after the trigger finishes or ignore the trigger. Remember that you can take only one reaction per round.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -2209,17 +1762,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -2249,51 +1803,16 @@
             "turn": null
           }
         },
-        "deployment": "crew",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -2304,8 +1823,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840319970,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.Zm0CyyyIZFdOuZb5"
     },
     {
       "_id": "4vmbaA3LwjQL0Xgf",
@@ -2323,26 +1843,29 @@
       "system": {
         "description": {
           "value": "<p>You can attempt to regenerate your shields faster, using one of its Shield Dice. When you take the Regenerate Shields action, you make a Strength (Boost) check (DC = 10 or half the ship's missing shield points, whichever number is higher). On a failure, you roll the Shield Die twice and take the lesser amount. On a success you roll the Shield Die normally.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": "self"
+          "type": "self",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -2352,17 +1875,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "heal",
-        "attackBonus": 0,
         "chatFlavor": "DC = 10 or half the ship’s missing shield points, whichever number is higher",
         "critical": {
           "threshold": null,
@@ -2397,51 +1921,16 @@
             "turn": null
           }
         },
-        "deployment": "crew",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -2452,8 +1941,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840320015,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.4vmbaA3LwjQL0Xgf"
     },
     {
       "_id": "W2hhuCNso84Nlezb",
@@ -2471,26 +1961,29 @@
       "system": {
         "description": {
           "value": "<p>When you take the Search action, you devote your attention to finding something. Depending on the nature of your search, the DM might have you make a Wisdom (Scan) check or an Intelligence (Probe) check.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -2500,17 +1993,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "abil",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -2540,51 +2034,16 @@
             "turn": null
           }
         },
-        "deployment": "crew",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -2595,8 +2054,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840320059,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.W2hhuCNso84Nlezb"
     },
     {
       "_id": "0X0CWKTqQMIGR0qA",
@@ -2614,26 +2074,29 @@
       "system": {
         "description": {
           "value": "<p>When an object requires your action for its use, you take the Use an Object action. This action is also useful when you want to interact with more than one object on your turn. The Use an Object action can be taken multiple times on a ship's turn.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -2643,17 +2106,18 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -2683,51 +2147,16 @@
             "turn": null
           }
         },
-        "deployment": "crew",
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "equipped": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -2738,8 +2167,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840320340,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.0X0CWKTqQMIGR0qA"
     },
     {
       "_id": "Y7hwa9yY5DmF4YAr",
@@ -2757,39 +2187,39 @@
       "system": {
         "description": {
           "value": "<p>This system adds space for a single Small or Tiny droid crew member and allows that crew member to take the Patch action as a bonus action on their turn.</p>\n<p>Additionally, this crew member can use a bonus action to make an Intelligence (Astrogation) check.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": {
-          "value": "SotG"
-        },
+        "source": {},
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": false,
-        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -2800,16 +2230,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -2825,18 +2256,8 @@
           "dc": null,
           "scaling": "power"
         },
-        "recharge": {
-          "charged": false,
-          "value": null
-        },
-        "system": {
-          "value": "Operation"
-        },
         "grade": {
           "value": null
-        },
-        "basecost": {
-          "value": 3500
         },
         "prerequisites": {
           "value": "Ship size Medium or smaller"
@@ -2845,113 +2266,24 @@
           "slot": false,
           "suite": false
         },
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "armor": {
-          "type": "",
-          "value": null,
-          "dex": null
+        "unidentified": {
+          "description": ""
         },
-        "properties": {
-          "Absorptive": false,
-          "Agile": false,
-          "Anchor": false,
-          "Avoidant": false,
-          "Barbed": false,
-          "Bulky": false,
-          "Charging": false,
-          "Concealing": false,
-          "Cumbersome": false,
-          "Gauntleted": false,
-          "Imbalanced": false,
-          "Impermeable": false,
-          "Insulated": false,
-          "Interlocking": false,
-          "Lambent": false,
-          "Lightweight": false,
-          "Magnetic": false,
-          "Obscured": false,
-          "Obtrusive": false,
-          "Powered": false,
-          "Reactive": false,
-          "Regulated": false,
-          "Reinforced": false,
-          "Responsive": false,
-          "Rigid": false,
-          "Silent": false,
-          "Spiked": false,
-          "Steadfast": false,
-          "Strength": false,
-          "Versatile": false
+        "type": {
+          "value": "",
+          "subtype": ""
         },
-        "capx": {
-          "value": ""
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "attributes": {
-          "dr": ""
-        },
-        "regrateco": {
-          "value": ""
-        },
-        "cscap": {
-          "value": ""
-        },
-        "sscap": {
-          "value": ""
-        },
-        "fuelcostsmod": {
-          "value": ""
-        },
-        "powdicerec": {
-          "value": ""
-        },
-        "hdclass": {
-          "value": ""
-        },
-        "strength": null,
-        "stealth": false,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        },
-        "proficient": false
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "baseCost": {
+          "value": null
+        }
       },
       "ownership": {
         "default": 0
@@ -2962,8 +2294,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.Y7hwa9yY5DmF4YAr"
     },
     {
       "_id": "2LBjNSaU4oSk5P4Q",
@@ -3015,11 +2348,13 @@
             "startTurn": null
           },
           "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
-          "label": "Small Starship",
           "origin": "Item.Kgo48vXNxSZkWp7H",
           "tint": null,
           "transfer": true,
-          "sort": 0
+          "name": "Small Starship",
+          "description": "",
+          "statuses": [],
+          "_key": "!actors.items.effects!fqQgg2zi7i1ZWjly.2LBjNSaU4oSk5P4Q.aVvrOFBux3t6WMEc"
         },
         {
           "_id": "fBzSAs2Nhts9o44y",
@@ -3048,7 +2383,6 @@
             "startTurn": null
           },
           "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
-          "label": "Space Travel",
           "origin": "Compendium.sw5e.starships.6BN8l5E8QtYt103T",
           "transfer": true,
           "flags": {
@@ -3057,7 +2391,10 @@
             }
           },
           "tint": null,
-          "sort": 0
+          "name": "Space Travel",
+          "description": "",
+          "statuses": [],
+          "_key": "!actors.items.effects!fqQgg2zi7i1ZWjly.2LBjNSaU4oSk5P4Q.fBzSAs2Nhts9o44y"
         }
       ],
       "folder": null,
@@ -3070,11 +2407,9 @@
       "system": {
         "description": {
           "value": "<p>As the fighters cover his approach, Zik Beskin activates his targeting computer and ignores the explosions surrounding him, instead Focusing on the Destroyer's shield generator. It had to come down soon, or this fight was lost. Arsix, behind him, beeps and whirs, preparing the ion pulse missiles for the attack run, prewarming their engines and arming the warheads.</p>\n<p>Together a long time now, Beskin and Arsix had spilled their share of blood and oil, respectively, for the Rebellion--usually just while improving their ancient Ywing. But today, the blood and oil spilt wouldn't be their own. As Zik let fly a pair of missiles, he knew they would find their target. Today wasn't over just yet. This was her fourth sortie of the day, and Sheena was tired. The terrorists just kept coming. Every time she was about to shut her eyes a new wave of the Rebels came. And every time they did, she rushed to her TIE Interceptor and joined the alert fighters to take the fighters down before they could blow a hole in the planet's defenses. Every time they retreated before suffering heavy losses. But every time they came back. This last time she had decided to just nap in the cramped cockpit, so when the claxon rang out, she and her ship were basically ready to fly. This time she was going to end them quickly. As she repeatedly squeezed her trigger, she executed Koiogran turns and snap rolls galore, her laser blasts striking true, and the debris of A-wings, X-wings, and B-Wings--along with some frozen traitor remains--floated in space the next few days. At night, she leaned back against her beau, sipping some wine and watch-ing the beautiful streaks of light cross the sky as, piece by piece, the wreckage burned up in the atmosphere during reentry.</p>\n<p>R5-S1 locked down the loose stabilizer with his gripper arm as he angled the X-Wing's deflector shields. This ship took a firm gripper to get under control, but R5-S1 was up to the task. As his pilot, Veets, fired his last blast from the overheating cannons on the deployed s-foils, R5-S1 did the work of cooling off the guns, spooling up the hyperdrive, and running the calculations for lightspeed. It was time to go. Small ships have a tiny crew, often only a pilot and perhaps an astromech, but often strike above their weight class, a threat to small and large ships alike.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "SotG",
+        "source": "[object Object]",
         "identifier": "small",
         "tier": 1,
         "hullDice": "d6",
@@ -3111,7 +2446,7 @@
         "baseTurnSpeed": 250,
         "crewMinWorkforce": 1,
         "modBaseCap": 20,
-        "modMaxSuitesBase": -1,
+        "modMaxSuitesBase": 0,
         "modMaxSuitesMult": 1,
         "modCostMult": 1,
         "modMinWorkforce": 2,
@@ -3123,23 +2458,7 @@
         "fuelCap": 10,
         "foodCap": 10,
         "size": "sm",
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "pwrDice": "d1",
-        "modMaxSuiteCap": 1,
-        "attunement": null,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "startingEquipment": []
       },
       "ownership": {
         "default": 0
@@ -3150,8 +2469,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237238,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.2LBjNSaU4oSk5P4Q"
     },
     {
       "_id": "JAzyRBH3KzCuhzU6",
@@ -3185,11 +2505,13 @@
             "startTurn": null
           },
           "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
-          "label": "Role: Interceptor",
           "tint": null,
           "transfer": true,
           "origin": null,
-          "sort": 0
+          "name": "Role: Interceptor",
+          "description": "",
+          "statuses": [],
+          "_key": "!actors.items.effects!fqQgg2zi7i1ZWjly.JAzyRBH3KzCuhzU6.qQTMHDrpIch61Q7C"
         }
       ],
       "folder": null,
@@ -3202,26 +2524,29 @@
       "system": {
         "description": {
           "value": "<p>At tier 0, you adopt a particular style of design for your ship.</p>\n<h3>Interceptor</h3>\n<p>Your ship gains a +1 bonus to the Dexterity attribute.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -3230,18 +2555,19 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
+          "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -3271,50 +2597,16 @@
             "turn": null
           }
         },
-        "size": "Small",
-        "tier": "0",
-        "identifier": "",
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "attunement": null,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -3325,8 +2617,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840320398,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.JAzyRBH3KzCuhzU6"
     },
     {
       "_id": "Zj5IeywMjxQXk2Lc",
@@ -3344,11 +2637,12 @@
       "system": {
         "description": {
           "value": "<p>Also at 1st tier, your starship gains the ability to slip underneath the shields of an enemy ship.</p>\n<p>When your ship occupies the same square occupied by a target ship and the pilot makes an attack roll, as a reaction, the pilot can, before rolling the attack, roll a Pinpoint Strike die, which is a d4, and add it to the attack roll. If the attack requires a saving throw instead, you may subtract the Pinpoint Strike die from the target's save result. On a hit, the attack deals normal damage that bypasses any shields and directly hits the hull of the target ship. This feature can only be used by the pilot, and it can only be used once per round.</p>\n<p>Your ship's Pinpoint Strike die changes when it reaches certain tiers. The die becomes a d6 at 2nd tier, a d8 at 3rd tier, a d10 at 4th tier, and a d12 at 5th tier.</p>\n<p>This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship recharges.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "activation": {
           "type": "reaction",
           "cost": 1,
@@ -3359,11 +2653,13 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -3371,19 +2667,20 @@
           "units": ""
         },
         "uses": {
-          "value": "0",
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "rwak",
-        "attackBonus": "1d((2*@details.tier)+2)",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -3413,50 +2710,16 @@
             "turn": null
           }
         },
-        "size": "Small",
-        "tier": "1",
-        "identifier": "",
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "attunement": null,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "1d((2*@details.tier)+2)",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -3467,8 +2730,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685840320443,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.Zj5IeywMjxQXk2Lc"
     },
     {
       "_id": "fIlfN3wR9c5Ums1L",
@@ -3486,39 +2750,39 @@
       "system": {
         "description": {
           "value": "<p>This modification augments the native communications on your ship. Crew members can now communicate in real time with any planets, space stations, and starships in the same sector as you as long as they are similarly equipped.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": {
-          "value": "SotG"
-        },
+        "source": {},
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": false,
-        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -3529,16 +2793,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -3554,18 +2819,8 @@
           "dc": null,
           "scaling": "power"
         },
-        "recharge": {
-          "charged": false,
-          "value": null
-        },
-        "system": {
-          "value": "Operation"
-        },
         "grade": {
           "value": null
-        },
-        "basecost": {
-          "value": 3500
         },
         "prerequisites": {
           "value": ""
@@ -3574,113 +2829,24 @@
           "slot": false,
           "suite": false
         },
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "armor": {
-          "type": "",
-          "value": null,
-          "dex": null
+        "unidentified": {
+          "description": ""
         },
-        "properties": {
-          "Absorptive": false,
-          "Agile": false,
-          "Anchor": false,
-          "Avoidant": false,
-          "Barbed": false,
-          "Bulky": false,
-          "Charging": false,
-          "Concealing": false,
-          "Cumbersome": false,
-          "Gauntleted": false,
-          "Imbalanced": false,
-          "Impermeable": false,
-          "Insulated": false,
-          "Interlocking": false,
-          "Lambent": false,
-          "Lightweight": false,
-          "Magnetic": false,
-          "Obscured": false,
-          "Obtrusive": false,
-          "Powered": false,
-          "Reactive": false,
-          "Regulated": false,
-          "Reinforced": false,
-          "Responsive": false,
-          "Rigid": false,
-          "Silent": false,
-          "Spiked": false,
-          "Steadfast": false,
-          "Strength": false,
-          "Versatile": false
+        "type": {
+          "value": "",
+          "subtype": ""
         },
-        "capx": {
-          "value": ""
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "attributes": {
-          "dr": ""
-        },
-        "regrateco": {
-          "value": ""
-        },
-        "cscap": {
-          "value": ""
-        },
-        "sscap": {
-          "value": ""
-        },
-        "fuelcostsmod": {
-          "value": ""
-        },
-        "powdicerec": {
-          "value": ""
-        },
-        "hdclass": {
-          "value": ""
-        },
-        "strength": null,
-        "stealth": false,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        },
-        "proficient": false
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "baseCost": {
+          "value": null
+        }
       },
       "ownership": {
         "default": 0
@@ -3691,8 +2857,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.fIlfN3wR9c5Ums1L"
     },
     {
       "_id": "F1TAtKnAfvOVbbSq",
@@ -3710,39 +2877,39 @@
       "system": {
         "description": {
           "value": "<p>This modification improves the native communications on your ship. Crew members can now communicate in real time with any planets, space stations, and starships in the same territory as you as long as they are similarly equipped.</p>\n<p>Additionally, when your ship sends out communications, those communications can be encrypted, only understandable by recipients with the cipher. A crew member can encrypt communications by making an Intelligence (Slicer Tools) check, setting the decrypt DC. Another crew member can spend 1 minute attempting to decode the encrypted communications by making an Intelligence check against the decrypt DC. On a success, they decrypt the message. On a failure, they do not decrypt your encrypted message, and can't attempt to do so again for one day.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": {
-          "value": "SotG"
-        },
+        "source": {},
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": false,
-        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -3753,16 +2920,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -3778,18 +2946,8 @@
           "dc": null,
           "scaling": "power"
         },
-        "recharge": {
-          "charged": false,
-          "value": null
-        },
-        "system": {
-          "value": "Operation"
-        },
         "grade": {
           "value": 2
-        },
-        "basecost": {
-          "value": 3500
         },
         "prerequisites": {
           "value": "Comms Package, Premium"
@@ -3798,113 +2956,24 @@
           "slot": false,
           "suite": false
         },
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "armor": {
-          "type": "",
-          "value": null,
-          "dex": null
+        "unidentified": {
+          "description": ""
         },
-        "properties": {
-          "Absorptive": false,
-          "Agile": false,
-          "Anchor": false,
-          "Avoidant": false,
-          "Barbed": false,
-          "Bulky": false,
-          "Charging": false,
-          "Concealing": false,
-          "Cumbersome": false,
-          "Gauntleted": false,
-          "Imbalanced": false,
-          "Impermeable": false,
-          "Insulated": false,
-          "Interlocking": false,
-          "Lambent": false,
-          "Lightweight": false,
-          "Magnetic": false,
-          "Obscured": false,
-          "Obtrusive": false,
-          "Powered": false,
-          "Reactive": false,
-          "Regulated": false,
-          "Reinforced": false,
-          "Responsive": false,
-          "Rigid": false,
-          "Silent": false,
-          "Spiked": false,
-          "Steadfast": false,
-          "Strength": false,
-          "Versatile": false
+        "type": {
+          "value": "",
+          "subtype": ""
         },
-        "capx": {
-          "value": ""
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "attributes": {
-          "dr": ""
-        },
-        "regrateco": {
-          "value": ""
-        },
-        "cscap": {
-          "value": ""
-        },
-        "sscap": {
-          "value": ""
-        },
-        "fuelcostsmod": {
-          "value": ""
-        },
-        "powdicerec": {
-          "value": ""
-        },
-        "hdclass": {
-          "value": ""
-        },
-        "strength": null,
-        "stealth": false,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        },
-        "proficient": false
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "baseCost": {
+          "value": null
+        }
       },
       "ownership": {
         "default": 0
@@ -3915,8 +2984,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.F1TAtKnAfvOVbbSq"
     },
     {
       "_id": "9HQjdxAscbuafEHl",
@@ -3957,7 +3027,6 @@
             "startTurn": null
           },
           "icon": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
-          "label": "Scanner, Premium",
           "origin": "Compendium.sw5e.starshipmodifications.JP7bwXHUbOx4IyY6",
           "transfer": true,
           "flags": {
@@ -3966,7 +3035,10 @@
             }
           },
           "tint": null,
-          "sort": 0
+          "name": "Scanner, Premium",
+          "description": "",
+          "statuses": [],
+          "_key": "!actors.items.effects!fqQgg2zi7i1ZWjly.9HQjdxAscbuafEHl.mXkq3VeLP3GEKZir"
         }
       ],
       "folder": null,
@@ -3979,39 +3051,39 @@
       "system": {
         "description": {
           "value": "<p>This system augments the native radar scanner on your ship. Your ship gains blindsight out to 1,000 feet.</p><p>Additionally, your ship is proficiently equipped for Intelligence (Probe) and Wisdom (Scan) checks.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": {
-          "value": "SotG"
-        },
+        "source": {},
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": false,
-        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -4022,16 +3094,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -4047,18 +3120,8 @@
           "dc": null,
           "scaling": "power"
         },
-        "recharge": {
-          "charged": false,
-          "value": null
-        },
-        "system": {
-          "value": "Operation"
-        },
         "grade": {
-          "value": "NA"
-        },
-        "basecost": {
-          "value": "3500"
+          "value": 0
         },
         "prerequisites": {
           "value": ""
@@ -4067,113 +3130,24 @@
           "slot": false,
           "suite": false
         },
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "armor": {
-          "type": "",
-          "value": null,
-          "dex": null
+        "unidentified": {
+          "description": ""
         },
-        "properties": {
-          "Absorptive": false,
-          "Agile": false,
-          "Anchor": false,
-          "Avoidant": false,
-          "Barbed": false,
-          "Bulky": false,
-          "Charging": false,
-          "Concealing": false,
-          "Cumbersome": false,
-          "Gauntleted": false,
-          "Imbalanced": false,
-          "Impermeable": false,
-          "Insulated": false,
-          "Interlocking": false,
-          "Lambent": false,
-          "Lightweight": false,
-          "Magnetic": false,
-          "Obscured": false,
-          "Obtrusive": false,
-          "Powered": false,
-          "Reactive": false,
-          "Regulated": false,
-          "Reinforced": false,
-          "Responsive": false,
-          "Rigid": false,
-          "Silent": false,
-          "Spiked": false,
-          "Strength": false,
-          "Steadfast": false,
-          "Versatile": false
+        "type": {
+          "value": "",
+          "subtype": ""
         },
-        "capx": {
-          "value": ""
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "attributes": {
-          "dr": ""
-        },
-        "regrateco": {
-          "value": ""
-        },
-        "cscap": {
-          "value": ""
-        },
-        "sscap": {
-          "value": ""
-        },
-        "fuelcostsmod": {
-          "value": ""
-        },
-        "powdicerec": {
-          "value": ""
-        },
-        "hdclass": {
-          "value": ""
-        },
-        "strength": null,
-        "stealth": false,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        },
-        "proficient": false
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "baseCost": {
+          "value": null
+        }
       },
       "ownership": {
         "default": 0
@@ -4184,8 +3158,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.9HQjdxAscbuafEHl"
     },
     {
       "_id": "T2SjeOYQo1TtSduI",
@@ -4220,7 +3195,6 @@
             "startTurn": null
           },
           "icon": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
-          "label": "Scanner, Prototype",
           "origin": "Compendium.sw5e.starshipmodifications.MCf4UdMxbP4S4t0o",
           "transfer": true,
           "flags": {
@@ -4229,7 +3203,10 @@
             }
           },
           "tint": null,
-          "sort": 0
+          "name": "Scanner, Prototype",
+          "description": "",
+          "statuses": [],
+          "_key": "!actors.items.effects!fqQgg2zi7i1ZWjly.T2SjeOYQo1TtSduI.egG0QTJwHSRYX8QA"
         }
       ],
       "folder": null,
@@ -4242,39 +3219,39 @@
       "system": {
         "description": {
           "value": "<p>This modification improves the radar scanner on your ship.</p><p>Your ship is expertly equipped for Intelligence (Probe) and Wisdom (Scan) checks.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": {
-          "value": "SotG"
-        },
+        "source": {},
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": false,
-        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -4285,16 +3262,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -4310,18 +3288,8 @@
           "dc": null,
           "scaling": "power"
         },
-        "recharge": {
-          "charged": false,
-          "value": null
-        },
-        "system": {
-          "value": "Operation"
-        },
         "grade": {
-          "value": "2"
-        },
-        "basecost": {
-          "value": "3500"
+          "value": 2
         },
         "prerequisites": {
           "value": "Scanner, Premium"
@@ -4330,113 +3298,24 @@
           "slot": false,
           "suite": false
         },
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "armor": {
-          "type": "",
-          "value": null,
-          "dex": null
+        "unidentified": {
+          "description": ""
         },
-        "properties": {
-          "Absorptive": false,
-          "Agile": false,
-          "Anchor": false,
-          "Avoidant": false,
-          "Barbed": false,
-          "Bulky": false,
-          "Charging": false,
-          "Concealing": false,
-          "Cumbersome": false,
-          "Gauntleted": false,
-          "Imbalanced": false,
-          "Impermeable": false,
-          "Insulated": false,
-          "Interlocking": false,
-          "Lambent": false,
-          "Lightweight": false,
-          "Magnetic": false,
-          "Obscured": false,
-          "Obtrusive": false,
-          "Powered": false,
-          "Reactive": false,
-          "Regulated": false,
-          "Reinforced": false,
-          "Responsive": false,
-          "Rigid": false,
-          "Silent": false,
-          "Spiked": false,
-          "Strength": false,
-          "Steadfast": false,
-          "Versatile": false
+        "type": {
+          "value": "",
+          "subtype": ""
         },
-        "capx": {
-          "value": ""
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "attributes": {
-          "dr": ""
-        },
-        "regrateco": {
-          "value": ""
-        },
-        "cscap": {
-          "value": ""
-        },
-        "sscap": {
-          "value": ""
-        },
-        "fuelcostsmod": {
-          "value": ""
-        },
-        "powdicerec": {
-          "value": ""
-        },
-        "hdclass": {
-          "value": ""
-        },
-        "strength": null,
-        "stealth": false,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        },
-        "proficient": false
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "baseCost": {
+          "value": null
+        }
       },
       "ownership": {
         "default": 0
@@ -4447,8 +3326,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.T2SjeOYQo1TtSduI"
     },
     {
       "_id": "XDNv3RzQ8QT5Mm4l",
@@ -4466,39 +3346,39 @@
       "system": {
         "description": {
           "value": "<p>This system lessens the transfer of external impacts into the ship's interior.  When you are forced to make a Concentration check due to damage, impacts, or explosions exterior to the ship, you have advantage.</p><p>Additionally, when you take the Evade action, skill checks and attack rolls made by your ship or anyone on it do not suffer from disadvantage from the evasion.  Once this feature has been used, it can't be used again until the ship recharges.  </p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": {
-          "value": "SotG"
-        },
+        "source": {},
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": false,
-        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -4509,16 +3389,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -4534,18 +3415,8 @@
           "dc": null,
           "scaling": "power"
         },
-        "recharge": {
-          "charged": false,
-          "value": null
-        },
-        "system": {
-          "value": "Universal"
-        },
         "grade": {
-          "value": "NA"
-        },
-        "basecost": {
-          "value": "4000"
+          "value": 0
         },
         "prerequisites": {
           "value": ""
@@ -4554,113 +3425,24 @@
           "slot": false,
           "suite": false
         },
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "armor": {
-          "type": "",
-          "value": null,
-          "dex": null
+        "unidentified": {
+          "description": ""
         },
-        "properties": {
-          "Absorptive": false,
-          "Agile": false,
-          "Anchor": false,
-          "Avoidant": false,
-          "Barbed": false,
-          "Bulky": false,
-          "Charging": false,
-          "Concealing": false,
-          "Cumbersome": false,
-          "Gauntleted": false,
-          "Imbalanced": false,
-          "Impermeable": false,
-          "Insulated": false,
-          "Interlocking": false,
-          "Lambent": false,
-          "Lightweight": false,
-          "Magnetic": false,
-          "Obscured": false,
-          "Obtrusive": false,
-          "Powered": false,
-          "Reactive": false,
-          "Regulated": false,
-          "Reinforced": false,
-          "Responsive": false,
-          "Rigid": false,
-          "Silent": false,
-          "Spiked": false,
-          "Strength": false,
-          "Steadfast": false,
-          "Versatile": false
+        "type": {
+          "value": "",
+          "subtype": ""
         },
-        "capx": {
-          "value": ""
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "attributes": {
-          "dr": ""
-        },
-        "regrateco": {
-          "value": ""
-        },
-        "cscap": {
-          "value": ""
-        },
-        "sscap": {
-          "value": ""
-        },
-        "fuelcostsmod": {
-          "value": ""
-        },
-        "powdicerec": {
-          "value": ""
-        },
-        "hdclass": {
-          "value": ""
-        },
-        "strength": null,
-        "stealth": false,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        },
-        "proficient": false
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "baseCost": {
+          "value": null
+        }
       },
       "ownership": {
         "default": 0
@@ -4671,8 +3453,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.XDNv3RzQ8QT5Mm4l"
     },
     {
       "_id": "wi5QPohbt7hKWyYd",
@@ -4701,7 +3484,6 @@
             "startTurn": null
           },
           "icon": "systems/sw5e/packs/Icons/Starship%20Modifications/Universal.webp",
-          "label": "Thrusters, Mark I",
           "origin": "Compendium.sw5e.starshipmodifications.ySGqfdHlfEjNJRqm",
           "transfer": true,
           "flags": {
@@ -4710,7 +3492,10 @@
             }
           },
           "tint": null,
-          "sort": 0
+          "name": "Thrusters, Mark I",
+          "description": "",
+          "statuses": [],
+          "_key": "!actors.items.effects!fqQgg2zi7i1ZWjly.wi5QPohbt7hKWyYd.5NT4IF3E7iHlj8bR"
         }
       ],
       "folder": null,
@@ -4723,39 +3508,39 @@
       "system": {
         "description": {
           "value": "<p>You improve your ship's thrusters. Your ship's Dexterity score increases by 1. As normal, you can't increase your ship's Dexterity score above the maximum for your size with this system.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": {
-          "value": "SotG"
-        },
+        "source": {},
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": false,
-        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -4766,16 +3551,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -4791,18 +3577,8 @@
           "dc": null,
           "scaling": "power"
         },
-        "recharge": {
-          "charged": false,
-          "value": null
-        },
-        "system": {
-          "value": "Universal"
-        },
         "grade": {
-          "value": "1"
-        },
-        "basecost": {
-          "value": "4000"
+          "value": 1
         },
         "prerequisites": {
           "value": ""
@@ -4811,113 +3587,24 @@
           "slot": false,
           "suite": false
         },
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "armor": {
-          "type": "",
-          "value": null,
-          "dex": null
+        "unidentified": {
+          "description": ""
         },
-        "properties": {
-          "Absorptive": false,
-          "Agile": false,
-          "Anchor": false,
-          "Avoidant": false,
-          "Barbed": false,
-          "Bulky": false,
-          "Charging": false,
-          "Concealing": false,
-          "Cumbersome": false,
-          "Gauntleted": false,
-          "Imbalanced": false,
-          "Impermeable": false,
-          "Insulated": false,
-          "Interlocking": false,
-          "Lambent": false,
-          "Lightweight": false,
-          "Magnetic": false,
-          "Obscured": false,
-          "Obtrusive": false,
-          "Powered": false,
-          "Reactive": false,
-          "Regulated": false,
-          "Reinforced": false,
-          "Responsive": false,
-          "Rigid": false,
-          "Silent": false,
-          "Spiked": false,
-          "Strength": false,
-          "Steadfast": false,
-          "Versatile": false
+        "type": {
+          "value": "",
+          "subtype": ""
         },
-        "capx": {
-          "value": ""
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "attributes": {
-          "dr": ""
-        },
-        "regrateco": {
-          "value": ""
-        },
-        "cscap": {
-          "value": ""
-        },
-        "sscap": {
-          "value": ""
-        },
-        "fuelcostsmod": {
-          "value": ""
-        },
-        "powdicerec": {
-          "value": ""
-        },
-        "hdclass": {
-          "value": ""
-        },
-        "strength": null,
-        "stealth": false,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        },
-        "proficient": false
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "baseCost": {
+          "value": null
+        }
       },
       "ownership": {
         "default": 0
@@ -4928,8 +3615,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.wi5QPohbt7hKWyYd"
     },
     {
       "_id": "sBBh6ncDP0dme7hq",
@@ -4947,39 +3635,39 @@
       "system": {
         "description": {
           "value": "<p>A fixed hardpoint is used to mount a primary, secondary, tertiary, or quaternary weapon. A weapon mounted on a fixed hardpoint has a limited firing arc, as described in chapter 9 and can be fired from any crew station. </p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": {
-          "value": "SotG"
-        },
+        "source": {},
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -4990,16 +3678,17 @@
           "value": null,
           "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -5015,18 +3704,8 @@
           "dc": null,
           "scaling": "power"
         },
-        "recharge": {
-          "charged": false,
-          "value": null
-        },
-        "system": {
-          "value": "Weapon"
-        },
         "grade": {
-          "value": "NA"
-        },
-        "basecost": {
-          "value": "3000"
+          "value": 0
         },
         "prerequisites": {
           "value": ""
@@ -5035,48 +3714,23 @@
           "slot": false,
           "suite": false
         },
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
+        "unidentified": {
+          "description": ""
+        },
+        "type": {
+          "value": "Weapon",
+          "subtype": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "baseCost": {
+          "value": null
         }
       },
       "ownership": {
@@ -5088,8 +3742,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.sBBh6ncDP0dme7hq"
     },
     {
       "_id": "wfJ4ovQdI8cLMEiD",
@@ -5107,37 +3762,41 @@
       "system": {
         "description": {
           "value": "Power (range 600/2400), constitution 11, rapid 3, overheat 12",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 4400,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": 1,
+          "value": "1",
           "width": null,
           "units": "",
-          "type": "enemy"
+          "type": "enemy",
+          "prompt": true
         },
         "range": {
           "value": 600,
@@ -5147,21 +3806,22 @@
         "uses": {
           "value": null,
           "max": "",
-          "per": "",
-          "recovery": ""
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "rwak",
-        "attackBonus": "0",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -5178,110 +3838,59 @@
           "dc": null,
           "scaling": "power"
         },
-        "armor": null,
-        "hp": null,
+        "armor": {
+          "value": null
+        },
+        "hp": {
+          "value": null,
+          "max": null,
+          "dt": null,
+          "conditions": ""
+        },
         "modify": {
           "chassis": "none",
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null,
-          "overrides": {}
+          "changes": {}
         },
-        "weaponType": "primary (starship)",
-        "baseItem": "",
+        "weaponClass": "",
         "ammo": {
           "target": null,
           "value": null,
           "use": null,
           "types": []
         },
-        "properties": {
-          "aut": false,
-          "bur": null,
+        "properties": [
+          "con",
+          "ovr",
+          "pow",
+          "rap"
+        ],
+        "proficient": 1,
+        "_propertyValues": {
           "con": 11,
-          "dir": null,
-          "exp": false,
-          "hvy": false,
-          "hid": false,
-          "hom": false,
-          "ion": false,
-          "ken": null,
-          "mlt": false,
           "ovr": 12,
-          "pic": null,
           "pow": true,
-          "rap": 3,
-          "rel": null,
-          "sat": false,
-          "spc": false,
-          "vic": null,
-          "zon": false,
-          "mgc": false,
-          "ran": false,
-          "smr": false,
-          "drm": false,
-          "dgd": false,
-          "dpt": false,
-          "dou": false,
-          "fin": false,
-          "fix": false,
-          "lgt": false,
-          "lum": false,
-          "mig": false,
-          "rch": false,
-          "ret": false,
-          "sil": false,
-          "thr": false,
-          "two": false,
-          "ver": false
+          "rap": 3
         },
-        "proficient": true,
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "weaponSize": "Small",
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "type": {
+          "value": "primary (starship)",
+          "subtype": ""
+        },
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -5292,8 +3901,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.wfJ4ovQdI8cLMEiD"
     },
     {
       "_id": "cJAvN1dmPa4i2nsD",
@@ -5334,7 +3944,6 @@
             "startTurn": null
           },
           "icon": "systems/sw5e/packs/Icons/Starship%20Equipment/LightweightArmor.webp",
-          "label": "Lightweight Armor",
           "origin": "Compendium.sw5e.starshiparmor.AAA9PWi1rTiSUIIe",
           "transfer": true,
           "flags": {
@@ -5343,7 +3952,10 @@
             }
           },
           "tint": null,
-          "sort": 0
+          "name": "Lightweight Armor",
+          "description": "",
+          "statuses": [],
+          "_key": "!actors.items.effects!fqQgg2zi7i1ZWjly.cJAvN1dmPa4i2nsD.tk77Tg2Isa31PJMd"
         }
       ],
       "folder": null,
@@ -5356,37 +3968,41 @@
       "system": {
         "description": {
           "value": "<p>Lightweight armor is commonly used on smaller ships, allowing them to take full advantage of their quickness.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 3100,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -5395,22 +4011,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
+          "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -5424,8 +4041,8 @@
         },
         "armor": {
           "value": 10,
-          "type": "starship",
-          "dex": null
+          "dex": null,
+          "magicalBonus": null
         },
         "hp": {
           "value": 0,
@@ -5435,150 +4052,58 @@
         },
         "attributes": {
           "capx": {
-            "value": null
+            "value": 0
           },
           "dmgred": {
-            "value": "0"
+            "value": 0
           },
           "regrateco": {
-            "value": null
+            "value": 0
           },
           "cscap": {
-            "value": null
+            "value": 0
           },
           "sscap": {
-            "value": null
+            "value": 0
           },
           "fuelcostsmod": {
             "value": null
           },
-          "powerdicerec": {
-            "value": ""
-          },
+          "powerdicerec": {},
           "hdclass": {
-            "value": null
-          },
-          "dr": ""
+            "value": 0
+          }
         },
         "modify": {
           "chassis": "none",
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null,
-          "overrides": {}
+          "changes": {}
         },
-        "baseItem": "",
         "speed": {
           "value": null,
           "conditions": ""
         },
         "strength": null,
-        "stealth": false,
-        "properties": {
-          "Absorptive": null,
-          "Agile": null,
-          "Anchor": false,
-          "Avoidant": null,
-          "Barbed": false,
-          "Bulky": false,
-          "Charging": null,
-          "Concealing": false,
-          "Cumbersome": false,
-          "Gauntleted": false,
-          "Imbalanced": false,
-          "Impermeable": false,
-          "Insulated": null,
-          "Interlocking": false,
-          "Lambent": false,
-          "Lightweight": false,
-          "Magnetic": null,
-          "Obscured": false,
-          "Obtrusive": false,
-          "Powered": null,
-          "Reactive": null,
-          "Regulated": false,
-          "Reinforced": false,
-          "Responsive": null,
-          "Rigid": false,
-          "Silent": false,
-          "Spiked": false,
-          "Steadfast": false,
-          "Strength": null,
-          "Versatile": null
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "starship",
+          "baseItem": ""
         },
-        "proficient": true,
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "capx": {
-          "value": ""
+        "unidentified": {
+          "description": ""
         },
-        "dmgred": {
-          "value": "0"
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "regrateco": {
-          "value": ""
-        },
-        "cscap": {
-          "value": ""
-        },
-        "sscap": {
-          "value": ""
-        },
-        "fuelcostsmod": {
-          "value": ""
-        },
-        "powerdicerec": {
-          "value": null
-        },
-        "hdclass": {
-          "value": ""
-        },
-        "powdicerec": {
-          "value": ""
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null
       },
       "ownership": {
         "default": 0
@@ -5589,8 +4114,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.cJAvN1dmPa4i2nsD"
     },
     {
       "_id": "IdgK9tozkozi7KFQ",
@@ -5649,7 +4175,6 @@
             "startTurn": null
           },
           "icon": "systems/sw5e/packs/Icons/Starship%20Equipment/Quick-ChargeShield.webp",
-          "label": "Quick-Charge Shield",
           "origin": "Compendium.sw5e.starshiparmor.M7igMGsBIosGA4dS",
           "transfer": true,
           "flags": {
@@ -5658,7 +4183,10 @@
             }
           },
           "tint": null,
-          "sort": 0
+          "name": "Quick-Charge Shield",
+          "description": "",
+          "statuses": [],
+          "_key": "!actors.items.effects!fqQgg2zi7i1ZWjly.IdgK9tozkozi7KFQ.ddSz853cxhCDp8bi"
         }
       ],
       "folder": null,
@@ -5671,37 +4199,41 @@
       "system": {
         "description": {
           "value": "<p>Quick-Charge Shields, opposite of Fortress Shields, offer a reduced capacity but rapidly replenish.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "quantity": 1,
-        "weight": 0,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 4900,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -5710,22 +4242,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
+          "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -5739,8 +4272,8 @@
         },
         "armor": {
           "value": 0,
-          "type": "ssshield",
-          "dex": null
+          "dex": null,
+          "magicalBonus": null
         },
         "hp": {
           "value": 0,
@@ -5750,139 +4283,58 @@
         },
         "attributes": {
           "capx": {
-            "value": null
+            "value": 0.667
           },
           "dmgred": {
-            "value": null
+            "value": 0
           },
           "regrateco": {
-            "value": "1.5"
+            "value": 1.5
           },
           "cscap": {
-            "value": null
+            "value": 0
           },
           "sscap": {
-            "value": null
+            "value": 0
           },
           "fuelcostsmod": {
             "value": null
           },
-          "powerdicerec": {
-            "value": ""
-          },
+          "powerdicerec": {},
           "hdclass": {
-            "value": null
-          },
-          "dr": ""
+            "value": 0
+          }
         },
         "modify": {
           "chassis": "none",
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null,
-          "overrides": {}
+          "changes": {}
         },
-        "baseItem": "",
         "speed": {
           "value": null,
           "conditions": ""
         },
         "strength": null,
-        "stealth": false,
-        "properties": {
-          "Anchor": false,
-          "Barbed": false,
-          "Bulky": false,
-          "Concealing": false,
-          "Cumbersome": false,
-          "Gauntleted": false,
-          "Imbalanced": false,
-          "Impermeable": false,
-          "Interlocking": false,
-          "Lambent": false,
-          "Lightweight": false,
-          "Obscured": false,
-          "Obtrusive": false,
-          "Regulated": false,
-          "Reinforced": false,
-          "Rigid": false,
-          "Silent": false,
-          "Spiked": false,
-          "Steadfast": false
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "ssshield",
+          "baseItem": ""
         },
-        "proficient": true,
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "capx": {
-          "value": "0.667"
+        "unidentified": {
+          "description": ""
         },
-        "dmgred": {
-          "value": ""
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "regrateco": {
-          "value": "1.5"
-        },
-        "cscap": {
-          "value": ""
-        },
-        "sscap": {
-          "value": ""
-        },
-        "fuelcostsmod": {
-          "value": ""
-        },
-        "powerdicerec": {
-          "value": null
-        },
-        "hdclass": {
-          "value": ""
-        },
-        "powdicerec": {
-          "value": ""
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null
       },
       "ownership": {
         "default": 0
@@ -5893,8 +4345,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.IdgK9tozkozi7KFQ"
     },
     {
       "_id": "DK35uVEfx6W0HykV",
@@ -5912,37 +4365,41 @@
       "system": {
         "description": {
           "value": "<p>The hyperdrive is a propulsion system that allows a starship to reach hyperspeed and traverse the void between stars in the alternate dimension of hyperspace. For a starship to have a hyperdrive, it must have a vacant hyperdrive slot modification.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "quantity": 1,
-        "weight": null,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 500,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "none",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -5951,22 +4408,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
+          "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -5980,8 +4438,8 @@
         },
         "armor": {
           "value": null,
-          "type": "hyper",
-          "dex": null
+          "dex": null,
+          "magicalBonus": null
         },
         "hp": {
           "value": 0,
@@ -5991,28 +4449,26 @@
         },
         "attributes": {
           "capx": {
-            "value": null
+            "value": 0
           },
           "dmgred": {
             "value": null
           },
           "regrateco": {
-            "value": null
+            "value": 0
           },
           "cscap": {
-            "value": null
+            "value": 0
           },
           "sscap": {
-            "value": null
+            "value": 0
           },
           "fuelcostsmod": {
             "value": null
           },
-          "powerdicerec": {
-            "value": ""
-          },
+          "powerdicerec": {},
           "hdclass": {
-            "value": null
+            "value": 15
           }
         },
         "modify": {
@@ -6020,123 +4476,31 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null,
-          "overrides": {}
+          "changes": {}
         },
-        "baseItem": "",
         "speed": {
           "value": null,
           "conditions": ""
         },
         "strength": null,
-        "stealth": false,
-        "properties": {
-          "Absorptive": null,
-          "Agile": null,
-          "Avoidant": null,
-          "Charging": null,
-          "Insulated": null,
-          "Magnetic": null,
-          "Powered": null,
-          "Reactive": null,
-          "Responsive": null,
-          "Strength": null,
-          "Versatile": null,
-          "Anchor": false,
-          "Barbed": false,
-          "Bulky": false,
-          "Concealing": false,
-          "Cumbersome": false,
-          "Gauntleted": false,
-          "Imbalanced": false,
-          "Impermeable": false,
-          "Interlocking": false,
-          "Lambent": false,
-          "Lightweight": false,
-          "Obscured": false,
-          "Obtrusive": false,
-          "Regulated": false,
-          "Reinforced": false,
-          "Rigid": false,
-          "Silent": false,
-          "Spiked": false,
-          "Steadfast": false
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "hyper",
+          "baseItem": ""
         },
-        "proficient": true,
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "capx": {
-          "value": ""
+        "unidentified": {
+          "description": ""
         },
-        "dmgred": {
-          "value": null
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "regrateco": {
-          "value": ""
-        },
-        "cscap": {
-          "value": ""
-        },
-        "sscap": {
-          "value": ""
-        },
-        "fuelcostsmod": {
-          "value": ""
-        },
-        "powerdicerec": {
-          "value": null
-        },
-        "hdclass": {
-          "value": "15"
-        },
-        "hpperhd": {
-          "value": ""
-        },
-        "powdicerec": {
-          "value": ""
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null
       },
       "ownership": {
         "default": 0
@@ -6147,8 +4511,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.DK35uVEfx6W0HykV"
     },
     {
       "_id": "UE5UyEXog9yhTtfX",
@@ -6166,37 +4531,41 @@
       "system": {
         "description": {
           "value": "<p>Ionization reactors are highly fuel-efficient reactors that trade power output for fuel economy.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "quantity": 1,
-        "weight": null,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 5100,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "none",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -6205,22 +4574,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
+          "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "util",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -6234,8 +4604,8 @@
         },
         "armor": {
           "value": null,
-          "type": "reactor",
-          "dex": null
+          "dex": null,
+          "magicalBonus": null
         },
         "hp": {
           "value": 0,
@@ -6245,28 +4615,26 @@
         },
         "attributes": {
           "capx": {
-            "value": null
+            "value": 0
           },
           "dmgred": {
             "value": null
           },
           "regrateco": {
-            "value": null
+            "value": 0
           },
           "cscap": {
-            "value": null
+            "value": 0
           },
           "sscap": {
-            "value": null
+            "value": 0
           },
           "fuelcostsmod": {
             "value": 0.5
           },
-          "powerdicerec": {
-            "value": "(1d2)-1"
-          },
+          "powerdicerec": {},
           "hdclass": {
-            "value": null
+            "value": 0
           }
         },
         "modify": {
@@ -6274,123 +4642,31 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null,
-          "overrides": {}
+          "changes": {}
         },
-        "baseItem": "",
         "speed": {
           "value": null,
           "conditions": ""
         },
         "strength": null,
-        "stealth": false,
-        "properties": {
-          "Absorptive": null,
-          "Agile": null,
-          "Avoidant": null,
-          "Charging": null,
-          "Insulated": null,
-          "Magnetic": null,
-          "Powered": null,
-          "Reactive": null,
-          "Responsive": null,
-          "Strength": null,
-          "Versatile": null,
-          "Anchor": false,
-          "Barbed": false,
-          "Bulky": false,
-          "Concealing": false,
-          "Cumbersome": false,
-          "Gauntleted": false,
-          "Imbalanced": false,
-          "Impermeable": false,
-          "Interlocking": false,
-          "Lambent": false,
-          "Lightweight": false,
-          "Obscured": false,
-          "Obtrusive": false,
-          "Regulated": false,
-          "Reinforced": false,
-          "Rigid": false,
-          "Silent": false,
-          "Spiked": false,
-          "Steadfast": false
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "reactor",
+          "baseItem": ""
         },
-        "proficient": true,
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "capx": {
-          "value": ""
+        "unidentified": {
+          "description": ""
         },
-        "dmgred": {
-          "value": null
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "regrateco": {
-          "value": ""
-        },
-        "cscap": {
-          "value": ""
-        },
-        "sscap": {
-          "value": ""
-        },
-        "fuelcostsmod": {
-          "value": "0.667"
-        },
-        "powerdicerec": {
-          "value": null
-        },
-        "hdclass": {
-          "value": ""
-        },
-        "hpperhd": {
-          "value": ""
-        },
-        "powdicerec": {
-          "value": "(1d2)-1"
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null
       },
       "ownership": {
         "default": 0
@@ -6401,8 +4677,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.UE5UyEXog9yhTtfX"
     },
     {
       "_id": "7UpfnD4rOCIQS90b",
@@ -6420,37 +4697,41 @@
       "system": {
         "description": {
           "value": "<p>Direct power coupling has a central power capacitor that feeds power directly to each system.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "SotG",
+        "source": {
+          "custom": "SotG"
+        },
         "quantity": 1,
-        "weight": null,
+        "weight": {
+          "value": 0,
+          "units": "lb"
+        },
         "price": {
           "value": 4100,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "none",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -6459,22 +4740,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
+          "max": "",
           "per": null,
-          "recovery": ""
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -6488,8 +4770,8 @@
         },
         "armor": {
           "value": 0,
-          "type": "powerc",
-          "dex": null
+          "dex": null,
+          "magicalBonus": null
         },
         "hp": {
           "value": 0,
@@ -6499,28 +4781,26 @@
         },
         "attributes": {
           "capx": {
-            "value": null
+            "value": 0
           },
           "dmgred": {
             "value": null
           },
           "regrateco": {
-            "value": null
+            "value": 0
           },
           "cscap": {
-            "value": null
+            "value": 4
           },
           "sscap": {
-            "value": null
+            "value": 0
           },
           "fuelcostsmod": {
             "value": null
           },
-          "powerdicerec": {
-            "value": ""
-          },
+          "powerdicerec": {},
           "hdclass": {
-            "value": null
+            "value": 0
           }
         },
         "modify": {
@@ -6528,123 +4808,31 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null,
-          "overrides": {}
+          "changes": {}
         },
-        "baseItem": "",
         "speed": {
           "value": null,
           "conditions": ""
         },
         "strength": null,
-        "stealth": false,
-        "properties": {
-          "Absorptive": null,
-          "Agile": null,
-          "Avoidant": null,
-          "Charging": null,
-          "Insulated": null,
-          "Magnetic": null,
-          "Powered": null,
-          "Reactive": null,
-          "Responsive": null,
-          "Strength": null,
-          "Versatile": null,
-          "Anchor": false,
-          "Barbed": false,
-          "Bulky": false,
-          "Concealing": false,
-          "Cumbersome": false,
-          "Gauntleted": false,
-          "Imbalanced": false,
-          "Impermeable": false,
-          "Interlocking": false,
-          "Lambent": false,
-          "Lightweight": false,
-          "Obscured": false,
-          "Obtrusive": false,
-          "Regulated": false,
-          "Reinforced": false,
-          "Rigid": false,
-          "Silent": false,
-          "Spiked": false,
-          "Steadfast": false
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "powerc",
+          "baseItem": ""
         },
-        "proficient": true,
-        "size": "",
-        "identifier": "",
-        "tier": 0,
-        "hullDice": "d6",
-        "hullDiceStart": 3,
-        "hullDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "hullDiceUsed": 0,
-        "shldDice": "d6",
-        "shldDiceStart": 3,
-        "shldDiceRolled": [
-          6,
-          4,
-          4
-        ],
-        "shldDiceUsed": 0,
-        "advancement": [],
-        "buildBaseCost": 50000,
-        "buildMinWorkforce": 5,
-        "upgrdCostMult": 1,
-        "upgrdMinWorkforce": 1,
-        "baseSpaceSpeed": 300,
-        "baseTurnSpeed": 250,
-        "crewMinWorkforce": 1,
-        "modBaseCap": 20,
-        "modMaxSuitesBase": 0,
-        "modMaxSuitesMult": 1,
-        "modCostMult": 1,
-        "modMinWorkforce": 2,
-        "hardpointMult": 2,
-        "equipCostMult": 1,
-        "equipMinWorkforce": 1,
-        "cargoCap": 2,
-        "fuelCost": 50,
-        "fuelCap": 10,
-        "foodCap": 10,
-        "capx": {
-          "value": ""
+        "unidentified": {
+          "description": ""
         },
-        "dmgred": {
-          "value": null
+        "attack": {
+          "bonus": "",
+          "flat": false
         },
-        "regrateco": {
-          "value": ""
-        },
-        "cscap": {
-          "value": "4"
-        },
-        "sscap": {
-          "value": ""
-        },
-        "fuelcostsmod": {
-          "value": ""
-        },
-        "powerdicerec": {
-          "value": null
-        },
-        "hdclass": {
-          "value": ""
-        },
-        "hpperhd": {
-          "value": ""
-        },
-        "powdicerec": {
-          "value": ""
-        },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null
       },
       "ownership": {
         "default": 0
@@ -6655,8 +4843,9 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1685838237265,
-        "lastModifiedBy": "sw5ebuilder0000"
-      }
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!fqQgg2zi7i1ZWjly.7UpfnD4rOCIQS90b"
     }
   ],
   "effects": [
@@ -6699,7 +4888,6 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
-      "label": "Small Starship",
       "origin": "Actor.fqQgg2zi7i1ZWjly.Item.2LBjNSaU4oSk5P4Q",
       "tint": null,
       "transfer": false,
@@ -6708,7 +4896,10 @@
           "statusId": ""
         }
       },
-      "sort": 0
+      "name": "Small Starship",
+      "description": "",
+      "statuses": [],
+      "_key": "!actors.effects!fqQgg2zi7i1ZWjly.2DLoajpx7heVqszr"
     },
     {
       "_id": "EcdDyKhbgBr1FB6X",
@@ -6737,7 +4928,6 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
-      "label": "Space Travel",
       "origin": "Actor.fqQgg2zi7i1ZWjly.Item.2LBjNSaU4oSk5P4Q",
       "tint": null,
       "transfer": false,
@@ -6746,7 +4936,10 @@
           "statusId": ""
         }
       },
-      "sort": 0
+      "name": "Space Travel",
+      "description": "",
+      "statuses": [],
+      "_key": "!actors.effects!fqQgg2zi7i1ZWjly.EcdDyKhbgBr1FB6X"
     },
     {
       "_id": "laUzBgS2kStWVqJ6",
@@ -6769,7 +4962,6 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
-      "label": "Role: Interceptor",
       "origin": "Actor.fqQgg2zi7i1ZWjly.Item.JAzyRBH3KzCuhzU6",
       "tint": null,
       "transfer": false,
@@ -6778,7 +4970,10 @@
           "statusId": ""
         }
       },
-      "sort": 0
+      "name": "Role: Interceptor",
+      "description": "",
+      "statuses": [],
+      "_key": "!actors.effects!fqQgg2zi7i1ZWjly.laUzBgS2kStWVqJ6"
     },
     {
       "_id": "86TRae8uXy9Mnzvs",
@@ -6813,7 +5008,6 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
-      "label": "Scanner, Premium",
       "origin": "Actor.fqQgg2zi7i1ZWjly.Item.9HQjdxAscbuafEHl",
       "tint": null,
       "transfer": false,
@@ -6822,7 +5016,10 @@
           "statusId": ""
         }
       },
-      "sort": 0
+      "name": "Scanner, Premium",
+      "description": "",
+      "statuses": [],
+      "_key": "!actors.effects!fqQgg2zi7i1ZWjly.86TRae8uXy9Mnzvs"
     },
     {
       "_id": "2DmODa4tIMI7PHJR",
@@ -6851,7 +5048,6 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
-      "label": "Scanner, Prototype",
       "origin": "Actor.fqQgg2zi7i1ZWjly.Item.T2SjeOYQo1TtSduI",
       "tint": null,
       "transfer": false,
@@ -6860,7 +5056,10 @@
           "statusId": ""
         }
       },
-      "sort": 0
+      "name": "Scanner, Prototype",
+      "description": "",
+      "statuses": [],
+      "_key": "!actors.effects!fqQgg2zi7i1ZWjly.2DmODa4tIMI7PHJR"
     },
     {
       "_id": "yKI2uea67hK3BQGB",
@@ -6883,7 +5082,6 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Starship%20Modifications/Universal.webp",
-      "label": "Thrusters, Mark I",
       "origin": "Actor.fqQgg2zi7i1ZWjly.Item.wi5QPohbt7hKWyYd",
       "tint": null,
       "transfer": false,
@@ -6892,7 +5090,10 @@
           "statusId": ""
         }
       },
-      "sort": 0
+      "name": "Thrusters, Mark I",
+      "description": "",
+      "statuses": [],
+      "_key": "!actors.effects!fqQgg2zi7i1ZWjly.yKI2uea67hK3BQGB"
     },
     {
       "_id": "JE1egQxclYL7XPmM",
@@ -6927,7 +5128,6 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Starship%20Equipment/LightweightArmor.webp",
-      "label": "Lightweight Armor",
       "origin": "Actor.fqQgg2zi7i1ZWjly.Item.cJAvN1dmPa4i2nsD",
       "tint": null,
       "transfer": false,
@@ -6936,7 +5136,10 @@
           "statusId": ""
         }
       },
-      "sort": 0
+      "name": "Lightweight Armor",
+      "description": "",
+      "statuses": [],
+      "_key": "!actors.effects!fqQgg2zi7i1ZWjly.JE1egQxclYL7XPmM"
     },
     {
       "_id": "Rny85IHx6GDYwWVq",
@@ -6989,7 +5192,6 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Starship%20Equipment/Quick-ChargeShield.webp",
-      "label": "Quick-Charge Shield",
       "origin": "Actor.fqQgg2zi7i1ZWjly.Item.IdgK9tozkozi7KFQ",
       "tint": null,
       "transfer": false,
@@ -6998,7 +5200,10 @@
           "statusId": ""
         }
       },
-      "sort": 0
+      "name": "Quick-Charge Shield",
+      "description": "",
+      "statuses": [],
+      "_key": "!actors.effects!fqQgg2zi7i1ZWjly.Rny85IHx6GDYwWVq"
     }
   ],
   "folder": null,
@@ -7009,6 +5214,7 @@
       "str": {
         "value": 14,
         "proficient": 1,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -7017,6 +5223,7 @@
       "dex": {
         "value": 14,
         "proficient": 1,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -7025,6 +5232,7 @@
       "con": {
         "value": 13,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -7033,6 +5241,7 @@
       "int": {
         "value": 10,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -7041,6 +5250,7 @@
       "wis": {
         "value": 14,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -7049,6 +5259,7 @@
       "cha": {
         "value": 14,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -7060,7 +5271,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 10,
@@ -7068,7 +5280,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
@@ -7087,30 +5300,35 @@
           "overall": "",
           "templevel": "",
           "tempoverall": ""
-        },
-        "min": 0
+        }
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
       },
       "death": {
         "failure": 0,
-        "success": 0
+        "success": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "deployment": {
         "pilot": {
@@ -7131,114 +5349,44 @@
       },
       "systemDamage": 0,
       "fuel": {
-        "fuelCap": 0,
-        "cost": 0,
         "value": 10
       },
       "power": {
-        "routing": {
-          "engines": 1,
-          "shields": 1,
-          "weapons": 1
-        },
+        "routing": "none",
         "central": {
-          "value": "4",
-          "max": 0
+          "value": 4
         },
         "comms": {
-          "value": "0",
-          "max": 0
+          "value": 0
         },
         "engines": {
-          "value": "0",
-          "max": 0
+          "value": 0
         },
         "shields": {
-          "value": "0",
-          "max": 0
+          "value": 0
         },
         "sensors": {
-          "value": "0",
-          "max": 0
+          "value": 0
         },
         "weapons": {
-          "value": "0",
-          "max": 0
-        },
-        "die": ""
+          "value": 0
+        }
       },
       "used": false,
-      "cost": {
-        "baseBuild": 0,
-        "baseUpgrade": 0,
-        "multEquip": 0,
-        "multModification": 0,
-        "multUpgrade": 0
-      },
-      "equip": {
-        "armor": {
-          "dr": 0,
-          "maxDex": 99,
-          "stealthDisadv": false
+      "bonuses": {
+        "mwak": {
+          "attack": "",
+          "damage": ""
         },
-        "hyperdrive": {
-          "class": null
+        "rwak": {
+          "attack": "",
+          "damage": ""
         },
-        "powerCoupling": {
-          "centralCap": 0,
-          "systemCap": 0
-        },
-        "reactor": {
-          "fuelMult": 1,
-          "powerRecDie": "d1"
-        },
-        "size": {
-          "cargoCap": 0,
-          "crewMinWorkforce": 0,
-          "foodCap": 0
-        },
-        "shields": {
-          "capMult": 1,
-          "regenRateMult": 1
+        "abilities": {
+          "check": "",
+          "save": "",
+          "skill": ""
         }
-      },
-      "hull": {
-        "die": "",
-        "dice": 0,
-        "dicemax": 0,
-        "formula": "",
-        "value": null,
-        "max": null
-      },
-      "mods": {
-        "cap": {
-          "value": 0,
-          "max": 10
-        },
-        "hardpoint": {
-          "value": 0,
-          "max": 0
-        },
-        "suite": {
-          "value": 0,
-          "max": 0
-        }
-      },
-      "shld": {
-        "die": "",
-        "dice": 0,
-        "dicemax": 0,
-        "depleted": false,
-        "formula": "",
-        "value": null,
-        "max": null
-      },
-      "workforce": {
-        "max": 0,
-        "minBuild": 0,
-        "minEquip": 0,
-        "minModification": 0,
-        "minUpgrade": 0
       }
     },
     "details": {
@@ -7246,16 +5394,10 @@
         "value": "",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "source": "Drake's Shipyard",
-      "tier": "1",
-      "role": []
+      "starshipsize": null
     },
     "traits": {
-      "size": null,
       "di": {
         "value": [],
         "bypasses": [],
@@ -7301,6 +5443,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "bst": {
@@ -7309,6 +5456,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "dat": {
@@ -7317,6 +5469,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "hid": {
@@ -7325,6 +5482,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "imp": {
@@ -7333,6 +5495,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "inf": {
@@ -7341,6 +5508,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "man": {
@@ -7349,6 +5521,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "men": {
@@ -7357,6 +5534,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "pat": {
@@ -7365,6 +5547,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "prb": {
@@ -7373,6 +5560,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "ram": {
@@ -7381,6 +5573,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "reg": {
@@ -7389,6 +5586,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "scn": {
@@ -7397,6 +5599,11 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       },
       "swn": {
@@ -7405,9 +5612,15 @@
         "bonuses": {
           "check": "",
           "passive": ""
+        },
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
         }
       }
-    }
+    },
+    "favorites": []
   },
   "ownership": {
     "default": 0
@@ -7415,7 +5628,7 @@
   "prototypeToken": {
     "name": "Delta-7 Aethersprite-class light interceptor",
     "displayName": 0,
-    "actorLink": false,
+    "actorLink": true,
     "width": 1,
     "height": 1,
     "lockRotation": false,
@@ -7474,14 +5687,17 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": []
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494006540,
-    "modifiedTime": 1685840656822,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368942113,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!actors!fqQgg2zi7i1ZWjly"
 }

@@ -16,38 +16,41 @@
   "system": {
     "description": {
       "value": "<p>An electroshock arrow is a specialized arrow for use with bow weapons. When you hit a creature with this arrow, the creature must make a DC 14 Dexterity saving throw. On a failed save, the creature takes [[/r 1d3]] ion damage and becomes stunned until the start of its next turn. On a successful save, a creature takes half damage and isn't stunned. Once the arrow hits a target, it no longer gives a bonus.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 150,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
-      "units": ""
+      "value": "",
+      "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -56,54 +59,69 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
       "recovery": "",
-      "autoDestroy": false
+      "autoDestroy": false,
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
-    "actionType": "",
-    "attackBonus": 0,
+    "actionType": "save",
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "1d3",
+          "ion"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
     "save": {
-      "ability": "",
-      "dc": null,
-      "scaling": "power"
+      "ability": "dex",
+      "dc": 14,
+      "scaling": "flat"
     },
-    "consumableType": "ammo",
-    "ammoType": "arrow",
-    "properties": {},
-    "baseItem": "arrow,electroshock",
-    "armor": {},
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "properties": [],
+    "_propertyValues": {},
+    "type": {
+      "value": "ammo",
+      "subtype": "arrow"
     },
-    "weaponType": "",
-    "proficient": false
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493956753,
-    "modifiedTime": 1692402027820,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368678612,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!q5XpHt4TEi7JY4IM"
 }

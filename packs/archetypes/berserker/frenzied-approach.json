@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Frenzied Approach</h1>\n<p>For some berserkers, rage is a means to an end—that end being violence. The Frenzied Approach is that of untrammeled fury, slick with blood. As you enter the berserker's rage, you thrill in the chaos of battle, heedless of your own health or well-being.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "frenziedapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "150zRfa0qIOyPQzk",
+        "_id": "pfvFbIClw1p1878I",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.l5vfYRFvCWoTbcpv",
-            "Compendium.sw5e.archetypefeatures.4rYFYNq25QmWn0N2"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.l5vfYRFvCWoTbcpv",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.4rYFYNq25QmWn0N2",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1wNsokj6j15Co8UJ",
+        "_id": "1KRM5grH4nf7gtHc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.4PEXkYT9cwVAsCEm"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.4PEXkYT9cwVAsCEm",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1IfEWnf1ykMK100T",
+        "_id": "1rDgYCYyanBnRDCt",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.tEVh58kiI7VKmor0"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.tEVh58kiI7VKmor0",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "Sa5506ZIzKY1sdD5",
+        "_id": "1vqqK9Sox3ogkVUt",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.0NxbCrcn4Ty81wWf"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.0NxbCrcn4Ty81wWf",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959786,
-    "modifiedTime": 1684819093624,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552690048,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!z0L4BB8paHS2eV3m"
 }

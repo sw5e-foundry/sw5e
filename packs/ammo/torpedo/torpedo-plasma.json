@@ -16,37 +16,41 @@
   "system": {
     "description": {
       "value": null,
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "quantity": 1,
-    "weight": 20,
-    "price": {
-      "denomination": "gc",
-      "value": 725
+    "weight": {
+      "value": 20,
+      "units": "lb"
     },
-    "attunement": 0,
+    "price": {
+      "value": 725,
+      "denomination": "gc"
+    },
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
-      "units": ""
+      "value": "",
+      "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -55,21 +59,25 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
       "recovery": "",
-      "autoDestroy": false
+      "autoDestroy": false,
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -80,30 +88,35 @@
       "dc": null,
       "scaling": "power"
     },
-    "consumableType": "ammo",
-    "ammoType": "torpedo",
-    "properties": {},
-    "armor": {},
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "properties": [],
+    "_propertyValues": {},
+    "type": {
+      "value": "ammo",
+      "subtype": "torpedo"
     },
-    "equiped": false,
-    "weaponType": "",
-    "proficient": false,
-    "baseItem": "torpedo,plasma"
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493956721,
-    "modifiedTime": 1684819092374,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368678338,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!6fDA5yg8WAoCBGlk"
 }

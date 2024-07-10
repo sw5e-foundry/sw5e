@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Path of Tenacity</h1>\n<p>The tenacious are ever mindful that the Force ebbs and flows, and uses this knowledge to great advantage. Those sentinels who follow the Path of Tenacity use their connection to the Force to draw the opposition's attention while also warding off their attacks, serving as an effective bulwark against even the most implacable of foes.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "pathoftenacity",
     "classIdentifier": "sentinel",
     "advancement": [
       {
-        "_id": "Y2wMKRTSfpT19Hof",
+        "_id": "umukkZMpjLQdfcHs",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.n5v4Lb2ZOUOzzNME",
-            "Compendium.sw5e.archetypefeatures.IYZaMnSC37BmdWQf"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.n5v4Lb2ZOUOzzNME",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.IYZaMnSC37BmdWQf",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1vwc7qXgeAJxAqsH",
+        "_id": "1K3AnTpwYrHgcrhD",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.PIUM7o85ft0EQzli"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.PIUM7o85ft0EQzli",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "16hJ0rID9yP71jOQ",
+        "_id": "1ltzJpzDFJ1R13bU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.bjMJ4CWQiX8KbMHZ"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.bjMJ4CWQiX8KbMHZ",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "1UqOfPgeJVMB1GSL",
+        "_id": "18ljuoFgB2cNAG4d",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.vh8gpSCT41sZMONL"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.vh8gpSCT41sZMONL",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959763,
-    "modifiedTime": 1684819093623,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689727,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!eD5ofKkBiWvSCDWb"
 }

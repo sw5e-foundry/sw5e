@@ -1,10 +1,5 @@
 {
   "name": "Organized",
-  "type": "feat",
-  "img": "systems/sw5e/packs/Icons/Species/Pantoran.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.7018883+00:00",
@@ -12,56 +7,46 @@
       "uid": "Feature.name-organized.source-species.sourceName-pantoran.level-None"
     }
   },
-  "_id": "UBt8BLFuTBOzQirC",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Species/Pantoran.webp",
   "system": {
     "description": {
       "value": "<p>Your society values organization, and as such you are good at making good use of the space provided. When you are in charge of packing a space, such as a vehicle or cargo hold, that space's carrying capacity is increased by one-fourth its base capacity.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "None (Pantoran)",
-    "source": "EC",
+    "requirements": "Pantoran",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": {
-      "threshold": null,
-      "damage": ""
-    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -76,27 +61,55 @@
       "value": "species",
       "subtype": ""
     },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": [],
     "recharge": {
       "value": null,
       "charged": false
     },
     "attributes": {
       "speed": {
-        "space": null,
-        "turn": null
+        "space": 300,
+        "turn": 250
       }
-    },
-    "className": null
+    }
   },
+  "effects": [],
+  "_id": "WPHExepKs3QxxVRN",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
-    "createdTime": 1674494003288,
-    "modifiedTime": 1684777310250,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296029297,
+    "modifiedTime": 1720368901882,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!WPHExepKs3QxxVRN"
 }

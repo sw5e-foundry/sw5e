@@ -7,11 +7,12 @@
   "system": {
     "description": {
       "value": "<p>The {creature} can establish a psychic link with any creature that it successfully grapples with its tentacles. Until the psychic link ends, the {creature} can perceive everything the target senses. The target is aware that its mind is linked, and the {creature} can terminate the link at any time (no action required). The target can use an action on its turn to attempt to break the psychic link, doing so with a successful DC 18 Intelligence saving throw. On a successful save, the target takes 10 (3d6) psychic damage. The psychic link also ends if the target and the {creature} are more than 1 mile apart, with no consequences to the target. The {creature} can form psychic links with up to ten creatures at a time.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -22,11 +23,13 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -35,22 +38,23 @@
     },
     "uses": {
       "value": null,
-      "max": "0",
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
-      "damage": null
+      "damage": ""
     },
     "damage": {
       "parts": [
@@ -72,7 +76,7 @@
       "subtype": ""
     },
     "recharge": {
-      "value": 0,
+      "value": null,
       "charged": false
     },
     "attributes": {
@@ -81,23 +85,30 @@
         "turn": null
       }
     },
-    "powercasting": {
-      "force": "none",
-      "tech": "none"
-    }
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1669752816352,
-    "modifiedTime": 1685840641080,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368816057,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "folder": null,
   "sort": 0,
-  "_id": "WJ5m8iknER46OTDl"
+  "_id": "WJ5m8iknER46OTDl",
+  "_key": "!items!WJ5m8iknER46OTDl"
 }

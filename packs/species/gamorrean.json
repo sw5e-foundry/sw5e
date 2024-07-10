@@ -1,106 +1,5 @@
 {
-  "_id": "W4oIea3LqP1dAXGu",
   "name": "Gamorrean",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Gamorrean.webp",
-  "effects": [
-    {
-      "_id": "teRJPynVl1RXWsN8",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Gamorrean",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 0,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.traits.weaponProf.custom",
-          "value": "vibroaxe",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.weaponProf.custom",
-          "value": "vibromace",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.weaponProf.custom",
-          "value": "vibrosword",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "gamorrese",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.toughness",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.savageAttacks",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Gamorrean.webp",
-      "label": "Gamorrean",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:55.9156216+00:00",
@@ -108,42 +7,136 @@
       "uid": "Species.name-gamorrean"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Gamorrean.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Although a typical gamorrean is squat, green, and heavily built, not all shared these characteristics. Most gamorreans have a dark greenish coloration over a large portion of their bodies; however skin coloration does vary, particularly among females, with light skinned and two-toned pigmentation not uncommon. Black, brown, pinkish yellow, and even a rare white pigmentation are possible. Males tended to have less skin variation and had a greater tendency towards dark green skin perhaps because of their higher exposure to the radiation of the Gamorr Star. Eye coloration varied evenly between gold-yellow, blue, black and brown. The gamorreans generally put no importance on skin or eye coloration although there were some superstitions linked to certain markings.</p>\n<h2>Society and Culture</h2>\n<p>Gamorreans are organized into clans ruled by a male warlord and his wife, who was the most powerful of the clan matrons. While the warlord and his boars are solely concerned with preparing and participating in battle with rival clans, the matrons of the clan performed all the productive work including farming, hunting, manufacturing, and running businesses. Since the amount of available arable land on Gamorr is scarce, clans often lay claim to the same piece of land, and they spend their time fighting over possession. </p>\n<h2>Names</h2>\n<p>Gamorrean names are very gutteral and rough. Male names are typically one syllable while females are two. Surnames are based on clan affiliation rather than family. </p>\n<p><strong>Male Names.</strong> Ark, Blarrp, Blubrak, Cuab, Shos</p>\n<p><strong>Female Names.</strong> Dabrisz, Mernoos, Ogreb, Tagorq</p>\n<p><strong>Surnames.</strong> Doofnarq, Griks, Lurc, Poogmokk</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "identifier": "gamorrean",
-    "advancement": [
-      {
-        "_id": "qXdZD6aJlwmjjdg4",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.KwzvSmhQ3MrVgsQ3",
-            "Compendium.sw5e.speciesfeatures.y8AVyzyULLtDzvH5",
-            "Compendium.sw5e.speciesfeatures.q72xfWxyhjT8iL65",
-            "Compendium.sw5e.speciesfeatures.1bODxbjhxubYaAgP",
-            "Compendium.sw5e.speciesfeatures.cQ9uyRdGrkdf3nqX",
-            "Compendium.sw5e.speciesfeatures.IR0Y6gI0TXlsVaQB",
-            "Compendium.sw5e.speciesfeatures.3pZE3fuWcscjSlxH",
-            "Compendium.sw5e.speciesfeatures.WfNH7MqduuChQkqE",
-            "Compendium.sw5e.speciesfeatures.ObuPdZ0zi7IfvklG"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "YDR8tXvgvaS1P0o3",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KwzvSmhQ3MrVgsQ3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.y8AVyzyULLtDzvH5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.q72xfWxyhjT8iL65",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1bODxbjhxubYaAgP",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cQ9uyRdGrkdf3nqX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IR0Y6gI0TXlsVaQB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3pZE3fuWcscjSlxH",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WfNH7MqduuChQkqE",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ObuPdZ0zi7IfvklG",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "14EYZcuoABMXoG0H",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "con": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "6CXSfpueKU31UGCD",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "bxv26G8YfHO9qutO",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "weapon:vibroaxe",
+            "weapon:vibromace",
+            "weapon:vibrosword"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Black, brown, green, pink, or yellow"
     },
@@ -154,7 +147,7 @@
       "value": "Blue, black, brown, or gold"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Porcine humanoids with tusks and horns"
@@ -176,17 +169,120 @@
     },
     "slanguage": {
       "value": "Gamorrese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "qx2PgWl7zOL8lWE9",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Gamorrean",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 0,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.weaponProf.custom",
+          "mode": 0,
+          "value": "vibroaxe",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.weaponProf.custom",
+          "mode": 0,
+          "value": "vibromace",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.weaponProf.custom",
+          "mode": 0,
+          "value": "vibrosword",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "gamorrese",
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.hp.bonuses.level",
+          "mode": 2,
+          "value": "+1",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.meleeCriticalDamageDice",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Gamorrean.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.W4oIea3LqP1dAXGu.ActiveEffect.teRJPynVl1RXWsN8"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.W4oIea3LqP1dAXGu",
+      "name": "Gamorrean",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!yk3Sq1xbOTkm5k34.qx2PgWl7zOL8lWE9"
+    }
+  ],
+  "_id": "yk3Sq1xbOTkm5k34",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002101,
-    "modifiedTime": 1692402505741,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797867,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!yk3Sq1xbOTkm5k34"
 }

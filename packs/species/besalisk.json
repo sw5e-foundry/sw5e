@@ -1,8 +1,167 @@
 {
-  "_id": "9rErFBQPLGPpl1Cw",
   "name": "Besalisk",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2731369+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-besalisk"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Besalisk.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Male Besalisks' heads sported prominent crests and four arms hung at their sides; females of the species could have as many as eight arms, but like Humans had a primary hand and a limited range of functionality with the others. The addition of the extra appendages required a hearty metabolism, and these bulky beings were able to store food and water for many days, and if the need arose, they could survive for long periods without either. Scruffy sensory whiskers lined the area below their noses, just above the robust wattle most adult Besalisks possessed.</p>\n<h2>Society and Culture</h2>\n<p>Because of Ojom's harsh environment, large cities were never developed on the world; instead small communes of about a thousand families claim territories around the world and are each led by an elected leader. The communes have a strict policy of keeping the size of their groupings equal to avoid conflict. When too many families grow in one area, the leader would ask certain families to break away and start a new community on another glacier.</p>\n<p>While not involved in galactic politics and because they do not produce any of their own technology, the Besalisks established large orbital space stations where offworlders could come to do business. Trading and making deals, any violence on these stations is committed by offworlders as Besalisks avoid confrontation.</p>\n<h2>Names</h2>\n<p>Besalisk name's are generally words that embody them, with a surname attached to their commune.</p>\n<p><strong>Male Names.</strong> Darius, Dexter, Plun, Pong</p>\n<p><strong>Female Names.</strong> Delia, Mora, Ren, Teen</p>\n<p><strong>Surnames.</strong> Jettster, Kil, Krell, Ugg</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "besalisk",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1J3ov5AHH5XZdGdz",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bY5aRBK4Xqp5TqMl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.15aymO92cz7Elpcu",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Hr8HICmfba8MGnvc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.uaka0QI3yDiyTz0H",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.N5fEaHQLG8ljVFeY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.qx7vBZZNtdDNuDDC",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.X2bqbOC39ubL94Da",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.h2BdJWWFzExgEtiA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HbeDCdlPW8g2vYwO",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1TkEn4i5lA731oXN",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "wis": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1f9pnXI5GvTk1sgZ",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Brown or green"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Yellow"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Bony headcrest, four arms, inflatable wattle"
+    },
+    "heightAverage": {
+      "value": "6'0\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "175 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d6) lb."
+    },
+    "homeworld": {
+      "value": "Ojom"
+    },
+    "slanguage": {
+      "value": "Besalisk"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "Z2nTY93aynxgDvrZ",
@@ -12,18 +171,6 @@
           "value": "Besalisk",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -50,9 +197,9 @@
           "priority": 0
         },
         {
-          "key": "flags.sw5e.powerfulBuild",
-          "value": "1",
-          "mode": 5,
+          "key": "flags.sw5e.encumbranceMultiplier",
+          "value": "+1",
+          "mode": 2,
           "priority": 20
         },
         {
@@ -79,102 +226,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Besalisk.webp",
-      "label": "Besalisk",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Besalisk",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!tHiEkgLNzWgzknq9.Z2nTY93aynxgDvrZ"
     }
   ],
+  "_id": "tHiEkgLNzWgzknq9",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2731369+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-besalisk"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Male Besalisks' heads sported prominent crests and four arms hung at their sides; females of the species could have as many as eight arms, but like Humans had a primary hand and a limited range of functionality with the others. The addition of the extra appendages required a hearty metabolism, and these bulky beings were able to store food and water for many days, and if the need arose, they could survive for long periods without either. Scruffy sensory whiskers lined the area below their noses, just above the robust wattle most adult Besalisks possessed.</p>\n<h2>Society and Culture</h2>\n<p>Because of Ojom's harsh environment, large cities were never developed on the world; instead small communes of about a thousand families claim territories around the world and are each led by an elected leader. The communes have a strict policy of keeping the size of their groupings equal to avoid conflict. When too many families grow in one area, the leader would ask certain families to break away and start a new community on another glacier.</p>\n<p>While not involved in galactic politics and because they do not produce any of their own technology, the Besalisks established large orbital space stations where offworlders could come to do business. Trading and making deals, any violence on these stations is committed by offworlders as Besalisks avoid confrontation.</p>\n<h2>Names</h2>\n<p>Besalisk name's are generally words that embody them, with a surname attached to their commune.</p>\n<p><strong>Male Names.</strong> Darius, Dexter, Plun, Pong</p>\n<p><strong>Female Names.</strong> Delia, Mora, Ren, Teen</p>\n<p><strong>Surnames.</strong> Jettster, Kil, Krell, Ugg</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "besalisk",
-    "advancement": [
-      {
-        "_id": "1pbp5n35aWksSwag",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.bY5aRBK4Xqp5TqMl",
-            "Compendium.sw5e.speciesfeatures.15aymO92cz7Elpcu",
-            "Compendium.sw5e.speciesfeatures.Hr8HICmfba8MGnvc",
-            "Compendium.sw5e.speciesfeatures.uaka0QI3yDiyTz0H",
-            "Compendium.sw5e.speciesfeatures.N5fEaHQLG8ljVFeY",
-            "Compendium.sw5e.speciesfeatures.qx7vBZZNtdDNuDDC",
-            "Compendium.sw5e.speciesfeatures.X2bqbOC39ubL94Da",
-            "Compendium.sw5e.speciesfeatures.h2BdJWWFzExgEtiA",
-            "Compendium.sw5e.speciesfeatures.HbeDCdlPW8g2vYwO"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Brown or green"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Yellow"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Bony headcrest, four arms, inflatable wattle"
-    },
-    "heightAverage": {
-      "value": "6'0\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "175 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d6) lb."
-    },
-    "homeworld": {
-      "value": "Ojom"
-    },
-    "slanguage": {
-      "value": "Besalisk"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002068,
-    "modifiedTime": 1692402505738,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797746,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!tHiEkgLNzWgzknq9"
 }

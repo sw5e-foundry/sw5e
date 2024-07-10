@@ -1,106 +1,5 @@
 {
-  "_id": "adaUHwGfIrAKGSn5",
   "name": "Rodian",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Rodian.webp",
-  "effects": [
-    {
-      "_id": "FUiWLoJwaDtoE4pp",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Rodian",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.climb",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.senses.darkvision",
-          "value": "60",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.skills.sur.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.skills.ste.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "rodese",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 0,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Rodian.webp",
-      "label": "Rodian",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:55.9166212+00:00",
@@ -108,43 +7,139 @@
       "uid": "Species.name-rodian"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Rodian.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearence</h2>\n<p>The rodians are green-skinned humanoids from the planet Rodia. They possess distinctive faces: large, round, multifaceted eyes; tapir-like snouts; and a pair of saucer-shaped antennae on their heads, which served to detect vibrations. The flexible snouts augmented the rodians' finely tuned olfactory senses, collecting and filtering the air. Their characteristically large eyes indicated a primarily nocturnal ancestry and were capable of seeing into the infrared part of the spectrum. Due to their love of fighting and active lifestyles, most rodians kept in good condition, normally lean and wiry; however, some wealthy rodians became complacent and obese.</p>\n<h2>Society and Culture</h2>\n<p>Rodian culture is obsessed with violence and death, due to behaviors and practices that are ingrained since their earliest ancestry. Their densely packed jungle homeworld is ill-suited for agriculture, requiring rodians to compete with vicious predators for most of their food, some of which can wipe out entire rodian villages. As the rodians developed cunning hunting tactics to survive, the hunt became central to their culture. Eventually, having driven most of the other predators on the planet to near extinction, they began to hunt each other in various wars and gladiatorial contests.</p>\n<h2>Names</h2>\n<p>Female names tend to be longer than male names. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Dagon, Dwedd, Gweym, Steech, Xeep</p>\n<p><strong>Female Names.</strong> Heebmu, Iissi, Teezle, Whunam</p>\n<p><strong>Surnames.</strong> Bluchosso, Encekserr, Gieeseaagg</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "identifier": "rodian",
-    "advancement": [
-      {
-        "_id": "lzqxCfI2YuAt6RxE",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.8gyn6mDQhALVbjT0",
-            "Compendium.sw5e.speciesfeatures.QpvWN8wLB3evoWwF",
-            "Compendium.sw5e.speciesfeatures.1Ug4TXdM6b2xcy56",
-            "Compendium.sw5e.speciesfeatures.W4JyI4EGvqVrZSpv",
-            "Compendium.sw5e.speciesfeatures.H72lnXs6cpHhKtxS",
-            "Compendium.sw5e.speciesfeatures.5I5tOV48Nw48M1JB",
-            "Compendium.sw5e.speciesfeatures.WCFNMKg6J8ZA9Npk",
-            "Compendium.sw5e.speciesfeatures.ZQnyvvfUrmhJ4k67",
-            "Compendium.sw5e.speciesfeatures.5JgX9qREf8SPtIzX",
-            "Compendium.sw5e.speciesfeatures.C1eiPCwTA6C7QvnD"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "climb": 30,
+      "burrow": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "sIk8oAi9iGgBwNCr",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.8gyn6mDQhALVbjT0",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QpvWN8wLB3evoWwF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1Ug4TXdM6b2xcy56",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.W4JyI4EGvqVrZSpv",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.H72lnXs6cpHhKtxS",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5I5tOV48Nw48M1JB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WCFNMKg6J8ZA9Npk",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZQnyvvfUrmhJ4k67",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5JgX9qREf8SPtIzX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.C1eiPCwTA6C7QvnD",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "XR17w45YozNPetX0",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "con": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "13EPewQdfZcJUy0D",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "15eEqkzLTUSt1ilA",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:sur",
+            "skills:ste"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Blue, green, purple, turquoise, or yellow"
     },
@@ -155,7 +150,7 @@
       "value": "Blue, black, green, purple, or red"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Large and round pupil-less eyes, snouts, pointed ears, antennae, scaled and usually green skin"
@@ -177,17 +172,148 @@
     },
     "slanguage": {
       "value": "Rodese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "zFqjAOHt16NLbAVN",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Rodian",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 5,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.climb",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.senses.darkvision",
+          "mode": 2,
+          "value": "60",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.sur.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.ste.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "rodese",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Rodian.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.adaUHwGfIrAKGSn5.ActiveEffect.FUiWLoJwaDtoE4pp"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.adaUHwGfIrAKGSn5",
+      "name": "Rodian",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!1h7PhcfDlcSmO8sN.zFqjAOHt16NLbAVN"
+    },
+    {
+      "_id": "gdc1EmOSoDmqyFii",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Rodian.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.adaUHwGfIrAKGSn5.ActiveEffect.FUiWLoJwaDtoE4pp"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.adaUHwGfIrAKGSn5",
+      "name": "Keen Hearing and Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!1h7PhcfDlcSmO8sN.gdc1EmOSoDmqyFii"
+    }
+  ],
+  "_id": "1h7PhcfDlcSmO8sN",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002110,
-    "modifiedTime": 1692402505742,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796337,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!1h7PhcfDlcSmO8sN"
 }

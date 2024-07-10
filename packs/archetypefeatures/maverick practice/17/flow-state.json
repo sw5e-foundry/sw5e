@@ -13,47 +13,50 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Maverick Practice:</strong> 17th level</em></p>\n<p>As an action, you can choose to intensely focus for one minute, gaining the following benefits:</p>\n<ul>\n<li>Once on each of your turns, when you use a maneuver, you can use a [[/r d4]] instead of expending a superiority die.</li>\n<li>You can't have disadvantage on ability checks or saving throws.</li>\n<li>Creatures can't have advantage on attack rolls against you.</li>\n</ul>\n<p>Once you've used this feature, you must complete a long rest before you can use it again.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Maverick Practice) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -83,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -92,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426104232,
-    "modifiedTime": 1685840600417,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368716163,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "tKni3feLtjveOzhr"
+  "_id": "tKni3feLtjveOzhr",
+  "_key": "!items!tKni3feLtjveOzhr"
 }

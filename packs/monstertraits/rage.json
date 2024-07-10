@@ -11,26 +11,29 @@
   "system": {
     "description": {
       "value": "<p>On it's turn, the {creature} can enter a rage as a bonus action in combat. The rage lasts for 1 minute and can be used once per day, gaining the following abilities: </p><ul><li><p>+2 damage on all melee attacks. </p></li><li><p>Resistance to kinetic damage.</p></li></ul>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -41,20 +44,21 @@
       "value": 1,
       "max": "1",
       "per": "day",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
-      "damage": null
+      "damage": ""
     },
     "damage": {
       "parts": [],
@@ -71,7 +75,7 @@
       "subtype": ""
     },
     "recharge": {
-      "value": 0,
+      "value": null,
       "charged": false
     },
     "attributes": {
@@ -80,23 +84,30 @@
         "turn": null
       }
     },
-    "powercasting": {
-      "force": "none",
-      "tech": "none"
-    }
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1669752886621,
-    "modifiedTime": 1685840641086,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368816113,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "folder": null,
   "sort": 0,
-  "_id": "ZA7T3x3B7fmLnLLP"
+  "_id": "ZA7T3x3B7fmLnLLP",
+  "_key": "!items!ZA7T3x3B7fmLnLLP"
 }

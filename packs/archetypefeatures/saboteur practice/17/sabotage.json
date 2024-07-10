@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Saboteur Practice:</strong> 17th level</em></p>\n<p>You gain the ability to sabotage a tech power in the process of being cast. When a hostile creature casts a tech power, and you are the target of the tech power or within its area of effect, you can use your reaction to force that creature to make an Intelligence saving throw against your tech save DC. On a successful save, the power is cast as normal.</p>\n<p>On a failed save, you negate the power's effects, and the caster takes [[/r 1d6]] lightning damage per level of the power it was casting. Additionally, on a failed save, the caster's tech focus used to cast the tech power is overloaded and can't be used to cast tech powers for 1 minute.</p>\n<p>At the end of each of the caster's turns, it can repeat the Intelligence saving throw. On a success, it can use the tech focus to cast tech powers again.</p>\n<p>Once you've used this feature, you can't use it again until you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Saboteur Practice) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
@@ -31,34 +32,39 @@
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -88,17 +94,27 @@
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493957985,
-    "modifiedTime": 1685840600170,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368706864,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!hfJ9bRUFa6D2oKle"
 }

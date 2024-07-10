@@ -16,69 +16,105 @@
   "system": {
     "description": {
       "value": "<h1>Path of Witchcraft (Companion)</h1>\n<p>The Force connects all living things. Those sentinels who follow the Path of Witchcraft use that connection to summon the aid of nature, both beasts and the elements, adapting them to their will.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "pathofwitchcraft",
     "classIdentifier": "sentinel",
     "advancement": [
       {
-        "_id": "11Ul7mAG1ij815QB",
+        "_id": "1Lm5ClCCQ5Tnt6CQ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.aDLLQeIC3iBUYJ3K",
-            "Compendium.sw5e.archetypefeatures.FBSc78GFrtTbTdbn",
-            "Compendium.sw5e.archetypefeatures.3ufM1DYTANQf3S2j"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.aDLLQeIC3iBUYJ3K",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.FBSc78GFrtTbTdbn",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.3ufM1DYTANQf3S2j",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "16Od2JUiyO2cz1dN",
+        "_id": "JEHyki3jUID5hyjH",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.kN7xiAsVg6oYgdti"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.kN7xiAsVg6oYgdti",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "jJamgTQjYhn1rDlk",
+        "_id": "oK2cXJZdDbAmGR94",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.bK0MBhgwuFeKSzmw"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.bK0MBhgwuFeKSzmw",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "183H08QCMSlu1QFi",
+        "_id": "1o2kguJEflw77lZs",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.poz6WlT5uQ9NIzYf"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.poz6WlT5uQ9NIzYf",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
         "title": "Features"
+      },
+      {
+        "_id": "1qYKbBXrWICScIKo",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:ani"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -88,7 +124,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -96,10 +132,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959787,
-    "modifiedTime": 1684819093624,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552690063,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!zeDuI0DbKtKgkpBk"
 }

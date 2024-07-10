@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p>As an action, you can choose a 5-foot-square unoccupied space on the ground that you can see within 30 feet. A Medium hand made from soil and stone, which lasts for 1 minute, rises in that space and reaches for one Large or smaller creature you can see within 5 feet of it. The target must make a Strength saving throw. On a failed save, the target takes [[/r 2d6]] kinetic damage and is restrained for the duration. As a bonus action on each of your turns, you can cause the hand to crush the restrained target, which must make a Strength saving throw. It takes [[/r 2d6]] kinetic damage on a failed save, or half as much damage on a successful one. To break out, the restrained creature can use its action to make a Strength check against your focus save DC. On a success, the target escapes and is no longer restrained by the hand. As an action, you can cause the hand to reach for a different creature or to move to a different unoccupied space within range. The hand releases a restrained target if you do either.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -27,11 +28,13 @@
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": 5,
+      "value": "5",
       "width": null,
       "units": "ft",
-      "type": "square"
+      "type": "square",
+      "prompt": true
     },
     "range": {
       "value": 30,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -89,7 +93,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -99,11 +113,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.1",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1680288495957,
-    "modifiedTime": 1680288495957,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368681893,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "3N9uMQ9L6hKdHE7W"
+  "_id": "3N9uMQ9L6hKdHE7W",
+  "_key": "!items!3N9uMQ9L6hKdHE7W"
 }

@@ -16,48 +16,50 @@
   "system": {
     "description": {
       "value": "<p>You have learned to easily overcome an adversary's will. You gain the following benefits:</p>\n<ul>\n<li>Increase your Wisdom or Charisma score by 1, to a maximum of 20.</li>\n<li>When you make an attack roll using your Wisdom, you can choose to add half your Charisma modifier to the attack roll. Alternatively, when you would make an attack roll using Charisma, you can add half your Wisdom modifier to the attack roll. You can use this feature a number of times equal to your proficiency bonus. You regain all expended uses of this feature when you complete a long rest.</li>\n<li>When an effect you control would call for a Wisdom saving throw, you can instead have it call for a Charisma saving throw. Alternatively, when an effect you control would call for a Charisma saving throw, you can instead have it call for a Wisdom saving throw. You can use this feature a number of times equal to your proficiency bonus. You regain all expended uses of this feature when you complete a long rest.</li></ul>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "4th level",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
       "max": "@attributes.prof",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -86,17 +88,28 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493966770,
-    "modifiedTime": 1693532143516,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720418056409,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!BTHt33lSZdy7cQeI"
 }

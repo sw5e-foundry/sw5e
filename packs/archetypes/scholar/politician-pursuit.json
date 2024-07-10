@@ -16,96 +16,150 @@
   "system": {
     "description": {
       "value": "<h1>Politician Pursuit</h1>\n<p>Politicians study social &amp; political sciences. Those scholars who choose the Politician Pursuit know how to best present themselves to manipulate the masses into doing their bidding or allow them and their allies to carry out their business without impediment. They also understand the importance of self-preservation for a political figure.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Politician Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.f1p3O34X2pkjKwFd]{Charming feint}</li>\n<li>@Compendium[sw5e.invocations.n9eYor7CXGZ4tbSC]{Demanding leader}</li>\n<li>@Compendium[sw5e.invocations.5PXc1O6NLR929ps7]{Dominating presence}</li>\n<li>@Compendium[sw5e.invocations.7MfrTKBQ7o2u57ts]{Influencer}</li>\n<li>@Compendium[sw5e.invocations.XQZmNnLMNeQQaoNk]{Reliable words}</li>\n<li>@Compendium[sw5e.invocations.j1YvC5B1jrDABqH4]{Social opportunist}</li>\n<li>@Compendium[sw5e.invocations.WnYxxnxh9N6lujyV]{Tyrant's ferocity}</li>\n</ul>"
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "politicianpursuit",
     "classIdentifier": "scholar",
     "advancement": [
       {
-        "_id": "1E0bUotAPL2F1BXa",
+        "_id": "17zgp1SzfY9KAm4O",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.BVQD3b9dRRc1NOZ8",
-            "Compendium.sw5e.archetypefeatures.Vr8h2Pce9Uwlzd90"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.BVQD3b9dRRc1NOZ8",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Vr8h2Pce9Uwlzd90",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "tPi8wzKA1WAReQXb",
+        "_id": "1QASZbbfGprf1TGc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.9iLGiSiIDGl0kbc7"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.9iLGiSiIDGl0kbc7",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1o39XfbLL3PS1rYX",
+        "_id": "1knviuxIKBEc1l0Q",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.asO7zdX5mtGyDEjS"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.asO7zdX5mtGyDEjS",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "1xNFWEWQqPQAXBwp",
+        "_id": "1vAbZi7T1XqmjvKZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.J33LpvlIbUMtwpnC"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.J33LpvlIbUMtwpnC",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "fRYVFsz88TW1sfnz",
+        "_id": "S3GMcBb3wmTubBny",
         "type": "ItemChoice",
         "configuration": {
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
-            "2": 2,
-            "3": 2,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "2": {
+              "count": 2,
+              "replacement": false
+            },
+            "3": {
+              "count": 2,
+              "replacement": false
+            },
+            "5": {
+              "count": 1,
+              "replacement": false
+            },
+            "9": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            },
+            "13": {
+              "count": 1,
+              "replacement": false
+            },
+            "17": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.f1p3O34X2pkjKwFd",
-            "Compendium.sw5e.invocations.n9eYor7CXGZ4tbSC",
-            "Compendium.sw5e.invocations.5PXc1O6NLR929ps7",
-            "Compendium.sw5e.invocations.7MfrTKBQ7o2u57ts",
-            "Compendium.sw5e.invocations.XQZmNnLMNeQQaoNk",
-            "Compendium.sw5e.invocations.j1YvC5B1jrDABqH4",
-            "Compendium.sw5e.invocations.WnYxxnxh9N6lujyV"
+            {
+              "uuid": "Compendium.sw5e.invocations.f1p3O34X2pkjKwFd"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.n9eYor7CXGZ4tbSC"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.5PXc1O6NLR929ps7"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.7MfrTKBQ7o2u57ts"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.XQZmNnLMNeQQaoNk"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.j1YvC5B1jrDABqH4"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.WnYxxnxh9N6lujyV"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -118,7 +172,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Politician Discoveries"
       }
     ],
@@ -129,7 +186,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -137,10 +194,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959756,
-    "modifiedTime": 1692480569230,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689618,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!YGbepMG3xRyzYASA"
 }

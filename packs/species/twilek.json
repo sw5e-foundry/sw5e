@@ -1,8 +1,199 @@
 {
-  "_id": "VHYOuBBA44rpY5MZ",
   "name": "Twi'lek",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9176205+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-twilek"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/TwiLek.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearence</h2>\n<p>Twi'leks are usually thin, although corpulent individuals were known to exist. Twi'leks are omnivores; this diet is essential given that food is scarce on their homeworld, Ryloth. Twi'leks possess multiple stomachs, an unusual trait that enables them to eat almost any food. When traveling off their homeworld, twi'leks rarely refuse food, which frequently leads to obesity among starfarers. Twi'lek society also considers obesity as a sign of influence and success.</p>\n<h2>Society and Culture</h2>\n<p>The natural grace and exotic beauty of the female twi'leks make them a popular target among slave traders. Slavery is the main currency of Ryloth. Some see it as a chance to make money by kidnapping or selling orphaned children, while others see slavery as a way of saving children from growing up in Ryloth's harsh environment. A number of twi'leks believe that slavery is an efficient way to proliferate their species and preserve their culture, as the twi'leks lack their own means of inter-planetary travel. Regardless of how it came about, many twi'leks live as slaves or entertainers and are considered status symbols, especially the females of rarer skin hues. Twi'leks that manage to escape from captivity usually turned to a life of thievery or prostitution, with both genders making use of their powers of seduction.</p>\n<h2>Names</h2>\n<p>Twi'lek names combine their first name and a clan name into a single name, rather than having a separate surname.</p>\n<p><strong>Male Names.</strong> Ecrizsati, Gaj'mogos, Ukelweko</p>\n<p><strong>Female Names.</strong> Arag'mure, Oanicfuba, Unaecripi</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "twilek",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "qv9ayp5IuW71BXVu",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.0TBxysJocgzEFcnZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.pNmVIvLTtM69owqX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.V3Khpa3e3MHbMXjY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VlJX0Okh4YtRYzEg",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.eaY294tRkfaUj8pK",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TLrYlWrnwosKyJ3c",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VO5EQGUmRlwtOUiu",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.shCpYDRXWoMgTpfr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BJtuJoImPqu0zqL2",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.AdIM23KabPyqavcj",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1wfQAFW65q4ttCIA",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "12kxgjfhUm8Xgp7q",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "dex": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1a6PrQovWsUn1Un0",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1lEP0e9kPGHY4htS",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:dec",
+                "skills:per"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:prf"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Blue, brown, dark grey, green, orange, pink, purple, red, tan, teal, white, yellow, or striped"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black, blue, brown, green, hazel, orange, pink, purple, or yellow"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Lekku, sharp claw-like nails, males often file their teeth to points"
+    },
+    "heightAverage": {
+      "value": "5'3\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "125 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Ryloth"
+    },
+    "slanguage": {
+      "value": "Twi'leki"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "v6ifgRQtYJRSYhEh",
@@ -12,18 +203,6 @@
           "value": "Twi'lek",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -85,104 +264,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Twi_lek.webp",
-      "label": "Twi'lek",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Twi'lek",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!ZHXGNyirUnPt56Xm.v6ifgRQtYJRSYhEh"
     }
   ],
+  "_id": "ZHXGNyirUnPt56Xm",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9176205+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-twilek"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearence</h2>\n<p>Twi'leks are usually thin, although corpulent individuals were known to exist. Twi'leks are omnivores; this diet is essential given that food is scarce on their homeworld, Ryloth. Twi'leks possess multiple stomachs, an unusual trait that enables them to eat almost any food. When traveling off their homeworld, twi'leks rarely refuse food, which frequently leads to obesity among starfarers. Twi'lek society also considers obesity as a sign of influence and success.</p>\n<h2>Society and Culture</h2>\n<p>The natural grace and exotic beauty of the female twi'leks make them a popular target among slave traders. Slavery is the main currency of Ryloth. Some see it as a chance to make money by kidnapping or selling orphaned children, while others see slavery as a way of saving children from growing up in Ryloth's harsh environment. A number of twi'leks believe that slavery is an efficient way to proliferate their species and preserve their culture, as the twi'leks lack their own means of inter-planetary travel. Regardless of how it came about, many twi'leks live as slaves or entertainers and are considered status symbols, especially the females of rarer skin hues. Twi'leks that manage to escape from captivity usually turned to a life of thievery or prostitution, with both genders making use of their powers of seduction.</p>\n<h2>Names</h2>\n<p>Twi'lek names combine their first name and a clan name into a single name, rather than having a separate surname.</p>\n<p><strong>Male Names.</strong> Ecrizsati, Gaj'mogos, Ukelweko</p>\n<p><strong>Female Names.</strong> Arag'mure, Oanicfuba, Unaecripi</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "twilek",
-    "advancement": [
-      {
-        "_id": "1ROkfzxrlM2b1Aiz",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.0TBxysJocgzEFcnZ",
-            "Compendium.sw5e.speciesfeatures.pNmVIvLTtM69owqX",
-            "Compendium.sw5e.speciesfeatures.V3Khpa3e3MHbMXjY",
-            "Compendium.sw5e.speciesfeatures.VlJX0Okh4YtRYzEg",
-            "Compendium.sw5e.speciesfeatures.eaY294tRkfaUj8pK",
-            "Compendium.sw5e.speciesfeatures.TLrYlWrnwosKyJ3c",
-            "Compendium.sw5e.speciesfeatures.VO5EQGUmRlwtOUiu",
-            "Compendium.sw5e.speciesfeatures.shCpYDRXWoMgTpfr",
-            "Compendium.sw5e.speciesfeatures.BJtuJoImPqu0zqL2",
-            "Compendium.sw5e.speciesfeatures.AdIM23KabPyqavcj",
-            "Compendium.sw5e.speciesfeatures.1wfQAFW65q4ttCIA"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Blue, brown, dark grey, green, orange, pink, purple, red, tan, teal, white, yellow, or striped"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black, blue, brown, green, hazel, orange, pink, purple, or yellow"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Lekku, sharp claw-like nails, males often file their teeth to points"
-    },
-    "heightAverage": {
-      "value": "5'3\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "125 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Ryloth"
-    },
-    "slanguage": {
-      "value": "Twi'leki"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002100,
-    "modifiedTime": 1692402505741,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797233,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!ZHXGNyirUnPt56Xm"
 }

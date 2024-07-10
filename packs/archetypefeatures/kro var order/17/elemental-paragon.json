@@ -16,49 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Kro Var Order:</strong> 17th level</em></p>\n<p>You gain one of the following features. </p>\n<p>Once you've used the chosen feature, you must complete a long rest before you can use it again.</p>\n<p>While you have no remaining uses of this feature, you can instead expend 4 focus points to use it. When you do so, your maximum focus points are reduced by 4 until you complete a long rest.</p>\n<h3>Archetype of Air</h3>\n<p><em><strong>Prerequisite:</strong> Ride the Wind</em></p>\n<p>As an action, you conjure a whirlwind around you, granting the following benefits until the start of your next turn:</p>\n<ul>\n<li>Ranged attacks made against you have disadvantage.</li>\n<li>You gain a flying speed of 60 feet. If you are still flying when the technique ends, you fall, unless you can somehow prevent it.</li>\n<li>You can use your action to create a 15-foot cube of swirling wind centered on a point you can see within 60 feet of you. Each creature in that area must make a Constitution saving throw. A creature takes [[/r 2d10]] kinetic damage on a failed save, or half as much damage on a successful one. If a Large or smaller creature fails the save, that creature is also pushed up to 10 feet away from the center of the cube.</li>\n</ul>\n<p>At the start of each of your turns, you can use your bonus action to extend the benefits of this feature until the start of your next turn, to a maximum duration of 1 minute. This effect ends immediately if you are incapacitated or die.</p>\n<h3>Figure of Flame</h3>\n<p><em><strong>Prerequisite:</strong> River of Hungry Flame</em></p>\n<p>As an action, you cause flames to race across your body, granting the following benefits until the start of your next turn:</p>\n<ul>\n<li>You have resistance to fire damage.</li>\n<li>The flames shed bright light in a 30-foot radius and dim light for an additional 30 feet.</li>\n<li>Any creature that moves within 5 feet of you for the first time on a turn or ends its turn there takes [[/r 1d10]] fire damage.</li>\n<li>You can use your action to create a line of fire 15 feet long and 5 feet wide extending from you in a direction you choose. Each creature in the line must make a Dexterity saving throw, taking [[/r 4d8]] fire damage on a failed save, or half as much on a successful one.</li>\n</ul>\n<p>At the start of each of your turns, you can use your bonus action to extend the benefits of this feature until the start of your next turn, to a maximum duration of 1 minute. This effect ends immediately if you are incapacitated or die.</p>\n<h3>Icon of Ice</h3>\n<p><em><strong>Prerequisite:</strong> Shape the Flowing River</em></p>\n<p>As an action, you cause frost to chill the area around you, granting the following benefits until the start of your next turn:</p>\n<ul>\n<li>You have resistance to cold damage.</li>\n<li>You can move across difficult terrain created by ice or snow without spending extra movement.</li>\n<li>The ground in a 10-foot radius around you is icy and is difficult terrain for creatures other than you. The radius moves with you.</li>\n<li>You can use your action to create a 15-foot cone of freezing ice extending from your outstretched hand in a direction you choose. Each creature in the cone must make a Constitution saving throw. A creature takes [[/r 4d6]] cold damage on a failed save, or half as much damage on a successful one. A creature that fails its save against this effect gains 1 slowed level until the start of your next turn.</li>\n</ul>\n<p>At the start of each of your turns, you can use your bonus action to extend the benefits of this feature until the start of your next turn, to a maximum duration of 1 minute. This effect ends immediately if you are incapacitated or die.</p>\n<h3>Embodiment of Earth</h3>\n<p><em><strong>Prerequisite:</strong> Earth Reaches for Sky</em></p>\n<p>As an action, you cause rock to envelop you, granting the following benefits until the start of your next turn:</p>\n<ul>\n<li>You have resistance to kinetic and energy damage.</li>\n<li>You can move across difficult terrain made of earth or stone without spending extra movement. You can move through solid earth or stone as if it was air without destabilizing it, but you can't end your movement there. If you do so, you are immediately shunted to the nearest unoccupied space that you can occupy and take force damage equal to twice the number of feet you are moved.</li>\n<li>You can use your action to create a small earthquake on the ground in a 15-foot radius centered on you. Other creatures on that ground must succeed on a Dexterity saving throw or be knocked prone.</li>\n</ul>\n<p>At the start of each of your turns, you can use your bonus action to extend the benefits of this feature until the start of your next turn, to a maximum duration of 1 minute. This effect ends immediately if you are incapacitated or die.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": "30",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -90,24 +96,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Monk"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493957587,
-    "modifiedTime": 1685840599732,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368691337,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!JyawDJX84wFfKtiC"
 }

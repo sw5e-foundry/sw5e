@@ -13,47 +13,50 @@
   "system": {
     "description": {
       "value": "<p>When a creature makes a melee attack roll against you, you can expend a use of your Channel the Force and your reaction to jump 10 feet in a direction of your choice, imposing disadvantage on the roll. This movement does not provoke opportunity attacks. You can wait until after the attack roll is made, but before the DM determines whether the attack hits.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Ataru Form) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -83,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Guardian"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -92,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426104166,
-    "modifiedTime": 1685840599682,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368689008,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "GGsMEfBNf7IpuRbv"
+  "_id": "GGsMEfBNf7IpuRbv",
+  "_key": "!items!GGsMEfBNf7IpuRbv"
 }

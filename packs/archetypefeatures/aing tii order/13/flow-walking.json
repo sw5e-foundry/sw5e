@@ -2,7 +2,7 @@
   "name": "Flow-Walking",
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:14.68174+00:00",
+      "timestamp": "2023-05-30T20:15:26.6191308+00:00",
       "importer_version": 3,
       "uid": "Feature.name-flow_walking.source-archetype.sourceName-aing_tii_order.level-13"
     }
@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Aing-Tii Order:</strong> 6th, 9th, 13th, and 17th level</em></p>\n<p>You can cast the <em>phasestrike</em> force power without expending force points. When you reach 11th level, the damage bonus of the special attack made during <em>phasestrike</em> increases to [[/r 2d8]], and at 17th level it increases to [[/r 3d8]].</p>\n<p>Additionally, when you use your action to cast an at-will force power, you can use your Martial Arts or Focus features.</p>\n<p>You can use these features a combined three times. You gain an additional use at 9th, 13th, and 17th level. You regain any expended uses when you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Aing-Tii Order) 13",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -27,11 +28,13 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "3",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.1",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1680288495933,
-    "modifiedTime": 1680288495933,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368714182,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "qbuYcYWoNN6yoZhN"
+  "_id": "qbuYcYWoNN6yoZhN",
+  "_key": "!items!qbuYcYWoNN6yoZhN"
 }

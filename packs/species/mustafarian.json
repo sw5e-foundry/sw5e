@@ -1,8 +1,193 @@
 {
-  "_id": "BHqYrG7NqrUf6NgA",
   "name": "Mustafarian",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2861295+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-mustafarian"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Mustafarian.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Mustafarians are an insectoid species of sentients native to the volcanic planet of Mustafar. They are divided into two subspecies: the lanky northern mustafarians, and the stocky southern mustafarians. The southern mustafarians were notable for their greater strength, making them more suited to manual labor. Both subspecies shared many traits, particularly their hardened exoskeletons and leathery skin, which acclimated them to the extreme heat of their volcanic environment.</p>\n<h2>Society and Culture</h2>\n<p>Mustafarians evolved from arthropods living in the slightly cooler hollows within dormant volcanoes on the surface of Mustafar. As a result of such close living, mustafarian culture is isolationist by nature, though they tolerate trade with other systems. Mustafar hosts scarce minerals and rare metals, making mustafarians an invaluable trade partner.</p>\n<p>Native mustafarians rarely take sides when galactic conflicts rage, instead preferring to keep to themselves and control their own planet. They are daunting enemies when provoked, however.</p>\n<h2>Names</h2>\n<p>Mustafarian names are often inspired by displays of competency or bravery, such as recovering large quantities of rare minerals, or successfully taming a lava flea. Their surnames are familial.</p>\n<p><strong>Male Names.</strong> Aumstrogh, Chivos, Ikt, Ulon</p>\n<p><strong>Female Names.</strong> Altoa, Hailith, Saonji, Yura</p>\n<p><strong>Surnames.</strong> Fal'co, Glost, Mensix, Nek'dem</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "mustafarian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "12HMjnMGtYGqPAOy",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.949gGjZQL0PwPNu5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KAjKKYyaeEKHoEb4",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.M6138l42BphwShD4",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.8iuZLUDmcLS6F8PB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VIkXUFLRCfAvzI6x",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9jLAIayWCtfhe393",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.EJ7hMbBlqv1O4eWS",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ucC4TiLkbmf6kIVD",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.YLLvLhVrTAAiK88s",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ecDAasFfbLQEmpRC",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "DlSZUuYR5oR1IhaI",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1aOr7RCEtgPEiigE",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "79MQ2KimLAKKDl2Q",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:constructorsimplements",
+                "tool:scavengingkit",
+                "tool:surveyorsimplements"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Gray"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Extremophiles"
+    },
+    "heightAverage": {
+      "value": "4'8\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "100 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Mustafar"
+    },
+    "slanguage": {
+      "value": "Mustafarian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "4l39OCAp9Bu8kztj",
@@ -12,12 +197,6 @@
           "value": "Mustafarian",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -73,103 +252,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Mustafarian.webp",
-      "label": "Mustafarian",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Mustafarian",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!hpfn4bP56dNqyQ2m.4l39OCAp9Bu8kztj"
     }
   ],
+  "_id": "hpfn4bP56dNqyQ2m",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2861295+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-mustafarian"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Mustafarians are an insectoid species of sentients native to the volcanic planet of Mustafar. They are divided into two subspecies: the lanky northern mustafarians, and the stocky southern mustafarians. The southern mustafarians were notable for their greater strength, making them more suited to manual labor. Both subspecies shared many traits, particularly their hardened exoskeletons and leathery skin, which acclimated them to the extreme heat of their volcanic environment.</p>\n<h2>Society and Culture</h2>\n<p>Mustafarians evolved from arthropods living in the slightly cooler hollows within dormant volcanoes on the surface of Mustafar. As a result of such close living, mustafarian culture is isolationist by nature, though they tolerate trade with other systems. Mustafar hosts scarce minerals and rare metals, making mustafarians an invaluable trade partner.</p>\n<p>Native mustafarians rarely take sides when galactic conflicts rage, instead preferring to keep to themselves and control their own planet. They are daunting enemies when provoked, however.</p>\n<h2>Names</h2>\n<p>Mustafarian names are often inspired by displays of competency or bravery, such as recovering large quantities of rare minerals, or successfully taming a lava flea. Their surnames are familial.</p>\n<p><strong>Male Names.</strong> Aumstrogh, Chivos, Ikt, Ulon</p>\n<p><strong>Female Names.</strong> Altoa, Hailith, Saonji, Yura</p>\n<p><strong>Surnames.</strong> Fal'co, Glost, Mensix, Nek'dem</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "mustafarian",
-    "advancement": [
-      {
-        "_id": "vYSh5k3td4o1fImr",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.949gGjZQL0PwPNu5",
-            "Compendium.sw5e.speciesfeatures.KAjKKYyaeEKHoEb4",
-            "Compendium.sw5e.speciesfeatures.M6138l42BphwShD4",
-            "Compendium.sw5e.speciesfeatures.8iuZLUDmcLS6F8PB",
-            "Compendium.sw5e.speciesfeatures.VIkXUFLRCfAvzI6x",
-            "Compendium.sw5e.speciesfeatures.9jLAIayWCtfhe393",
-            "Compendium.sw5e.speciesfeatures.EJ7hMbBlqv1O4eWS",
-            "Compendium.sw5e.speciesfeatures.ucC4TiLkbmf6kIVD",
-            "Compendium.sw5e.speciesfeatures.YLLvLhVrTAAiK88s",
-            "Compendium.sw5e.speciesfeatures.ecDAasFfbLQEmpRC"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Gray"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Extremophiles"
-    },
-    "heightAverage": {
-      "value": "4'8\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "100 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Mustafar"
-    },
-    "slanguage": {
-      "value": "Mustafarian"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002071,
-    "modifiedTime": 1692402505738,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797429,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!hpfn4bP56dNqyQ2m"
 }

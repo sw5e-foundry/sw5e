@@ -16,67 +16,106 @@
   "system": {
     "description": {
       "value": "<h1>Crimson Order</h1>\n<p>Monks of the Crimson Order are unyielding in their resolve. They pledge themselves to a singular entity or belief, and uphold their service with solemnity and diligence. </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "crimsonorder",
     "classIdentifier": "monk",
     "advancement": [
       {
-        "_id": "177GB8kP5hXiGe4X",
+        "_id": "2Ecxo5ACRP41TPof",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Q2KRbxgRLO9Oj1th"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Q2KRbxgRLO9Oj1th",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "lfUv5sXt6BpJi5PX",
+        "_id": "M33KAaE5HIB15VZW",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.s21sT86XCjtCOEib"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.s21sT86XCjtCOEib",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "84oPEGqBXEd3tddV",
+        "_id": "VodaqXBJh1L1kf2C",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.5zhN32IvJKXIDupz"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.5zhN32IvJKXIDupz",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "1yCN2qtC4nwnTfCO",
+        "_id": "15aKddrseRoj3Pt9",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.dLfWtRWtN2DVPXtT"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.dLfWtRWtN2DVPXtT",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
+      },
+      {
+        "_id": "oRHs1rugjCMyM8sX",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "weapon:*"
+              ]
+            }
+          ],
+          "grants": [
+            "armor:lgt",
+            "armor:med",
+            "armor:hvy"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -86,7 +125,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -94,10 +133,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959784,
-    "modifiedTime": 1684819093624,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552690013,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!wvPuhcodhAtABFOh"
 }

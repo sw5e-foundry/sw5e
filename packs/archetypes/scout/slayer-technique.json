@@ -16,69 +16,105 @@
   "system": {
     "description": {
       "value": "<h1>Slayer Technique</h1>\n<p>Some scouts seek to learn the most about their foes and to capitalize on that knowledge. Followers of the Slayer Technique focus on identifying the strengths and weaknesses of their prey, taking advantage of that knowledge to vanquish their foes.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "slayertechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "zMHaJpmGHoz1A5TV",
+        "_id": "A1E6zzoyxUz1iS2x",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.tkaAavTOVOjaB8dl",
-            "Compendium.sw5e.archetypefeatures.hX7H3BNaMpMRd9u8",
-            "Compendium.sw5e.archetypefeatures.Bpe67XmrSlb9cEeX"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.tkaAavTOVOjaB8dl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hX7H3BNaMpMRd9u8",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Bpe67XmrSlb9cEeX",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "187zU7yjuM64kF7E",
+        "_id": "1tb55h3AxGt2VNXD",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.cjhhmi5WU4mK9DLz"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.cjhhmi5WU4mK9DLz",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1yTJ4nsZb29113pn",
+        "_id": "vwdzYs0SXzcLbiTW",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Lvls76izYod2m2MF"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Lvls76izYod2m2MF",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "1pHZww9ZB0Hh1Bi6",
+        "_id": "fev12aJeJrL129df",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.21o2m4T6nKInTyiI"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.21o2m4T6nKInTyiI",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
+      },
+      {
+        "_id": "1tywhZs0RMQ0kwn4",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "armor:hvy"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -88,7 +124,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -96,10 +132,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959729,
-    "modifiedTime": 1684819093622,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689247,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!Fv2rHXRwvn46CNEk"
 }

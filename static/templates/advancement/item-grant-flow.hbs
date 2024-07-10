@@ -1,19 +1,28 @@
-<form id="{{appId}}" data-level="{{level}}" data-id="{{advancement.id}}" data-type="{{type}}">
-  <h3>{{{title}}}</h3>
+<form id="{{ appId }}" data-level="{{ level }}" data-id="{{ advancement.id }}" data-type="{{ type }}">
+    <h3>{{{ title }}}</h3>
 
-  {{#each items}}
-    <div class="item-name flexrow">
-      <div class="item-image" style="background-image: url('{{this.img}}');"></div>
-      <label class="flexrow">
-        <h4>
-          <a data-uuid="{{uuid}}">{{this.name}}</a>
-        </h4>
-        {{#if @root.optional}}
-          <input type="checkbox" name="{{this.uuid}}" {{checked this.checked}} />
-        {{else}}
-          <input type="hidden" name="{{this.uuid}}" value="true" data-dtype="Boolean" />
-        {{/if}}
-      </label>
+    {{#if abilities.options}}
+    <div class="form-group">
+        <label>{{ localize "SW5E.PowerAbility" }}</label>
+        <select name="ability">
+            {{ selectOptions abilities.options selected=abilities.selected }}
+        </select>
     </div>
-  {{/each}}
+    {{/if}}
+
+    {{#each items}}
+    <div class="item-name flexrow">
+        <div class="item-image" style="background-image: url('{{ img }}');"></div>
+        <label class="flexrow">
+            <h4>
+                <a data-uuid="{{ uuid }}">{{ name }}</a>
+            </h4>
+            {{#if optional}}
+            <input type="checkbox" name="{{ uuid }}" {{ checked checked }}>
+            {{else}}
+            <input type="hidden" name="{{ uuid }}" value="true" data-dtype="Boolean">
+            {{/if}}
+        </label>
+    </div>
+    {{/each}}
 </form>

@@ -16,65 +16,85 @@
   "system": {
     "description": {
       "value": "<h1>Niman Form</h1>\n<p>Niman Form, also known as Moderation Form, strikes a balance between bladework and force powers. Those guardians who focus on Niman Form weave Force manipulation with their melee weapon strikes, pushing their opponents off-balance to create an opening.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "nimanform",
     "classIdentifier": "guardian",
     "advancement": [
       {
-        "_id": "OkMKo2MkSEr1hdXP",
+        "_id": "LgXOJQgmWci1zc2A",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.wX8LcdtqOwndhu4w",
-            "Compendium.sw5e.archetypefeatures.WokpabZnME3MeDUP",
-            "Compendium.sw5e.archetypefeatures.UC8AU9lz1Z46UHfF"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.wX8LcdtqOwndhu4w",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.WokpabZnME3MeDUP",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UC8AU9lz1Z46UHfF",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "x4PqmfZ1kvn3DmDQ",
+        "_id": "dVFFTUM0SebaDoR8",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.fOWavPfPILnRtux6"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.fOWavPfPILnRtux6",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "buM41t2ViET13TzV",
+        "_id": "1sEgdcFC7wzLD2Mj",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.IPa9PbvfGTXcLNRW"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.IPa9PbvfGTXcLNRW",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "erjSxwgXQeG1i4Hd",
+        "_id": "P4mrktu7JAjciF7v",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.1a5Un991dfb6whRr"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.1a5Un991dfb6whRr",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
@@ -88,7 +108,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -96,10 +116,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959758,
-    "modifiedTime": 1684819093623,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689651,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!Zw2G0DDXo3uaDN4r"
 }

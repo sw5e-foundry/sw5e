@@ -48,11 +48,13 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Starship%20Features/Gargantuan.webp",
-      "label": "Gargantuan Starship",
       "origin": "Item.KjK5001DYmUlFfPF",
       "tint": null,
       "transfer": true,
-      "sort": 0
+      "name": "Gargantuan Starship",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!FH8iBT4uujRUR0j7.3erWl25IS1iaKUiv"
     },
     {
       "_id": "ZoCiAlU3OufJGocC",
@@ -81,7 +83,6 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Starship%20Features/Gargantuan.webp",
-      "label": "Space Travel",
       "origin": "Compendium.sw5e.starships.FH8iBT4uujRUR0j7",
       "transfer": true,
       "flags": {
@@ -90,7 +91,10 @@
         }
       },
       "tint": null,
-      "sort": 0
+      "name": "Space Travel",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!FH8iBT4uujRUR0j7.ZoCiAlU3OufJGocC"
     }
   ],
   "folder": null,
@@ -99,13 +103,10 @@
   "system": {
     "description": {
       "value": "<p>The smaller ships retreat into the shadow of the blockade ship, fleeing an overwhelming foe. As the dreadnought's shields envelope them, they quickly turn and spring on their pursuers, utilizing the bulwark's shields as they unleash all of the firepower they have to bear.</p>\n<p>Meanwhile, the blockade ship unleashes a storm of electromagnetic energy from its antenna array, cutting of communications between enemy ships, effectively isolating the incoming forces from their distant fleet and from each other.</p>\n<p>In the center of the fleet, the command ship surveys the battlefield. Wherever the line wavers, the command ship quickly directs ships to reinforce. Finally, the formations of the enemy flag, and the command ship directs the fleet to capitalize on their failure as it determines and uploads targeting coordinates to its torpedo ships.</p>\n<p>The warship looms ominously over the battlefield as the two opposing armies crash. Despite the efforts of the enemy line, the warship closes into firing range of the capital ships. Having already determined an ordered targeting precedence, the operating crew confirms final firing solutions for the gunners as they charge up the main super-weapon on the prow of the ship. It unleashes its first devastating blast as the rest of its arsenal begins to lance out at secondary targets nearby.</p>\n<p>Gargantuan ships are the dreadnoughts that strike fear into the hearts of the faithless. They are the embodiment of indomitable might: a symbol of total and complete control.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "source": "[object Object]",
     "identifier": "gargantuan",
-    "size": "grg",
     "tier": 0,
     "hullDice": "d20",
     "hullDiceStart": 11,
@@ -146,44 +147,19 @@
     "fuelCost": 100000,
     "fuelCap": 1800,
     "foodCap": 576000000,
-    "hullDiceRolled": [
-      20,
-      11,
-      11,
-      11,
-      11,
-      11,
-      11,
-      11,
-      11,
-      11,
-      11
-    ],
-    "shldDiceRolled": [
-      20,
-      11,
-      11,
-      11,
-      11,
-      11,
-      11,
-      11,
-      11,
-      11,
-      11
-    ],
-    "pwrDice": "d1",
-    "modMaxSuiteCap": 40000
+    "size": "grg",
+    "startingEquipment": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494019389,
-    "modifiedTime": 1677517386152,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552917346,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!FH8iBT4uujRUR0j7"
 }

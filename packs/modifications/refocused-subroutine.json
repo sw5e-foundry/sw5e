@@ -1,0 +1,121 @@
+{
+  "name": "Refocused Subroutine",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-05-06T20:49:24.2593364+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-refocused_subroutine.subtype-wristpad"
+    }
+  },
+  "type": "modification",
+  "img": "systems/sw5e/packs/Icons/Modifications/WristpadMod.webp",
+  "system": {
+    "description": {
+      "value": "<h4>Item Modification (Wristpad)</h4>\n <p>When you are forced to make a Constitution saving throw to maintain concentration on a power you can use your reaction and spend 2 tech points to automatically succeed on the saving throw.</p>\n<p>You can only spend a number of tech points in this way equal to your proficiency bonus. You regain the ability to do so when you complete a long rest. </p>\n<p>You can use Refocused Subroutine even if you have already used a different Subroutine modification during the casting of the power.</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "quantity": 1,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "rarity": "prototype",
+    "identified": true,
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": "",
+      "width": null,
+      "units": "",
+      "type": "",
+      "prompt": true
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "@attributes.prof",
+      "per": "lr",
+      "recovery": "",
+      "prompt": true
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "actionType": "save",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "none"
+    },
+    "modifying": {
+      "id": null,
+      "disabled": false
+    },
+    "properties": [],
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "wristpad",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
+  },
+  "effects": [],
+  "_id": "rxCv9H02wC0xt3R9",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1698185222448,
+    "modifiedTime": 1720368863756,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!rxCv9H02wC0xt3R9"
+}

@@ -16,69 +16,110 @@
   "system": {
     "description": {
       "value": "<h1>Unstable Engineering</h1>\n<p>Those engineers who choose the Unstable Engineering discipline create and use untested combinations, resulting in powerful—and often unpredictable—effects.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "unstableengineering",
     "classIdentifier": "engineer",
     "advancement": [
       {
-        "_id": "1UmNgR8St5lmvvk3",
+        "_id": "Ys3QERt4CoP8Uh27",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.wWfhWT9EWJocFdvN",
-            "Compendium.sw5e.archetypefeatures.4kaPEfyaPPsj31rt",
-            "Compendium.sw5e.archetypefeatures.qFemjEKtrtLWwh75"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.wWfhWT9EWJocFdvN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.4kaPEfyaPPsj31rt",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.qFemjEKtrtLWwh75",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "iCHvFTwlKo1q5L26",
+        "_id": "1z8fOZwFoAgXYvCr",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.RuIki7FioitRdmYm"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.RuIki7FioitRdmYm",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "Ajmv4bbCwCy1QhYg",
+        "_id": "jbphA4pDn3KnWb1c",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.W6EpVeNBcn80fWdK"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.W6EpVeNBcn80fWdK",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
       },
       {
-        "_id": "1A4udAdANms71PR9",
+        "_id": "13xFyS5YU6iolx8c",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.boJLDGKWXUcLVjT6"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.boJLDGKWXUcLVjT6",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
         "title": "Features"
+      },
+      {
+        "_id": "eeknElb9Vf4XSwkH",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:artisan:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -88,7 +129,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -96,10 +137,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959715,
-    "modifiedTime": 1684819093621,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689058,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!80auw3hdVYZAXGtr"
 }

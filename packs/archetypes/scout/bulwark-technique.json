@@ -16,69 +16,105 @@
   "system": {
     "description": {
       "value": "<h1>Bulwark Technique</h1>\n<p>Some scouts find themselves far from civilization not to hunt, gather intelligence, or escape danger, but to venture forth simply to defend those unable to defend themselves. Followers of the Bulwark Technique make use of advanced technology to contain those that threaten the undeserving.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "bulwarktechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "15LgePoyz89IAyg5",
+        "_id": "1UluH1OqhZp9Ipt3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.znaw7WWYo6g5JUoD",
-            "Compendium.sw5e.archetypefeatures.9H0lc69pjr25CmUA",
-            "Compendium.sw5e.archetypefeatures.3IRtRyM0ksFP8wdA"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.znaw7WWYo6g5JUoD",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.9H0lc69pjr25CmUA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.3IRtRyM0ksFP8wdA",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "OzSdd89diMmpI8um",
+        "_id": "1dOQVq8DrqR1s8Bw",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.oWnJ0vssqOQZl6cC"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.oWnJ0vssqOQZl6cC",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "guUv2s9KYmiVlGE1",
+        "_id": "1TM4xgTQJiIx1LmU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.558flgosIwSyAW9g"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.558flgosIwSyAW9g",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "1iWep1V4vdeq1nSy",
+        "_id": "4gPw9rSCqIw1K6kh",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.WvP6k5LuXOxqbn7o"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.WvP6k5LuXOxqbn7o",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
+      },
+      {
+        "_id": "1LgrQa8XRh2r1CFE",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "armor:hvy"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -88,7 +124,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -96,10 +132,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959749,
-    "modifiedTime": 1684819093623,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689525,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!Tpq3FQTwrazsbPoW"
 }

@@ -16,67 +16,97 @@
   "system": {
     "description": {
       "value": "<h1>Armored Approach</h1>\n<p>Many berserkers forgo armor and rely on their own fortitude. Berserkers of the Armored Approach, however, embrace the use of armor. Each one customizes their own suit of armor to be used both defensively and offensively, so that the suit becomes an extension of the berserker's own might and fury.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "armoredapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "1mNLcCW2YZXP1p6r",
+        "_id": "1IrxjzZJzko0ehLy",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.LYZTlSIkqxXYml4M"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.LYZTlSIkqxXYml4M",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1Qvrgde18tLC1onV",
+        "_id": "1elSgI8myem5gFbB",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Adna4kIQMT6V6Oao"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Adna4kIQMT6V6Oao",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1D6EGt0uKkA7G4Am",
+        "_id": "KvkcSQpiSmKBXWYc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.5WF625vhVkpAdH6M"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.5WF625vhVkpAdH6M",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "ZD03LvGvyA31oq8Y",
+        "_id": "1bQApWyLurtZB26v",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.MEU8T6ZtkXtdEI26"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.MEU8T6ZtkXtdEI26",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
+      },
+      {
+        "_id": "1QRijLYetOuJ1zXZ",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "tool:armormechsimplements"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -86,7 +116,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -94,10 +124,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959712,
-    "modifiedTime": 1684819093621,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689019,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!5Adrt5TCu23FngUp"
 }

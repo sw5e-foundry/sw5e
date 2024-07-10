@@ -1,94 +1,5 @@
 {
-  "_id": "zUPGpaizRcj9ZiOu",
   "name": "Gran",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Gran.webp",
-  "effects": [
-    {
-      "_id": "2cpzxKWagRwrN2wf",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Gran",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 0,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.skills.ins.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "gran",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.toughness",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Gran.webp",
-      "label": "Gran",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2791337+00:00",
@@ -96,43 +7,138 @@
       "uid": "Species.name-gran"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Gran.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Gran can easily be identified by their three eyes and their goat-like snout. Female Gran also have three breasts. They have excellent vision, able to resolve more colors than most species, and even able to see into the infrared, thus they are able to sense one another's emotions and disposition by noting subtle changes in body heat and skin color. Gran have two stomachs, having evolved from herbivorous grazing animals who lived in herds on the mountains and highlands of Kinyen. A single meal can take almost an entire day to finish, after that a Gran does not often need to eat for several days.</p>\n<h2>Society and Culture</h2>\n<p>The peaceful nature of Gran society is a reflection of their homeworld, Kinyen. Kinyen boasted large and rolling grasslands and highlands, a dense and beautiful forest, and one of the longest and clearest rivers in the Bes Ber Bikade sector. The beauty of this planet, and the need for primitive Gran to band together for defense against predatory animals, helped the Gran develop strong bonds of home and family in their society. </p>\n<p>The Grans are also very protective of their families, and were some of the most devoted parents in the galaxy. This is because of their very powerful and sensitive sight, which can sense the emotions of their mates and their children. Gran society maintains its balance by setting up strict career quotas, and making sure young Gran are educated for a specific job that best served his or her talents.</p>\n<h2>Names</h2>\n<p>Gran names typically are monosyllabic and accompanied by a surname, which is familial.</p>\n<p><strong>Male Names.</strong> Ask, Dree, Ree, Pax, Nic</p>\n<p><strong>Female Names.</strong> Yan, Alijia, Meeb, Sir, Zeek</p>\n<p><strong>Surnames.</strong> Moe, Leem, Yees, Wix, Naaq</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "gran",
-    "advancement": [
-      {
-        "_id": "11YJgZmpd8Ej1TSP",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.q6o57ZQjmi8vxRQS",
-            "Compendium.sw5e.speciesfeatures.BtxkczUdjrqZdU63",
-            "Compendium.sw5e.speciesfeatures.drjhhFbJkT3qaF7V",
-            "Compendium.sw5e.speciesfeatures.rbbAmnBj8t7xZsva",
-            "Compendium.sw5e.speciesfeatures.vWVCVFSys7XXaOGk",
-            "Compendium.sw5e.speciesfeatures.kvV3hmhXxRi4FCTm",
-            "Compendium.sw5e.speciesfeatures.vI26Y0uPzsCiKdA7",
-            "Compendium.sw5e.speciesfeatures.9Rx1tKjJqrpQGJNe",
-            "Compendium.sw5e.speciesfeatures.jkxgySLWYGsRInrt",
-            "Compendium.sw5e.speciesfeatures.EItJ6rXI1zNNhulm"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "8UbrZnSleotNsKoS",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.q6o57ZQjmi8vxRQS",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BtxkczUdjrqZdU63",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.drjhhFbJkT3qaF7V",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rbbAmnBj8t7xZsva",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vWVCVFSys7XXaOGk",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.kvV3hmhXxRi4FCTm",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vI26Y0uPzsCiKdA7",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9Rx1tKjJqrpQGJNe",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jkxgySLWYGsRInrt",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.EItJ6rXI1zNNhulm",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1IR9GKnzOrL41AOF",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "wis": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1hO5FGt1VlklT7qo",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "JgykVfFuKjnDCov8",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:ins"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Blue or tan"
     },
@@ -143,7 +149,7 @@
       "value": "Black, purple"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Three eyes and goat-like snout"
@@ -165,17 +171,136 @@
     },
     "slanguage": {
       "value": "Gran"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "itZRTygDRiXSQt39",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Gran",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 5,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.skills.ins.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 2,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 2,
+          "value": "gran",
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.hp.bonuses.level",
+          "mode": 2,
+          "value": "+1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Gran.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.zUPGpaizRcj9ZiOu.ActiveEffect.2cpzxKWagRwrN2wf"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.zUPGpaizRcj9ZiOu",
+      "name": "Gran",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!pZrY6K00BHmFpTkF.itZRTygDRiXSQt39"
+    },
+    {
+      "_id": "hGBd9EFJmN9bujvF",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Gran.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.zUPGpaizRcj9ZiOu.ActiveEffect.2cpzxKWagRwrN2wf"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.zUPGpaizRcj9ZiOu",
+      "name": "Keen Sight",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!pZrY6K00BHmFpTkF.hGBd9EFJmN9bujvF"
+    }
+  ],
+  "_id": "pZrY6K00BHmFpTkF",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002150,
-    "modifiedTime": 1692402505744,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797647,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!pZrY6K00BHmFpTkF"
 }

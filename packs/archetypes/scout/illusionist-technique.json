@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Illusionist Technique</h1>\n<p>Among the galaxy you may find the various infiltrators and agents who make ample use of holographic technology to get themselves in and out of danger. Followers of the Illusionist Technique make use of this holographic technology to give themselves an illusory edge in combat.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "illusionisttechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "1OUo0MEtF62sAsMf",
+        "_id": "1jdBsmOi1Hvr3V9D",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.lAW369rv2hiS8dkA",
-            "Compendium.sw5e.archetypefeatures.h9jPXWvV178DU6YK"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.lAW369rv2hiS8dkA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.h9jPXWvV178DU6YK",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1PpWvcCK2Hio1iej",
+        "_id": "1Kp432Muaicx1Es1",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.kuyt0JMu56ObIrNW"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.kuyt0JMu56ObIrNW",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1GuOUwvRko8h1GRr",
+        "_id": "hiXrLh5B1jkelJGz",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ItBrXVOTDaTVCcKR"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ItBrXVOTDaTVCcKR",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "kGzUOc8m2OKDL6PR",
+        "_id": "1vn3y8hgChZh4NHZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.v1GPZX7JZ4lh2Bhy"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.v1GPZX7JZ4lh2Bhy",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959752,
-    "modifiedTime": 1684819093623,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689560,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!UzpUR5lA4YOM5XVs"
 }

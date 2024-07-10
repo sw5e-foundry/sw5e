@@ -1,8 +1,182 @@
 {
-  "_id": "AuUOkjlsuVccRXkn",
   "name": "Gotal",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2791337+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-gotal"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Gotal.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Gotals possess cranial horns as receptors to sense electromagnetism and other energy emissions. These nerve-ending filled cones can sense the natural electromagnetic fields produced by Antar 4's magnetite-rich crust, allowing the species to operate even in total darkness. Their senses also pick up the electromagnetic auras from other life forms. When close to their hunting targets, they can ascertain information on its mood, awareness, and state of mind. Electronic devices can also be sensed by Gotals; in fact, most droids give off enough electromagnetic emissions to at least annoy a Gotal, and at worst to seriously disorient the horned beings, making them notoriously distrustful of droids. Gotals rely heavily on their cones, with their eyesight and hearing being quite weak, and their sense of smell almost completely absent. </p>\n<h2>Society and Culture</h2>\n<p>Since their natural empathy makes them instantly sensitive to the feelings of others, Gotals have little use for government or laws on their homeworld, resulting in problems when dealing with other societies. No central authority figure can speak for Antar 4 as a whole in a crisis, and no organized Gotal military or police force can act on their behalf. Other species respect the Gotals for their discretion and restraint, but some individuals fear interacting with the horned beings for fear of having their emotional state revealed to others.</p>\n<h2>Names</h2>\n<p>Gotal names are quite guttural, though there are also many harsher tones within their names. Gotal names do not vary significantly based on gender, and surnames are familial. </p>\n<p><strong>First Names.</strong> Thon, Fern, Fuu'rash, Jir, Vluphol</p>\n<p><strong>Surnames.</strong> Gratlul, Klux, Vathon, Zilat, Krigh, Rahxem</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "gotal",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1qpVvpPeZXR1Aqpk",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GNpdr3gdVVd9Hqe6",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BMhyV0yZH03kRK2w",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2ermr6CjCFjMp0F8",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6sU4c5MxrDkQyokB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wXuUkEvxLnL85bJ5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KjmbbYZLLg4JIS76",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.oI2UZjKyRlhAVK87",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fRuWtr6D3T42H8FD",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MH9d9HHn0lrLsrwh",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1vG5gTNsUpp21DGC",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "5b5n3xWjdZeokIar",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "19gebd0dHVh8rrlR",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:sur"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Grey, brown, or black"
+    },
+    "hairColorOptions": {
+      "value": "White, grey, or brown"
+    },
+    "eyeColorOptions": {
+      "value": "Red, orange, yellow, grey, green, or black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Full body fur, flat noses, head cones"
+    },
+    "heightAverage": {
+      "value": "5'5\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "120 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Antar 4"
+    },
+    "slanguage": {
+      "value": "Antarian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "rNPBs7jT9wzHZoaG",
@@ -12,12 +186,6 @@
           "value": "Gotal",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -67,102 +235,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Gotal.webp",
-      "label": "Gotal",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Gotal",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!im3x6FLzcQTExN7V.rNPBs7jT9wzHZoaG"
     }
   ],
+  "_id": "im3x6FLzcQTExN7V",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2791337+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-gotal"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Gotals possess cranial horns as receptors to sense electromagnetism and other energy emissions. These nerve-ending filled cones can sense the natural electromagnetic fields produced by Antar 4's magnetite-rich crust, allowing the species to operate even in total darkness. Their senses also pick up the electromagnetic auras from other life forms. When close to their hunting targets, they can ascertain information on its mood, awareness, and state of mind. Electronic devices can also be sensed by Gotals; in fact, most droids give off enough electromagnetic emissions to at least annoy a Gotal, and at worst to seriously disorient the horned beings, making them notoriously distrustful of droids. Gotals rely heavily on their cones, with their eyesight and hearing being quite weak, and their sense of smell almost completely absent. </p>\n<h2>Society and Culture</h2>\n<p>Since their natural empathy makes them instantly sensitive to the feelings of others, Gotals have little use for government or laws on their homeworld, resulting in problems when dealing with other societies. No central authority figure can speak for Antar 4 as a whole in a crisis, and no organized Gotal military or police force can act on their behalf. Other species respect the Gotals for their discretion and restraint, but some individuals fear interacting with the horned beings for fear of having their emotional state revealed to others.</p>\n<h2>Names</h2>\n<p>Gotal names are quite guttural, though there are also many harsher tones within their names. Gotal names do not vary significantly based on gender, and surnames are familial. </p>\n<p><strong>First Names.</strong> Thon, Fern, Fuu'rash, Jir, Vluphol</p>\n<p><strong>Surnames.</strong> Gratlul, Klux, Vathon, Zilat, Krigh, Rahxem</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "gotal",
-    "advancement": [
-      {
-        "_id": "qOtYe1IOK0j1J5FU",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.GNpdr3gdVVd9Hqe6",
-            "Compendium.sw5e.speciesfeatures.BMhyV0yZH03kRK2w",
-            "Compendium.sw5e.speciesfeatures.2ermr6CjCFjMp0F8",
-            "Compendium.sw5e.speciesfeatures.6sU4c5MxrDkQyokB",
-            "Compendium.sw5e.speciesfeatures.wXuUkEvxLnL85bJ5",
-            "Compendium.sw5e.speciesfeatures.KjmbbYZLLg4JIS76",
-            "Compendium.sw5e.speciesfeatures.oI2UZjKyRlhAVK87",
-            "Compendium.sw5e.speciesfeatures.fRuWtr6D3T42H8FD",
-            "Compendium.sw5e.speciesfeatures.MH9d9HHn0lrLsrwh"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Grey, brown, or black"
-    },
-    "hairColorOptions": {
-      "value": "White, grey, or brown"
-    },
-    "eyeColorOptions": {
-      "value": "Red, orange, yellow, grey, green, or black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Full body fur, flat noses, head cones"
-    },
-    "heightAverage": {
-      "value": "5'5\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "120 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Antar 4"
-    },
-    "slanguage": {
-      "value": "Antarian"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002070,
-    "modifiedTime": 1692402505738,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797474,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!im3x6FLzcQTExN7V"
 }

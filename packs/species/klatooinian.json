@@ -1,106 +1,5 @@
 {
-  "_id": "qEBkequEiXsa9YbE",
   "name": "Klatooinian",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Klatooinian.webp",
-  "effects": [
-    {
-      "_id": "G6pCpdwb6FUA1ViV",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Klatooinian",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 0,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.skills.itm.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.skills.lor.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "klatooinian",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "huttese",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.toughness",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Klatooinian.webp",
-      "label": "Klatooinian",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2831315+00:00",
@@ -108,43 +7,145 @@
       "uid": "Species.name-klatooinian"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Klatooinian.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Klatooinians are a humanoid species with canine features, having short muzzles over toothy overbites. They are also notable for their heavy brows and ridges along the tops of their heads. </p>\n<h2>Society and Culture</h2>\n<p>For centuries, klatooinians have been slaves to the hutts, whom they view as almost godlike, immortal beings. Although the hutts allow a council of elders to rule on Klatooine, all off-world affairs are wholly under hutt control. Under the hutts, the klatooinians serve as soldiers and guards. Even those klatooinians who do not serve the hutts are often employed as hired muscle by other masters.</p>\n<p>Klatooinian society was known for a strong belief in tradition and the wisdom of the elders, although some younger klatooinians rebelled against this norm and sought out freedom from enslavement. Others attempted to gain their own fortunes as smugglers, pirates, bounty hunters, or raiders.</p>\n<h2>Names</h2>\n<p>Klatooinian names are often derived from the names of great heroes and historical figures. Surnames are familial, and are usually shorter than klatooinian given names. </p>\n<p><strong>Male Names.</strong> Barada, Castas, Sta-Den, Tarados</p>\n<p><strong>Female Names.</strong> Gelis, Petkara, Sterasi, Yelmith </p>\n<p><strong>Surnames.</strong> Eek, Gort, Gon, Ovin</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "klatooinian",
-    "advancement": [
-      {
-        "_id": "1fQrTj7th83W1cWs",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.OBn9O7aJbBdfwS6h",
-            "Compendium.sw5e.speciesfeatures.VV6rJw7ZwNa9jEKR",
-            "Compendium.sw5e.speciesfeatures.CjUJR2TEeZ0Eddfc",
-            "Compendium.sw5e.speciesfeatures.liYGg7uTcnBHqntt",
-            "Compendium.sw5e.speciesfeatures.Plff00oyqwTfgzPD",
-            "Compendium.sw5e.speciesfeatures.Q2K21jVkVbJWA8gg",
-            "Compendium.sw5e.speciesfeatures.h24MdtJnLYTqOU2J",
-            "Compendium.sw5e.speciesfeatures.OGHZ5JlOaGReOFi2",
-            "Compendium.sw5e.speciesfeatures.u7lf8ZNqR7wsxEXa",
-            "Compendium.sw5e.speciesfeatures.cpNA7ufNM4vsWtHK"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1U1a6Yv31XZR1LFu",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.OBn9O7aJbBdfwS6h",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VV6rJw7ZwNa9jEKR",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.CjUJR2TEeZ0Eddfc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.liYGg7uTcnBHqntt",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Plff00oyqwTfgzPD",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Q2K21jVkVbJWA8gg",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.h24MdtJnLYTqOU2J",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.OGHZ5JlOaGReOFi2",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.u7lf8ZNqR7wsxEXa",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cpNA7ufNM4vsWtHK",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1oYp3jXbfNfOavg8",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 1
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1yKnAQNR3cUfhctE",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1REj0DJGPOLY1i5t",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "weapon:mvb:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:itm",
+            "skills:lor"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Green, gray, brown"
     },
@@ -155,7 +156,7 @@
       "value": "Brown, black, gray"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Heavy brows, short canine muzzles"
@@ -177,17 +178,110 @@
     },
     "slanguage": {
       "value": "Huttese, Klatooinian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "G6pCpdwb6FUA1ViV",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Klatooinian",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 0,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.skills.itm.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.lor.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "klatooinian",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "huttese",
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.hp.bonuses.level",
+          "mode": 2,
+          "value": "+1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Klatooinian.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "origin": null,
+      "name": "Klatooinian",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!3GTORTqgXTh6BHus.G6pCpdwb6FUA1ViV"
+    }
+  ],
+  "_id": "3GTORTqgXTh6BHus",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002137,
-    "modifiedTime": 1692402505743,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796368,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!3GTORTqgXTh6BHus"
 }

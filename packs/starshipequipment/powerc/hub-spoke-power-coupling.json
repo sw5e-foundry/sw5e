@@ -8,37 +8,41 @@
   "system": {
     "description": {
       "value": "<p>A hub and spoke coupling system combines attributes of both other systems, providing some flexibility and some increased power storage capacity.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "quantity": 1,
-    "weight": null,
-    "price": {
-      "denomination": "gc",
-      "value": 5600
+    "weight": {
+      "value": 0,
+      "units": "lb"
     },
-    "attunement": 0,
+    "price": {
+      "value": 5600,
+      "denomination": "gc"
+    },
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "none",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -47,20 +51,24 @@
     },
     "uses": {
       "value": null,
-      "max": 0,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -73,8 +81,8 @@
     },
     "armor": {
       "value": 0,
-      "type": "powerc",
-      "dex": null
+      "dex": null,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -113,50 +121,31 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null
+      "changes": {}
     },
-    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
-    "properties": {
-      "Absorptive": false,
-      "Agile": false,
-      "Anchor": false,
-      "Avoidant": false,
-      "Barbed": false,
-      "Bulky": false,
-      "Charging": false,
-      "Concealing": false,
-      "Cumbersome": false,
-      "Gauntleted": false,
-      "Imbalanced": false,
-      "Impermeable": false,
-      "Insulated": false,
-      "Interlocking": false,
-      "Lambent": false,
-      "Lightweight": false,
-      "Magnetic": false,
-      "Obscured": false,
-      "Obtrusive": false,
-      "Powered": false,
-      "Reactive": false,
-      "Regulated": false,
-      "Reinforced": false,
-      "Responsive": false,
-      "Rigid": false,
-      "Silent": false,
-      "Spiked": false,
-      "Steadfast": false,
-      "Strength": false,
-      "Versatile": false
+    "properties": [],
+    "proficient": 1,
+    "attuned": false,
+    "type": {
+      "value": "powerc",
+      "baseItem": ""
     },
-    "proficient": true,
-    "attuned": false
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "_propertyValues": {},
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
@@ -165,10 +154,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.5",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494017499,
-    "modifiedTime": 1683856479091,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552913282,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!sP1BC9NGrvBmLoph"
 }

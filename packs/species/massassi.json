@@ -1,11 +1,5 @@
 {
-  "_id": "IqE3OyPQZkcjXtxX",
   "name": "Massassi",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Massassi.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2851303+00:00",
@@ -13,45 +7,131 @@
       "uid": "Species.name-massassi"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Massassi.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>The warrior caste of the sith purebloods, the massassi have genetically turned into the perfect warrior. While some looked like their sith pureblood brothers, others have more extreme physical differences, including fin-like growths, a taller form and tough skin. These imposing figures live much shorter lives than other species. They, like the few other creatures that inhabit Korriban, derive sustenance directly from the dark side of the Force, in part of a natural symbiotic relationship where sith—like the massassi—feed on the dark side, and empower it in turn. Thus the massassi have such a high rate of Force-sensitivity that they are considered a naturally Force-sensitive species.</p>\n<h2>Society and Culture</h2>\n<p>The massassi are fearsome, ruthless, and efficient soldiers. As with the sith, war and violence are just as much a part of the natural order of life as peace or serenity for the massassi. They are not only fearsome, but both loyal and formidable warriors that are dedicated to their sith masters. Though they engage in supposedly primitive practices such as sacrifice and hold a strong caste system, their civilization is quite sophisticated. In addition to the focus on war and fighting, the massassi are also loyal and organized. Even though they are not extremely intelligent, they can be trained to carry out complex battle plans and maintain their equipment, starships, and weaponry.</p>\n<h2>Names</h2>\n<p>Originating from the pureblood sith, massassi abominations follow many similiar naming conventions. Their names represent primitive virtues in the Sith tongue, and have no surname. </p>\n<p><strong>Males Names.</strong> Asha, Derriphan, H—sk, Jen, </p>\n<p> </p>\n<p><strong>Female Names.</strong> Kintik, Midwan, Siqsa, Ty—k</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "massassi",
-    "advancement": [
-      {
-        "_id": "1GqkRuMnoJ5N1IHR",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.gDuVmcjn5Ylg1fRd",
-            "Compendium.sw5e.speciesfeatures.UDBiVovov0iZGc4E",
-            "Compendium.sw5e.speciesfeatures.rbVxm3V0dflgIJ9r",
-            "Compendium.sw5e.speciesfeatures.NmU7IFClqpwn56Ax",
-            "Compendium.sw5e.speciesfeatures.aL3HSfYjjZASVI57",
-            "Compendium.sw5e.speciesfeatures.O0e1i02dCQ9glcEN",
-            "Compendium.sw5e.speciesfeatures.8dQJJ6y58ARpc9bH",
-            "Compendium.sw5e.speciesfeatures.Mm45nr58v6wS45VZ",
-            "Compendium.sw5e.speciesfeatures.AFxlkXjJ3Yk9aWbh",
-            "Compendium.sw5e.speciesfeatures.boigG72aXBmPQN0a",
-            "Compendium.sw5e.speciesfeatures.knmWgPHAWumrNRnb",
-            "Compendium.sw5e.speciesfeatures.21az2NpJ5faGdcd3"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "aberration",
+      "subtype": "Humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1cs5TY9fQTcE1dFC",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.gDuVmcjn5Ylg1fRd",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.UDBiVovov0iZGc4E",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rbVxm3V0dflgIJ9r",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.NmU7IFClqpwn56Ax",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.aL3HSfYjjZASVI57",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.O0e1i02dCQ9glcEN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.8dQJJ6y58ARpc9bH",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Mm45nr58v6wS45VZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.AFxlkXjJ3Yk9aWbh",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.boigG72aXBmPQN0a",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.knmWgPHAWumrNRnb",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.21az2NpJ5faGdcd3",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1HGZto59f8OsUD7A",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "str": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "bIecbMa2ULnGfiNd",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Crimson"
     },
@@ -62,39 +142,53 @@
       "value": "Glowing white or yellow"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Sharp predatory features, fin-like growths, cheek tendrils, tall stature"
     },
     "heightAverage": {
-      "value": null
+      "value": ""
     },
     "heightRollMod": {
-      "value": null
+      "value": ""
     },
     "weightAverage": {
-      "value": null
+      "value": ""
     },
     "weightRollMod": {
-      "value": null
+      "value": ""
     },
     "homeworld": {
-      "value": null
+      "value": ""
     },
     "slanguage": {
-      "value": null
+      "value": ""
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "POeIKsIFNGCcXH92",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002078,
-    "modifiedTime": 1692402505739,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797019,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!POeIKsIFNGCcXH92"
 }

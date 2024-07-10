@@ -10,26 +10,29 @@
   "system": {
     "description": {
       "value": "<p>Also at 4th rank, when you target a ship with your System Disturbance feature, it must make a Constitution saving throw (DC = 8 + your bonus to Interfere checks). On a failed save, while it is the target of your System Disturbance feature, the first time it makes an attack roll or a saving throw each round, the target must roll a d4 and subtract the number rolled from the attack roll or saving throw.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operator 4th Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,16 +43,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -79,25 +83,27 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Operator"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "4th Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493963430,
-    "modifiedTime": 1685840610765,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368729978,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!L4rvUVp9SLw7EQSB"
 }

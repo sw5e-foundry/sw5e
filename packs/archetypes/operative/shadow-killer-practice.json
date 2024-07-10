@@ -13,83 +13,112 @@
   "system": {
     "description": {
       "value": "<h1>Shadow Killer Practice</h1>\n<p>Those operatives who choose the Shadow Killer Practice are master assassins, the spiritual practitioners who combine their finely honed skills with mystical aid to vanish from sight and neutralize their targets with poison-coated weapons.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "shadowkillerpractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "9hJGcWEVPM01al8l",
+        "_id": "dbz0MbEHQFbIsCwN",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Fx3dqiaoWec8rhi3",
-            "Compendium.sw5e.archetypefeatures.ohDu7r97o9itdhs9"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Fx3dqiaoWec8rhi3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ohDu7r97o9itdhs9",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "Rae4QHxlWkd3k89X",
+        "_id": "1fzqfbCIvP1k1QdE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.S70e4C7FeptqIcjJ"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.S70e4C7FeptqIcjJ",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "1D0ZPH978MroAsqb",
+        "_id": "19zyiVO1ipndipeL",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.EvACp4LrpbKbic2k"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.EvACp4LrpbKbic2k",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "cFeZEGbE9BIbtMtx",
+        "_id": "gqRSrAwjdGH1m2kv",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.lVz2FVvCG2q65gxG"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.lVz2FVvCG2q65gxG",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
+      },
+      {
+        "_id": "bj2FgLfCg8d1g1ou",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "tool:poisonerskit"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
       "force": "none",
       "forceOverride": "",
       "tech": "none",
-      "techOverride": "",
-      "-=progression": null,
-      "-=ability": null
+      "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
-    },
-    "-=className": null,
-    "-=classCasterType": null
+      "progression": 0
+    }
   },
   "folder": null,
   "sort": 0,
@@ -98,11 +127,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426103159,
-    "modifiedTime": 1684819093622,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689394,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "N2nY2tYO5cOv5oWs"
+  "_id": "N2nY2tYO5cOv5oWs",
+  "_key": "!items!N2nY2tYO5cOv5oWs"
 }

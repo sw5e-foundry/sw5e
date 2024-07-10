@@ -16,67 +16,97 @@
   "system": {
     "description": {
       "value": "<h1>Trickster Order</h1>\n<p>Monks of the Trickster Order embody the archetypal role of the \"trickster\"— one who seemingly bumbles their way into good fortune. They employ a unique fighting style composed of slips, trips, and falls to confuse and frustrate their enemies to no end. Whether your movements are actual foibles on your part or calculated strokes, they will surely leave others guessing long after your time is past.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "tricksterorder",
     "classIdentifier": "monk",
     "advancement": [
       {
-        "_id": "PJY3jg0r6fd1M96D",
+        "_id": "1FAyFWN2vWm1TSzg",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.iFyPNVa8WuaCHsMd"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.iFyPNVa8WuaCHsMd",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "18fR399UUxjcn9by",
+        "_id": "13BlOFiHQL55o7fc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.pFk2J0WRFv0fcy08"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pFk2J0WRFv0fcy08",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "jZQ3dZms0Gt1nYGq",
+        "_id": "djb7ifg6uUp1x8tl",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.KyvGuAtpEHp2rQTg"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.KyvGuAtpEHp2rQTg",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "s7zjbX6c6ET1yQRH",
+        "_id": "Qi3UvAX9DHE1icC0",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.WtSaGz0yfKeuVPZQ"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.WtSaGz0yfKeuVPZQ",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
+      },
+      {
+        "_id": "1AH1gCO1Str0K7E0",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:prf"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -86,7 +116,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -94,10 +124,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959750,
-    "modifiedTime": 1684819093623,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689534,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!UJqZNuqSlZ1UCquY"
 }

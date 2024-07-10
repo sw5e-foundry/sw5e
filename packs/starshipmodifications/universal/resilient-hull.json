@@ -1,15 +1,13 @@
 {
-  "_id": "7VXRObiGv5oBMzNn",
   "name": "Resilient Hull",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Universal.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>You overhaul your ship's hull to make it more adaptive. Your ship is proficiently equipped for Constitution saving throws.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">You overhaul your ship's hull to make it more adaptive. Your ship is proficiently equipped for Constitution saving throws.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -38,6 +36,7 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -82,14 +81,11 @@
       "charged": false,
       "value": null
     },
-    "system": {
-      "value": "Universal"
-    },
     "grade": {
-      "value": "3"
+      "value": 3
     },
-    "basecost": {
-      "value": "4000"
+    "baseCost": {
+      "value": null
     },
     "prerequisites": {
       "value": ""
@@ -104,53 +100,28 @@
       "dex": null
     },
     "proficient": false,
-    "properties": {
-      "Absorptive": false,
-      "Agile": false,
-      "Anchor": false,
-      "Avoidant": false,
-      "Barbed": false,
-      "Bulky": false,
-      "Charging": false,
-      "Concealing": false,
-      "Cumbersome": false,
-      "Gauntleted": false,
-      "Imbalanced": false,
-      "Impermeable": false,
-      "Insulated": false,
-      "Interlocking": false,
-      "Lambent": false,
-      "Lightweight": false,
-      "Magnetic": false,
-      "Obscured": false,
-      "Obtrusive": false,
-      "Powered": false,
-      "Reactive": false,
-      "Regulated": false,
-      "Reinforced": false,
-      "Responsive": false,
-      "Rigid": false,
-      "Silent": false,
-      "Spiked": false,
-      "Strength": false,
-      "Steadfast": false,
-      "Versatile": false
-    },
+    "properties": [],
     "attributes": {
       "dr": ""
     },
     "strength": null,
-    "stealth": false
-  },
-  "ownership": {
-    "default": 0
+    "stealth": false,
+    "type": {
+      "value": "Universal"
+    }
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494018622,
-    "modifiedTime": 1685840666081,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1706199587800,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "flhiQZwOeMIWGfEe",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!flhiQZwOeMIWGfEe"
 }

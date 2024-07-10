@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Vonil/Ishu Form:</strong> 15th level</em></p>\n<p>You gain one of the following features. Choose Takedown for Vonil or Rebuttal for Ishu.</p>\n<h3>Takedown</h3>\n<p>When an ally within 30 feet of you takes the Help action and helps you, you have advantage on the next two ability checks or attack rolls you make before the start of their next turn, instead of only one. When you take the Help action and help an ally within 30 feet of you, the chosen ally has advantage on the next two ability checks or attack rolls it makes before the start of your next turn, instead of only one.</p>\n<h3>Rebuttal</h3>\n<p>When an ally within 30 feet of you takes the Help action and helps you, you gain temporary hit points equal to your guardian level that last until the start of their next turn. When you take the Help action and help an ally within 30 feet of you, it gains temporary hit points equal to your guardian level that last until the start of your next turn.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Vonil/Ishu Form) 15",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -27,11 +28,13 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 30,
@@ -42,23 +45,33 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
-    "actionType": "other",
-    "attackBonus": "",
+    "actionType": "heal",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
     },
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "@classes.guardian.levels",
+          "temphp"
+        ],
+        [
+          "@classes.guardian.levels",
+          "temphp"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
@@ -80,7 +93,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +113,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438441,
-    "modifiedTime": 1685840599531,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368684550,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "8FGvMmNGakeD6XjP"
+  "_id": "8FGvMmNGakeD6XjP",
+  "_key": "!items!8FGvMmNGakeD6XjP"
 }

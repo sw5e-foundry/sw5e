@@ -1,5 +1,4 @@
 import { sluggify } from "../../../utils.mjs";
-import { CompendiumBrowser } from "../_module.mjs";
 import { CompendiumBrowserTab } from "./base.mjs";
 
 export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
@@ -33,7 +32,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
     }
 
     async loadData() {
-      console.debug("SW5e System | Compendium Browser | Started loading inventory items");
+      console.log("SW5e System | Compendium Browser | Started loading inventory items");
 
       const inventoryItems = [];
       const itemTypes = CONFIG.SW5E.itemTypes.inventory;
@@ -45,21 +44,29 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
       };
       const price = {
         default: "system.price.value",
-        starshipmod: "system.basecost.value"
+        starshipmod: "system.baseCost.value"
       };
       const properties = {
         weapon: "system.properties",
         equipment: "system.properties"
       };
       const category = {
-        consumable: "system.consumableType",
-        equipment: "system.armor.type",
-        tool: "system.toolType",
-        weapon: "system.weaponType",
-        starshipmod: "system.system.value"
+        consumable: "system.type.value",
+        equipment: "system.type.value",
+        modification: "system.type.value",
+        starshipmod: "system.type.value",
+        tool: "system.type.value",
+        weapon: "system.type.value"
       };
       const subcategory = {
-        consumable: "system.ammoType"
+        consumable: "system.type.subtype",
+        modification: "system.type.subtype",
+        starshipmod: "system.grade.value",
+        weapon: "system.weaponClass",
+      };
+      const optional = {
+        starshipmod: ["system.baseCost.value", "system.grade.value"],
+        weapon: ["system.weaponClass"]
       };
       const indexFields = [...new Set([
         ...fields,
@@ -68,17 +75,15 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
         ...Object.values(properties),
         ...Object.values(category),
         ...Object.values(subcategory)
-      ])];
+      ])].filter(v => !!v);
       const sources = new Set();
-
-      console.debug("indexFields", indexFields);
 
       for await (const { pack, index } of this.browser.packLoader.loadPacks(
         "Item",
         this.browser.loadedPacks("equipment"),
         indexFields
       )) {
-        console.debug(`SW5e System | Compendium Browser | ${pack.metadata.label} - ${index.size} entries found`);
+        console.log(`SW5e System | Compendium Browser | ${pack.metadata.label} - ${index.size} entries found`);
         for (const itemData of index) {
           if (itemTypes.includes(itemData.type)) {
             const _fields = [
@@ -88,30 +93,41 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
               properties[itemData.type],
               category[itemData.type],
               subcategory[itemData.type]
-            ].filter(f => !!f);
+            ].filter(f => !!f && !(optional[itemData.type]??[]).includes(f));
             if (!this.hasAllIndexFields(itemData, _fields)) {
               console.warn(
-                `Item '${itemData.name}' does not have all required data fields.`
-                            + ` Consider unselecting pack '${pack.metadata.label}' in the compendium browser settings.`
-                            + ` Fields: ${_fields}`
+                `Item '${itemData.name}' does not have all required data fields.`,
+                `Consider unselecting pack '${pack.metadata.label}' in the compendium browser settings.`,
+                `Missing: ${this.listMissingIndexFields(itemData, indexFields)}`
               );
-              for (const field of _fields) if (getProperty(itemData, field) === undefined) console.debug(`Missing ${field}`);
               continue;
             }
 
             // Add properties into the correct format for filtering
             if (itemData?.system?.itemTypes?.value === undefined) itemData.system.itemTypes = { value: itemData.type };
             if (itemData?.system?.rarity?.value === undefined) itemData.system.rarity = { value: itemData.system.rarity };
-            if (itemData?.system?.source?.value === undefined) itemData.system.source = { value: itemData.system.source };
-            if (itemData?.system?.category?.value === undefined) itemData.system.category = { value: (itemData.type in category) ? foundry.utils.getProperty(itemData, category[itemData.type]) : null };
-            if (itemData?.system?.subcategory?.value === undefined) itemData.system.subcategory = { value: (itemData.type in subcategory) ? foundry.utils.getProperty(itemData, subcategory[itemData.type]) : null };
+            if (itemData?.system?.source?.value === undefined) itemData.system.source = {
+              value: itemData.system.source.label ?? itemData.system.source.custom ?? itemData.system.source
+            };
+            if (itemData?.system?.category?.value === undefined) itemData.system.category = {
+              value: (itemData.type in category) ? foundry.utils.getProperty(itemData, category[itemData.type]) : null
+            };
+            if (itemData?.system?.subcategory?.value === undefined) itemData.system.subcategory = {
+              value: (itemData.type in subcategory) ? foundry.utils.getProperty(itemData, subcategory[itemData.type]) : null
+            };
+            if (itemData.type === "starshipmod" && [null,undefined].includes(itemData.system.baseCost?.value)) {
+              const baseCost = CONFIG.SW5E.ssModSystemsBaseCost[itemData.system.type.value.toLowerCase()];
+              const gradeMult = Number.isNumeric(itemData.system.grade?.value) ? itemData.system.grade?.value || 1 : 1;
+              itemData.system.baseCost = { value: baseCost * gradeMult };
+            }
             itemData.filters = {};
 
             // Prepare source
-            const source = itemData.system.source.value;
-            if (source) {
+            const source = itemData.system.source.label ?? itemData.system.source.custom ?? itemData.system.source;
+            var sourceSlug;
+            if (source && foundry.utils.getType(source) === "string") {
+              sourceSlug = sluggify(source);
               sources.add(source);
-              itemData.system.source.value = sluggify(source);
             }
 
             inventoryItems.push({
@@ -123,7 +139,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
               subcategory: itemData.system.subcategory.value ?? null,
               price: foundry.utils.getProperty(itemData, price[itemData.type] ?? price.default) ?? null,
               rarity: itemData.system.rarity.value ?? "",
-              source: itemData.system.source.value ?? "",
+              source: sourceSlug ?? "",
               properties: itemData.system.properties ?? {}
             });
           }
@@ -134,12 +150,14 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
       this.indexData = inventoryItems;
 
       // Filters
-      this.filterData.checkboxes.consumableTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.consumableTypes);
+      this.filterData.checkboxes.consumableTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.consumableTypes, { label: "label" });
       this.filterData.checkboxes.consumableSubtypes.options = this.generateCheckboxOptions(CONFIG.SW5E.ammoTypes);
       this.filterData.checkboxes.equipmentTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.equipmentTypes);
+      this.filterData.checkboxes.modificationTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.modificationTypes);
       this.filterData.checkboxes.starshipmodTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.ssModSystems);
       this.filterData.checkboxes.toolTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.toolTypes);
       this.filterData.checkboxes.weaponTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.weaponTypes);
+      this.filterData.checkboxes.weaponClasses.options = this.generateCheckboxOptions(CONFIG.SW5E.weaponClasses);
 
       this.filterData.multiselects.properties.options = this.generateMultiselectOptions({
         ...Object.fromEntries(Object.entries(CONFIG.SW5E.equipmentProperties).map(([k, v]) => [k, v.name])),
@@ -150,14 +168,14 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
         obj[type] = `ITEM.Type${type.capitalize()}`;
         return obj;
       }, {}));
-      this.filterData.checkboxes.rarity.options = this.generateCheckboxOptions(CONFIG.SW5E.itemRarity, false);
+      this.filterData.checkboxes.rarity.options = this.generateCheckboxOptions(CONFIG.SW5E.itemRarity, { sort: false });
       this.filterData.checkboxes.source.options = this.generateSourceCheckboxOptions(sources);
 
-      console.debug("SW5e System | Compendium Browser | Finished loading inventory items");
+      console.log("SW5e System | Compendium Browser | Finished loading inventory items");
     }
 
     filterIndexData(entry) {
-      const { checkboxes, multiselects, ranges, sliders } = this.filterData;
+      const { checkboxes, multiselects, ranges } = this.filterData;
 
       // Price
       if (!(entry.price >= ranges.price.values.min && entry.price <= ranges.price.values.max)) return false;
@@ -169,12 +187,16 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
       if (checkboxes.consumableSubtypes.selected.length > 0 && !checkboxes.consumableSubtypes.selected.includes(entry.subcategory)) return false;
       // Equipment categories
       if (checkboxes.equipmentTypes.selected.length > 0 && !checkboxes.equipmentTypes.selected.includes(entry.category)) return false;
+      // Modification categories
+      if (checkboxes.modificationTypes.selected.length > 0 && !checkboxes.modificationTypes.selected.includes(entry.category)) return false;
       // Starship Modification categories
       if (checkboxes.starshipmodTypes.selected.length > 0 && !checkboxes.starshipmodTypes.selected.includes(entry.category)) return false;
       // Tool categories
       if (checkboxes.toolTypes.selected.length > 0 && !checkboxes.toolTypes.selected.includes(entry.category)) return false;
       // Weapon categories
       if (checkboxes.weaponTypes.selected.length > 0 && !checkboxes.weaponTypes.selected.includes(entry.category)) return false;
+      // Weapon subcategories
+      if (checkboxes.weaponClasses.selected.length > 0 && !checkboxes.weaponClasses.selected.includes(entry.subcategory)) return false;
       // Source
       if (checkboxes.source.selected.length > 0 && !checkboxes.source.selected.includes(entry.source)) return false;
       // Rarity
@@ -229,6 +251,12 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
             options: {},
             selected: []
           },
+          modificationTypes: {
+            isExpanded: false,
+            label: "SW5E.CompendiumBrowser.FilterModificationFilters",
+            options: {},
+            selected: []
+          },
           starshipmodTypes: {
             isExpanded: false,
             label: "SW5E.CompendiumBrowser.FilterSSModFilters",
@@ -243,7 +271,13 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
           },
           weaponTypes: {
             isExpanded: false,
-            label: "SW5E.CompendiumBrowser.FilterWeaponFilters",
+            label: "SW5E.CompendiumBrowser.FilterWeaponTypeFilters",
+            options: {},
+            selected: []
+          },
+          weaponClasses: {
+            isExpanded: false,
+            label: "SW5E.CompendiumBrowser.FilterWeaponClassFilters",
             options: {},
             selected: []
           },
@@ -283,7 +317,6 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
             }
           }
         },
-        sliders: {},
         search: {
           text: ""
         }

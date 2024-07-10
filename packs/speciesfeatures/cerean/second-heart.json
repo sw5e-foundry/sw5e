@@ -2,63 +2,51 @@
   "name": "Second Heart",
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:56.2104505+00:00",
+      "timestamp": "2023-05-30T20:15:40.7690611+00:00",
       "importer_version": 3,
       "uid": "Feature.name-second_heart.source-species.sourceName-cerean.level-None"
     }
   },
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Species/Cerean.webp",
-  "effects": [],
   "system": {
     "description": {
       "value": "<p>When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "None (Cerean)",
-    "source": "PHB",
+    "requirements": "Cerean",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
-    "cover": null,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
-    "chatFlavor": "",
-    "critical": {
-      "threshold": null,
-      "damage": ""
-    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -73,18 +61,43 @@
       "value": "species",
       "subtype": ""
     },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "ability": null,
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": [],
     "recharge": {
       "value": null,
       "charged": false
     },
     "attributes": {
       "speed": {
-        "space": null,
-        "turn": null
+        "space": 300,
+        "turn": 250
       }
-    },
-    "className": null
+    }
   },
+  "effects": [],
+  "_id": "Q8NJjnQR7OQgdWWN",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -92,11 +105,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
-    "createdTime": 1667426106897,
-    "modifiedTime": 1684777310252,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296029297,
+    "modifiedTime": 1720368895817,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "XCbPbJxVI5reEeAT"
+  "_key": "!items!Q8NJjnQR7OQgdWWN"
 }

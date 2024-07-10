@@ -5,11 +5,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite</strong>: Multi-Roled</em><br /><br /><span style=\"font-family:'Open Sans', sans-serif\">When you advance a rank in your primary deployment, you may select a deployment maneuver (collaboration, gambit, technique, disruption, tactic, or stratagem) from any deployment instead of your primary deployment.<br style=\"background-repeat:no-repeat;box-sizing:inherit;padding:0px;margin:0px;color:rgba(0, 0, 0, 0.87);font-family:'Open Sans', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:center;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\" />If your chosen maneuver is a technique, you can use a power die from any location instead of a tech die for that technique.</span></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "none",
       "cost": null,
@@ -20,11 +21,13 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -35,16 +38,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -73,7 +77,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "ownership": {
@@ -82,13 +96,14 @@
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.5",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1684707193273,
-    "modifiedTime": 1684711831388,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552921524,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "folder": null,
   "sort": 0,
-  "_id": "ugeRB2WW6xFEgmN5"
+  "_id": "ugeRB2WW6xFEgmN5",
+  "_key": "!items!ugeRB2WW6xFEgmN5"
 }

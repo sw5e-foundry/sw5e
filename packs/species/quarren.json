@@ -1,106 +1,5 @@
 {
-  "_id": "3LOMgdmvO9QADv10",
   "name": "Quarren",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Quarren.webp",
-  "effects": [
-    {
-      "_id": "IS0m3cc1VZFBsy2j",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Quarren",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.climb",
-          "value": "30",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.attributes.movement.swim",
-          "value": "30",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.attributes.senses.darkvision",
-          "value": "60",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "quarrenese",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.amphibious",
-          "value": "1",
-          "mode": 0,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 0,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Quarren.webp",
-      "label": "Quarren",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.289128+00:00",
@@ -108,45 +7,130 @@
       "uid": "Species.name-quarren"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Quarren.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>The Quarren are squid-like with four facial tentacles which protrude from their lower jaw. They have a pair of deep, turquoise eyes and finned hands with suction-tipped fingers. As an amphibious species, they are strong swimmers. They are also bipedal beings that can walk and sit upright. In the two long protrusions that extended from either side of their faces, Quarren have gill-like structures that are actually hearing organs. The Quarren are also capable of spitting out clouds of ink as a defensive measure.</p>\n<h2>Society and Culture</h2>\n<p>Quarren are a very self-centered and proud species, almost to the point of being xenophobic, would coincides with their isolationist behavior. Quarren find Humans to be very crude beings and think Galactic Basic to be very cumbersome and unsuitable for speech. The Quarren instead speak their native language more frequently.</p>\n<p>The Quarren are conservative and practical in their thinking, yet they reminisce more than they look to the future. The Quarren are isolationist, preferring to stay in the depths of the oceans of their homeworld. However, some Quarren make their living in the galaxy as business managers and accountants. The Quarren diligently mine metal ore from the deepest parts of the ocean, where they live deep beneath the waves. Their cities stretch far below the surface.</p>\n<h2>Names</h2>\n<p>Quarren names are typically harsh. Male and female names do not significantly deviate. Surnames are familial.</p>\n<p><strong>Names.</strong> Bagker, Jujon, Kibkyl, Qiockish, Yuntoz</p>\n<p><strong>Surnames.</strong> Chobnek, Geeckol, Nukranx, Tsastanx</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "quarren",
-    "advancement": [
-      {
-        "_id": "eN2bqCqMYA619W6U",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.Xp0No1KdBNXi502u",
-            "Compendium.sw5e.speciesfeatures.1hQha91PY4XPCAIq",
-            "Compendium.sw5e.speciesfeatures.6NG1HwTPRIjlbeu0",
-            "Compendium.sw5e.speciesfeatures.fyHYe69k8VkWixkr",
-            "Compendium.sw5e.speciesfeatures.cpwO8bjO7l84RcGR",
-            "Compendium.sw5e.speciesfeatures.8RroZGIhITh70Je5",
-            "Compendium.sw5e.speciesfeatures.LLyGDiTt85WWHqSu",
-            "Compendium.sw5e.speciesfeatures.e9qhfZgZqRF9uupP",
-            "Compendium.sw5e.speciesfeatures.QDhVr5KGyYtUOIql",
-            "Compendium.sw5e.speciesfeatures.HxEIzyVKmTpRz46s",
-            "Compendium.sw5e.speciesfeatures.pQCrUO8qPZMqE342",
-            "Compendium.sw5e.speciesfeatures.TRvD64ccNSVr5nrE"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "climb": 30,
+      "swim": 30,
+      "burrow": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "H7G8LbKvhUF1ZjLh",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Xp0No1KdBNXi502u",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1hQha91PY4XPCAIq",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6NG1HwTPRIjlbeu0",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fyHYe69k8VkWixkr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cpwO8bjO7l84RcGR",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.8RroZGIhITh70Je5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LLyGDiTt85WWHqSu",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.e9qhfZgZqRF9uupP",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QDhVr5KGyYtUOIql",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HxEIzyVKmTpRz46s",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.pQCrUO8qPZMqE342",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TRvD64ccNSVr5nrE",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1EWY9AmOTNyc1jQv",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "wis": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "rMRQNQ7Ow0K1HAEL",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Orange, pink, purple, or red"
     },
@@ -157,7 +141,7 @@
       "value": "Blue or green"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Four tentacles that protrude from their jaws, finned or suction-cup tipped fingers, able to spit out clouds of ink in defense"
@@ -179,17 +163,142 @@
     },
     "slanguage": {
       "value": "Quarrenese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "Yz0kDSJZzldZd1Af",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Quarren",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 5,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.climb",
+          "mode": 2,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.swim",
+          "mode": 2,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.senses.darkvision",
+          "mode": 2,
+          "value": "60",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "quarrenese",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Quarren.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.3LOMgdmvO9QADv10.ActiveEffect.IS0m3cc1VZFBsy2j"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.3LOMgdmvO9QADv10",
+      "name": "Quarren",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!jJ7MdihYbHjCvf4y.Yz0kDSJZzldZd1Af"
+    },
+    {
+      "_id": "bE4O6BrwZ9dmfqbZ",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Quarren.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.3LOMgdmvO9QADv10.ActiveEffect.IS0m3cc1VZFBsy2j"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.3LOMgdmvO9QADv10",
+      "name": "Keen Hearing",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!jJ7MdihYbHjCvf4y.bE4O6BrwZ9dmfqbZ"
+    }
+  ],
+  "_id": "jJ7MdihYbHjCvf4y",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002059,
-    "modifiedTime": 1692402505738,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797485,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!jJ7MdihYbHjCvf4y"
 }

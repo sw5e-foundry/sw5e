@@ -5,11 +5,12 @@
   "system": {
     "description": {
       "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">When you take the Detect action, you devote your attention to finding something. Depending on the nature of your detection, the DM might have you make a Wisdom (Scan) check or an Intelligence (Probe) check.</span></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -20,11 +21,13 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -34,17 +37,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -73,7 +77,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "ownership": {
@@ -82,13 +96,14 @@
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.5",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1683590122870,
-    "modifiedTime": 1683590499528,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552912912,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "folder": null,
   "sort": 0,
-  "_id": "3sz9S7XnY6hxtXm1"
+  "_id": "3sz9S7XnY6hxtXm1",
+  "_key": "!items!3sz9S7XnY6hxtXm1"
 }

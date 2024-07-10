@@ -8,11 +8,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> Greater Spacecasting venture</em></p><p><span style=\"font-family:'Open Sans', sans-serif\">When casting a force or tech power while aboard your ship and in space, the power's range is instead multiplied by 1,000. You can not target a hostile creature with a power unless you are aware of their presence and location.<br style=\"background-repeat:no-repeat;box-sizing:inherit;padding:0px;margin:0px;color:rgba(0, 0, 0, 0.87);font-family:'Open Sans', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:center;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\" />Additionally, when casting a force or tech power while aboard your ship and in space that affects an area, the area's dimensions are instead multiplied by 100.<br style=\"background-repeat:no-repeat;box-sizing:inherit;padding:0px;margin:0px;color:rgba(0, 0, 0, 0.87);font-family:'Open Sans', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:center;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\" />Lastly, when casting a force or tech power while aboard your ship and in space, you instead divide by 2 when scaling damage against Small and smaller ships.</span></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "none",
       "cost": null,
@@ -23,11 +24,13 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -38,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,8 +82,15 @@
       }
     },
     "prerequisites": [
-      "Greater Spacecasting venture"
-    ]
+      null
+    ],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -88,10 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.5",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494021264,
-    "modifiedTime": 1684711651069,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552921469,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!ks1XMj0qAeKZX3cr"
 }

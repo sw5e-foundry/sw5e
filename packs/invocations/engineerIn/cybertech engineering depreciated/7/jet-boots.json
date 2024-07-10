@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> 7th level</em></p>\n<p>You find tune your augmented boots to give you temporary, limited flight. Activating or deactivating the boots requires a bonus action and, while active, you have a flying speed of 30 feet. </p>\n<p>The rocket boots last for 1 minute before deactivating. Once the boots have been activated, they can't be activated again until you finish a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Cybertech Engineering (Depreciated)) 7",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -27,11 +28,13 @@
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.1",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1680288497262,
-    "modifiedTime": 1680288497262,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368787301,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "LazQHwd7wzMxOKm4"
+  "_id": "LazQHwd7wzMxOKm4",
+  "_key": "!items!LazQHwd7wzMxOKm4"
 }

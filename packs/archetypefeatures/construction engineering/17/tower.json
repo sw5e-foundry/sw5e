@@ -13,47 +13,50 @@
   "system": {
     "description": {
       "value": "<p>You erect a tower from a 5-foot square platform centered on the target location that rises up to 30 feet. If the tower is created under a creature, that creature must succeed on a Dexterity saving throw or be lifted by the tower. A creature can choose to fail the save. The tower comes equipped with a ladder that reaches from the ground to the platform. </p>\n<p>When you reach 11th level, the tower's platform can extend 5 feet by 10 feet and rise up to 40 feet. When you reach 17th level, the tower's platform can cover a 10-foot square, and rise up to 50 feet. Additionally, any creature on the tower's platform has advantage on Wisdom (Perception) checks that rely on sight.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Construction Engineering) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": "5",
       "width": null,
       "units": "ft",
-      "type": "square"
+      "type": "square",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -83,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Engineer"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -92,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426104175,
-    "modifiedTime": 1685840600475,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368718810,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "wMPmkIkEOLKapzqu"
+  "_id": "wMPmkIkEOLKapzqu",
+  "_key": "!items!wMPmkIkEOLKapzqu"
 }

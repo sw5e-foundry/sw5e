@@ -55,7 +55,6 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Starship%20Equipment/FortressShield.webp",
-      "label": "Fortress Shield",
       "origin": "Compendium.sw5e.starshiparmor.Wj62TEtwKeG1P2DD",
       "transfer": true,
       "flags": {
@@ -64,7 +63,10 @@
         }
       },
       "tint": null,
-      "sort": 0
+      "name": "Fortress Shield",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!Wj62TEtwKeG1P2DD.sGJkO7upmm5N3jIS"
     }
   ],
   "folder": null,
@@ -73,37 +75,41 @@
   "system": {
     "description": {
       "value": "<p>Fortress shields offer a higher maximum shield points, but regenerate slower than normal shields.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "quantity": 1,
-    "weight": 0,
-    "price": {
-      "denomination": "gc",
-      "value": 4650
+    "weight": {
+      "value": 0,
+      "units": "lb"
     },
-    "attunement": 0,
+    "price": {
+      "value": 4650,
+      "denomination": "gc"
+    },
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -112,20 +118,24 @@
     },
     "uses": {
       "value": null,
-      "max": 0,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -138,8 +148,8 @@
     },
     "armor": {
       "value": 0,
-      "type": "ssshield",
-      "dex": null
+      "dex": null,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -171,68 +181,49 @@
       },
       "hdclass": {
         "value": null
-      },
-      "dr": ""
+      }
     },
     "modify": {
       "chassis": "none",
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null
+      "changes": {}
     },
-    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
-    "properties": {
-      "Absorptive": null,
-      "Agile": null,
-      "Anchor": false,
-      "Avoidant": null,
-      "Barbed": false,
-      "Bulky": false,
-      "Charging": null,
-      "Concealing": false,
-      "Cumbersome": false,
-      "Gauntleted": false,
-      "Imbalanced": false,
-      "Impermeable": false,
-      "Insulated": null,
-      "Interlocking": false,
-      "Lambent": false,
-      "Lightweight": false,
-      "Magnetic": null,
-      "Obscured": false,
-      "Obtrusive": false,
-      "Powered": null,
-      "Reactive": null,
-      "Regulated": false,
-      "Reinforced": false,
-      "Responsive": null,
-      "Rigid": false,
-      "Silent": false,
-      "Spiked": false,
-      "Steadfast": false,
-      "Strength": null,
-      "Versatile": null
+    "properties": [],
+    "proficient": 1,
+    "attuned": false,
+    "type": {
+      "value": "ssshield",
+      "baseItem": ""
     },
-    "proficient": true,
-    "attuned": false
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "_propertyValues": {},
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494017107,
-    "modifiedTime": 1677349744116,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552913109,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!Wj62TEtwKeG1P2DD"
 }

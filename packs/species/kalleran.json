@@ -1,11 +1,5 @@
 {
-  "_id": "ZX51IylrlXqtTJql",
   "name": "Kalleran",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Kalleran.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2811327+00:00",
@@ -13,45 +7,130 @@
       "uid": "Species.name-kalleran"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Kalleran.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Kallerans evolved from a semi-amphibious species on Kaller. Kallerans are tall and flexible; their hands and feet have three prehensile digits on each, which leeds kallerans to avoid wearing shoes or boots. The majority of kallerans have green skin patterned with distinctive black stripes. The species have dense muscles that assist them in the protection of their otherwise delicate bodies. The kalleran head is distinguished by fin-like folds on the tops and sides of their faces. These fins augment a kalleran's hearing, allowing sound to bounce back and be picked up by the two antenna crowning their head. These antenna are sensory organs that serve as olfactory and aural receptors. Kallerans have lungs adapted to breathe above water, though the majority of their respiration is done through their skin. A holdover from their amphibious past, their skin can draw oxygen in from the air and filter out carbon dioxide. Their respiratory system requires them to consume more water than other species their size to keep their skin moist and supple. Because they do not primarily breathe through their mouths, kallerans did not evolve noses.</p>\n<h2>Society and Culture</h2>\n<p>Above all else, kalleran's value personal achievement over collective accomplishments. Because of this, the people of Kaller have never united to form great societies or participate in galactic affairs. Much of the cultural expansion on Kaller was brought by colonists, both friendly and violent, who had settled the world over the course of millennia.</p>\n<h2>Names</h2>\n<p>Kallerans have regal sounding names, sometimes using accents on vowels, with clan-based surnames. </p>\n<p><strong>Male Names.</strong> Gliconn, Orcas, L—vern, Seelv—n</p>\n<p><strong>Female Names.</strong> Cybele, F—ress, Numarin, Retesh</p>\n<p><strong>Surnames.</strong> Alash, Byssus, Estair, Lash</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "kalleran",
-    "advancement": [
-      {
-        "_id": "1kdelM3Kir46yNUj",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.TZA6BN1hCTNu0r2k",
-            "Compendium.sw5e.speciesfeatures.7SL0sFGMlyzVbdac",
-            "Compendium.sw5e.speciesfeatures.ERGk0HQ20enqOXzT",
-            "Compendium.sw5e.speciesfeatures.Hg3X7g5whymhlVC3",
-            "Compendium.sw5e.speciesfeatures.gmW9R4sS5SJMTzp5",
-            "Compendium.sw5e.speciesfeatures.CAXCGvulmrVs0DbV",
-            "Compendium.sw5e.speciesfeatures.0lBGdGvFlBIJWgYB",
-            "Compendium.sw5e.speciesfeatures.1CmVffTMdGxo4cT6",
-            "Compendium.sw5e.speciesfeatures.aJoHip1EPiiSJWzz",
-            "Compendium.sw5e.speciesfeatures.xzTCyoqBUW6idIzB",
-            "Compendium.sw5e.speciesfeatures.yGC4TDohlv6gssI8",
-            "Compendium.sw5e.speciesfeatures.HreZtwwYN9yslq5a"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "swim": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1pA0UevurbkObZx3",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TZA6BN1hCTNu0r2k",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7SL0sFGMlyzVbdac",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ERGk0HQ20enqOXzT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Hg3X7g5whymhlVC3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.gmW9R4sS5SJMTzp5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.CAXCGvulmrVs0DbV",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.0lBGdGvFlBIJWgYB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1CmVffTMdGxo4cT6",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.aJoHip1EPiiSJWzz",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xzTCyoqBUW6idIzB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yGC4TDohlv6gssI8",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HreZtwwYN9yslq5a",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "wLms8FPdQ7N1n2Q5",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "dex": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1LYJUg36faNFR18a",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Green with distinct black markings"
     },
@@ -62,7 +141,7 @@
       "value": "Black, orange, green, or blue"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Olfactory antenna, noseless"
@@ -84,17 +163,31 @@
     },
     "slanguage": {
       "value": "Kall"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "Cf4XuF4CdN1gfxKz",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002108,
-    "modifiedTime": 1692402505741,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796649,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!Cf4XuF4CdN1gfxKz"
 }

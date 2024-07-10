@@ -9,27 +9,30 @@
   "flags": {},
   "system": {
     "description": {
-      "value": "<p><em><strong>Power Die Location:</strong> Comms</em><br>As an action, you can expend one power die to strengthen your allies' defenses. Roll a power die. Until the end of your next turn, your ship and all allied ships within 500 feet of you when you use this action have a bonus to any saving throws they make equal to the amount rolled.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p><em><strong>Power Die Location:</strong> Comms</em><br />As an action, you can expend one power die to strengthen your allies' defenses. Roll a power die. Until the end of your next turn, your ship and all allied ships within 500 feet of you when you use this action have a bonus to any saving throws they make equal to the amount rolled.</p>",
+      "chat": ""
     },
     "requirements": "Coordinator 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,17 +42,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "powerdice",
       "target": "attributes.power.comms.value",
-      "amount": 1
+      "amount": 1,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -79,25 +83,27 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Coordinator"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": "Collaboration"
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493963424,
-    "modifiedTime": 1685840610757,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368729906,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!FcEz9wGm9RTlQKVI"
 }

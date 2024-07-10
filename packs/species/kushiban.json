@@ -1,8 +1,195 @@
 {
-  "_id": "uDYEByaCoJ7GOXoZ",
   "name": "Kushiban",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2831315+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-kushiban"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Kushiban.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Kushibans are four-limbed lagomorphs native to the planet Kushibah. They are diminutive, unimposing, and typically weaker than most humanoids, but they are also quite difficult to track due to their natural speed and stealth.</p>\n<p>While Kushibans are quadrupeds, their forepaws are as manipulative as traditional hands. While kushibans can walk on two legs, they typically run around on four feet since they can move significantly faster that way. </p>\n<p>Kushibans are inherently cute and fuzzy, and more nefarious species often attempt to take them as slaves. Kushibans are social and do not take well to slavery, and they typically don't live long in solitude or captivity. </p>\n<h2>Society and Culture</h2>\n<p>Kushibans live in a simple, peaceful society on the non-industrialized, lush green planet of Kushibah in the Outer Rim. Kushibans are typically kind and generous, with a playful sense of humor and a penchant for practical jokes. However, if betrayed or angered, Kushibans can be cruel or vindictive, and they have little patience for bullies, simpletons, and misanthropes.</p>\n<h2>Names</h2>\n<p>Kushiban names are a single word combining both their first and familial names.</p>\n<p><strong>Male Names.</strong> Cerlyk, Etyk, Mabbik, Tieko, Widdimur</p>\n<p><strong>Female Names.</strong> Asani, Pritsi, Sibble, Mirax</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "kushiban",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "uxGGdY98wDO1Fpxg",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZCDDZ3OdOxOzFtc3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.OQhJl9NMlDtoh3pg",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.uZGzXEYtaMWmSvfl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Hxar1emwMW2nZDfB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RtTasRXTdebh1LcN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7LEjKWN7w9PHqkMh",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.B9cQKVBiqgDxVSoJ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jcYdcmnKGEF4PlBw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.r0AJKzo96RD0EE6B",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.x4vTMnr2Oi1HVFna",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.aIxZMB9jQNSCzM6m",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wJFSLDUEjquBuKEx",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "11wuFGFcuLlU1q3Q",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "dex": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "wdVqNGJ4vsW1JwfZ",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "rMgVC9CAEbS1FG2b",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:ste"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "White to light gray"
+    },
+    "hairColorOptions": {
+      "value": "Typically white but varies based on mood"
+    },
+    "eyeColorOptions": {
+      "value": "Typically blue, brown, or green"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Lagomorph, nimble, resilient"
+    },
+    "heightAverage": {
+      "value": "2'11\""
+    },
+    "heightRollMod": {
+      "value": "+2d4\""
+    },
+    "weightAverage": {
+      "value": "35 lb."
+    },
+    "weightRollMod": {
+      "value": "x1 lb."
+    },
+    "homeworld": {
+      "value": "Kushibah"
+    },
+    "slanguage": {
+      "value": "Kushiban"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "rcIMsotffEEZpwXR",
@@ -12,18 +199,6 @@
           "value": "Kushiban",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -97,105 +272,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Kushiban.webp",
-      "label": "Kushiban",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Kushiban",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!IFW7OxMukmMe7EN5.rcIMsotffEEZpwXR"
     }
   ],
+  "_id": "IFW7OxMukmMe7EN5",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2831315+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-kushiban"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Kushibans are four-limbed lagomorphs native to the planet Kushibah. They are diminutive, unimposing, and typically weaker than most humanoids, but they are also quite difficult to track due to their natural speed and stealth.</p>\n<p>While Kushibans are quadrupeds, their forepaws are as manipulative as traditional hands. While kushibans can walk on two legs, they typically run around on four feet since they can move significantly faster that way. </p>\n<p>Kushibans are inherently cute and fuzzy, and more nefarious species often attempt to take them as slaves. Kushibans are social and do not take well to slavery, and they typically don't live long in solitude or captivity. </p>\n<h2>Society and Culture</h2>\n<p>Kushibans live in a simple, peaceful society on the non-industrialized, lush green planet of Kushibah in the Outer Rim. Kushibans are typically kind and generous, with a playful sense of humor and a penchant for practical jokes. However, if betrayed or angered, Kushibans can be cruel or vindictive, and they have little patience for bullies, simpletons, and misanthropes.</p>\n<h2>Names</h2>\n<p>Kushiban names are a single word combining both their first and familial names.</p>\n<p><strong>Male Names.</strong> Cerlyk, Etyk, Mabbik, Tieko, Widdimur</p>\n<p><strong>Female Names.</strong> Asani, Pritsi, Sibble, Mirax</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "kushiban",
-    "advancement": [
-      {
-        "_id": "1nGlNz3mc75aJxhi",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.ZCDDZ3OdOxOzFtc3",
-            "Compendium.sw5e.speciesfeatures.OQhJl9NMlDtoh3pg",
-            "Compendium.sw5e.speciesfeatures.uZGzXEYtaMWmSvfl",
-            "Compendium.sw5e.speciesfeatures.Hxar1emwMW2nZDfB",
-            "Compendium.sw5e.speciesfeatures.RtTasRXTdebh1LcN",
-            "Compendium.sw5e.speciesfeatures.7LEjKWN7w9PHqkMh",
-            "Compendium.sw5e.speciesfeatures.B9cQKVBiqgDxVSoJ",
-            "Compendium.sw5e.speciesfeatures.jcYdcmnKGEF4PlBw",
-            "Compendium.sw5e.speciesfeatures.r0AJKzo96RD0EE6B",
-            "Compendium.sw5e.speciesfeatures.x4vTMnr2Oi1HVFna",
-            "Compendium.sw5e.speciesfeatures.aIxZMB9jQNSCzM6m",
-            "Compendium.sw5e.speciesfeatures.wJFSLDUEjquBuKEx"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "White to light gray"
-    },
-    "hairColorOptions": {
-      "value": "Typically white but varies based on mood"
-    },
-    "eyeColorOptions": {
-      "value": "Typically blue, brown, or green"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Lagomorph, nimble, resilient"
-    },
-    "heightAverage": {
-      "value": "2'11\""
-    },
-    "heightRollMod": {
-      "value": "+2d4\""
-    },
-    "weightAverage": {
-      "value": "35 lb."
-    },
-    "weightRollMod": {
-      "value": "x1 lb."
-    },
-    "homeworld": {
-      "value": "Kushibah"
-    },
-    "slanguage": {
-      "value": "Kushiban"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002142,
-    "modifiedTime": 1692402505743,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796803,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!IFW7OxMukmMe7EN5"
 }

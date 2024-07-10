@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Inquisitor Technique</h1>\n<p>Across history, there have been those who live to hunt those who wield the Force, be they Jedi or Sith. Followers of the Inquisitor Technique combine technology with force techniques to track down and eliminate force-wielders. For those practitioners of the Force, they are the greatest adversary.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "inquisitortechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "1wKQWnCFIzJ01nes",
+        "_id": "1Aqa9fD9YcHqLV5Z",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.jj9RAChtCsbYa1eE",
-            "Compendium.sw5e.archetypefeatures.DENenKejHk5CSGI4"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.jj9RAChtCsbYa1eE",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.DENenKejHk5CSGI4",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "3DIYEb3ARN9met2F",
+        "_id": "13F5laetGNTO1oGm",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.wucg8tZ2hIeP6aGS"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.wucg8tZ2hIeP6aGS",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "lKvbTQjGsn4XlyaB",
+        "_id": "1EszmCOfGzff1nlW",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.laDuqBLNrPWVbk0p"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.laDuqBLNrPWVbk0p",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "1PmRfHQK1Sfj1tXd",
+        "_id": "1NZTvP9Rb9HzurQ5",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.3g7tveozmCHAkd5R"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.3g7tveozmCHAkd5R",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959734,
-    "modifiedTime": 1684819093622,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689313,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!KF8kUycWL7wOhhnO"
 }

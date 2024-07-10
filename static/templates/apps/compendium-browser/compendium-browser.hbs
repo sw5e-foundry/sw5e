@@ -3,16 +3,18 @@
         <a data-tab="landing-page" style="display:none"></a>
         <a data-tab="action">{{localize "SW5E.CompendiumBrowser.TabAction"}}</a>
         {{#if user.isGM}}
-            <a data-tab="bestiary">{{localize "SW5E.CompendiumBrowser.TabBestiary"}}</a>
+        <a data-tab="bestiary">{{localize "SW5E.CompendiumBrowser.TabBestiary"}}</a>
         {{/if}}
+        <a data-tab="classification">{{localize "SW5E.CompendiumBrowser.TabClassification"}}</a>
         <a data-tab="equipment">{{localize "SW5E.CompendiumBrowser.TabEquipment"}}</a>
         <a data-tab="feat">{{localize "SW5E.CompendiumBrowser.TabFeat"}}</a>
         {{#if user.isGM}}
-            <a data-tab="hazard">{{localize "SW5E.CompendiumBrowser.TabHazard"}}</a>
+        <a data-tab="hazard">{{localize "SW5E.CompendiumBrowser.TabHazard"}}</a>
         {{/if}}
-        <a data-tab="spell">{{localize "SW5E.CompendiumBrowser.TabSpell"}}</a>
+        <a data-tab="power">{{localize "SW5E.CompendiumBrowser.TabPower"}}</a>
+        <a data-tab="maneuver">{{localize "SW5E.CompendiumBrowser.TabManeuver"}}</a>
         {{#if user.isGM}}
-            <a data-tab="settings">{{localize "SW5E.CompendiumBrowser.TabSettings"}}</a>
+        <a data-tab="settings">{{localize "SW5E.CompendiumBrowser.TabSettings"}}</a>
         {{/if}}
     </nav>
     <section class="content">
@@ -21,69 +23,87 @@
         </div>
 
         {{#with action}}
-            <div class="tab browser" data-group="primary" data-tab="action">
-                <div class="spell-browser">
-                    {{> "sw5e.filters"}}
-                    <ul class="item-list result-list"></ul>
-                </div>
+        <div class="tab browser" data-group="primary" data-tab="action">
+            <div class="spell-browser">
+                {{> "sw5e.filters"}}
+                <ul class="item-list result-list"></ul>
             </div>
+        </div>
         {{/with}}
 
         {{#if user.isGM}}
-            {{#with bestiary}}
-                <div class="tab browser" data-group="primary" data-tab="bestiary">
-                    <div class="spell-browser">
-                        {{> "sw5e.filters"}}
-                        <ul class="item-list result-list"></ul>
-                    </div>
-                </div>
-            {{/with}}
+        {{#with bestiary}}
+        <div class="tab browser" data-group="primary" data-tab="bestiary">
+            <div class="spell-browser">
+                {{> "sw5e.filters"}}
+                <ul class="item-list result-list"></ul>
+            </div>
+        </div>
+        {{/with}}
         {{/if}}
 
-        {{#with equipment}}
-            <div class="tab browser" data-group="primary" data-tab="equipment">
-                <div class="spell-browser">
-                    {{> "sw5e.filters"}}
-                    <ul class="item-list result-list"></ul>
-                </div>
+        {{#with classification}}
+        <div class="tab browser" data-group="primary" data-tab="classification">
+            <div class="spell-browser">
+                {{> "sw5e.filters"}}
+                <ul class="item-list result-list"></ul>
             </div>
+        </div>
+        {{/with}}
+
+        {{#with equipment}}
+        <div class="tab browser" data-group="primary" data-tab="equipment">
+            <div class="spell-browser">
+                {{> "sw5e.filters"}}
+                <ul class="item-list result-list"></ul>
+            </div>
+        </div>
         {{/with}}
 
         {{#with feat}}
-            <div class="tab browser" data-group="primary" data-tab="feat">
-                <div class="spell-browser">
-                    {{> "sw5e.filters"}}
-                    <ul class="item-list result-list"></ul>
-                </div>
+        <div class="tab browser" data-group="primary" data-tab="feat">
+            <div class="spell-browser">
+                {{> "sw5e.filters"}}
+                <ul class="item-list result-list"></ul>
             </div>
+        </div>
         {{/with}}
 
         {{#if user.isGM}}
-            {{#with hazard}}
-                <div class="tab browser" data-group="primary" data-tab="hazard">
-                    <div class="spell-browser">
-                        {{> "sw5e.filters"}}
-                        <ul class="item-list result-list"></ul>
-                    </div>
-                </div>
-            {{/with}}
+        {{#with hazard}}
+        <div class="tab browser" data-group="primary" data-tab="hazard">
+            <div class="spell-browser">
+                {{> "sw5e.filters"}}
+                <ul class="item-list result-list"></ul>
+            </div>
+        </div>
+        {{/with}}
         {{/if}}
 
-        {{#with spell}}
-            <div class="tab browser" data-group="primary" data-tab="spell">
-                <div class="spell-browser">
-                    {{> "sw5e.filters"}}
-                    <ul class="item-list result-list"></ul>
-                </div>
+        {{#with power}}
+        <div class="tab browser" data-group="primary" data-tab="power">
+            <div class="spell-browser">
+                {{> "sw5e.filters"}}
+                <ul class="item-list result-list"></ul>
             </div>
+        </div>
+        {{/with}}
+
+        {{#with maneuver}}
+        <div class="tab browser" data-group="primary" data-tab="maneuver">
+            <div class="spell-browser">
+                {{> "sw5e.filters"}}
+                <ul class="item-list result-list"></ul>
+            </div>
+        </div>
         {{/with}}
 
         {{#if user.isGM}}
-            {{#with settings}}
-                <div class="tab settings" data-group="primary" data-tab="settings">
-                    {{> "systems/sw5e/templates/compendium-browser/browser-settings.hbs"}}
-                </div>
-            {{/with}}
+        {{#with settings}}
+        <div class="tab settings" data-group="primary" data-tab="settings">
+            {{> "systems/sw5e/templates/compendium-browser/browser-settings.hbs"}}
+        </div>
+        {{/with}}
         {{/if}}
     </section>
 </div>

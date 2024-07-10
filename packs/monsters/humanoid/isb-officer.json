@@ -20,50 +20,54 @@
       "system": {
         "description": {
           "value": "<p>The infiltrator halves the damage that it takes from an attack that hits it.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "reaction",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -80,7 +84,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -89,10 +93,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -104,7 +114,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!JqYNRvkcdnCW9i7K.ZGVmOGY2YzU2ODQy"
     },
     {
       "_id": "ZmYyODExOTkyMTk4",
@@ -118,50 +129,54 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>The Officer makes two attacks.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -178,7 +193,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -187,10 +202,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -202,7 +223,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!JqYNRvkcdnCW9i7K.ZmYyODExOTkyMTk4"
     },
     {
       "_id": "MTc1YWIwZWMzMWE1",
@@ -216,37 +238,41 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Ranged Weapon Attack </em>+6, Range 40/160 ft., One target. <em>Hit : </em>6 (1d6+3) energy damage.</p><p></p><p></p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 40,
@@ -255,22 +281,23 @@
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "rwak",
-        "attackBonus": 7,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -301,11 +328,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
-        "baseItem": "",
+        "weaponClass": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -314,61 +339,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "7",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -380,7 +370,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!JqYNRvkcdnCW9i7K.MTc1YWIwZWMzMWE1"
     },
     {
       "_id": "MTBmOTdiNDgyOTVl",
@@ -394,11 +385,12 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>The Officer rallies his troops, giving all allies within 60 feet advantage on their next attack roll.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "action",
           "cost": 1,
@@ -409,11 +401,13 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": null,
@@ -422,22 +416,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -463,10 +458,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -478,7 +479,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!JqYNRvkcdnCW9i7K.MTBmOTdiNDgyOTVl"
     }
   ],
   "effects": [],
@@ -495,92 +497,56 @@
       "str": {
         "value": 8,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -1,
-        "save": -1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 9
+        }
       },
       "dex": {
         "value": 16,
         "proficient": 1,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 5,
-        "prof": 2,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 13
+        }
       },
       "con": {
         "value": 10,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "int": {
         "value": 15,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "wis": {
         "value": 13,
         "proficient": 1,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 3,
-        "prof": 2,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "cha": {
         "value": 15,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "hon": {
         "value": 15,
@@ -588,7 +554,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 13,
@@ -596,41 +563,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 16,
         "calc": "natural",
-        "formula": "light combat suit, medium shield",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 44,
         "max": 44,
         "temp": 0,
         "tempmax": 0,
-        "formula": "8d10",
-        "min": 0
+        "formula": "8d10"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 3,
-        "prof": 0,
-        "total": 3
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -653,16 +616,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -671,16 +627,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -691,57 +640,49 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 2,
-      "powerdc": 10,
-      "bar1": {
-        "value": 44,
-        "min": 0,
-        "max": 44
-      },
-      "bar2": {
-        "value": 16,
-        "min": 0,
-        "max": 0
-      },
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false,
-      "encumbrance": {
-        "value": 1,
-        "max": 120,
-        "pct": 0.8333333333333334,
-        "encumbered": true
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
       },
-      "powerForceLightDC": 11,
-      "powerForceDarkDC": 12,
-      "powerForceUnivDC": 12,
-      "powerTechDC": 12
+      "hd": {
+        "spent": 0
+      },
+      "slowed": 0
     },
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"The Imperial Security Bureau pays attention to patterns.\"</i></p><p>- Agent Alexsandr Kallus, to Cumberlayne Aresko</p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Organization type</u></td><td style=\"line-height:1.42857\"><ul><li>Law enforcement agency</li><li>Intelligence agency</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Founder(s)</u></td><td style=\"line-height:1.42857\">Galactic Emperor Sheev Palpatine</td></tr><tr><td style=\"line-height:1.42857\"><u>Leader(s)</u></td><td style=\"line-height:1.42857\"><ul><li>Unidentified Director</li><li>Deputy Director Harus Ison</li><li>Colonel Wullf Yularen</li><li>ISB high command</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Sub-group(s)</u></td><td style=\"line-height:1.42857\"><ul><li>Enforcement</li><li>Imperial Military Department of Advanced Weapons Research</li><li>Internal Affairs</li><li>Interrogation</li><li>Investigations</li><li>Re-Education</li><li>Special Operations</li><li>Surveillance</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Headquarters</u></td><td style=\"line-height:1.42857\">ISB Central Office, Coruscant</td></tr><tr><td style=\"line-height:1.42857\"><u>Location(s)</u></td><td style=\"line-height:1.42857\"><ul><li>Imperial Office of Security, Scarif</li><li>Imperial Security Bureau headquarters, Lothal</li><li>ISB Academy and Offices, Coruscant</li><li>Killun Station, Killun</li><li>Scarif vault, Scarif</li><li>Viper's Nest, Virkoi</li><li>Wretch of Tayron, <span style=\"background-color:transparent\">Tayron</span></li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Date founded</u></td><td style=\"line-height:1.42857\">19 BBY</td></tr><tr><td style=\"line-height:1.42857\"><u>Date fragmented</u></td><td style=\"line-height:1.42857\"><p>4 ABY, after the battle of Endor</p></td></tr><tr><td style=\"line-height:1.42857\"><u>Date dissolved</u></td><td style=\"line-height:1.42857\">5 ABY</td></tr><tr><td style=\"line-height:1.42857\"><u>Affiliation</u></td><td style=\"line-height:1.42857\">Galactic Empire (Select Committee)</td></tr></tbody></table><p>The Imperial Security Bureau (ISB), also referred to as the Imperial Security Office, Security Bureau, or Imperial Security, was a law-enforcement and intelligence agency of the Galactic Empire that was charged with matters of internal state security and ensuring the loyalty of citizens to the Empire. Aside from that, it happened to be one of the many umbrella organizations under the greater Commission for the Preservation of the New Order (COMPNOR), and was larger than its sister agency Imperial Intelligence. It was led by ISB high command.<br /></p><blockquote>History</blockquote><p><b>Early growth</b></p><p>The Imperial Security Bureau was formed by Galactic Emperor Palpatine as a secret police organization, dedicated to rooting out enemies of the New Order and maintaining stability throughout Imperial territories shortly after the proclamation of the New Order. Within fourteen years, the organization grew from a handful of agents into an organization double the size of Imperial Intelligence.</p><p>Following the Clone Wars, the agency helped oversee the dismantling of Confederate warships and martial supplies. Concurrent loyalty purges saw vast amounts of Separatist propaganda destroyed, rescinded, and withheld. Only a handful of propaganda posters such as Ansibella Delu's Count Dooku: Words of Truth escaped the purges. When Art Group agents discovered egregious violations of its artistic tenets, agents of the ISB were called in to make troublesome artists disappear.</p><p>Five years into the Emperor's reign, Imperial Intelligence agents found a cache of communications devices on the remote world of Murkhana and referred the case to the ISB, who brought the matter to the Emperor and his Imperial Ruling Council. It was ultimately decided to send Wilhuff Tarkin and Darth Vader to investigate the cache, which was in reality set up by a small rebel cell, despite the ISB hoping to receive full oversight of the investigation from Imperial Intelligence and the Naval Intelligence Agency.</p><p><b>Fighting the Rebellion</b></p><p>One of the ISB's top members was Agent Kallus, who worked in both the Investigation and Internal Affairs branches of the organization and searched for signs of disloyal activity or insurgency. His primary mission was to ensure it did not spread into a full-scale rebellion against the Empire. In the fifteenth year of the Empire, the Imperial Security Bureau took special interest in the Lothal-based Spectres rebel cell, whose attacks on Imperial outposts revealed risks of sedition and gave warning signs of rebellion. Kallus became a perennial foe of the Spectres before striking an unlikely friendship with the Lasat Spectre Garazeb Orrelios, which led him to reconsider his allegiance to the Empire. Kallus subsequently became the rebel operative known as Fulcrum, who supplied the Phoenix Cell and Spectres with intelligence.</p><p>During Nightswan's campaign, ISB Colonel and Clone Wars veteran Wullf Yularen took an interest in investigating the shadowy insurgent leader and pirate known as Nightswan. He was assisted by the Imperial Navy officers Thrawn and Eli Vanto, and future Lothal Governor Arihnda Pryce. Together, they exposed Nightswan's Coruscant spy ring, which included the Higher Skies Advocacy Group and members of the Yinchom Dojo. During the siege of the Creekpath Mining and Refining complex on Batonn, Pryce convinced Yularen to let her accompany Agent Gudry on a mission to disable the Batonn insurgents' deflector shield generator. After Pryce killed Gudry for refusing to evacuate her parents before Thrawn's assault, Pryce blew up the mine's explosive cache to cover up Gudry's murder. This led to many civilian casualties on Batonn, horrifying both Yularen and Thrawn.</p><p>Later, Kallus helped the Spectres steal Thrawn's TIE/D Defender blueprints from the Imperial Armory Complex on Lothal. This led Thrawn to realize that the rebels had a mole within the Imperial ranks.Thrawn began screening the local Imperial sector command for the spy with the help of Yularen. To avoid discovery, Kallus framed Lieutenant Yogar Lyste. Despite Kallus' efforts, Thrawn realized that Kallus was the true spy but allowed him to continue operating in order to find Phoenix Squadron's rebel base. Thrawn subsequently tricked Kallus into exposing the location of Chopper Base by disclosing information about the Rebel Alliance's plans to attack the Imperial Armory Complex. However, Kallus managed to escape during the Battle of Atollon and officially joined the Alliance.</p><p>After Senator Mon Mothma resigned from the Imperial Senate and condemned Palpatine for his actions during the Ghorman Massacre, the ISB issued an alert for Mothma in an attempt to capture her. ISB agents also visited Cantham House on Coruscant, the meeting place of the Cantham House meetings, based on suspicions they had, and questioned Leia Organa and several others there.</p><p>Another ISB agent was loyalty officer Sinjir Rath Velus, who was recruited by ISB officer Sid Uddra. After a brutal period of training on the ocean world of Virkoi, Velus personally interrogated the traitorous Imperial Navy officer Lieutenant Alster Grove, who was part of a cabal that sought to assassinate Darth Vader. Velus interrogated Grove, who revealed his fellow conspirators. While Vader executed the other conspirators, Uddra threw Grove to his death in Virkoi's oceans.</p><p><b>Galactic Civil War</b></p><p>Following the destruction of the first Death Star, the ISB engaged in an increasing number of operations to root out the growing rebellion, and became busier than at any previous time in its history. These operations included a plan to sway mathematical genius Drusil Bephorin to the Empire's cause by keeping her in a sort of luxurious imprisonment on Denon. Project Hidden Eye was aimed at seeding sleeper operatives across the galaxy to spread propaganda and secretly report on citizens. The project, however, was cut short due to the intervention of Commander Luke Skywalker, a hero of the Rebel Alliance.</p><p><b>Post-Endor fragmentation</b></p><p>As with most other governmental agencies following the Empire's defeat at the Battle of Endor, the ISB was left scattered as the New Republic attacked distant ISB outposts and fomented dissent. Twenty days after the Battle of Endor, the ISB kept information on the Emperor's posthumous contingency plan on one of its Black Sites, the Wretch of Tayron. However, the base was taken by Rebel Alliance General Han Solo and his elite Pathfinders. The base commander was unable to initiate a data purge, and the Alliance obtained information on Operation: Cinder, thwarting attempts at its implementation for over three months.</p><p>In the months following Endor, the ISB was given full oversight over the security of the Imperial throneworld, Coruscant, after the Imperial Navy refused to provide ships to defend the planet, with Fleet Admiral Gallius Rax viewing it as a symbol of indolence and torpidity. As such, control of Imperial forces was left to the Empire's chief administrator, Grand Vizier Mas Amedda. While the ISB lacked the ships to effectively withstand a New Republic naval assault, ISB-loyal stormtroopers and personnel were deeply entrenched on the surface of the planet, which was already involved in a civil war between the ISB and New Republic–backed resistance movements.</p><p>Velus joined a team of Imperial hunters led by the New Republic starfighter pilot Norra Wexley after defecting to the New Republic. After losing his family during a New Republic attack on the Hyborean Moon, Romwell Krass Junior abandoned his post and traveled the galaxy to grieve the loss of his loved ones. During the Battle of Jakku, Commander Brisney served as the ISB officer aboard the Imperial Star Destroyer Inflictor.</p><p><b>Legacy</b></p><p>By 28 ABY, the Imperial Security Bureau had ceased to exist along with the \"Old Empire.\" One former ISB officer was Arliz Hadrassian, a small-time businesswoman who was the leader of the Amaxine warriors, a paramilitary faction that served as a front group for the First Order, a remnant of the Old Empire based in the Unknown Regions. During a meeting with the Centrist senator Ransolm Casterfo, Hadrassian spent hours regaling the young senator with stories about her career in the Imperial Military and the ISB, unaware that he was part of Senator Leia Organa's investigation into the Amaxine warriors.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Organization</h3><p><b>Command hierarchy and administration</b></p><p>The Imperial Security Bureau was a sister agency and rival to Imperial Intelligence. The ISB worked closely with Emperor Palpatine, being led five years into his reign by a Bureau Chief under which served Deputy Director Harus Ison and Colonel Yularen, who often operated in conjunction with the Joint Chiefs. ISB was sometimes attached to various fleets, sometimes falling under the command of the Navy and working alongside Naval intelligence. Members of the ISB worked from the ISB Central Office as part of the Federal District on Coruscant, while agents in the field would constantly provide intelligence updates to headquarters. The ISB high command governed the ISB. Many military officers feared the group and its power.</p><p><b>Personnel</b></p><p>Prospective ISB personnel were drawn from the Imperial Academy system and given training within the ISB Academy and Offices complex, located within the Verity District on Coruscant. Members went through a training regimen which included learning xenophobic propaganda, and were taught from the ISB Loyalty Manual. Members of the ISB were taught a specialized vocabulary to prevent outsiders from understanding their conversations. The term \"auditing\" was used to signal that suspects knew they were being investigated. The practice of provoking a suspect to commit a crime was referred to as \"crustbusting,\" and interrogating a supposed innocent in hopes he or she would react suspiciously was known as \"scattering.\" Framing a wanted suspect for a crime to make sure he or she would be arrested was referred to as \"Jabba.\"</p><p>Following completion of the Academy, recruits filed into one of several branches of the organization, such as Surveillance, Interrogation, and Re-Education.</p><p>High-ranking ISB agents could command stormtrooper squads, override orders of civilian and military authorities, replace questionable officers and commandeer Imperial military hardware, including Star Destroyers. Loyalty officers of the ISB were tasked with ensuring that regular troops and officers obeyed orders and conformed to Imperial ideology, and were regarded with great fear and respect. Impromptu inspections, undercover surveillance and seemingly limitless authority gave such officers unprecedented access to the lives of regular servicemen, creating a culture of fear to deter any tenuous links within the chain of command.</p><p>While most ISB agents were human, at least one Gotal named Barrisk Favvin worked as an ISB agent in the Kupohan city of Tonekh.</p><p><b>Enforcement</b></p><p>The Enforcement branch of the ISB served as backup for agents in the field, specially trained to provide support when necessary.</p><p><b>Interrogation</b></p><p>Interrogation was the second-largest branch in the ISB, and was intent on extracting information from various lifeforms to obtain valuable information. It claimed to have a 95 percent success rate in recovering useful data from questioned subjects. To that end, the ISB notably used IT-O Interrogation Units developed by the Imperial Department of Military Research.</p><p><b>Re-Education</b></p><p>The Re-Education division was focused on what some called \"brainwashing\" its subjects into supporting the Galactic Empire and its actions across the galaxy. Project Unity consisted of re-educating elements of society resistant to the New Order through a process of psychological manipulation and pharmaceutical conditioning.</p><p><b>Imperial Military Department of Advanced Weapons Research</b></p><p>Advanced Weapons Research was an agency responsible for special research and development of classified weapons, both before and during the Galactic Civil War. Weapons development fell under the arm of Imperial Intelligence while the Imperial Security Bureau defended the agency's secrets.</p><p><b>Internal Affairs</b></p><p>The Internal Affairs division maintained order by investigating possible instances of insubordination within the Empire, with Yularen briefly heading a division dedicated to exposing sedition within the Imperial Senate before becoming Deputy Director of the Naval Intelligence Agency. In addition, a single Internal Affairs officer was stationed aboard all Star Destroyers to investigate any signs of sedition among the crew.</p><p><b>Investigation</b></p><p>Those in Investigation used previously collected data to suppress rebel activity.</p><p><b>Special Operations</b></p><p>Blue Glass Arrow Main article: Special Operations (Imperial Security Bureau)</p><p>The Special Operations division was responsible for varying tasks within the Bureau, such as establishing Project Hidden Eye during the Galactic Civil War.</p><p><b>Surveillance</b></p><p>Operatives in the Surveillance branch were by far the most numerous, with its members focused on deciphering encrypted information and analyzing data to screen for potential threats against the New Order.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Lawful Dark",
-      "species": "",
+      "species": null,
       "type": {
         "value": "humanoid",
         "subtype": "",
@@ -753,13 +694,9 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 700
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 3
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "med",
@@ -787,15 +724,14 @@
           "basic"
         ],
         "custom": "One Other Of Your Choice"
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -805,11 +741,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -818,11 +754,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 0,
@@ -831,11 +767,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -844,11 +780,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0,
@@ -857,11 +793,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -870,11 +806,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -883,11 +819,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -896,11 +832,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2,
-        "passive": 12
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -909,11 +845,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -922,11 +858,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -935,11 +871,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2,
-        "passive": 12
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 1,
@@ -948,11 +884,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 13,
-        "prof": 2,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -961,11 +897,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 1,
@@ -974,11 +910,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 14,
-        "prof": 2,
-        "total": 4
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -987,11 +923,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0,
@@ -1000,11 +936,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -1013,11 +949,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -1026,108 +962,80 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2,
-        "passive": 12
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
+    "tools": {},
     "powers": {
       "power1": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1240,14 +1148,17 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": []
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493984129,
-    "modifiedTime": 1685840636784,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552768042,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!actors!JqYNRvkcdnCW9i7K"
 }

@@ -11,43 +11,51 @@
       "timestamp": "2023-03-09T01:52:06.1067123+00:00",
       "importer_version": 3,
       "uid": "Equipment.name-durafiber_battle_armor.equipmentCategory-armor"
+    },
+    "sw5e": {
+      "migratedProperties": [
+        "stealthDisadvantage"
+      ]
     }
   },
   "system": {
     "description": {
       "value": "<h3>Bulky</h3>\n<p>While wearing armor with this property, you have disadvantage on Dexterity (Stealth) checks that rely on sound.</p>\n<h3>Strength 11</h3>\n<p>While wearing armor or wielding a shield with this property, your speed is reduced by 10 unless your Strength score meets or exceeds the strength number. </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 55,
+    "weight": {
+      "value": 55,
+      "units": "lb"
+    },
     "price": {
       "value": 6750,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
-      "units": ""
+      "value": "",
+      "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -56,20 +64,24 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -82,8 +94,8 @@
     },
     "armor": {
       "value": 15,
-      "type": "heavy",
-      "dex": 0
+      "dex": 0,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -122,33 +134,50 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "baseItem": "durafiberbattlearmor",
     "speed": {
       "value": null,
       "conditions": ""
     },
     "strength": null,
-    "stealth": true,
-    "properties": {
-      "Bulky": true,
-      "Strength": 11
-    },
+    "properties": [
+      "Bulky",
+      "Strength",
+      "stealthDisadvantage"
+    ],
     "proficient": null,
-    "weaponType": ""
+    "type": {
+      "value": "heavy",
+      "baseItem": "durafiberbattlearmor"
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "_propertyValues": {
+      "Bulky": true,
+      "Strength": 11,
+      "stealthDisadvantage": true
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493960310,
-    "modifiedTime": 1693589988061,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720553652466,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!m01q2YV9PHM2udfb"
 }

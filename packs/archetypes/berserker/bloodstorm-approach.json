@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Bloodstorm Approach</h1>\n<p>The Bloodstorm Approach is said to have originated from the ancient wookiee Hroufrasnooohn clan (which loosely translates to Bloodstorm in Galactic Basic), whose warriors performed gravity-defying feats with their flying vibroaxes through a combination of unorthodox techniques and a mystical belief in their own abilities. A berserker who follows this approach can hurl their devastating weapons at enemies with such power and skill that it completely blurs the line between melee and ranged combat.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "bloodstormapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "HgfRvmRcTUF1AS1T",
+        "_id": "LvFMBDqrSOiJ7T2y",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.a4zSRZYJfNv0a4fP",
-            "Compendium.sw5e.archetypefeatures.7hrUI1fmnFMx4MTf"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.a4zSRZYJfNv0a4fP",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.7hrUI1fmnFMx4MTf",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "11qEKIiSwFcaC8ct",
+        "_id": "Ox31Kej037L7F3sc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.w9kmr36IxzwXq7Ac"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.w9kmr36IxzwXq7Ac",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "nJAURzcZaSE1v8ty",
+        "_id": "FCEJGUqKdlX1nHbM",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.jL3qsXtVhhJaNU8D"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.jL3qsXtVhhJaNU8D",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "qt9ZlPfNhCm32lRS",
+        "_id": "5DxTVthEYdZloLmI",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.3lqydI4v73szourv"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.3lqydI4v73szourv",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959769,
-    "modifiedTime": 1684819093624,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689814,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!nKQCzSeJg7i61pO5"
 }

@@ -7,11 +7,12 @@
   "system": {
     "description": {
       "value": "<p>Any creature other than a {creature} that starts its turn within 10 feet of the {creature} must succeed on a DC 15 Constitution saving throw or be poisoned until the start of the creature's next turn. On a successful saving throw, the creature is immune to the stench of any {creature} for 1 hour.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "action",
       "cost": null,
@@ -22,11 +23,13 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": 10,
+      "value": "10",
       "width": null,
       "units": "ft",
-      "type": "creature"
+      "type": "creature",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -35,22 +38,23 @@
     },
     "uses": {
       "value": null,
-      "max": "0",
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "Poisoned until start of creature's next turn.",
     "critical": {
       "threshold": null,
-      "damage": null
+      "damage": ""
     },
     "damage": {
       "parts": [],
@@ -67,7 +71,7 @@
       "subtype": ""
     },
     "recharge": {
-      "value": 0,
+      "value": null,
       "charged": false
     },
     "attributes": {
@@ -76,23 +80,30 @@
         "turn": null
       }
     },
-    "powercasting": {
-      "force": "none",
-      "tech": "none"
-    }
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1669753340749,
-    "modifiedTime": 1685840641053,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368815814,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "folder": null,
   "sort": 0,
-  "_id": "Glju3bjFty4WM22f"
+  "_id": "Glju3bjFty4WM22f",
+  "_key": "!items!Glju3bjFty4WM22f"
 }

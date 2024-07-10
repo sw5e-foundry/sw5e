@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p>When your companion takes the Help action and helps you, you gain temporary hit points equal to your guardian level that last until the start of your next turn. When you take the Help action and help your companion, it gains temporary hit points equal to your guardian level that last until the start of its next turn.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Vonil/Ishu Form (Companion)) 15",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -27,11 +28,13 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,23 +45,33 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
-    "actionType": "other",
-    "attackBonus": "",
+    "actionType": "heal",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
     },
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "@classes.guardian.levels",
+          "temphp"
+        ],
+        [
+          "@classes.guardian.levels",
+          "temphp"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
@@ -80,7 +93,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +113,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438438,
-    "modifiedTime": 1685840600006,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368701027,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "Y0FyqlJ5Zuyecwqi"
+  "_id": "Y0FyqlJ5Zuyecwqi",
+  "_key": "!items!Y0FyqlJ5Zuyecwqi"
 }

@@ -2,7 +2,7 @@
   "name": "Oxygen tank",
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:13.4284665+00:00",
+      "timestamp": "2023-05-30T20:15:25.5177592+00:00",
       "importer_version": 3,
       "uid": "Loot.name-oxygen_tank.equipmentCategory-lifesupport"
     }
@@ -12,22 +12,32 @@
   "system": {
     "description": {
       "value": null,
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "quantity": 1,
-    "weight": 20,
+    "weight": {
+      "value": 20,
+      "units": "lb"
+    },
     "price": {
       "value": 100,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false
+    "unidentified": {
+      "description": ""
+    },
+    "properties": [],
+    "_propertyValues": {},
+    "container": null,
+    "type": {
+      "value": "gear",
+      "subtype": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -37,11 +47,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1684819087914,
-    "modifiedTime": 1684819087914,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720402001043,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "EOo6M0iZNE7GMeGy"
+  "_id": "EOo6M0iZNE7GMeGy",
+  "_key": "!items!EOo6M0iZNE7GMeGy"
 }

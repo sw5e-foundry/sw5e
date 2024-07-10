@@ -1,57 +1,58 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
         <div class="composed-icon profile">
-            {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}"/>{{/if}}
-            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
-            {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}"/>{{/if}}
+            {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}" />{{/if}}
+            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img">
+            {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}" />{{/if}}
         </div>
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+                {{#if system.identified}}
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}">
+                {{else}}
+                <input name="system.unidentified.name" type="text" value="{{system.unidentified.name}}"
+                    placeholder="{{ localize 'SW5E.NameUnidentified' }}">
+                {{/if}}
             </h1>
 
             <div class="item-subtitle">
                 <h4 class="item-type">{{itemType}}</h4>
+                <label class="identified">
+                    <input type="checkbox" name="system.identified" {{checked system.identified}}>
+                    {{#if system.identified}}
+                    {{ localize "SW5E.Identified" }}
+                    {{#if editable}}<i class="fa-solid fa-toggle-on"></i>{{/if}}
+                    {{else}}
+                    {{ localize "SW5E.Unidentified.Title" }}
+                    {{#if editable}}<i class="fa-solid fa-toggle-off"></i>{{/if}}
+                    {{/if}}
+                </label>
                 <span class="item-status">{{itemStatus}}</span>
             </div>
 
             <ul class="summary flexrow">
                 <li>
-                    <select name="system.system.value">
-                        {{selectOptions config.ssModSystems selected=system.system.value}}
+                    <select name="system.type.value">
+                        {{selectOptions config.ssModSystems selected=system.type.value}}
                     </select>
                 </li>
                 <li>
-                    <input
-                        type="text"
-                        data-dtype="Number"
-                        name="system.grade.value"
-                        value="{{system.grade.value}}"
-                        placeholder="0"
-                        data-tooltip="SW5E.ModGrade"
-                    />
+                    <input type="text" data-dtype="Number" name="system.grade.value" value="{{system.grade.value}}"
+                        placeholder="0" data-tooltip="SW5E.ModGrade" />
                 </li>
                 <li>
-                    <input
-                        type="text"
-                        data-dtype="Number"
-                        name="system.basecost.value"
-                        value="{{system.basecost.value}}"
-                        placeholder="{{ lookup config.ssModSystemsBaseCost system.system.value }}"
-                        data-tooltip="{{ labels.cost }}"
-                    />
+                    <input type="text" data-dtype="Number" name="system.baseCost.value"
+                        value="{{system.baseCost.value}}" placeholder="{{ system.baseCost.default }}"
+                        data-tooltip="{{ labels.cost }}" />
                 </li>
             </ul>
             <ul class="summary flexrow">
                 <li>
-                    <input
-                        type="text"
-                        name="system.prerequisites.value"
-                        value="{{system.prerequisites.value}}"
-                        placeholder="{{ localize 'SW5E.PrerequisitePl' }}"
-                    />
+                    <input type="text" name="system.prerequisites.value" value="{{system.prerequisites.value}}"
+                        placeholder="{{ localize 'SW5E.PrerequisitePl' }}" />
                 </li>
             </ul>
         </div>
@@ -68,7 +69,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "sw5e.item-description"}}
+        {{> "sw5e.item-description" hidePrice="true"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -76,14 +77,17 @@
 
             <div class="form-group stacked">
                 <label class="checkbox">
-                    <input type="checkbox" name="system.equipped" {{checked system.equipped}} /> {{ localize "SW5E.Installed"}}
+                    <input type="checkbox" name="system.equipped" {{checked system.equipped}} /> {{ localize
+                    "SW5E.Installed"}}
                 </label>
                 <label class="checkbox">
-                      <input type="checkbox" name="system.free.slot" {{checked system.free.slot}} /> {{ localize "SW5E.ModFreeSlot"}}
+                    <input type="checkbox" name="system.free.slot" {{checked system.free.slot}} /> {{ localize
+                    "SW5E.ModFreeSlot"}}
                 </label>
-                {{#if (eq system.system.value "Suite")}}
+                {{#if (eq system.type.value "Suite")}}
                 <label class="checkbox">
-                      <input type="checkbox" name="system.free.suite" {{checked system.free.suite}} /> {{ localize "SW5E.ModFreeSuite"}}
+                    <input type="checkbox" name="system.free.suite" {{checked system.free.suite}} /> {{ localize
+                    "SW5E.ModFreeSuite"}}
                 </label>
                 {{/if}}
             </div>

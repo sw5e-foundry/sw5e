@@ -1,15 +1,13 @@
 {
-  "_id": "9GRMJmEd2PiwZOyv",
   "name": "Boarding Pods",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Suite.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>This suite adds boarding pods to your ship. Boarding pods are designed to be fired at a ship, burrow into the ship's hull, and inject host droids to overcome the target ship. Each boarding pod can support ten Medium or smaller droids. The quantity of boarding pods is equal to one-hundredth of the ship's suite capacity, as shown in the @JournalEntry[Mnvw9iBw8gxgfCXw]{Starship Size Suite Capacity}&nbsp;table.</p>\n<p>Boarding pods are Small size and have a flying speed of 200 feet, a turning speed of 100 feet, an AC of 12, and 10 hull points. Boarding pods do not have weapons, but the pilot can take the Ram action. The DC for the saving throw is 12, and the target has disadvantage. On a failure, the ship takes 2d4 kinetic damage, and the pod burrows into the ship's hull, releasing its contents on the target ship.</p>",
+      "value": "<p>This suite adds boarding pods to your ship. Boarding pods are designed to be fired at a ship, burrow into the ship's hull, and inject host droids to overcome the target ship. Each boarding pod can support ten Medium or smaller droids. The quantity of boarding pods is equal to one-hundredth of the ship's suite capacity, as shown in the Starship Size Suite Capacity table.</p><p>Boarding pods are Small size and have a flying speed of 200 feet, a turning speed of 100 feet, an AC of 12, and 10 hull points. Boarding pods do not have weapons, but can take the Ram action. The DC for the saving throw is 12, and the target has disadvantage. On a failure, the ship takes 2d4 kinetic damage, and the pod burrows into the ship's hull, releasing its contents on the target ship.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -38,6 +36,7 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -82,14 +81,11 @@
       "charged": false,
       "value": null
     },
-    "system": {
-      "value": "Suite"
-    },
     "grade": {
-      "value": "NA"
+      "value": 0
     },
-    "basecost": {
-      "value": "5000"
+    "baseCost": {
+      "value": null
     },
     "prerequisites": {
       "value": "Ship size Large or larger"
@@ -104,53 +100,28 @@
       "dex": null
     },
     "proficient": false,
-    "properties": {
-      "Absorptive": false,
-      "Agile": false,
-      "Anchor": false,
-      "Avoidant": false,
-      "Barbed": false,
-      "Bulky": false,
-      "Charging": false,
-      "Concealing": false,
-      "Cumbersome": false,
-      "Gauntleted": false,
-      "Imbalanced": false,
-      "Impermeable": false,
-      "Insulated": false,
-      "Interlocking": false,
-      "Lambent": false,
-      "Lightweight": false,
-      "Magnetic": false,
-      "Obscured": false,
-      "Obtrusive": false,
-      "Powered": false,
-      "Reactive": false,
-      "Regulated": false,
-      "Reinforced": false,
-      "Responsive": false,
-      "Rigid": false,
-      "Silent": false,
-      "Spiked": false,
-      "Strength": false,
-      "Steadfast": false,
-      "Versatile": false
-    },
+    "properties": [],
     "attributes": {
       "dr": ""
     },
     "strength": null,
-    "stealth": false
-  },
-  "ownership": {
-    "default": 0
+    "stealth": false,
+    "type": {
+      "value": "Suite"
+    }
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494018627,
-    "modifiedTime": 1685840666087,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1706199587851,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "zPuVNdRUGzJ4FAML",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!zPuVNdRUGzJ4FAML"
 }

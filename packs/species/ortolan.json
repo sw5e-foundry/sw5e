@@ -1,106 +1,5 @@
 {
-  "_id": "sUIVVJzeUIAm51ZB",
   "name": "Ortolan",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Ortolan.webp",
-  "effects": [
-    {
-      "_id": "Dh3FLNKo1HFJ7pqF",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Ortolan",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "sm",
-          "mode": 0,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "25",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.skills.prf.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "ortolan",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.toolProf.value",
-          "value": "music",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.grovelCowerAndBeg",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.undersized",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Ortolan.webp",
-      "label": "Ortolan",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2871287+00:00",
@@ -108,45 +7,153 @@
       "uid": "Species.name-ortolan"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Ortolan.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Ortolans are squat, heavily-built humanoid bipeds with long, trunklike noses and beady black eyes. They possess floppy ears, which are extremely sensitive to sound waves. They have two hands, each ending in four chubby fingers and a thumb, which is not opposable. A thick, baggy hide covered in fuzz resembling velvet hangs off of the Ortolan body. Ortolans have a keen sense of smell to help them forage for food. In fact, they are handicapped in their business affairs by their attachment to food, sometimes accepting otherwise unfavorable contracts when promised enough to eat. Their twin obsessions are food and music; offworld, many Ortolans find success as chefs or musicians. </p>\n<h2>Society and Culture</h2>\n<p>Ortolan society is reasonably industrialised, though not as technologically advanced as other species. Despite this, their economy is mostly based on barter, with credits primarily used to trade with offworlders. Education is the responsibility of their parents, though gifted youngsters are often traded to other families to get specialized education. </p>\n<p>While most Ortolans appear to have blue skin, Ortolans are actually covered in short velvety fur which they often dyed in bright colors, most often blue and pink.  This tradition began when a Devaronian trader tried to sell Ortolans a shipment of food dyes—they considered dyeing their food a waste of time, but found dyed fur to be quite stylish.</p>\n<h2>Names</h2>\n<p>Ortolan names are generally short with big sounds. Female names are typically softer. Surnames are familial.</p>\n<p><strong>Male names.</strong> Donmb, Hegh, Nax, Parm, Teeb</p>\n<p><strong>Female names.</strong> Bedla, Folfe, Nelni, Phoff, Sallo</p>\n<p><strong>Surnames.</strong> Bigek, Lubum, Nad, Rojool, Somo </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "ortolan",
-    "advancement": [
-      {
-        "_id": "IiykoPOEH4Xnb1QX",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.M9qhRFNkEBPbe3O5",
-            "Compendium.sw5e.speciesfeatures.fvYImF9CpZzBtZW8",
-            "Compendium.sw5e.speciesfeatures.mHfe5F7RwDtpidf4",
-            "Compendium.sw5e.speciesfeatures.NV0u2HkRL1shO8kD",
-            "Compendium.sw5e.speciesfeatures.6jy5C380QjZ8pjfu",
-            "Compendium.sw5e.speciesfeatures.UfsD9dRbde81vIlf",
-            "Compendium.sw5e.speciesfeatures.nxG6tQZVqxlewa9y",
-            "Compendium.sw5e.speciesfeatures.yiuqFkqHeZvgxQgQ",
-            "Compendium.sw5e.speciesfeatures.BZXJpfPeX9yifA6R",
-            "Compendium.sw5e.speciesfeatures.gZ7vVsENhBIs5VLY",
-            "Compendium.sw5e.speciesfeatures.l2eesnUngVUEj9um",
-            "Compendium.sw5e.speciesfeatures.TO7SF3LqXfPqk5dR"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1F3en7UL32Wm1rdD",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.M9qhRFNkEBPbe3O5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fvYImF9CpZzBtZW8",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mHfe5F7RwDtpidf4",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.NV0u2HkRL1shO8kD",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6jy5C380QjZ8pjfu",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.UfsD9dRbde81vIlf",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.nxG6tQZVqxlewa9y",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yiuqFkqHeZvgxQgQ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BZXJpfPeX9yifA6R",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.gZ7vVsENhBIs5VLY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.l2eesnUngVUEj9um",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TO7SF3LqXfPqk5dR",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "7SNcCHD02IK1ul1L",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "cha": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "BmZ7DZfTYO6rEJFL",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "h0RZpenlnlK48UWD",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:music:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:prf"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Light colors"
     },
@@ -157,7 +164,7 @@
       "value": "Yellow"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Stocky builds, trunklike noses, floppy ears, small mouths, brightly dyed fur"
@@ -179,17 +186,142 @@
     },
     "slanguage": {
       "value": "Ortolan"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "2qQDQApwHSwk85jt",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Ortolan",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 0,
+          "value": "sm",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "25",
+          "priority": 5
+        },
+        {
+          "key": "system.skills.prf.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "ortolan",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.toolProf.value",
+          "mode": 0,
+          "value": "music",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.undersized",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Ortolan.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.sUIVVJzeUIAm51ZB.ActiveEffect.Dh3FLNKo1HFJ7pqF"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.sUIVVJzeUIAm51ZB",
+      "name": "Ortolan",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!fp6MEQJrHKoKHxbL.2qQDQApwHSwk85jt"
+    },
+    {
+      "_id": "LtZ1px6YzHzoE10s",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Ortolan.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.sUIVVJzeUIAm51ZB.ActiveEffect.Dh3FLNKo1HFJ7pqF"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.sUIVVJzeUIAm51ZB",
+      "name": "Keen Hearing and Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!fp6MEQJrHKoKHxbL.LtZ1px6YzHzoE10s"
+    }
+  ],
+  "_id": "fp6MEQJrHKoKHxbL",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002139,
-    "modifiedTime": 1692402505743,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797396,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!fp6MEQJrHKoKHxbL"
 }

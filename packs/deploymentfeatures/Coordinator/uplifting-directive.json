@@ -8,26 +8,29 @@
   "system": {
     "description": {
       "value": "<p>At 2nd rank, when you take the Direct action, roll a d20. Note the number on the d20. This becomes your uplifting directive number.</p><p>While you have an uplifting directive number, when an ally makes an ability check or attack roll affected by your Direct action, you can replace the result of a d20 roll with the value of the uplifting directive roll. You can use this feature before or after making the roll, but before any effects of the roll are determined. You can only have one uplifting directive roll at a time, and you lose any unused uplifting directive rolls when you complete a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Coordinator 2nd Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -38,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -77,15 +81,16 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Coordinator"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "2nd Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -94,10 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493963456,
-    "modifiedTime": 1685840610791,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368730242,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!eIS5gnYe7POBq7dc"
 }

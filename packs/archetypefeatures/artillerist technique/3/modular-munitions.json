@@ -16,49 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Artillerist Technique:</strong> 3rd level</em></p>\n<p>When you cast a tech power, rather than having it take effect instantly, you can choose to delay the effect to occur on initiative count 20 (losing all initiative ties). When you do so, any creature that leaves the affected area of your tech power is unaffected when the tech power occurs. If the power would only target one creature, and that creature moves from the space it was in when you cast the power, the tech power automatically misses if it would call for an attack roll, as if you had rolled a 1 on the attack, and the creature automatically succeeds on the saving throw against the power if it calls for a saving throw, as if it had rolled a 20 on the save.</p>\n<p>Additionally, when you cast a tech power and choose to delay it in this way, and that tech power would deal damage, you can apply one of the following additional empowerment effects:</p>\n<ul>\n<li><strong>Flashbang</strong>: Each creature damaged by this power must succeed on a Constitution saving throw or be blinded and deafened until the start of your next turn.</li>\n<li><strong>Mire:</strong> Each creature damaged by this power must succeed on a Dexterity saving throw or gain one slowed level until the start of your next turn.</li>\n<li><strong>Psyche:</strong> Each creature damaged by this power must succeed on a Wisdom saving throw or become frightened until the start of your next turn.</li>\n</ul>\n<p>If an empowerment effect calls for a saving throw, the DC equals your tech save DC.</p>\n<p>You can use these features a combined number of times equal to your proficiency bonus, as shown in the scout table. You regain all expended uses when you complete a short or long rest.</p>\n<p>While you have no remaining uses of this feature, you can instead expend 1 tech point to use it. When you do so, your maximum tech points are reduced by 1 until you complete a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scout (Artillerist Technique) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -73,24 +79,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Scout"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493957406,
-    "modifiedTime": 1685840599541,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368684997,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!8xS2WONKsMp0LbrM"
 }

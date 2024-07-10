@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Sokan Form:</strong> 7th and 15th level</em></p>\n<p>If you fail a Strength, Dexterity, or Constitution saving throw, you can reroll the die. You must use the new roll.</p>\n<p>Once you've used this feature, you must complete a long rest before you can use it again. At 15th level you can use this feature twice between long rests.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Sokan Form) 15",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -27,11 +28,13 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "2",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438433,
-    "modifiedTime": 1685840599834,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368696021,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "R9qngGT8ZwFuW1Sq"
+  "_id": "R9qngGT8ZwFuW1Sq",
+  "_key": "!items!R9qngGT8ZwFuW1Sq"
 }

@@ -1,15 +1,13 @@
 {
-  "_id": "Pd0sEF20lQlgBqB8",
   "name": "Inertial Dampeners",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Universal.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>This system lessens the transfer of external impacts into the ship's interior.  When you are forced to make a Concentration check due to damage, impacts, or explosions exterior to the ship, you have advantage.</p><p>Additionally, when you take the Evade action, skill checks and attack rolls made by your ship or anyone on it do not suffer from disadvantage from the evasion.  Once this feature has been used, it can't be used again until the ship recharges.  </p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">This system lessens the transfer of external impacts into the ship's interior. When you are forced to make a Concentration check due to damage, impacts, or explosions exterior to the ship, you have advantage.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">Additionally, when you take the Evade action, skill checks and attack rolls made by your ship or anyone on it do not suffer from disadvantage from the evasion. </span></p><p><span style=\"font-family:'Open Sans', sans-serif\">Once this feature has been used, it can't be used again until the ship recharges.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -29,7 +27,7 @@
     "identified": false,
     "isCargo": false,
     "activation": {
-      "type": "",
+      "type": "special",
       "cost": null,
       "condition": ""
     },
@@ -38,11 +36,12 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
-      "units": "",
-      "type": ""
+      "units": null,
+      "type": "self"
     },
     "range": {
       "value": null,
@@ -50,10 +49,11 @@
       "units": ""
     },
     "uses": {
-      "value": null,
-      "max": "",
-      "per": null,
-      "recovery": ""
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -82,14 +82,11 @@
       "charged": false,
       "value": null
     },
-    "system": {
-      "value": "Universal"
-    },
     "grade": {
-      "value": "NA"
+      "value": 0
     },
-    "basecost": {
-      "value": "4000"
+    "baseCost": {
+      "value": null
     },
     "prerequisites": {
       "value": ""
@@ -104,53 +101,28 @@
       "dex": null
     },
     "proficient": false,
-    "properties": {
-      "Absorptive": false,
-      "Agile": false,
-      "Anchor": false,
-      "Avoidant": false,
-      "Barbed": false,
-      "Bulky": false,
-      "Charging": false,
-      "Concealing": false,
-      "Cumbersome": false,
-      "Gauntleted": false,
-      "Imbalanced": false,
-      "Impermeable": false,
-      "Insulated": false,
-      "Interlocking": false,
-      "Lambent": false,
-      "Lightweight": false,
-      "Magnetic": false,
-      "Obscured": false,
-      "Obtrusive": false,
-      "Powered": false,
-      "Reactive": false,
-      "Regulated": false,
-      "Reinforced": false,
-      "Responsive": false,
-      "Rigid": false,
-      "Silent": false,
-      "Spiked": false,
-      "Strength": false,
-      "Steadfast": false,
-      "Versatile": false
-    },
+    "properties": [],
     "attributes": {
       "dr": ""
     },
     "strength": null,
-    "stealth": false
-  },
-  "ownership": {
-    "default": 0
+    "stealth": false,
+    "type": {
+      "value": "Universal"
+    }
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494018673,
-    "modifiedTime": 1685840666140,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1706199587738,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "No6B3R37GbU4cj0s",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!No6B3R37GbU4cj0s"
 }

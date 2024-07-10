@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p>&gt; Your spirit might be the ghost of a benevolent Jedi, discovered in the ruins of a Jedi temple, or a powerful Sith spirit lingering in an ancient artifact. It might be the spirit of a Nightsister sorceress, or a paragon of a long-forgotten monastic order. Work with your GM to determine the nature of your spirit.</p>\n<p>Additionally, your spirit can briefly interact with the physical world. When you would make a melee attack, your spirit can deliver the attack as if it had made it. Your spirit must be within 100 feet of you, and it must use its reaction to deliver the attack. It uses your modifiers for the attack and damage rolls. You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you complete a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Sentinel (Path of Communion) 13",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 100,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "2",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -91,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438420,
-    "modifiedTime": 1692402505044,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418053762,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "yvC7fQQ5q3POg8Vz"
+  "_id": "yvC7fQQ5q3POg8Vz",
+  "_key": "!items!yvC7fQQ5q3POg8Vz"
 }

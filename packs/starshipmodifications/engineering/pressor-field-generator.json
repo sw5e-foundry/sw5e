@@ -1,11 +1,9 @@
 {
-  "_id": "HhWq7MxEsW8sENyp",
   "name": "Pressor Field Generator",
   "type": "starshipmod",
-  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
@@ -38,6 +36,7 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": 150,
       "width": null,
@@ -87,14 +86,11 @@
       "charged": false,
       "value": null
     },
-    "system": {
-      "value": "Engineering"
-    },
     "grade": {
-      "value": "1"
+      "value": 1
     },
-    "basecost": {
-      "value": "3500"
+    "baseCost": {
+      "value": null
     },
     "prerequisites": {
       "value": "Tractor Beam"
@@ -109,53 +105,28 @@
       "dex": null
     },
     "proficient": false,
-    "properties": {
-      "Absorptive": false,
-      "Agile": false,
-      "Anchor": false,
-      "Avoidant": false,
-      "Barbed": false,
-      "Bulky": false,
-      "Charging": false,
-      "Concealing": false,
-      "Cumbersome": false,
-      "Gauntleted": false,
-      "Imbalanced": false,
-      "Impermeable": false,
-      "Insulated": false,
-      "Interlocking": false,
-      "Lambent": false,
-      "Lightweight": false,
-      "Magnetic": false,
-      "Obscured": false,
-      "Obtrusive": false,
-      "Powered": false,
-      "Reactive": false,
-      "Regulated": false,
-      "Reinforced": false,
-      "Responsive": false,
-      "Rigid": false,
-      "Silent": false,
-      "Spiked": false,
-      "Steadfast": false,
-      "Strength": false,
-      "Versatile": false
-    },
+    "properties": [],
     "attributes": {
       "dr": ""
     },
     "strength": null,
-    "stealth": false
-  },
-  "ownership": {
-    "default": 0
+    "stealth": false,
+    "type": {
+      "value": "Engineering"
+    }
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494018646,
-    "modifiedTime": 1685840666109,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1706199587660,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "00V4pvX7rBDwUsK1",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!00V4pvX7rBDwUsK1"
 }

@@ -13,11 +13,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> Curtain of Unyielding Wind</em> or <em>Rush of the Shyrack</em></p>\n<p>As an action, you can gain a flying speed equal to your movement speed for 10 minutes. You can hover while this technique is active, but when it ends, you fall if you are still aloft, unless you can stop the fall.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 11",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -28,32 +29,34 @@
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -83,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Monk"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -92,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426104231,
-    "modifiedTime": 1685840599827,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368695691,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "Qj9fK0Cd8hbtUX2D"
+  "_id": "Qj9fK0Cd8hbtUX2D",
+  "_key": "!items!Qj9fK0Cd8hbtUX2D"
 }

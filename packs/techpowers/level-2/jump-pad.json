@@ -1,103 +1,22 @@
 {
-  "_id": "O2kDNvTEzbFakUbK",
   "name": "Jump Pad",
-  "type": "power",
-  "img": "systems/sw5e/packs/Icons/Tech%20Powers/JumpPad.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [
-          true
-        ],
-        "altValue": [
-          true
-        ],
-        "context": []
-      },
-      "quickVersatile": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": true,
-          "resource": true
-        },
-        "altValue": {
-          "use": true,
-          "resource": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:03.1904027+00:00",
       "importer_version": 3,
       "uid": "Power.name-jump_pad.level-2"
     }
   },
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Tech%20Powers/JumpPad.webp",
   "system": {
     "description": {
       "value": "<p>You create a bouncy surface in a 5-foot square on a surface within range. When you cast the power, you can designate creatures that can safely use the jump pad. For the duration, whenever a creature you haven't chosen enters the affected area, it must make a Dexterity saving throw or be launched 10 feet upwards, and 5 feet horizontally in a random direction. To determine the direction, roll a [[/r d8]] and assign a direction to each die face.</p>\n<p>While a creature you have chosen (or a creature that has succeeded its Dexterity saving throw) is in the area, it can use its reaction to jump with the aid of the bouncy surface. The creature's jump distance for this jump is multiplied by 5.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -107,47 +26,36 @@
       "value": "1",
       "units": "minute"
     },
-    "cover": null,
     "target": {
       "value": "5",
       "width": null,
       "units": "ft",
-      "type": "square"
+      "type": "square",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
       "units": "ft"
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": "int",
+    "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
-    "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
     },
     "damage": {
-      "parts": [
-        [
-          "1d8",
-          ""
-        ]
-      ],
+      "parts": [],
       "versatile": ""
     },
-    "formula": "",
+    "formula": "1d8",
     "save": {
       "ability": "dex",
       "dc": null,
@@ -155,14 +63,9 @@
     },
     "level": 2,
     "school": "tec",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": true,
-      "value": ""
-    },
+    "properties": [
+      "concentration"
+    ],
     "materials": {
       "value": "",
       "consumed": false,
@@ -171,22 +74,42 @@
     },
     "preparation": {
       "mode": "prepared",
-      "prepared": true
+      "prepared": false
     },
     "scaling": {
       "mode": "none",
       "formula": null
-    }
+    },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "enchantment": null,
+    "summons": null
   },
+  "effects": [],
+  "_id": "WKwj4bB69cubog9B",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
-    "createdTime": 1674494020554,
-    "modifiedTime": 1684819093161,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296025398,
+    "modifiedTime": 1720368946834,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!WKwj4bB69cubog9B"
 }

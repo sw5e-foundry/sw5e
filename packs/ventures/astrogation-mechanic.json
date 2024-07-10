@@ -10,11 +10,12 @@
   "system": {
     "description": {
       "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">When you make an Intelligence (Astrogation) check, your ship is considered proficiently equipped if you have proficiency in Technology or expertly equipped if you have expertise in Technology.<br style=\"background-repeat:no-repeat;box-sizing:inherit;padding:0px;margin:0px;color:rgba(0, 0, 0, 0.87);font-family:'Open Sans', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:center;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\" />Additionally, when you make a Constitution (Patch) check when taking the Patch action, your ship is considered proficiently equipped if you have proficiency in Mechanic's Kit or expertly equipped if you have expertise in Mechanic's Kit.</span></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -25,11 +26,13 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,16 +43,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": null,
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -79,17 +83,25 @@
         "turn": null
       }
     },
-    "prerequisites": []
+    "prerequisites": [],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494021252,
-    "modifiedTime": 1685840671120,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552921330,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!NQ9xVr1fG8FQlSr2"
 }

@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Stalker Technique</h1>\n<p>Some Scouts become consumed by the thrill of the hunt. Only heard and never seen they revel in the violence of battle. Followers of the Stalker Technique hone their abilities to track others utilizing a variety of techniques: camouflage, infiltration, surveillance, and target acquisition.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "stalkertechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "1tisrIUVkyxp8KoC",
+        "_id": "1kDnKtmuDQzn1Hsf",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.mHMVnLFhcHBG6cAt",
-            "Compendium.sw5e.archetypefeatures.tjyIuf8lisQ2DNtP"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.mHMVnLFhcHBG6cAt",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.tjyIuf8lisQ2DNtP",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "VtXGN4yl0Ky1qeUQ",
+        "_id": "1DQcCVX4Ck4b112t",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.yPmmGhJdfJi5CTHO"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.yPmmGhJdfJi5CTHO",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1CDO7h7gsucwmmP0",
+        "_id": "13wLFogHpGZ2kixH",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.2jjhHwDNTNAjKPzZ"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.2jjhHwDNTNAjKPzZ",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "bswNJR067fZp6PGn",
+        "_id": "a6sgFO2a6kF1A09I",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.neI83QoBohA6gEqz"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.neI83QoBohA6gEqz",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959777,
-    "modifiedTime": 1684819093624,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689928,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!snMUCDEc49pFQlM0"
 }

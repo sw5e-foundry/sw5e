@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Way of Tutelage:</strong> 18th level</em></p>\n<p>Your companion has learned almost all that it can from you. As an action on its turn, your companion can take the lead, gaining the following benefits for 1 minute:</p>\n<ul>\n<li>It gains temporary hit points equal to twice its level.</li>\n<li>Once per turn, when it deals damage or restores hit points, it can roll an additional die.</li>\n<li>It gains resistance to kinetic and energy damage.</li>\n</ul>\n<p>This effect ends early if your companion is incapacitated or dies. Once your companion has used this feature, it can't use it again until it finishes a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Consular (Way of Tutelage) 18",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -31,34 +32,39 @@
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -83,17 +89,27 @@
         "turn": null
       }
     },
-    "className": "Consular"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493958127,
-    "modifiedTime": 1685840600301,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368712750,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!pPyeqnE1GnMeG1og"
 }

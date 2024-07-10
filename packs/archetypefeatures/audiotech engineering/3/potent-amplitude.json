@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Audiotech Engineering:</strong> 3rd level</em></p>\n<p>As an action while wielding your modified instrument, you can begin performing an enhanced song, which lasts for 1 minute. While playing a song, you gain access to a new use for your Potent Aptitude, as determined by the song, listed below. You can end your song at any time, no action required.</p>\n<p>Whenever you take damage while playing your song, you must make a Constitution saving throw to continue playing. The DC equals 10 or half the damage you take, which number is higher. If you take damage from multiple sources, you must make a separate saving throw for each source of damage.</p>\n<p>When you cast a damage dealing tech power while playing your song that requires an attack roll or saving throw, you can cause that power to instead deal sonic damage. If you do so, instead of an attack roll or saving throw, the power instead requires a Constitution saving throw.</p>\n<p>Your song ends early if you are incapacitated or die, or if you are no longer holding your modified instrument.</p>\n<p>You can initiate playing an enhanced song twice. You regain all expended songs when you finish a short or long rest.</p>\n<h3>Song of Battle</h3>\n<p>When an ally within 60 feet of you that can hear you deals damage to a creature, you can use your reaction to expend one use of your Potent Aptitude, adding the result of the die to the damage dealt.</p>\n<h3>Song of Support</h3>\n<p>When an ally within 60 feet of you that can hear you makes a saving throw against a harmful effect, you can use your reaction to expend one use of your Potent Aptitude, adding the result of the die to their saving throw.</p>\n<h3>Song of Disruption</h3>\n<p>When an enemy within 60 feet of you that can hear you makes a saving throw, you can use your reaction to expend one use of your Potent Aptitude, subtracting the result of the die from their saving throw.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Audiotech Engineering) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
@@ -31,34 +32,39 @@
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 2,
+      "max": "2",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -73,24 +79,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Engineer"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493958019,
-    "modifiedTime": 1685840600210,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368708721,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!kmcrjj0s9p4KfNEM"
 }

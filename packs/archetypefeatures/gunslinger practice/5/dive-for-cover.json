@@ -2,7 +2,7 @@
   "name": "Dive For Cover",
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2022-08-17T00:39:14.2639119+00:00",
+      "timestamp": "2023-05-30T20:15:26.6261269+00:00",
       "importer_version": 3,
       "uid": "Feature.name-dive_for_cover.source-archetype.sourceName-gunslinger_practice.level-5"
     }
@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Gunslinger Practice:</strong> 3rd, 5th, 9th, 13th, and 17th level</em></p>\n<p>You learn to quickly move into cover when under fire. Once per round, when you are the target of a ranged attack, or you are subjected to an effect that allows you to make a Dexterity saving throw, and there is cover within 10 feet of you, you can move up to 10 feet (no action required). You must end this movement in cover.</p>\n<p>You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you complete a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Gunslinger Practice) 5",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -27,11 +28,13 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 10,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "2",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.1",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1680288495921,
-    "modifiedTime": 1680288495921,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368697211,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "SvONzvySi3Jmqm7A"
+  "_id": "SvONzvySi3Jmqm7A",
+  "_key": "!items!SvONzvySi3Jmqm7A"
 }

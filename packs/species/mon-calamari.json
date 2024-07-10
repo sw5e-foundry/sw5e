@@ -1,8 +1,195 @@
 {
-  "_id": "3KwKUdES9oq82zLB",
   "name": "Mon Calamari",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9166212+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-mon_calamari"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/MonCalamari.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearence</h2>\n<p>The mon calamari are a bipedal, amphibious species with high-domed heads, webbed hands and large, goggle-like eyes. In addition to being webbed, the mon calamari hand presents three suction-cup like holes on its palm, and featured five claw-tipped fingers: one opposable thumb, two long middle fingers, and two very short outer fingers. Although they are shaped like flippers, their feet can nevertheless fit into boots designed for human-like feet. The females are distinguished from the males by their more prominent chest areas.</p>\n<h2>Society and Culture</h2>\n<p>The mon calamari have developed a very advanced and civilized culture. Their art, music, literature, and science show a creativity surpassed by few in the galaxy. Mon calamari literature depicts stars as islands in a galactic sea, showing a passionate longing to explore space and discover other civilizations. Mon Calamari are both soft-spoken and gentle, slow to anger, and have the remarkable ability to maintain their concentration without being distracted by emotional responses. They are both inquisitive and creative, and have a near-legendary quality of being both determined and dedicated; once a mon calamari decides on a course of action, they are not easily swayed from that decision. They often fixate themselves on \"lost causes.\" </p>\n<h2>Names</h2>\n<p>Mon calamari names generally have a melodic feel.</p>\n<p><strong>Male Names.</strong> Creaz, Fior, Hurneerth, Nurrins, Sielpa</p>\n<p><strong>Female Names.</strong> Afwa, Lel, Mhirim, Ri, Theya</p>\n<p><strong>Surnames.</strong> Dualda, Gradi, Tua, Valec, Winab</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "moncalamari",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "swim": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "BXk7oG1843cARxzP",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TeyIdtcyJ7PasXOz",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Bve9tHJjl2faR21c",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rG5HJazLeWmhgP2M",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.0AUcvOZQZA4erCbY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xLXqP95Eosf2LLzF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7aRsRG9tekRsVH0M",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Zro0U21lIHeLyjrE",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VnUJALTcyOyEfGKs",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vWDo9X7fz1YrWrSL",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.suvDBemVcBDUvW5K",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2ruVJYIil44Erh2X",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "KqdAiQJ3lZzerUUV",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "SyHLmBNv4UzbI7GR",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1crB9HlgXExv1a9F",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:music:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Reddish brown, brown, red, cyan, mottle, salmon, gold, blue, grey, or white"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Yellow, orange, blue, or gray"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Large, goggle-like eyes, high-domed heads, webbed hands"
+    },
+    "heightAverage": {
+      "value": "4'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "100 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Mon Cala"
+    },
+    "slanguage": {
+      "value": "Mon Cal"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "N9qNmjh0vP0dzWIA",
@@ -47,7 +234,7 @@
           "key": "system.attributes.movement.swim",
           "value": "30",
           "mode": 2,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.languages.value",
@@ -60,12 +247,6 @@
           "value": "moncal",
           "mode": 0,
           "priority": 0
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "flags.sw5e.amphibious",
@@ -85,104 +266,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Mon%20Calamari.webp",
-      "label": "Mon Calamari",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Mon Calamari",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!NYZw4xJlY04TAWYw.N9qNmjh0vP0dzWIA"
     }
   ],
+  "_id": "NYZw4xJlY04TAWYw",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9166212+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-mon_calamari"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearence</h2>\n<p>The mon calamari are a bipedal, amphibious species with high-domed heads, webbed hands and large, goggle-like eyes. In addition to being webbed, the mon calamari hand presents three suction-cup like holes on its palm, and featured five claw-tipped fingers: one opposable thumb, two long middle fingers, and two very short outer fingers. Although they are shaped like flippers, their feet can nevertheless fit into boots designed for human-like feet. The females are distinguished from the males by their more prominent chest areas.</p>\n<h2>Society and Culture</h2>\n<p>The mon calamari have developed a very advanced and civilized culture. Their art, music, literature, and science show a creativity surpassed by few in the galaxy. Mon calamari literature depicts stars as islands in a galactic sea, showing a passionate longing to explore space and discover other civilizations. Mon Calamari are both soft-spoken and gentle, slow to anger, and have the remarkable ability to maintain their concentration without being distracted by emotional responses. They are both inquisitive and creative, and have a near-legendary quality of being both determined and dedicated; once a mon calamari decides on a course of action, they are not easily swayed from that decision. They often fixate themselves on \"lost causes.\" </p>\n<h2>Names</h2>\n<p>Mon calamari names generally have a melodic feel.</p>\n<p><strong>Male Names.</strong> Creaz, Fior, Hurneerth, Nurrins, Sielpa</p>\n<p><strong>Female Names.</strong> Afwa, Lel, Mhirim, Ri, Theya</p>\n<p><strong>Surnames.</strong> Dualda, Gradi, Tua, Valec, Winab</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "moncalamari",
-    "advancement": [
-      {
-        "_id": "JCrzW7ZakBap3e89",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.TeyIdtcyJ7PasXOz",
-            "Compendium.sw5e.speciesfeatures.Bve9tHJjl2faR21c",
-            "Compendium.sw5e.speciesfeatures.rG5HJazLeWmhgP2M",
-            "Compendium.sw5e.speciesfeatures.0AUcvOZQZA4erCbY",
-            "Compendium.sw5e.speciesfeatures.xLXqP95Eosf2LLzF",
-            "Compendium.sw5e.speciesfeatures.7aRsRG9tekRsVH0M",
-            "Compendium.sw5e.speciesfeatures.Zro0U21lIHeLyjrE",
-            "Compendium.sw5e.speciesfeatures.VnUJALTcyOyEfGKs",
-            "Compendium.sw5e.speciesfeatures.vWDo9X7fz1YrWrSL",
-            "Compendium.sw5e.speciesfeatures.suvDBemVcBDUvW5K",
-            "Compendium.sw5e.speciesfeatures.2ruVJYIil44Erh2X"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Reddish brown, brown, red, cyan, mottle, salmon, gold, blue, grey, or white"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Yellow, orange, blue, or gray"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Large, goggle-like eyes, high-domed heads, webbed hands"
-    },
-    "heightAverage": {
-      "value": "4'9\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "100 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Mon Cala"
-    },
-    "slanguage": {
-      "value": "Mon Cal"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002059,
-    "modifiedTime": 1692402505738,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796938,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!NYZw4xJlY04TAWYw"
 }

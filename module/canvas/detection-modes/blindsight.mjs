@@ -3,33 +3,33 @@
  */
 export class DetectionModeBlindsight extends DetectionMode {
   constructor() {
-    super({
+    super( {
       id: "blindsight",
       label: "SW5E.SenseBlindsight",
       type: DetectionMode.DETECTION_TYPES.OTHER,
       walls: true,
       angle: false
-    });
+    } );
   }
 
   /** @override */
   static getDetectionFilter() {
-    return this._detectionFilter ??= OutlineOverlayFilter.create({
+    return this._detectionFilter ??= OutlineOverlayFilter.create( {
       outlineColor: [1, 1, 1, 1],
       knockout: true,
       wave: true
-    });
+    } );
   }
 
   /** @override */
-  _canDetect(visionSource, target) {
+  _canDetect( visionSource, target ) {
     // Blindsight can detect anything.
     return true;
   }
 
   /** @override */
-  _testLOS(visionSource, mode, target, test) {
-    const polygonBackend = foundry.utils.isNewerVersion(game.version, 11)
+  _testLOS( visionSource, mode, target, test ) {
+    const polygonBackend = foundry.utils.isNewerVersion( game.version, 11 )
       ? CONFIG.Canvas.polygonBackends.sight
       : CONFIG.Canvas.losBackend;
     return !polygonBackend.testCollision(

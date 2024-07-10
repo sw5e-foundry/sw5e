@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Mastermind Technique</h1>\n<p>Preparation, preparation, preparation. Some scouts are serious students of battle and any creatures they might encounter. Followers of the Mastermind Technique focus on being prepared for any eventuality, and using their breadth of knowledge to gain insights into their enemies.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "mastermindtechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "1APADAMpMhFco7eS",
+        "_id": "1qH5slhy7QDg17hR",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.VKL4s3L46zJwKrQ3",
-            "Compendium.sw5e.archetypefeatures.SpcKTAe4Vje803U5"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.VKL4s3L46zJwKrQ3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.SpcKTAe4Vje803U5",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "tA4JSbUDBYwq7aVb",
+        "_id": "9Ej0ZP4P6oU5Tcu3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Tab0PheZbRvNPIco"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Tab0PheZbRvNPIco",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "X9RW3leyUUeD8Jca",
+        "_id": "11R4evJENmRL1TBc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.hEtaCq4DRAre5lt3"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hEtaCq4DRAre5lt3",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "1iOCp5n3ntaiep0o",
+        "_id": "NuVV3B5NA6O35O4E",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.8z9FXsEARlNTDuDY"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.8z9FXsEARlNTDuDY",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959776,
-    "modifiedTime": 1684819093624,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689912,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!roFtZBQryEKA1WlJ"
 }

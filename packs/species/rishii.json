@@ -1,88 +1,5 @@
 {
-  "_id": "gP8Y6RuZ1cHmNbAR",
   "name": "Rishii",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Rishii.webp",
-  "effects": [
-    {
-      "_id": "EG1cQYESSqx7uV17",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Rishii",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 0,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.fly",
-          "value": "30",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "rishii",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Rishii.webp",
-      "label": "Rishii",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.290127+00:00",
@@ -90,42 +7,118 @@
       "uid": "Species.name-rishii"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Rishii.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Rishii are a sentient, avian species of carnivores which possess two legs ending in four-toed feet, two arms, a tail, and a head. The species' two arms consist of feathered wings ending in nimble humanoid hands, capable of manipulating tools. The wings grant the Rishii the ability to fly at great speeds, which is their method of travel equivalent to running in land-based species. A Rishii's head contained a beak between two yellow eyes framed by a large brow. Rishii were capable of mimicking anything said to them perfectly, and also possessed extremely strong senses, particularly hearing and sight. </p>\n<h2>Society and Culture</h2>\n<p>Native to the planet Rishi, the Rishii live in loose primitive tribes, known as nests, clustered high upon the planet's mountains, away from the hot and humid lowland swamps. Each nest consists of a small number of family units led by a chieftain, with neighbouring nests respecting each others territories and living in harmony. This peaceful and accepting attitude goes beyond just other Rishii and was extended to all neighbours of a nest, including the many other species who colonise the lowlands of Rishi. Due to the unfavorable conditions found in the lowlands, the native avians do not understand the off-worlders' choice to live there, but were not opposed to their presence.</p>\n<h2>Names</h2>\n<p>As with much of their speech, Rishii names include clicks, trills, and whistles to the point that other peoples have a difficult time pronouncing them. Typically, a name has two to four syllables with the sounds acting as connectors. Rishii names do not vary based on gender. Rishii are responsive to nicknames given by outsiders. </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "rishii",
-    "advancement": [
-      {
-        "_id": "mnIx04J0Uqp1xJiY",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.zZhjkQqZRQdMHZa2",
-            "Compendium.sw5e.speciesfeatures.GZJC9bZYwwXC0i5X",
-            "Compendium.sw5e.speciesfeatures.R08YgJQqapQ96Cnp",
-            "Compendium.sw5e.speciesfeatures.CfUV8NbU8uieaOLW",
-            "Compendium.sw5e.speciesfeatures.vG4Mrl2bN5pFPb5r",
-            "Compendium.sw5e.speciesfeatures.jnxzerLzur1NykBc",
-            "Compendium.sw5e.speciesfeatures.G3QVWd0Ew9SEDGsM",
-            "Compendium.sw5e.speciesfeatures.ewnml1inQaXHjKTn",
-            "Compendium.sw5e.speciesfeatures.o2FyGgOP6B6uU0nU"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "fly": 30,
+      "burrow": null,
+      "climb": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1aHMKhpPTIvkjcx3",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zZhjkQqZRQdMHZa2",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GZJC9bZYwwXC0i5X",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.R08YgJQqapQ96Cnp",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.CfUV8NbU8uieaOLW",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vG4Mrl2bN5pFPb5r",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jnxzerLzur1NykBc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.G3QVWd0Ew9SEDGsM",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ewnml1inQaXHjKTn",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.o2FyGgOP6B6uU0nU",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "iR5pwHVE2M4qQfIp",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "con": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1yGgSHaVwwbMtlV7",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Yellow"
     },
@@ -136,7 +129,7 @@
       "value": "Brown or yellow"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Sound mimicry, enhanced hearing and sight"
@@ -158,17 +151,130 @@
     },
     "slanguage": {
       "value": "Rishii"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "zwbVjLE2T6fdsb9I",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Rishii",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 5,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.fly",
+          "mode": 2,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "rishii",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Rishii.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.gP8Y6RuZ1cHmNbAR.ActiveEffect.EG1cQYESSqx7uV17"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.gP8Y6RuZ1cHmNbAR",
+      "name": "Rishii",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!LLds1yYjg5Nbrkeb.zwbVjLE2T6fdsb9I"
+    },
+    {
+      "_id": "tArIqvo5Lix6635C",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Rishii.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.gP8Y6RuZ1cHmNbAR.ActiveEffect.EG1cQYESSqx7uV17"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.gP8Y6RuZ1cHmNbAR",
+      "name": "Keen Hearing and Sight",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!LLds1yYjg5Nbrkeb.tArIqvo5Lix6635C"
+    }
+  ],
+  "_id": "LLds1yYjg5Nbrkeb",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002120,
-    "modifiedTime": 1692402505742,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796870,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!LLds1yYjg5Nbrkeb"
 }

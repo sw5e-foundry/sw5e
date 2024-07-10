@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Vonil/Ishu Form:</strong> 7th, 11th, and 17th level</em></p>\n<p>Once on each of your turns, you can choose an ally within 10 feet of you. While the chosen ally is within 10 feet of you, your auras emit from that ally as if you were standing in that ally's space. A creature in the area of more than one instance of your auras is affected only once.</p>\n<p>At 11th level, the chosen ally must be within 30 feet of you to benefit from this feature. At 17th level, the chosen ally must be within 60 feet.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Vonil/Ishu Form) 7",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -27,11 +28,13 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 10,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438439,
-    "modifiedTime": 1685840600458,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368718059,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "vcZSCv3acStFvfth"
+  "_id": "vcZSCv3acStFvfth",
+  "_key": "!items!vcZSCv3acStFvfth"
 }

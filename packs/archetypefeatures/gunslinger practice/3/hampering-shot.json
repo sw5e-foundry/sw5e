@@ -2,7 +2,7 @@
   "name": "Hampering Shot",
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2022-08-17T00:39:14.2639119+00:00",
+      "timestamp": "2023-05-30T20:15:26.6271255+00:00",
       "importer_version": 3,
       "uid": "Feature.name-hampering_shot.source-archetype.sourceName-gunslinger_practice.level-3"
     }
@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p>You attempt to hobble the enemy's movement. The target must make a Dexterity saving throw. If it fails, it gains 1 slowed level and it has disadvantage on Dexterity saving throws until the end of its next turn.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Gunslinger Practice) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -27,11 +28,13 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438360,
-    "modifiedTime": 1685840599482,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368682244,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "3wFAYlr2qDchR7Y0"
+  "_id": "3wFAYlr2qDchR7Y0",
+  "_key": "!items!3wFAYlr2qDchR7Y0"
 }

@@ -1,112 +1,5 @@
 {
-  "_id": "aRLy0IIuWoqiSh25",
   "name": "Voss",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Voss.webp",
-  "effects": [
-    {
-      "_id": "g7qkdxQGBYGcMDU9",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Voss",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.senses.darkvision",
-          "value": "60",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.skills.med.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.weaponProf.custom",
-          "value": "blaster rifle",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.weaponProf.custom",
-          "value": "techblade",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "voss",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.inscrutable",
-          "value": "1",
-          "mode": 0,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.precognition",
-          "value": "1",
-          "mode": 0,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Voss.webp",
-      "label": "Voss",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:11.8993534+00:00",
@@ -114,44 +7,144 @@
       "uid": "Species.name-voss"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Voss.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Voss are humanoid sentients with a high rate of Force-sensitivity who display prominent sexual dimorphism. The male Voss have blue skin and bright orange eyes, while the females have red skin and azure eyes. The Voss do not have hair or distinct pupils, and posess unique patterns of markings on their face, neck, and body, a trace of their shared ancestry with Gormak. Their voices have a slight mechanical tinge to them, making them sound somewhat like a droid or machine. Voss undogo a physical, developmental change during their marriage ceremonies (known as the Rite of Ardor) and do not develop sexually prior to the performance of these rituals.</p>\n<h2>Society and Culture</h2>\n<p>The Voss species resides in the isolated mountain-top city of Voss-Ka and is vastly outnumbered on their homeworld by its other native sentient species, the Gormak, who are extremely hostile toward them and from whom they arose. Most Voss live peacefully in Voss-Ka, caring for their families, cultivating the wild plants and maintaining equipment for the Voss commandos in the war against the Gormak, although some Voss do live outside the capital city, such as the Voss Mystics who reside in the Shrine of Healing. The Voss are great lovers of art, and their architecture features a distinctive artistic style. The entire Voss society is guided by the Force visions of Voss Mystics, which are considered infallible without exception.</p>\n<h2>Names</h2>\n<p>All Voss have two short names, connected by a hyphen, with the family name being the second one.</p>\n<p><strong>Male Names.</strong> Char, Edan, Fadith, Nodin, Orin</p>\n<p><strong>Female Names.</strong> Amin, Magra, Tala, Weylin, Yana</p>\n<p><strong>Surnames.</strong> -Ko, -La, -Po, -Rae, -Va</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "voss",
-    "advancement": [
-      {
-        "_id": "1g6AeAN64hzz1juG",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.88iCljtOwv4WXnl5",
-            "Compendium.sw5e.speciesfeatures.jjJNfgfk3XImShUT",
-            "Compendium.sw5e.speciesfeatures.O3vMcxCVWtUvqM0V",
-            "Compendium.sw5e.speciesfeatures.PJFH7GKQsYLdVfHA",
-            "Compendium.sw5e.speciesfeatures.n2G8qCvMN08qdDoU",
-            "Compendium.sw5e.speciesfeatures.oeWbCwLatmga3phV",
-            "Compendium.sw5e.speciesfeatures.jhkhmn2zZKapLJiG",
-            "Compendium.sw5e.speciesfeatures.Bklfr12ncg1CA6Zr",
-            "Compendium.sw5e.speciesfeatures.hD5amXgt8shzSzNX",
-            "Compendium.sw5e.speciesfeatures.6IHHIrFSn42JPuZz",
-            "Compendium.sw5e.speciesfeatures.wFoFohwDQkQwikdb"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "SfVmMQff7Ki1KlaF",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.88iCljtOwv4WXnl5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jjJNfgfk3XImShUT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.O3vMcxCVWtUvqM0V",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PJFH7GKQsYLdVfHA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.n2G8qCvMN08qdDoU",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.oeWbCwLatmga3phV",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jhkhmn2zZKapLJiG",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Bklfr12ncg1CA6Zr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hD5amXgt8shzSzNX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6IHHIrFSn42JPuZz",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wFoFohwDQkQwikdb",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "f1eTkJ7bBff14SJy",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2,
+            "con": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "bf2bE5EXjOB1Uo6p",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "r0ye5Ef9JkY3pDaY",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:med",
+            "weapon:blaster rifle",
+            "weapon:techblade"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Blue (male) or red (female)"
     },
@@ -162,7 +155,7 @@
       "value": "Orange (male) or blue (female)"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Mechanical apperance, unique patterns and markings along face, neck, and body"
@@ -184,17 +177,154 @@
     },
     "slanguage": {
       "value": "Voss"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "X002u29n7yM4vH3l",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Voss",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 5,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.senses.darkvision",
+          "mode": 2,
+          "value": "60",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.med.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.weaponProf.custom",
+          "mode": 0,
+          "value": "blaster rifle",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.weaponProf.custom",
+          "mode": 0,
+          "value": "techblade",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "voss",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.halflingLucky",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Voss.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.aRLy0IIuWoqiSh25.ActiveEffect.g7qkdxQGBYGcMDU9"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.aRLy0IIuWoqiSh25",
+      "name": "Voss",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!62YmHdv9qMtbAEQa.X002u29n7yM4vH3l"
+    },
+    {
+      "_id": "Sc6Z4txdrv4ABykb",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.ability.save.all",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Voss.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.aRLy0IIuWoqiSh25.ActiveEffect.g7qkdxQGBYGcMDU9"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.aRLy0IIuWoqiSh25",
+      "name": "Inscrutable - against effects that read thoughts",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!62YmHdv9qMtbAEQa.Sc6Z4txdrv4ABykb"
+    }
+  ],
+  "_id": "62YmHdv9qMtbAEQa",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002108,
-    "modifiedTime": 1692402505741,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796420,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!62YmHdv9qMtbAEQa"
 }

@@ -8,26 +8,29 @@
   "system": {
     "description": {
       "value": "<p>Also at 1st rank, you learn stratagems that are fueled by special dice called power dice.</p><h3>Stratagems</h3><p>You learn two stratagems of your choice, which are detailed under \"Stratagems\" below. Many stratagems enhance a defense in some way. You can use only one gambit per attack, and you can only use each stratagem once per turn.</p><p>You learn an additional stratagem at 2nd, 3rd, 4th, and 5th rank in this deployment. Each time you learn a new stratagem, you can also replace one stratagem you know with a different one.</p><h3>Power Dice</h3><p>A power die is expended when you use it. Your ship must have a power die at the required system in order to use the stratagem.</p><p>Your ship gains power dice based primarily on reactor production.  These power dice are stored in a central and/or system capacitors to power abilities of deployed crew members.  Your power die type is determined by your ship tier.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Technician 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -38,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -77,15 +81,16 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Technician"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -94,10 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493963467,
-    "modifiedTime": 1685840610801,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368730348,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!rufV6GZiNRlxwnGJ"
 }

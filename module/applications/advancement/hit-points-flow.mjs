@@ -7,9 +7,9 @@ import Advancement from "../../documents/advancement/advancement.mjs";
 export default class HitPointsFlow extends AdvancementFlow {
   /** @inheritdoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       template: "systems/sw5e/templates/advancement/hit-points-flow.hbs"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -21,17 +21,17 @@ export default class HitPointsFlow extends AdvancementFlow {
 
     // If value is empty, `useAverage` should default to the value selected at the previous level
     let useAverage = value === "avg";
-    if (!value) {
+    if ( !value ) {
       const lastValue = source[this.level - 1];
-      if (lastValue === "avg") useAverage = true;
+      if ( lastValue === "avg" ) useAverage = true;
     }
 
-    return foundry.utils.mergeObject(super.getData(), {
+    return foundry.utils.mergeObject( super.getData(), {
       isFirstClassLevel: this.level === 1 && this.advancement.item.isOriginalClass,
       hitDie: this.advancement.hitDie,
       dieValue: this.advancement.hitDieValue,
       data: {
-        value: Number.isInteger(value) ? value : "",
+        value: Number.isInteger( value ) ? value : "",
         useAverage
       },
       labels: {
@@ -39,22 +39,22 @@ export default class HitPointsFlow extends AdvancementFlow {
         average: "SW5E.AdvancementHitPointsAverage",
         roll: "SW5E.AdvancementHitPointsRollButton"
       }
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  activateListeners(html) {
-    this.form.querySelector(".averageCheckbox")?.addEventListener("change", event => {
-      this.form.querySelector(".rollResult").disabled = event.target.checked;
-      this.form.querySelector(".rollButton").disabled = event.target.checked;
+  activateListeners( html ) {
+    this.form.querySelector( ".averageCheckbox" )?.addEventListener( "change", event => {
+      this.form.querySelector( ".rollResult" ).disabled = event.target.checked;
+      this.form.querySelector( ".rollButton" ).disabled = event.target.checked;
       this._updateRollResult();
-    });
-    this.form.querySelector(".rollButton")?.addEventListener("click", async () => {
+    } );
+    this.form.querySelector( ".rollButton" )?.addEventListener( "click", async () => {
       const roll = await this.rollHitPoints();
-      this.form.querySelector(".rollResult").value = roll.total;
-    });
+      this.form.querySelector( ".rollResult" ).value = roll.total;
+    } );
     this._updateRollResult();
   }
 
@@ -65,24 +65,24 @@ export default class HitPointsFlow extends AdvancementFlow {
    * @protected
    */
   _updateRollResult() {
-    if (!this.form.elements.useAverage?.checked) return;
-    this.form.elements.value.value = this.advancement.hitDieValue / 2 + 1;
+    if ( !this.form.elements.useAverage?.checked ) return;
+    this.form.elements.value.value = ( this.advancement.hitDieValue / 2 ) + 1;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _updateObject(event, formData) {
+  _updateObject( event, formData ) {
     let value;
-    if (formData.useMax) value = "max";
-    else if (formData.useAverage) value = "avg";
-    else if (Number.isInteger(formData.value)) value = parseInt(formData.value);
+    if ( formData.useMax ) value = "max";
+    else if ( formData.useAverage ) value = "avg";
+    else if ( Number.isInteger( formData.value ) ) value = parseInt( formData.value );
 
-    if (value !== undefined) return this.advancement.apply(this.level, { [this.level]: value });
+    if ( value !== undefined ) return this.advancement.apply( this.level, { [this.level]: value } );
 
-    this.form.querySelector(".rollResult")?.classList.add("error");
+    this.form.querySelector( ".rollResult" )?.classList.add( "error" );
     const errorType = formData.value ? "Invalid" : "Empty";
-    throw new Advancement.ERROR(game.i18n.localize(`SW5E.AdvancementHitPoints${errorType}Error`));
+    throw new Advancement.ERROR( game.i18n.localize( `SW5E.AdvancementHitPoints${errorType}Error` ) );
   }
 
   /* -------------------------------------------- */
@@ -92,6 +92,6 @@ export default class HitPointsFlow extends AdvancementFlow {
    * @returns {Promise<Roll>}   Roll object
    */
   rollHitPoints() {
-    return this.advancement.actor.rollClassHitPoints(this.advancement.item);
+    return this.advancement.actor.rollClassHitPoints( this.advancement.item );
   }
 }

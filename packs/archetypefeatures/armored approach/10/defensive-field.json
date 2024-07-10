@@ -13,47 +13,50 @@
   "system": {
     "description": {
       "value": "<p>On your turn, you can use a bonus action to gain temporary hit points equal to [[/r 1d12]] + your berserker level. Once you use this feature, you must finish a short or long rest before you can use it again.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Berserker (Armored Approach) 10",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "heal",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -62,7 +65,7 @@
     "damage": {
       "parts": [
         [
-          "1d12",
+          "1d12 + @classes.berserker.levels",
           "temphp"
         ]
       ],
@@ -88,7 +91,16 @@
         "turn": null
       }
     },
-    "className": "Berserker"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -97,11 +109,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426104161,
-    "modifiedTime": 1685840600449,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368717655,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "uwmpvr689xwEfw8v"
+  "_id": "uwmpvr689xwEfw8v",
+  "_key": "!items!uwmpvr689xwEfw8v"
 }

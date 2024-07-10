@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Shadow Killer Practice:</strong> 13th level</em></p>\n<p>You learn to partially enter the spirit realm. As an action, you can become invisible as an enhanced effect, along with anything you are wearing or carrying, for 1 hour or until you dismiss this effect (no action required). This invisibility ends early immediately after you deal damage to a creature or you force a creature to make a saving throw.</p>\n<p>Once you use this feature, you can't do so again until you finish a long rest. While you have no remaining uses of this feature, you can expend one of your poison doses from your Venomous feature to use this feature again. When you do so, your maximum doses decreases by 1 until the end of your next long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Shadow Killer Practice) 13",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -27,11 +28,13 @@
       "units": "hour"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438431,
-    "modifiedTime": 1685840599610,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368688248,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "EvACp4LrpbKbic2k"
+  "_id": "EvACp4LrpbKbic2k",
+  "_key": "!items!EvACp4LrpbKbic2k"
 }

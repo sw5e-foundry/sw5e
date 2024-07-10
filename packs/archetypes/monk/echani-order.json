@@ -16,67 +16,102 @@
   "system": {
     "description": {
       "value": "<h1>Echani Order</h1>\n<p>Monks of the Echani Order train relentlessly both with and without their weapons, to the point where the weapon becomes an extension of the body. Founded on a mastery of sword fighting, the tradition has expanded to include many different weapons.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "echaniorder",
     "classIdentifier": "monk",
     "advancement": [
       {
-        "_id": "13Ij3nuPIrEA1lbA",
+        "_id": "KxnK5UP8qHM15DoG",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.qJpHcl1Aw7pw5uVo"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.qJpHcl1Aw7pw5uVo",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1SyENJB4ge094PQr",
+        "_id": "1BdiSusSr8OH5043",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.lbuyAlbqCzBMhKVY"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.lbuyAlbqCzBMhKVY",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1Fix4wOTTtRk2alI",
+        "_id": "Q4RmkI5wTIaXHdjc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.eXgFFkG1PQCn29rC"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.eXgFFkG1PQCn29rC",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "XLwsKmK5jWY1yyD7",
+        "_id": "1661K0Dg2xufk4KE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.xsN7QCSQmiloh5oF"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.xsN7QCSQmiloh5oF",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
+      },
+      {
+        "_id": "xoLpfqc5Ggb1U1P0",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "weapon:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -86,7 +121,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -94,10 +129,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959776,
-    "modifiedTime": 1684819093624,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689904,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!rZ4XP73OtMBVNm1I"
 }

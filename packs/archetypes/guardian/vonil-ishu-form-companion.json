@@ -16,70 +16,115 @@
   "system": {
     "description": {
       "value": "<h1>Vonil/Ishu Form (Companion)</h1>\n<p>Vonil/Ishu Form, also known as Unity Form, focuses on fighting in tandem with a partner as a warpair. Those guardians who focus on Vonil/Ishu Form utilize teamwork to move swiftly, strike quickly, and protect each other. </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "vonil-ishuform",
     "classIdentifier": "guardian",
     "advancement": [
       {
-        "_id": "8cfesof6zsa1j3Y3",
+        "_id": "tqxONJtnxUTPtytt",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.HxlUwADiGtiIc9m7",
-            "Compendium.sw5e.archetypefeatures.K6M5YyBlBjxuSexf",
-            "Compendium.sw5e.archetypefeatures.muc4MEVnedf3WRGI",
-            "Compendium.sw5e.archetypefeatures.i59wj8tpD9uKCTcD"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.HxlUwADiGtiIc9m7",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.K6M5YyBlBjxuSexf",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.muc4MEVnedf3WRGI",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.i59wj8tpD9uKCTcD",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "coSV0dQuf8MZGvuS",
+        "_id": "1wOs1QwC870b1O6s",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.OcZgebrnjEqiDyO0"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.OcZgebrnjEqiDyO0",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "3lR3GddsuXF1tn2m",
+        "_id": "pMusOr0ctIt1MerF",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.uloX5RRFXBGEeogK"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.uloX5RRFXBGEeogK",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "1uIm1TQts1D4TFuV",
+        "_id": "13zcVmjWELavBJYQ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.KRJV1Abz8JcGX4rm"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.KRJV1Abz8JcGX4rm",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
         "title": "Features"
+      },
+      {
+        "_id": "ZbzYUjusOSQ1Mopi",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:itm",
+                "skills:per"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -89,7 +134,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -97,10 +142,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959713,
-    "modifiedTime": 1684819093621,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689027,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!5gfIN2jExDwxmY15"
 }

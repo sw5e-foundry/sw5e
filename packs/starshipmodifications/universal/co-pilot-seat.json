@@ -1,20 +1,20 @@
 {
-  "_id": "onyyeEbyOybReR1q",
   "name": "Co-Pilot Seat",
   "type": "starshipmod",
-  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Universal.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>You integrate a co-pilot seat in your ship. Your ship's maximum crew capacity increases by 1.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">You integrate a co-pilot seat in your ship. Your ship's maximum crew capacity increases by 1.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This modification cannot be installed in a ship that already has Astromech Socket installed.</span></p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "value": "SotG"
+    },
     "quantity": 1,
     "weight": 0,
     "price": {
@@ -36,6 +36,7 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -80,14 +81,11 @@
       "charged": false,
       "value": null
     },
-    "system": {
-      "value": "Universal"
-    },
     "grade": {
       "value": 2
     },
-    "basecost": {
-      "value": 4000
+    "baseCost": {
+      "value": null
     },
     "prerequisites": {
       "value": "Ship size Small"
@@ -102,53 +100,28 @@
       "dex": null
     },
     "proficient": false,
-    "properties": {
-      "Absorptive": false,
-      "Agile": false,
-      "Anchor": false,
-      "Avoidant": false,
-      "Barbed": false,
-      "Bulky": false,
-      "Charging": false,
-      "Concealing": false,
-      "Cumbersome": false,
-      "Gauntleted": false,
-      "Imbalanced": false,
-      "Impermeable": false,
-      "Insulated": false,
-      "Interlocking": false,
-      "Lambent": false,
-      "Lightweight": false,
-      "Magnetic": false,
-      "Obscured": false,
-      "Obtrusive": false,
-      "Powered": false,
-      "Reactive": false,
-      "Regulated": false,
-      "Reinforced": false,
-      "Responsive": false,
-      "Rigid": false,
-      "Silent": false,
-      "Spiked": false,
-      "Strength": false,
-      "Steadfast": false,
-      "Versatile": false
-    },
+    "properties": [],
     "attributes": {
       "dr": ""
     },
     "strength": null,
-    "stealth": false
-  },
-  "ownership": {
-    "default": 0
+    "stealth": false,
+    "type": {
+      "value": "Universal"
+    }
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494018740,
-    "modifiedTime": 1685840666215,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1706199587767,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "Th7e9A044Rao7Bhf",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!Th7e9A044Rao7Bhf"
 }

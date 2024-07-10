@@ -7,26 +7,29 @@
   "system": {
     "description": {
       "value": "<p>The first time the <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> would drop to zero hit points, the <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> can instead remain at one hit point and temporarily deactivate and fold up into a tougher, immobile form. While turtled, the <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> has an AC of 14, and is considered paralyzed. The creature interfaced with this <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> can use a bonus action to restore this <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> to it's unturtled condition.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "none",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": 0,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -37,20 +40,21 @@
       "value": 1,
       "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
-      "damage": null
+      "damage": ""
     },
     "damage": {
       "parts": [],
@@ -67,7 +71,7 @@
       "subtype": ""
     },
     "recharge": {
-      "value": 0,
+      "value": null,
       "charged": false
     },
     "attributes": {
@@ -76,23 +80,30 @@
         "turn": null
       }
     },
-    "powercasting": {
-      "force": "none",
-      "tech": "none"
-    }
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1669754332999,
-    "modifiedTime": 1685840641039,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368815669,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "folder": null,
   "sort": 0,
-  "_id": "6v1F64bjimcnB7FZ"
+  "_id": "6v1F64bjimcnB7FZ",
+  "_key": "!items!6v1F64bjimcnB7FZ"
 }

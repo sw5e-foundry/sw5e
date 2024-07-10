@@ -1,11 +1,5 @@
 {
-  "_id": "43lvMgItYXGBcAUC",
   "name": "Culisetto",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Culisetto.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2751362+00:00",
@@ -13,48 +7,142 @@
       "uid": "Species.name-culisetto"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Culisetto.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>The culisetto are an insectoid species, with a close resemblance to the common fly. Their long snouts are not truly proboscises, but function much the same, allowing them to drain blood with the aid of two tendrils, one on either side of the snout. They move by crawling about on their hands and feet, and are adept at leaping and climbing.</p>\n<p>Despite their appearance, culisetto are an exceptionally hygenic species, with an evolved habit of rubbing their hands and legs to rid them of germs from the ground.</p>\n<h2>Society and Culture</h2>\n<p>Culisetto are often shunned by other species, if not for their grotesque appearance, then usually for their habit of drinking blood. They prefer to do so while their victims are alive, but tolerate it if they are recently dead. While they have evolved beyond needing to drink blood to survive, its taste remains quite enticing to many culisetto, who will indulge in it at their pleasure.</p>\n<p>Culisetto tend to favor the company of their own kind, particularly their siblings. Broodlings frequently travel in groups of three or more, inseparable from birth.</p>\n<h2>Names</h2>\n<p>Culisetto names are distinctively antiquated in their etymology. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Kreon, Sosilu, Ocyto, Phino</p>\n<p><strong>Female Names.</strong> Hecuba, Anophe, Xeina, Adeia</p>\n<p><strong>Surnames.</strong> Dengue, Chontos, Kazan, Vazil</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "culisetto",
-    "advancement": [
-      {
-        "_id": "17AZq6LeZnx411P8",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.VC8A5EQWopbjGX7i",
-            "Compendium.sw5e.speciesfeatures.fIi0mxYnDXBolgUq",
-            "Compendium.sw5e.speciesfeatures.upqu57oBmkFeAEio",
-            "Compendium.sw5e.speciesfeatures.MO0DVhElVt6q1APc",
-            "Compendium.sw5e.speciesfeatures.7AM6NCj6pe38JPJj",
-            "Compendium.sw5e.speciesfeatures.vB2f2hP0wbWqDrn6",
-            "Compendium.sw5e.speciesfeatures.L0gY6aTnr4lGyNWW",
-            "Compendium.sw5e.speciesfeatures.sNMlNms2CFbHbKNZ",
-            "Compendium.sw5e.speciesfeatures.tN1ldwAvRe30HIrX",
-            "Compendium.sw5e.speciesfeatures.GRzQSpaJNNtL4gFl",
-            "Compendium.sw5e.speciesfeatures.EccWkDPJc8MpAsGM",
-            "Compendium.sw5e.speciesfeatures.PbHsqRGPRi0VrY2X",
-            "Compendium.sw5e.speciesfeatures.huaXniMoNmbPgA1f",
-            "Compendium.sw5e.speciesfeatures.3jjaAERHHBMBTJvf",
-            "Compendium.sw5e.speciesfeatures.HwpvNTEWhfPxMdu9"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "climb": 25,
+      "burrow": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "zb3i4azI7RHIdfyQ",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VC8A5EQWopbjGX7i",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fIi0mxYnDXBolgUq",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.upqu57oBmkFeAEio",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MO0DVhElVt6q1APc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7AM6NCj6pe38JPJj",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vB2f2hP0wbWqDrn6",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.L0gY6aTnr4lGyNWW",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.sNMlNms2CFbHbKNZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.tN1ldwAvRe30HIrX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GRzQSpaJNNtL4gFl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.EccWkDPJc8MpAsGM",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PbHsqRGPRi0VrY2X",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.huaXniMoNmbPgA1f",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3jjaAERHHBMBTJvf",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HwpvNTEWhfPxMdu9",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1JpAnRTERghF1S9Y",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "cha": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "4oVMZdOKIR5q4VwC",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Pink, yellow"
     },
@@ -65,7 +153,7 @@
       "value": "Red"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Thoracic carapace"
@@ -87,17 +175,31 @@
     },
     "slanguage": {
       "value": "Culisetto"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "mCReslAgQUybWbu0",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002062,
-    "modifiedTime": 1692402505738,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797560,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!mCReslAgQUybWbu0"
 }

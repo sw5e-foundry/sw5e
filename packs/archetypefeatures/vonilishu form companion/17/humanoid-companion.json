@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Vonil/Ishu Form:</strong> 3rd, 11th, and 17th level</em></p>\n<p>You've adopted a partner, gaining the services of your own humanoid companion.</p>\n<p>Create your humanoid companion as detailed in the Companions section of the Customization Options document for Expanded Content. </p>\n<p>In addition to its traits and features, your companion gains additional benefits while it is bonded to you:</p>\n<ul>\n<li>Your companion gains two additional traits. It gains one more additional trait when you reach 11th level in this class. For each trait in excess of your proficiency bonus, your force point maximum is reduced by 2.</li>\n</ul>\n<p>Lastly, while bonded and within 10 feet of you, when you or your companion are dealt damage by an external effect, you can choose to have you or your companion gain resistance to that damage. If you do so, the other of the two takes the same damage as true damage.</p>\n<p>At 11th level, your companion must be within 30 feet of you to benefit from this feature. At 17th level, your companion must be within 60 feet.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Vonil/Ishu Form (Companion)) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -27,11 +28,13 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 10,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.1",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1680288495983,
-    "modifiedTime": 1680288495983,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368708689,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "klvcmJoL1aDs2rcp"
+  "_id": "klvcmJoL1aDs2rcp",
+  "_key": "!items!klvcmJoL1aDs2rcp"
 }

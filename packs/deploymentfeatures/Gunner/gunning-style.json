@@ -8,26 +8,29 @@
   "system": {
     "description": {
       "value": "<p>At 2nd rank, you adopt a particular style of gunning as your specialty. Choose one of the Gunning Style options, detailed in Chapter 6. You can't take a Gunning Style option more than once, even if you later get to choose again.</p><h4 style=\"box-sizing:inherit;user-select:text;margin:0px 0px 0.5rem;padding:0px;font-weight:400;font-family:'Russo One';font-size:17px;letter-spacing:0.5px;color:rgb(196, 15, 15);font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\"><span style=\"font-family:'Russo One'\">CANNONEER</span></h4><h4 style=\"box-sizing:inherit;user-select:text;margin:0px 0px 0.5rem;padding:0px;font-weight:400;font-family:'Russo One';font-size:17px;letter-spacing:0.5px;color:rgb(196, 15, 15);font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\"><span style=\"font-family:'Russo One'\">HEAVY GUNNER</span></h4><h4 style=\"box-sizing:inherit;user-select:text;margin:0px 0px 0.5rem;padding:0px;font-weight:400;font-family:'Russo One';font-size:17px;letter-spacing:0.5px;color:rgb(196, 15, 15);font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\"><span style=\"font-family:'Russo One'\">PAYLOAD DELIVERY</span></h4>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Gunner 2nd Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -38,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -77,15 +81,16 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Gunner"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "2nd Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -94,10 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493963433,
-    "modifiedTime": 1685840610768,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368730004,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!MtyVkb4XFvjKsHGO"
 }

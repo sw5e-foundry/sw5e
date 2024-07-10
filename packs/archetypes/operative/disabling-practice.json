@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Disabling Practice</h1>\n<p>Those operatives who choose the Disabling Practice utilize a variety of pushes, pulls, weight shifts, and joint locks to immobilize their opponent. They use these techniques to manipulate their opponent, moving them across the battlefield before incapacitating them.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "disablingpractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "S9Kuq8cg8j01oNFW",
+        "_id": "noDd3DmCbLQ1FAse",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.qkYPBgM3P4vTXaQc",
-            "Compendium.sw5e.archetypefeatures.5I1fXw5tY9a14LoC"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.qkYPBgM3P4vTXaQc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.5I1fXw5tY9a14LoC",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "YiACy7qzzqE1ntrU",
+        "_id": "1NLPid52heNq1ISB",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.vfoCBtELD1WaVJ90"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.vfoCBtELD1WaVJ90",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "Qxuh2NWBv1NYf2go",
+        "_id": "gD6mizKvDq4kNH6f",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.zF02ESHM7n8eeDNm"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.zF02ESHM7n8eeDNm",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "SoTHRFpIY5N1lPhB",
+        "_id": "hGZm0hvsKrz1hi0r",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.qgHRPomaepStE22s"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.qgHRPomaepStE22s",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959731,
-    "modifiedTime": 1684819093622,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689280,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!Gi1wuDUoOlmVdaNQ"
 }

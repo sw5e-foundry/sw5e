@@ -1,106 +1,5 @@
 {
-  "_id": "MtBnA2VnLwqdnBvc",
   "name": "Kubaz",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Kubaz.webp",
-  "effects": [
-    {
-      "_id": "KTMeZ69AIhp6lmIz",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Kubaz",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.senses.darkvision",
-          "value": "120",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.skills.tec.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "kubazian",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.toolProf.value",
-          "value": "slic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.sunlightSensitivity",
-          "value": "1",
-          "mode": 0,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 0,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Kubaz.webp",
-      "label": "Kubaz",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2831315+00:00",
@@ -108,45 +7,156 @@
       "uid": "Species.name-kubaz"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Kubaz.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Kubaz are distinctive for their short, prehensile facial snouts which were used for reaching insects within their hives. They have adapted to their sun-scorched, vegetation-deprived world by learning to survive off their world's native insect population. Filled with two rows of teeth for gnashing their food, the Kubaz trunk also functions as a highly sensitive nose.  Due to living on their homeworld of Kubindi—a planet which orbits a blue star—Kubaz are highly sensitive to red wavelengths; when traveling to planets with a red or yellow star, Kubaz are forced to don protective eyewear to avoid damaging their sensitive eyes.</p>\n<h2>Society and Culture</h2>\n<p>The Kubazi society is based on a clan structure which dwell in underground nests. Ruled by a queen, each clan takes the name of their queen they are descended from. Developing a non-verbal language of hand gestures which indicated their intentions, Kubaz are able to speak Galactic Basic, though with a strong nasally accent.  When interacting with other species, some Kubaz will share certain hand signals with non-Kubaz in order to ease communications.  Obsessed with tact and decorum, the Kubaz place a high emphasis on the family unit and proper courtesies, displaying truthfulness to a fault. Valuing art and literature with such vigor as to sometimes practice smuggling of great works, the Kubaz do not find such pursuits to be wrong or unlawful.  Due to their diet on Kubindi, the Kubaz have poor relations with sentient insectile species. </p>\n<h2>Names</h2>\n<p>Kubaz names are usually dominated by harsher sounds, but some names lean more melodic. Surnames are clan-based.</p>\n<p><strong>Male Names.</strong> Shaf, Rizor, Duldril, Kurn, Schnaldiz</p>\n<p><strong>Female Names.</strong> Zhanro, Dizi, Tavo, Agoz, Nuzrem</p>\n<p><strong>Surnames.</strong> Re, Eadzan, Hai, Khu'nar, Mairvuc, Va</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "kubaz",
-    "advancement": [
-      {
-        "_id": "1napRRFrtmRF1ct3",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.rhw4KDwPRBXokArE",
-            "Compendium.sw5e.speciesfeatures.MpT7mRCwAZkD4r4J",
-            "Compendium.sw5e.speciesfeatures.a9rE4bNLtzHJbK7v",
-            "Compendium.sw5e.speciesfeatures.P0nRIhvqiQ2yhaC5",
-            "Compendium.sw5e.speciesfeatures.fBFwAG33N6P6iY3Q",
-            "Compendium.sw5e.speciesfeatures.3zvevNJ9CgpfwFVp",
-            "Compendium.sw5e.speciesfeatures.SK5SPiY68GQthiXQ",
-            "Compendium.sw5e.speciesfeatures.n7dSkLFi0td9ZLZg",
-            "Compendium.sw5e.speciesfeatures.wbqAIoBMFgTT8ErE",
-            "Compendium.sw5e.speciesfeatures.3qt2iW6K1iaK2jTo",
-            "Compendium.sw5e.speciesfeatures.fxPvuG2WSwlFvv2i",
-            "Compendium.sw5e.speciesfeatures.1DRNA6NNbH5n1Utz"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 120,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1msv6acPTLYIhfCW",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rhw4KDwPRBXokArE",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MpT7mRCwAZkD4r4J",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.a9rE4bNLtzHJbK7v",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.P0nRIhvqiQ2yhaC5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fBFwAG33N6P6iY3Q",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3zvevNJ9CgpfwFVp",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.SK5SPiY68GQthiXQ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.n7dSkLFi0td9ZLZg",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wbqAIoBMFgTT8ErE",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3qt2iW6K1iaK2jTo",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fxPvuG2WSwlFvv2i",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1DRNA6NNbH5n1Utz",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "P14IHGHCCXM1yuzt",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "int": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "TWSDwm9gkzXh7JCP",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "6AS1MuKP8zd1gQT7",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:dec",
+                "skills:slt",
+                "skills:ste"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:tec",
+            "tool:slicerskit"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Black, dark grey, or dark green"
     },
@@ -157,7 +167,7 @@
       "value": "Red"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Prehensile snouts, protective eyewear"
@@ -179,17 +189,182 @@
     },
     "slanguage": {
       "value": "Kubazian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "KjYCOmNuADd9tQHN",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Kubaz",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 5,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.senses.darkvision",
+          "mode": 2,
+          "value": "120",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.tec.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "kubazian",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.toolProf.value",
+          "mode": 0,
+          "value": "slic",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Kubaz.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.MtBnA2VnLwqdnBvc.ActiveEffect.KTMeZ69AIhp6lmIz"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.MtBnA2VnLwqdnBvc",
+      "name": "Kubaz",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!0Vjb1w53vHGiEWNL.KjYCOmNuADd9tQHN"
+    },
+    {
+      "_id": "L67WRXxiXupihqw1",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Kubaz.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.MtBnA2VnLwqdnBvc.ActiveEffect.KTMeZ69AIhp6lmIz"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.MtBnA2VnLwqdnBvc",
+      "name": "Keen Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!0Vjb1w53vHGiEWNL.L67WRXxiXupihqw1"
+    },
+    {
+      "_id": "nupkXSrVF3uQnHZI",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.disadvantage.attack.all",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.situational.disadvantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Kubaz.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.MtBnA2VnLwqdnBvc.ActiveEffect.KTMeZ69AIhp6lmIz"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.MtBnA2VnLwqdnBvc",
+      "name": "Sunlight Sensitivity - you or your target is in sunlight",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!0Vjb1w53vHGiEWNL.nupkXSrVF3uQnHZI"
+    }
+  ],
+  "_id": "0Vjb1w53vHGiEWNL",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002089,
-    "modifiedTime": 1692402505739,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796303,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!0Vjb1w53vHGiEWNL"
 }

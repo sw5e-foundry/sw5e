@@ -16,116 +16,226 @@
   "system": {
     "description": {
       "value": "<h1>Biotech Engineering</h1>\n<p>Those engineers who choose the Biotech Engineering discipline focus on the skill of modifying and upgrading the body through the use of cybernetic limbs and implants.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Biotech Modifications</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.49PN2TniQ7RvCkt6]{Active camouflage core}</li>\n<li>@Compendium[sw5e.invocations.WKnv18ZskyGjpvX4]{Anti-dazzle ocular implant}</li>\n<li>@Compendium[sw5e.invocations.XVr8Y8olU5DkLWbK]{Auto-defibrillator }</li>\n<li>@Compendium[sw5e.invocations.mUfp3Ey2Ozr47CqH]{Brawny arm prosthesis}</li>\n<li>@Compendium[sw5e.invocations.rIrli4qwMvdX3YYv]{Celerity leg prosthesis}</li>\n<li>@Compendium[sw5e.invocations.9YrYiBwHHlyuqlOs]{Detachable eye}</li>\n<li>@Compendium[sw5e.invocations.zpnkpMTxGEIx9V08]{Detachable hand}</li>\n<li>@Compendium[sw5e.invocations.7pe5nPGcMP44SlmO]{Fadecasting inhibitor}</li>\n<li>@Compendium[sw5e.invocations.gk8QgyDB14uFYRPu]{Hardy torso prosthesis}</li>\n<li>@Compendium[sw5e.invocations.1GT9y5YC8O6tRGkS]{Harpoon hand}</li>\n<li>@Compendium[sw5e.invocations.QbPpvhwGHPU4dcBA]{Integrated subdermal armor}</li>\n<li>@Compendium[sw5e.invocations.0YXHDnn2sX2x5CMl]{Iridonian grav-lev hand}</li>\n<li>@Compendium[sw5e.invocations.UbLQ5sjyZcRg6dvK]{Magnetic forearm enhancement}</li>\n<li>@Compendium[sw5e.invocations.94OfAa2X9tsc5ELH]{Mighty prowess enabler }</li>\n<li>@Compendium[sw5e.invocations.OITrfKVASWAnK7kD]{Nighthawk ocular implant}</li>\n<li>@Compendium[sw5e.invocations.phEi5Hlh5Kg6RO29]{Powered harpoon hand}</li>\n<li>@Compendium[sw5e.invocations.cCqUPlGr97RT9tLP]{Rendcasting inhibitor}</li>\n<li>@Compendium[sw5e.invocations.LdHH57VENDlF33WJ]{Skills enhancement package}</li>\n<li>@Compendium[sw5e.invocations.lkankyG9xufDOHm8]{Sound dampeners}</li>\n<li>@Compendium[sw5e.invocations.jKFlmz5Sv9pEGitE]{Surveillance implant}</li>\n<li>@Compendium[sw5e.invocations.642dcCLvRWNhawKI]{Survival and surveillance implant}</li>\n<li>@Compendium[sw5e.invocations.dlP66eSMKLRUf9rD]{Swift gait attuner }</li>\n<li>@Compendium[sw5e.invocations.ZdnUUaVabjJZE1z9]{Vector amplifier}</li>\n<li>@Compendium[sw5e.invocations.fafkbrdjoWn4Esae]{Vector rangefinder}</li>\n<li>@Compendium[sw5e.invocations.LVqFBF28zVYX2fBq]{Voice synthesizer}</li>\n<li>@Compendium[sw5e.invocations.GlOkgODwN6T8RjxR]{Weapon integration}</li>\n<li>@Compendium[sw5e.invocations.qHyq3ceOD9lh3v75]{Withercasting inhibitor}</li>\n</ul>"
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "biotechengineering",
     "classIdentifier": "engineer",
     "advancement": [
       {
-        "_id": "1gpD1gYJhg129cl0",
+        "_id": "NKwPkLOvwYteY94E",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Kkb2OqvzpHvy7eyR",
-            "Compendium.sw5e.archetypefeatures.SGIA9zZdHH1xqSRQ",
-            "Compendium.sw5e.archetypefeatures.njrNclVWb7ByppS2"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Kkb2OqvzpHvy7eyR",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.SGIA9zZdHH1xqSRQ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.njrNclVWb7ByppS2",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "5i6QMUaBcee1KPe6",
+        "_id": "1v4VS7c3foMg1pfU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.7GmAgSMFqc2uxpkE"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.7GmAgSMFqc2uxpkE",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1aLKZItGrR5hycJW",
+        "_id": "XICwZ4N6RNN1aF6e",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.IF9B62UTf7UXdxVs"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.IF9B62UTf7UXdxVs",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
       },
       {
-        "_id": "uIPUaO7u0JeqTPb8",
+        "_id": "feNQrxSCrZZ1I4vn",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.TaoW5q6U1bQKP8u1"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.TaoW5q6U1bQKP8u1",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
         "title": "Features"
       },
       {
-        "_id": "12QE7NBh0LC8J2vV",
+        "_id": "FJxDbufo5AOK4BBo",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "tool:biotechsimplements"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
+      },
+      {
+        "_id": "17ImQuwRpNp21IAf",
         "type": "ItemChoice",
         "configuration": {
           "hint": "",
           "choices": {
-            "3": 4,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "3": {
+              "count": 4,
+              "replacement": false
+            },
+            "5": {
+              "count": 1,
+              "replacement": false
+            },
+            "9": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            },
+            "13": {
+              "count": 1,
+              "replacement": false
+            },
+            "17": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.49PN2TniQ7RvCkt6",
-            "Compendium.sw5e.invocations.WKnv18ZskyGjpvX4",
-            "Compendium.sw5e.invocations.XVr8Y8olU5DkLWbK",
-            "Compendium.sw5e.invocations.mUfp3Ey2Ozr47CqH",
-            "Compendium.sw5e.invocations.rIrli4qwMvdX3YYv",
-            "Compendium.sw5e.invocations.9YrYiBwHHlyuqlOs",
-            "Compendium.sw5e.invocations.zpnkpMTxGEIx9V08",
-            "Compendium.sw5e.invocations.7pe5nPGcMP44SlmO",
-            "Compendium.sw5e.invocations.gk8QgyDB14uFYRPu",
-            "Compendium.sw5e.invocations.1GT9y5YC8O6tRGkS",
-            "Compendium.sw5e.invocations.QbPpvhwGHPU4dcBA",
-            "Compendium.sw5e.invocations.0YXHDnn2sX2x5CMl",
-            "Compendium.sw5e.invocations.UbLQ5sjyZcRg6dvK",
-            "Compendium.sw5e.invocations.94OfAa2X9tsc5ELH",
-            "Compendium.sw5e.invocations.OITrfKVASWAnK7kD",
-            "Compendium.sw5e.invocations.phEi5Hlh5Kg6RO29",
-            "Compendium.sw5e.invocations.cCqUPlGr97RT9tLP",
-            "Compendium.sw5e.invocations.LdHH57VENDlF33WJ",
-            "Compendium.sw5e.invocations.lkankyG9xufDOHm8",
-            "Compendium.sw5e.invocations.jKFlmz5Sv9pEGitE",
-            "Compendium.sw5e.invocations.642dcCLvRWNhawKI",
-            "Compendium.sw5e.invocations.dlP66eSMKLRUf9rD",
-            "Compendium.sw5e.invocations.ZdnUUaVabjJZE1z9",
-            "Compendium.sw5e.invocations.fafkbrdjoWn4Esae",
-            "Compendium.sw5e.invocations.LVqFBF28zVYX2fBq",
-            "Compendium.sw5e.invocations.htMe0WIJ0e7skiDm",
-            "Compendium.sw5e.invocations.qHyq3ceOD9lh3v75"
+            {
+              "uuid": "Compendium.sw5e.invocations.49PN2TniQ7RvCkt6"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.WKnv18ZskyGjpvX4"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.XVr8Y8olU5DkLWbK"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.mUfp3Ey2Ozr47CqH"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.rIrli4qwMvdX3YYv"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.9YrYiBwHHlyuqlOs"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.zpnkpMTxGEIx9V08"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.7pe5nPGcMP44SlmO"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.gk8QgyDB14uFYRPu"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.1GT9y5YC8O6tRGkS"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.QbPpvhwGHPU4dcBA"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.0YXHDnn2sX2x5CMl"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.UbLQ5sjyZcRg6dvK"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.94OfAa2X9tsc5ELH"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.OITrfKVASWAnK7kD"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.phEi5Hlh5Kg6RO29"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.cCqUPlGr97RT9tLP"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.LdHH57VENDlF33WJ"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.lkankyG9xufDOHm8"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.jKFlmz5Sv9pEGitE"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.642dcCLvRWNhawKI"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.dlP66eSMKLRUf9rD"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.ZdnUUaVabjJZE1z9"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.fafkbrdjoWn4Esae"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.LVqFBF28zVYX2fBq"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.htMe0WIJ0e7skiDm"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.qHyq3ceOD9lh3v75"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -138,7 +248,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Biotech Modifications"
       }
     ],
@@ -149,7 +262,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -157,10 +270,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959728,
-    "modifiedTime": 1692474724783,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689238,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!FaKY07usa5nH8I08"
 }

@@ -1,8 +1,188 @@
 {
-  "_id": "eGUqrRQ9p0mqLM4f",
   "name": "Ithorian",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9156216+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-ithorian"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Ithorian.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Ithorians have two mouths and four throats, allowing them to speak in stereo. Female Ithorians have two humps on the back of their head, while males have only one. They have glossy, usually brown flesh. Their reflexes and coordination are somewhat slower than that of average humanoids.</p>\n<p>In addition to allowing them to speak their unique stereophonic language, the Ithorians' four throats also have the ability to violently expel air, resulting in a deafening and potentially concussive scream. Despite this fact, most Ithorians go their entire lives without ever resorting to violence, and so the ability remained relatively ambiguous.</p>\n<h2>Society and Culture</h2>\n<p>Ithorians worship the \"Mother Jungle,\" a spiritual entity embodying the lush, tropical ecology of their world, Ithor. They are generally devoted environmentalists, staunch herbivores, and complete pacifists, devoting much time to contemplating their ecology, studying plants and their uses and the overall respecting of all living things. Most Ithorians never set foot on their own planet, instead living in floating cities above their world called herdships. Only three of their continents have been explored and harvested, the other two never having been touched by Ithorian hands. They demonstrate extreme belief in the protection and sustaining of their environment as dictated by their \"Law of Life.\"</p>\n<h2>Names</h2>\n<p>Ithorian names are quite varied in length but most names are soft and melodic. They are often difficult to prounounce by other species, so many Ithorians adopt nicknames.</p>\n<p><strong>Male Names.</strong> Del, Gizorthej, Pexxocl, Steorthibs</p>\n<p><strong>Female Names.</strong> Binshe, Dhu'sha, Mul, Slosh, Vlo</p>\n<p><strong>Surnames.</strong> Afleehl, Crukid, Tondand, Wamunn</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "ithorian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "12LGQN3gLZGXADJT",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GjdzXHEnrtDzkL6Z",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vF1w0S9HkI9rG6rc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.YxWtjZtYy96XrEE4",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.gCbqhn6ZqLyB1QTZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.AHGcLZ8ZEYSzzuIl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Zr6TswlyFPv7Twew",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vxm1sMw6bE7ry099",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.M3uKwzNThyFNjaxW",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WwLA9qBZgUBxCCnY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zxvcw7Kac3M85A0O",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "UaNgGlydRNx1CrPG",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "wis": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1RTZBhwznAl8n4ki",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1qkjlUNjWARokoqa",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:nat",
+            "tool:bioanalysiskit"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Brown, dark red or green"
+    },
+    "hairColorOptions": {
+      "value": "Brown, gray, or white"
+    },
+    "eyeColorOptions": {
+      "value": "Black or blue"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Curved neck, two mouths, aural flaps, locomotion tubes, throat sack"
+    },
+    "heightAverage": {
+      "value": "5'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "135 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Ithor"
+    },
+    "slanguage": {
+      "value": "Ithorese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "JaGRpRTJPdMx0P4C",
@@ -12,18 +192,6 @@
           "value": "Ithorian",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -67,103 +235,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Ithorian.webp",
-      "label": "Ithorian",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Ithorian",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!jxMkwBSGTMrDzTyy.JaGRpRTJPdMx0P4C"
     }
   ],
+  "_id": "jxMkwBSGTMrDzTyy",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9156216+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-ithorian"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Ithorians have two mouths and four throats, allowing them to speak in stereo. Female Ithorians have two humps on the back of their head, while males have only one. They have glossy, usually brown flesh. Their reflexes and coordination are somewhat slower than that of average humanoids.</p>\n<p>In addition to allowing them to speak their unique stereophonic language, the Ithorians' four throats also have the ability to violently expel air, resulting in a deafening and potentially concussive scream. Despite this fact, most Ithorians go their entire lives without ever resorting to violence, and so the ability remained relatively ambiguous.</p>\n<h2>Society and Culture</h2>\n<p>Ithorians worship the \"Mother Jungle,\" a spiritual entity embodying the lush, tropical ecology of their world, Ithor. They are generally devoted environmentalists, staunch herbivores, and complete pacifists, devoting much time to contemplating their ecology, studying plants and their uses and the overall respecting of all living things. Most Ithorians never set foot on their own planet, instead living in floating cities above their world called herdships. Only three of their continents have been explored and harvested, the other two never having been touched by Ithorian hands. They demonstrate extreme belief in the protection and sustaining of their environment as dictated by their \"Law of Life.\"</p>\n<h2>Names</h2>\n<p>Ithorian names are quite varied in length but most names are soft and melodic. They are often difficult to prounounce by other species, so many Ithorians adopt nicknames.</p>\n<p><strong>Male Names.</strong> Del, Gizorthej, Pexxocl, Steorthibs</p>\n<p><strong>Female Names.</strong> Binshe, Dhu'sha, Mul, Slosh, Vlo</p>\n<p><strong>Surnames.</strong> Afleehl, Crukid, Tondand, Wamunn</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "ithorian",
-    "advancement": [
-      {
-        "_id": "rXxAkJskRK8NJDP5",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.GjdzXHEnrtDzkL6Z",
-            "Compendium.sw5e.speciesfeatures.vF1w0S9HkI9rG6rc",
-            "Compendium.sw5e.speciesfeatures.YxWtjZtYy96XrEE4",
-            "Compendium.sw5e.speciesfeatures.gCbqhn6ZqLyB1QTZ",
-            "Compendium.sw5e.speciesfeatures.AHGcLZ8ZEYSzzuIl",
-            "Compendium.sw5e.speciesfeatures.Zr6TswlyFPv7Twew",
-            "Compendium.sw5e.speciesfeatures.vxm1sMw6bE7ry099",
-            "Compendium.sw5e.speciesfeatures.M3uKwzNThyFNjaxW",
-            "Compendium.sw5e.speciesfeatures.WwLA9qBZgUBxCCnY",
-            "Compendium.sw5e.speciesfeatures.zxvcw7Kac3M85A0O"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Brown, dark red or green"
-    },
-    "hairColorOptions": {
-      "value": "Brown, gray, or white"
-    },
-    "eyeColorOptions": {
-      "value": "Black or blue"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Curved neck, two mouths, aural flaps, locomotion tubes, throat sack"
-    },
-    "heightAverage": {
-      "value": "5'9\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "135 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Ithor"
-    },
-    "slanguage": {
-      "value": "Ithorese"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002116,
-    "modifiedTime": 1692402505742,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797508,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!jxMkwBSGTMrDzTyy"
 }

@@ -1,8 +1,194 @@
 {
-  "_id": "na2GEY0B6fljF9uL",
   "name": "Flesh Raider",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2781349+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-flesh_raider"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/FleshRaider.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Flesh raiders are a more primitive, and more physically imposing subspecies of rakata that mutated prior to the end of the Infinite Empire. A life above ground and in caves has led the flesh raiders to lose their more amphibian traits, and are now more humanoid in their biological needs, though they seem to only be able to digest meats and flesh.</p>\n<p>Flesh raiders keep many of their ancestral rakatan features, though they have experienced a form of gigantism that has lead to their interesting appearance, that of a flat topped, spade shaped head, with blade-like eye stalks coming off the side ends of the spade. Their body structure also more closely matches that of a trandoshan or dashade, being bulky and imposing in stature, towering over most other sentient creatures.</p>\n<p>Unlike contemporary rakata, flesh raiders did not lose their ability to tap into the Force.</p>\n<h2>Society and Culture</h2>\n<p>Flesh raiders are known to form small clan structures, with a war boss in charge of the clan. Those flesh raiders who are born Force-sensitive can be found imitating a temple structure, with a powerful Force-sensitive, usually from another species, leading them. </p>\n<p>Flesh raiders still speak the rakatan language, though it has developed into a cruder variant.</p>\n<h2>Names</h2>\n<p>Flesh  raider names tend to be short and concise, embodying strength and virility. Flesh raider names make no distinction between male and female names. Surnames are clan-based, though they are rarely used.</p>\n<p><strong>First Names.</strong> Cha'nagh, Fashk, Gorshh, Keshk, Mar'govrok</p>\n<p><strong>Surnames.</strong> Ban, Fel, Kuir, Penk, Teeshk</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "fleshraider",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "qz1gaNmzH0R6sbS3",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rPLd3VNIhMVpZ7nb",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lbPTnKfcbunfKqPp",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fb4ZRBbJvWaPDqLR",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.qYeCElyH17jnZnL3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jiE8HkV80JZS2WwY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7g1v24qUcEfbiIfe",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.R6goGhoKp9eLV8ju",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zz7Bj7LcWEgc9UoG",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TyzMr3Kl3CK5Xahg",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5V8FTNwoFWMVGrOR",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PpicCEeEH6rb2T9l",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Et4akfJmMBYnzfRu",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1bwM154b760E1Jtm",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1UfgyDm6s8Tk1p58",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "mUZojb2IpcqZhsir",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:itm"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Brown, pink, red, or tan"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black, dark blue, dark green"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Horizontal eye stalks, horizontal spade-shaped head, tridactyl hands"
+    },
+    "heightAverage": {
+      "value": "5'8\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "145 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Tython"
+    },
+    "slanguage": {
+      "value": "Rakata"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "8kAGFyPm2CQRdUho",
@@ -12,12 +198,6 @@
           "value": "Flesh Raider",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -68,9 +248,15 @@
           "priority": 20
         },
         {
-          "key": "flags.sw5e.forceContention",
+          "key": "flags.sw5e.advantage.ability.save.force.str",
           "value": "1",
-          "mode": 0,
+          "mode": 5,
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.advantage.ability.save.force.con",
+          "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -85,105 +271,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Flesh%20Raider.webp",
-      "label": "Flesh Raider",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Flesh Raider",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!cZwANS42mbgH04jA.8kAGFyPm2CQRdUho"
     }
   ],
+  "_id": "cZwANS42mbgH04jA",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2781349+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-flesh_raider"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Flesh raiders are a more primitive, and more physically imposing subspecies of rakata that mutated prior to the end of the Infinite Empire. A life above ground and in caves has led the flesh raiders to lose their more amphibian traits, and are now more humanoid in their biological needs, though they seem to only be able to digest meats and flesh.</p>\n<p>Flesh raiders keep many of their ancestral rakatan features, though they have experienced a form of gigantism that has lead to their interesting appearance, that of a flat topped, spade shaped head, with blade-like eye stalks coming off the side ends of the spade. Their body structure also more closely matches that of a trandoshan or dashade, being bulky and imposing in stature, towering over most other sentient creatures.</p>\n<p>Unlike contemporary rakata, flesh raiders did not lose their ability to tap into the Force.</p>\n<h2>Society and Culture</h2>\n<p>Flesh raiders are known to form small clan structures, with a war boss in charge of the clan. Those flesh raiders who are born Force-sensitive can be found imitating a temple structure, with a powerful Force-sensitive, usually from another species, leading them. </p>\n<p>Flesh raiders still speak the rakatan language, though it has developed into a cruder variant.</p>\n<h2>Names</h2>\n<p>Flesh  raider names tend to be short and concise, embodying strength and virility. Flesh raider names make no distinction between male and female names. Surnames are clan-based, though they are rarely used.</p>\n<p><strong>First Names.</strong> Cha'nagh, Fashk, Gorshh, Keshk, Mar'govrok</p>\n<p><strong>Surnames.</strong> Ban, Fel, Kuir, Penk, Teeshk</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "fleshraider",
-    "advancement": [
-      {
-        "_id": "1n9Oaa2Xw8OxAq6m",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.rPLd3VNIhMVpZ7nb",
-            "Compendium.sw5e.speciesfeatures.lbPTnKfcbunfKqPp",
-            "Compendium.sw5e.speciesfeatures.fb4ZRBbJvWaPDqLR",
-            "Compendium.sw5e.speciesfeatures.qYeCElyH17jnZnL3",
-            "Compendium.sw5e.speciesfeatures.jiE8HkV80JZS2WwY",
-            "Compendium.sw5e.speciesfeatures.7g1v24qUcEfbiIfe",
-            "Compendium.sw5e.speciesfeatures.R6goGhoKp9eLV8ju",
-            "Compendium.sw5e.speciesfeatures.zz7Bj7LcWEgc9UoG",
-            "Compendium.sw5e.speciesfeatures.TyzMr3Kl3CK5Xahg",
-            "Compendium.sw5e.speciesfeatures.5V8FTNwoFWMVGrOR",
-            "Compendium.sw5e.speciesfeatures.PpicCEeEH6rb2T9l",
-            "Compendium.sw5e.speciesfeatures.Et4akfJmMBYnzfRu"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Brown, pink, red, or tan"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black, dark blue, dark green"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Horizontal eye stalks, horizontal spade-shaped head, tridactyl hands"
-    },
-    "heightAverage": {
-      "value": "5'8\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "145 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Tython"
-    },
-    "slanguage": {
-      "value": "Rakata"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002131,
-    "modifiedTime": 1692402505742,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797309,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!cZwANS42mbgH04jA"
 }

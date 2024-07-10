@@ -16,68 +16,107 @@
   "system": {
     "description": {
       "value": "<h1>Precision Approach</h1>\n<p>Some berserkers have learned to channel their rage into a method of increasing their focus and precision to supernatural levels. Those berserkers who choose the Precision Approach hone their rage to a fine point, becoming agile warriors who ruthlessly dispatch their foes.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "precisionapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "gCK6aOUAiLV1mQzs",
+        "_id": "1wGc8h1PmEJpL4ol",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ZwzEXmXUBSQMarA7",
-            "Compendium.sw5e.archetypefeatures.aAMTfVpJR1g1Da7x"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ZwzEXmXUBSQMarA7",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.aAMTfVpJR1g1Da7x",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "L8zYqa6BKGg5rbp7",
+        "_id": "1mdLsPUzhl4YIlra",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.QGZymJSoQ0q2BiZn"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.QGZymJSoQ0q2BiZn",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "WxfcD0DRcxD9Kywh",
+        "_id": "y6vYSl4eLkxr95uj",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.9RlZQaQbXOowxZ3c"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.9RlZQaQbXOowxZ3c",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "qT2AB6CotFVHEzjm",
+        "_id": "ZPUw0pbo0mr1ENkh",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.p1EP6FF3RmWNr44d"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.p1EP6FF3RmWNr44d",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
+      },
+      {
+        "_id": "17UJFo1WJG54es4S",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:acr",
+                "skills:ste"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -87,7 +126,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +134,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959727,
-    "modifiedTime": 1684819093622,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689207,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!DOhLhimid3h8Huc7"
 }

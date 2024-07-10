@@ -1,5 +1,4 @@
-import { sluggify } from "../../../utils.mjs";
-import { CompendiumBrowser } from "../_module.mjs";
+import { sluggify, getComposedRegex } from "../../../utils.mjs";
 import { CompendiumBrowserTab } from "./base.mjs";
 
 export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
@@ -12,7 +11,17 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
     /* MiniSearch */
     searchFields = ["name"];
 
-    storeFields = ["type", "name", "img", "uuid", "level", "featType", "skills", "traits", "rarity", "source"];
+    storeFields = [
+      "type",
+      "name",
+      "img",
+      "uuid",
+      "level",
+      "class",
+      "category",
+      "subcategory",
+      "source"
+    ];
 
     constructor(browser) {
       super(browser);
@@ -25,28 +34,23 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
       console.debug("SW5e System | Compendium Browser | Started loading feats");
 
       const feats = [];
+      const pos_pattern = getComposedRegex(
+        "i",
+        /^(?<level_a>\d+)(?:st|nd|rd|th) (?:level|rank|tier)/,
+        /^At least (?<level_b>\d+) (?:levels|ranks|tiers) in (?<class_b>.*)$/,
+        /^(?<class_c>[^,\d]+) (?<level_c>\d+)(?:st|nd|rd|th)?(?: level| rank| tier)?(?:,|$)/,
+        /^(?<class_d>[^,\d]+)(?:,|$)/
+      );
+      const neg_pattern = /(strength|dexterity|constitution|intelligence|wisdom|charisma|ability to cast|type|size|no levels in)/i;
       const sources = new Set();
+      const classes = new Set();
       const indexFields = [
         "img",
-        "system.prerequisites.value",
-        "system.actionType.value",
-        "system.actions.value",
-        "system.featType.value",
-        "system.level.value",
-        "system.traits",
-        "system.source.value"
+        "system.activation",
+        "system.requirements",
+        "system.type",
+        "system.source"
       ];
-
-      const translatedSkills = Object.entries(CONFIG.SW5E.skillList).reduce(
-        (result, [key, value]) => {
-          return {
-            ...result,
-            [key]: game.i18n.localize(value).toLocaleLowerCase(game.i18n.lang)
-          };
-        },
-        {}
-      );
-      const skillList = Object.entries(translatedSkills);
 
       for await (const { pack, index } of this.browser.packLoader.loadPacks(
         "Item",
@@ -64,27 +68,18 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
               continue;
             }
 
-            // Prerequisites are strings that could contain translated skill names
-            const prereqs = featData.system.prerequisites.value;
-            const prerequisitesArr = prereqs.map(prerequisite =>
-              prerequisite?.value ? prerequisite.value.toLowerCase() : ""
-            );
-            const skills = new Set();
-            for (const prereq of prerequisitesArr) {
-              for (const [key, value] of skillList) {
-                // Check the string for the english translation key or a translated skill name
-                if (prereq.includes(key) || prereq.includes(value)) {
-                  // Alawys record the translation key to enable filtering
-                  skills.add(key);
-                }
-              }
-            }
+            const match = featData.system.requirements?.match(pos_pattern);
+            const neg = neg_pattern.test(featData.system.requirements);
+            const p_class = neg ? undefined : (match?.groups?.class_a ?? match?.groups?.class_b ?? match?.groups?.class_c ?? match?.groups?.class_d);
+            const p_level = neg ? undefined : (match?.groups?.level_a ?? match?.groups?.level_b ?? match?.groups?.level_c ?? match?.groups?.level_d);
+            if (p_class) classes.add(p_class);
 
             // Prepare source
-            const source = featData.system.source.value;
-            if (source) {
+            const source = featData.system.source.label ?? featData.system.source.custom ?? featData.system.source;
+            var sourceSlug;
+            if (source && foundry.utils.getType(source) === "string") {
+              sourceSlug = sluggify(source);
               sources.add(source);
-              featData.system.source.value = sluggify(source);
             }
 
             // Only store essential data
@@ -93,12 +88,11 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
               name: featData.name,
               img: featData.img,
               uuid: `Compendium.${pack.collection}.${featData._id}`,
-              level: featData.system.level.value,
-              featType: featData.system.featType.value,
-              skills: [...skills],
-              traits: featData.system.traits.value,
-              rarity: featData.system.traits.rarity,
-              source: featData.system.source.value
+              class: sluggify(p_class ?? ""),
+              level: p_level,
+              category: featData.system.type.value,
+              subcategory: featData.system.type.subtype,
+              source: sourceSlug ?? ""
             });
           }
         }
@@ -108,59 +102,72 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
       this.indexData = feats;
 
       // Filters
-      this.filterData.checkboxes.feattype.options = this.generateCheckboxOptions(CONFIG.SW5E.featTypes);
-      this.filterData.checkboxes.skills.options = this.generateCheckboxOptions(CONFIG.SW5E.skillList);
-      this.filterData.checkboxes.rarity.options = this.generateCheckboxOptions(CONFIG.SW5E.rarityTraits);
+      this.filterData.checkboxes.category.options = this.generateCheckboxOptions(
+        Object.fromEntries(
+          Object.entries(CONFIG.SW5E.featureTypes)
+          .map(([k, v]) => [k, v.label])
+          .filter(([k, v]) => v)
+        )
+      );
+      this.filterData.checkboxes.subcategory.options = this.generateCheckboxOptions(
+        Object.fromEntries(Object.values(CONFIG.SW5E.featureTypes).map(v => Object.entries(v.subtypes ?? {})).flat())
+      );
+      this.filterData.checkboxes.class.options = this.generateSourceCheckboxOptions(classes);
       this.filterData.checkboxes.source.options = this.generateSourceCheckboxOptions(sources);
-      this.filterData.multiselects.traits.options = this.generateMultiselectOptions({ ...CONFIG.SW5E.featTraits });
 
       console.debug("SW5e System | Compendium Browser | Finished loading feats");
     }
 
     filterIndexData(entry) {
-      const { checkboxes, multiselects, sliders } = this.filterData;
+      const { checkboxes, ranges } = this.filterData;
 
+      // Category
+      if (checkboxes.category.selected.length) {
+        if (!checkboxes.category.selected.includes(entry.category)) return false;
+      }
+      // Subcategory
+      if (checkboxes.subcategory.selected.length) {
+        if (!checkboxes.subcategory.selected.includes(entry.subcategory)) return false;
+      }
       // Level
-      if (!(entry.level >= sliders.level.values.min && entry.level <= sliders.level.values.max)) return false;
-      // Feat types
-      if (checkboxes.feattype.selected.length) {
-        if (!checkboxes.feattype.selected.includes(entry.featType)) return false;
+      if (!((entry.level ?? 0) >= ranges.level.values.min && (entry.level ?? 0) <= ranges.level.values.max)) return false;
+      // Class
+      if (checkboxes.class.selected.length) {
+        if (!checkboxes.class.selected.includes(entry.class)) return false;
       }
-      // Skills
-      if (checkboxes.skills.selected.length) {
-        if (!this.arrayIncludes(checkboxes.skills.selected, entry.skills)) return false;
-      }
-      // Traits
-      if (!this.filterTraits(entry.traits, multiselects.traits.selected, multiselects.traits.conjunction)) return false;
       // Source
       if (checkboxes.source.selected.length) {
         if (!checkboxes.source.selected.includes(entry.source)) return false;
       }
-      // Rarity
-      if (checkboxes.rarity.selected.length) {
-        if (!checkboxes.rarity.selected.includes(entry.rarity)) return false;
-      }
       return true;
+    }
+
+    parseRangeFilterInput(name, lower, upper) {
+      if (name === "price") {
+        lower ??= 0;
+        upper ??= 20;
+      }
+      return super.parseRangeFilterInput(name, lower, upper);
     }
 
     prepareFilterData() {
       return {
         checkboxes: {
-          feattype: {
-            isExpanded: false,
+          category: {
+            isExpanded: true,
             label: "SW5E.CompendiumBrowser.FilterCategory",
             options: {},
             selected: []
           },
-          skills: {
+          subcategory: {
             isExpanded: false,
-            label: "SW5E.CompendiumBrowser.FilterSkills",
+            label: "SW5E.CompendiumBrowser.FilterSubcategory",
             options: {},
             selected: []
           },
-          rarity: {
+          class: {
             isExpanded: false,
-            label: "SW5E.CompendiumBrowser.FilterRarities",
+            label: "SW5E.CompendiumBrowser.FilterClass",
             options: {},
             selected: []
           },
@@ -171,14 +178,7 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
             selected: []
           }
         },
-        multiselects: {
-          traits: {
-            conjunction: "and",
-            label: "SW5E.CompendiumBrowser.FilterTraits",
-            options: [],
-            selected: []
-          }
-        },
+        multiselects: {},
         order: {
           by: "level",
           direction: "asc",
@@ -187,19 +187,20 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
             level: "SW5E.CompendiumBrowser.SortyByLevelLabel"
           }
         },
-        sliders: {
+        ranges: {
           level: {
+            changed: false,
             isExpanded: false,
             label: "SW5E.CompendiumBrowser.FilterLevels",
             values: {
-              lowerLimit: 0,
-              upperLimit: 20,
               min: 0,
               max: 20,
-              step: 1
+              inputMin: "",
+              inputMax: ""
             }
           }
         },
+        sliders: {},
         search: {
           text: ""
         }

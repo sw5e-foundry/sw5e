@@ -1,100 +1,5 @@
 {
-  "_id": "69VQjwXwCvkgp135",
   "name": "Herglic",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Herglic.webp",
-  "effects": [
-    {
-      "_id": "YD22dYhkmmoTaN4S",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Herglic",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.swim",
-          "value": "30",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.skills.tec.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "herglese",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.powerfulBuild",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.toughness",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Herglic.webp",
-      "label": "Herglic",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2801331+00:00",
@@ -102,44 +7,142 @@
       "uid": "Species.name-herglic"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Herglic.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>The herglic are a massive race of creatures descended from aquatic mammals, breathing though a blowhole on top of their heads. They are tall and wide, and have smooth, hairless skin that ranged in color from pale blue to black, though some rare individuals may appear pink or have white markings on their sides. Their girth tends to leave them feeling out of place among smaller species; herglic tend to take up two chairs or fill the entire doorway of any establishment they enter that does not cater to beings their size.</p>\n<h2>Society and Culture</h2>\n<p>The herglics are very technologically advanced, developing space flight and hyperdrives and colonizing their sector of the galaxy prior to the formation of the Galactic Republic. Natural explorers and traders, they sailed the cosmos establishing crucial trade routes and gaining prestige. Despite their size, herglic are surprisingly dexterous while working with tools, and are some of the finest engineers in the galaxy. </p>\n<p>Herglics have an inquisitive but practical nature, enjoying travel and having exotic experiences. Their perpetually calm demeanor  helps them interact with most other species peacefully, though when dealing with smaller species, herglics tend to become nervous and self-conscious about their proportions. They also seem to have an innate predilection for gambling and games of chance, which have gotten more than one herglic into trouble on several occasions.</p>\n<h2>Names</h2>\n<p>Male names are typically harsher sounding than female names. Herglics rarely use surnames.</p>\n<p><strong>Male Names.</strong> Biglu, Melchi, Sehvorah</p>\n<p><strong>Female Names.</strong> Mahg-Raet, Seese, Uddn</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "herglic",
-    "advancement": [
-      {
-        "_id": "1kzXwoPnxQKU16uw",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.WxZQP6aVShp4RURw",
-            "Compendium.sw5e.speciesfeatures.BzaWjpsZbDn13NjX",
-            "Compendium.sw5e.speciesfeatures.bFo5OubmDFrHW7lW",
-            "Compendium.sw5e.speciesfeatures.WFFzYWc4wdkeHupY",
-            "Compendium.sw5e.speciesfeatures.bkxS5QeyPtDZJPtM",
-            "Compendium.sw5e.speciesfeatures.SGYK85PmcBHmQ7el",
-            "Compendium.sw5e.speciesfeatures.sZ4UUX9sxiuQ9C8g",
-            "Compendium.sw5e.speciesfeatures.KlaNvkiMA5vvb4ph",
-            "Compendium.sw5e.speciesfeatures.bvyBAClzp1ltvJM0",
-            "Compendium.sw5e.speciesfeatures.IFxEjm47Er1pndeJ",
-            "Compendium.sw5e.speciesfeatures.Crdx007Ame7sDuGz"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "swim": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1ExutkN96fIo1d8B",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WxZQP6aVShp4RURw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BzaWjpsZbDn13NjX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bFo5OubmDFrHW7lW",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WFFzYWc4wdkeHupY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bkxS5QeyPtDZJPtM",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.SGYK85PmcBHmQ7el",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.sZ4UUX9sxiuQ9C8g",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KlaNvkiMA5vvb4ph",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bvyBAClzp1ltvJM0",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IFxEjm47Er1pndeJ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Crdx007Ame7sDuGz",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1hihJhPRuaLoPdQj",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "int": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1fLHvX0tV2Q1zBCa",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "snqESxBmuXm1EdEz",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:tec"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Black, gray, pale blue, pale pink"
     },
@@ -150,7 +153,7 @@
       "value": "Black"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Aquatic organs, massive size"
@@ -172,17 +175,110 @@
     },
     "slanguage": {
       "value": "Herglese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "YD22dYhkmmoTaN4S",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Herglic",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 5,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.swim",
+          "mode": 2,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.skills.tec.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "herglese",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.encumbranceMultiplier",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.hp.bonuses.level",
+          "mode": 2,
+          "value": "+1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Herglic.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "origin": null,
+      "name": "Herglic",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!GkccobxuYBt4NjZM.YD22dYhkmmoTaN4S"
+    }
+  ],
+  "_id": "GkccobxuYBt4NjZM",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002065,
-    "modifiedTime": 1692402505738,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796746,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!GkccobxuYBt4NjZM"
 }

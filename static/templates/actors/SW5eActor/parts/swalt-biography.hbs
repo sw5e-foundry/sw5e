@@ -1,0 +1,42 @@
+<div class="panel additional-info">
+    <section>
+        <h1 class="section-titles biopage">{{localize "SW5E.PersonalityTraits"}}</h1>
+        <textarea name="system.details.trait">{{system.details.trait}}</textarea>
+    </section>
+    <section>
+        <h1 class="section-titles biopage">{{localize "SW5E.Ideals"}}</h1>
+        <textarea name="system.details.ideal">{{system.details.ideal}}</textarea>
+    </section>
+    <section>
+        <h1 class="section-titles biopage">{{localize "SW5E.Bonds"}}</h1>
+        <textarea name="system.details.bond">{{system.details.bond}}</textarea>
+    </section>
+    <section>
+        <h1 class="section-titles biopage">{{localize "SW5E.Flaws"}}</h1>
+        <textarea name="system.details.flaw">{{system.details.flaw}}</textarea>
+    </section>
+</div>
+<div class="panel background">
+    <section>
+        <h1 class="section-titles">{{localize "SW5E.Description"}}</h1>
+        {{editor
+        descriptionHTML
+        target="system.details.description.value"
+        button=true
+        editable=editable
+        engine="prosemirror"
+        collaborate=false
+        }}
+    </section>
+    <section>
+        <h1 class="section-titles">{{localize "SW5E.Background"}}</h1>
+        {{editor
+        biographyHTML
+        target="system.details.biography.value"
+        button=true
+        editable=editable
+        engine="prosemirror"
+        collaborate=false
+        }}
+    </section>
+</div>

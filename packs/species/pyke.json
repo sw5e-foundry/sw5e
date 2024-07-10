@@ -1,8 +1,196 @@
 {
-  "_id": "dDYjW5FVzO3XsKfP",
   "name": "Pyke",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.289128+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-pyke"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Pyke.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>A sentient species, the pykes are humanoid, although slimmer and taller than most humans. They have two long, lanky legs, and two arms that end in three-fingered hands. Their heads are large and elongated, with a tapered skull and an undersized face, a feature which some other species find unsettling. Pykes had two narrow, almond-shaped eyes which could be magenta or blue in color.</p>\n<h2>Society and Culture</h2>\n<p>Pykes hail from Oba Diah, a terrestrial planet marked by obsidian cliffs. Visitors to Oba Diah view both the population and terrain as unwelcoming. The pyke homeworld serves as the headquarters of the Pyke Syndicate, a criminal dealership within the Spice Cartel that operates in the criminal underworld distributing spice, an illicit substance harvested by slaves in the spice mines of the planet Kessel. To deliver spice to their customers, such as crime families on Coruscant, the Pyke Syndicate relies on smugglers and freighter captains to complete the dangerous Kessel Run. The Pyke Syndicate almost completely controls the production of raw spice in the galaxy, while maintaining tentative alliances with other criminal organizations throughout the galaxy, such as the Black Sun and the Crimson Dawn. </p>\n<h2>Names</h2>\n<p>Pyke names are often influenced by naming conventions of other species, with their rarely-used surnames being familial.</p>\n<p><strong>Male Names.</strong> Dor, Eife, Qalo, Thok, Zret</p>\n<p><strong>Female Names.</strong> Gali, Taela, Shethni, Vent, Zeeren</p>\n<p><strong>Surnames.</strong> Kemtol, Nek, Pyke, Safet, Welkor </p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "pyke",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "151QO0KSBcJ0Mquu",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9UEsYCuHud34lIYr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.nHK4bFmsgVR1GPHA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6NagjaaP7eFm2Dky",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wExFuDv31bzIVkIt",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PMtfuPcy1Wo9ubaR",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5ypgR5awoAM8TPwe",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jDSyL0K6jG35g20g",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JMqH5rokwgtRqqfj",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6KMwCfmvB3bXaxuj",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.McdIsARyaf9nNSRy",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1nyR7NKjTLrkYmQA",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "int": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "13h6Wwwhxiae1L8L",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "T45UMD6dXee1UnnB",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:dec",
+                "skills:per",
+                "skills:itm"
+              ]
+            }
+          ],
+          "grants": [
+            "tool:spicerskit"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Gray or green"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Blue, magenta, or purple"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Elongated, tapered skull with an undersized face"
+    },
+    "heightAverage": {
+      "value": "5'2\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "100 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Oba Diah"
+    },
+    "slanguage": {
+      "value": "Pyke"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "wixQFe7jP8tKTN3Q",
@@ -12,18 +200,6 @@
           "value": "Pyke",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -73,103 +249,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Pyke.webp",
-      "label": "Pyke",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Pyke",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!rRm8A9nCHw7BIljB.wixQFe7jP8tKTN3Q"
     }
   ],
+  "_id": "rRm8A9nCHw7BIljB",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.289128+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-pyke"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>A sentient species, the pykes are humanoid, although slimmer and taller than most humans. They have two long, lanky legs, and two arms that end in three-fingered hands. Their heads are large and elongated, with a tapered skull and an undersized face, a feature which some other species find unsettling. Pykes had two narrow, almond-shaped eyes which could be magenta or blue in color.</p>\n<h2>Society and Culture</h2>\n<p>Pykes hail from Oba Diah, a terrestrial planet marked by obsidian cliffs. Visitors to Oba Diah view both the population and terrain as unwelcoming. The pyke homeworld serves as the headquarters of the Pyke Syndicate, a criminal dealership within the Spice Cartel that operates in the criminal underworld distributing spice, an illicit substance harvested by slaves in the spice mines of the planet Kessel. To deliver spice to their customers, such as crime families on Coruscant, the Pyke Syndicate relies on smugglers and freighter captains to complete the dangerous Kessel Run. The Pyke Syndicate almost completely controls the production of raw spice in the galaxy, while maintaining tentative alliances with other criminal organizations throughout the galaxy, such as the Black Sun and the Crimson Dawn. </p>\n<h2>Names</h2>\n<p>Pyke names are often influenced by naming conventions of other species, with their rarely-used surnames being familial.</p>\n<p><strong>Male Names.</strong> Dor, Eife, Qalo, Thok, Zret</p>\n<p><strong>Female Names.</strong> Gali, Taela, Shethni, Vent, Zeeren</p>\n<p><strong>Surnames.</strong> Kemtol, Nek, Pyke, Safet, Welkor </p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "pyke",
-    "advancement": [
-      {
-        "_id": "YLaEx0ibXrR1mhlx",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.9UEsYCuHud34lIYr",
-            "Compendium.sw5e.speciesfeatures.nHK4bFmsgVR1GPHA",
-            "Compendium.sw5e.speciesfeatures.6NagjaaP7eFm2Dky",
-            "Compendium.sw5e.speciesfeatures.wExFuDv31bzIVkIt",
-            "Compendium.sw5e.speciesfeatures.PMtfuPcy1Wo9ubaR",
-            "Compendium.sw5e.speciesfeatures.5ypgR5awoAM8TPwe",
-            "Compendium.sw5e.speciesfeatures.jDSyL0K6jG35g20g",
-            "Compendium.sw5e.speciesfeatures.JMqH5rokwgtRqqfj",
-            "Compendium.sw5e.speciesfeatures.6KMwCfmvB3bXaxuj",
-            "Compendium.sw5e.speciesfeatures.McdIsARyaf9nNSRy"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Gray or green"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Blue, magenta, or purple"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Elongated, tapered skull with an undersized face"
-    },
-    "heightAverage": {
-      "value": "5'2\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "100 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Oba Diah"
-    },
-    "slanguage": {
-      "value": "Pyke"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002114,
-    "modifiedTime": 1692402505742,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797669,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!rRm8A9nCHw7BIljB"
 }

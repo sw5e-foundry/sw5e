@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Hunter Technique</h1>\n<p>Some scouts seek to master weapons to better protect civilization from the terrors of their enemies. Followers of the Hunter Technique learn specialized fighting techniques for use against the most dire threats, from an onslaught of soldiers to towering walkers.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "huntertechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "aXwmUeEeIc9120pc",
+        "_id": "1P6SKDOmgQnSc5mg",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.qIxH6tE6oiSglRaa",
-            "Compendium.sw5e.archetypefeatures.bjJxubtnG3WiZoxM"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.qIxH6tE6oiSglRaa",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.bjJxubtnG3WiZoxM",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "KBYCy2mVWrm1HSdd",
+        "_id": "M9XhZtFXj5H1GDrR",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.VdGLqnS8HMmGWoKU"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.VdGLqnS8HMmGWoKU",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1im2oxLwmW4GWBJP",
+        "_id": "167sVIolSv9f1zkU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.61JqyWqdGARulMnP"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.61JqyWqdGARulMnP",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "1SmtscURCZsm1D1u",
+        "_id": "1SFLlbNsVIP11MhD",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.LLSeCmTx42FanV5K"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.LLSeCmTx42FanV5K",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959714,
-    "modifiedTime": 1684819093621,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689051,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!7SAaAtkq5aoatrJ2"
 }

@@ -1,8 +1,171 @@
 {
-  "_id": "buLRss6KPsGD2kXH",
   "name": "Gand",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2781349+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-gand"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Gand.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Gand are sentient, stocky humanoids whose insectoid bodies are covered in a chitinous exoskeleton. The natural armor allow the Gand to shrug off injuries that would cripple most other species. The exoskeleton provides extra protection in the clavicle region, which prevented most nerve or pressure-point strikes to the neck and shoulders. In addition, Gands have the remarkable ability to regrow lost limbs. If a Gand is dismembered, it can regrow a lost limb in a few days. </p>\n<h2>Society and Culture</h2>\n<p>Gand society places heavy importance on the achievements of an individual and holds that an individual has no name, and thus no worth, until he or she proves otherwise. The speech patterns of Gands utilize third-person self-reference within each level of identity earned. Young or unproven Gands are all called \"Gand,\" as they are considered merely aspects of the same whole. Major accomplishments earn the use of a family surname. Mastering a skill, such as becoming a findsman, allows for the use of the given name, all with third-person self-reference. This manner of speaking is common within the spoken and written Gand language but is more predominant when a Gand speaks Basic; it is often a source of amusement to outsiders.</p>\n<h2>Names</h2>\n<p>Until a Gand has earned the use of a name, they go simply by the term \"Gand.\" Gand speak in the third person and refer to themselves by name. Often, when a Gand feels shamed, they will stop referring to themselves by their name and revert to calling themselves \"Gand\" until they prove themselves again. Male and female names are not distinct.</p>\n<p><strong>First Names.</strong> C'nyir, Dash, Iglid, Kyuffax, T'rix</p>\n<p><strong>Surname.</strong> Diqlu, Krakee, Praafri, Quudya, Zooq</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "gand",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1ATGqSzwtlw599xo",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.iS4p7J3UmqUY3CDX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LW7761jhD0n14gp7",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.XVIE4Ps4UZmlhkbw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5UUbz4LVwuKVO88p",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.SOgwl4yU3wivs0WH",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DpXqCsds288jASAz",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BOJShm8B2WktbIMg",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.66XC9vulHZKk5RTS",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.24qpEW96sVrRWUn1",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.aUFpwaIUnN6txdH2",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "WhQhv1olQA1hdqhQ",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "int": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "Z8zVMe8brI91uTo0",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Varying shades of brown, green, and purple"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Brown, black, green, or silver"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Exoskeletons, three-fingered hands"
+    },
+    "heightAverage": {
+      "value": "4'1\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "75 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Gand"
+    },
+    "slanguage": {
+      "value": "Gand"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "sfGWShWGtQCdHlHC",
@@ -12,18 +175,6 @@
           "value": "Gand",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -79,103 +230,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Gand.webp",
-      "label": "Gand",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Gand",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!fITBOL0Z5u1CZ4ma.sfGWShWGtQCdHlHC"
     }
   ],
+  "_id": "fITBOL0Z5u1CZ4ma",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2781349+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-gand"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Gand are sentient, stocky humanoids whose insectoid bodies are covered in a chitinous exoskeleton. The natural armor allow the Gand to shrug off injuries that would cripple most other species. The exoskeleton provides extra protection in the clavicle region, which prevented most nerve or pressure-point strikes to the neck and shoulders. In addition, Gands have the remarkable ability to regrow lost limbs. If a Gand is dismembered, it can regrow a lost limb in a few days. </p>\n<h2>Society and Culture</h2>\n<p>Gand society places heavy importance on the achievements of an individual and holds that an individual has no name, and thus no worth, until he or she proves otherwise. The speech patterns of Gands utilize third-person self-reference within each level of identity earned. Young or unproven Gands are all called \"Gand,\" as they are considered merely aspects of the same whole. Major accomplishments earn the use of a family surname. Mastering a skill, such as becoming a findsman, allows for the use of the given name, all with third-person self-reference. This manner of speaking is common within the spoken and written Gand language but is more predominant when a Gand speaks Basic; it is often a source of amusement to outsiders.</p>\n<h2>Names</h2>\n<p>Until a Gand has earned the use of a name, they go simply by the term \"Gand.\" Gand speak in the third person and refer to themselves by name. Often, when a Gand feels shamed, they will stop referring to themselves by their name and revert to calling themselves \"Gand\" until they prove themselves again. Male and female names are not distinct.</p>\n<p><strong>First Names.</strong> C'nyir, Dash, Iglid, Kyuffax, T'rix</p>\n<p><strong>Surname.</strong> Diqlu, Krakee, Praafri, Quudya, Zooq</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "gand",
-    "advancement": [
-      {
-        "_id": "1KVGQ9bP4b2FJqt9",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.iS4p7J3UmqUY3CDX",
-            "Compendium.sw5e.speciesfeatures.LW7761jhD0n14gp7",
-            "Compendium.sw5e.speciesfeatures.XVIE4Ps4UZmlhkbw",
-            "Compendium.sw5e.speciesfeatures.5UUbz4LVwuKVO88p",
-            "Compendium.sw5e.speciesfeatures.SOgwl4yU3wivs0WH",
-            "Compendium.sw5e.speciesfeatures.DpXqCsds288jASAz",
-            "Compendium.sw5e.speciesfeatures.BOJShm8B2WktbIMg",
-            "Compendium.sw5e.speciesfeatures.66XC9vulHZKk5RTS",
-            "Compendium.sw5e.speciesfeatures.24qpEW96sVrRWUn1",
-            "Compendium.sw5e.speciesfeatures.aUFpwaIUnN6txdH2"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Varying shades of brown, green, and purple"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Brown, black, green, or silver"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Exoskeletons, three-fingered hands"
-    },
-    "heightAverage": {
-      "value": "4'1\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "75 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Gand"
-    },
-    "slanguage": {
-      "value": "Gand"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002112,
-    "modifiedTime": 1692402505742,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797364,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!fITBOL0Z5u1CZ4ma"
 }

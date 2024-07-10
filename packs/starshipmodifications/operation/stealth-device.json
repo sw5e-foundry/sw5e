@@ -1,5 +1,4 @@
 {
-  "_id": "z6dpj9B2yJRZe6tD",
   "name": "Stealth Device",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
@@ -25,7 +24,6 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
-      "label": "Stealth Device",
       "origin": "Compendium.sw5e.starshipmodifications.z6dpj9B2yJRZe6tD",
       "transfer": true,
       "flags": {
@@ -34,15 +32,18 @@
         }
       },
       "tint": null,
-      "sort": 0
+      "name": "Stealth Device",
+      "description": "",
+      "statuses": [],
+      "sort": 0,
+      "_key": "!items.effects!HRfxAX2ejSe9vnGw.I8Fhkm04Mh6J4nJA"
     }
   ],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>This modification adds a stealth device to your ship. This device effectively counteracts or negates the use of scanners, both for and against your ship. A crew member can activate or deactivate a stealth mode as an action. While active, your ship has advantage on Dexterty (Hide) checks that rely on scanners, but your ship has disadvantage on Intelligence (Probe) and Wisdom (Scan) checks that rely on scanners.</p><p>Additionally, if you try to enter hyperspace while the cloaking device is active, you must roll on the [Hyperspace Mishaps](#Hyperspace%20Mishaps) table on page 76.</p><p>Finally, your ship is proficiently equipped for Dexterity (Hide) checks.  If your ship is already proficiently equipped, it is instead considered expertly equipped.</p>",
+      "value": "<p>This modification adds a stealth device to your ship. This device effectively counteracts or negates the use of scanners, both for and against your ship.</p><p>A crewmember can activate or deactivate the stealth device as an action. While active, your ship has advantage on Dexterty (Hide) checks that rely on scanners, but your ship has disadvantage on Intelligence (Probe) and Wisdom (Scan) checks that rely on scanners.</p><p>Additionally, if you try to enter hyperspace while the cloaking device is active, you must roll on the Hyperspace Mishaps table on page 76.</p><p>Finally, your ship is proficiently equipped for Dexterity (Hide) checks. If your ship is already proficiently equipped, it is instead considered expertly equipped.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -71,6 +72,7 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -115,14 +117,11 @@
       "charged": false,
       "value": null
     },
-    "system": {
-      "value": "Operation"
-    },
     "grade": {
-      "value": "1"
+      "value": 2
     },
-    "basecost": {
-      "value": "3500"
+    "baseCost": {
+      "value": null
     },
     "prerequisites": {
       "value": ""
@@ -137,53 +136,28 @@
       "dex": null
     },
     "proficient": false,
-    "properties": {
-      "Absorptive": false,
-      "Agile": false,
-      "Anchor": false,
-      "Avoidant": false,
-      "Barbed": false,
-      "Bulky": false,
-      "Charging": false,
-      "Concealing": false,
-      "Cumbersome": false,
-      "Gauntleted": false,
-      "Imbalanced": false,
-      "Impermeable": false,
-      "Insulated": false,
-      "Interlocking": false,
-      "Lambent": false,
-      "Lightweight": false,
-      "Magnetic": false,
-      "Obscured": false,
-      "Obtrusive": false,
-      "Powered": false,
-      "Reactive": false,
-      "Regulated": false,
-      "Reinforced": false,
-      "Responsive": false,
-      "Rigid": false,
-      "Silent": false,
-      "Spiked": false,
-      "Strength": false,
-      "Steadfast": false,
-      "Versatile": false
-    },
+    "properties": [],
     "attributes": {
       "dr": ""
     },
     "strength": null,
-    "stealth": false
-  },
-  "ownership": {
-    "default": 0
+    "stealth": false,
+    "type": {
+      "value": "Operation"
+    }
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494018768,
-    "modifiedTime": 1685840666245,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1706199587718,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "HRfxAX2ejSe9vnGw",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!HRfxAX2ejSe9vnGw"
 }

@@ -15,50 +15,54 @@
       "system": {
         "description": {
           "value": "<p>The monkey-lizard has advantage on attack rolls against a creature if at least one of the monkey-lizard's allies is within 5 feet of the creature and the ally isn't incapacitated.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -75,7 +79,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -84,10 +88,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -99,7 +109,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!aVZ7iizKC0sY7xIG.MjBkMzJmY2I2MGNm"
     },
     {
       "_id": "M2E1ZmNmNGVhZTg2",
@@ -113,61 +124,66 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+1, Reach 5 ft., One target. <em>Hit : </em>1 (1d4-1) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
-          "long": "",
+          "long": null,
           "units": "ft"
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "con",
         "actionType": "mwak",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -198,11 +214,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
-        "baseItem": "",
+        "weaponClass": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -211,61 +225,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "mgc": null,
-          "aut": false,
-          "bur": null,
-          "dir": null,
-          "hid": false,
-          "ken": null,
-          "pic": null,
-          "ran": false,
-          "rap": null,
-          "smr": false,
-          "vic": null,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "def": null,
-          "dex": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "ilk": false,
-          "lum": false,
-          "mig": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "shk": null,
-          "sil": false,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "str": null,
-          "swi": false
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -277,7 +256,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!aVZ7iizKC0sY7xIG.M2E1ZmNmNGVhZTg2"
     }
   ],
   "effects": [],
@@ -294,92 +274,56 @@
       "str": {
         "value": 8,
         "proficient": 1,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -1,
-        "save": 1,
-        "prof": 2,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 9
+        }
       },
       "dex": {
         "value": 14,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "con": {
         "value": 11,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "int": {
         "value": 5,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -3,
-        "save": -3,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 7
+        }
       },
       "wis": {
         "value": 12,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "cha": {
         "value": 6,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -2,
-        "save": -2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 8
+        }
       },
       "hon": {
         "value": 6,
@@ -387,7 +331,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 12,
@@ -395,41 +340,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 12,
         "calc": "natural",
-        "formula": "",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 3,
         "max": 3,
         "temp": 0,
         "tempmax": 0,
-        "formula": "1d6",
-        "min": 0
+        "formula": "1d6"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 30,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -452,16 +393,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -470,16 +404,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -490,57 +417,49 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 2,
-      "powerdc": 10,
-      "bar1": {
-        "value": 3,
-        "min": 0,
-        "max": 3
-      },
-      "bar2": {
-        "value": 12,
-        "min": 0,
-        "max": 0
-      },
-      "encumbrance": {
-        "value": 1,
-        "max": 120,
-        "pct": 0.8333333333333334,
-        "encumbered": true
-      },
-      "powerForceLightDC": 11,
-      "powerForceDarkDC": 8,
-      "powerForceUnivDC": 11,
-      "powerTechDC": 7,
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      },
+      "slowed": 0
     },
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"You look like nothing more than a Bantha herder.\"</i></p><p><span style=\"font-size:13px\"><i>\"And you look like an overgrown Kowakian monkey-lizard, so I guess looks don't count for much.\"</i></span></p><p>- Desann and Kyle Katarn</p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Designation</u></td><td style=\"line-height:1.42857\">Semi-sentient</td></tr><tr><td style=\"line-height:1.42857\"><u>Classification</u></td><td style=\"line-height:1.42857\">Reptilian</td></tr><tr><td style=\"line-height:1.42857\"><u>Average length</u></td><td style=\"line-height:1.42857\">0,7 meters</td></tr><tr><td style=\"line-height:1.42857\"><u>Skin color</u></td><td style=\"line-height:1.42857\"><ul><li>Yellow</li><li>Brownish-yellow</li><li>Red</li><li>Green</li><li>Light blue</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Hair color</u></td><td style=\"line-height:1.42857\"><ul><li>Black</li><li>Dark brown</li><li>Light brown</li><li>Orange</li><li>Green</li><li>Purple</li><li>Light blue</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Eye Color</u></td><td style=\"line-height:1.42857\">Yellow</td></tr><tr><td style=\"line-height:1.42857\"><u>Homeworld</u><br /></td><td style=\"line-height:1.42857\">Kowak<br /></td></tr><tr><td style=\"line-height:1.42857\"><u>Habitat</u><br /></td><td style=\"line-height:1.42857\">Rain forests<br /></td></tr><tr><td style=\"line-height:1.42857\"><u>Diet</u><br /></td><td style=\"line-height:1.42857\"><ul><li>Insects</li><li>Worms</li><li>Small rodents</li></ul></td></tr></tbody></table><p>Kowakian monkey-lizards were a bipedal reptilian species native to a jungle-like Outer Rim planet called Kowak. Although they had no established culture, Kowakian monkey-lizards were quite intelligent, and despite their silly, cruel nature, they were considered sentient by many sentientologists in the galaxy, although there was much debate over that designation. Standing roughly seventy centimeters tall, Kowakian monkey-lizards had small, spindly bodies, two large, floppy ears and a beak-like nose, with tufts of thick hair growing around their neck and on the tops of their heads. Some subspecies had long, prehensile tails.</p><p>Kowakian monkey-lizards were rarely found off their homeworld, although it was not uncommon to find a monkey-lizard in the service of a crime lord. One such individual was Salacious B. Crumb, a court jester on Tatooine for Hutt gangster Jabba Desilijic Tiure. Crumb perished along with his master when Jabba's sail barge was destroyed in 4 ABY. At least one Force-sensitive monkey-lizard was known to exist—a mutated Dark Jedi named Picaroon C. Boodle, who served under Jerec. Pic was ultimately killed by Rebel agent Kyle Katarn above the Sulon Star.</p><h3>Biology and appearance</h3><p>Kowakian monkey-lizards were reptilian bipeds, with thin, almost twig-like limbs, and a small, triangular head atop slender shoulders. They had two large, highly sensitive, floppy ears, which curved backwards and narrowed into a thin, hairy point, and often had several small holes in them, though not always. Some monkey-lizards wore piercings in those ears. In place of a nose, monkey-lizards had a wide, hooked, dark-colored beak, like that of a reptile, which could be opened to reveal a large, toothless mouth. In some specimens, that beak was a different color from the rest of the body, even having two shades, such as white and black. They had two wild, yellow eyes, which were usually very close to each other, although that feature varied. Their skin color was typically a light brown or tan color, though some had red, green, blue, or yellow skin, or even a combination of two of those hues. A particular monkey-lizard might exhibit different-colored markings around the eyes.</p><p>Each monkey-lizard had tufts of thick hair growing around their neck, resembling a ruff, on the tops of their heads, and at corners of their jawbones. Some also had a tuft at the tip of the tail. The color of that hair varied: it was usually black or dark brown, though a lighter brown, green, purple, as well as a slightly orange shade were also known to exist. Kowakian monkey-lizards generally had long, thin tails, though some variants of the species had no tail. Their limbs ended in three spindly digits that sported sharp talons. Immature monkey-lizards were once described by Darth Vectivus as being the \"ugliest larvae in the galaxy\".</p><h3>Society and culture</h3><blockquote><p><i>\"Swing it, little monkey-lizard!\"</i></p><p><span style=\"font-size:13px\">- Fode</span></p></blockquote><p>Monkey-lizards resided mainly in large tree nests, and enjoyed swinging through the green rain forests of Kowak. Their diet consisted largely of various insects, worms and small rodents. They ate quite regularly, as their small bodies required much nourishment. They were also scavengers, choosing to eat carrion instead of fresh meat or vegetables. Rotting flesh was quite unhealthy to eat, so many in the galaxy speculated as to why they chose it: theories included that they preferred to have others do their work, or they wished to avoid predatory animals.</p><p>Monkey-lizards were extremely destructive and curious, and loved to explore, rarely leaving the packs they moved around in for protection against predators. They often used their ceaseless, loud laughter to scare off any potential attackers. They traveled in groups, making as much noise as possible in an attempt to intimidate other creatures in the jungles. After finding a corpse, monkey-lizards spent time fighting over the food instead of sharing it. Kowakians were known to be extremely cruel and mean-spirited to both other monkey-lizards and to members of other species. They had a clear sense of mischief and humor, and were known to mock others, laugh at them, and even fling objects towards them simply because they found it amusing. They were able to perfectly mimic almost any language, and according to certain studies, communicate in those languages if they wished. Monkey-lizards were also known to laugh at appropriate times during conversations, and could often repeat back what they heard fairly accurately.</p><p>Members of the species could attack even larger foes, like Humans, by climbing onto them; clawing, and biting. For instance, a monkey-lizard might latch on to a foe's face and scratch it, or the monkey-lizard might bite the opponent's leg. Some even exhibited the ability to wield melee weapons in combat, such as knives. Members of the species could move quickly, shambling about on all fours and climbing rapidly over intervening obstacles.</p><p>The sentience of Kowakian monkey-lizards was a highly debated topic among the greater galactic scientific community. The issue was never officially decided, though many declared them sentient; they believed this as although monkey-lizards were cruel, they were also quite intelligent.</p><p>Monkey-lizards had very little culture or structured society to speak of. They had a sort of hierarchical boundary within each group of nests, with the oldest female acting as leader. Each monkey-lizard was given a specific role: some were assigned to gather food, others would maintain the nest, while yet others scouted for predators. Nothing was known about how the monkey-lizards reproduced; in the wild, monkey-lizards usually chased away those who attempted to study them and their behavior, and those in captivity had to be separated from other members of their species due to the noise levels they exhibited when left together. Sentientologists estimated that monkey-lizards laid eggs as a group about once a year, with only a few of the eggs surviving to hatch.</p><h3>History</h3><p>Monkey-lizards played no real part in galactic society; they rarely left their homeworld and were considered too wild to be let loose in proper society. Various scientists had attempted to study them in the wild, but all of these attempts proved fruitless; the monkey-lizards did not take well to being observed. A group of University of Coruscant zoologists once visited Kowak hoping to conduct a study on the planet's spindly inhabitants. The zoologists noted that at first the monkey-lizards were apprehensive towards them, and seemed to be trying to keep to themselves. After about a week of being watched from afar with macrobinoculars, the monkey-lizards began to wander into the group's camp, inspecting their equipment and looking around. The zoologists eventually began to offer the creatures some of their food; that was when the Kowakians's cruel streak emerged. They hid a snake in one of the zoologist's bags, destroyed their expensive equipment, ate all their food, played in their tents and even left barrels of water on top of branches, pouring their contents down on anyone who walked below. The zoologists had no choice but to leave the planet. The Shi'ido anthropologist Mammon Hoole included an entry on the species in his publication The Essential Guide to Alien Species.</p><h3>Kowakian monkey-lizards in the galaxy</h3><blockquote><p><i>\"You're not going to trust this…this…\" </i></p><p><i>\"Hutt Slime?\"</i></p><p><i>\"Kowakian monkey-lizard?\"</i><br /></p><span style=\"font-size:13px\">- CS-2207 helping </span><span style=\"font-size:13px\">Ahsoka Tano and </span><span style=\"font-size:13px\">CT-7567</span><span style=\"font-size:13px\"> to insult Cad Bane by </span><span style=\"font-size:13px\">using </span><span style=\"font-size:13px\">the name of the species</span></blockquote><p>Early on in the galaxy's history, Kowakian monkey-lizards were rarely, if ever found offworld. Despite that, they occasionally wandered onto a visiting ship and could end up almost anywhere. For instance, the swamps of the planet Baroonda were home to a sizable monkey-lizard population.</p><p>Later on, a large number of monkey-lizards were found in the galactic underworld, often tied to criminal organizations. That was due both to their ability to repeat things exactly as they heard them, as well as the fact that they made excellent spies. Although monkey-lizards were quite popular with some among the upper classes, who kept them as pets for their own amusement, they were usually frowned upon in civilized society; likely because it was impossible to train a monkey-lizard, regardless of the time and effort expended on the attempt, or even the method used. Monkey-lizards bought as pets were usually sold on after their owners realized that they couldn't control them, although some could grow to be loyal pets, such as in the case of Eeetch and Skreech. Their owners often complained of how they had a tendency to smash valuable items, deface art and furniture, and rummage through garbage compactors. Most people thought monkey-lizards were extremely obnoxious, and it was considered an insult to call someone a Kowakian monkey-lizard. Monkey-lizards who were taken as pets became extremely lazy, and they usually starved if returned to the wild. The monkey-lizard Gibberous Crumb was raised by a Hutt, but was abandoned by its master and entered the care of the Oblee crime lord Nirama, who considered Crumb to be an annoyance. The Hut, a hangout for Podracer pilots in the latter years of the Galactic Republic, had a house monkey-lizard who played instruments.</p><p>During the Clone Wars, monkey-lizards named Pilf Mukmuk and Pikk Mukmuk were part of a gang of pirates led by the Weequay Hondo Ohnaka, who kept the creatures around due to his amusement at their penchant for laughing at inappropriate times. Pilf Mukmuk was the most famous monkey-lizard in the galaxy at the time. Although he lived on the planet Florrum, Mukmuk used his small size to infiltrate secure locations, such as ventilation ducts. Indeed, on one occasion, Ohnaka had Mukmuk smuggle a sedative into the ventilation system of Anakin Skywalker and Obi-Wan Kenobi's craft; the drug knocked them out. Meanwhile, Muk Muk monkey accompanied Ohnaka to the planet Felucia on a mission to rob the local farmers of their valuable Nysillin crops. When Ohnaka met resistance from the locals and their Jedi and bounty hunter allies, Muk Muk monkey helped the pirate fight Anakin Skywalker by manning the WLO-5 speeder tank Skywalker and Ohnaka were standing on as they fought. The monkey-lizard's shots managed to kill the bounty hunter Rumi Paramita, but Skywalker was able to hold off the pirates until they escaped. Ohnaka's gang sometimes staged fights between their pet monkey-lizards at their base on Florrum.</p><p>Also during the Clone Wars, Togruta Padawan Ahsoka Tano encountered a monkey-lizard named Muk Muk Monkey, who was accompanied by a pair of Weequay outside a bar in Coruscant's slum district G17. Another monkey-lizard engaged in a knife fight with a momong on the planet Zygerria when a group of Jedi and their clone trooper captain, CT-7567, arrived to investigate a kidnapped colony of Togruta. Such encounters led the Jedi Master Yoda to declare monkey-lizards possibly the most annoying species in the galaxy, albeit one not to be underestimated.</p><p>In very rare cases, a monkey-lizard served as a mechanic or engineer; one such being once repaired Boba Fett's armor at a workshop in Ma'ar Shaddam. He was later killed by Risso Nu. A Kowakian monkey-lizard also served as a companion of the famous pirate known as Reginald Barkbone, and another was known to occupy StarForge Station.</p><p>Picaroon C. Boodle, or Pic for short, was the only known Force-sensitive monkey-lizard. Early in his life, he traveled the galaxy with a smuggler named Az-Iban; however, sometime during the reign of Emperor Palpatine he was quarantined on Eriadu after being suspected of suffering from Cyborrean rabies. He eventually came into Imperial custody, and because of his Force-sensitivity, he was used as a research subject by Imperial scientist Tuzin Gast. Pic, as well as a Gamorrean named Gorc, was a subject in the experimental Project Chubar. Eventually, the two creatures were transferred to the service of Dark Jedi Cronal, who wanted two Force-sensitive \"animals\" to run tests on. Cronal used Sith alchemy on the two \"animals,\" until they became mutated Sithspawn, sharing each other's genes and personality, as well as having a link in the Force. The two mutants worked well as a team, and developed a friendship of sorts, with Pic looking out for the dim-witted Gorc's safety. The two joined Jerec's group of Seven Dark Jedi, who aimed to discover the lost Valley of the Jedi. Kyle Katarn foiled the group's plans, killing Gorc aboard the Sulon Star. Pic was devastated by this, and attacked Katarn with his Sith dagger in a frenzy, before having his head bashed in by the Jedi.</p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Unaligned",
-      "species": "",
+      "species": null,
       "type": {
         "value": "beast",
         "subtype": "",
@@ -548,17 +467,13 @@
         "custom": ""
       },
       "environment": "",
-      "cr": "0",
+      "cr": 0,
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 10
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 1
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "sm",
@@ -584,15 +499,14 @@
       "languages": {
         "value": [],
         "custom": "—"
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -602,11 +516,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 13,
-        "prof": 1,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0.5,
@@ -615,11 +529,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 12,
-        "prof": 1,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 0.5,
@@ -628,11 +542,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 10,
-        "prof": 1,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0.5,
@@ -641,11 +555,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 9,
-        "prof": 1,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 0.5,
@@ -654,11 +568,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 12,
-        "prof": 1,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0.5,
@@ -667,11 +581,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 9,
-        "prof": 1,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0.5,
@@ -680,11 +594,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 8,
-        "prof": 1,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -693,11 +607,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "prof": 0,
-        "total": -3,
-        "passive": 7
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0.5,
@@ -706,11 +620,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 12,
-        "prof": 1,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0.5,
@@ -719,11 +633,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "passive": 8,
-        "prof": 1,
-        "total": -2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -732,11 +646,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "prof": 0,
-        "total": -3,
-        "passive": 7
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 0.5,
@@ -745,11 +659,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 12,
-        "prof": 1,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0.5,
@@ -758,11 +672,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 9,
-        "prof": 1,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0.5,
@@ -771,11 +685,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -2,
-        "passive": 9,
-        "prof": 1,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0.5,
@@ -784,11 +698,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 13,
-        "prof": 1,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0.5,
@@ -797,11 +711,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 13,
-        "prof": 1,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0.5,
@@ -810,11 +724,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 1,
-        "passive": 12,
-        "prof": 1,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -823,108 +737,80 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -3,
-        "prof": 0,
-        "total": -3,
-        "passive": 7
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
+    "tools": {},
     "powers": {
       "power1": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1037,14 +923,17 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": []
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493984293,
-    "modifiedTime": 1685840636941,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552773252,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!actors!aVZ7iizKC0sY7xIG"
 }

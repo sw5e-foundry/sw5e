@@ -1,15 +1,13 @@
 {
-  "_id": "oQB0u4Zab08z5qtI",
   "name": "Cloaking Device",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>This system massively improves the stealth mode function on your ship, becoming a true cloaking device. While active, your ship is invisible. Additionally, when your ship makes a Dexterity (Hide) check while your cloaking device is active, it has advantage on the roll. If your ship already has advantage on the ability check, you can instead reroll one of the dice once.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">This system adds an additional stealth function to your ship, adding a true cloaking device. As an action, your ship and everything within it is invisible for one minute. The invisibility ends if your ship fires it's weapons, or otherwise takes a hostile action.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">Additionally, when your ship makes a Dexterity (Hide) check while your cloaking device is active, it has advantage on the roll. If your ship already has advantage on the roll, you can instead reroll one of the dice once.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship undergoes refitting.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -38,6 +36,7 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -82,14 +81,11 @@
       "charged": false,
       "value": null
     },
-    "system": {
-      "value": "Operation"
-    },
     "grade": {
       "value": 5
     },
-    "basecost": {
-      "value": 3500
+    "baseCost": {
+      "value": null
     },
     "prerequisites": {
       "value": "Active Camouflage"
@@ -104,53 +100,28 @@
       "dex": null
     },
     "proficient": false,
-    "properties": {
-      "Absorptive": false,
-      "Agile": false,
-      "Anchor": false,
-      "Avoidant": false,
-      "Barbed": false,
-      "Bulky": false,
-      "Charging": false,
-      "Concealing": false,
-      "Cumbersome": false,
-      "Gauntleted": false,
-      "Imbalanced": false,
-      "Impermeable": false,
-      "Insulated": false,
-      "Interlocking": false,
-      "Lambent": false,
-      "Lightweight": false,
-      "Magnetic": false,
-      "Obscured": false,
-      "Obtrusive": false,
-      "Powered": false,
-      "Reactive": false,
-      "Regulated": false,
-      "Reinforced": false,
-      "Responsive": false,
-      "Rigid": false,
-      "Silent": false,
-      "Spiked": false,
-      "Strength": false,
-      "Steadfast": false,
-      "Versatile": false
-    },
+    "properties": [],
     "attributes": {
       "dr": ""
     },
     "strength": null,
-    "stealth": false
-  },
-  "ownership": {
-    "default": 0
+    "stealth": false,
+    "type": {
+      "value": "Operation"
+    }
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494018737,
-    "modifiedTime": 1685840666212,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1706199587805,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "hPmlOFhlTRqHQuXH",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!hPmlOFhlTRqHQuXH"
 }

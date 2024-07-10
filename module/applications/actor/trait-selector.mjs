@@ -10,14 +10,14 @@ import BaseConfigSheet from "./base-config.mjs";
  * @param {boolean} [options.allowCustom=true]  Support user custom trait entries.
  */
 export default class TraitSelector extends BaseConfigSheet {
-  constructor(actor, trait, options = {}) {
-    if (!CONFIG.SW5E.traits[trait]) throw new Error(`Cannot instantiate TraitSelector with a trait not defined in CONFIG.SW5E.traits: ${trait}.`);
-    if (["saves", "skills"].includes(trait)) throw new Error(
+  constructor( actor, trait, options = {} ) {
+    if ( !CONFIG.SW5E.traits[trait] ) throw new Error( `Cannot instantiate TraitSelector with a trait not defined in CONFIG.SW5E.traits: ${trait}.` );
+    if ( ["saves", "skills"].includes( trait ) ) throw new Error(
       `TraitSelector does not support selection of ${trait}. That should be handled through `
           + "that type's more specialized configuration application."
     );
 
-    super(actor, options);
+    super( actor, options );
 
     /**
      * Trait key as defined in CONFIG.traits.
@@ -30,15 +30,14 @@ export default class TraitSelector extends BaseConfigSheet {
 
   /** @inheritdoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       id: "trait-selector",
       classes: ["sw5e", "trait-selector", "subconfig"],
       template: "systems/sw5e/templates/apps/trait-selector.hbs",
       width: 320,
       height: "auto",
-      sheetConfig: false,
       allowCustom: true
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -52,29 +51,26 @@ export default class TraitSelector extends BaseConfigSheet {
 
   /** @inheritdoc */
   get title() {
-    return `${this.document.name}: ${Trait.traitLabel(this.trait)}`;
+    return `${this.document.name}: ${Trait.traitLabel( this.trait )}`;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
   async getData() {
-    const path = `system.${Trait.actorKeyPath(this.trait)}`;
-    const data = foundry.utils.getProperty(this.document, path);
-    if (!data) return super.getData();
+    const path = Trait.actorKeyPath( this.trait );
+    const data = foundry.utils.getProperty( this.document, path );
+    if ( !data ) return super.getData();
 
     return {
       ...super.getData(),
-      choices: await Trait.choices(this.trait, data.value),
+      choices: await Trait.choices( this.trait, { chosen: data.value } ),
       custom: data.custom,
       customPath: "custom" in data ? `${path}.custom` : null,
-      bypasses:
-        "bypasses" in data
-          ? Object.entries(CONFIG.SW5E.physicalWeaponProperties).reduce((obj, [k, v]) => {
-            obj[k] = { label: v.name, chosen: data.bypasses.has(k) };
-            return obj;
-          }, {})
-          : null,
+      bypasses: "bypasses" in data ? Object.entries( CONFIG.SW5E.itemProperties ).reduce( ( obj, [k, v] ) => {
+        if ( v.isPhysical ) obj[k] = { label: v.label, chosen: data.bypasses.has( k ) };
+        return obj;
+      }, {} ) : null,
       bypassesPath: "bypasses" in data ? `${path}.bypasses` : null
     };
   }
@@ -82,11 +78,11 @@ export default class TraitSelector extends BaseConfigSheet {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  activateListeners(html) {
-    super.activateListeners(html);
+  activateListeners( html ) {
+    super.activateListeners( html );
 
-    for (const checkbox of html[0].querySelectorAll("input[type='checkbox']")) {
-      if (checkbox.checked) this._onToggleCategory(checkbox);
+    for ( const checkbox of html[0].querySelectorAll( "input[type='checkbox']" ) ) {
+      if ( checkbox.checked ) this._onToggleCategory( checkbox );
     }
   }
 
@@ -95,23 +91,23 @@ export default class TraitSelector extends BaseConfigSheet {
   /** @inheritdoc */
   _getActorOverrides() {
     const overrides = super._getActorOverrides();
-    const path = `system.${Trait.actorKeyPath(this.trait)}.value`;
-    const src = new Set(foundry.utils.getProperty(this.document._source, path));
-    const current = foundry.utils.getProperty(this.document, path);
-    const delta = current.difference(src);
-    for (const choice of delta) {
-      overrides.push(`choices.${choice}`);
-    }
+    const path = Trait.actorKeyPath( this.trait );
+    this._addOverriddenChoices( "choices", Trait.changeKeyPath( this.trait ), overrides );
+    this._addOverriddenChoices( "bypasses", `${path}.bypasses`, overrides );
+    const pathCustom = `${path}.custom`;
+    const sourceCustom = foundry.utils.getProperty( this.document._source, pathCustom );
+    const currentCustom = foundry.utils.getProperty( this.document, pathCustom );
+    if ( sourceCustom !== currentCustom ) overrides.push( pathCustom );
     return overrides;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  async _onChangeInput(event) {
-    super._onChangeInput(event);
+  async _onChangeInput( event ) {
+    super._onChangeInput( event );
 
-    if (event.target.name?.startsWith("choices")) this._onToggleCategory(event.target);
+    if ( event.target.name?.startsWith( "choices" ) ) this._onToggleCategory( event.target );
   }
 
   /* -------------------------------------------- */
@@ -121,11 +117,11 @@ export default class TraitSelector extends BaseConfigSheet {
    * @param {HTMLElement} checkbox  Checkbox that was changed.
    * @protected
    */
-  _onToggleCategory(checkbox) {
-    const children = checkbox.closest("li")?.querySelector("ol");
-    if (!children) return;
+  _onToggleCategory( checkbox ) {
+    const children = checkbox.closest( "li" )?.querySelector( "ol" );
+    if ( !children ) return;
 
-    for (const child of children.querySelectorAll("input[type='checkbox']")) {
+    for ( const child of children.querySelectorAll( "input[type='checkbox']" ) ) {
       child.checked = child.disabled = checkbox.checked;
     }
   }
@@ -134,30 +130,36 @@ export default class TraitSelector extends BaseConfigSheet {
 
   /**
    * Filter a list of choices that begin with the provided key for update.
-   * @param {string} prefix    They initial form prefix under which the choices are grouped.
+   * @param {string} prefix    The initial form prefix under which the choices are grouped.
    * @param {string} path      Path in actor data where the final choices will be saved.
    * @param {object} formData  Form data being prepared. *Will be mutated.*
    * @protected
    */
-  _prepareChoices(prefix, path, formData) {
+  _prepareChoices( prefix, path, formData ) {
     const chosen = [];
-    for (const key of Object.keys(formData).filter(k => k.startsWith(`${prefix}.`))) {
-      if (formData[key]) chosen.push(key.replace(`${prefix}.`, ""));
+    for ( const key of Object.keys( formData ).filter( k => k.startsWith( `${prefix}.` ) ) ) {
+      if ( formData[key] ) chosen.push( key.replace( `${prefix}.`, "" ) );
       delete formData[key];
     }
-    formData[path] = chosen;
+
+    // Add choices from the source that have been removed by an override: if we didn't, the override would be persisted
+    const source = new Set( foundry.utils.getProperty( this.document._source, path ) );
+    const current = foundry.utils.getProperty( this.document, path );
+    for ( const choice of source.difference( current ) ) chosen.add( choice );
+
+    formData[path] = Array.from( chosen ).sort( ( a, b ) => a.localeCompare( b, "en" ) );
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  async _updateObject(event, formData) {
-    const path = `system.${Trait.actorKeyPath(this.trait)}`;
-    const data = foundry.utils.getProperty(this.document, path);
+  async _updateObject( event, formData ) {
+    const path = Trait.actorKeyPath( this.trait );
+    const data = foundry.utils.getProperty( this.document, path );
 
-    this._prepareChoices("choices", `${path}.value`, formData);
-    if ("bypasses" in data) this._prepareChoices("bypasses", `${path}.bypasses`, formData);
+    this._prepareChoices( "choices", Trait.changeKeyPath( this.trait ), formData );
+    if ( "bypasses" in data ) this._prepareChoices( "bypasses", `${path}.bypasses`, formData );
 
-    return this.object.update(formData);
+    return this.object.update( formData );
   }
 }

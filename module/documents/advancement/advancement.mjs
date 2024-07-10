@@ -6,8 +6,8 @@ import BaseAdvancement from "../../data/advancement/base-advancement.mjs";
  * Error that can be thrown during the advancement update preparation process.
  */
 class AdvancementError extends Error {
-  constructor(...args) {
-    super(...args);
+  constructor( ...args ) {
+    super( ...args );
     this.name = "AdvancementError";
   }
 }
@@ -20,9 +20,9 @@ class AdvancementError extends Error {
  * @abstract
  */
 export default class Advancement extends BaseAdvancement {
-  constructor(data, { parent = null, ...options } = {}) {
-    if (parent instanceof Item) parent = parent.system;
-    super(data, { parent, ...options });
+  constructor( data, { parent = null, ...options } = {} ) {
+    if ( parent instanceof Item ) parent = parent.system;
+    super( data, { parent, ...options } );
 
     /**
      * A collection of Application instances which should be re-rendered whenever this document is updated.
@@ -30,18 +30,18 @@ export default class Advancement extends BaseAdvancement {
      * Application in this object will have its render method called by {@link Document#render}.
      * @type {Object<Application>}
      */
-    Object.defineProperty(this, "apps", {
+    Object.defineProperty( this, "apps", {
       value: {},
       writable: false,
       enumerable: false
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _initialize(options) {
-    super._initialize(options);
+  _initialize( options ) {
+    super._initialize( options );
     return this.prepareData();
   }
 
@@ -64,7 +64,7 @@ export default class Advancement extends BaseAdvancement {
    *                                   the level selection control in the configuration window is hidden and the
    *                                   advancement should provide its own implementation of `Advancement#levels`
    *                                   and potentially its own level configuration interface.
-   * @property {Set<string>} validItemTypes  Set of types to which this advancement can be added.
+   * @property {Set<string>} validItemTypes  Set of types to which this advancement can be added. (deprecated)
    * @property {object} apps
    * @property {*} apps.config         Archetype of AdvancementConfig that allows for editing of this advancement type.
    * @property {*} apps.flow           Archetype of AdvancementFlow that is displayed while fulfilling this advancement.
@@ -78,15 +78,23 @@ export default class Advancement extends BaseAdvancement {
     return {
       order: 100,
       icon: "icons/svg/upgrade.svg",
-      title: game.i18n.localize("SW5E.AdvancementTitle"),
+      title: game.i18n.localize( "SW5E.AdvancementTitle" ),
       hint: "",
       multiLevel: false,
-      validItemTypes: new Set(["background", "species", "class", "archetype", "deployment", "starshipsize"]),
+      validItemTypes: new Set( ["background", "class", "species", "archetype", "deployment", "starshipsize"] ),
       apps: {
         config: AdvancementConfig,
         flow: AdvancementFlow
       }
     };
+  }
+
+  /**
+   * Configuration information for this advancement type.
+   * @type {AdvancementMetadata}
+   */
+  get metadata() {
+    return this.constructor.metadata;
   }
 
   /* -------------------------------------------- */
@@ -152,12 +160,9 @@ export default class Advancement extends BaseAdvancement {
    */
   get appliesToClass() {
     const originalClass = this.item.isOriginalClass;
-    return (
-      originalClass === null
-      || !this.classRestriction
-      || (this.classRestriction === "primary" && originalClass)
-      || (this.classRestriction === "secondary" && !originalClass)
-    );
+    return !this.classRestriction
+      || ( this.classRestriction === "primary" && [true, null].includes( originalClass ) )
+      || ( this.classRestriction === "secondary" && !originalClass );
   }
 
   /* -------------------------------------------- */
@@ -173,6 +178,21 @@ export default class Advancement extends BaseAdvancement {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * Perform preliminary operations before an Advancement is created.
+   * @param {object} data      The initial data object provided to the document creation request.
+   * @returns {boolean|void}   A return value of false indicates the creation operation should be cancelled.
+   * @protected
+   */
+  _preCreate( data ) {
+    if ( !["class", "archetype"].includes( this.item.type )
+      || foundry.utils.hasProperty( data, "level" )
+      || this.constructor.metadata.multiLevel ) return;
+    this.updateSource( { level: 1 } );
+  }
+
+  /* -------------------------------------------- */
   /*  Display Methods                             */
   /* -------------------------------------------- */
 
@@ -181,7 +201,7 @@ export default class Advancement extends BaseAdvancement {
    * @param {number} level  Level for which to check configuration.
    * @returns {boolean}     Have any available choices been made?
    */
-  configuredForLevel(level) {
+  configuredForLevel( level ) {
     return true;
   }
 
@@ -192,8 +212,8 @@ export default class Advancement extends BaseAdvancement {
    * @param {number} level  Level for which this entry is being sorted.
    * @returns {string}      String that can be used for sorting.
    */
-  sortingValueForLevel(level) {
-    return `${this.constructor.metadata.order.paddedString(4)} ${this.titleForLevel(level)}`;
+  sortingValueForLevel( level ) {
+    return `${this.constructor.metadata.order.paddedString( 4 )} ${this.titleForLevel( level )}`;
   }
 
   /* -------------------------------------------- */
@@ -207,7 +227,7 @@ export default class Advancement extends BaseAdvancement {
    *                                             be displayed.
    * @returns {string}                           HTML title with any level-specific information.
    */
-  titleForLevel(level, { configMode = false } = {}) {
+  titleForLevel( level, { configMode = false } = {} ) {
     return this.title;
   }
 
@@ -222,7 +242,7 @@ export default class Advancement extends BaseAdvancement {
    *                                             be displayed.
    * @returns {string}                           HTML content of the summary.
    */
-  summaryForLevel(level, { configMode = false } = {}) {
+  summaryForLevel( level, { configMode = false } = {} ) {
     return "";
   }
 
@@ -233,8 +253,8 @@ export default class Advancement extends BaseAdvancement {
    * @param {boolean} [force=false]     Force rendering
    * @param {object} [context={}]       Optional context
    */
-  render(force = false, context = {}) {
-    for (const app of Object.values(this.apps)) app.render(force, context);
+  render( force = false, context = {} ) {
+    for ( const app of Object.values( this.apps ) ) app.render( force, context );
   }
 
   /* -------------------------------------------- */
@@ -246,8 +266,8 @@ export default class Advancement extends BaseAdvancement {
    * @param {object} updates          Updates to apply to this advancement.
    * @returns {Promise<Advancement>}  This advancement after updates have been applied.
    */
-  async update(updates) {
-    await this.item.updateAdvancement(this.id, updates);
+  async update( updates ) {
+    await this.item.updateAdvancement( this.id, updates );
     return this;
   }
 
@@ -258,8 +278,8 @@ export default class Advancement extends BaseAdvancement {
    * @param {object} updates  Updates to apply to this advancement.
    * @returns {Advancement}   This advancement after updates have been applied.
    */
-  updateSource(updates) {
-    super.updateSource(updates);
+  updateSource( updates ) {
+    super.updateSource( updates );
     return this;
   }
 
@@ -270,7 +290,7 @@ export default class Advancement extends BaseAdvancement {
    * @param {Item5e} item  Item to check against.
    * @returns {boolean}    Should this be enabled as an option on the `AdvancementSelection` dialog?
    */
-  static availableForItem(item) {
+  static availableForItem( item ) {
     return true;
   }
 
@@ -282,7 +302,7 @@ export default class Advancement extends BaseAdvancement {
    */
   toDragData() {
     const dragData = { type: "Advancement" };
-    if (this.id) dragData.uuid = this.uuid;
+    if ( this.id ) dragData.uuid = this.uuid;
     else dragData.data = this.toObject();
     return dragData;
   }
@@ -297,7 +317,7 @@ export default class Advancement extends BaseAdvancement {
    * @param {object} data    Data from the advancement form.
    * @abstract
    */
-  async apply(level, data) {}
+  async apply( level, data ) { }
 
   /* -------------------------------------------- */
 
@@ -308,7 +328,7 @@ export default class Advancement extends BaseAdvancement {
    * @param {object} data   Data from `Advancement#reverse` needed to restore this advancement.
    * @abstract
    */
-  async restore(level, data) {}
+  async restore( level, data ) { }
 
   /* -------------------------------------------- */
 
@@ -318,5 +338,23 @@ export default class Advancement extends BaseAdvancement {
    * @returns {object}      Data that can be passed to the `Advancement#restore` method to restore this reversal.
    * @abstract
    */
-  async reverse(level) {}
+  async reverse( level ) { }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Fetch an item and create a clone with the proper flags.
+   * @param {string} uuid  UUID of the item to fetch.
+   * @param {string} [id]  Optional ID to use instead of a random one.
+   * @returns {object|null}
+   */
+  async createItemData( uuid, id ) {
+    const source = await fromUuid( uuid );
+    if ( !source ) return null;
+    return source.clone( {
+      _id: id ?? foundry.utils.randomID(),
+      "flags.sw5e.sourceId": uuid,
+      "flags.sw5e.advancementOrigin": `${this.item.id}.${this.id}`
+    }, { keepId: true } ).toObject();
+  }
 }

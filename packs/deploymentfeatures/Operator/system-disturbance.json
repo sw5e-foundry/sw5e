@@ -10,26 +10,29 @@
   "system": {
     "description": {
       "value": "<p>At 2nd rank, as a bonus action while deployed as an operator, you can choose a ship that you can see within 1,000 feet and target its systems for disturbance. For the next minute, or until you disturb another target, you have advantage on any Wisdom (Scan) or Intelligence (Probe) check you make to find it.</p><p>Additionally, when the ship makes an ability check, attack roll, or saving throw, you can use your reaction to disturb the ship's functions. Roll a System Disturbance die, which is a [[/r d6]], and subtract it from the ability check, attack roll, or saving throw. You can choose to use this feature after the ship makes its roll, but before the GM says whether the roll succeeds or fails. You can use this feature twice. You gain another use of this feature at 3rd, 4th, and 5th rank in this deployment. You regain any expended uses when you finish a long rest.</p><p>Your System Disturbance die changes when you reach certain ranks in this deployment. The die becomes a [[/r d8]] at 3rd rank, a [[/r d10]] at 4th rank, and a [[/r d12]] at 5th rank.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operator 2nd Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,16 +43,17 @@
       "value": 2,
       "max": "@deployments.operator.rank",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -79,25 +83,27 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Operator"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "2nd Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493963463,
-    "modifiedTime": 1685840610797,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368730301,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!nBl18Fr4ATBb43hQ"
 }

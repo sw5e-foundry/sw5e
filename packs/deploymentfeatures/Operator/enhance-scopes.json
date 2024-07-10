@@ -9,27 +9,30 @@
   "flags": {},
   "system": {
     "description": {
-      "value": "<p><em><strong>Power Die Location:</strong> Sensors</em><br>As a bonus action, can expend one power die to increase the ranges of your ship's next primary or secondary weapon attack by 500 feet. If it hits, you add the power die to the attack's damage roll.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p><em><strong>Power Die Location:</strong> Sensors</em><br />As a bonus action, can expend one power die to increase the ranges of your ship's next primary or secondary weapon attack by 500 feet. If it hits, you add the power die to the attack's damage roll.</p>",
+      "chat": ""
     },
     "requirements": "Operator 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,17 +42,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "powerdice",
       "target": "attributes.power.sensors.value",
-      "amount": 1
+      "amount": 1,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -79,25 +83,27 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Operator"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": "Disruption"
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493963420,
-    "modifiedTime": 1685840610754,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368729860,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!CXpsc3IX1mUE7g78"
 }

@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Kro Var Order</h1>\n<p>Monks of the Kro Var Order—known as shapers—utilize a unique power to bend the four elements to their will, creating effects as small as a floating flame to quakes that sunder the earth.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "krovarorder",
     "classIdentifier": "monk",
     "advancement": [
       {
-        "_id": "gAmTxARXMSGUsmIR",
+        "_id": "2TxAN55uiuPsrbPJ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.yJKHMkNw3sW7mmVV"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.yJKHMkNw3sW7mmVV",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "cq2ctR9pEVxw9BFP",
+        "_id": "19pCRcNwz7yJ1DzA",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.z1YCZDwJNcRTixLf"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.z1YCZDwJNcRTixLf",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1zX0gDbovUfMG0ts",
+        "_id": "1IrTPHbVmhREOlwc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.cEoUHxdDHlP2A4af"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.cEoUHxdDHlP2A4af",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "1FyuQYyB6ljc1Ukl",
+        "_id": "ml0EygPJvrI1IJ62",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.JyawDJX84wFfKtiC",
-            "Compendium.sw5e.archetypefeatures.mXAvFzTao9HkFAKS"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.JyawDJX84wFfKtiC",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.mXAvFzTao9HkFAKS",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959753,
-    "modifiedTime": 1684819093623,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689576,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!W8kBwnXKWmvXB4My"
 }

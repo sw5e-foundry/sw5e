@@ -1,5 +1,4 @@
 {
-  "_id": "M0o3LpNXhnL8SEsm",
   "name": "Resilient Thruster",
   "type": "starshipmod",
   "flags": {},
@@ -7,40 +6,40 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>You overhaul your ship's thruster to make it more adaptive. Your ship is proficiently equipped for Dexterity saving throws.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">You overhaul your ship's thruster to make it more adaptive. Your ship is proficiently equipped for Dexterity saving throws.</span></p>",
+      "chat": ""
     },
-    "requirements": "",
-    "source": {
-      "value": "SotG"
-    },
+    "source": {},
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -51,16 +50,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -76,18 +76,11 @@
       "dc": null,
       "scaling": "power"
     },
-    "recharge": {
-      "charged": false,
-      "value": null
-    },
-    "system": {
-      "value": "Universal"
-    },
     "grade": {
-      "value": "3"
+      "value": 3
     },
-    "basecost": {
-      "value": "4000"
+    "baseCost": {
+      "value": null
     },
     "prerequisites": {
       "value": ""
@@ -95,19 +88,36 @@
     "free": {
       "slot": false,
       "suite": false
-    }
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "Universal",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494018660,
+    "modifiedTime": 1720552915337,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "LXMScHlfIj0ug8J8",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "folder": null,
-  "sort": 0,
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
-    "createdTime": 1674494018660,
-    "modifiedTime": 1685840666125,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+  "_key": "!items!LXMScHlfIj0ug8J8"
 }

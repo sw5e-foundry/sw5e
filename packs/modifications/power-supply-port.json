@@ -13,38 +13,39 @@
   "system": {
     "description": {
       "value": "<h4>Droid Customization (Part)</h4>\n <p><em>Prerequisite:  Class V droid</em></p>\n<hr />\n<p>You gain the ability to charge expended power cells and power generators within your reach. You have a charging capacity of 1 hour. You can spend 10 minutes of this charging capacity to replenish an expended power cell, or 1 hour replenishing an expended power generator. Alternatively, you can directly connect to and power a single blaster weapon that uses power cells or power generators. Once per turn, if the powered weapon would be reloaded, it can be done without using an action, instead expending 10 minutes of your charging capacity if it uses power cells or 1 hour if it uses a power generator. Connecting or disconnecting a weapon takes an action. </p>\n<p>If you attempt to replenish an enhanced power cell or power generator, or a specialized power cell, it loses its enhanced or specialized properties.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "standard",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -55,16 +56,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,15 +82,26 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "droidcustomization",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {}
-    }
+    "properties": [],
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "droidcustomization",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -97,11 +110,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1673970648643,
-    "modifiedTime": 1692402502891,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418050632,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "WIhz6A0uvCR9D39k"
+  "_id": "WIhz6A0uvCR9D39k",
+  "_key": "!items!WIhz6A0uvCR9D39k"
 }

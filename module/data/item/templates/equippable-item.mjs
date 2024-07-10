@@ -1,32 +1,34 @@
+import SystemDataModel from "../../abstract.mjs";
+
+const { BooleanField, StringField } = foundry.data.fields;
+
 /**
  * Data model template with information on items that can be attuned and equipped.
  *
- * @property {number} attunement  Attunement information as defined in `SW5E.attunementTypes`.
- * @property {boolean} equipped   Is this item equipped on its owning actor.
+ * @property {string} attunement  Attunement information as defined in `SW5E.attunementTypes`.
+ * @property {boolean} attuned    Is this item attuned on its owning actor?
+ * @property {boolean} equipped   Is this item equipped on its owning actor?
  * @mixin
  */
-export default class EquippableItemTemplate extends foundry.abstract.DataModel {
+export default class EquippableItemTemplate extends SystemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
-      attunement: new foundry.data.fields.NumberField({
-        required: true,
-        integer: true,
-        initial: CONFIG.SW5E.attunementTypes.NONE,
-        label: "SW5E.Attunement"
-      }),
-      equipped: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.Equipped" })
+      attunement: new StringField( { required: true, label: "SW5E.Attunement" } ),
+      attuned: new BooleanField( { label: "SW5E.Attuned" } ),
+      equipped: new BooleanField( { required: true, label: "SW5E.Equipped" } )
     };
   }
 
   /* -------------------------------------------- */
-  /*  Migrations                                  */
+  /*  Data Migrations                             */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    EquippableItemTemplate.#migrateAttunement(source);
-    EquippableItemTemplate.#migrateEquipped(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    EquippableItemTemplate.#migrateAttunement( source );
+    EquippableItemTemplate.#migrateEquipped( source );
   }
 
   /* -------------------------------------------- */
@@ -35,9 +37,12 @@ export default class EquippableItemTemplate extends foundry.abstract.DataModel {
    * Migrate the item's attuned boolean to attunement string.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateAttunement(source) {
-    if (source.attuned === undefined || source.attunement !== undefined) return;
-    source.attunement = source.attuned ? CONFIG.SW5E.attunementTypes.ATTUNED : CONFIG.SW5E.attunementTypes.NONE;
+  static #migrateAttunement( source ) {
+    switch ( source.attunement ) {
+      case 2: source.attuned = true;
+      case 1: source.attunement = "required"; break;
+      case 0: source.attunement = ""; break;
+    }
   }
 
   /* -------------------------------------------- */
@@ -46,25 +51,46 @@ export default class EquippableItemTemplate extends foundry.abstract.DataModel {
    * Migrate the equipped field.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateEquipped(source) {
-    if (!("equipped" in source)) return;
-    if (source.equipped === null || source.equipped === undefined) source.equipped = false;
+  static #migrateEquipped( source ) {
+    if ( !( "equipped" in source ) ) return;
+    if ( ( source.equipped === null ) || ( source.equipped === undefined ) ) source.equipped = false;
   }
 
   /* -------------------------------------------- */
-  /*  Getters                                     */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /**
+   * Ensure items that cannot be attuned are not marked as attuned.
+   */
+  prepareFinalEquippableData() {
+    if ( !this.attunement ) this.attuned = false;
+  }
+
+  /* -------------------------------------------- */
+  /*  Properties                                  */
   /* -------------------------------------------- */
 
   /**
    * Chat properties for equippable items.
    * @type {string[]}
    */
-  get equippableItemChatProperties() {
-    const req = CONFIG.SW5E.attunementTypes.REQUIRED;
+  get equippableItemCardProperties() {
     return [
-      this.attunement === req ? CONFIG.SW5E.attunements[req] : null,
-      game.i18n.localize(this.equipped ? "SW5E.Equipped" : "SW5E.Unequipped"),
-      "proficient" in this ? CONFIG.SW5E.proficiencyLevels[this.prof?.multiplier || 0].label : null
+      this.attunement === "required" ? CONFIG.SW5E.attunementTypes.required : null,
+      game.i18n.localize( this.equipped ? "SW5E.Equipped" : "SW5E.Unequipped" ),
+      ( "proficient" in this ) ? CONFIG.SW5E.proficiencyLevels[this.prof?.multiplier || 0].label : null
     ];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Are the magical properties of this item, such as magical bonuses to armor & damage, available?
+   * @type {boolean}
+   */
+  get magicAvailable() {
+    const attunement = this.attuned || ( this.attunement !== "required" );
+    return attunement && this.properties.has( "mgc" ) && this.validProperties.has( "mgc" );
   }
 }

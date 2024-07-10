@@ -1,8 +1,184 @@
 {
-  "_id": "Z6J8H8R1PnicSior",
   "name": "Bothan",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9136241+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-bothan"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Bothan.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Bothans are a short species of furry humanoids. Bothans are covered in fur which shifted in response to their emotional state by way of gentle ripplings. It is this trait, named Wrendui, that betrays them when members of their kind intend to be duplicitous in their dealings with others. They possess tapered pointed ears, and both males and females were known to sport beards. </p>\n<p>Bothans are able to interbreed with the other species, though it is rare that they do so. Such hybrids somewhat resembled baseline humans with haunches, hooves, fur, pointed ears and a long tail.</p>\n<h2>Society and Culture</h2>\n<p>Bothan culture is guided by the philosophy and principles from the ancient text known as The Way, written by Golm Fervse'dra. In this \"Bothan Way\", the pursuit of power and influence is paramount. Thus, individual bothans put their own political and economic success above all other concerns, and as a species, bothans put their own advancement ahead of other intergalactic interests. The volume of backstabbing, subtle character assassination and political maneuvering in bothan society is dizzying, and results in many species stereotyping bothans as untrustworthy. In fact, most bothans are habitually paranoid, believing that anyone who's not working with them, is working against them. In times of crisis, the focus of bothan society shifts to a survivalist state known as \"ar'krai\". When engaged in ar'krai, all fit bothans volunteer to defend their species from impending extinction. </p>\n<h2>Names</h2>\n<p>Male bothan names are often trickey while female's are soft. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Garc, Hibriak, Nith, Tramom, Ventagt </p>\n<p><strong>Female Names.</strong> Ceerriah, Dhaim, Gnam, Meenn, Vit </p>\n<p><strong>Surnames.</strong> Bwif'livi, Gra'kit, Hia'faitu, Main'dil</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "bothan",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1SnI1NA4OYlp1oS0",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yxoYaoRvIoCccmyy",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BDOThR2IRyb87p03",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.CnlBskOjRLFiGItp",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Zp860xhkzJaDFNaG",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5TpgcYxKb0zV4DgT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.r7Ie0NL3IOdROk5Z",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.dtZfRgFSYRyEia6Q",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.eKBPlK93QAVJyeex",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Aj3IqXOauawMw3s8",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1M5AHINLCJdKvfj0",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "dex": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "JqhhXGweQ8H15JOr",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "PqdRr1750WKfHUKG",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:ins",
+            "skills:dec"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Brown"
+    },
+    "hairColorOptions": {
+      "value": "Black, brown, or gray (with age)"
+    },
+    "eyeColorOptions": {
+      "value": "Brown or green"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Diminutive stature, mood-sensitive fur"
+    },
+    "heightAverage": {
+      "value": "4'3\""
+    },
+    "heightRollMod": {
+      "value": "+2d4\""
+    },
+    "weightAverage": {
+      "value": "60 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Bothawui"
+    },
+    "slanguage": {
+      "value": "Bothese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "nTIwpqn8tPkjpase",
@@ -12,18 +188,6 @@
           "value": "Bothan",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -85,102 +249,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Bothan.webp",
-      "label": "Bothan",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Bothan",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!zVZbpjA2CjUx3YIC.nTIwpqn8tPkjpase"
     }
   ],
+  "_id": "zVZbpjA2CjUx3YIC",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9136241+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-bothan"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Bothans are a short species of furry humanoids. Bothans are covered in fur which shifted in response to their emotional state by way of gentle ripplings. It is this trait, named Wrendui, that betrays them when members of their kind intend to be duplicitous in their dealings with others. They possess tapered pointed ears, and both males and females were known to sport beards. </p>\n<p>Bothans are able to interbreed with the other species, though it is rare that they do so. Such hybrids somewhat resembled baseline humans with haunches, hooves, fur, pointed ears and a long tail.</p>\n<h2>Society and Culture</h2>\n<p>Bothan culture is guided by the philosophy and principles from the ancient text known as The Way, written by Golm Fervse'dra. In this \"Bothan Way\", the pursuit of power and influence is paramount. Thus, individual bothans put their own political and economic success above all other concerns, and as a species, bothans put their own advancement ahead of other intergalactic interests. The volume of backstabbing, subtle character assassination and political maneuvering in bothan society is dizzying, and results in many species stereotyping bothans as untrustworthy. In fact, most bothans are habitually paranoid, believing that anyone who's not working with them, is working against them. In times of crisis, the focus of bothan society shifts to a survivalist state known as \"ar'krai\". When engaged in ar'krai, all fit bothans volunteer to defend their species from impending extinction. </p>\n<h2>Names</h2>\n<p>Male bothan names are often trickey while female's are soft. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Garc, Hibriak, Nith, Tramom, Ventagt </p>\n<p><strong>Female Names.</strong> Ceerriah, Dhaim, Gnam, Meenn, Vit </p>\n<p><strong>Surnames.</strong> Bwif'livi, Gra'kit, Hia'faitu, Main'dil</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "bothan",
-    "advancement": [
-      {
-        "_id": "I0A0tPNL6F7epPnX",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.yxoYaoRvIoCccmyy",
-            "Compendium.sw5e.speciesfeatures.BDOThR2IRyb87p03",
-            "Compendium.sw5e.speciesfeatures.CnlBskOjRLFiGItp",
-            "Compendium.sw5e.speciesfeatures.Zp860xhkzJaDFNaG",
-            "Compendium.sw5e.speciesfeatures.5TpgcYxKb0zV4DgT",
-            "Compendium.sw5e.speciesfeatures.r7Ie0NL3IOdROk5Z",
-            "Compendium.sw5e.speciesfeatures.dtZfRgFSYRyEia6Q",
-            "Compendium.sw5e.speciesfeatures.eKBPlK93QAVJyeex",
-            "Compendium.sw5e.speciesfeatures.Aj3IqXOauawMw3s8"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Brown"
-    },
-    "hairColorOptions": {
-      "value": "Black, brown, or gray (with age)"
-    },
-    "eyeColorOptions": {
-      "value": "Brown or green"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Diminutive stature, mood-sensitive fur"
-    },
-    "heightAverage": {
-      "value": "4'3\""
-    },
-    "heightRollMod": {
-      "value": "+2d4\""
-    },
-    "weightAverage": {
-      "value": "60 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Bothawui"
-    },
-    "slanguage": {
-      "value": "Bothese"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002106,
-    "modifiedTime": 1692402505741,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797878,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!zVZbpjA2CjUx3YIC"
 }

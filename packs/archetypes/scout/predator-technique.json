@@ -16,69 +16,105 @@
   "system": {
     "description": {
       "value": "<h1>Predator Technique</h1>\n<p>Some scouts work in solitude, while others prefer the strength of a group. Followers of the Predator Technique find power lies with the pack; they distract their prey, while their allies go for the kill.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "predatortechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "2HuNwgU7cx91JZT8",
+        "_id": "1p4RLXEGGADn1qZa",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.8DGG53yj7eOoAwVW",
-            "Compendium.sw5e.archetypefeatures.MBzjoBmMIrgFze6q",
-            "Compendium.sw5e.archetypefeatures.3fGONRv3flikLZAI"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.8DGG53yj7eOoAwVW",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.MBzjoBmMIrgFze6q",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.3fGONRv3flikLZAI",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "ZihrHyB1xYH1t6cE",
+        "_id": "IH7LeDghmG71Hgjb",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.KKh8VZnbhTMAfXyY"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.KKh8VZnbhTMAfXyY",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "a4fmI6NHfh21jR6v",
+        "_id": "PLCtrW4I8DKaLc8b",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.JCDQRKdrqpvoxE57"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.JCDQRKdrqpvoxE57",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "JxqqWzGFxkJ1BUba",
+        "_id": "1izLVxxf0wOxp2Wy",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.QiK8clUuVuTqq9YB"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.QiK8clUuVuTqq9YB",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
+      },
+      {
+        "_id": "1qyMMGThdUhy1c4T",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "armor:hvy"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -88,7 +124,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -96,10 +132,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959705,
-    "modifiedTime": 1684819093621,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552688935,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!1NArAZ8FKBEoN6Bg"
 }

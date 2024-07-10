@@ -13,6 +13,7 @@
   "plugins": [
     "jsdoc"
   ],
+  "ignorePatterns": [ "module/applications/compendium/*.mjs", "module/applications/compendium/tabs/*.mjs" ],
   "rules": {
     "array-bracket-spacing": ["warn", "never"],
     "array-callback-return": "warn",
@@ -27,7 +28,7 @@
     "eqeqeq": ["warn", "smart"],
     "func-call-spacing": "warn",
     "func-names": ["warn", "never"],
-    "getter-return": "warn",
+    "getter-return": ["warn", { "allowImplicit": true }],
     "lines-between-class-members": "warn",
     "new-parens": ["warn", "always"],
     "no-alert": "warn",
@@ -151,6 +152,7 @@
       "named": "never",
       "asyncArrow": "always"
     }],
+    "space-in-parens": ["error", "always"],
     "spaced-comment": "warn",
 
     "jsdoc/check-access": "warn",
@@ -199,7 +201,8 @@
     "jsdoc": {
       "mode": "typescript",
       "preferredTypes": {
-        ".<>": "<>"
+        ".<>": "<>",
+        "Object": "object"
       },
       "tagNamePreference": {
         "auguments": "extends"

@@ -2,7 +2,7 @@
   "name": "Stow",
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:57.9464448+00:00",
+      "timestamp": "2022-05-29T01:36:47.5785442+00:00",
       "importer_version": 3,
       "uid": "Feature.name-stow.source-archetype.sourceName-blademaster_specialist.level-3"
     }
@@ -13,47 +13,50 @@
   "system": {
     "description": {
       "value": "<p>When you use your object interaction to stow a weapon, you can expend a use of your Adaptive Fighting (no action required) to take the Disengage action.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Fighter (Blademaster Specialist) 3",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -83,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Fighter"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -92,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426104139,
-    "modifiedTime": 1685840599612,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368688355,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "FH71n755Agnlql2b"
+  "_id": "FH71n755Agnlql2b",
+  "_key": "!items!FH71n755Agnlql2b"
 }

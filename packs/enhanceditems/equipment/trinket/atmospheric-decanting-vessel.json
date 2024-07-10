@@ -2,76 +2,11 @@
   "_id": "tW1Am3SLUu0Rfigz",
   "name": "Atmospheric Decanting Vessel",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Enhanced%20Items/AtmosphericDecantingVessel.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        }
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:04.6915338+00:00",
       "importer_version": 3,
@@ -81,37 +16,41 @@
   "system": {
     "description": {
       "value": "<h4>Adventuring Gear</h4>\n <p>This metal jug appears to be able to hold a gallon of liquid and weighs 12 pounds whether full or empty.</p>\n<p>You can use an action and name one liquid from the table below to cause the jug to produce the chosen liquid. Afterward, you can open the jug as an action and pour that liquid out, up to 2 gallons per minute. The maximum amount of liquid the jug can produce depends on the liquid you named.</p>\n<p>Once the jug starts producing a liquid, it can't produce a different one, or more of one that has reached its maximum, until the next dawn.</p>\n<p>| Liquid | Quantity |</p>\n<p>|:----:|:-------------|</p>\n<p>| Acid  | 8 ounces |</p>\n<p>| Alcohol, strong  | 1 gallon |</p>\n<p>| Alcohol, weak  | 4 gallons |</p>\n<p>| Basic poison  | 1/2 ounce |</p>\n<p>| Liquid | Quantity |</p>\n<p>|:---:|:------------|</p>\n<p>| Condiment | 2 gallons |</p>\n<p>| Lubricant | 1 quart |</p>\n<p>| Water, potable | 8 gallons |</p>\n<p>| Water, stagnant | 12 gallons |</p>\n<p><em>Most liquids one might desire curiously only involve a handful of elements. This device collects a reservoir of them to recreate a selection of such liquids on demand.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
-    "price": {
-      "denomination": "gc",
-      "value": 0
+    "weight": {
+      "value": 0,
+      "units": "lb"
     },
-    "attunement": 0,
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": "",
     "equipped": false,
     "rarity": "premium",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -120,18 +59,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -149,8 +89,8 @@
     },
     "armor": {
       "value": null,
-      "type": "trinket",
-      "dex": null
+      "dex": null,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -189,29 +129,42 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
-    "properties": {},
-    "proficient": true
+    "properties": [],
+    "proficient": 1,
+    "_propertyValues": {},
+    "type": {
+      "value": "trinket",
+      "baseItem": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493965001,
-    "modifiedTime": 1684819089339,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720402292978,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!tW1Am3SLUu0Rfigz"
 }

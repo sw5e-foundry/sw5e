@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Aqinos Form:</strong> 7th level</em></p>\n<p>You learn your choice of the Cause Harm or Lend Aid Channel the Force options, and when you use either of these options, you gain additional benefits.</p>\n<h3>Cause Harm</h3>\n<p>You can choose to deal ion damage instead of necrotic.</p>\n<h3>Lend Aid</h3>\n<p>Droids and constructs are now valid targets.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Aqinos Form) 7",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -27,11 +28,13 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.1",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1680288495934,
-    "modifiedTime": 1680288495934,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368681122,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "2BoTfXnFD7dBiX8l"
+  "_id": "2BoTfXnFD7dBiX8l",
+  "_key": "!items!2BoTfXnFD7dBiX8l"
 }

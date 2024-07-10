@@ -16,8 +16,7 @@
   "system": {
     "description": {
       "value": "<img style=\"float:right;margin:5px;border:0px\" src=\"systems/sw5e/packs/Icons/Classes/sentinel_01.webp\" />\n<p>Clad in black robes, the rattataki pulls his hood forward and steps into the shadowy alcove, only to reappear further down the hall. As his quarry walks past, he presses the hilt of his lightsaber to the back of their head, quickly toggling it on-and-off. He is gone before the corpse hits the ground.</p>\n<p>The togruta dashes across the battlefield, doublesaber deflecting blaster shots to the ground. She pulls her wounded padawan to her feet, and guides her away from the warzone.</p>\n<p>Green-bladed lightsaber a blur, the cathar ferociously presses the attack. With each strike, she guides her opponent closer to the ravine's edge. A flurry of blows followed by a quick <em>force push</em> and her foe tumbles over the edge.</p>\n<p>Sentinels are the masters of blending force powers with weapon attacks. They weave the two together so expertly that their foes have trouble predicting them.</p>\n<h2>The Middle of the Road</h2>\n<p>The sentinel uses stealth and subterfuge to accomplish the will of the Force. Where the consular focuses on mastery of the Force and the guardian focuses on the mastery of the lightsaber, the sentinel focuses on merging the two. </p>\n<h2>Solitary Action</h2>\n<p>Sentinels are notoriously independent, most comfortable acting alone and without backup; where some use a team to make up for their weaknesses, the sentinel uses the Force to overcome theirs. While some take this independent streak to the extreme, they are usually accepting of authority, as long as they are allowed to carry out directions using their preferred methods.</p>\n<p>While creating your sentinel, consider your personal philosophy in regards to the Force and its most famous practitioners — the Jedi and the Sith.  Are you a member of one of the two orders, or do you walk a different path? Are you an operative tapping into a latent Force-sensitivity? Were you trained in the force from a young age, or did you discover it as an adult? How do you treat those weaker than you? What was your family like? Do you see the Force as light and dark, or an impartial river of gray?</p>\n<h3>Quick Build</h3>\n<p>You can make a sentinel quickly by following these suggestions. First, make Dexterity your highest ability score, followed by Wisdom or Charisma. Second, choose the Jedi or Sith background.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "atFlavorText": {
       "value": "<h1>Sentinel Callings</h1>\n<p>Different sentinels select different callings, called Paths, to follow as they hone their powers. Your calling grants you features at 3rd, 7th, 13th, and 18th level.</p>\n<ul>\n<li>@Compendium[sw5e.archetypes.Hk9X8z1pVJThH5wV]{Path of focus}</li>\n<li>@Compendium[sw5e.archetypes.6dnVRdJAIby4258g]{Path of shadows}</li>\n<li>@Compendium[sw5e.archetypes.GURvJho88e4mNGdN]{Path of the corsair}</li>\n<li>@Compendium[sw5e.archetypes.Wq9eYdFiIcwL0Y4p]{Path of the forceblade}</li>\n<li>@Compendium[sw5e.archetypes.u9TZAZPRiEgjOMQP]{Path of aggression}</li>\n<li>@Compendium[sw5e.archetypes.z86UNeuCm2yckt4i]{Path of communion}</li>\n<li>@Compendium[sw5e.archetypes.54xY3WUAEVaSxq3i]{Path of ethereality}</li>\n<li>@Compendium[sw5e.archetypes.mp8JaOq5euxKnYjE]{Path of iron}</li>\n<li>@Compendium[sw5e.archetypes.vJzeeptKOcyy2A3A]{Path of meditation}</li>\n<li>@Compendium[sw5e.archetypes.Ciao7QEgiVgUL0P2]{Path of synthesis}</li>\n<li>@Compendium[sw5e.archetypes.eD5ofKkBiWvSCDWb]{Path of tenacity}</li>\n<li>@Compendium[sw5e.archetypes.skwyPoEeFAHo1EzJ]{Path of witchcraft}</li>\n<li>@Compendium[sw5e.archetypes.zeDuI0DbKtKgkpBk]{Path of witchcraft (companion)}</li>\n</ul>"
@@ -25,52 +24,62 @@
     "invocations": {
       "value": "<h1>Sentinel Ideals</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.LYZAItd3c7oIW1Sn]{Ideal of the agile}</li>\n<li>@Compendium[sw5e.invocations.gYD6PZuPEU9XUngX]{Ideal of the artisan}</li>\n<li>@Compendium[sw5e.invocations.0pgUOKfaIDZHclOQ]{Ideal of the contender}</li>\n<li>@Compendium[sw5e.invocations.reccmvqK63LIq3kE]{Ideal of the fighter}</li>\n<li>@Compendium[sw5e.invocations.wkPsVqFt32zvoUCO]{Ideal of the hunter}</li>\n<li>@Compendium[sw5e.invocations.uEbeBRaXr9v9R3kS]{Ideal of the steadfast}</li>\n<li>@Compendium[sw5e.invocations.ROXhJ1p61b8GdAua]{Ideal of the titan}</li>\n<li>@Compendium[sw5e.invocations.dVGFvW2Bzx0ni8E5]{Ideal of the tranquil}</li>\n<li>@Compendium[sw5e.invocations.6da1DgsMNWgAFo4C]{Ideal of the vigorous}</li>\n</ul>"
     },
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "identifier": "sentinel",
     "levels": 1,
     "hitDice": "d8",
     "hitDiceUsed": 0,
     "advancement": [
       {
-        "_id": "i10FK86Ifdi1RU1Q",
+        "_id": "1yz3rdNbGxjV1tIG",
         "type": "HitPoints",
         "configuration": {},
         "value": {}
       },
       {
-        "_id": "Tui62li1Qri1RiGX",
+        "_id": "GnqvZxJ2gw8pMI3a",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "kinetic-combat",
           "scale": {
             "2": {
-              "n": 1,
-              "die": 4
+              "number": 1,
+              "faces": 4,
+              "modifiers": []
             },
             "5": {
-              "n": 1,
-              "die": 6
+              "number": 1,
+              "faces": 6,
+              "modifiers": []
             },
             "9": {
-              "n": 1,
-              "die": 8
+              "number": 1,
+              "faces": 8,
+              "modifiers": []
             },
             "13": {
-              "n": 1,
-              "die": 10
+              "number": 1,
+              "faces": 10,
+              "modifiers": []
             },
             "17": {
-              "n": 1,
-              "die": 12
+              "number": 1,
+              "faces": 12,
+              "modifiers": []
             }
           },
-          "type": "dice"
+          "type": "dice",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Kinetic Combat"
       },
       {
-        "_id": "1ODSesTddmZmXlUf",
+        "_id": "ex654q85jEynkYzk",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "ideals-known",
@@ -85,13 +94,16 @@
               "value": 4
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Ideals Known"
       },
       {
-        "_id": "xTtNhQLRgMd1PCtE",
+        "_id": "1kLhIgwD2MYI2hLU",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "ideal-manifests",
@@ -106,179 +118,387 @@
               "value": 4
             }
           },
-          "type": "number"
+          "type": "number",
+          "distance": {
+            "units": ""
+          }
         },
         "value": {},
         "title": "Ideal Manifests"
       },
       {
-        "_id": "1bLPB8KDzDex16pc",
+        "_id": "1rBkcnzb9Tj0f5nM",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 4
       },
       {
-        "_id": "1BjtMAMM6Dog1f7v",
+        "_id": "hTETy8yr7NTBOpv7",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 8
       },
       {
-        "_id": "1CfhHPMkviaziA6K",
+        "_id": "1pQr1lgYQmSxMcfp",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 12
       },
       {
-        "_id": "1fD9fb2EvYYnJaEU",
+        "_id": "1QrULc6emFickNAD",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 16
       },
       {
-        "_id": "V58HrFaICqpYqIl6",
+        "_id": "1yvzjW6OsGQh1CYD",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 2
+          "points": 2,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 19
       },
       {
-        "_id": "JbEok0lmP7zuRX47",
+        "_id": "eREo95XoCvowm445",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "armor:lgt"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "classRestriction": "primary",
+        "level": 1
+      },
+      {
+        "_id": "1ntqOtfjyXKbBPo3",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "weapon:slw",
+            "weapon:svb",
+            "weapon:mlw",
+            "weapon:mvb"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "classRestriction": "primary",
+        "level": 1
+      },
+      {
+        "_id": "1z2bQGag2vxO1yJd",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:specialist:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "classRestriction": "primary",
+        "level": 1
+      },
+      {
+        "_id": "nNFcaMtlRQQ1CWoz",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "saves:dex",
+            "saves:cha"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "classRestriction": "primary",
+        "level": 1
+      },
+      {
+        "_id": "1AKNuDEEsD2J12Eg",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 3,
+              "pool": [
+                "skills:acr",
+                "skills:ani",
+                "skills:ins",
+                "skills:itm",
+                "skills:prc",
+                "skills:per",
+                "skills:pil",
+                "skills:ste",
+                "skills:tec"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "classRestriction": "primary",
+        "level": 1
+      },
+      {
+        "_id": "PLHISMODnhP5FZcz",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "armor:lgt",
+            "weapon:slw",
+            "weapon:svb"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "classRestriction": "secondary",
+        "level": 1,
+        "title": "Multiclass Proficiencies"
+      },
+      {
+        "_id": "17QxPYK5ls4Q1rKR",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.zysnaJwbNrYiEbXb",
-            "Compendium.sw5e.classfeatures.C1UAdaL6DzVkJBiV"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.zysnaJwbNrYiEbXb",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.classfeatures.C1UAdaL6DzVkJBiV",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 1,
         "title": "Features"
       },
       {
-        "_id": "12QwseYzc1r8qfUC",
+        "_id": "R5UfnDpwW1e8nn0X",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.4obIpzhQVjzV203q",
-            "Compendium.sw5e.classfeatures.2BtuxZqgiBUJwgJj"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.4obIpzhQVjzV203q",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.classfeatures.2BtuxZqgiBUJwgJj",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 2,
         "title": "Features"
       },
       {
-        "_id": "K8g0sdJ9KiV1NgVS",
+        "_id": "1nm9vVrCBe2Y1BcT",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.naRAU6qvgDvktTV4"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.naRAU6qvgDvktTV4",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1LNtCSN4A44nkyI2",
+        "_id": "1kFZgdNhTIZ11iy7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.LaRxCNespONqb3Mb"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.LaRxCNespONqb3Mb",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 5,
         "title": "Features"
       },
       {
-        "_id": "YuMhrAXdNtf1NzcY",
+        "_id": "1pE0X9VQ5Ukt1heY",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.59fmNR7GZhUw4ofI"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.59fmNR7GZhUw4ofI",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "oFT96a2ObRfB82Rp",
+        "_id": "2jAUCXP23Ic1naha",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.RPvmlGBBhy5pKwxn"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.RPvmlGBBhy5pKwxn",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "pm7FswSVxOH11dYG",
+        "_id": "XaKpdnz0Ltl1mqOl",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.classfeatures.jTKDvLAy0d52oVjL"
+            {
+              "uuid": "Compendium.sw5e.classfeatures.jTKDvLAy0d52oVjL",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
         "title": "Features"
       },
       {
-        "_id": "J6abDUTpHTh1v0GE",
+        "_id": "FYGkp8vMc7O1Lanw",
         "type": "ItemChoice",
         "configuration": {
           "hint": "You adopt ideals that exemplify your bond with the Force. You adopt two ideals of your choice, as detailed at the end of the class description, and you adopt more at higher levels, as shown in the Ideals Known column of the sentinel table.\nYou can manifest your ideals a combined total of twice, and you can manifest them more times at higher levels as shown in the Ideal Manifests column of the sentinel table.",
           "choices": {
-            "2": 2,
-            "6": 1,
-            "11": 1
+            "2": {
+              "count": 2,
+              "replacement": false
+            },
+            "6": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.LYZAItd3c7oIW1Sn",
-            "Compendium.sw5e.invocations.gYD6PZuPEU9XUngX",
-            "Compendium.sw5e.invocations.0pgUOKfaIDZHclOQ",
-            "Compendium.sw5e.invocations.reccmvqK63LIq3kE",
-            "Compendium.sw5e.invocations.wkPsVqFt32zvoUCO",
-            "Compendium.sw5e.invocations.uEbeBRaXr9v9R3kS",
-            "Compendium.sw5e.invocations.ROXhJ1p61b8GdAua",
-            "Compendium.sw5e.invocations.dVGFvW2Bzx0ni8E5",
-            "Compendium.sw5e.invocations.6da1DgsMNWgAFo4C"
+            {
+              "uuid": "Compendium.sw5e.invocations.LYZAItd3c7oIW1Sn"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.gYD6PZuPEU9XUngX"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.0pgUOKfaIDZHclOQ"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.reccmvqK63LIq3kE"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.wkPsVqFt32zvoUCO"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.uEbeBRaXr9v9R3kS"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.ROXhJ1p61b8GdAua"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.dVGFvW2Bzx0ni8E5"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.6da1DgsMNWgAFo4C"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -291,36 +511,70 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Sentinel Ideals"
       },
       {
-        "_id": "Gthw8SHxxJH1xwB6",
+        "_id": "1yUv6wvwCjp51Q69",
         "type": "ItemChoice",
         "configuration": {
           "hint": "Different sentinels select different callings, called Paths, to follow as they hone their powers. Your calling grants you features at 3rd, 7th, 13th, and 18th level.",
           "choices": {
-            "3": 1
+            "3": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "archetype",
           "pool": [
-            "Compendium.sw5e.archetypes.Hk9X8z1pVJThH5wV",
-            "Compendium.sw5e.archetypes.6dnVRdJAIby4258g",
-            "Compendium.sw5e.archetypes.GURvJho88e4mNGdN",
-            "Compendium.sw5e.archetypes.Wq9eYdFiIcwL0Y4p",
-            "Compendium.sw5e.archetypes.u9TZAZPRiEgjOMQP",
-            "Compendium.sw5e.archetypes.z86UNeuCm2yckt4i",
-            "Compendium.sw5e.archetypes.54xY3WUAEVaSxq3i",
-            "Compendium.sw5e.archetypes.mp8JaOq5euxKnYjE",
-            "Compendium.sw5e.archetypes.vJzeeptKOcyy2A3A",
-            "Compendium.sw5e.archetypes.Ciao7QEgiVgUL0P2",
-            "Compendium.sw5e.archetypes.eD5ofKkBiWvSCDWb",
-            "Compendium.sw5e.archetypes.skwyPoEeFAHo1EzJ",
-            "Compendium.sw5e.archetypes.zeDuI0DbKtKgkpBk"
+            {
+              "uuid": "Compendium.sw5e.archetypes.Hk9X8z1pVJThH5wV"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.6dnVRdJAIby4258g"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.GURvJho88e4mNGdN"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.Wq9eYdFiIcwL0Y4p"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.u9TZAZPRiEgjOMQP"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.z86UNeuCm2yckt4i"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.54xY3WUAEVaSxq3i"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.mp8JaOq5euxKnYjE"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.vJzeeptKOcyy2A3A"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.Ciao7QEgiVgUL0P2"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.eD5ofKkBiWvSCDWb"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.skwyPoEeFAHo1EzJ"
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypes.zeDuI0DbKtKgkpBk"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -333,29 +587,13 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Sentinel Callings"
       }
     ],
-    "saves": [
-      "dex",
-      "cha"
-    ],
-    "skills": {
-      "number": 3,
-      "choices": [
-        "acr",
-        "ani",
-        "ins",
-        "itm",
-        "prc",
-        "per",
-        "pil",
-        "ste",
-        "tec"
-      ],
-      "value": []
-    },
     "powercasting": {
       "force": "3/4",
       "forceOverride": "",
@@ -363,19 +601,20 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     },
-    "archetype": ""
+    "startingEquipment": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493961819,
-    "modifiedTime": 1692481125255,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552692758,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!Me7s9qQT3WLmFGHq"
 }

@@ -9,15 +9,14 @@
   },
   "type": "power",
   "img": "systems/sw5e/packs/Icons/Tech%20Powers/ConstructDroid.webp",
-  "effects": [],
   "system": {
     "description": {
       "value": "<p>You construct a droid, which is deployed in an unoccupied space that you can see within range. This droid uses the Constructed Droid stat block. When you cast the power, choose a design: Probe, Pyro, or Battle. The droid resembles a Class IV droid, and the design determines certain traits in its stat block. The droid falls to pieces and disintegrates when it drops to 0 hit points or when the power ends.</p>\n<p>The droid is an ally to you and your companions. In combat, the droid shares your initiative count, but it takes its turn immediately after yours. It obeys your commands you issue through your tech focus (no action required). If you don't issue any, it takes the Dodge action and uses its movement to avoid danger.</p>\n<p>The droid is a valid target for the <em>tracker droid interface</em> power. If that power is cast targeting the constructed droid, it only takes 1 minute to synchronize with the droid.</p>\n<p><strong><em>Overcharge Tech.</em></strong> When you cast this power using a tech slot of 3rd level or higher, use the higher level wherever the power's level appears in the stat block.</p>\n<p><em></em>_</p>\n<p>&gt; ## Constructed Droid</p>\n<p>&gt;<em>Medium droid, unaligned</em></p>\n<p>&gt; <em></em>_</p>\n<p>&gt; - <strong>Armor Class</strong> 11 + the level of the power (natural armor)</p>\n<p>&gt; - <strong>Hit Points</strong> 20 (Probe only) or 30 (Pyro and Battle only) + 10 for each slot level above 2nd</p>\n<p>&gt; - <strong>Speed</strong> 30 ft. (Pyro and Battle only); 0 ft. and fly 60 ft. (Probe only)</p>\n<p>&gt;<em></em>_</p>\n<p>&gt;|STR|DEX|CON|INT|WIS|CHA|</p>\n<p>&gt;|:---:|:---:|:---:|:---:|:---:|:---:|</p>\n<p>&gt;|18 (+4)| 14 (+2)| 16 (+3)| 18 (+4)| 14 (+2)| 8 (-1)|</p>\n<p>&gt;<em></em>_</p>\n<p>&gt; - <strong>Damage Vulnerabilities</strong> ion</p>\n<p>&gt; - <strong>Damage Resistances</strong> necrotic, poison, psychic</p>\n<p>&gt; - <strong>Condition Immunities</strong> disease, poisoned</p>\n<p>&gt; - <strong>Senses</strong> darkvision 60 ft, passive Perception 12</p>\n<p>&gt; - <strong>Languages</strong> Galactic Basic, Binary, understands the languages you speak</p>\n<p>&gt; - <strong>Proficiency Bonus</strong> equals your bonus</p>\n<p>&gt; <em></em>_</p>\n<p>&gt; <strong><em>Circuitry.</em></strong> The construct has disadvantage on saving throws against effects that would deal ion or lightning damage.</p>\n<p>&gt; <strong><em>Surveillance (Probe Only).</em></strong> The probe is proficient in Perception and one other skill or tool of your choice.</p>\n<p>&gt; <em></em>_</p>\n<p>&gt; ### Actions</p>\n<p>&gt; <strong><em>Multiattack.</em></strong> The droid makes a number of attacks equal to half this power's level (rounded down).</p>\n<p>&gt; <strong><em>Blaster.</em></strong> <em>Ranged Weapon Attack:</em> your tech attack modifier to hit, range 60/240 ft., one target. Hit: [[/r 1d6 + 3]] + the power's level energy damage.</p>\n<p>&gt; <strong><em>Vibroweapon. (Battle Only)</em></strong> <em>Melee Weapon Attack:</em> your tech attack modifier to hit, reach 5 ft., one target. Hit: [[/r 1d12 + 3]] + the power's level kinetic damage.</p>\n<p>&gt; <strong><em>Flamethrower. (Pyro Only)</em></strong> The droid shoots a stream of flame from itself in a 15-foot cone. Creatures in the cone must make a Dexterity saving throw (DC = your tech save DC). On a failure, the creature takes [[/r 1d8]] fire damage + [[/r 1d8]] fire damage for each power level above 2nd. On a success, the creature takes half as much damage. This cannot be used with Multiattack.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "minute",
       "cost": 1,
@@ -27,34 +26,27 @@
       "value": "1",
       "units": "hour"
     },
-    "cover": null,
-    "crewed": false,
     "target": {
       "value": "15",
       "width": null,
       "units": "ft",
-      "type": "cone"
+      "type": "cone",
+      "prompt": true
     },
     "range": {
-      "value": "10",
+      "value": 10,
       "long": null,
       "units": "ft"
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
-    "consume": {
-      "type": "",
-      "target": null,
-      "amount": null
-    },
-    "ability": "int",
+    "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
-    "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
@@ -71,14 +63,9 @@
     },
     "level": 2,
     "school": "tec",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": true,
-      "value": ""
-    },
+    "properties": [
+      "concentration"
+    ],
     "materials": {
       "value": "",
       "consumed": false,
@@ -87,13 +74,30 @@
     },
     "preparation": {
       "mode": "prepared",
-      "prepared": true
+      "prepared": false
     },
     "scaling": {
       "mode": "level",
       "formula": null
-    }
+    },
+    "cover": null,
+    "crewed": false,
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null,
+      "scale": false
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "chatFlavor": "",
+    "enchantment": null,
+    "summons": null
   },
+  "effects": [],
+  "_id": "Nfnl7g0taRAuYcOW",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -101,11 +105,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1667426102813,
-    "modifiedTime": 1692402503914,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296025398,
+    "modifiedTime": 1720418052195,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "XnOqm4qFZRpABM06"
+  "_key": "!items!Nfnl7g0taRAuYcOW"
 }

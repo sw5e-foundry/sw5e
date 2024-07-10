@@ -16,37 +16,39 @@
   "system": {
     "description": {
       "value": "<h4>Item Modification (Blaster)</h4>\n <p>When you deal damage with this weapon, you deal an additional [[/r 1d8]] acid, cold, fire, lightning, poison, or sonic damage (chosen by the GM when generating this item).</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "artifact",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -55,18 +57,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": "none",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -87,27 +90,37 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "blaster",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {}
+    "properties": [],
+    "unidentified": {
+      "description": ""
     },
-    "modified": [],
-    "modificationItemType": "weapon"
+    "type": {
+      "value": "blaster",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493999138,
-    "modifiedTime": 1685835820528,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368836304,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!7H1BuK7qPubMQaUp"
 }

@@ -1,27 +1,37 @@
-import SystemDataModel from "../abstract.mjs";
+import { filteredKeys } from "../../utils.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import EquippableItemTemplate from "./templates/equippable-item.mjs";
+import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import ItemPropertiesTemplate from "./templates/item-properties.mjs";
+import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
-import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
+import ItemTypeField from "./fields/item-type-field.mjs";
+
+const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Consumable items.
  * @mixes ItemDescriptionTemplate
+ * @mixes ItemPropertiesTemplate
+ * @mixes ItemTypeTemplate
+ * @mixes IdentifiableTemplate
  * @mixes PhysicalItemTemplate
  * @mixes EquippableItemTemplate
  * @mixes ActivatedEffectTemplate
  * @mixes ActionTemplate
  *
- * @property {string} consumableType     Type of consumable as defined in `SW5E.consumableTypes`.
- * @property {string} ammoType           Type of ammo as defined in `SW5E.ammoTypes`.
+ * @property {number} magicalBonus       Magical bonus added to attack & damage rolls by ammunition.
  * @property {object} uses
  * @property {boolean} uses.autoDestroy  Should this item be destroyed when it runs out of uses.
- * @property {object} properties         Mapping of various weapon property booleans and numbers.
  */
-export default class ConsumableData extends SystemDataModel.mixin(
+export default class ConsumableData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
+  ItemPropertiesTemplate,
+  ItemTypeTemplate,
+  IdentifiableTemplate,
   PhysicalItemTemplate,
   EquippableItemTemplate,
   ActivatedEffectTemplate,
@@ -29,28 +39,79 @@ export default class ConsumableData extends SystemDataModel.mixin(
 ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      consumableType: new foundry.data.fields.StringField({
-        required: true,
-        initial: "potion",
-        label: "SW5E.ItemConsumableType"
-      }),
-      ammoType: new foundry.data.fields.StringField({
-        required: true,
-        nullable: true,
-        label: "SW5E.ItemAmmoType"
-      }),
-      properties: makeItemProperties(CONFIG.SW5E.weaponProperties, {
-        required: true,
-        label: "SW5E.ItemWeaponProperties"
-      }),
-      uses: new ActivatedEffectTemplate.ItemUsesField(
-        {
-          autoDestroy: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.ItemDestroyEmpty" })
-        },
-        { label: "SW5E.LimitedUses" }
-      )
-    });
+    return this.mergeSchema( super.defineSchema(), {
+      type: new ItemTypeField( { value: "potion", baseItem: false }, { label: "SW5E.ItemConsumableType" } ),
+      magicalBonus: new NumberField( { min: 0, integer: true, label: "SW5E.MagicalBonus" } ),
+      properties: new SetField( new StringField(), { label: "SW5E.ItemAmmoProperties" } ),
+      uses: new ActivatedEffectTemplate.ItemUsesField( {
+        autoDestroy: new BooleanField( { required: true, label: "SW5E.ItemDestroyEmpty" } )
+      }, { label: "SW5E.LimitedUses" } )
+    } );
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
+    enchantable: true,
+    inventoryItem: true,
+    inventoryOrder: 300
+  }, { inplace: false } ) );
+
+  /* -------------------------------------------- */
+  /*  Data Migrations                             */
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static _migrateData( source ) {
+    super._migrateData( source );
+    ConsumableData.#migratePropertiesData( source );
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Migrate the properties object into a set.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static #migratePropertiesData( source ) {
+    if ( foundry.utils.getType( source.properties ) !== "Object" ) return;
+    source.properties = filteredKeys( source.properties );
+  }
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    if ( !this.type.value ) return;
+    const config = CONFIG.SW5E.consumableTypes[this.type.value];
+    if ( config ) {
+      this.type.label = config.subtypes?.[this.type.subtype] ?? config.label;
+    } else {
+      this.type.label = game.i18n.localize( CONFIG.Item.typeLabels.consumable );
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  prepareFinalData() {
+    this.prepareFinalActivatedEffectData();
+    this.prepareFinalEquippableData();
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async getFavoriteData() {
+    return foundry.utils.mergeObject( await super.getFavoriteData(), {
+      subtitle: [this.type.label, this.parent.labels.activation],
+      uses: this.hasLimitedUses ? this.getUsesData() : null,
+      quantity: this.quantity
+    } );
   }
 
   /* -------------------------------------------- */
@@ -63,8 +124,9 @@ export default class ConsumableData extends SystemDataModel.mixin(
    */
   get chatProperties() {
     return [
-      CONFIG.SW5E.consumableTypes[this.consumableType],
-      this.hasLimitedUses ? `${this.uses.value}/${this.uses.max} ${game.i18n.localize("SW5E.Charges")}` : null
+      this.type.label,
+      this.hasLimitedUses ? `${this.uses.value}/${this.uses.max} ${game.i18n.localize( "SW5E.Charges" )}` : null,
+      this.priceLabel
     ];
   }
 
@@ -72,16 +134,8 @@ export default class ConsumableData extends SystemDataModel.mixin(
 
   /** @inheritdoc */
   get _typeAbilityMod() {
-    if (this.consumableType !== "scroll") return null;
+    if ( this.type.value !== "scroll" ) return null;
     return this.parent?.actor?.system.attributes.powercasting || "int";
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static migrateData(source) {
-    super.migrateData(source);
-    migrateItemProperties(source.properties, CONFIG.SW5E.weaponProperties);
   }
 
   /* -------------------------------------------- */
@@ -91,7 +145,28 @@ export default class ConsumableData extends SystemDataModel.mixin(
    * @returns {number}
    */
   get proficiencyMultiplier() {
-    const isProficient = this.parent?.actor?.getFlag("sw5e", "tavernBrawlerFeat");
+    const isProficient = this.parent?.actor?.getFlag( "sw5e", "tavernBrawlerFeat" );
     return isProficient ? 1 : 0;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  get validProperties() {
+    const valid = super.validProperties;
+    if ( this.type.value === "ammo" ) Object.entries( CONFIG.SW5E.itemProperties ).forEach( ( [k, v] ) => {
+      if ( v.isPhysical ) valid.add( k );
+    } );
+    else if ( this.type.value === "scroll" ) CONFIG.SW5E.validProperties.power
+      .filter( p => p !== "material" ).forEach( p => valid.add( p ) );
+    return valid;
+  }
+
+  /**
+   * Is this a starship item.
+   * @type {boolean}
+   */
+  get isStarshipItem() {
+    return this.type.value === "ammo" && ( this.type.subtype in CONFIG.SW5E.ammoStarshipTypes );
   }
 }

@@ -16,97 +16,239 @@
   "system": {
     "description": {
       "value": "<h1>Geneticist Pursuit</h1>\n<p>Throughout the galaxy there exists scientists who focus on unraveling the mysteries contained within the bodies of the divese sentients of the galaxy. Those scholars who choose the Geneticist Pursuit put their knowledge into practice, splicing their own genetic material to become superior beings... or monsters.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Geneticist Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.6hwm020rmD0htXmv]{Adapted hide}</li>\n<li>@Compendium[sw5e.invocations.XEXCXdvMyhVlyF2E]{Atmospheric adaptation}</li>\n<li>@Compendium[sw5e.invocations.iIAbOv5NuoUZbY9a]{Enhanced musculature}</li>\n<li>@Compendium[sw5e.invocations.RSAlsMolCVcYNC3J]{Icarian mutation}</li>\n<li>@Compendium[sw5e.invocations.5c2JmLOb5OaU4Vuf]{Mutagenic hardiness}</li>\n<li>@Compendium[sw5e.invocations.iURzDOyREwCIjSmv]{Predatory senses}</li>\n<li>@Compendium[sw5e.invocations.NZ8xlGmrVkEZGgkF]{Underground adaptation}</li>\n<li>@Compendium[sw5e.invocations.DTZU7qYm3Be8vZLN]{Unnatural weaponry}</li>\n</ul>"
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "geneticistpursuit",
     "classIdentifier": "scholar",
     "advancement": [
       {
-        "_id": "18CLsYnwxsDBCiHj",
+        "_id": "WMIrpVTcHyzwa6QB",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.HOVhj9BhxNZLSptR",
-            "Compendium.sw5e.archetypefeatures.GGqgKEqABS3cAOWt"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.HOVhj9BhxNZLSptR",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.GGqgKEqABS3cAOWt",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1J1WHMQgSP5n1Oen",
+        "_id": "1ev7noyTzBQo1myQ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.hiImvWE5BU0Ef9iK"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hiImvWE5BU0Ef9iK",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "5cb7CVzyDC81xN4V",
+        "_id": "1hY9uj6khZWb141G",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.yGgGu0kOs7wkemhh"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.yGgGu0kOs7wkemhh",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "1bBKfZWEFuoIVRnM",
+        "_id": "p2zuQNJyGBB1Kj7t",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.yeqHFCjFYscQqYSr"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.yeqHFCjFYscQqYSr",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "1qv1UjfCh8Y11d9z",
+        "_id": "dTM7vW2SD50GlgGF",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:med",
+                "skills:sur"
+              ]
+            }
+          ],
+          "grants": [
+            "tool:geneticistsimplements"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
+      },
+      {
+        "_id": "iAU1q9GCczjwgG5i",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:ani",
+                "skills:ins",
+                "skills:prc",
+                "skills:sur"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "skills:dec",
+                "skills:itm",
+                "skills:prf",
+                "skills:per"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "skills:ath"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": []
+            },
+            {
+              "count": 1,
+              "pool": [
+                "skills:acr",
+                "skills:slt",
+                "skills:ste"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "skills:inv",
+                "skills:lor",
+                "skills:med",
+                "skills:nat",
+                "skills:pil",
+                "skills:tec"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 17
+      },
+      {
+        "_id": "1IPouAubu4g31Ja7",
         "type": "ItemChoice",
         "configuration": {
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
-            "2": 2,
-            "3": 2,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "2": {
+              "count": 2,
+              "replacement": false
+            },
+            "3": {
+              "count": 2,
+              "replacement": false
+            },
+            "5": {
+              "count": 1,
+              "replacement": false
+            },
+            "9": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            },
+            "13": {
+              "count": 1,
+              "replacement": false
+            },
+            "17": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.6hwm020rmD0htXmv",
-            "Compendium.sw5e.invocations.XEXCXdvMyhVlyF2E",
-            "Compendium.sw5e.invocations.iIAbOv5NuoUZbY9a",
-            "Compendium.sw5e.invocations.RSAlsMolCVcYNC3J",
-            "Compendium.sw5e.invocations.5c2JmLOb5OaU4Vuf",
-            "Compendium.sw5e.invocations.iURzDOyREwCIjSmv",
-            "Compendium.sw5e.invocations.NZ8xlGmrVkEZGgkF",
-            "Compendium.sw5e.invocations.DTZU7qYm3Be8vZLN"
+            {
+              "uuid": "Compendium.sw5e.invocations.6hwm020rmD0htXmv"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.XEXCXdvMyhVlyF2E"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.iIAbOv5NuoUZbY9a"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.RSAlsMolCVcYNC3J"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.5c2JmLOb5OaU4Vuf"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.iURzDOyREwCIjSmv"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.NZ8xlGmrVkEZGgkF"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.DTZU7qYm3Be8vZLN"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -119,7 +261,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Geneticist Discoveries"
       }
     ],
@@ -130,7 +275,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -138,10 +283,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959746,
-    "modifiedTime": 1692480569228,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689474,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!RVsikId65Z5qFBcx"
 }

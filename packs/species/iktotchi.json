@@ -1,94 +1,5 @@
 {
-  "_id": "n1ooHsFijtOk81ov",
   "name": "Iktotchi",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Iktotchi.webp",
-  "effects": [
-    {
-      "_id": "MAjUMql3tivJTfVO",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Iktotchi",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 0,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.skills.pil.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "iktotchese",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.custom",
-          "value": "telepathy (30 ft.)",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.precognition",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Iktotchi.webp",
-      "label": "Iktotchi",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2811327+00:00",
@@ -96,43 +7,138 @@
       "uid": "Species.name-iktotchi"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Iktotchi.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Iktotchi do not have hair, but rather they had a very resistant skin which protected them from the violent winds which crossed the satellite. Both males and females have down-curved cranial horns, which gave them an aggressive aspect. The males' horns are generally a little larger, a remnant from their mountain-dwelling, caprinaen ancestors. The horns are able to regenerate if damaged.</p>\n<h2>Society and Culture</h2>\n<p>The Iktotchi are a fiercely guarded and isolationist species - vaunted for their ability to hide their feelings and bury any semblance of emotion. Originating on the harsh, windy moon of Iktotch, which orbits the planet Iktotchon in the Expansion Region, the Iktotch are gifted with precognition, and are courted as often by Jedi as by pirates for their skills.</p>\n<p>Iktotchi society is a stratified society. Upward mobility is both possible and encouraged. Iktotchi are an outwardly dispassionate people, which is evidenced by their culture. They have a robust legal system, and suffer little crime. Iktotchi are respectful of cultures other than their own and can easily integrate with others.</p>\n<p>Iktotchi who distinguish themselves often earn a titular nickname, by which they are referred to in place of their name. Generally, this is done by accomplishing a remarkable feat that benefits the Iktotchi as whole.</p>\n<h2>Names</h2>\n<p>Iktotchi names are generally two syllables. Surnames are familial. Respected Iktotchi often adopt a nickname, which they use in place of their birth name.</p>\n<p><strong>Male Names.</strong> Dilnam, Imruth, Kashkil, Yellam</p>\n<p><strong>Female Names.</strong> Kemkal, Onyeth, Reshu, Zorlu</p>\n<p><strong>Surnames.</strong> Hevil, Kaawi, Mimir, Nudaal, Zelend</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "iktotchi",
-    "advancement": [
-      {
-        "_id": "v1ZfQl5YwYj1C4Fp",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.FI7qnVV47TTC5H69",
-            "Compendium.sw5e.speciesfeatures.1LE9c7YPrJw4XO92",
-            "Compendium.sw5e.speciesfeatures.QyzYz5ALDOjpdwOZ",
-            "Compendium.sw5e.speciesfeatures.OjACdnvdXKtaRKwX",
-            "Compendium.sw5e.speciesfeatures.YwoZf4qgawCrkCjM",
-            "Compendium.sw5e.speciesfeatures.u7svMCcXmzFPv9Kn",
-            "Compendium.sw5e.speciesfeatures.VdZIEYu1PcqKY9dF",
-            "Compendium.sw5e.speciesfeatures.dcg4swE3q8E0N5VF",
-            "Compendium.sw5e.speciesfeatures.o76FnYpl3Z0u5nah",
-            "Compendium.sw5e.speciesfeatures.lMgjcxeSJohJGO2A"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "9aQDh3CqG2F8S7FO",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FI7qnVV47TTC5H69",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1LE9c7YPrJw4XO92",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QyzYz5ALDOjpdwOZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.OjACdnvdXKtaRKwX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.YwoZf4qgawCrkCjM",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.u7svMCcXmzFPv9Kn",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VdZIEYu1PcqKY9dF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.dcg4swE3q8E0N5VF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.o76FnYpl3Z0u5nah",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lMgjcxeSJohJGO2A",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1V5zFEpHIT511v5g",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "str": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "23jvvWkB7ob1BOUx",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1KLGowyuJHq4MHdh",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:pil"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Pink"
     },
@@ -143,7 +149,7 @@
       "value": "Black"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Horns, precognition, telepathy, thick pink skin"
@@ -165,17 +171,104 @@
     },
     "slanguage": {
       "value": "Iktotchese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "MAjUMql3tivJTfVO",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Iktotchi",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 0,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.skills.pil.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "iktotchese",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.custom",
+          "mode": 0,
+          "value": "telepathy (30 ft.)",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.halflingLucky",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Iktotchi.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "origin": null,
+      "name": "Iktotchi",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!pJcMozNPLEvcK5Bc.MAjUMql3tivJTfVO"
+    }
+  ],
+  "_id": "pJcMozNPLEvcK5Bc",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002128,
-    "modifiedTime": 1692402505742,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797613,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!pJcMozNPLEvcK5Bc"
 }

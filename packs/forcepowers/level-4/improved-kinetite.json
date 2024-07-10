@@ -5,6 +5,11 @@
       "timestamp": "2023-03-09T01:52:02.9905194+00:00",
       "importer_version": 3,
       "uid": "Power.name-improved_kinetite.level-4"
+    },
+    "sw5e": {
+      "migratedProperties": [
+        "concentration"
+      ]
     }
   },
   "type": "power",
@@ -13,11 +18,11 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite</strong>: Kinetite</em></p>\n<p>A 20-foot-radius sphere of compressed lightning springs into existence centered on a point you choose within range. The sphere remains for the power's duration. Each creature in the sphere when it appears or that ends its turn there must succeed on a Strength saving throw or take [[/r 2d6]] kinetic damage. The sphere's space is difficult terrain.</p>\n<p>Until the power ends, you can use a bonus action on each of your turns to cause a bolt of lightning to leap from the center of the sphere toward one creature you choose within 60 feet of the center. Make a ranged force attack. You have advantage on the attack roll if the target is in the sphere. On a hit, the target takes [[/r 4d6]] lightning damage.</p>\n<p>Creatures within 30 feet of the sphere have disadvantage on Wisdom (Perception) checks made to listen.</p>\n<p><strong><em>Force Potency.</em></strong> When you cast this power with a force slot of 5th level or higher, the damage increases for each of its effects by [[/r 1d6]] for each slot level above 4th.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "Kinetite",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -33,27 +38,29 @@
       "value": "20",
       "width": null,
       "units": "ft",
-      "type": "sphere"
+      "type": "sphere",
+      "prompt": true
     },
     "range": {
-      "value": "150",
+      "value": 150,
       "long": null,
       "units": "ft"
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
-    "ability": "",
+    "ability": null,
     "actionType": "rpak",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,14 +87,6 @@
     },
     "level": 4,
     "school": "drk",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": true,
-      "value": ""
-    },
     "materials": {
       "value": "",
       "consumed": false,
@@ -101,7 +100,16 @@
     "scaling": {
       "mode": "level",
       "formula": null
-    }
+    },
+    "properties": [
+      "concentration"
+    ],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -110,11 +118,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426102468,
-    "modifiedTime": 1692402503579,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418051837,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "LhwJe9EHk3NSgeZB"
+  "_id": "LhwJe9EHk3NSgeZB",
+  "_key": "!items!LhwJe9EHk3NSgeZB"
 }

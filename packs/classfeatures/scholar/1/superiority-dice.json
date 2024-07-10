@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p>You have three superiority dice, which are d4s, and you earn more at higher levels, as shown in the Superiority Dice Quantity column of the scholar table. This die changes as you gain scholar levels, as shown in the Superiority Dice Size column of the scholar table. A superiority die is expended when you use it. </p>\n<p>You regain all of your expended superiority dice when you finish a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scholar",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -27,11 +28,13 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,31 +45,27 @@
       "value": null,
       "max": "3",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
     },
     "damage": {
-      "parts": [
-        [
-          "1d4",
-          ""
-        ]
-      ],
+      "parts": [],
       "versatile": ""
     },
-    "formula": "",
+    "formula": "1d4",
     "save": {
       "ability": "",
       "dc": null,
@@ -85,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -95,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.1",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1680288496551,
-    "modifiedTime": 1680288496551,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368729106,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "wqj1ZR3GEGSgLm7j"
+  "_id": "wqj1ZR3GEGSgLm7j",
+  "_key": "!items!wqj1ZR3GEGSgLm7j"
 }

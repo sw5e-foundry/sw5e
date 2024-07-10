@@ -3,80 +3,71 @@
   "name": "Cunning Intellect",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Feats/CunningIntellect.webp",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Cunning Intellect",
+      "icon": "systems/sw5e/packs/Icons/Feats/CunningIntellect.webp",
+      "origin": "Compendium.sw5e.feats.Item.vtOGxEhm8vkUY0w6",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "ZIlcK7Sb2dYfYQBd",
+      "changes": [
+        {
+          "key": "system.abilities.int.proficient",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.inv.value",
+          "mode": 4,
+          "value": "0.5",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.lor.value",
+          "mode": 4,
+          "value": "0.5",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.nat.value",
+          "mode": 4,
+          "value": "0.5",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.pil.value",
+          "mode": 4,
+          "value": "0.5",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.tec.value",
+          "mode": 4,
+          "value": "0.5",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!vtOGxEhm8vkUY0w6.ZIlcK7Sb2dYfYQBd"
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": true,
-          "resource": true,
-          "charge": true
-        },
-        "altValue": {
-          "use": true,
-          "resource": true,
-          "charge": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:19.8827249+00:00",
       "importer_version": 3,
@@ -86,50 +77,55 @@
   "system": {
     "description": {
       "value": "<p>You have the cunning of the most prolific scholars, granting the following benefits:</p>\n<ul>\n<li>You gain proficiency in Intelligence saving throws. If you are already proficient in them, you instead gain expertise in them.</li>\n<li>When you engage in the Training downtime activity, during resolution, you add your proficiency bonus to the check. If you would already add your proficiency bonus, you instead add twice your proficiency bonus. If you would already add twice your proficiency bonus, you instead have advantage on the check.</li>\n<li>Whenever you make an ability check that uses your Intelligence, you can add half your proficiency bonus (rounded down) if it doesn't already include your proficiency bonus. Additionally, if you roll lower than half your level (rounded down) on an Intelligence check, you can instead use your level for the [[/r d20]] roll.</li></ul>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "12th level, Intelligence 20",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -153,17 +149,28 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493966844,
-    "modifiedTime": 1693532143531,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720418056409,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!vtOGxEhm8vkUY0w6"
 }

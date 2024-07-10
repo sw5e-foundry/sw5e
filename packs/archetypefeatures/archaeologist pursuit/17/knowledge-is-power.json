@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Archaeologist Pursuit:</strong> 17th level</em></p>\n<p>You gain the ability to steal the knowledge of how to cast a power from another forcecaster. When a hostile creature casts a force power that affects a friendly creature within range of your Critical Analysis feature, and you use your reaction target that friendly creature with your Critical Analysis feature, you can force the creature casting the power to make a Wisdom or Charisma saving throw (your choice) against your universal force save DC. On a successful save, the power is cast as normal.</p>\n<p>On a failed save, you negate the power's effects, and you steal the knowledge of that power if it is at least 1st level and of a level you can cast. For the next 8 hours, you know the power and can cast it using your force points. The creature cannot cast that power again until the 8 hours have passed.</p>\n<p>Once you've used this feature, you cannot use it again until you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scholar (Archaeologist Pursuit) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -31,34 +32,39 @@
       "units": "hour"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -73,24 +79,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Scholar"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493958234,
-    "modifiedTime": 1685840600475,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368718841,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!wNQS0Ptg34IyGxZZ"
 }

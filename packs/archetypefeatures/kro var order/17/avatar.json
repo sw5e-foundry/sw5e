@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Kro Var Order:</strong> 17th level</em></p>\n<p>As an ultimate display of your mastery of the elements, you can spend 5 focus points as an action to have the elements of water, earth, fire, and air form a protective sphere around your body, gaining multiple benefits for 1 minute. While this ability is active, you have resistance to cold, energy, fire, kinetic, lightning, and sonic damage. You also gain a burrow, fly, and swim speed equal to your movement speed. Lastly, you can use any of the following abilities as a bonus action:</p>\n<ul>\n<li>You create a small earthquake on the ground in a 15-foot radius around you. Each creature in that area must make a Dexterity saving throw. On a failed save, a creature takes [[/r 1d6]] kinetic damage and is knocked prone.</li>\n<li>You create a line of fire 15 feet long and 5 feet wide extending from you in a direction you choose. Each creature in the line must make a Dexterity saving throw. A creature takes [[/r 3d6]] fire damage on a failed save, or half as much damage on a successful one.</li>\n<li>You create a 15-foot cube of swirling wind centered on a point you can see within 60 feet of you. Each creature in that area must make a Constitution saving throw. A creature takes [[/r 1d10]] kinetic damage on a failed save, or half as much damage on a successful one. If a Large or smaller creature fails the save, that creature is also pushed up to 10 feet away from the center of the cube.</li>\n<li>You create a 15-foot cone of ice shards extending from your outstretched hand in a direction you choose. Each creature in the cone must make a Constitution save throw. A creature takes [[/r 2d6]] cold damage on a failed save, or half as much damage on a successful one. A creature that fails its save against this effect has its speed halved until the start of your next turn.</li></ul>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -36,32 +37,33 @@
       "value": "15",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
-      "damage": null
+      "damage": ""
     },
     "damage": {
       "parts": [
@@ -104,17 +106,27 @@
         "turn": null
       }
     },
-    "className": "Monk"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493958046,
-    "modifiedTime": 1692402505042,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720418053762,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!mXAvFzTao9HkFAKS"
 }

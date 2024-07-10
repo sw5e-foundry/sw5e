@@ -1,24 +1,26 @@
 {
   "type": "module",
   "scripts": {
-    "build": "gulp buildAll",
+    "build": "gulp buildAll && node ./utils/packs.mjs package pack",
+    "build:nodb": "gulp buildAll",
     "build:clean": "gulp clean",
     "build:css": "gulp buildCSS",
     "build:js": "gulp buildJS",
     "build:static": "gulp copyStatic",
-    "build:db": "gulp compilePacks",
-    "build:json": "gulp extractPacks",
-    "build:cleanJson": "gulp cleanPacks",
+    "build:db": "node ./utils/packs.mjs package pack",
+    "build:json": "node ./utils/packs.mjs package unpack",
+    "build:cleanJson": "node ./utils/packs.mjs package clean",
     "build:watch": "gulp",
     "lint": "gulp lint",
     "lint:fix": "gulp lint --fix"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.15.4",
-    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@babel/eslint-parser": "^7.22.15",
+    "@foundryvtt/foundryvtt-cli": "^1.0.0-rc.4",
+    "@rollup/plugin-node-resolve": "^15.2.1",
     "@rollup/plugin-terser": "^0.4.3",
     "del": "^7.0.0",
-    "eslint-plugin-jsdoc": "^39.6.7",
+    "eslint-plugin-jsdoc": "^46.5.0",
     "fancy-log": "^2.0.0",
     "fs": "^0.0.1-security",
     "gulp": "^4.0.2",
@@ -35,6 +37,7 @@
   },
   "dependencies": {
     "@yaireo/tagify": "4.16.4",
-    "minisearch": "^5.1.0"
+    "minisearch": "^5.1.0",
+    "nouislider": "^15.7.1"
   }
 }

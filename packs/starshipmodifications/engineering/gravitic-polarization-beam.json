@@ -1,0 +1,133 @@
+{
+  "name": "Gravitic Polarization Beam",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">As an action, a crewmember can use a ship's gravity well projector to target a ship within 600 feet and within that projector's limited arc. The beam disrupts matter on an atomic level, causing it to rip apart. The target must make a Constitution saving throw (DC = 8 + ship tier + the ship's Strength modifier). The target takes 8d8 true damage on a failed save, or half as much damage on a successful one.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</span></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": {
+      "value": "SotG"
+    },
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "",
+    "identified": false,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": 600,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": "",
+      "prompt": false
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "8d8",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "str"
+    },
+    "recharge": {
+      "charged": false,
+      "value": null
+    },
+    "grade": {
+      "value": 4
+    },
+    "baseCost": {
+      "value": null
+    },
+    "prerequisites": {
+      "value": "Gravity Well Projector"
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "armor": {
+      "type": "",
+      "value": null,
+      "dex": null
+    },
+    "proficient": false,
+    "properties": [],
+    "attributes": {
+      "dr": ""
+    },
+    "strength": null,
+    "stealth": false,
+    "type": {
+      "value": "Engineering"
+    }
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494018700,
+    "modifiedTime": 1706199587725,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "J89FsLUUpmfji7Ey",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!J89FsLUUpmfji7Ey"
+}

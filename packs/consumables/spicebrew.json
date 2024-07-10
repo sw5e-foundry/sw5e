@@ -16,94 +16,107 @@
   "system": {
     "description": {
       "value": "<p>Spicebrew, a popular drink across the galaxy, is a tanned alcoholic beverage topped with foam. As an action, you can apply this substance to a creature within 5 feet. For the next minute, the creature experiences a high that increases their current and maximum force points by [[/r 2d3]]. At the end of the high, the creature must succeed on a DC 14 Constitution saving throw or experience a low that lasts 10 minutes, their current and maximum force points are reduced by [[/r 2d3]]. At the end of the low, the creature must make a DC 14 Wisdom saving throw to resist addiction.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
-    "price": {
-      "denomination": "gc",
-      "value": 90
+    "weight": {
+      "value": 0,
+      "units": "lb"
     },
-    "attunement": 0,
+    "price": {
+      "value": 90,
+      "denomination": "gc"
+    },
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
-      "units": ""
+      "value": "1",
+      "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": null,
+      "value": 5,
       "long": null,
-      "units": ""
+      "units": "feet"
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
       "recovery": "",
-      "autoDestroy": false
+      "autoDestroy": false,
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
-    "actionType": "",
-    "attackBonus": 0,
+    "actionType": "save",
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
     },
-    "formula": "",
+    "formula": "2d3",
     "save": {
-      "ability": "",
-      "dc": null,
-      "scaling": "power"
+      "ability": "con",
+      "dc": 14,
+      "scaling": "flat"
     },
-    "consumableType": "adrenal",
-    "ammoType": null,
-    "properties": {},
-    "armor": {},
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "properties": [],
+    "type": {
+      "value": "substance",
+      "subtype": "beverage"
     },
-    "equiped": false,
-    "weaponType": "",
-    "proficient": false,
-    "baseItem": "spicebrew"
+    "_propertyValues": {},
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493962990,
-    "modifiedTime": 1684819087952,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368729486,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!CDR5FGCFoip2N7pw"
 }

@@ -1,5 +1,4 @@
 {
-  "_id": "lSTrb5mm1Cx0ZWsD",
   "name": "Meditation Chamber",
   "type": "starshipmod",
   "flags": {},
@@ -7,40 +6,40 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>This suite comes with a number of separate unique chambers equal to one-fourth the ship's suite capacity by size, as shown in the @JournalEntry[Mnvw9iBw8gxgfCXw]{Starship Size Suite Capacity}&nbsp;table. When a forcecaster completes a long rest involving this suite, they gain temporary force points equal to their force power maximum power level + their Wisdom or Charisma modifier (their choice, minimum of one). When you would spend a force point while you have temporary force points, the temporary force points are spent first. All temporary force points are lost at the end of your next long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p>This suite comes with a number of separate unique chambers equal to one-fourth the ship's suite capacity by size (minimum of one), as shown in the Starship Size Suite Capacity table. When a forcecaster completes a long rest involving this suite, they gain temporary force points equal to their force power maximum power level + their Wisdom or Charisma modifier (their choice, minimum of one). When you would spend a force point while you have temporary force points, the temporary force points are spent first. All temporary force points are lost at the end of your next long rest.</p><p>Additionally each chamber is equipped with integrated artificer's implements. While making a check with these tools in a meditation chamber, you can add your proficiency bonus to checks you make if you do not already do so. If you already add your proficiency bonus to checks you make, you instead add double your proficiency bonus. If you already double your proficiency bonus to checks you make, you instead add half of your governing ability modifier (rounded down, minimum of +1), in addition to your ability modifier.</p>",
+      "chat": ""
     },
-    "requirements": "",
-    "source": {
-      "value": "SotG"
-    },
+    "source": {},
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -51,16 +50,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -76,38 +76,48 @@
       "dc": null,
       "scaling": "power"
     },
-    "recharge": {
-      "charged": false,
+    "grade": {
+      "value": 0
+    },
+    "baseCost": {
       "value": null
     },
-    "system": {
-      "value": "Suite"
-    },
-    "grade": {
-      "value": "NA"
-    },
-    "basecost": {
-      "value": "5000"
-    },
     "prerequisites": {
-      "value": "Ship size Medium or larger"
+      "value": ""
     },
     "free": {
       "slot": false,
       "suite": false
-    }
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "Suite",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494018730,
+    "modifiedTime": 1720552914526,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "5UQE4ajFHjHMbqUz",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "folder": null,
-  "sort": 0,
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
-    "createdTime": 1674494018730,
-    "modifiedTime": 1685840666204,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+  "_key": "!items!5UQE4ajFHjHMbqUz"
 }

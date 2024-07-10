@@ -5,6 +5,11 @@
       "timestamp": "2023-03-09T01:52:02.9905194+00:00",
       "importer_version": 3,
       "uid": "Power.name-improved_force_intuition.level-2"
+    },
+    "sw5e": {
+      "migratedProperties": [
+        "concentration"
+      ]
     }
   },
   "type": "power",
@@ -13,11 +18,11 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite</strong>: Force Intuition</em></p>\n<p>You make your initiative check at advantage, and gain a +2 bonus to AC until the power ends. In addition, until the end of your first turn in the combat, your speed increases by 10 feet and you add [[/r 1d4]] to your attack rolls. This power ends early if you fail a saving throw or are hit by an attack.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "Force Intuition",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
@@ -28,11 +33,13 @@
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -41,33 +48,29 @@
     },
     "uses": {
       "value": null,
-      "max": null,
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
-    "ability": "",
+    "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
       "damage": ""
     },
     "damage": {
-      "parts": [
-        [
-          "1d4",
-          ""
-        ]
-      ],
+      "parts": [],
       "versatile": ""
     },
-    "formula": "",
+    "formula": "1d4",
     "save": {
       "ability": "",
       "dc": null,
@@ -75,14 +78,6 @@
     },
     "level": 2,
     "school": "uni",
-    "components": {
-      "vocal": false,
-      "somatic": false,
-      "material": false,
-      "ritual": false,
-      "concentration": true,
-      "value": ""
-    },
     "materials": {
       "value": "",
       "consumed": false,
@@ -96,7 +91,16 @@
     "scaling": {
       "mode": "none",
       "formula": null
-    }
+    },
+    "properties": [
+      "concentration"
+    ],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -105,11 +109,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426102468,
-    "modifiedTime": 1684819092768,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368780903,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "1qeRtfKPWbNyeicE"
+  "_id": "1qeRtfKPWbNyeicE",
+  "_key": "!items!1qeRtfKPWbNyeicE"
 }

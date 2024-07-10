@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Illusionist Technique:</strong> 3rd, 5th, 9th, 13th, and 17th level</em></p>\n<p>As an action, you can create a perfect illusion of yourself that lasts for 10 minutes, or until you lose your concentration (as if you were concentrating on a power). The decoy appears in an unoccupied space that you can see within 30 feet of you. The decoy is purely visual. If anything passes through it, it is revealed to be an illusion. For the duration, you can cast tech powers as though you were in the decoy's space. Both your decoy and the target of your tech power must be within your line of sight.</p>\n<p>You can use your bonus action to cause the decoy to move up to 30 feet. As your decoy changes location, you can alter its appearance so that its movements appear natural for the decoy. If your decoy is ever more than 120 feet away from you, it immediately disappears.</p>\n<p>Additionally, when both you and your decoy are within 5 feet of a creature that can see the decoy, but is not aware it is an illusion, you have advantage on attack rolls against that creature.</p>\n<p>A creature that uses its action to examine your decoy can determine that it is an illusion with a successful Intelligence (Investigation) check against your tech save DC. If a creature discerns the illusion for what it is, the creature can see through the image.</p>\n<p>You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you finish a short or long rest. </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scout (Illusionist Technique) 9",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -27,11 +28,13 @@
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 30,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "2",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438402,
-    "modifiedTime": 1685840600235,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368709900,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "mAa6D0P6MJ1C7z9H"
+  "_id": "mAa6D0P6MJ1C7z9H",
+  "_key": "!items!mAa6D0P6MJ1C7z9H"
 }

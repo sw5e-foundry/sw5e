@@ -15,50 +15,54 @@
       "system": {
         "description": {
           "value": "<p>The Imperial Royal Guard has advantage on attack rolls against a creature if at least one other Imperial Guard is within 5 feet of the creature and the ally isn't incapacitated.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -75,7 +79,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -84,10 +88,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -99,7 +109,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!OKrTUOClGXYgFPtG.NTRhODI4ZDZiNWUy"
     },
     {
       "_id": "NjhjNTRmZDMxY2I3",
@@ -113,50 +124,54 @@
       "system": {
         "description": {
           "value": "<p>The Royal Gard adds 3 to his AC against one melee attack that would hit him. To do so, the Royal Guard must see the attacker and be wielding a melee weapon.</p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "reaction",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -173,7 +188,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -182,10 +197,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -197,7 +218,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!OKrTUOClGXYgFPtG.NjhjNTRmZDMxY2I3"
     },
     {
       "_id": "NzBjMDk1YmRmYTJj",
@@ -211,50 +233,54 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong>.</p><p>The Imperial Royal Guard makes two attacks.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
         "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "activation": {
           "type": "action",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
-          "value": "",
-          "long": "",
+          "value": null,
+          "long": null,
           "units": ""
         },
         "uses": {
           "value": null,
-          "max": 0,
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": null,
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [],
@@ -271,7 +297,7 @@
           "subtype": ""
         },
         "recharge": {
-          "value": 0,
+          "value": null,
           "charged": false
         },
         "attributes": {
@@ -280,10 +306,16 @@
             "turn": null
           }
         },
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "enchantment": null,
+        "summons": null,
+        "prerequisites": {
+          "level": null
+        },
+        "properties": []
       },
       "ownership": {
         "default": 0
@@ -295,7 +327,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!OKrTUOClGXYgFPtG.NzBjMDk1YmRmYTJj"
     },
     {
       "_id": "ODg0YmZmMzg0NzVl",
@@ -367,22 +400,24 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+8, Reach 5 ft., One target. <em>Hit : </em>8 (1d8+4) kinetic damage</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -393,11 +428,13 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 5,
@@ -406,22 +443,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": "0",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -452,11 +490,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
-        "baseItem": "",
+        "weaponClass": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -465,61 +501,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "aut": false,
-          "bur": null,
-          "def": null,
-          "dex": null,
-          "dir": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "hid": false,
-          "ken": null,
-          "lum": false,
-          "mig": false,
-          "pic": null,
-          "rap": null,
-          "shk": null,
-          "sil": false,
-          "str": null,
-          "vic": null,
-          "mgc": null,
-          "ran": false,
-          "smr": false,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "ilk": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "swi": false
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -531,7 +532,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!OKrTUOClGXYgFPtG.ODg0YmZmMzg0NzVl"
     },
     {
       "_id": "ZjQxZWFkNWNkZTc3",
@@ -603,22 +605,24 @@
       "system": {
         "description": {
           "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+8, Reach 10 ft., One target. <em>Hit : </em>9 (1d10+4) kinetic damage plus 14 (4d6) lightning damage.</p><p>On a hit, the target must then succeed on a Constitution Saving Throw (DC 17) or become stunned.</p></p>",
-          "chat": "",
-          "unidentified": ""
+          "chat": ""
         },
-        "requirements": "",
-        "source": "",
+        "source": {
+          "custom": ""
+        },
         "quantity": 1,
-        "weight": 1,
+        "weight": {
+          "value": 1,
+          "units": "lb"
+        },
         "price": {
           "value": 0,
           "denomination": "gc"
         },
-        "attunement": 0,
+        "attunement": "",
         "equipped": true,
         "rarity": "",
         "identified": true,
-        "isCargo": false,
         "activation": {
           "type": "action",
           "cost": 1,
@@ -629,11 +633,13 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
-          "value": null,
+          "value": "",
           "width": null,
           "units": "",
-          "type": ""
+          "type": "",
+          "prompt": true
         },
         "range": {
           "value": 10,
@@ -642,22 +648,23 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
-          "recovery": ""
+          "max": "",
+          "per": null,
+          "recovery": "",
+          "prompt": true
         },
         "consume": {
           "type": "",
           "target": "",
-          "amount": null
+          "amount": null,
+          "scale": false
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": "0",
         "chatFlavor": "Stunned until next turn.",
         "critical": {
           "threshold": null,
-          "damage": null
+          "damage": ""
         },
         "damage": {
           "parts": [
@@ -692,11 +699,9 @@
           "augmentSlots": 0,
           "modSlots": 4,
           "items": [],
-          "changes": {},
-          "type": null
+          "changes": {}
         },
-        "weaponType": "natural",
-        "baseItem": "",
+        "weaponClass": "",
         "ammo": {
           "target": null,
           "value": null,
@@ -705,61 +710,26 @@
             "powerCell"
           ]
         },
-        "properties": {
-          "hvy": false,
-          "fin": false,
-          "lgt": false,
-          "rch": false,
-          "rel": null,
-          "ret": false,
-          "spc": false,
-          "thr": false,
-          "two": false,
-          "ver": false,
-          "aut": false,
-          "bur": null,
-          "def": null,
-          "dex": null,
-          "dir": null,
-          "drm": false,
-          "dgd": false,
-          "dis": null,
-          "dpt": false,
-          "dou": false,
-          "fix": false,
-          "hid": false,
-          "ken": null,
-          "lum": false,
-          "mig": false,
-          "pic": null,
-          "rap": null,
-          "shk": null,
-          "sil": false,
-          "str": null,
-          "vic": null,
-          "mgc": null,
-          "ran": false,
-          "smr": false,
-          "bit": null,
-          "bri": null,
-          "bru": null,
-          "cor": null,
-          "ilk": false,
-          "mod": false,
-          "neu": null,
-          "pen": null,
-          "pcl": false,
-          "rck": null,
-          "slg": false,
-          "son": null,
-          "spz": null,
-          "swi": false
+        "properties": [],
+        "proficient": 1,
+        "_propertyValues": {},
+        "type": {
+          "value": "natural",
+          "subtype": ""
         },
-        "proficient": true,
-        "powercasting": {
-          "force": "none",
-          "tech": "none"
-        }
+        "unidentified": {
+          "description": ""
+        },
+        "attack": {
+          "bonus": "",
+          "flat": false
+        },
+        "container": null,
+        "attuned": false,
+        "enchantment": null,
+        "summons": null,
+        "magicalBonus": null,
+        "firingArc": ""
       },
       "ownership": {
         "default": 0
@@ -771,7 +741,8 @@
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null
-      }
+      },
+      "_key": "!actors.items!OKrTUOClGXYgFPtG.ZjQxZWFkNWNkZTc3"
     }
   ],
   "effects": [],
@@ -788,92 +759,56 @@
       "str": {
         "value": 18,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 4,
-        "save": 4,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 16
+        }
       },
       "dex": {
         "value": 14,
         "proficient": 1,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 6,
-        "prof": 4,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 14
+        }
       },
       "con": {
         "value": 16,
         "proficient": 1,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 7,
-        "prof": 4,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 15
+        }
       },
       "int": {
         "value": 10,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "wis": {
         "value": 17,
         "proficient": 1,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 7,
-        "prof": 4,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 15
+        }
       },
       "cha": {
         "value": 9,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -1,
-        "save": -1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "hon": {
         "value": 9,
@@ -881,7 +816,8 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       },
       "san": {
         "value": 17,
@@ -889,41 +825,37 @@
         "bonuses": {
           "check": "",
           "save": ""
-        }
+        },
+        "max": null
       }
     },
     "attributes": {
       "ac": {
         "flat": 17,
         "calc": "natural",
-        "formula": "powered battle armor",
-        "min": 0
+        "formula": ""
       },
       "hp": {
         "value": 91,
         "max": 91,
         "temp": 0,
         "tempmax": 0,
-        "formula": "14d8+28",
-        "min": 0
+        "formula": "14d8+28"
       },
       "init": {
         "ability": "",
-        "bonus": 0,
-        "value": 0,
-        "mod": 2,
-        "prof": 0,
-        "total": 2
+        "bonus": "0",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "movement": {
         "burrow": 0,
         "climb": 0,
-        "crawl": 0,
         "fly": 0,
-        "roll": 0,
-        "space": 0,
         "swim": 0,
-        "turn": 0,
         "walk": 30,
         "units": "ft",
         "hover": false
@@ -946,16 +878,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "tech": {
         "points": {
@@ -964,16 +889,9 @@
             "level": "",
             "overall": ""
           },
-          "min": 0,
           "max": null,
-          "temp": 0,
-          "tempmax": 0
-        },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "level": 0
+          "temp": 0
+        }
       },
       "super": {
         "dice": {
@@ -984,57 +902,49 @@
           },
           "max": null
         },
-        "known": {
-          "value": 0,
-          "max": 0
-        },
-        "die": ""
+        "die": 0
       },
       "deployed": {
         "uuid": null,
         "deployments": []
       },
-      "powercasting": "none",
-      "prof": 4,
-      "powerdc": 12,
-      "bar1": {
-        "value": 91,
-        "min": 0,
-        "max": 91
-      },
-      "bar2": {
-        "value": 17,
-        "min": 0,
-        "max": 0
-      },
-      "encumbrance": {
-        "value": 2,
-        "max": 270,
-        "pct": 0.7407407407407407,
-        "encumbered": true
-      },
-      "powerForceLightDC": 15,
-      "powerForceDarkDC": 11,
-      "powerForceUnivDC": 15,
-      "powerTechDC": 12,
       "death": {
-        "success": null,
-        "failure": null
+        "success": 0,
+        "failure": 0,
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
-      "exhaustion": null,
-      "inspiration": false
+      "exhaustion": 0,
+      "forcecasting": "wis",
+      "techcasting": "int",
+      "concentration": {
+        "ability": "",
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        },
+        "bonuses": {
+          "save": ""
+        },
+        "limit": 1
+      },
+      "hd": {
+        "spent": 0
+      },
+      "slowed": 0
     },
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"Those were Imperial Guards, Lando. The Emperor's personal protectors—handpicked from the very best of his forces. Out of millions of soldiers, they are unsurpassed.\"</i></p><p><span style=\"font-size:13px\">- Korin Pers, to Lando Calrissian</span></p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Founder(s)</u></td><td style=\"line-height:1.42857\">Sheev Palpatine</td></tr><tr><td style=\"line-height:1.42857\"><u>Headquarters</u></td><td style=\"line-height:1.42857\">Galactic City, Coruscant</td></tr><tr><td style=\"line-height:1.42857\"><u>Date founded</u></td><td style=\"line-height:1.42857\">During or prior to 28 BBY</td></tr><tr><td style=\"line-height:1.42857\"><u>Affiliation</u></td><td style=\"line-height:1.42857\"><ul><li>Galactic Republic (Office of the Chancellor)</li><li>Galactic Empire (Galactic Emperor)</li><li>Jakku Imperial remnant</li></ul></td></tr></tbody></table><p>The Emperor's Royal Guard, also known as the Imperial Royal Guard, the Imperial Guard, or simply the Royal Guard, and under the Galactic Republic as the Red Guard, was an elite unit whose members served as personal bodyguards to the Galactic Emperor. Fully clad in crimson robes and face-concealing helmets, the Emperor's guards were a silent, imposing, and deadly force armed with force pikes. In addition to strict requirements of size, strength, intelligence, and loyalty, only the most skilled soldiers in the Imperial Military qualified for duty in the Royal Guard. The Imperial Royal Guard were also occasionally assigned to provide protection to members of the Imperial Ruling Council and Lord Vader.</p><p>The origins of the crimson-clad Royal Guard dated back to the time of the Separatist Crisis, when Supreme Chancellor Sheev Palpatine crafted an order of protectors, named the Red Guard, that stood apart from the cerulean-clad Senate Guard during the Galactic Republic's twilight. Over the course of the Clone Wars, the Red Guard gradually supplanted the Senate Guard and its elite sub-unit, the Senate Commandos, as the chancellor's bodyguards. By the end of the Clone Wars, Palpatine proclaimed himself Emperor of the Galactic Empire. As a result, Senate Guards were completely phased out of service and replaced by the chancellor's Red Guards, who were henceforth known as the Royal Guard.</p><p>Emperor Palpatine sealed himself away from the populace throughout his reign. On the rare occasions of his public appearances, he was always accompanied by members of the Royal Guard. In the decades that followed Palpatine's death and the subsequent fall of the Empire, a new order of protectors was crafted by Supreme Leader Snoke of the First Order. Modeled on the Emperor's Royal Guard, the Elite Praetorian Guard consisted of eight warriors who wore ornate crimson armor, wielded an array of melee weapons, and specialized in martial arts.</p><h3>Description</h3><p>The Emperor's Royal Guards were reputedly the most skilled warriors in the forces of the Galactic Empire; out of millions of soldiers, Emperor Palpatine's guards were unsurpassed in skill and status. During the era of the Empire, the Royal Guard consisted of conscripts and at least one clone trooper. The qualifications for joining the Guard's ranks included strength, intelligence, and loyalty. Candidates for the Guard had to meet the basic height requirement of 1.83 meters.</p><p>In addition to receiving advanced training in many forms of combat, Royal Guards were trained to be unquestionably loyal to Emperor Palpatine. The Emperor's word was considered law and his guards would obey his orders without question or hesitation, even if it meant killing one of their own. The Guards were also among the few beings in the galaxy whom the Emperor trusted with the knowledge of his secret identity as a Sith Lord, knowing they would speak of it to no one, not even among themselves. Due to their little movement, they were sometimes believed to have been droids instead of individuals.</p><p>Despite the combat skills of the Royal Guard, the Emperor was confident in his Force powers to the extent that he did not believe he required a bodyguard unit. However, he found over the course of his reign that the crimson-clad guards served well to impress and intimidate those who saw them. Additionally, they served the purpose of defending the Emperor in situations where he did not wish to use his Force powers. As such, he never felt inclined to dispense with them as a unit.<br /></p><h3>History</h3><p><b>Republic era</b></p><p>During the decline of the Galactic Republic, Supreme Chancellor Sheev Palpatine created the Red Guard—a cohort of personal elite bodyguards that stood apart from the rest of his forces, including the cerulean-clad members of the Senate Guard, from which they were handpicked. Over time, Palpatine came to favor his crimson-clad red guards over the blue guards of the Galactic Senate and even the elite Senate Commandos. Armed with force pikes, the red guards' flowing red robes and sleek, featureless scarlet masks blended in with the crimson-walled office of the chancellor.<br /></p><p>The red-robed guards for the Supreme Chancellor were in place by 28 BBY. Although the red guards were formed prior to the Clone Wars, Palpatine retained the service of the Senate Guard and commandos during the early period of the pan-galactic conflict. After Captain Faro Argyus of the Senate Commandos revealed himself to be a traitor, the Senate Guard's loyalty was put into question, and Palpatine took the opportunity to expand the Red Guard in the ensuing scandal. When Red Guards were out of uniform, they conducted official visits and covert operations in locations where the Supreme Chancellor was scheduled to visit. The Red Guard also scouted traveling locations, back up routes, handled logistics, and created evacuation plans. On Coruscant, such events may have required thousands of hours of work. The Guard also investigated credible threats against Palpatine, whether they be simply graffiti to HoloNet broadcasts.</p><p>By 19 BBY, approximately three years after the First Battle of Geonosis, the Red Guard and Coruscant Guard clone shock troopers had all but supplanted the Senate Guard as the chancellor's protectors.</p><p><b>Imperial era</b></p><p>By the war's end in 19 BBY, Chancellor Palpatine declared himself Emperor of the galaxy and thereby transformed the Republic into the Galactic Empire. Under the new government, the Emperor continued to favor the Imperial Royal Guard, formerly the chancellor's Red Guard, as his personal security force which, in turn, led to the dissolution of the Senate Guard. During the first days of Palpatine's reign, the bodyguards were responsible for the Emperor's security on the galactic capital world of Coruscant. Off-world, however, the Emperor was accompanied by a detachment of shock troopers of the Coruscant Guard. As the years passed, Palpatine sealed himself away from the populace, having discarded his facade as a friendly, kind-hearted politician in order to fully embrace his true identity as Darth Sidious, Dark Lord of the Sith. On rare occasions he would make a public appearance, but always in the company of the Royal Guard.</p><p>During the early years of the Empire, a division of the Royal Guard was stationed in the Inquisitorius Headquarters—a skyscraper located in the Industrial District of Coruscant—which served as a training facility for the Emperor's Jedi hunters, known as the Inquisitorius. In 14 BBY, several Royal Guards accompanied Sidious and his apprentice, Darth Vader, to Ryloth where the Lords of the Sith sought to lure the Free Ryloth movement out of hiding. Most of the guardsmen were killed when Vader's shuttle crash-landed in the planet's equatorial forest. Two guards, Sergeant Erstin Deez and a captain who once served in the Grand Army of the Republic as a clone trooper, survived the crash along with Vader and his Sith Master. The captain was later killed by lyleks, but Deez was able to survive long enough for Moff Delian Mors' Imperial troops to rescue the Sith.</p><p>A trio of Royal Guards were stationed aboard the Chimaera, flagship of the Seventh Fleet led by Grand Admiral Thrawn, during the liberation of Lothal. The Emperor commanded the men to execute Padawan Ezra Bridger, having failed to use the young Jedi in his plan to control the world between worlds. Using modified pikes with magnetic clamps to subdue their Force-sensitive target, the guards held Bridger still while a squad of stormtroopers attempted to shoot him. However, Bridger used the Force to hurl several boulders and rocks from a stolen piece of the Lothal Jedi Temple at his attackers, crushing them.</p><p>Although the Emperor's safety was the primary responsibility of the Royal Guard, Sidious did not make exclusive use of them. In 0 BBY, two Royal Guards were stationed in Fortress Vader on Mustafar. They acted as sentinels protecting the Sith Lord while he rested in his bacta tank. During the Galactic Civil War, Guards were often used in battle as assassins, armed with force pikes, vibroblades, and many other concealed weapons. Following the Battle of Yavin, two Royal Guards were stationed aboard the Emperor's luxury yacht Imperialis while it was undergoing a refit at Sienar Fleet Systems' Orbital Shipyard CC-24 above the planet Castell. They guarded the vessel's central chamber which stored several Sith artifacts including the mask of Lord Momin. After Lando Calrissian and his companions stole the Imperialis, one of the guards stabbed Lobot with a vibroblade. The guards were then killed by the alien clone warriors Aleksin and Pavol. Korin Pers discovered that the guards had been corrupted by the dark side of the Force.</p><p>In 4 ABY, several Royal Guards accompanied the Emperor to the second Death Star orbiting the forest moon of Endor. Prior to the arrival of the Rebel Alliance Fleet, the Emperor dismissed the Guards from his throne room, leaving Sidious alone with Vader and the latter's son, the Jedi-aspirant Luke Skywalker. As a result, the guards were not present to protect the Emperor when Vader turned against his Master in a last-ditch effort to save his son's life. With the Emperor's death and the victory of the Alliance, the Battle of Endor was a turning point that marked the beginning of the end for the Empire.</p><p>Royal Guards were stationed at the Palpatine Archive in the Coruscant system, and attempted to stop the thieving Calrissian and Jaxxon, who were after the Totem of Saglanost shortly after the Empire's debacle at Endor.</p><p><b>New Republic era<br /></b></p><p>The Royal Guard continued to serve the Empire despite the loss of their Emperor, serving as bodyguards for several high-ranking Imperial officers such as General Jylia Shale and Grand Admiral Rae Sloane. Two Royal Guardsmen acted as Shale's security detail at the emergency summit on Akiva; another two Guards escorted Sloane to the New Republic capital of Chandrila in 5 ABY, where the Grand Admiral sought to negotiate an end to hostilities between the Empire and Republic. To Sloane's surprise, the Empire's overtures of peace were a ruse for launching a surprise attack on Chandrila, orchestrated by Fleet Admiral Gallius Rax. During the attack, Sloane's Royal Guards attacked and killed several New Republic Senate Guards who escorted the Imperial entourage to the peace summit.</p><p>Shortly after the attack on Chandrila, a faction of Imperial soldiers rallied to the barren world of Jakku under Rax's leadership as Counselor to the Empire. One of the soldiers in Rax's army was a Royal Guard, who ultimately perished during the Battle of Jakku. The guard who fell at Jakku was survived by his sister, Arliz Hadrassian, an agent of the Imperial Security Bureau. Hadrassian went on to become the leader of the Amaxine warriors by 28 ABY, roughly two decades after the Empire capitulated to the Republic. By then, she had sold her late brother's Royal Guard helmet to Senator Ransolm Casterfo, a Centrist politician with pro-Imperial views.</p><p><b>Legacy</b></p><p>The legacy of the Emperor's Royal Guard inspired the formation of the Elite Praetorian Guard. Like the royal protectors who guarded Sidious during his reign over the Empire, the Praetorians functioned as the elite personal bodyguards of Supreme Leader Snoke, ruler of the First Order. Consisting of eight sentinels trained to protect the Supreme Leader from any threat, the Praetorians were equipped with various melee weapons and ornate crimson armor deliberately echoing the equipment used by the Royal Guard. In 34 ABY, the Praetorians attacked Rey and Kylo Ren after the latter assassinated Snoke, resulting in a battle in which all eight guards were killed by the Master of the Knights of Ren and his one-time Jedi ally, allowing the former to take the Supreme Leader title.</p><p>By 35 ABY, when Palpatine resurfaced on the ancient Sith world of Exegol, the Sovereign Protector Sith troopers had taken over the role as the Emperor's Guard. When Rey and Ben Solo confronted the Sith Lord during the Battle of Exegol, the Sovereign Protectors attempted to protect their master, but were killed by the two Jedi.</p><h3>Equipment</h3><p>Royal Guards were completely covered in flowing blood-red robes and featureless scarlet masks that concealed their faces. There existed a variant of the uniform that lacked the robes and ceremonial helmet in favor of light armor, utilized by guards aboard the Imperial Star Destroyer Chimaera. They wielded electrostaffs and force pikes, a staff-like weapon with a vibro-edged head. Additionally, their robes hid a heavy blaster pistol, a vibroblade, and various other weaponry. When on the battlefield, Royal Guards would abandon their traditional weapons in favor of an arsenal better suited for combat, including the T-21 light repeating blaster, Smart Rocket, and the homing shot.<br /></p>",
         "public": ""
       },
-      "description": {
-        "value": "",
-        "public": ""
-      },
       "alignment": "Lawful Dark",
-      "species": "",
+      "species": null,
       "type": {
         "value": "humanoid",
         "subtype": "",
@@ -1046,13 +956,9 @@
       "powerForceLevel": 0,
       "powerTechLevel": 0,
       "superiorityLevel": 0,
-      "source": "Roll 20",
-      "xp": {
-        "value": 5000
-      },
-      "race": "",
-      "class": "",
-      "powerLevel": 9
+      "source": {
+        "custom": "Roll 20"
+      }
     },
     "traits": {
       "size": "med",
@@ -1080,15 +986,14 @@
           "basic"
         ],
         "custom": ""
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
       }
     },
     "currency": {
-      "gc": 0,
-      "pp": 0,
-      "gp": 0,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
+      "gc": 0
     },
     "skills": {
       "acr": {
@@ -1098,11 +1003,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ani": {
         "value": 0,
@@ -1111,11 +1016,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ath": {
         "value": 1,
@@ -1124,11 +1029,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 4,
-        "passive": 18,
-        "prof": 4,
-        "total": 8
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -1137,11 +1042,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ins": {
         "value": 1,
@@ -1150,11 +1055,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 17,
-        "prof": 4,
-        "total": 7
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -1163,11 +1068,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "inv": {
         "value": 0,
@@ -1176,11 +1081,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "lor": {
         "value": 0,
@@ -1189,11 +1094,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0,
-        "passive": 10
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "med": {
         "value": 0,
@@ -1202,11 +1107,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -1215,11 +1120,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "pil": {
         "value": 0,
@@ -1228,11 +1133,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0,
-        "passive": 10
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prc": {
         "value": 1,
@@ -1241,11 +1146,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 17,
-        "prof": 4,
-        "total": 7
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -1254,11 +1159,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "per": {
         "value": 0,
@@ -1267,11 +1172,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": -1,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "slt": {
         "value": 0,
@@ -1280,11 +1185,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "ste": {
         "value": 0,
@@ -1293,11 +1198,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 2,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "sur": {
         "value": 0,
@@ -1306,11 +1211,11 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 3,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       },
       "tec": {
         "value": 0,
@@ -1319,108 +1224,80 @@
           "check": "",
           "passive": ""
         },
-        "bonus": 0,
-        "mod": 0,
-        "prof": 0,
-        "total": 0,
-        "passive": 10
+        "roll": {
+          "min": null,
+          "max": null,
+          "mode": 0
+        }
       }
     },
+    "tools": {},
     "powers": {
       "power1": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power2": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power3": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power4": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power5": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power6": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power7": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power8": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "power9": {
         "fvalue": 0,
         "foverride": null,
         "tvalue": 0,
-        "toverride": null,
-        "fmax": 0,
-        "tmax": 0,
-        "max": 0
+        "toverride": null
       },
       "pact": {
-        "value": 0,
-        "max": 0,
-        "override": null,
-        "level": 0
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null
       },
       "power0": {
-        "value": 0,
-        "max": 0,
-        "fmax": 0,
         "fvalue": 0,
-        "tmax": 0,
-        "tvalue": 0
+        "tvalue": 0,
+        "foverride": null,
+        "toverride": null
       }
     },
     "bonuses": {
@@ -1533,14 +1410,17 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": []
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493984171,
-    "modifiedTime": 1685840636829,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552769561,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!actors!OKrTUOClGXYgFPtG"
 }

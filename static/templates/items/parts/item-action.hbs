@@ -2,7 +2,7 @@
 <div class="form-group select">
     <label>{{ localize "SW5E.ItemActionType" }}</label>
     <select name="system.actionType">
-        {{selectOptions config.itemActionTypes selected=system.actionType blank=""}}
+        {{ selectOptions config.itemActionTypes selected=system.actionType blank="" }}
     </select>
 </div>
 {{#if system.actionType}}
@@ -12,13 +12,13 @@
     <label>{{ localize "SW5E.AbilityModifier" }}</label>
     <select name="system.ability">
         {{#select system.ability}}
-            <option value="">{{ localize "SW5E.Default" }}</option>
-            <option value="none">{{ localize "SW5E.None" }}</option>
-            <optgroup label="{{ localize 'SW5E.Ability' }}">
-                {{#each config.abilities as |ability a|}}
-                    <option value="{{a}}">{{ability.label}}</option>
-                {{/each}}
-            </optgroup>
+        <option value="">{{ localize "SW5E.Default" }}</option>
+        <option value="none">{{ localize "SW5E.None" }}</option>
+        <optgroup label="{{ localize 'SW5E.Ability' }}">
+            {{#each config.abilities as |ability a|}}
+            <option value="{{a}}">{{ability.label}}</option>
+            {{/each}}
+        </optgroup>
         {{/select}}
     </select>
 </div>
@@ -28,7 +28,11 @@
 <div class="form-group">
     <label>{{ localize "SW5E.ItemAttackBonus" }}</label>
     <div class="form-fields">
-        <input type="text" name="system.attackBonus" value="{{system.attackBonus}}" data-formula-editor/>
+        <input type="text" name="system.attack.bonus" value="{{system.attack.bonus}}" data-formula-editor>
+        <label class="checkbox" data-tooltip="SW5E.ItemAttackFlatHint">
+            <input type="checkbox" name="system.attack.flat" {{checked system.attack.flat}}>
+            {{localize "SW5E.ItemAttackFlat"}}
+        </label>
     </div>
 </div>
 
@@ -36,7 +40,8 @@
 <div class="form-group">
     <label>{{ localize "SW5E.ItemCritThreshold" }}</label>
     <div class="form-fields">
-        {{numberInput system.critical.threshold name="system.critical.threshold" placeholder=system.baseCriticalThreshold max=20 min=1 step=1}}
+        {{numberInput system.critical.threshold name="system.critical.threshold"
+        placeholder=system.baseCriticalThreshold max=20 min=1 step=1}}
     </div>
 </div>
 
@@ -61,13 +66,13 @@
         <input type="text" name="system.damage.parts.{{i}}.0" value="{{lookup this "0"}}" data-formula-editor/>
         <select name="system.damage.parts.{{i}}.1">
             {{#select (lookup this "1")}}
-                <option value="">{{ localize "SW5E.None" }}</option>
-                <optgroup label="{{localize 'SW5E.Damage'}}">
-                    {{selectOptions @root.config.damageTypes}}
-                </optgroup>
-                <optgroup label="{{localize 'SW5E.Healing'}}">
-                    {{selectOptions @root.config.healingTypes}}
-                </optgroup>
+            <option value="">{{ localize "SW5E.None" }}</option>
+            <optgroup label="{{localize 'SW5E.Damage'}}">
+                {{selectOptions @root.config.damageTypes labelAttr="label"}}
+            </optgroup>
+            <optgroup label="{{localize 'SW5E.Healing'}}">
+                {{selectOptions @root.config.healingTypes labelAttr="label"}}
+            </optgroup>
             {{/select}}
         </select>
         <a class="damage-control delete-damage"><i class="fas fa-minus"></i></a>
@@ -81,7 +86,7 @@
     <label>{{ localize "SW5E.VersatileDamage" }}</label>
     <div class="form-fields">
         <input type="text" name="system.damage.versatile" value="{{system.damage.versatile}}"
-               placeholder="{{ localize 'SW5E.Formula' }}" data-formula-editor>
+            placeholder="{{ localize 'SW5E.Formula' }}" data-formula-editor>
     </div>
 </div>
 {{/if}}
@@ -90,8 +95,8 @@
 <div class="form-group">
     <label>{{ localize "SW5E.OtherFormula" }}</label>
     <div class="form-fields">
-        <input type="text" name="system.formula" value="{{system.formula}}"
-        placeholder="{{ localize 'SW5E.Formula' }}" data-formula-editor>
+        <input type="text" name="system.formula" value="{{system.formula}}" placeholder="{{ localize 'SW5E.Formula' }}"
+            data-formula-editor>
     </div>
 </div>
 
@@ -103,18 +108,99 @@
             {{selectOptions config.abilities selected=system.save.ability labelAttr="label" blank=""}}
         </select>
         <span>{{ localize "SW5E.VsDC" }}</span>
-        <input type="number" step="any" name="system.save.dc"
-            value="{{#if system.save.dc}}{{system.save.dc}}{{/if}}"
+        <input type="number" step="any" name="system.save.dc" value="{{#if system.save.dc}}{{system.save.dc}}{{/if}}"
             placeholder="{{ localize 'SW5E.AbbreviationDC' }}" {{#unless isFlatDC}}disabled{{/unless}}>
         <select name="system.save.scaling">
             {{#select system.save.scaling}}
             <option value="power">{{ localize "SW5E.Powercasting" }}</option>
-                {{selectOptions config.abilities labelAttr="label"}}
+            {{selectOptions config.abilities labelAttr="label"}}
             <option value="flat">{{ localize "SW5E.Flat" }}</option>
             {{/select}}
         </select>
     </div>
 </div>
+
+{{!-- Enchantment --}}
+{{#if system.isEnchantment}}
+<div class="form-group enchantment">
+    <label>{{ localize "SW5E.Enchantment.Label" }}</label>
+    <div class="form-fields">
+        <a class="config-button" data-action="enchantment">
+            <i class="fa-solid fa-gear" aria-hidden="true"></i>
+            {{ localize "SW5E.Enchantment.Action.Configure" }}
+        </a>
+    </div>
+    {{#if appliedEnchantments.length}}
+    <ul class="separated-list sw5e2">
+        {{#each appliedEnchantments}}
+        <li class="item" data-enchantment-uuid="{{ enchantment.uuid }}">
+            <div class="details flexrow">
+                <img class="gold-icon" src="{{ item.img }}" alt="{{ name }}">
+                <span class="name">
+                    {{#if actor}}
+                    {{{ localize "SW5E.Enchantment.Items.Entry" item=name actor=actor.name }}}
+                    {{else}}
+                    {{ name }}
+                    {{/if}}
+                </span>
+                <div class="list-controls flexrow">
+                    {{#if item.isOwner}}
+                    <button type="button" class="unbutton" data-action="view" data-uuid="{{ item.uuid }}"
+                            data-tooltip="SW5E.ItemView" aria-label="{{ localize 'SW5E.ItemView' }}">
+                        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="enchantment-button unbutton" data-action="removeEnchantment"
+                            data-tooltip="SW5E.Enchantment.Action.Remove"
+                            aria-label="{{ localize 'SW5E.Enchantment.Action.Remove' }}">
+                        <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                    </button>
+                    {{/if}}
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+</div>
+{{/if}}
+
+{{!-- Summoning --}}
+{{#if (eq system.actionType "summ")}}
+<div class="form-group summoning">
+    <label>{{ localize "SW5E.Summoning.Label" }}</label>
+    <div class="form-fields">
+        <a class="config-button" data-action="summoning">
+            <i class="fa-solid fa-gear" aria-hidden="true"></i>
+            {{ localize "SW5E.Summoning.Action.Configure" }}
+        </a>
+        <label class="checkbox" data-tooltip="SW5E.Summoning.Prompt.Hint">
+            <input type="checkbox" name="system.summons.prompt" {{ checked system.summons.prompt }}>
+            {{ localize "SW5E.Summoning.Prompt.Label" }}
+        </label>
+    </div>
+    {{#with system.summons.summonedCreatures as |summonedCreatures|}}
+    {{#if summonedCreatures.length}}
+    <ul class="separated-list sw5e2">
+        {{#each summonedCreatures}}
+        <li class="item" data-summon-uuid="{{ uuid }}">
+            <div class="details flexrow">
+                <img class="gold-icon" src="{{ img }}" alt="{{ name }}">
+                <span class="name">{{ name }}</span>
+                <div class="list-controls flexrow">
+                    <button type="button" class="unbutton" data-action="view" data-uuid="{{ uuid }}"
+                            data-tooltip="SW5E.Summoning.Action.View"
+                            aria-label="{{ localize 'SW5E.Summoning.Action.View' }}">
+                        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+    {{/with}}
+</div>
+{{/if}}
 
 {{!-- Chat Message Flavor --}}
 <div class="form-group stacked">

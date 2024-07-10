@@ -16,65 +16,85 @@
   "system": {
     "description": {
       "value": "<h1>Makashi Form</h1>\n<p>Makashi Form, also known as Contention Form, encourages precision and efficiency over power, using jabs, parries and light cuts over slashes, blocks and chops. Those guardians who focus on Makashi Form utilize calculated blade manipulation, intense focus, and expert timing to confuse and trap their opponents.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "makashiform",
     "classIdentifier": "guardian",
     "advancement": [
       {
-        "_id": "uZ8mJeA1mJhkoJqb",
+        "_id": "14LO6zGJkxqp1aLE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.bppjX70oFzmuRCO0",
-            "Compendium.sw5e.archetypefeatures.rYHuxCIcrESg7DG3",
-            "Compendium.sw5e.archetypefeatures.U6qtLh1iUeygUbxl"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.bppjX70oFzmuRCO0",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.rYHuxCIcrESg7DG3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.U6qtLh1iUeygUbxl",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "Zu6BHJFSdPGYdTYf",
+        "_id": "1McTvxPhlnPB1agl",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.dSpPFyA0SS469Lvi"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.dSpPFyA0SS469Lvi",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "t6qwxOpN1p81j3M4",
+        "_id": "1nWWATozvNgqf9zx",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.e0hUnwcJ1bMIMiEx"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.e0hUnwcJ1bMIMiEx",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "11J9abLkaUjj1bhQ",
+        "_id": "1GwGqN7reiDq1vH1",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.8s1p8tD0y0e3Fcm6"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.8s1p8tD0y0e3Fcm6",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
@@ -88,7 +108,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -96,10 +116,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959756,
-    "modifiedTime": 1684819093623,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689625,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!YgIJacJUsc2MSQ7C"
 }

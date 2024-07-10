@@ -1,100 +1,5 @@
 {
-  "_id": "YqhBPIMydXukWNKG",
   "name": "Togorian",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Togorian.webp",
-  "effects": [
-    {
-      "_id": "AwKbuyAocEAz5vyD",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Togorian",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 0,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.skills.sur.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.skills.ste.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "togorese",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.savageAttacks",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.toughness",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Togorian.webp",
-      "label": "Togorian",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2941244+00:00",
@@ -102,43 +7,138 @@
       "uid": "Species.name-togorian"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Togorian.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>The Togorian people are a feline warrior species native to the planet Togoria. They are large, heavy-framed bipeds, with retractable claws on their hands and feet. Female Togorians grow up to 7 feet tall, while adult males can reach up to 9 feet. They're covered in gray-white, black, brown, or orange fur, often with colorful spots or stripes. </p>\n<h2>Society and Culture</h2>\n<p>Togorians have a unique cultural division between their sexes. They evolved as nomadic hunters of creatures like the bist and etelo, surviving on the wilderness as apex predators. As time went on, a rift in their society developed between the two sexes. Males were drawn to continue their lifestyle as nomads and hunters for their people, while females tended to prefer remaining in permanent camps and contributed the vast majority of their species technological developments. This division has continued into modern times, with males continuing their nomadic traditions and females frequently preferring to stay in villages and cities. Males visit their mates for about a month each year, but otherwise the sexes live completely separate lives. Whether in spite of this separation of the sexes, or because of it, Togorians are typically monogamous and devoted to their chosen mates.</p>\n<h2>Names</h2>\n<p>Togorian names tend to be short and primal-sounding. Female names tend to include softer consonants and more vowels, while male names are typically harsher. Togorians do not use surnames.</p>\n<p><strong>Male Names.</strong>  Mezgraf, Mlatar, Morto, Mrrov, Torr</p>\n<p><strong>Female Names.</strong> Coelle, Elotis, H'sishi, Kra'ake, Rrowv</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "togorian",
-    "advancement": [
-      {
-        "_id": "Te7OjjNflxV1QcG4",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.3HpEWSlrxzvNE0fv",
-            "Compendium.sw5e.speciesfeatures.ZQtGFQMV13mZzSJ2",
-            "Compendium.sw5e.speciesfeatures.qcz0Pyg0hqioowLk",
-            "Compendium.sw5e.speciesfeatures.bgdwXibjsD5yH2wY",
-            "Compendium.sw5e.speciesfeatures.ymgEqXXd5h9lX2Je",
-            "Compendium.sw5e.speciesfeatures.bY7svfzd3A224liw",
-            "Compendium.sw5e.speciesfeatures.UwiZUOFt3dvCCFTh",
-            "Compendium.sw5e.speciesfeatures.ZHK8D1qJbXRVJSPJ",
-            "Compendium.sw5e.speciesfeatures.XP6Fxfjej22M6PVf",
-            "Compendium.sw5e.speciesfeatures.Wmx8GFYKEFrOY8b1"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1xSgq7ypnZaN9LEW",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3HpEWSlrxzvNE0fv",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZQtGFQMV13mZzSJ2",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.qcz0Pyg0hqioowLk",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bgdwXibjsD5yH2wY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ymgEqXXd5h9lX2Je",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bY7svfzd3A224liw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.UwiZUOFt3dvCCFTh",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZHK8D1qJbXRVJSPJ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.XP6Fxfjej22M6PVf",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Wmx8GFYKEFrOY8b1",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1LndyR2YLqjH113R",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1RFfWEj0AMpfJkMD",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "7uestiLhsNl1Hh53",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:sur",
+            "skills:ste"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Black, brown, or white"
     },
@@ -149,7 +149,7 @@
       "value": "Brown, green, orange, or yellow"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Large frame, retractable claws, striped fur, rigid honor code"
@@ -171,17 +171,110 @@
     },
     "slanguage": {
       "value": "Togorese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "AwKbuyAocEAz5vyD",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Togorian",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 0,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.skills.sur.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.ste.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "togorese",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.meleeCriticalDamageDice",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.hp.bonuses.level",
+          "mode": 2,
+          "value": "+1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Togorian.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "origin": null,
+      "name": "Togorian",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!6LgSF9g7RCN6einu.AwKbuyAocEAz5vyD"
+    }
+  ],
+  "_id": "6LgSF9g7RCN6einu",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002106,
-    "modifiedTime": 1692402505741,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796433,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!6LgSF9g7RCN6einu"
 }

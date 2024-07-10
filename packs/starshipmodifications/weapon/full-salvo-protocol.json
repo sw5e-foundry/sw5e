@@ -1,5 +1,4 @@
 {
-  "_id": "Ql4JV9fxBghEdHVn",
   "name": "Full Salvo Protocol",
   "type": "starshipmod",
   "flags": {},
@@ -7,40 +6,40 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>Hardpoints having an additional limited or unlimited arc can now be fired remotely without suffering any disadvantage imposed by being remote from the dedicated gunner station.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">You can gain the benefits of your Fire-Linked Mounting even if one or both weapons are tertiary weapons.</span></p>",
+      "chat": ""
     },
-    "requirements": "",
-    "source": {
-      "value": "SotG"
-    },
+    "source": {},
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -51,16 +50,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -76,38 +76,48 @@
       "dc": null,
       "scaling": "power"
     },
-    "recharge": {
-      "charged": false,
+    "grade": {
+      "value": 3
+    },
+    "baseCost": {
       "value": null
     },
-    "system": {
-      "value": "Weapon"
-    },
-    "grade": {
-      "value": "NA"
-    },
-    "basecost": {
-      "value": "3000"
-    },
     "prerequisites": {
-      "value": "Weapon Slave Array"
+      "value": "Fire-Linked Mounting"
     },
     "free": {
       "slot": false,
       "suite": false
-    }
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "Weapon",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494018677,
+    "modifiedTime": 1720552914287,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "1Iy5P90hug82pFRD",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "folder": null,
-  "sort": 0,
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
-    "createdTime": 1674494018677,
-    "modifiedTime": 1685840666144,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+  "_key": "!items!1Iy5P90hug82pFRD"
 }

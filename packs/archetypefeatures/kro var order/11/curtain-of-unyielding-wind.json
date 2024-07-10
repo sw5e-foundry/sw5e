@@ -13,11 +13,12 @@
   "system": {
     "description": {
       "value": "<p>As an action, you call up a mighty gale, which swirls around you in a 10-foot radius and moves with you, remaining centered on you. The wind lasts for 10 minutes. The wind deafens both you and other creatures in its area. It extinguishes unprotected flames in its area that are torch-sized or smaller and hedges out vapor, gas, and fog that can be dispersed by strong wind. The area is difficult terrain for creatures other than you and the attack rolls of ranged weapon attacks have disadvantage if the attacks pass in or out of the wind.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 11",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -28,32 +29,34 @@
       "units": "minute"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": "10",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -83,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Monk"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -92,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426104187,
-    "modifiedTime": 1685840600065,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368703905,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "cUMPy5x6WqtUMumY"
+  "_id": "cUMPy5x6WqtUMumY",
+  "_key": "!items!cUMPy5x6WqtUMumY"
 }

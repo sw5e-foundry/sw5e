@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Inquisitor Technique:</strong> 7th, 9th, 13th, and 17th level</em></p>\n<p>You can use your action to gain the benefits of the <em>force sight</em> force power until the end of your next turn.</p>\n<p>You can use this feature three times. You gain an additional use at 9th, 13th, and 17th level. You regain all expended uses when you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scout (Inquisitor Technique) 9",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -27,11 +28,13 @@
       "units": "turn"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,16 +45,17 @@
       "value": null,
       "max": "3",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,7 +84,17 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -90,11 +104,12 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1679609438405,
-    "modifiedTime": 1685840600141,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368705554,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "f8nZFP87iWCm6kTT"
+  "_id": "f8nZFP87iWCm6kTT",
+  "_key": "!items!f8nZFP87iWCm6kTT"
 }

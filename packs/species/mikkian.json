@@ -1,82 +1,5 @@
 {
-  "_id": "aWyQIk0yQVEBWiY6",
   "name": "Mikkian",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Mikkian.webp",
-  "effects": [
-    {
-      "_id": "2FSlkSzlsfoQSsQs",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Mikkian",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.attributes.senses.blindsight",
-          "value": "30",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 0,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.custom",
-          "value": "Mikkian",
-          "mode": 0,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Mikkian.webp",
-      "label": "Mikkian",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2851303+00:00",
@@ -84,42 +7,139 @@
       "uid": "Species.name-mikkian"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Mikkian.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>Mikkians are a species of brightly colored humanoids. The mikkians' most distinctive feature are their motile head-tendrils, with the number, form, and pattern varying between individuals. These head-tendrils primarily serve as sensory organs, particularly detecting sound as a replacement for an ear common in other species. Mikkian head-tendrils also could detect other information, such as humidity, temperature, magnetic direction and radiation. This radiation detection can be detected to the extent that mikkians can \"see\" light and dark, although their eyes are still their primary visual organs. </p>\n<h2>Society and Culture</h2>\n<p>Mikkians place kinship and integrity above all. In fact, their honesty can come across as blunt or even rude to other sentients. Conversely, mikkians often have trouble adjusting to the more flexible views of other races. Their complex code of honor encompass all things in life, with a particular insistance on matters of warfare. Although they respect warrior traditions, the Mikkians nevertheless value discipline and honor over victory or physical might.</p>\n<p>Different religious traditions exist among the Mikkians, but belief in the Force plays a central role in all of them. In Mikkian society, their head-tendrils have important cultural significance, and as such tendril-reading is used by Mikkian mystics to predict their future. Every facet of the head-tendril contributes to that meaning.</p>\n<h2>Names</h2>\n<p>Mikkian names are often short and disyllabic, with a melodic quality to them. Mikkians typically don't use surnames, though some may adopt them. </p>\n<p><strong>Male Names.</strong> Cage, Fedlas, Mekko, Sakas </p>\n<p><strong>Female Names.</strong> Beyra, Fenvar, Tiplee, Zelna </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "mikkian",
-    "advancement": [
-      {
-        "_id": "4vw3XzZD8zDNzA8v",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.yYvEbYVPT7FwN1ua",
-            "Compendium.sw5e.speciesfeatures.wChnQ9Jp3bqiOg8K",
-            "Compendium.sw5e.speciesfeatures.Yw5yhGYWw7cwobud",
-            "Compendium.sw5e.speciesfeatures.rPWaY1fMjFEbR9ZD",
-            "Compendium.sw5e.speciesfeatures.jZOcAweEpzugFNL8",
-            "Compendium.sw5e.speciesfeatures.ReT17u67FjIVPh6M",
-            "Compendium.sw5e.speciesfeatures.BbBje0X3vAPGQh50",
-            "Compendium.sw5e.speciesfeatures.a46KCnYxKUFhItsN",
-            "Compendium.sw5e.speciesfeatures.tEaogv5I9RCPu5HY"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1F8sjSIUMqfxogfK",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yYvEbYVPT7FwN1ua",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wChnQ9Jp3bqiOg8K",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Yw5yhGYWw7cwobud",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rPWaY1fMjFEbR9ZD",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jZOcAweEpzugFNL8",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ReT17u67FjIVPh6M",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BbBje0X3vAPGQh50",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.a46KCnYxKUFhItsN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.tEaogv5I9RCPu5HY",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "7U8ujpivnIk1c6zB",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "OlXxyqigeZY16Ggv",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1fceTa3KuO9F1Mks",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:per",
+                "skills:itm"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Green, pink, red, blue, or yellow"
     },
@@ -130,7 +150,7 @@
       "value": "Blue or Black"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Numerous head-tendrils, acute senses of sight and hearing"
@@ -152,17 +172,130 @@
     },
     "slanguage": {
       "value": "Mikkian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "XFMDt0NURO4CUw4v",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Mikkian",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 5,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 2,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.senses.blindsight",
+          "mode": 2,
+          "value": "30",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 2,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.custom",
+          "mode": 0,
+          "value": "Mikkian",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Mikkian.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.aWyQIk0yQVEBWiY6.ActiveEffect.2FSlkSzlsfoQSsQs"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.aWyQIk0yQVEBWiY6",
+      "name": "Mikkian",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!TJoKXEcs0nJ2sN4B.XFMDt0NURO4CUw4v"
+    },
+    {
+      "_id": "jELd0cuLorurmLHV",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Mikkian.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.aWyQIk0yQVEBWiY6.ActiveEffect.2FSlkSzlsfoQSsQs"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.aWyQIk0yQVEBWiY6",
+      "name": "Keen Hearing",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!TJoKXEcs0nJ2sN4B.jELd0cuLorurmLHV"
+    }
+  ],
+  "_id": "TJoKXEcs0nJ2sN4B",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002109,
-    "modifiedTime": 1692402505741,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797102,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!TJoKXEcs0nJ2sN4B"
 }

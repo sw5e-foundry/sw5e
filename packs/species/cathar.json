@@ -1,8 +1,191 @@
 {
-  "_id": "nLQodIM7prUgVaJe",
   "name": "Cathar",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9136241+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-cathar"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Cathar.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The Cathar have fur-covered bodies with thick manes as well as prominent, retractable claws that can deliver powerful killing attacks on foes and prey. Their bodies also possess rapid healing abilities. These traits make them the perfect hand-to-hand specialists.</p>\n<p>The Cathar species also has two subspecies, known as the Juhani and the Myr Rho. Both of these are notably less catlike than mainline Cathar. Cathar are born into a litter. The Cathar species is biologically similar to the Bothan species.</p>\n<h2>Society and Culture</h2>\n<p>On their homeworld, Cathar live in cities built into giant trees, and are organized into clans governed by elders. Stories of their great heroes were often carved into the trunks of these tree-homes for following generations to see. The Cathar mate for life, to the extent that when one mate dies, the survivor never has a relationship with another. Cathar clan society includes great pageants and celebrations, especially for their heroes. Their religion includes a ritual known as the \"Blood Hunt,\" in which Cathar warriors individually engaged in combat against entire nests of Kiltik in order to gain honor and purge themselves of inner darkness. The native language of the Cathar is Catharese, which included the emphasis of some spoken words with a growl.</p>\n<h2>Names</h2>\n<p>Cathar names can sound both melodic and fairly gutteral, but they almost always sound strong and fierce. Female names are typically longer than male names. Surnames are usually one syllable.</p>\n<p><strong>Male Names.</strong> Crurbirr, Isyrr, Nynorr, Suro, Tukarr </p>\n<p><strong>Female Names.</strong> Cuwin, Jyvohr, Mulahr, Solyri</p>\n<p><strong>Surnames.</strong> Jin, Ki, Mak, Rhir, Ta</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "cathar",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "climb": 30,
+      "burrow": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "5YrRXD9Jk021BWcR",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cpLBEcWoWvgmbKNJ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.SzNaLkTP2Gazx4E7",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.McPqOkpTG5XzGjoI",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ozcGZwjzWFN3AnzM",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Ao7kipzJh1yUBsvm",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZFlAqsVaF4UEXvxg",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.P46OVLXL4HBKTqhS",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.kBlwRixPYmYb7Cw7",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.8XE6pEbLBUWehwZ1",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LOqaGVOHzpFN2Xaa",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BHGisPjmo9ncIwxo",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1NtBwp8jDjhGZ9Bw",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "cha": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "jbRl8PCEf8jGj8cy",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1Ts3Yk7Fq6NY8vMF",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:ste"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Gold to yellow-brown with dark stripes"
+    },
+    "hairColorOptions": {
+      "value": "Brown, black, or grey"
+    },
+    "eyeColorOptions": {
+      "value": "Yellow or brown"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Lion-like features"
+    },
+    "heightAverage": {
+      "value": "4'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "130 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Cathar"
+    },
+    "slanguage": {
+      "value": "Catharese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "6fYB2NZ236PqSl6p",
@@ -12,18 +195,6 @@
           "value": "Cathar",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -47,7 +218,7 @@
           "key": "system.attributes.movement.climb",
           "value": "20",
           "mode": 2,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.skills.prc.value",
@@ -91,104 +262,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Cathar.webp",
-      "label": "Cathar",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Cathar",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!6UMhCaL0ypYqht2M.6fYB2NZ236PqSl6p"
     }
   ],
+  "_id": "6UMhCaL0ypYqht2M",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9136241+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-cathar"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The Cathar have fur-covered bodies with thick manes as well as prominent, retractable claws that can deliver powerful killing attacks on foes and prey. Their bodies also possess rapid healing abilities. These traits make them the perfect hand-to-hand specialists.</p>\n<p>The Cathar species also has two subspecies, known as the Juhani and the Myr Rho. Both of these are notably less catlike than mainline Cathar. Cathar are born into a litter. The Cathar species is biologically similar to the Bothan species.</p>\n<h2>Society and Culture</h2>\n<p>On their homeworld, Cathar live in cities built into giant trees, and are organized into clans governed by elders. Stories of their great heroes were often carved into the trunks of these tree-homes for following generations to see. The Cathar mate for life, to the extent that when one mate dies, the survivor never has a relationship with another. Cathar clan society includes great pageants and celebrations, especially for their heroes. Their religion includes a ritual known as the \"Blood Hunt,\" in which Cathar warriors individually engaged in combat against entire nests of Kiltik in order to gain honor and purge themselves of inner darkness. The native language of the Cathar is Catharese, which included the emphasis of some spoken words with a growl.</p>\n<h2>Names</h2>\n<p>Cathar names can sound both melodic and fairly gutteral, but they almost always sound strong and fierce. Female names are typically longer than male names. Surnames are usually one syllable.</p>\n<p><strong>Male Names.</strong> Crurbirr, Isyrr, Nynorr, Suro, Tukarr </p>\n<p><strong>Female Names.</strong> Cuwin, Jyvohr, Mulahr, Solyri</p>\n<p><strong>Surnames.</strong> Jin, Ki, Mak, Rhir, Ta</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "cathar",
-    "advancement": [
-      {
-        "_id": "2ehxRsJ81QnWItXE",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.cpLBEcWoWvgmbKNJ",
-            "Compendium.sw5e.speciesfeatures.SzNaLkTP2Gazx4E7",
-            "Compendium.sw5e.speciesfeatures.McPqOkpTG5XzGjoI",
-            "Compendium.sw5e.speciesfeatures.ozcGZwjzWFN3AnzM",
-            "Compendium.sw5e.speciesfeatures.Ao7kipzJh1yUBsvm",
-            "Compendium.sw5e.speciesfeatures.ZFlAqsVaF4UEXvxg",
-            "Compendium.sw5e.speciesfeatures.P46OVLXL4HBKTqhS",
-            "Compendium.sw5e.speciesfeatures.kBlwRixPYmYb7Cw7",
-            "Compendium.sw5e.speciesfeatures.8XE6pEbLBUWehwZ1",
-            "Compendium.sw5e.speciesfeatures.LOqaGVOHzpFN2Xaa",
-            "Compendium.sw5e.speciesfeatures.BHGisPjmo9ncIwxo"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Gold to yellow-brown with dark stripes"
-    },
-    "hairColorOptions": {
-      "value": "Brown, black, or grey"
-    },
-    "eyeColorOptions": {
-      "value": "Yellow or brown"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Lion-like features"
-    },
-    "heightAverage": {
-      "value": "4'9\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "130 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Cathar"
-    },
-    "slanguage": {
-      "value": "Catharese"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002129,
-    "modifiedTime": 1692402505742,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796443,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!6UMhCaL0ypYqht2M"
 }

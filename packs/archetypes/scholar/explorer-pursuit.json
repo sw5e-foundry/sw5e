@@ -16,96 +16,169 @@
   "system": {
     "description": {
       "value": "<h1>Explorer Pursuit</h1>\n<p>The explorer strives to navigate past the known to discover new planets, forgotten ruins, or forbidden locations. Those scholars who choose the Explorer Pursuit spend their time studying maps, landmarks, architecture blue prints, or even history books, using them to effectively lead the way for their companions.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Explorer Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.F7bq8pZnhwdy7u2d]{Cover adept}</li>\n<li>@Compendium[sw5e.invocations.AAUOm8go7CNIavWq]{Dungeon explorer}</li>\n<li>@Compendium[sw5e.invocations.mXJPjBkraVFjJQBB]{Galactic explorer}</li>\n<li>@Compendium[sw5e.invocations.oeeJz6iCFMXgbMnz]{Grappling hunter}</li>\n<li>@Compendium[sw5e.invocations.I2TZXqZP4RHmlMlg]{High ground}</li>\n<li>@Compendium[sw5e.invocations.HkoimFl6iKhQ4sI5]{No stone left unturned}</li>\n<li>@Compendium[sw5e.invocations.NysRc9C3MkuKkPRt]{Versatile explorer}</li>\n</ul>"
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "explorerpursuit",
     "classIdentifier": "scholar",
     "advancement": [
       {
-        "_id": "phAp5ntgJtr9DX69",
+        "_id": "1QvagTTiPhNS1hXs",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Fu2aqFTGJ5Q7n25w",
-            "Compendium.sw5e.archetypefeatures.jKiBiuMk3P99GgWf"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Fu2aqFTGJ5Q7n25w",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.jKiBiuMk3P99GgWf",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1COCyQKy8NRBoUVF",
+        "_id": "qllkU2HXzcifKwxR",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.JOvOKdoAbqk0WvJ2"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.JOvOKdoAbqk0WvJ2",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1yrpt6RZ7xZj1myt",
+        "_id": "MiiJhQn2f9BOJxll",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.TQ7URl0pKOkScno8"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.TQ7URl0pKOkScno8",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "1iiyBfv1YhtC1tF9",
+        "_id": "1ExPW6xsvpui8wJG",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.0A1mJxDpF6jQjeyJ"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.0A1mJxDpF6jQjeyJ",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "65mPVAoX41Ac3DUX",
+        "_id": "1Opz3yCUmU8LuyMf",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:prc",
+            "skills:pil",
+            "skills:sur",
+            "skills:acr"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
+      },
+      {
+        "_id": "1nX5xeskvVHxCRUi",
         "type": "ItemChoice",
         "configuration": {
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
-            "2": 2,
-            "3": 2,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "2": {
+              "count": 2,
+              "replacement": false
+            },
+            "3": {
+              "count": 2,
+              "replacement": false
+            },
+            "5": {
+              "count": 1,
+              "replacement": false
+            },
+            "9": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            },
+            "13": {
+              "count": 1,
+              "replacement": false
+            },
+            "17": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.F7bq8pZnhwdy7u2d",
-            "Compendium.sw5e.invocations.AAUOm8go7CNIavWq",
-            "Compendium.sw5e.invocations.mXJPjBkraVFjJQBB",
-            "Compendium.sw5e.invocations.oeeJz6iCFMXgbMnz",
-            "Compendium.sw5e.invocations.I2TZXqZP4RHmlMlg",
-            "Compendium.sw5e.invocations.HkoimFl6iKhQ4sI5",
-            "Compendium.sw5e.invocations.NysRc9C3MkuKkPRt"
+            {
+              "uuid": "Compendium.sw5e.invocations.F7bq8pZnhwdy7u2d"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.AAUOm8go7CNIavWq"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.mXJPjBkraVFjJQBB"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.oeeJz6iCFMXgbMnz"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.I2TZXqZP4RHmlMlg"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.HkoimFl6iKhQ4sI5"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.NysRc9C3MkuKkPRt"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -118,7 +191,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Explorer Discoveries"
       }
     ],
@@ -129,7 +205,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -137,10 +213,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959707,
-    "modifiedTime": 1692480569227,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552688951,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!23Y313ViDLjYZhN6"
 }

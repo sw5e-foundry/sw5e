@@ -16,70 +16,110 @@
   "system": {
     "description": {
       "value": "<h1>Aqinos Form</h1>\n<p>Aqinos Form, also know as Adaptation Form, is named after a Jedi Master who sought to merge technology with Force use. Those guardians who focus on Aqinos Form adopt these tenets to employ clever exploits using technology and the aid of a droid companion.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "aqinosform",
     "classIdentifier": "guardian",
     "advancement": [
       {
-        "_id": "1Q0D7vYJW8AqlNKN",
+        "_id": "1vsdWEQUH4ty1Akf",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.x4IqvAQ5JwjQkyDW",
-            "Compendium.sw5e.archetypefeatures.ORbCsOWCvXXx8NoN",
-            "Compendium.sw5e.archetypefeatures.WqsQFAfakFKNH2ek",
-            "Compendium.sw5e.archetypefeatures.GJGFPdV7xuXFKj6i"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.x4IqvAQ5JwjQkyDW",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ORbCsOWCvXXx8NoN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.WqsQFAfakFKNH2ek",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.GJGFPdV7xuXFKj6i",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "4bJBp4k35h4Ul5rV",
+        "_id": "1uw0N915gTSA1oVt",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.2BoTfXnFD7dBiX8l"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.2BoTfXnFD7dBiX8l",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1JLFvR96giMxUBl4",
+        "_id": "1F7xcBKiqnG2Doft",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.dxmM7bx9S5pNSHtp"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.dxmM7bx9S5pNSHtp",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "1lgzOCyGZwWCrgHT",
+        "_id": "1TvOOAk0pro310HR",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.MCnskAoVOzPJIzSX"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.MCnskAoVOzPJIzSX",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
         "title": "Features"
+      },
+      {
+        "_id": "1t2qtj5bAdTaTExb",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "tool:astrotechsimplements",
+            "skills:tec"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -89,7 +129,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -97,10 +137,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959781,
-    "modifiedTime": 1684819093624,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689970,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!tte2PRr3ou7adFjZ"
 }

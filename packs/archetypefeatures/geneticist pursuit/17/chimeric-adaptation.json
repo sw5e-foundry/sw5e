@@ -16,49 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Geneticist Pursuit:</strong> 17th level</em></p>\n<p>Your genetic modifications have reached new heights. When you complete a short or long rest, you can choose one of the following features. When you undergo your mutagenic transformation, you also gain the benefits of the chosen feature for the duration. You can only have one of these features at a time.</p>\n<h3>Aspect of the Terentatek</h3>\n<p>You gain proficiency in Wisdom and Charisma saving throws. Additionally, you have advantage on saving throws against force powers, and when a creature within 30 feet of you casts a force power, you can use your reaction to move up to half your speed towards the creature. You must end this movement closer to the creature than you started. If you end this movement within 5 feet of the creature, you can make one melee attack against the creature (no action required).</p>\n<h3>Aspect of the Rancor</h3>\n<p>You gain proficiency in Strength and Constitution saving throws. Additionally, you gain immunity to the frightened condition, </p>\n<p>and when you deal damage with a weapon or unarmed strike, you can deal an additional [[/r 1d8]] damage of the same type as the weapon's damage.</p>\n<h3>Aspect of the Varactyl</h3>\n<p>You gain proficiency in Dexterity and Intelligence saving throws. Additionally, your speed increases by 10 feet, your attack rolls can't suffer from disadvantage, creatures can't have advantage on attack rolls against you, and each slowed level only reduces your speed by 5 feet, unless it would reduce your speed to 0.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scholar (Geneticist Pursuit) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -78,24 +84,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Scholar"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493958267,
-    "modifiedTime": 1685840600526,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368721096,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!yeqHFCjFYscQqYSr"
 }

@@ -16,95 +16,163 @@
   "system": {
     "description": {
       "value": "<h1>Zoologist Pursuit</h1>\n<p>Many academics develop an affinity for nature, studying the vast fauna that inhabit the different planets throughout the galaxy. Those scholars who choose the Zoologist Pursuit capitalize on their knowledge of animals, developing a strong bond with a companion with whom they gain an advantage on the battlefield.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Zoologist Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.IA4jl0o7ARMvjtP8]{Advantageous companion}</li>\n<li>@Compendium[sw5e.invocations.wq7lCp8vbXAUq9WW]{Holocam attachment}</li>\n<li>@Compendium[sw5e.invocations.m97kSOchAV1zVd84]{Neat tricks}</li>\n<li>@Compendium[sw5e.invocations.mQBpPMtKnRWNp682]{One big baddie}</li>\n<li>@Compendium[sw5e.invocations.y8Rfhv5OgKoNASbi]{Protective friend}</li>\n<li>@Compendium[sw5e.invocations.yShH3zQNRuA26GSz]{The more the merrier}</li>\n</ul>"
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "zoologistpursuit",
     "classIdentifier": "scholar",
     "advancement": [
       {
-        "_id": "TlqliKJmfOy1PJU8",
+        "_id": "1bYS7zwvnA6x2wBa",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.x7soWLW66lFNBZXi",
-            "Compendium.sw5e.archetypefeatures.Whhu09jrSxgAp2Bw"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.x7soWLW66lFNBZXi",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Whhu09jrSxgAp2Bw",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "14KYjhQoq9DbYOkh",
+        "_id": "1uquaTtV5eMJ1z4Y",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.XhiqRVGEwwXj2NNt"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.XhiqRVGEwwXj2NNt",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "16chKPcw2wbXGvTx",
+        "_id": "mdgBcLPEiar1JaKw",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.0Wx4XOpf0PtS4ce9"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.0Wx4XOpf0PtS4ce9",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "D5ExEcrPBb91zkrs",
+        "_id": "1BKGD8hewZEcOyml",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Vt6K2CCbLOvgSP04"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Vt6K2CCbLOvgSP04",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "FdXauYqGyoe1UZvb",
+        "_id": "lUEH9NVKN6G6EZ0I",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:ani"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
+      },
+      {
+        "_id": "1oSe8tWTK9og1xKg",
         "type": "ItemChoice",
         "configuration": {
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
-            "2": 2,
-            "3": 2,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "2": {
+              "count": 2,
+              "replacement": false
+            },
+            "3": {
+              "count": 2,
+              "replacement": false
+            },
+            "5": {
+              "count": 1,
+              "replacement": false
+            },
+            "9": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            },
+            "13": {
+              "count": 1,
+              "replacement": false
+            },
+            "17": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.IA4jl0o7ARMvjtP8",
-            "Compendium.sw5e.invocations.wq7lCp8vbXAUq9WW",
-            "Compendium.sw5e.invocations.m97kSOchAV1zVd84",
-            "Compendium.sw5e.invocations.mQBpPMtKnRWNp682",
-            "Compendium.sw5e.invocations.y8Rfhv5OgKoNASbi",
-            "Compendium.sw5e.invocations.yShH3zQNRuA26GSz"
+            {
+              "uuid": "Compendium.sw5e.invocations.IA4jl0o7ARMvjtP8"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.wq7lCp8vbXAUq9WW"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.m97kSOchAV1zVd84"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.mQBpPMtKnRWNp682"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.y8Rfhv5OgKoNASbi"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.yShH3zQNRuA26GSz"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -117,7 +185,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Zoologist Discoveries"
       }
     ],
@@ -128,7 +199,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -136,10 +207,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959763,
-    "modifiedTime": 1692480569230,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689718,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!da3qYY9MHsT7b8y6"
 }

@@ -8,11 +8,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> 3rd rank</em></p><p><span style=\"font-family:'Open Sans', sans-serif\">You adopt a particular style of gunning as your specialty. Choose one of the Gunning Style options options, detailed below. You can select this venture multiple times. You can't take a Gunning Style option more than once, even if you later get to choose again.</span></p><h4>CANNONEER</h4><p>You are skilled with laser cannons. While you are firing a primary weapon, you gain a +2 bonus to damage rolls and save DCs.</p><h4>HEAVY GUNNER</h4><p>You are skilled with railguns and turbolasers. While you are firing a secondary weapon, you gain a +2 bonus to attack rolls and save DCs.</p><h4>PAYLOAD DELIVERY</h4><p>You are skilled with mines, missiles, rockets, and other explosive weapons. When you roll a 1 or 2 on a damage die for a tertiary or quaternary weapon, you can reroll the die and must use the new roll, even if the new roll is a 1 or a 2.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -23,11 +24,13 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -38,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": null,
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,8 +82,15 @@
       }
     },
     "prerequisites": [
-      "3rd rank"
-    ]
+      null
+    ],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -88,10 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494021237,
-    "modifiedTime": 1685840671074,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552921183,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!2PyiTCJJuJyFIqF6"
 }

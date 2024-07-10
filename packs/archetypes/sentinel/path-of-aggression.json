@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Path of Aggression</h1>\n<p>From the murky depths of the dark side comes seething fury. Those sentinels who follow the Path of Aggression charge their weapon with lightning, culminating in a massive discharge that can ravage their opponents.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "pathofaggression",
     "classIdentifier": "sentinel",
     "advancement": [
       {
-        "_id": "vGTUGYzWZYEIND59",
+        "_id": "gMGkDppYgPBj7v0p",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Jc07SykJ539Brb74",
-            "Compendium.sw5e.archetypefeatures.yQjjOO38mom8rzKe"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Jc07SykJ539Brb74",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.yQjjOO38mom8rzKe",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "vTWdTJAobFB1uRRr",
+        "_id": "3WYuZ6HWwEknXnAs",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.FYQTWy0LiZHCGtxt"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.FYQTWy0LiZHCGtxt",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "4IKzaE58mNx1507l",
+        "_id": "rMu1pVHL1RxZShZr",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.PO8HJonMjIBf22vq"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.PO8HJonMjIBf22vq",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "1jqFFynmau0V1d0W",
+        "_id": "1c0HPL3AD9gG1iVb",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.shHFJ7KWhcnoOrQF"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.shHFJ7KWhcnoOrQF",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959781,
-    "modifiedTime": 1684819093624,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689978,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!u9TZAZPRiEgjOMQP"
 }

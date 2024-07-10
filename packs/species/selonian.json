@@ -1,11 +1,5 @@
 {
-  "_id": "SxjjzJxv1drg0kIN",
   "name": "Selonian",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Selonian.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.291126+00:00",
@@ -13,44 +7,126 @@
       "uid": "Species.name-selonian"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Selonian.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>The selonians are carnivores who are believed to have descended from aquatic mammals. Their bodies are covered by a sleek fur and they normally do not wear clothing. However, when working or visiting offworld, they wear appropriate outfits. Their long bodies are equally comfortable walking on either two or four legs. Their long tails serve as a counterbalance for their bodies when standing upright. These tails are equally capable of being used as potent bludgeoning weapons in combat. At the end of their paw-like hands are retractable claws which not only gives them the capacity to dig but also makes them excellent climbers. They have long pointed faces with bristly whiskers as well as long teeth. Most selonians born are infertile females. One in every hundred are male, and one in every five hundred are fertile females.</p>\n<h2>Society and Culture</h2>\n<p>Despite the massive starship traffic to Corellia, many visitors and even native Corellians know very little of the selonians and their distinctive unique alien culture. In mindset, they are a thoroughly grounded and serious race who are primarily concerned with the safety of their people. This means that the protection of their family dens and their species as a whole was a chief concern. The basis for this line of thinking is because they viewed that the needs of the society outweighed the needs of the individual. To those unaware of the deeper intricacies of the race, the selonians appear as an outgoing, friendly and charitable species. However, their interests rarely go beyond securing the good of their respective den.</p>\n<h2>Names</h2>\n<p>Selonian use punctual names with no surnames.</p>\n<p><strong>Male Names.</strong> Duldayd, Gov, Krez, Qaran</p>\n<p><strong>Female Names.</strong> Chu, Driacnear, Fiircasa, Shilis</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "selonian",
-    "advancement": [
-      {
-        "_id": "1l2OnvveOrucEuzz",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.FpNyvw5XDJEmNNYZ",
-            "Compendium.sw5e.speciesfeatures.fQCdOjz6bwWvLALc",
-            "Compendium.sw5e.speciesfeatures.uSkaXo7rwWhtcTzQ",
-            "Compendium.sw5e.speciesfeatures.ZsrhuOJcIc9Y9P2Z",
-            "Compendium.sw5e.speciesfeatures.sq8RpfQdkKBkofUb",
-            "Compendium.sw5e.speciesfeatures.pInGTfo7h2c5ZkHa",
-            "Compendium.sw5e.speciesfeatures.0jAMkudd76iYNPU7",
-            "Compendium.sw5e.speciesfeatures.9Z7I4sBLLEFXNZKw",
-            "Compendium.sw5e.speciesfeatures.PXmudSwUvU8jKuK6",
-            "Compendium.sw5e.speciesfeatures.gGZ4wbTNJExUcSer",
-            "Compendium.sw5e.speciesfeatures.hW8uUL79MJczFKAQ"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 35,
+      "climb": 35,
+      "swim": 35,
+      "burrow": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "c3uQKudo6pa1NiDs",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FpNyvw5XDJEmNNYZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fQCdOjz6bwWvLALc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.uSkaXo7rwWhtcTzQ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZsrhuOJcIc9Y9P2Z",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.sq8RpfQdkKBkofUb",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.pInGTfo7h2c5ZkHa",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.0jAMkudd76iYNPU7",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9Z7I4sBLLEFXNZKw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PXmudSwUvU8jKuK6",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.gGZ4wbTNJExUcSer",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hW8uUL79MJczFKAQ",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1N78rgAtBJoa1God",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "str": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1gNh1QlSzFaR1y3x",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Brown"
     },
@@ -61,7 +137,7 @@
       "value": "Black"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Long pointed faces with whiskers"
@@ -83,17 +159,31 @@
     },
     "slanguage": {
       "value": "Mandaba"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "SvHxR7ipoJzDBrC0",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002099,
-    "modifiedTime": 1692402505741,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797070,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!SvHxR7ipoJzDBrC0"
 }

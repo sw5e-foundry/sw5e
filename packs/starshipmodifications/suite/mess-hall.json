@@ -1,5 +1,4 @@
 {
-  "_id": "nIEXgLLWL2AfL1la",
   "name": "Mess Hall",
   "type": "starshipmod",
   "flags": {},
@@ -7,40 +6,40 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>This suite comes with a combined kitchen and dining area, complete with a chef's kit, that can accommodate a number of civilians, crew members, or troopers equal to twice the ship's suite capacity by size, as shown in the @JournalEntry[Mnvw9iBw8gxgfCXw]{Starship Size Suite Capacity}&nbsp;table. While utilizing this tool, you can add your proficiency bonus to checks you make if you do not already do so. If you already add your proficiency bonus to checks you make, you instead add double your proficiency bonus. If you already double your proficiency bonus to checks you make, you instead add half of your governing ability modifier (rounded down, minimum of +1), in addition to your ability modifier.</p>\n<p>Additionally, when a creature completes a long rest involving this suite, they regain two additional Hit Dice and have advantage on Constitution saving throws against disease for the next 24 hours.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p>This suite comes with dining areas, that can accommodate a number of civilians, crewmembers, or troopers equal to twice the ship's suite capacity by size, as shown in the Starship Size Suite Capacity table, as well as kitchens equal up to one-fourth the ship's suite capacity by size (minimum of one), as shown in the Starship Size Suite Capacity table. Kitchens are equipped with an integrated brewer's kit and a chef's kit.</p><p>While making a check with any of these tools in a kitchen, you can add your proficiency bonus to checks you make if you do not already do so. If you already add your proficiency bonus to checks you make, you instead add double your proficiency bonus. If you already double your proficiency bonus to checks you make, you instead add half of your governing ability modifier (rounded down, minimum of +1), in addition to your ability modifier.</p><p>Additionally, while crafting in a kitchen using the integrated tools, the total market value you can craft per day increases by an amount of credits equal to 5 x your character level. If you add double your proficiency bonus to checks you make with them, the market value increases by 10 x your character level.</p><p>Lastly, when a creature completes a long rest involving this suite, they regain two additional Hit Dice and have advantage on Constitution saving throws against disease for the next 24 hours.</p>",
+      "chat": ""
     },
-    "requirements": "",
-    "source": {
-      "value": "SotG"
-    },
+    "source": {},
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -51,16 +50,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -76,18 +76,11 @@
       "dc": null,
       "scaling": "power"
     },
-    "recharge": {
-      "charged": false,
-      "value": null
-    },
-    "system": {
-      "value": "Suite"
-    },
     "grade": {
-      "value": "NA"
+      "value": 0
     },
-    "basecost": {
-      "value": "5000"
+    "baseCost": {
+      "value": null
     },
     "prerequisites": {
       "value": ""
@@ -95,19 +88,36 @@
     "free": {
       "slot": false,
       "suite": false
-    }
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "Suite",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494018733,
+    "modifiedTime": 1720552915781,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "TOGzNgkMThRfERAT",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "folder": null,
-  "sort": 0,
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
-    "createdTime": 1674494018733,
-    "modifiedTime": 1685840666208,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+  "_key": "!items!TOGzNgkMThRfERAT"
 }

@@ -1,16 +1,25 @@
-import SystemDataModel from "../abstract.mjs";
+import { filteredKeys } from "../../utils.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import EquippableItemTemplate from "./templates/equippable-item.mjs";
+import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
+import ItemPropertiesTemplate from "./templates/item-properties.mjs";
+import ItemTypeTemplate from "./templates/item-type.mjs";
 import MountableTemplate from "./templates/mountable.mjs";
+import ItemTypeField from "./fields/item-type-field.mjs";
 import ModdableTemplate from "./templates/moddable.mjs";
-import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
+
+const { NumberField, StringField, SchemaField, ArrayField } = foundry.data.fields;
 
 /**
  * Data definition for Weapon items.
  * @mixes ItemDescriptionTemplate
+ * @mixes ItemPropertiesTemplate
+ * @mixes ItemTypeTemplate
+ * @mixes IdentifiableTemplate
  * @mixes PhysicalItemTemplate
  * @mixes EquippableItemTemplate
  * @mixes ActivatedEffectTemplate
@@ -18,18 +27,21 @@ import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
  * @mixes MountableTemplate
  * @mixes ModdableTemplate
  *
- * @property {string} weaponType          Weapon category as defined in `SW5E.weaponTypes`.
- * @property {string} baseItem            Base weapon as defined in `SW5E.weaponIds` for determining proficiency.
+ * @property {number} magicalBonus        Magical bonus added to attack & damage rolls.
+ * @property {string} weaponClass         Weapon class as defined in `SW5E.weaponClasses`.
  * @property {object} ammo
  * @property {string} ammo.target         Id of the selected ammo item.
- * @property {string} ammo.value          Current ammount of loaded ammo.
- * @property {string} ammo.use            Ammount of ammo spent per shot.
+ * @property {string} ammo.value          Current amount of loaded ammo.
+ * @property {string} ammo.use            Amount of ammo spent per shot.
  * @property {Array<string>} ammo.types   Types of ammo this ammo can accept.
- * @property {object} properties          Mapping of various equipment property booleans and numbers.
  * @property {number} proficient          Does the weapon's owner have proficiency?
+ * @property {string} firingArc           In which direction can the weapon fire? Options defined in `SW5E.weaponFiringArcs`.
  */
-export default class WeaponData extends SystemDataModel.mixin(
+export default class WeaponData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
+  ItemPropertiesTemplate,
+  ItemTypeTemplate,
+  IdentifiableTemplate,
   PhysicalItemTemplate,
   EquippableItemTemplate,
   ActivatedEffectTemplate,
@@ -39,59 +51,79 @@ export default class WeaponData extends SystemDataModel.mixin(
 ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      weaponType: new foundry.data.fields.StringField({
+    return this.mergeSchema( super.defineSchema(), {
+      type: new ItemTypeField( { value: "simpleM", baseItem: false }, { label: "SW5E.ItemWeaponType" } ),
+      magicalBonus: new NumberField( { min: 0, integer: true, label: "SW5E.MagicalBonus" } ),
+      weaponClass: new StringField( {
         required: true,
-        initial: "simpleM",
-        label: "SW5E.ItemWeaponType"
-      }),
-      baseItem: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.ItemWeaponBase" }),
-      ammo: new foundry.data.fields.SchemaField(
+        blank: true,
+        label: "SW5E.ItemWeaponClass"
+      } ),
+      ammo: new SchemaField(
         {
-          target: new foundry.data.fields.StringField({
+          target: new StringField( {
             required: true,
             nullable: true,
             label: "SW5E.WeaponAmmoSelected"
-          }),
-          value: new foundry.data.fields.NumberField({
+          } ),
+          value: new NumberField( {
             required: true,
             nullable: true,
             label: "SW5E.WeaponAmmoLoaded"
-          }),
-          use: new foundry.data.fields.NumberField({ required: true, nullable: true, label: "SW5E.WeaponAmmoUse" }),
-          types: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
+          } ),
+          use: new NumberField( { required: true, nullable: true, label: "SW5E.WeaponAmmoUse" } ),
+          types: new ArrayField( new StringField(), {
             required: true,
             initial: ["powerCell"],
             label: "SW5E.WeaponAmmoValid"
-          })
+          } )
         },
         {}
       ),
-      properties: makeItemProperties(CONFIG.SW5E.weaponProperties, {
-        required: true,
-        label: "SW5E.ItemWeaponProperties"
-      }),
-      proficient: new foundry.data.fields.NumberField({
+      proficient: new NumberField( {
         required: true,
         min: 0,
         max: 1,
         integer: true,
         initial: null,
         label: "SW5E.ProficiencyLevel"
-      })
-    });
+      } ),
+      firingArc: new StringField( {
+        required: true,
+        blank: true,
+        label: "SW5E.ItemFiringArc"
+      } )
+    } );
   }
 
   /* -------------------------------------------- */
-  /*  Migrations                                  */
+
+  /** @inheritdoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
+    enchantable: true,
+    inventoryItem: true,
+    inventoryOrder: 100
+  }, { inplace: false } ) );
+
+  /* -------------------------------------------- */
+  /*  Data Migrations                             */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    super.migrateData(source);
-    WeaponData.#migrateProficient(source);
-    WeaponData.#migrateWeaponType(source);
-    migrateItemProperties(source.properties, CONFIG.SW5E.weaponProperties);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    WeaponData.#migrateProficient( source );
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Migrate the properties object into a set.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static #migratePropertiesData( source ) {
+    if ( foundry.utils.getType( source.properties ) !== "Object" ) return;
+    source.properties = filteredKeys( source.properties );
   }
 
   /* -------------------------------------------- */
@@ -100,18 +132,37 @@ export default class WeaponData extends SystemDataModel.mixin(
    * Migrate the proficient field to convert boolean values.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateProficient(source) {
-    if (typeof source.proficient === "boolean") source.proficient = Number(source.proficient);
+  static #migrateProficient( source ) {
+    if ( typeof source.proficient === "boolean" ) source.proficient = Number( source.proficient );
+  }
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    this.type.label = CONFIG.SW5E.weaponTypes[this.type.value] ?? game.i18n.localize( CONFIG.Item.typeLabels.weapon );
   }
 
   /* -------------------------------------------- */
 
-  /**
-   * Migrate the weapon type.
-   * @param {object} source  The candidate source data from which the model will be constructed.
-   */
-  static #migrateWeaponType(source) {
-    if (source.weaponType === null) source.weaponType = "simpleVW";
+  /** @inheritDoc */
+  prepareFinalData() {
+    this.prepareFinalActivatedEffectData();
+    this.prepareFinalEquippableData();
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async getFavoriteData() {
+    return foundry.utils.mergeObject( await super.getFavoriteData(), {
+      subtitle: CONFIG.SW5E.itemActionTypes[this.actionType],
+      modifier: this.parent.labels.modifier,
+      range: this.range
+    } );
   }
 
   /* -------------------------------------------- */
@@ -123,28 +174,38 @@ export default class WeaponData extends SystemDataModel.mixin(
    * @type {string[]}
    */
   get chatProperties() {
-    return [CONFIG.SW5E.weaponTypes[this.weaponType]];
+    return [
+      this.type.label,
+      this.isMountable ? ( this.parent.labels?.armor ?? null ) : null
+    ];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Properties displayed on the item card.
+   * @type {string[]}
+   */
+  get cardProperties() {
+    return [
+      this.isMountable ? ( this.parent.labels?.armor ?? null ) : null
+    ];
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
   get _typeAbilityMod() {
-    if (["simpleB", "martialB"].includes(this.weaponType)) return "dex";
-
-    const abilities = this.parent?.actor?.system.abilities;
-    if (this.properties.fin && abilities) {
-      return (abilities.dex?.mod ?? 0) >= (abilities.str?.mod ?? 0) ? "dex" : "str";
-    }
-
-    return null;
+    const { str, dex } = this.parent?.actor?.system.abilities ?? {};
+    if ( this.properties.has( "fin" ) && str && dex ) return ( dex.mod > str.mod ) ? "dex" : "str";
+    return { simpleM: "str", martialM: "str", simpleB: "dex", martialB: "dex" }[this.type.value] ?? null;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
   get _typeBaseCriticalThreshold() {
-    return Math.max(15, 20 - (this.properties.ken ?? 0));
+    return Math.max( 15, 20 - this.getProperty( "ken", 0 ) );
   }
 
   /* -------------------------------------------- */
@@ -162,7 +223,7 @@ export default class WeaponData extends SystemDataModel.mixin(
    * @type {boolean}
    */
   get isMountable() {
-    return this.weaponType === "siege";
+    return this.type.value === "siege";
   }
 
   /* -------------------------------------------- */
@@ -172,7 +233,17 @@ export default class WeaponData extends SystemDataModel.mixin(
    * @type {boolean}
    */
   get isStarshipWeapon() {
-    return this.weaponType in CONFIG.SW5E.weaponStarshipTypes;
+    return this.type.value in CONFIG.SW5E.weaponStarshipTypes;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this a starship item.
+   * @type {boolean}
+   */
+  get isStarshipItem() {
+    return this.isStarshipWeapon;
   }
 
   /* -------------------------------------------- */
@@ -182,17 +253,17 @@ export default class WeaponData extends SystemDataModel.mixin(
    * @returns {number}
    */
   get proficiencyMultiplier() {
-    if ( Number.isFinite(this.proficient) ) return this.proficient;
+    if ( Number.isFinite( this.proficient ) ) return this.proficient;
     const actor = this.parent.actor;
     if ( !actor ) return 0;
     // NPCs and Starships are always considered proficient with any weapon in their stat block.
     if ( actor.type === "npc" || this.isStarshipWeapon ) return 1;
     const config = CONFIG.SW5E.weaponProficienciesMap;
-    const itemProf = config[this.weaponType];
+    const itemProf = config[this.type.value];
     const actorProfs = actor.system.traits?.weaponProf?.value ?? new Set();
-    const natural = this.weaponType === "natural";
-    const improvised = (this.weaponType === "improv") && !!actor.getFlag("sw5e", "tavernBrawlerFeat");
-    const isProficient = natural || improvised || actorProfs.has(itemProf) || actorProfs.has(this.baseItem);
-    return Number(isProficient);
+    const natural = this.type.value === "natural";
+    const improvised = ( this.type.value === "improv" ) && !!actor.getFlag( "sw5e", "tavernBrawlerFeat" );
+    const isProficient = natural || improvised || actorProfs.has( itemProf ) || actorProfs.has( this.baseItem );
+    return Number( isProficient );
   }
 }

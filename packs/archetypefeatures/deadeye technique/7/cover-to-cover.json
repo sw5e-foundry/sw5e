@@ -15,125 +15,58 @@
   },
   "system": {
     "description": {
-      "value": "<p><em><strong>Deadeye Technique:</strong> 7th level</em></p>\n<p>Attack rolls made against you on your turn are made with disadvantage.</p>\n<h4>Deadeye Superiority</h4>\n<p>|Level|Maneuvers Known|Superiority Dice Quantity|Superiority Dice Size|</p>\n<p>|:--:|:--:|:--:|:--:|</p>\n<p>| 3rd| 2|2| [[/r d4]]|</p>\n<p>| 4th| 2|2| [[/r d4]]|</p>\n<p>| 5th| 4|3| [[/r d6]]|</p>\n<p>| 6th| 4|3| [[/r d6]]|</p>\n<p>| 7th| 5|3| [[/r d6]]|</p>\n<p>| 8th| 5|3| [[/r d6]]|</p>\n<p>| 9th| 6|4| [[/r d8]]|</p>\n<p>|10th| 6|4| [[/r d8]]|</p>\n<p>|11th| 7|4| [[/r d8]]|</p>\n<p>|12th| 7|4| [[/r d8]]|</p>\n<p>|13th| 9|5|[[/r d10]]|</p>\n<p>|14th| 9|5|[[/r d10]]|</p>\n<p>|15th|10|5|[[/r d10]]|</p>\n<p>|16th|10|5|[[/r d10]]|</p>\n<p>|17th|11|6|[[/r d12]]|</p>\n<p>|18th|11|6|[[/r d12]]|</p>\n<p>|19th|12|6|[[/r d12]]|</p>\n<p>|20th|12|6|[[/r d12]]|</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p><em><strong>Deadeye Technique:</strong> 7th level</em></p>\n<p>Attack rolls made against you on your turn are made with disadvantage.</p>",
+      "chat": ""
     },
     "requirements": "Scout (Deadeye Technique) 7",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
-      "parts": [
-        [
-          "1d4",
-          ""
-        ],
-        [
-          "1d4",
-          ""
-        ],
-        [
-          "1d6",
-          ""
-        ],
-        [
-          "1d6",
-          ""
-        ],
-        [
-          "1d6",
-          ""
-        ],
-        [
-          "1d6",
-          ""
-        ],
-        [
-          "1d8",
-          ""
-        ],
-        [
-          "1d8",
-          ""
-        ],
-        [
-          "1d8",
-          ""
-        ],
-        [
-          "1d8",
-          ""
-        ],
-        [
-          "1d10",
-          ""
-        ],
-        [
-          "1d10",
-          ""
-        ],
-        [
-          "1d10",
-          ""
-        ],
-        [
-          "1d10",
-          ""
-        ],
-        [
-          "1d12",
-          ""
-        ],
-        [
-          "1d12",
-          ""
-        ],
-        [
-          "1d12",
-          ""
-        ],
-        [
-          "1d12",
-          ""
-        ]
-      ],
+      "parts": [],
       "versatile": ""
     },
     "formula": "",
@@ -146,24 +79,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Scout"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493957705,
-    "modifiedTime": 1685840599810,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368694953,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!PjOShcmujgdSM6J3"
 }

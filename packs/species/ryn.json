@@ -1,8 +1,214 @@
 {
-  "_id": "CIJAnH2n8sZN4X7n",
   "name": "Ryn",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.290127+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-ryn"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Ryn.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Their homeworld long lost from memory and time, the ryn are a humanoid race of musicians, vagabonds and travelers. The ryn's bodies are covered in soft, short fur, with a head of white hair which is matched by a tuft of hair at the end of their long prehensile tails, excellent for grasping things. Very uniquely ryn in nature, are their beak-like noses that contain fluted holes. These holes allow the ryn to play their 'beaks' like flutes. This talent has been used to communicate between ryn and has uniquely been observed in communication with droids.</p>\n<h2>Society and Culture</h2>\n<p>Wanderlust consumes the ryn. The ryn are a nomadic species, their original homeworld forgotten, even to them. They cannot abide confinement and constraint, and they itch to move on shortly after they arrive in a new place. Due to their homelessness, musical talent, natural secrecy, and avoidance of written records, ryn developed a nomadic culture and a reputation for confidence games, leaving many species prejudiced against them. In some sectors it is legal to enslave or hunt ryn. Their language is outlawed in many locations, and a large number of ryn women are used as slave breeding stock. They claim that sabaac, the popular card game that took the place of Pazaak in terms of card game prominence, is derived from their use of it as a fortune telling tool in their auguries. These auguries are today favored by hutts, who have a superstitious belief in the card tellings. A peculiar habit is that a ryn cannot sleep in the same location twice.</p>\n<h2>Names</h2>\n<p>Ryn names have a very melodic tone, taking cues from many different languages from across the galaxy. Ryn do not use surnames.</p>\n<p><strong>Male Names.</strong> Corfat, Dirygat, Garya, Nemagary</p>\n<p><strong>Female Names.</strong> Cogesama, Giani, Gypopha, Simeti</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "ryn",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1gdRtqOrev8QOcUp",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.p0rOPFNSs5JPIQEq",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3BRoeeua3ObFl5mB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Ye948GEGDFrSiwMT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.R1wguouIzcp2ftS0",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.uYC4r4w8gWELCDJ3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yCM0EjU2ghzClEyi",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.5TxYgP25HWBKHRC4",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.0DUltIztjECRc4fT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wC84I0P0rXLa5jlh",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.kwwC2DT8e2HBDFc5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Rp7G57Osk47hXU02",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.H5QKPZ9wC1Rg3UnI",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1k6oolEexnbzLEKu",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 1
+          },
+          "points": 2,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "7fxrabSNiT2BOwQs",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "QDn1LSUnsK91Pg39",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:game:*"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "skills:lor",
+                "skills:sur"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "tool:music:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:prf"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Blue, black, green, purple"
+    },
+    "hairColorOptions": {
+      "value": "Light brown to white"
+    },
+    "eyeColorOptions": {
+      "value": "Amber, blue, brown, or green"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Long tails, beak-like noses"
+    },
+    "heightAverage": {
+      "value": "4'4\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "75 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Unknown"
+    },
+    "slanguage": {
+      "value": "Ryn"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "XGMDXcDtlSfQQgFZ",
@@ -11,25 +217,19 @@
           "key": "system.details.species",
           "value": "Ryn",
           "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
           "value": "30",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.toolProf.value",
@@ -79,105 +279,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Ryn.webp",
-      "label": "Ryn",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Ryn",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!su7eR3PxCfpe7tvM.XGMDXcDtlSfQQgFZ"
     }
   ],
+  "_id": "su7eR3PxCfpe7tvM",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.290127+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-ryn"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Their homeworld long lost from memory and time, the ryn are a humanoid race of musicians, vagabonds and travelers. The ryn's bodies are covered in soft, short fur, with a head of white hair which is matched by a tuft of hair at the end of their long prehensile tails, excellent for grasping things. Very uniquely ryn in nature, are their beak-like noses that contain fluted holes. These holes allow the ryn to play their 'beaks' like flutes. This talent has been used to communicate between ryn and has uniquely been observed in communication with droids.</p>\n<h2>Society and Culture</h2>\n<p>Wanderlust consumes the ryn. The ryn are a nomadic species, their original homeworld forgotten, even to them. They cannot abide confinement and constraint, and they itch to move on shortly after they arrive in a new place. Due to their homelessness, musical talent, natural secrecy, and avoidance of written records, ryn developed a nomadic culture and a reputation for confidence games, leaving many species prejudiced against them. In some sectors it is legal to enslave or hunt ryn. Their language is outlawed in many locations, and a large number of ryn women are used as slave breeding stock. They claim that sabaac, the popular card game that took the place of Pazaak in terms of card game prominence, is derived from their use of it as a fortune telling tool in their auguries. These auguries are today favored by hutts, who have a superstitious belief in the card tellings. A peculiar habit is that a ryn cannot sleep in the same location twice.</p>\n<h2>Names</h2>\n<p>Ryn names have a very melodic tone, taking cues from many different languages from across the galaxy. Ryn do not use surnames.</p>\n<p><strong>Male Names.</strong> Corfat, Dirygat, Garya, Nemagary</p>\n<p><strong>Female Names.</strong> Cogesama, Giani, Gypopha, Simeti</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "ryn",
-    "advancement": [
-      {
-        "_id": "fbESaU9SlpOHWZYN",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.p0rOPFNSs5JPIQEq",
-            "Compendium.sw5e.speciesfeatures.3BRoeeua3ObFl5mB",
-            "Compendium.sw5e.speciesfeatures.Ye948GEGDFrSiwMT",
-            "Compendium.sw5e.speciesfeatures.R1wguouIzcp2ftS0",
-            "Compendium.sw5e.speciesfeatures.uYC4r4w8gWELCDJ3",
-            "Compendium.sw5e.speciesfeatures.yCM0EjU2ghzClEyi",
-            "Compendium.sw5e.speciesfeatures.5TxYgP25HWBKHRC4",
-            "Compendium.sw5e.speciesfeatures.0DUltIztjECRc4fT",
-            "Compendium.sw5e.speciesfeatures.wC84I0P0rXLa5jlh",
-            "Compendium.sw5e.speciesfeatures.kwwC2DT8e2HBDFc5",
-            "Compendium.sw5e.speciesfeatures.Rp7G57Osk47hXU02",
-            "Compendium.sw5e.speciesfeatures.H5QKPZ9wC1Rg3UnI"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Blue, black, green, purple"
-    },
-    "hairColorOptions": {
-      "value": "Light brown to white"
-    },
-    "eyeColorOptions": {
-      "value": "Amber, blue, brown, or green"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Long tails, beak-like noses"
-    },
-    "heightAverage": {
-      "value": "4'4\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "75 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Unknown"
-    },
-    "slanguage": {
-      "value": "Ryn"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002072,
-    "modifiedTime": 1692402505738,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797713,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!su7eR3PxCfpe7tvM"
 }

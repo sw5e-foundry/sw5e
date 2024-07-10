@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:57.9474436+00:00",
+      "timestamp": "2023-05-30T20:15:42.7249456+00:00",
       "importer_version": 3,
       "uid": "Feature.name-rallying_cry.source-archetype.sourceName-shield_specialist.level-7"
     }
@@ -16,51 +16,62 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Shield Specialist:</strong> 7th level</em></p>\n<p>When you use your Second Wind feature, you can choose up to three allies within 60 feet of you that can see or hear you. Each ally regains hit points equal to your fighter level.</p>\n<p>You can choose an additional ally at 9th, 13th, and 17th level.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Fighter (Shield Specialist) 7",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
-    "actionType": "other",
-    "attackBonus": 0,
+    "actionType": "heal",
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "@classes.fighter.levels",
+          "healing"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
@@ -73,24 +84,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Fighter"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493958062,
-    "modifiedTime": 1685840600261,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368711103,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!nhdJJnUPWYmkEQid"
 }

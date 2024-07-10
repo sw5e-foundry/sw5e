@@ -7,12 +7,13 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "When you are the target of the Interfere action and are forced to make a Wisdom (Scan) check, if you succeed on the contest, you have advantage on the next Charisma (Interfere) check you make before the end of your next turn.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "When you are the target of the Interfere action and are forced to make a Wisdom (Scan) check, if you succeed on the contest, you have advantage on the next Charisma (Interfere) check you make before the end of your next turn.",
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -23,11 +24,13 @@
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -38,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": null,
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -77,7 +81,14 @@
         "turn": null
       }
     },
-    "prerequisites": []
+    "prerequisites": [],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -86,10 +97,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494021255,
-    "modifiedTime": 1685840671127,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552921375,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!TkdGlKE4PQJmJ5f9"
 }

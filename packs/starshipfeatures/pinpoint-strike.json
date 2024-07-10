@@ -8,11 +8,12 @@
   "system": {
     "description": {
       "value": "<p>Also at 1st tier, your starship gains the ability to slip underneath the shields of an enemy ship.</p><p>When your ship occupies the same square occupied by a target ship and the crew member at the helm makes an attack roll, as a reaction, they can, before rolling the attack, roll a Pinpoint Strike die, which is a [[/r 1d4]], and add it to the attack roll. If the attack requires a saving throw instead, you may subtract the Pinpoint Strike die from the target's save result. On a hit or a failed save, the attack deals normal damage that bypasses any shields and directly hits the hull of the target ship. This feature can only be used once per round.</p><p>Your ship's Pinpoint Strike die changes when it reaches certain tiers. The die becomes a [[/r 1d6]] at 2nd tier, a [[/r 1d8]] at 3rd tier, a [[/r 1d10]] at 4th tier, and a [[/r 1d12]] at 5th tier.</p><p>This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship recharges.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
@@ -23,11 +24,13 @@
       "units": "round"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -38,16 +41,17 @@
       "value": null,
       "max": "@details.tier",
       "per": "recharge",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": "1d((2*@details.tier)+2)",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -77,8 +81,16 @@
         "turn": null
       }
     },
-    "size": "Small",
-    "tier": "1"
+    "attack": {
+      "bonus": "1d((2*@details.tier)+2)",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -87,10 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.5",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494017905,
-    "modifiedTime": 1684688172147,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552913476,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!5izWUYBCKNHqUTg6"
 }

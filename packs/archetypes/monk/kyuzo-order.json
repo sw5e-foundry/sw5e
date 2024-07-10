@@ -16,67 +16,103 @@
   "system": {
     "description": {
       "value": "<h1>Kyuzo Order</h1>\n<p>Monks of the Kyuzo Order turn weapon throwing into a true art form. Inspired by the skill of native kyuzo wielding their war helmets as both shield and weapon, these monks utilize any thrown object they can find to defend themselves and others while they attack enemies from angles both surprising and devastating.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "kyuzoorder",
     "classIdentifier": "monk",
     "advancement": [
       {
-        "_id": "cqDXyHpPBEa1teiE",
+        "_id": "1JqNH9P9OUkeRZvV",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Dw0pSUiZm534NIFz"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Dw0pSUiZm534NIFz",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "RKLp0foRCSua4JzB",
+        "_id": "sohv1n7EWoyzE9r0",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.oE2QLP3wxeTQ8acs"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.oE2QLP3wxeTQ8acs",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "dkaWeGjgjAs1DboP",
+        "_id": "YCU4zlSiCFODFxGM",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.HoXR7eP670qd85Q7"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.HoXR7eP670qd85Q7",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "7EuHcpkDTopOuCW1",
+        "_id": "1OTj2Xsp61rhEUtW",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.CT1EKxMq7XkNmKDB"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.CT1EKxMq7XkNmKDB",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
+      },
+      {
+        "_id": "1hxSbRh0Km2m1ikL",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "weapon:svb:*",
+                "weapon:mvb:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -86,7 +122,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -94,10 +130,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959734,
-    "modifiedTime": 1684819093622,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689321,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!L6OSpZ967QvVxhfd"
 }

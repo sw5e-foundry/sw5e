@@ -3,7 +3,44 @@
   "name": "One with the Force",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Class%20Features/CSLR-Action.webp",
-  "effects": [],
+  "effects": [
+    {
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/CSLR-Action.webp",
+      "origin": "Compendium.sw5e.classfeatures.Item.SRvdjRxU3cpcEdcw",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "One with the Force",
+      "_id": "9Q7CRnMUso8f5CN5",
+      "changes": [
+        {
+          "key": "system.abilities.wis.max",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        },
+        {
+          "key": "system.abilities.wis.value",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!SRvdjRxU3cpcEdcw.9Q7CRnMUso8f5CN5"
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -21,49 +58,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Consular:</strong> 20th level</em></p>\n<p>Your attunement to the Force is absolute. Your Wisdom or Charisma score increases by 4, and your maximum for this score increases by 4. Additionally, you gain mastery over a single force power, and can cast it with little effort. Choose one 3rd-level force power that you know as your signature power. You can cast it once at 3rd level without expending force points. When you do so, you can't do so again until you finish a short or long rest.</p>\n<p>If you want to cast it at a higher level, you must expend force points as normal.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Consular 20",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -88,23 +131,27 @@
         "turn": null
       }
     },
-    "className": null,
-    "armorproperties": {
-      "parts": []
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "weaponproperties": {
-      "parts": []
-    }
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493962321,
-    "modifiedTime": 1685840608590,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368727911,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!SRvdjRxU3cpcEdcw"
 }

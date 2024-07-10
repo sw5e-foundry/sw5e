@@ -3,80 +3,131 @@
   "name": "Armor Expert",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Feats/ArmorExpert.webp",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Armor Expert - Light Armor Prof",
+      "icon": "systems/sw5e/packs/Icons/Feats/ArmorExpert.webp",
+      "origin": "Compendium.sw5e.feats.Item.TVHebhZpaHYvZifT",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "2pC4zqFBjb1Qo0dq",
+      "changes": [
+        {
+          "key": "system.traits.armorProf.value",
+          "mode": 2,
+          "value": "lgt",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!TVHebhZpaHYvZifT.2pC4zqFBjb1Qo0dq"
+    },
+    {
+      "name": "Armor Expert - Light Armor Effect",
+      "icon": "systems/sw5e/packs/Icons/Feats/ArmorExpert.webp",
+      "origin": "Compendium.sw5e.feats.Item.TVHebhZpaHYvZifT",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": true,
+      "_id": "NJw9puV3IveuaU8j",
+      "changes": [
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 2,
+          "value": "5",
+          "priority": 5
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!TVHebhZpaHYvZifT.NJw9puV3IveuaU8j"
+    },
+    {
+      "name": "Armor Expert - Medium Armor Prof",
+      "icon": "systems/sw5e/packs/Icons/Feats/ArmorExpert.webp",
+      "origin": "Compendium.sw5e.feats.Item.TVHebhZpaHYvZifT",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": true,
+      "_id": "6m6SxonZ0nLrBrCe",
+      "changes": [
+        {
+          "key": "system.traits.armorProf.value",
+          "mode": 2,
+          "value": "med",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!TVHebhZpaHYvZifT.6m6SxonZ0nLrBrCe"
+    },
+    {
+      "name": "Armor Expert - Heavy Armor Prof",
+      "icon": "systems/sw5e/packs/Icons/Feats/ArmorExpert.webp",
+      "origin": "Compendium.sw5e.feats.Item.TVHebhZpaHYvZifT",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": true,
+      "_id": "t64LLT7W4lLpamEF",
+      "changes": [
+        {
+          "key": "system.traits.armorProf.value",
+          "mode": 2,
+          "value": "hvy",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!TVHebhZpaHYvZifT.t64LLT7W4lLpamEF"
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "use": true,
-          "resource": true,
-          "charge": true
-        },
-        "altValue": {
-          "use": true,
-          "resource": true,
-          "charge": true
-        }
-      },
-      "quickTemplate": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:51:59.5015422+00:00",
       "importer_version": 3,
@@ -86,50 +137,55 @@
   "system": {
     "description": {
       "value": "<p>You've learned how to fluidly move in armor, gaining the following benefits:</p>\n<ul>\n<li>Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.</li>\n<li>You gain proficiency with light armor. If you are already proficient with light armor, instead while you are wearing light armor, your speed increases by 5 feet. </li>\n<li>If you are already proficient in light armor when you take this feat, you also gain proficiency in medium armor. If you are already proficient with medium armor, instead while you are wearing medium armor, you can add 3, rather than 2, to your AC if you have a Dexterity of 16 or higher, and you ignore the bulky property of medium armor. </li>\n<li>If you are already proficient in medium armor when you take this feat, you also gain proficiency in heavy armor. If you are already proficient with heavy armor, instead while you are wearing heavy armor, critical hits made against you are treated as normal hits.</li>\n</ul>\n<p>You can take this feat multiple times. </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": null,
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -153,17 +209,28 @@
         "space": null,
         "turn": null
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493966796,
-    "modifiedTime": 1693532143522,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368759979,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!TVHebhZpaHYvZifT"
 }

@@ -1,8 +1,201 @@
 {
-  "_id": "0kBe86dDygtRVdzL",
   "name": "Tusken",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9176205+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-tusken"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Tusken.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>While Tuskens, also known as Tusken Raiders or Sand People, are easily recognizable by their full-body clothing, goggles, and mouth filters, little of their true physical appearance can be discerned. From birth, Tuskens are covered in wraps, and, barring very rare occasions, will not bare any part of their skin in sight of another person. This, combined with their hostility to outsiders and Tatooine's remote and arid nature, makes even study of Tusken corpses difficult.</p>\n<h2>Society and Culture</h2>\n<p>Tuskens are a primative, tribal race, mostly living in small clans scattered throughout Tatooine's deserts. Due to the harsh and unforgiving desert environment, Tusken clans are often xenophobic and territorial, but it is not unknown for them to adopt members of other species into the clan. They believe that all water is sacred and promised to them alone, and are infamous among the other residents of Tatooine for raiding and pillaging settlements and farms.</p>\n<p>Tusken clans are usually very stratified, with males as hunters and warriors, while females and children maintain the camp. Tusken warriors hold their bond with their gaderffii weapons and Bantha mounts as sacred, and will choose death before relinquishing either.</p>\n<h2>Names</h2>\n<p>Tusken naming traditions vary between clans, but most are made up of harsh, guttural sounds. Tuskens do not use surnames.</p>\n<p><strong>Male Names.</strong> Ur Ur, A'Koba, Qeruru'rr, Gr'Karr</p>\n<p><strong>Female Names.</strong> K'Yark, Reirin, K'Orou, Ursarr'u</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "tusken",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "dDOC0A5FlTA1xt00",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wAOCulElIyjIgnv8",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Fbu531VGByFm3OvF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BdDANHufYFjoqu7w",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.y647OmVJTxNcU4Rz",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JDawv7e0z4RjGX20",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.oNrFUBkYetOD8pAr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.pFits1S4qDWFt1UY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yIauNv1L4G4YlBHS",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.p9e2cNBgc5ryDJ6N",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zvbh9FKxljSyhWkr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cyLtb0gpaH8QTRfL",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.v4FMAGpcWYQDlHVO",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.UF1xFjzcp9Hesypj",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1qHWuQfsqQaKiPg4",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "QW8QR4w6Nfb1vihv",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "G62gD2gjhCGFSSLy",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:ani",
+            "skills:sur",
+            "weapon:cycler rifle",
+            "weapon:vibroaxe"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Brown, gray, or tan"
+    },
+    "hairColorOptions": {
+      "value": "Black"
+    },
+    "eyeColorOptions": {
+      "value": "Pale gray or black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Full-body wrappings, goggles, mouth filter"
+    },
+    "heightAverage": {
+      "value": "4'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "110 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Tatooine"
+    },
+    "slanguage": {
+      "value": "Tusken"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "bwSDTAnMbEikuqSv",
@@ -12,12 +205,6 @@
           "value": "Tusken",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -85,106 +272,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Tusken.webp",
-      "label": "Tusken",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Tusken",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!iVAp97QlLLjs2tf7.bwSDTAnMbEikuqSv"
     }
   ],
+  "_id": "iVAp97QlLLjs2tf7",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9176205+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-tusken"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>While Tuskens, also known as Tusken Raiders or Sand People, are easily recognizable by their full-body clothing, goggles, and mouth filters, little of their true physical appearance can be discerned. From birth, Tuskens are covered in wraps, and, barring very rare occasions, will not bare any part of their skin in sight of another person. This, combined with their hostility to outsiders and Tatooine's remote and arid nature, makes even study of Tusken corpses difficult.</p>\n<h2>Society and Culture</h2>\n<p>Tuskens are a primative, tribal race, mostly living in small clans scattered throughout Tatooine's deserts. Due to the harsh and unforgiving desert environment, Tusken clans are often xenophobic and territorial, but it is not unknown for them to adopt members of other species into the clan. They believe that all water is sacred and promised to them alone, and are infamous among the other residents of Tatooine for raiding and pillaging settlements and farms.</p>\n<p>Tusken clans are usually very stratified, with males as hunters and warriors, while females and children maintain the camp. Tusken warriors hold their bond with their gaderffii weapons and Bantha mounts as sacred, and will choose death before relinquishing either.</p>\n<h2>Names</h2>\n<p>Tusken naming traditions vary between clans, but most are made up of harsh, guttural sounds. Tuskens do not use surnames.</p>\n<p><strong>Male Names.</strong> Ur Ur, A'Koba, Qeruru'rr, Gr'Karr</p>\n<p><strong>Female Names.</strong> K'Yark, Reirin, K'Orou, Ursarr'u</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "tusken",
-    "advancement": [
-      {
-        "_id": "msxtNrg1HAmAWaau",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.wAOCulElIyjIgnv8",
-            "Compendium.sw5e.speciesfeatures.Fbu531VGByFm3OvF",
-            "Compendium.sw5e.speciesfeatures.BdDANHufYFjoqu7w",
-            "Compendium.sw5e.speciesfeatures.y647OmVJTxNcU4Rz",
-            "Compendium.sw5e.speciesfeatures.JDawv7e0z4RjGX20",
-            "Compendium.sw5e.speciesfeatures.oNrFUBkYetOD8pAr",
-            "Compendium.sw5e.speciesfeatures.pFits1S4qDWFt1UY",
-            "Compendium.sw5e.speciesfeatures.yIauNv1L4G4YlBHS",
-            "Compendium.sw5e.speciesfeatures.p9e2cNBgc5ryDJ6N",
-            "Compendium.sw5e.speciesfeatures.zvbh9FKxljSyhWkr",
-            "Compendium.sw5e.speciesfeatures.cyLtb0gpaH8QTRfL",
-            "Compendium.sw5e.speciesfeatures.v4FMAGpcWYQDlHVO",
-            "Compendium.sw5e.speciesfeatures.UF1xFjzcp9Hesypj"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Brown, gray, or tan"
-    },
-    "hairColorOptions": {
-      "value": "Black"
-    },
-    "eyeColorOptions": {
-      "value": "Pale gray or black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Full-body wrappings, goggles, mouth filter"
-    },
-    "heightAverage": {
-      "value": "4'9\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "110 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Tatooine"
-    },
-    "slanguage": {
-      "value": "Tusken"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002054,
-    "modifiedTime": 1692402505737,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797463,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!iVAp97QlLLjs2tf7"
 }

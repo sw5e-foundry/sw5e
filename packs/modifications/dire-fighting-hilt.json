@@ -16,37 +16,39 @@
   "system": {
     "description": {
       "value": "<h4>Item Modification (Lightweapon)</h4>\n <p>This weapon gains the dire 1 property. If it already has the dire property, its dire number increases by 1, to a maximum of 3.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "premium",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -55,18 +57,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": "none",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -82,30 +85,37 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "lightweapon",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {
-        "dir": false
-      },
-      "dir": true
+    "properties": [],
+    "unidentified": {
+      "description": ""
     },
-    "modified": [],
-    "modificationItemType": "weapon"
+    "type": {
+      "value": "lightweapon",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493999317,
-    "modifiedTime": 1685835820540,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720368843947,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!LL6LrEL0HBZx33wE"
 }

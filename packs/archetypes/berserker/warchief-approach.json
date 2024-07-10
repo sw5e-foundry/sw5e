@@ -16,68 +16,107 @@
   "system": {
     "description": {
       "value": "<h1>Warchief Approach</h1>\n<p>For some berserkers, it is their duty or birthright to lead their tribe and kin to battle and victory. The Warchief Approach is one forged from alliances, bonds, and strategy. In combat, your rages are less mindless, and more focused. Ignoring the distractions of unimportant events, your attention hones in on the battlefield and how best to direct and control it. You guide your allies' strikes, and your presence is enough to wash away their fatigue.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "warchiefapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "iUMJOFVrcSS1EseJ",
+        "_id": "1d6WNtPlJWk2gQ9U",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.7gnVnIDhy4tXzcTi",
-            "Compendium.sw5e.archetypefeatures.gtzwgunkGHxVh7Ec"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.7gnVnIDhy4tXzcTi",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.gtzwgunkGHxVh7Ec",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "FTZBUdWGn3D1iSFa",
+        "_id": "1cXCPwLz76AP1rCd",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.03qIkerlYzQEYusy"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.03qIkerlYzQEYusy",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "100JSjeWNub21oZB",
+        "_id": "i9Y1cmwW1Qg1myFb",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.AtCohgxfC4bUhGpp"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.AtCohgxfC4bUhGpp",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "ohnjf3LmTPC1QXrS",
+        "_id": "10mU19LRGAeG1faG",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.UYWFpXz6HKecYIC2"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UYWFpXz6HKecYIC2",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
+      },
+      {
+        "_id": "oxJ6ii8AmbWEkoS8",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:per",
+                "skills:itm"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
       }
     ],
     "powercasting": {
@@ -87,7 +126,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,10 +134,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959725,
-    "modifiedTime": 1684819093622,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689177,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!CvTODiaLKcBBLfh5"
 }

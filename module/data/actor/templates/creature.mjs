@@ -1,4 +1,5 @@
 import { FormulaField, MappingField } from "../../fields.mjs";
+import RollConfigField from "../../shared/roll-config-field.mjs";
 import CommonTemplate from "./common.mjs";
 
 /**
@@ -29,76 +30,75 @@ import CommonTemplate from "./common.mjs";
  */
 export default class CreatureTemplate extends CommonTemplate {
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
+    return this.mergeSchema( super.defineSchema(), {
       bonuses: new foundry.data.fields.SchemaField(
         {
-          mwak: makeAttackBonuses({ label: "SW5E.BonusMWAttack" }),
-          rwak: makeAttackBonuses({ label: "SW5E.BonusRWAttack" }),
-          mpak: makeAttackBonuses({ label: "SW5E.BonusMPAttack" }),
-          rpak: makeAttackBonuses({ label: "SW5E.BonusRPAttack" }),
+          mwak: makeAttackBonuses( { label: "SW5E.BonusMWAttack" } ),
+          rwak: makeAttackBonuses( { label: "SW5E.BonusRWAttack" } ),
+          mpak: makeAttackBonuses( { label: "SW5E.BonusMPAttack" } ),
+          rpak: makeAttackBonuses( { label: "SW5E.BonusRPAttack" } ),
           abilities: new foundry.data.fields.SchemaField(
             {
-              check: new FormulaField({ required: true, label: "SW5E.BonusAbilityCheck" }),
-              save: new FormulaField({ required: true, label: "SW5E.BonusAbilitySave" }),
-              skill: new FormulaField({ required: true, label: "SW5E.BonusAbilitySkill" })
+              check: new FormulaField( { required: true, label: "SW5E.BonusAbilityCheck" } ),
+              save: new FormulaField( { required: true, label: "SW5E.BonusAbilitySave" } ),
+              skill: new FormulaField( { required: true, label: "SW5E.BonusAbilitySkill" } )
             },
             { label: "SW5E.BonusAbility" }
           ),
           power: new foundry.data.fields.SchemaField(
             {
-              dc: new FormulaField({ required: true, deterministic: true, label: "SW5E.BonusPowerDC" }),
-              forceLightDC: new FormulaField({
+              dc: new FormulaField( { required: true, deterministic: true, label: "SW5E.BonusPowerDC" } ),
+              forceLightDC: new FormulaField( {
                 required: true,
                 deterministic: true,
                 label: "SW5E.BonusForceLightPowerDC"
-              }),
-              forceUnivDC: new FormulaField({
+              } ),
+              forceUnivDC: new FormulaField( {
                 required: true,
                 deterministic: true,
                 label: "SW5E.BonusForceUnivPowerDC"
-              }),
-              forceDarkDC: new FormulaField({
+              } ),
+              forceDarkDC: new FormulaField( {
                 required: true,
                 deterministic: true,
                 label: "SW5E.BonusForceDarkPowerDC"
-              }),
-              techDC: new FormulaField({ required: true, deterministic: true, label: "SW5E.BonusTechPowerDC" })
+              } ),
+              techDC: new FormulaField( { required: true, deterministic: true, label: "SW5E.BonusTechPowerDC" } )
             },
             { label: "SW5E.BonusPower" }
           )
         },
         { label: "SW5E.Bonuses" }
       ),
-      skills: new MappingField(
-        new foundry.data.fields.SchemaField({
-          value: new foundry.data.fields.NumberField({
-            required: true,
-            nullable: false,
-            min: 0,
-            max: 6,
-            step: 0.5,
-            initial: 0,
-            label: "SW5E.ProficiencyLevel"
-          }),
-          ability: new foundry.data.fields.StringField({ required: true, initial: "dex", label: "SW5E.Ability" }),
-          bonuses: new foundry.data.fields.SchemaField(
-            {
-              check: new FormulaField({ required: true, label: "SW5E.SkillBonusCheck" }),
-              passive: new FormulaField({ required: true, label: "SW5E.SkillBonusPassive" })
-            },
-            { label: "SW5E.SkillBonuses" }
-          )
-        }),
-        {
-          initialKeys: CONFIG.SW5E.skills,
-          initialValue: this._initialSkillValue,
-          initialKeysOnly: true,
-          label: "SW5E.Skills"
-        }
+      skills: new MappingField( new RollConfigField( {
+        value: new foundry.data.fields.NumberField( {
+          required: true,
+          nullable: false,
+          min: 0,
+          max: 6,
+          step: 0.5,
+          initial: 0,
+          label: "SW5E.ProficiencyLevel"
+        } ),
+        ability: "dex",
+        bonuses: new foundry.data.fields.SchemaField(
+          {
+            check: new FormulaField( { required: true, label: "SW5E.SkillBonusCheck" } ),
+            passive: new FormulaField( { required: true, label: "SW5E.SkillBonusPassive" } )
+          },
+          { label: "SW5E.SkillBonuses" }
+        )
+      } ),
+      {
+        initialKeys: CONFIG.SW5E.skills,
+        initialValue: this._initialSkillValue,
+        initialKeysOnly: true,
+        label: "SW5E.Skills"
+      }
       ),
       tools: new MappingField(
-        new foundry.data.fields.SchemaField({
-          value: new foundry.data.fields.NumberField({
+        new RollConfigField( {
+          value: new foundry.data.fields.NumberField( {
             required: true,
             nullable: false,
             min: 0,
@@ -106,46 +106,46 @@ export default class CreatureTemplate extends CommonTemplate {
             step: 0.5,
             initial: 1,
             label: "SW5E.ProficiencyLevel"
-          }),
-          ability: new foundry.data.fields.StringField({ required: true, initial: "int", label: "SW5E.Ability" }),
+          } ),
+          ability: "int",
           bonuses: new foundry.data.fields.SchemaField(
             {
-              check: new FormulaField({ required: true, label: "SW5E.CheckBonus" })
+              check: new FormulaField( { required: true, label: "SW5E.CheckBonus" } )
             },
             { label: "SW5E.ToolBonuses" }
           )
-        })
+        } )
       ),
       powers: new MappingField(
-        new foundry.data.fields.SchemaField({
-          fvalue: new foundry.data.fields.NumberField({
+        new foundry.data.fields.SchemaField( {
+          fvalue: new foundry.data.fields.NumberField( {
             nullable: false,
             integer: true,
             min: 0,
             initial: 0,
             label: "SW5E.ForcePowerProgAvailable"
-          }),
-          foverride: new foundry.data.fields.NumberField({
+          } ),
+          foverride: new foundry.data.fields.NumberField( {
             integer: true,
             min: 0,
             label: "SW5E.ForcePowerProgOverride"
-          }),
-          tvalue: new foundry.data.fields.NumberField({
+          } ),
+          tvalue: new foundry.data.fields.NumberField( {
             nullable: false,
             integer: true,
             min: 0,
             initial: 0,
             label: "SW5E.TechPowerProgAvailable"
-          }),
-          toverride: new foundry.data.fields.NumberField({
+          } ),
+          toverride: new foundry.data.fields.NumberField( {
             integer: true,
             min: 0,
             label: "SW5E.TechPowerProgOverride"
-          })
-        }),
+          } )
+        } ),
         { initialKeys: this._powerLevels, label: "SW5E.PowerLevels" }
       )
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -157,8 +157,8 @@ export default class CreatureTemplate extends CommonTemplate {
    * @returns {object}        Initial skills object with the ability defined.
    * @private
    */
-  static _initialSkillValue(key, initial) {
-    if (CONFIG.SW5E.skills[key]?.ability) initial.ability = CONFIG.SW5E.skills[key].ability;
+  static _initialSkillValue( key, initial ) {
+    if ( CONFIG.SW5E.skills[key]?.ability ) initial.ability = CONFIG.SW5E.skills[key].ability;
     return initial;
   }
 
@@ -170,10 +170,10 @@ export default class CreatureTemplate extends CommonTemplate {
    * @private
    */
   static get _powerLevels() {
-    const levels = Object.keys(CONFIG.SW5E.powerLevels)
-      .filter(a => a !== "0")
-      .map(l => `power${l}`);
-    return [...levels, "pact"];
+    const levels = Object.keys( CONFIG.SW5E.powerLevels )
+      .filter( a => a !== "0" )
+      .map( l => `power${l}` );
+    return [...levels];
   }
 
   /* -------------------------------------------- */
@@ -181,10 +181,10 @@ export default class CreatureTemplate extends CommonTemplate {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    super.migrateData(source);
-    CreatureTemplate.#migrateSensesData(source);
-    CreatureTemplate.#migrateToolData(source);
+  static _migrateData( source ) {
+    super._migrateData( source );
+    CreatureTemplate.#migrateSensesData( source );
+    CreatureTemplate.#migrateToolData( source );
   }
 
   /* -------------------------------------------- */
@@ -193,9 +193,9 @@ export default class CreatureTemplate extends CommonTemplate {
    * Migrate the actor traits.senses string to attributes.senses object.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateSensesData(source) {
+  static #migrateSensesData( source ) {
     const original = source.traits?.senses;
-    if (original === undefined || typeof original !== "string") return;
+    if ( original === undefined || typeof original !== "string" ) return;
     source.attributes ??= {};
     source.attributes.senses ??= {};
 
@@ -204,19 +204,19 @@ export default class CreatureTemplate extends CommonTemplate {
     let wasMatched = false;
 
     // Match each comma-separated term
-    for (let s of original.split(",")) {
+    for ( let s of original.split( "," ) ) {
       s = s.trim();
-      const match = s.match(pattern);
-      if (!match) continue;
+      const match = s.match( pattern );
+      if ( !match ) continue;
       const type = match[1].toLowerCase();
-      if (type in CONFIG.SW5E.senses && !(type in source.attributes.senses)) {
-        source.attributes.senses[type] = Number(match[2]).toNearest(0.5);
+      if ( type in CONFIG.SW5E.senses && !( type in source.attributes.senses ) ) {
+        source.attributes.senses[type] = Number( match[2] ).toNearest( 0.5 );
         wasMatched = true;
       }
     }
 
     // If nothing was matched, but there was an old string - put the whole thing in "special"
-    if (!wasMatched && original) source.attributes.senses.special = original;
+    if ( !wasMatched && original ) source.attributes.senses.special = original;
   }
 
   /* -------------------------------------------- */
@@ -225,19 +225,38 @@ export default class CreatureTemplate extends CommonTemplate {
    * Migrate traits.toolProf to the tools field.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateToolData(source) {
+  static #migrateToolData( source ) {
     const original = source.traits?.toolProf;
-    if (!original || foundry.utils.isEmpty(original.value)) return;
+    if ( !original || foundry.utils.isEmpty( original.value ) ) return;
     source.tools ??= {};
-    for (const prof of original.value) {
+    for ( const prof of original.value ) {
       const validProf = prof in CONFIG.SW5E.toolProficiencies || prof in CONFIG.SW5E.toolIds;
-      if (!validProf || prof in source.tools) continue;
+      if ( !validProf || prof in source.tools ) continue;
       source.tools[prof] = {
         value: 1,
         ability: "int",
         bonuses: { check: "" }
       };
     }
+  }
+
+  /* -------------------------------------------- */
+  /*  Helpers                                     */
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  getRollData( { deterministic = false } = {} ) {
+    const data = super.getRollData( { deterministic } );
+    data.classes = {};
+    for ( const [identifier, cls] of Object.entries( this.parent.classes ) ) {
+      data.classes[identifier] = { ...cls.system };
+      if ( cls.archetype ) data.classes[identifier].archetype = cls.archetype.system;
+    }
+    data.starships = {};
+    for ( const [identifier, ss] of Object.entries( this.parent.starships ) ) {
+      data.starships[identifier] = { ...ss.system };
+    }
+    return data;
   }
 }
 
@@ -266,11 +285,11 @@ export default class CreatureTemplate extends CommonTemplate {
  * @param {object} schemaOptions  Options passed to the outer schema.
  * @returns {AttackBonusesData}
  */
-function makeAttackBonuses(schemaOptions = {}) {
+export function makeAttackBonuses( schemaOptions = {} ) {
   return new foundry.data.fields.SchemaField(
     {
-      attack: new FormulaField({ required: true, label: "SW5E.BonusAttack" }),
-      damage: new FormulaField({ required: true, label: "SW5E.BonusDamage" })
+      attack: new FormulaField( { required: true, label: "SW5E.BonusAttack" } ),
+      damage: new FormulaField( { required: true, label: "SW5E.BonusDamage" } )
     },
     schemaOptions
   );

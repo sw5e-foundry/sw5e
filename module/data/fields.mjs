@@ -1,35 +1,58 @@
+import Advancement from "../documents/advancement/advancement.mjs";
+
 /**
  * Data field that selects the appropriate advancement data model if available, otherwise defaults to generic
  * `ObjectField` to prevent issues with custom advancement types that aren't currently loaded.
  */
 export class AdvancementField extends foundry.data.fields.ObjectField {
+
   /**
    * Get the BaseAdvancement definition for the specified advancement type.
    * @param {string} type                    The Advancement type.
    * @returns {typeof BaseAdvancement|null}  The BaseAdvancement class, or null.
    */
-  getModelForType(type) {
-    return CONFIG.SW5E.advancementTypes[type] ?? null;
+  getModelForType( type ) {
+    let config = CONFIG.SW5E.advancementTypes[type];
+    if ( config?.prototype instanceof Advancement ) {
+      foundry.utils.logCompatibilityWarning(
+        "Advancement type configuration changed into an object with `documentClass` defining the advancement class.",
+        { since: "SW5e 3.1", until: "SW5e 3.3", once: true }
+      );
+      return config;
+    }
+    return config?.documentClass ?? null;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _cleanType(value, options) {
-    if (!(typeof value === "object")) value = {};
+  _cleanType( value, options ) {
+    if ( !( typeof value === "object" ) ) value = {};
 
-    const cls = this.getModelForType(value.type);
-    if (cls) return cls.cleanData(value, options);
+    const cls = this.getModelForType( value.type );
+    if ( cls ) return cls.cleanData( value, options );
     return value;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  initialize(value, model, options = {}) {
-    const cls = this.getModelForType(value.type);
-    if (cls) return new cls(value, { parent: model, ...options });
-    return foundry.utils.deepClone(value);
+  initialize( value, model, options = {} ) {
+    const cls = this.getModelForType( value.type );
+    if ( cls ) return new cls( value, { parent: model, ...options } );
+    return foundry.utils.deepClone( value );
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Migrate this field's candidate source data.
+   * @param {object} sourceData   Candidate source data of the root model
+   * @param {any} fieldData       The value of this field within the source data
+   */
+  migrateSource( sourceData, fieldData ) {
+    const cls = this.getModelForType( fieldData.type );
+    if ( cls ) cls.migrateDataSafe( fieldData );
   }
 }
 
@@ -41,8 +64,8 @@ export class AdvancementField extends foundry.data.fields.ObjectField {
  * @param {Advancement} advancementType  Advancement class to which this field belongs.
  */
 export class AdvancementDataField extends foundry.data.fields.ObjectField {
-  constructor(advancementType, options = {}) {
-    super(options);
+  constructor( advancementType, options = {} ) {
+    super( options );
     this.advancementType = advancementType;
   }
 
@@ -50,7 +73,7 @@ export class AdvancementDataField extends foundry.data.fields.ObjectField {
 
   /** @inheritdoc */
   static get _defaults() {
-    return foundry.utils.mergeObject(super._defaults, { required: true });
+    return foundry.utils.mergeObject( super._defaults, { required: true } );
   }
 
   /**
@@ -74,26 +97,38 @@ export class AdvancementDataField extends foundry.data.fields.ObjectField {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _cleanType(value, options) {
-    if (!(typeof value === "object")) value = {};
+  _cleanType( value, options ) {
+    if ( !( typeof value === "object" ) ) value = {};
 
     // Use a defined DataModel
     const cls = this.getModel();
-    if (cls) return cls.cleanData(value, options);
-    if (options.partial) return value;
+    if ( cls ) return cls.cleanData( value, options );
+    if ( options.partial ) return value;
 
     // Use the defined defaults
     const defaults = this.getDefaults();
-    return foundry.utils.mergeObject(defaults, value, { inplace: false });
+    return foundry.utils.mergeObject( defaults, value, { inplace: false } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  initialize(value, model, options = {}) {
+  initialize( value, model, options = {} ) {
     const cls = this.getModel();
-    if (cls) return new cls(value, { parent: model, ...options });
-    return foundry.utils.deepClone(value);
+    if ( cls ) return new cls( value, { parent: model, ...options } );
+    return foundry.utils.deepClone( value );
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Migrate this field's candidate source data.
+   * @param {object} sourceData   Candidate source data of the root model
+   * @param {any} fieldData       The value of this field within the source data
+   */
+  migrateSource( sourceData, fieldData ) {
+    const cls = this.getModel();
+    if ( cls ) cls.migrateDataSafe( fieldData );
   }
 }
 
@@ -111,23 +146,24 @@ export class AdvancementDataField extends foundry.data.fields.ObjectField {
  * @property {boolean} deterministic=false    Is this formula not allowed to have dice values?
  */
 export class FormulaField extends foundry.data.fields.StringField {
+
   /** @inheritdoc */
   static get _defaults() {
-    return foundry.utils.mergeObject(super._defaults, {
+    return foundry.utils.mergeObject( super._defaults, {
       deterministic: false
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _validateType(value) {
-    if (this.options.deterministic) {
-      const roll = new Roll(value);
-      if (!roll.isDeterministic) throw new Error("must not contain dice terms");
-      Roll.safeEval(roll.formula);
-    } else Roll.validate(value);
-    super._validateType(value);
+  _validateType( value ) {
+    Roll.validate( value );
+    if ( this.options.deterministic ) {
+      const roll = new Roll( value );
+      if ( !roll.isDeterministic ) throw new Error( "must not contain dice terms" );
+    }
+    super._validateType( value );
   }
 }
 
@@ -138,9 +174,9 @@ export class FormulaField extends foundry.data.fields.StringField {
  */
 export class IdentifierField extends foundry.data.fields.StringField {
   /** @override */
-  _validateType(value) {
-    if (!sw5e.utils.validators.isValidIdentifier(value)) {
-      throw new Error(game.i18n.localize("SW5E.IdentifierError"));
+  _validateType( value ) {
+    if ( !sw5e.utils.validators.isValidIdentifier( value ) ) {
+      throw new Error( game.i18n.localize( "SW5E.IdentifierError" ) );
     }
   }
 }
@@ -152,10 +188,95 @@ export class IdentifierField extends foundry.data.fields.StringField {
  */
 export class UUIDField extends foundry.data.fields.StringField {
   /** @override */
-  _validateType(value) {
-    if (!sw5e.utils.validators.isValidUUID(value)) {
-      throw new Error(game.i18n.localize("SW5E.IdentifierError"));
+  _validateType( value ) {
+    if ( !sw5e.utils.validators.isValidUUID( value ) ) {
+      throw new Error( game.i18n.localize( "SW5E.IdentifierError" ) );
     }
+  }
+}
+
+/* -------------------------------------------- */
+
+/**
+ * @typedef {StringFieldOptions} LocalDocumentFieldOptions
+ * @property {boolean} [fallback=false]  Display the string value if no matching item is found.
+ */
+
+/**
+ * A mirror of ForeignDocumentField that references a Document embedded within this Document.
+ *
+ * @param {typeof Document} model              The local DataModel class definition which this field should link to.
+ * @param {LocalDocumentFieldOptions} options  Options which configure the behavior of the field.
+ */
+export class LocalDocumentField extends foundry.data.fields.DocumentIdField {
+  constructor( model, options = {} ) {
+    if ( !foundry.utils.isSubclass( model, foundry.abstract.DataModel ) ) {
+      throw new Error( "A ForeignDocumentField must specify a DataModel subclass as its type" );
+    }
+
+    super( options );
+    this.model = model;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * A reference to the model class which is stored in this field.
+   * @type {typeof Document}
+   */
+  model;
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static get _defaults() {
+    return foundry.utils.mergeObject( super._defaults, {
+      nullable: true,
+      readonly: false,
+      idOnly: false,
+      fallback: false
+    } );
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  _cast( value ) {
+    if ( typeof value === "string" ) return value;
+    if ( ( value instanceof this.model ) ) return value._id;
+    throw new Error( `The value provided to a LocalDocumentField must be a ${this.model.name} instance.` );
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _validateType( value ) {
+    if ( !this.options.fallback ) super._validateType( value );
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  initialize( value, model, options = {} ) {
+    if ( this.idOnly ) return this.options.fallback || foundry.data.validators.isValidId( value ) ? value : null;
+    const collection = model.parent?.[this.model.metadata.collection];
+    return () => {
+      const document = collection?.get( value );
+      if ( !document ) return this.options.fallback ? value : null;
+      if ( this.options.fallback ) Object.defineProperty( document, "toString", {
+        value: () => document.name,
+        configurable: true,
+        enumerable: false
+      } );
+      return document;
+    };
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  toObject( value ) {
+    return value?._id ?? value;
   }
 }
 
@@ -188,11 +309,11 @@ export class UUIDField extends foundry.data.fields.StringField {
  *                                             by `options.initialKeys`?
  */
 export class MappingField extends foundry.data.fields.ObjectField {
-  constructor(model, options) {
-    if (!(model instanceof foundry.data.fields.DataField)) {
-      throw new Error("MappingField must have a DataField as its contained element");
+  constructor( model, options ) {
+    if ( !( model instanceof foundry.data.fields.DataField ) ) {
+      throw new Error( "MappingField must have a DataField as its contained element" );
     }
-    super(options);
+    super( options );
 
     /**
      * The embedded DataField definition which is contained in this field.
@@ -205,30 +326,30 @@ export class MappingField extends foundry.data.fields.ObjectField {
 
   /** @inheritdoc */
   static get _defaults() {
-    return foundry.utils.mergeObject(super._defaults, {
+    return foundry.utils.mergeObject( super._defaults, {
       initialKeys: null,
       initialValue: null,
       initialKeysOnly: false
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _cleanType(value, options) {
-    Object.entries(value).forEach(([k, v]) => (value[k] = this.model.clean(v, options)));
+  _cleanType( value, options ) {
+    Object.entries( value ).forEach( ( [k, v] ) => ( value[k] = this.model.clean( v, options ) ) );
     return value;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  getInitialValue(data) {
+  getInitialValue( data ) {
     let keys = this.initialKeys;
-    const initial = super.getInitialValue(data);
-    if (!keys || !foundry.utils.isEmpty(initial)) return initial;
-    if (!(keys instanceof Array)) keys = Object.keys(keys);
-    for (const key of keys) initial[key] = this._getInitialValueForKey(key);
+    const initial = super.getInitialValue( data );
+    if ( !keys || !foundry.utils.isEmpty( initial ) ) return initial;
+    if ( !( keys instanceof Array ) ) keys = Object.keys( keys );
+    for ( const key of keys ) initial[key] = this._getInitialValueForKey( key );
     return initial;
   }
 
@@ -240,18 +361,18 @@ export class MappingField extends foundry.data.fields.ObjectField {
    * @param {object} [object]  Any existing mapping data.
    * @returns {*}              Initial value based on provided field type.
    */
-  _getInitialValueForKey(key, object) {
+  _getInitialValueForKey( key, object ) {
     const initial = this.model.getInitialValue();
-    return this.initialValue?.(key, initial, object) ?? initial;
+    return this.initialValue?.( key, initial, object ) ?? initial;
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  _validateType(value, options = {}) {
-    if (foundry.utils.getType(value) !== "Object") throw new Error("must be an Object");
-    const errors = this._validateValues(value, options);
-    if (!foundry.utils.isEmpty(errors)) throw new foundry.data.fields.ModelValidationError(errors);
+  _validateType( value, options = {} ) {
+    if ( foundry.utils.getType( value ) !== "Object" ) throw new Error( "must be an Object" );
+    const errors = this._validateValues( value, options );
+    if ( !foundry.utils.isEmpty( errors ) ) throw new foundry.data.validation.DataModelValidationError( errors );
   }
 
   /* -------------------------------------------- */
@@ -262,11 +383,11 @@ export class MappingField extends foundry.data.fields.ObjectField {
    * @param {object} options   Validation options.
    * @returns {Object<Error>}  An object of value-specific errors by key.
    */
-  _validateValues(value, options) {
+  _validateValues( value, options ) {
     const errors = {};
-    for (const [k, v] of Object.entries(value)) {
-      const error = this.model.validate(v, options);
-      if (error) errors[k] = error;
+    for ( const [k, v] of Object.entries( value ) ) {
+      const error = this.model.validate( v, options );
+      if ( error ) errors[k] = error;
     }
     return errors;
   }
@@ -274,14 +395,14 @@ export class MappingField extends foundry.data.fields.ObjectField {
   /* -------------------------------------------- */
 
   /** @override */
-  initialize(value, model, options = {}) {
-    if (!value) return value;
+  initialize( value, model, options = {} ) {
+    if ( !value ) return value;
     const obj = {};
-    const initialKeys = this.initialKeys instanceof Array ? this.initialKeys : Object.keys(this.initialKeys ?? {});
-    const keys = this.initialKeysOnly ? initialKeys : Object.keys(value);
-    for (const key of keys) {
-      const data = value[key] ?? this._getInitialValueForKey(key, value);
-      obj[key] = this.model.initialize(data, model, options);
+    const initialKeys = this.initialKeys instanceof Array ? this.initialKeys : Object.keys( this.initialKeys ?? {} );
+    const keys = this.initialKeysOnly ? initialKeys : Object.keys( value );
+    for ( const key of keys ) {
+      const data = value[key] ?? this._getInitialValueForKey( key, value );
+      obj[key] = this.model.initialize( data, model, options );
     }
     return obj;
   }
@@ -289,10 +410,10 @@ export class MappingField extends foundry.data.fields.ObjectField {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _getField(path) {
-    if (path.length === 0) return this;
-    else if (path.length === 1) return this.model;
+  _getField( path ) {
+    if ( path.length === 0 ) return this;
+    else if ( path.length === 1 ) return this.model;
     path.shift();
-    return this.model._getField(path);
+    return this.model._getField( path );
   }
 }

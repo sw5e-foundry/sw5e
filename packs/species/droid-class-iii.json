@@ -1,8 +1,206 @@
 {
-  "_id": "F8dCsTw3jHWXfals",
   "name": "Droid, Class III",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9146224+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-droid_class_iii"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Droid-ClassIii.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Appearance</h2>\n<p>Class III droids are typically human-like in both shape and size, standing at around 6 feet. They are usually a polished metallic color, though this can vary based on tasks for which they are created, their affiliation, or quirks of their owner.</p>\n<p>They are noteworthy for their slow, shuffling gait and typically overly talkative nature.</p>\n<h2>Utility</h2>\n<p>Class III droids are programmed to interact with humans. They are said to be the most advanced droids ever invented. Protocol, servant, tutor, and child care droids are all class III droids.</p>\n<p>They are usually equipped with protocol chips which give them the cognitive functionality to engage socially.</p>\n<h2>Names</h2>\n<p>Droids are typically called by their designation, given to them when they are created, or some affectation given to them by their owner. Often this affectation is a play on their designation. Occasionally, noteworthy droids will earn monikers based on their accomplishments.</p>\n<p><strong>Designations (Names).</strong> K-OHN (Kone), I-5YQ (I-Five), O-MR1 (Omri), TC-14 (Teesee Fourteen)</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "droid-classiii",
+    "details": {
+      "isDroid": true
+    },
+    "type": {
+      "value": "droid"
+    },
+    "movement": {
+      "walk": 25,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1GMB5hwAePU61Gbz",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mgfMdq6WCTwqQ0yA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3DxjhnuFZG30sLOu",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.idcffe8tBla4LUYP",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vAANRbFOp7CF45OA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xDn4jck5FsFn3vzv",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FWn8CMiALGR1cl4w",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.dl2zwjAMn4fJESAD",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.AnZSx65GEdZ8czgw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WF84AF9zD8qyuj32",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.acKi3GcVHEvWJGP6",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.R86jUrqqNzgw3hYF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MVsJfrgL23QIN15x",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DDlyxzOymyf9SG9j",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KQrYDZ1DSIceW7kn",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3AyZZwQNNNbMdJy3",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1n3XCWvKehK0QKe0",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "SZuPZdIKqVhRCS9H",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1ioVOi9LtGW81RJw",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:lor"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": ""
+    },
+    "hairColorOptions": {
+      "value": ""
+    },
+    "eyeColorOptions": {
+      "value": ""
+    },
+    "colorScheme": {
+      "value": "Typically metallic"
+    },
+    "distinctions": {
+      "value": "Human-like size, shuffling gait, typically talkative"
+    },
+    "heightAverage": {
+      "value": "5'6\""
+    },
+    "heightRollMod": {
+      "value": "+2d4\""
+    },
+    "weightAverage": {
+      "value": "120 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d6) lb."
+    },
+    "homeworld": {
+      "value": ""
+    },
+    "slanguage": {
+      "value": "Varies based on location"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "HFVrCmmsBSqYk1N7",
@@ -11,25 +209,19 @@
           "key": "system.details.species",
           "value": "Droid, Class III",
           "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.size",
           "value": "med",
           "mode": 0,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
           "value": "25",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.dr.value",
@@ -109,117 +301,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Droid%20Class%20III.webp",
-      "label": "Droid, Class III",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Droid, Class III",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!KfQ1DeO82DH7N0uM.HFVrCmmsBSqYk1N7"
     }
   ],
+  "_id": "KfQ1DeO82DH7N0uM",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9146224+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-droid_class_iii"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Appearance</h2>\n<p>Class III droids are typically human-like in both shape and size, standing at around 6 feet. They are usually a polished metallic color, though this can vary based on tasks for which they are created, their affiliation, or quirks of their owner.</p>\n<p>They are noteworthy for their slow, shuffling gait and typically overly talkative nature.</p>\n<h2>Utility</h2>\n<p>Class III droids are programmed to interact with humans. They are said to be the most advanced droids ever invented. Protocol, servant, tutor, and child care droids are all class III droids.</p>\n<p>They are usually equipped with protocol chips which give them the cognitive functionality to engage socially.</p>\n<h2>Names</h2>\n<p>Droids are typically called by their designation, given to them when they are created, or some affectation given to them by their owner. Often this affectation is a play on their designation. Occasionally, noteworthy droids will earn monikers based on their accomplishments.</p>\n<p><strong>Designations (Names).</strong> K-OHN (Kone), I-5YQ (I-Five), O-MR1 (Omri), TC-14 (Teesee Fourteen)</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "droid-classiii",
-    "advancement": [
-      {
-        "_id": "ivsXhs5ysMa1KE6t",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.mgfMdq6WCTwqQ0yA",
-            "Compendium.sw5e.speciesfeatures.3DxjhnuFZG30sLOu",
-            "Compendium.sw5e.speciesfeatures.idcffe8tBla4LUYP",
-            "Compendium.sw5e.speciesfeatures.vAANRbFOp7CF45OA",
-            "Compendium.sw5e.speciesfeatures.xDn4jck5FsFn3vzv",
-            "Compendium.sw5e.speciesfeatures.FWn8CMiALGR1cl4w",
-            "Compendium.sw5e.speciesfeatures.dl2zwjAMn4fJESAD",
-            "Compendium.sw5e.speciesfeatures.AnZSx65GEdZ8czgw",
-            "Compendium.sw5e.speciesfeatures.WF84AF9zD8qyuj32",
-            "Compendium.sw5e.speciesfeatures.acKi3GcVHEvWJGP6",
-            "Compendium.sw5e.speciesfeatures.R86jUrqqNzgw3hYF",
-            "Compendium.sw5e.speciesfeatures.MVsJfrgL23QIN15x",
-            "Compendium.sw5e.speciesfeatures.DDlyxzOymyf9SG9j",
-            "Compendium.sw5e.speciesfeatures.KQrYDZ1DSIceW7kn",
-            "Compendium.sw5e.speciesfeatures.3AyZZwQNNNbMdJy3"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "skinColorOptions": {
-      "value": null
-    },
-    "hairColorOptions": {
-      "value": null
-    },
-    "eyeColorOptions": {
-      "value": null
-    },
-    "colorScheme": {
-      "value": "Typically metallic"
-    },
-    "distinctions": {
-      "value": "Human-like size, shuffling gait, typically talkative"
-    },
-    "heightAverage": {
-      "value": "5'6\""
-    },
-    "heightRollMod": {
-      "value": "+2d4\""
-    },
-    "weightAverage": {
-      "value": "120 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d6) lb."
-    },
-    "homeworld": {
-      "value": null
-    },
-    "slanguage": {
-      "value": "Varies based on location"
-    },
-    "details": {
-      "isDroid": true
-    },
-    "droidDistinctions": {
-      "value": ""
-    },
-    "manufacturer": {
-      "value": ""
-    },
-    "droidLanguage": {
-      "value": ""
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
-    "createdTime": 1674494002075,
-    "modifiedTime": 1684819095033,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796854,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!KfQ1DeO82DH7N0uM"
 }

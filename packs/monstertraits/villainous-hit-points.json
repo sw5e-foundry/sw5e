@@ -7,50 +7,54 @@
   "system": {
     "description": {
       "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> has multiple pools of hit points, each of which is tracked separately. Damage and healing only applies to the currently active hit point pool. When a pool is depleted of all hit points, it becomes inactive. Only one pool can be active at any time. If a hit point pool is depleted, the <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> immediately saves against all ongoing conditions and effects. Any abilities which can reset do so. If all pools of hit points are inactive, <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> is killed. </p><p>If <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> takes a long rest, it fully heals the currently active pool and fully heals one depleted pool.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": 0,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "",
-      "long": "",
+      "value": null,
+      "long": null,
       "units": ""
     },
     "uses": {
       "value": null,
-      "max": 0,
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
-      "damage": null
+      "damage": ""
     },
     "damage": {
       "parts": [],
@@ -67,7 +71,7 @@
       "subtype": ""
     },
     "recharge": {
-      "value": 0,
+      "value": null,
       "charged": false
     },
     "attributes": {
@@ -76,23 +80,30 @@
         "turn": null
       }
     },
-    "powercasting": {
-      "force": "none",
-      "tech": "none"
-    }
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1669754763464,
-    "modifiedTime": 1685840641090,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368816155,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "folder": null,
   "sort": 0,
-  "_id": "bav81EdBR7sna28x"
+  "_id": "bav81EdBR7sna28x",
+  "_key": "!items!bav81EdBR7sna28x"
 }

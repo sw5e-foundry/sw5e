@@ -1,0 +1,29 @@
+<form>
+    <div class="form-group">
+        <label>{{ localize "TYPES.Item.power" }}</label>
+        <div class="form-fields">
+            {{{ anchor }}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "SW5E.Scroll.Explanation.Label" }}</label>
+        <div class="form-fields">
+            <select name="explanation">
+                {{#select explanation}}
+                <option value="full">{{ localize "SW5E.Scroll.Explanation.Complete" }}</option>
+                <option value="reference">{{ localize "SW5E.Scroll.Explanation.Reference" }}</option>
+                <option value="none">{{ localize "SW5E.None" }}</option>
+                {{/select}}
+            </select>
+        </div>
+        <p class="hint">{{ localize "SW5E.Scroll.Explanation.Hint" }}</p>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "SW5E.PowerLevel" }}</label>
+        <div class="form-fields">
+            <select name="level" data-dtype="Number">
+                {{ selectOptions powerLevels selected=level name="level" }}
+            </select>
+        </div>
+    </div>
+</form>

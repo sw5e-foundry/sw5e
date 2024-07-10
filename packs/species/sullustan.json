@@ -1,94 +1,5 @@
 {
-  "_id": "3YMAETyv0Sm0OdRf",
   "name": "Sullustan",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Sullustan.webp",
-  "effects": [
-    {
-      "_id": "NSowTSCKpURLCCPz",
-      "changes": [
-        {
-          "key": "system.details.species",
-          "value": "Sullustan",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.attributes.senses.darkvision",
-          "value": "60",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.skills.pil.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "sullustese",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 0,
-          "priority": 20
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Sullustan.webp",
-      "label": "Sullustan",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2921258+00:00",
@@ -96,43 +7,138 @@
       "uid": "Species.name-sullustan"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Sullustan.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>A diminutive species of near-humans, Sullustans bear round, tapered skulls. Sullustans are distinguishable for their almond-shaped black eyes, facial jowls called dewflaps and large, round ears. Their wide earlobes provide excellent hearing, and their large eyes provide exceptional low-light vision. Due to their relative lack of exposure to natural light, Sullustans begin to suffer from corneal defects after 30 standard years. Many choose to wear special visors to prevent further damage. Some Sullustans tattoo their heads as a form of individual expression.</p>\n<h2>Society and Culture</h2>\n<p>Sullustans are outgoing and mercantile, friendly and pragmatic. As a species they are altogether lacking in xenophobia. Though fond of practical jokes and extremely shrewd in their business dealings, they are eager to explore and travel the galaxy. Inquisitive by nature, some have described Sullustans as reckless, especially for their preference to learn and discover whenever possible through personal experience. Sullustans organize themselves into familial units known as Warren-clans. Each clan consists of one polyandrous female, several husbands, and their young. Unmated females, known as \"Fems\", are active members of their communities until they reach breeding status, called \"Ready\", when they choose their mates.</p>\n<h2>Names</h2>\n<p>Male names are typically longer than female names. Surnames are based on Warren-clan.</p>\n<p><strong>Male Names.</strong> Duedt, Oshror, Partheen, Throthinnitz</p>\n<p><strong>Female Names.</strong> Asulu, Eldo, Tri, Vo, We</p>\n<p><strong>Surnames.</strong> Frovarr, Jeard, Plonr, Tsah, Vhiibb</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "sullustan",
-    "advancement": [
-      {
-        "_id": "WjhC2si2e4DlObEC",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.py4yaBrRMyT0M96S",
-            "Compendium.sw5e.speciesfeatures.PxyBkhwaguvbERs5",
-            "Compendium.sw5e.speciesfeatures.IMOqDLc6w0X66Ed5",
-            "Compendium.sw5e.speciesfeatures.2yZUDrz0NkbdUEdO",
-            "Compendium.sw5e.speciesfeatures.FX3uHTLfKjoAsWfC",
-            "Compendium.sw5e.speciesfeatures.REhMW0tOlmN0yaIZ",
-            "Compendium.sw5e.speciesfeatures.rtStPIvBrXONwC2m",
-            "Compendium.sw5e.speciesfeatures.MRB6eKuVd7W60pSN",
-            "Compendium.sw5e.speciesfeatures.flP3SUnh0CR2k9nF",
-            "Compendium.sw5e.speciesfeatures.a3scuUx7HFcTeps4"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "eVVBzgFT1t91vUoT",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.py4yaBrRMyT0M96S",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PxyBkhwaguvbERs5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IMOqDLc6w0X66Ed5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2yZUDrz0NkbdUEdO",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.FX3uHTLfKjoAsWfC",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.REhMW0tOlmN0yaIZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rtStPIvBrXONwC2m",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MRB6eKuVd7W60pSN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.flP3SUnh0CR2k9nF",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.a3scuUx7HFcTeps4",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1rDzikPDM2T75goR",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "dex": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "bm7QwcBXhXt1kZlt",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "djQLdgiZPy3iH3xU",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:pil"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Gray, pink, or light green"
     },
@@ -143,7 +149,7 @@
       "value": "Black or brown"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Large ears, scarns, ultra-sensitive hearing, jet-black eyes, two flaps of jowls around their cheeks"
@@ -165,17 +171,136 @@
     },
     "slanguage": {
       "value": "Sullestese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "R30RcPR3JR2NURpz",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Sullustan",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 5,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.senses.darkvision",
+          "mode": 2,
+          "value": "60",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.pil.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "sullustese",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Sullustan.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.3YMAETyv0Sm0OdRf.ActiveEffect.NSowTSCKpURLCCPz"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.3YMAETyv0Sm0OdRf",
+      "name": "Sullustan",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!euWRFujG7PPswmYU.R30RcPR3JR2NURpz"
+    },
+    {
+      "_id": "Olkrr0lY5hrJVL5a",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Sullustan.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.3YMAETyv0Sm0OdRf.ActiveEffect.NSowTSCKpURLCCPz"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.3YMAETyv0Sm0OdRf",
+      "name": "Keen Hearing",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!euWRFujG7PPswmYU.Olkrr0lY5hrJVL5a"
+    }
+  ],
+  "_id": "euWRFujG7PPswmYU",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002060,
-    "modifiedTime": 1692402505738,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797341,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!euWRFujG7PPswmYU"
 }

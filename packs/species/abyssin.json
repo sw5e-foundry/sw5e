@@ -1,100 +1,5 @@
 {
-  "_id": "Wt8ZuNA1PUXmKvzS",
   "name": "Abyssin",
-  "type": "species",
-  "img": "systems/sw5e/packs/Icons/Species/Abyssin.webp",
-  "effects": [
-    {
-      "_id": "JhHAOQyteRjEJhyC",
-      "changes": [
-        {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.details.species",
-          "value": "Abyssin",
-          "mode": 5,
-          "priority": 50
-        },
-        {
-          "key": "system.traits.size",
-          "value": "med",
-          "mode": 5,
-          "priority": 50
-        },
-        {
-          "key": "system.attributes.movement.walk",
-          "value": "30",
-          "mode": 5,
-          "priority": 50
-        },
-        {
-          "key": "system.skills.sur.value",
-          "value": "1",
-          "mode": 4,
-          "priority": 40
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "abyssin",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.techImpaired",
-          "value": "1",
-          "mode": 5,
-          "priority": 50
-        },
-        {
-          "key": "flags.sw5e.savageAttacks",
-          "value": "1",
-          "mode": 5,
-          "priority": 50
-        },
-        {
-          "key": "flags.sw5e.rapidlyRegenerative",
-          "value": "1",
-          "mode": 5,
-          "priority": 50
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "icon": "systems/sw5e/packs/Icons/Species/Abyssin.webp",
-      "label": "Abyssin",
-      "tint": null,
-      "transfer": true,
-      "flags": {},
-      "origin": null,
-      "sort": 0
-    }
-  ],
-  "folder": null,
-  "sort": 0,
   "flags": {
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:12.2701392+00:00",
@@ -102,43 +7,138 @@
       "uid": "Species.name-abyssin"
     }
   },
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Abyssin.webp",
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>The hulking abyssin have long limbs and a single large eye that dominates their foreheads. Typically well-muscled, the abyssin's stooping gait results in a slightly hunched appearance. </p>\n<p>A distinctive trait of the abyssin is their ability to heal quickly; their fast regeneration is believed to have been an adaptation to prevent fluid loss via bleeding on their desert homeworld. All cells in the abyssin body are replaced every 80 hours, and organs which typically were paired in other species appear singularly.</p>\n<h2>Society and Culture</h2>\n<p>A primitive tribal society, the abyssin of Byss are known as violent and brutish, and their planet is avoided by most beings in the civilized galaxy. Unstable resources on Byss do not allow for mass population growth or for the stabilization of a central government, economy or trade system. </p>\n<p>Existing simply in nomadic tribes, abyssin groups can interact peacefully with one another, though only if both groups have plentiful water and food supplies. Otherwise, they began a 'Blooding', a brawl that ends only when one tribe's warriors are all killed, captured, or incapacitated. Warriors who survive a Blooding are usually allowed to join the winning tribe once they finish their regeneration. This tradition led to some violent incidents when spacers tried to make first contact and trade with Abyssin tribes with scarce water resources, especially since the abyssin assumed the alien traders could regenerate as quickly as they did. </p>\n<h2>Names</h2>\n<p>There does not appear to be any distinction between male and female names for abyssin. Abyssin don't use surnames.</p>\n<p><strong>Names.</strong> Anami, Easym, Myo, Qawohl, Seh-run, Sidie</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "abyssin",
-    "advancement": [
-      {
-        "_id": "fls5GTEa1slYBTOO",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.yuqMzMCdkvnfS7Kc",
-            "Compendium.sw5e.speciesfeatures.THoGpbe8StjhK9GU",
-            "Compendium.sw5e.speciesfeatures.GIuTjS2AxE0FvYv2",
-            "Compendium.sw5e.speciesfeatures.jQskDCDjRdldUQ3j",
-            "Compendium.sw5e.speciesfeatures.2bylCT3mwnO3eeXi",
-            "Compendium.sw5e.speciesfeatures.6tP9W0qacVEOtzN9",
-            "Compendium.sw5e.speciesfeatures.F1u1CcPQP3LlaXJX",
-            "Compendium.sw5e.speciesfeatures.O3Mlj9ZxvbuqKPjh",
-            "Compendium.sw5e.speciesfeatures.f5yIcsMvq9twtrZC",
-            "Compendium.sw5e.speciesfeatures.75GX8Nrop7DRpgSg"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "O3wS8am7QRD1LEgD",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yuqMzMCdkvnfS7Kc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.THoGpbe8StjhK9GU",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.GIuTjS2AxE0FvYv2",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jQskDCDjRdldUQ3j",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2bylCT3mwnO3eeXi",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6tP9W0qacVEOtzN9",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.F1u1CcPQP3LlaXJX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.O3Mlj9ZxvbuqKPjh",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.f5yIcsMvq9twtrZC",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.75GX8Nrop7DRpgSg",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "T31srmsevGl1MeM7",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "str": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "GOVXL3Tb65SK7LO2",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1jzVZD35lkwkJnkK",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:sur"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Green, tan"
     },
@@ -149,7 +149,7 @@
       "value": "Yellow, white"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Single eye, regenerative abilities"
@@ -171,17 +171,104 @@
     },
     "slanguage": {
       "value": "Abyssin"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [
+    {
+      "_id": "JhHAOQyteRjEJhyC",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "mode": 5,
+          "value": "Abyssin",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.size",
+          "mode": 5,
+          "value": "med",
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 5,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.skills.sur.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 2,
+          "value": "abyssin",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 2,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.techImpaired",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.meleeCriticalDamageDice",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Abyssin.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {},
+      "origin": null,
+      "name": "Abyssin",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!3v42btRPnbZ1Y6V8.JhHAOQyteRjEJhyC"
+    }
+  ],
+  "_id": "3v42btRPnbZ1Y6V8",
+  "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002103,
-    "modifiedTime": 1692402505741,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796388,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!3v42btRPnbZ1Y6V8"
 }

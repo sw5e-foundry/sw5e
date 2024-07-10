@@ -1,7 +1,8 @@
 import { Progress } from "./progress.mjs";
-import { fontAwesomeIcon, htmlQueryAll, objectHasKey, isObject, getSelectedOrOwnActors } from "../../utils.mjs";
+import { fontAwesomeIcon, htmlQuery, htmlQueryAll, objectHasKey, isObject, getSelectedOrOwnActors } from "../../utils.mjs";
 import * as browserTabs from "./tabs/_module.mjs";
 import Tagify from "@yaireo/tagify";
+import noUiSlider from "nouislider";
 
 class PackLoader {
   loadedPacks = { Actor: {}, Item: {} };
@@ -71,7 +72,14 @@ class PackLoader {
 export default class CompendiumBrowser extends Application {
   settings;
 
-  dataTabsList = ["equipment"];
+  dataTabsList = [
+    "bestiary",
+    "classification",
+    "equipment",
+    "feat",
+    "power",
+    "maneuver"
+  ];
 
   navigationTab;
 
@@ -87,12 +95,12 @@ export default class CompendiumBrowser extends Application {
     this.settings = {} ?? game.settings.get("sw5e", "compendiumBrowserPacks");
     this.navigationTab = this.hookTab();
     this.tabs = {
-      // Action: new browserTabs.Actions(this),
-      // bestiary: new browserTabs.Bestiary(this),
-      equipment: new browserTabs.Equipment(this)
-      // Feat: new browserTabs.Feats(this),
-      // hazard: new browserTabs.Hazards(this),
-      // power: new browserTabs.Powers(this),
+      bestiary: new browserTabs.Bestiary(this),
+      classification: new browserTabs.Classification(this),
+      equipment: new browserTabs.Equipment(this),
+      feat: new browserTabs.Feats(this),
+      power: new browserTabs.Powers(this),
+      maneuver: new browserTabs.Maneuvers(this)
     };
 
     this.initCompendiumList();
@@ -118,16 +126,16 @@ export default class CompendiumBrowser extends Application {
           navSelector: "nav",
           contentSelector: "section.content",
           initial: "landing-page"
+        },
+        {
+          navSelector: "nav[data-group=settings]",
+          contentSelector: ".settings-container",
+          initial: "packs"
         }
       ],
-      scrollY: [".control-area", ".item-list"]
+      scrollY: [".control-area", ".item-list", ".settings-container"]
     });
   }
-
-  // /** @inheritdoc */
-  // async render(force, options) {
-  //   return super.render(force, options);
-  // }
 
   /**
    * Reset initial filtering
@@ -153,10 +161,12 @@ export default class CompendiumBrowser extends Application {
       bestiary: {},
       shipyard: {},
 
+      feat: {},
+      power: {},
+      maneuver: {},
+
       equipment: {},
-      class: {},
-      other: {},
-      feat: {}
+      classification: {}
     };
 
     // NPCs and Hazards are all loaded by default other packs can be set here.
@@ -186,7 +196,7 @@ export default class CompendiumBrowser extends Application {
       "sw5e.implements": true,
       "sw5e.invocations": true,
       "sw5e.kits": true,
-      "sw5e.lightsaberform": true,
+      "sw5e.lightsaberforms": true,
       "sw5e.lightweapons": true,
       "sw5e.maneuvers": true,
       "sw5e.monsters": true,
@@ -216,54 +226,30 @@ export default class CompendiumBrowser extends Application {
       types.delete(undefined);
       if (types.size === 0) continue;
 
-      if (types.has("npc")) {
-        const load = this.settings.bestiary?.[pack.collection]?.load ?? true;
-        settings.bestiary[pack.collection] = {
-          load,
-          name: pack.metadata.label
-        };
-      }
-      if (types.has("starship")) {
-        const load = this.settings.shipyard?.[pack.collection]?.load ?? true;
-        settings.shipyard[pack.collection] = {
-          load,
-          name: pack.metadata.label
-        };
-      }
+      const type = (() => {
+        if ( types.has("npc") ) return "bestiary";
 
-      let t = CONFIG.SW5E.itemTypes.inventory.find(type => types.has(type));
-      if (t !== undefined) {
-        const load = this.settings.equipment?.[pack.collection]?.load ?? !!loadDefault[pack.collection];
-        settings.equipment[pack.collection] = {
-          load,
-          name: pack.metadata.label
-        };
-        continue;
-      }
+        if ( types.has("starship") ) return "shipyard";
 
-      t = CONFIG.SW5E.itemTypes.class.find(type => types.has(type));
-      if (t !== undefined) {
-        const load = this.settings.class?.[pack.collection]?.load ?? !!loadDefault[pack.collection];
-        settings.class[pack.collection] = {
-          load,
-          name: pack.metadata.label
-        };
-      }
+        if ( types.has("feat") ) return "feat";
 
-      t = CONFIG.SW5E.itemTypes.other.find(type => types.has(type));
-      if (t !== undefined) {
-        const load = this.settings.other?.[pack.collection]?.load ?? !!loadDefault[pack.collection];
-        settings.other[pack.collection] = {
-          load,
-          name: pack.metadata.label
-        };
-      }
+        if ( types.has("power") ) return "power";
 
-      if (types.has("feat")) {
-        const load = this.settings.feat?.[pack.collection]?.load ?? !!loadDefault[pack.collection];
-        settings.feat[pack.collection] = {
+        if ( types.has("maneuver") ) return "maneuver";
+
+        if ( CONFIG.SW5E.itemTypes.inventory.some(type => types.has(type)) ) return "equipment";
+
+        if ( CONFIG.SW5E.itemTypes.class.some(type => types.has(type)) ) return "classification";
+
+        return null;
+      })();
+
+      if (type) {
+        const load = this.settings[type]?.[pack.collection]?.load ?? loadDefault[type] ?? !!loadDefault[pack.collection];
+        settings[type][pack.collection] = {
           load,
-          name: pack.metadata.label
+          name: pack.metadata.label,
+          package: pack.metadata.packageName
         };
       }
     }
@@ -290,15 +276,10 @@ export default class CompendiumBrowser extends Application {
     return this.loadTab(tabName);
   }
 
-  async openPowerTab(entry, maxLevel = 10) {
+  async openPowerTab(entry, maxLevel = 9) {
     const powerTab = this.tabs.power;
     const filter = await powerTab.getFilterData();
     const { category, level, traditions } = filter.checkboxes;
-
-    if (entry.isRitual || entry.isFocusPool) {
-      category.options[entry.category].selected = true;
-      category.selected.push(entry.category);
-    }
 
     if (maxLevel) {
       const levels = Array.from(Array(maxLevel).keys()).map(l => String(l + 1));
@@ -306,15 +287,6 @@ export default class CompendiumBrowser extends Application {
         level.options[l].selected = true;
         level.selected.push(l);
       }
-      if (entry.isPrepared || entry.isSpontaneous || entry.isInnate) {
-        category.options.power.selected = true;
-        category.selected.push("power");
-      }
-    }
-
-    if (entry.tradition && !entry.isFocusPool && !entry.isRitual) {
-      traditions.options[entry.tradition].selected = true;
-      traditions.selected.push(entry.tradition);
     }
 
     powerTab.open(filter);
@@ -324,12 +296,13 @@ export default class CompendiumBrowser extends Application {
     this.activeTab = tabName;
     // Settings tab
     if (tabName === "settings") {
+      await this.packLoader.updateSources(this.loadedPacksAll());
       await this.render(true);
       return;
     }
 
-    // TODO: Remove this once the other tabs are working
-    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Equipment" works so far.`);
+    // TODO SW5E: Remove this once the other tabs are working
+    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Bestiaries", "Classification", "Equipment", "Powers", "Maneuvers", and "Features" work so far.`);
     // If (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Unknown tab "${tabName}"`);
 
     const currentTab = this.tabs[tabName];
@@ -347,10 +320,18 @@ export default class CompendiumBrowser extends Application {
     });
   }
 
+  loadedPacksAll() {
+    const loadedPacks = new Set();
+    for (const tabName of this.dataTabsList) {
+      this.loadedPacks(tabName).forEach(item => loadedPacks.add(item));
+    }
+    return Array.from(loadedPacks).sort();
+  }
+
   /** @inheritdoc */
-  activateListeners(html) {
-    super.activateListeners(html);
-    html = html[0];
+  activateListeners(input_html) {
+    super.activateListeners(input_html);
+    const html = input_html[0];
     const activeTabName = this.activeTab;
 
     // Set the navigation tab. This is only needed when the browser is openend
@@ -359,25 +340,87 @@ export default class CompendiumBrowser extends Application {
 
     // Settings Tab
     if (activeTabName === "settings") {
-      const form = html.querySelector(".compendium-browser-settings form");
-      if (form) {
-        form.querySelector("button.save-settings")?.addEventListener("click", async () => {
-          const formData = new FormData(form);
-          for (const [t, packs] of Object.entries(this.settings)) {
-            for (const [key, pack] of Object.entries(packs)) {
-              pack.load = formData.has(`${t}-${key}`);
-            }
+      const settings = htmlQuery(html, ".compendium-browser-settings");
+      const form = settings?.querySelector("form");
+      if (!form) return;
+
+      htmlQuery(settings, "button[data-action=save-settings]")?.addEventListener("click", async () => {
+        const formData = new FormData(form);
+        for (const [t, packs] of Object.entries(this.settings)) {
+          for (const [key, pack] of Object.entries(packs)) {
+            pack.load = formData.has(`${t}-${key}`);
           }
-          await game.settings.set("sw5e", "compendiumBrowserPacks", this.settings);
-          for (const tab of Object.values(this.tabs)) {
-            if (tab.isInitialized) {
-              await tab.init();
-              tab.scrollLimit = 100;
-            }
+        }
+        await game.settings.set("sw5e", "compendiumBrowserPacks", this.settings);
+
+        for (const [key, source] of Object.entries(this.packLoader.sourcesSettings.sources)) {
+          if (!source || isBlank(source.name)) {
+            delete this.packLoader.sourcesSettings.sources[key]; // Just to make sure we clean up
+            continue;
           }
-          this.render(true);
+          source.load = formData.has(`source-${key}`);
+        }
+
+        this.packLoader.sourcesSettings.showEmptySources = formData.has("show-empty-sources");
+        this.packLoader.sourcesSettings.showUnknownSources = formData.has("show-unknown-sources");
+        this.packLoader.sourcesSettings.ignoreAsGM = formData.has("ignore-as-gm");
+        await game.settings.set("sw5e", "compendiumBrowserSources", this.packLoader.sourcesSettings);
+
+        await this.#resetInitializedTabs();
+        this.render(true);
+        ui.notifications.info("SW5E.BrowserSettingsSaved", { localize: true });
+      });
+
+      const sourceSearch = htmlQuery(form, "input[data-element=setting-sources-search]");
+      const sourceToggle = htmlQuery(form, "input[data-action=setting-sources-toggle-visible]");
+      const sourceSettings = htmlQueryAll(form, "label[data-element=setting-source]");
+
+      sourceSearch?.addEventListener("input", () => {
+        const value = sourceSearch.value?.trim().toLocaleLowerCase(game.i18n.lang);
+
+        for (const element of sourceSettings) {
+          const name = element.dataset.name?.toLocaleLowerCase(game.i18n.lang);
+          const shouldBeHidden = !isBlank(value) && !isBlank(name) && !name.includes(value);
+
+          element.classList.toggle("hidden", shouldBeHidden);
+        }
+
+        if (sourceToggle) {
+          sourceToggle.checked = false;
+        }
+      });
+
+      sourceToggle?.addEventListener("click", () => {
+        for (const element of sourceSettings) {
+          const checkbox = htmlQuery(element, "input[type=checkbox]");
+          if (!element.classList.contains("hidden") && checkbox) {
+            checkbox.checked = sourceToggle.checked;
+          }
+        }
+      });
+
+      const deleteButton = htmlQuery(form, "button[data-action=settings-sources-delete]");
+      deleteButton?.addEventListener("click", async () => {
+        const localize = localizer("SW5E.SETTINGS.CompendiumBrowserSources");
+        const confirm = await Dialog.confirm({
+          title: localize("DeleteAllTitle"),
+          content: `
+            <p>
+              ${localize("DeleteAllQuestion")}
+            </p>
+            <p>
+              ${localize("DeleteAllInfo")}
+            </p>
+            `
         });
-      }
+
+        if (confirm) {
+          await this.packLoader.hardReset(this.loadedPacksAll());
+          await game.settings.set("sw5e", "compendiumBrowserSources", this.packLoader.sourcesSettings);
+          await this.#resetInitializedTabs();
+          this.render(true);
+        }
+      });
       return;
     }
 
@@ -417,23 +460,21 @@ export default class CompendiumBrowser extends Application {
       }
     }
 
-    if (activeTabName === "power") {
-      const timeFilter = controlArea.querySelector("select[name=timefilter]");
-      if (timeFilter) {
-        timeFilter.addEventListener("change", () => {
-          if (!currentTab.isOfType("power")) return;
-          const filterData = currentTab.filterData;
-          if (!filterData.selects?.timefilter) return;
-          filterData.selects.timefilter.selected = timeFilter.value;
-          this.clearScrollLimit(true);
-        });
-      }
-    }
-
     // Clear all filters button
     controlArea.querySelector("button.clear-filters")?.addEventListener("click", () => {
       this.resetFilters();
       this.clearScrollLimit(true);
+    });
+
+    // Create Roll Table button
+    htmlQuery(html, "[data-action=create-roll-table]")?.addEventListener("click", () =>
+      currentTab.createRollTable()
+    );
+
+    // Add to Roll Table button
+    htmlQuery(html, "[data-action=add-to-roll-table]")?.addEventListener("click", async () => {
+      if (!game.tables.contents.length) return;
+      currentTab.addToRollTable();
     });
 
     // Filters
@@ -458,13 +499,11 @@ export default class CompendiumBrowser extends Application {
               break;
             }
             case "ranges": {
-              if (currentTab.isOfType("equipment")) {
-                const ranges = currentTab.filterData.ranges;
-                if (objectHasKey(ranges, filterName)) {
-                  ranges[filterName].values = currentTab.defaultFilterData.ranges[filterName].values;
-                  ranges[filterName].changed = false;
-                  this.render(true);
-                }
+              const ranges = currentTab.filterData.ranges;
+              if (objectHasKey(ranges, filterName)) {
+                ranges[filterName].values = currentTab.defaultFilterData.ranges[filterName].values;
+                ranges[filterName].changed = false;
+                this.render(true);
               }
             }
           }
@@ -490,14 +529,12 @@ export default class CompendiumBrowser extends Application {
             break;
           }
           case "ranges": {
-            if (!currentTab.isOfType("equipment")) return;
             if (objectHasKey(currentTab.filterData.ranges, filterName)) {
               toggleFilter(currentTab.filterData.ranges[filterName]);
             }
             break;
           }
           case "sliders": {
-            if (!currentTab.isOfType("bestiary", "equipment", "feat", "hazard")) return;
             if (objectHasKey(currentTab.filterData.sliders, filterName)) {
               toggleFilter(currentTab.filterData.sliders[filterName]);
             }
@@ -526,7 +563,6 @@ export default class CompendiumBrowser extends Application {
       if (filterType === "ranges") {
         container.querySelectorAll("input[name*=Bound]").forEach(range => {
           range.addEventListener("keyup", event => {
-            if (!currentTab.isOfType("equipment")) return;
             if (event.key !== "Enter") return;
             const ranges = currentTab.filterData.ranges;
             if (ranges && objectHasKey(ranges, filterName)) {
@@ -610,7 +646,6 @@ export default class CompendiumBrowser extends Application {
 
       if (filterType === "sliders") {
         // Slider filters
-        if (!currentTab.isOfType("bestiary", "equipment", "feat", "hazard")) return;
         const sliders = currentTab.filterData.sliders;
         if (!sliders) continue;
 
@@ -640,8 +675,8 @@ export default class CompendiumBrowser extends Application {
             data.values.min = min;
             data.values.max = max;
 
-            const minLabel = html.find(`label.${name}-min-label`);
-            const maxLabel = html.find(`label.${name}-max-label`);
+            const minLabel = input_html.find(`label.${name}-min-label`);
+            const maxLabel = input_html.find(`label.${name}-max-label`);
             minLabel.text(min);
             maxLabel.text(max);
 
@@ -674,6 +709,15 @@ export default class CompendiumBrowser extends Application {
 
     // Initial result list render
     this.renderResultList({ list });
+  }
+
+  async #resetInitializedTabs() {
+    for (const tab of Object.values(this.tabs)) {
+      if (tab.isInitialized) {
+        await tab.init();
+        tab.scrollLimit = 100;
+      }
+    }
   }
 
   /**
@@ -838,6 +882,9 @@ export default class CompendiumBrowser extends Application {
         uuid: item.dataset.entryUuid
       })
     );
+    // Awful hack (dataTransfer.types will include "from-browser")
+    event.dataTransfer.setData("from-browser", "true");
+
     item.addEventListener(
       "dragend",
       () => {
@@ -853,25 +900,25 @@ export default class CompendiumBrowser extends Application {
 
   _onDragOver(event) {
     super._onDragOver(event);
-    this.element.css({ pointerEvents: "none" });
+    if (event.dataTransfer.types.includes("from-browser")) {
+      this.element.css({ pointerEvents: "none" });
+    }
   }
 
   getData() {
     const activeTab = this.activeTab;
-    // Settings
-    if (activeTab === "settings") return {
-      user: game.user,
-      settings: this.settings
+    const tab = objectHasKey(this.tabs, activeTab) ? this.tabs[activeTab] : null;
+
+    const settings = {
+      settings: this.settings,
+      sources: this.packLoader.sourcesSettings
     };
-    // Active tab
-    const tab = this.tabs[activeTab];
-    if (tab) return {
+
+    return {
       user: game.user,
-      [activeTab]: { filterData: tab.filterData },
-      scrollLimit: tab.scrollLimit
+      [activeTab]: activeTab === "settings" ? settings : { filterData: tab?.filterData },
+      scrollLimit: tab?.scrollLimit
     };
-    // No active tab
-    return { user: game.user };
   }
 
   resetFilters() {

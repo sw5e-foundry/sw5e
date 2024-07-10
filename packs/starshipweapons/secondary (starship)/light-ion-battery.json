@@ -8,37 +8,41 @@
   "system": {
     "description": {
       "value": "Power (range 800/3200), overheat 16",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 6100,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": 800,
@@ -48,19 +52,23 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "rwak",
-    "attackBonus": "0",
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -76,74 +84,52 @@
       "dc": null,
       "scaling": "power"
     },
-    "armor": null,
-    "hp": null,
+    "armor": {
+      "value": null
+    },
+    "hp": {
+      "value": null,
+      "max": null,
+      "dt": null,
+      "conditions": ""
+    },
     "modify": {
       "chassis": "none",
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null
+      "changes": {}
     },
-    "weaponType": "secondary (starship)",
-    "baseItem": "",
+    "weaponClass": "",
     "ammo": {
       "target": null,
       "value": null,
       "use": null,
       "types": []
     },
-    "properties": {
-      "amm": false,
-      "aut": false,
-      "bur": null,
-      "con": null,
-      "def": null,
-      "dex": null,
-      "dir": null,
-      "drm": false,
-      "dgd": false,
-      "dis": null,
-      "dpt": false,
-      "dou": false,
-      "exp": false,
-      "fin": false,
-      "fix": false,
-      "foc": false,
-      "hvy": false,
-      "hid": false,
-      "hom": false,
-      "ion": false,
-      "ken": null,
-      "lgt": false,
-      "lum": false,
-      "mlt": false,
-      "mig": false,
-      "ovr": 16,
-      "pic": null,
-      "pow": true,
-      "rap": null,
-      "rch": false,
-      "rel": null,
-      "ret": false,
-      "sat": false,
-      "shk": null,
-      "sil": false,
-      "spc": false,
-      "str": null,
-      "thr": false,
-      "two": false,
-      "ver": false,
-      "vic": null,
-      "zon": false,
-      "mgc": false,
-      "ran": false,
-      "smr": false
-    },
-    "proficient": true,
+    "properties": [
+      "ovr",
+      "pow"
+    ],
+    "proficient": 1,
     "attuned": false,
-    "weaponSize": "Huge"
+    "type": {
+      "value": "secondary (starship)",
+      "subtype": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "_propertyValues": {},
+    "container": null,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "firingArc": ""
   },
   "ownership": {
     "default": 0
@@ -152,10 +138,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.5",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494019842,
-    "modifiedTime": 1685116252026,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552918085,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!j7TPgC1bhk0dRlKJ"
 }

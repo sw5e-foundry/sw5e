@@ -16,115 +16,225 @@
   "system": {
     "description": {
       "value": "<h1>Armormech Engineering</h1>\n<p>Those engineers who choose the Armormech Engineering discipline focus on the ability to work with hard metals and electronic shielding to construct and enhance all types of personal armor.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Armormech Modifications</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.7IT8z1HgmuLxQ6uJ]{Absorption shield}</li>\n<li>@Compendium[sw5e.invocations.5LChMNboHi8wrUd4]{Accelerated movement}</li>\n<li>@Compendium[sw5e.invocations.JlObzNsXdfd1EIpe]{Adaptable armor}</li>\n<li>@Compendium[sw5e.invocations.LcGZPNoyEyFVeon0]{Advanced power fist}</li>\n<li>@Compendium[sw5e.invocations.Qx7FcHMV6d4D6ZeI]{Artificially intelligent}</li>\n<li>@Compendium[sw5e.invocations.jDNy2cI6cBHBUcJd]{Bonded plates}</li>\n<li>@Compendium[sw5e.invocations.mHT9620RiTxP8nEQ]{Collapsible suit}</li>\n<li>@Compendium[sw5e.invocations.SnQfHJrVFVpoEYkd]{Darkvision visor}</li>\n<li>@Compendium[sw5e.invocations.Q3e1pzZiaaMntWeI]{Enhanced endurance}</li>\n<li>@Compendium[sw5e.invocations.SiqruKL4ugVuLNp7]{Electroshock shield}</li>\n<li>@Compendium[sw5e.invocations.pIJcMvA9equrs8qG]{Flight}</li>\n<li>@Compendium[sw5e.invocations.7yd7tg0U12BWGmpt]{Grappling harpoon}</li>\n<li>@Compendium[sw5e.invocations.MhnGTjt890SijdfD]{Heavy suit}</li>\n<li>@Compendium[sw5e.invocations.9UsBIvBWoJWnGWLa]{Infiltration suit}</li>\n<li>@Compendium[sw5e.invocations.T9xHK846NcU447MS]{Magnetized shield}</li>\n<li>@Compendium[sw5e.invocations.gXdYVB0cKEqeaTvf]{Overload shield}</li>\n<li>@Compendium[sw5e.invocations.yl6V4KPNpTA7qSYR]{Power fist}</li>\n<li>@Compendium[sw5e.invocations.l5C7fCRwOTECEBmZ]{Prototype power fist}</li>\n<li>@Compendium[sw5e.invocations.f8dytKAGNd5I3aSW]{Reinforced underlay}</li>\n<li>@Compendium[sw5e.invocations.YJ3CUCoA8FX6cxtL]{Resistance}</li>\n<li>@Compendium[sw5e.invocations.YiXKJyGrNMWHlezh]{Sealed suit}</li>\n<li>@Compendium[sw5e.invocations.DgiBZpMdSVvYgsCC]{Sentient armor}</li>\n<li>@Compendium[sw5e.invocations.BoMgGiwRwKpDXf0m]{Shield amplifier}</li>\n<li>@Compendium[sw5e.invocations.vEOLzvXNyqehx5a6]{Shield anchor}</li>\n<li>@Compendium[sw5e.invocations.ngJ1u9hpsJg6FHRD]{Tech blast}</li>\n<li>@Compendium[sw5e.invocations.c71EXsNWKxShWXRt]{Weapon integration armoring}</li>\n</ul>"
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "armormechengineering",
     "classIdentifier": "engineer",
     "advancement": [
       {
-        "_id": "1fCB6gjuL3bLus97",
+        "_id": "1ttyZN5PPWUf1oRz",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.z5R0MIpMdDAp0em1",
-            "Compendium.sw5e.archetypefeatures.8GKryrcQTowV837J",
-            "Compendium.sw5e.archetypefeatures.fUtkSOA3uOmiZW1W"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.z5R0MIpMdDAp0em1",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.8GKryrcQTowV837J",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.fUtkSOA3uOmiZW1W",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1u2mOzvunX0HV1ts",
+        "_id": "1ynSdRpDHH651yU7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Dcm5NMpYudkPcW1S"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Dcm5NMpYudkPcW1S",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "12ex42XxdfJuHpsn",
+        "_id": "1ffHJLRu67K21Nkl",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.sCMaEqHoPH3n5dP9"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.sCMaEqHoPH3n5dP9",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
       },
       {
-        "_id": "18TNJQOwsr3RVfDS",
+        "_id": "1t6ZeNfrogm18DdM",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.71KlrYRbxJhb4AiA"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.71KlrYRbxJhb4AiA",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
         "title": "Features"
       },
       {
-        "_id": "1UqnLIsOp4Nd1jk0",
+        "_id": "CH21PshkNy610lnj",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "tool:armormechsimplements",
+            "armor:med",
+            "armor:hvy"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 3
+      },
+      {
+        "_id": "1d0YSd79ZXll10aN",
         "type": "ItemChoice",
         "configuration": {
           "hint": "",
           "choices": {
-            "3": 4,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "3": {
+              "count": 4,
+              "replacement": false
+            },
+            "5": {
+              "count": 1,
+              "replacement": false
+            },
+            "9": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            },
+            "13": {
+              "count": 1,
+              "replacement": false
+            },
+            "17": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.7IT8z1HgmuLxQ6uJ",
-            "Compendium.sw5e.invocations.5LChMNboHi8wrUd4",
-            "Compendium.sw5e.invocations.JlObzNsXdfd1EIpe",
-            "Compendium.sw5e.invocations.LcGZPNoyEyFVeon0",
-            "Compendium.sw5e.invocations.Qx7FcHMV6d4D6ZeI",
-            "Compendium.sw5e.invocations.jDNy2cI6cBHBUcJd",
-            "Compendium.sw5e.invocations.mHT9620RiTxP8nEQ",
-            "Compendium.sw5e.invocations.SnQfHJrVFVpoEYkd",
-            "Compendium.sw5e.invocations.Q3e1pzZiaaMntWeI",
-            "Compendium.sw5e.invocations.SiqruKL4ugVuLNp7",
-            "Compendium.sw5e.invocations.pIJcMvA9equrs8qG",
-            "Compendium.sw5e.invocations.7yd7tg0U12BWGmpt",
-            "Compendium.sw5e.invocations.MhnGTjt890SijdfD",
-            "Compendium.sw5e.invocations.9UsBIvBWoJWnGWLa",
-            "Compendium.sw5e.invocations.T9xHK846NcU447MS",
-            "Compendium.sw5e.invocations.gXdYVB0cKEqeaTvf",
-            "Compendium.sw5e.invocations.yl6V4KPNpTA7qSYR",
-            "Compendium.sw5e.invocations.l5C7fCRwOTECEBmZ",
-            "Compendium.sw5e.invocations.f8dytKAGNd5I3aSW",
-            "Compendium.sw5e.invocations.YJ3CUCoA8FX6cxtL",
-            "Compendium.sw5e.invocations.YiXKJyGrNMWHlezh",
-            "Compendium.sw5e.invocations.DgiBZpMdSVvYgsCC",
-            "Compendium.sw5e.invocations.BoMgGiwRwKpDXf0m",
-            "Compendium.sw5e.invocations.vEOLzvXNyqehx5a6",
-            "Compendium.sw5e.invocations.ngJ1u9hpsJg6FHRD",
-            "Compendium.sw5e.invocations.c71EXsNWKxShWXRt"
+            {
+              "uuid": "Compendium.sw5e.invocations.7IT8z1HgmuLxQ6uJ"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.5LChMNboHi8wrUd4"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.JlObzNsXdfd1EIpe"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.LcGZPNoyEyFVeon0"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Qx7FcHMV6d4D6ZeI"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.jDNy2cI6cBHBUcJd"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.mHT9620RiTxP8nEQ"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.SnQfHJrVFVpoEYkd"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Q3e1pzZiaaMntWeI"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.SiqruKL4ugVuLNp7"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.pIJcMvA9equrs8qG"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.7yd7tg0U12BWGmpt"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.MhnGTjt890SijdfD"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.9UsBIvBWoJWnGWLa"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.T9xHK846NcU447MS"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.gXdYVB0cKEqeaTvf"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.yl6V4KPNpTA7qSYR"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.l5C7fCRwOTECEBmZ"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.f8dytKAGNd5I3aSW"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.YJ3CUCoA8FX6cxtL"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.YiXKJyGrNMWHlezh"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.DgiBZpMdSVvYgsCC"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.BoMgGiwRwKpDXf0m"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.vEOLzvXNyqehx5a6"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.ngJ1u9hpsJg6FHRD"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.c71EXsNWKxShWXRt"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -137,7 +247,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Armormech Modifications"
       }
     ],
@@ -148,7 +261,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -156,10 +269,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959727,
-    "modifiedTime": 1692474724783,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689217,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!DSaorO1E42ZAoYko"
 }

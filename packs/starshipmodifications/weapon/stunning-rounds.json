@@ -1,5 +1,4 @@
 {
-  "_id": "qDyDybnuwfGynFfm",
   "name": "Stunning Rounds",
   "type": "starshipmod",
   "flags": {},
@@ -7,40 +6,40 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>When you score a critical hit with the chosen weapon, or when the target ship rolls a 1 on the saving throw to avoid the weapon's effects, you can force the target to make a Constitution saving throw (DC = 8 + your proficiency bonus + the ship's Strength modifier). On a failed save, the ship is stunned until the start of your next turn.</p><p>If the damaged ship is larger than your ship, it has advantage on the saving throw. If the damaged ship is smaller than your ship, it instead has disadvantage.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">When you score a critical hit with the chosen weapon, or when the target ship rolls a 1 on the saving throw to avoid the weapon's effects, you can force the target to make a Constitution saving throw (DC = 8 + your proficiency bonus + the ship's Strength modifier). On a failed save, the ship is stunned until the start of your next turn.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">If the damaged ship is larger than your ship, it has advantage on the saving throw. If the damaged ship is smaller than your ship, it instead has disadvantage.</span></p>",
+      "chat": ""
     },
-    "requirements": "",
-    "source": {
-      "value": "SotG"
-    },
+    "source": {},
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -51,16 +50,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -76,18 +76,11 @@
       "dc": null,
       "scaling": "power"
     },
-    "recharge": {
-      "charged": false,
-      "value": null
-    },
-    "system": {
-      "value": "Weapon"
-    },
     "grade": {
-      "value": "NA"
+      "value": 0
     },
-    "basecost": {
-      "value": "3000"
+    "baseCost": {
+      "value": null
     },
     "prerequisites": {
       "value": "Weapon that deals ion damage"
@@ -95,19 +88,36 @@
     "free": {
       "slot": false,
       "suite": false
-    }
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "Weapon",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1674494018746,
+    "modifiedTime": 1720552915502,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_id": "P2PDws64dSp7eEnx",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "folder": null,
-  "sort": 0,
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
-    "createdTime": 1674494018746,
-    "modifiedTime": 1685840666222,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+  "_key": "!items!P2PDws64dSp7eEnx"
 }

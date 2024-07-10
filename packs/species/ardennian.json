@@ -1,8 +1,183 @@
 {
-  "_id": "M8xA8Sa9LX66ZkRG",
   "name": "Ardennian",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.272138+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-ardennian"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Ardennian.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Ardennians are sentient humanoid simians hailing from the tropical paradise of Ardennia. They are covered in fur from head to their wrists and ankles, with brown and grey being the most common fur colors. Ardennians sport four arms and prehensile feet. All six of their limbs are equally dexterous.</p>\n<h2>Society and Culture</h2>\n<p>The Ardennian people themselves are a friendly communal species that are well known for welcoming visitors and inviting newcomers to traditional feasts and dances on the sandy beaches of Ardennia. Rural Ardiennan's live in modern tree-villages in the thick, dim jungle canopy on the majority of the islands. Ground level accommodations are available for off world visitors even in the smaller villages. Most off-worlders stay in the large modern resort complexes which boast having miles of private beaches or in the modern cities. Several large cities exist, scattered around the world, which typically encompass an entire island or a series of smaller islands joined together.</p>\n<p>Ardennia's distance from the main hyperlanes makes it one of the lesser-known vacation destinations, but it's a popular one for those who don't mind the extra travel time. Some affluent visitors prefer the solitude that Ardennia offers, and occasionally end up purchasing one of the smaller islands to build their own home. Ardennia is notable for having the most beach per square meter in the galaxy. </p>\n<h2>Names</h2>\n<p>Ardennian's names are typically concise and rarely more than two syllables, with a familal surname.</p>\n<p><strong>Male Names.</strong> Rio, Jakar, Hul, Lup, Quil, Jerno</p>\n<p><strong>Female Names.</strong> Rac, Bras, Nuc, Kua, Karta, Sanya</p>\n<p><strong>Surnames.</strong> Betal, Durant, Jabut, Karon, Rambuan</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "ardennian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "climb": 25,
+      "burrow": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "UkDkfMsoufd1p3hD",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ac0MNI0Euzx9tZgy",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JxFWjlC7v94TO8oi",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.F8GD2icQxr3BLzDW",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.B1RKrlnlEK8ptYI4",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.eottc7AR2wimBYIX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mSurFgu12GfcSQq5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6tSTnYoW42iMEKAT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rFda20t4S2pcVqWa",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.qIMmIM4PWt5GSXtG",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.sTdN0YSS9PzCea49",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ySVAr3eFCv8YVv2L",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ETQL7BWsA9VxW0hY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.oRvKvAvPxZYjgeoH",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1kR9X4391nVNdySl",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "cha": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1nN6fwe9Jfzd1iUH",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Brown or black"
+    },
+    "hairColorOptions": {
+      "value": "Brown to gray"
+    },
+    "eyeColorOptions": {
+      "value": "Brown or black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Four arms, fur-covered, prehensile feet"
+    },
+    "heightAverage": {
+      "value": "3'2\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "50 lb."
+    },
+    "weightRollMod": {
+      "value": "x1 lb."
+    },
+    "homeworld": {
+      "value": "Ardennia"
+    },
+    "slanguage": {
+      "value": "Adrennian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "abUBIqj4EjIoc7yP",
@@ -12,18 +187,6 @@
           "value": "Ardennian",
           "mode": 5,
           "priority": 5
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
         },
         {
           "key": "system.traits.size",
@@ -47,7 +210,7 @@
           "key": "system.attributes.movement.climb",
           "value": "25",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.languages.value",
@@ -91,106 +254,29 @@
         "startTurn": null
       },
       "icon": "systems/sw5e/packs/Icons/Species/Ardennian.webp",
-      "label": "Ardennian",
       "tint": null,
       "transfer": true,
       "flags": {},
       "origin": null,
-      "sort": 0
+      "name": "Ardennian",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!DSiVi2O13L4Xl5Rq.abUBIqj4EjIoc7yP"
     }
   ],
+  "_id": "DSiVi2O13L4Xl5Rq",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.272138+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-ardennian"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Ardennians are sentient humanoid simians hailing from the tropical paradise of Ardennia. They are covered in fur from head to their wrists and ankles, with brown and grey being the most common fur colors. Ardennians sport four arms and prehensile feet. All six of their limbs are equally dexterous.</p>\n<h2>Society and Culture</h2>\n<p>The Ardennian people themselves are a friendly communal species that are well known for welcoming visitors and inviting newcomers to traditional feasts and dances on the sandy beaches of Ardennia. Rural Ardiennan's live in modern tree-villages in the thick, dim jungle canopy on the majority of the islands. Ground level accommodations are available for off world visitors even in the smaller villages. Most off-worlders stay in the large modern resort complexes which boast having miles of private beaches or in the modern cities. Several large cities exist, scattered around the world, which typically encompass an entire island or a series of smaller islands joined together.</p>\n<p>Ardennia's distance from the main hyperlanes makes it one of the lesser-known vacation destinations, but it's a popular one for those who don't mind the extra travel time. Some affluent visitors prefer the solitude that Ardennia offers, and occasionally end up purchasing one of the smaller islands to build their own home. Ardennia is notable for having the most beach per square meter in the galaxy. </p>\n<h2>Names</h2>\n<p>Ardennian's names are typically concise and rarely more than two syllables, with a familal surname.</p>\n<p><strong>Male Names.</strong> Rio, Jakar, Hul, Lup, Quil, Jerno</p>\n<p><strong>Female Names.</strong> Rac, Bras, Nuc, Kua, Karta, Sanya</p>\n<p><strong>Surnames.</strong> Betal, Durant, Jabut, Karon, Rambuan</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "ardennian",
-    "advancement": [
-      {
-        "_id": "uaoyItrXb9Z12NeH",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.ac0MNI0Euzx9tZgy",
-            "Compendium.sw5e.speciesfeatures.JxFWjlC7v94TO8oi",
-            "Compendium.sw5e.speciesfeatures.F8GD2icQxr3BLzDW",
-            "Compendium.sw5e.speciesfeatures.B1RKrlnlEK8ptYI4",
-            "Compendium.sw5e.speciesfeatures.eottc7AR2wimBYIX",
-            "Compendium.sw5e.speciesfeatures.mSurFgu12GfcSQq5",
-            "Compendium.sw5e.speciesfeatures.6tSTnYoW42iMEKAT",
-            "Compendium.sw5e.speciesfeatures.rFda20t4S2pcVqWa",
-            "Compendium.sw5e.speciesfeatures.qIMmIM4PWt5GSXtG",
-            "Compendium.sw5e.speciesfeatures.sTdN0YSS9PzCea49",
-            "Compendium.sw5e.speciesfeatures.ySVAr3eFCv8YVv2L",
-            "Compendium.sw5e.speciesfeatures.ETQL7BWsA9VxW0hY",
-            "Compendium.sw5e.speciesfeatures.oRvKvAvPxZYjgeoH"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Brown or black"
-    },
-    "hairColorOptions": {
-      "value": "Brown to gray"
-    },
-    "eyeColorOptions": {
-      "value": "Brown or black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Four arms, fur-covered, prehensile feet"
-    },
-    "heightAverage": {
-      "value": "3'2\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "50 lb."
-    },
-    "weightRollMod": {
-      "value": "x1 lb."
-    },
-    "homeworld": {
-      "value": "Ardennia"
-    },
-    "slanguage": {
-      "value": "Adrennian"
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1674494002086,
-    "modifiedTime": 1692402505739,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796680,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!DSiVi2O13L4Xl5Rq"
 }

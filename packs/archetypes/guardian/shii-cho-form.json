@@ -16,65 +16,85 @@
   "system": {
     "description": {
       "value": "<h1>Shii-Cho Form</h1>\n<p>Shii-Cho Form, also known as Determination Form, uses wild, unpredictable attacks designed to distract and disarm their foes. Those guardians who focus on Shii-Cho Form make seemingly random, yet deliberate, attacks to knock their opponents off-balance.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "shii-choform",
     "classIdentifier": "guardian",
     "advancement": [
       {
-        "_id": "lmVDjVHuwYomI3CK",
+        "_id": "1aq3fjseFchfvjZy",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.yJmpBdwZsvZDSo5M",
-            "Compendium.sw5e.archetypefeatures.6BAoxlpl12j646Yx",
-            "Compendium.sw5e.archetypefeatures.Ds4CC6G37pjF03KS"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.yJmpBdwZsvZDSo5M",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.6BAoxlpl12j646Yx",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Ds4CC6G37pjF03KS",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "aa2Lmb0913617Kzb",
+        "_id": "l74nP1fVHgG1S8wr",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.jdHelt7GOKsjcAlN"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.jdHelt7GOKsjcAlN",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1N98tJ7SOuOs1HQD",
+        "_id": "peJTh5kerfQlxaE6",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.5Lmr5vBJS3s6ma6H"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.5Lmr5vBJS3s6ma6H",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "1kD06DCLRe6c14pc",
+        "_id": "1BlqBQCN20PD1Ark",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.cQ6XePAjRAw2Zm0c"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.cQ6XePAjRAw2Zm0c",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
@@ -88,7 +108,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -96,10 +116,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959717,
-    "modifiedTime": 1684819093621,
-    "lastModifiedBy": "sw5ebuilder0000"
-  }
+    "modifiedTime": 1720552689089,
+    "lastModifiedBy": "sw5ebuilder00000"
+  },
+  "_key": "!items!9FkoSl6i5rQwWnLk"
 }

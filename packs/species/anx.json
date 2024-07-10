@@ -9,45 +9,136 @@
   },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Anx.webp",
-  "effects": [],
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>The anx are a bipedal, reptilian species discernible by their height, their tall crests, and their tails. Originating from a world with higher-than-average gravity, the anx possess a stooped stature. Their heads are tall and blade-shaped, with a soaring crest which acts as a sinus cavity. While their crests change color to reflect their moods, its primary function gives anx a low rumbling voice. An anx's large, muscular tail serves as a counterbalance for running.</p>\n<p>Anx have long necks and limbs, and would appear taller if they didn't walk with their shoulders stooped and their crested heads held out in front of them.</p>\n<h2>Society and Culture</h2>\n<p>The anx are serene giants who assume many roles in the Republic. Evolving from herd animals, the anx are a placid, sociable race known for developing a near fanatical interest in groups they related to. Living in complicated clan structures, anx enjoy the company of their large families and are more comfortable in groups. </p>\n<p>An innate trait among the anx is a formidable knowledge of anatomy, especially in regard to nerves, muscles and bone structures. Due to this extensive knowledge, even by species they have never encountered, the anx are considered dangerous unarmed combatants and skilled warriors, capable of incapacitating opponents with a single, well-placed strike.</p>\n<h2>Names</h2>\n<p>Anx names are less harsh-sounding compared to those of other reptilian species. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Drexol, Graxol, Horox, Theen</p>\n<p><strong>Female Names.</strong> Kendiula, Madurrin, Pipalidi, Quiyya</p>\n<p><strong>Surnames.</strong> Fida, Jur, Kelvyyn, Ryyd</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "anx",
-    "advancement": [
-      {
-        "_id": "1qWFquesYOiOYzPN",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.seIPfgY6iCDWy02H",
-            "Compendium.sw5e.speciesfeatures.KfZfsgrEpoiYUr9c",
-            "Compendium.sw5e.speciesfeatures.r1XFrNbpUd9VDuYB",
-            "Compendium.sw5e.speciesfeatures.MOulbHOzKjcfn7bU",
-            "Compendium.sw5e.speciesfeatures.Hj0JWmQKn5boamZT",
-            "Compendium.sw5e.speciesfeatures.s4wbgKNUA0yjh3en",
-            "Compendium.sw5e.speciesfeatures.3fYGr8houjIvtRxa",
-            "Compendium.sw5e.speciesfeatures.ChLc3Mp9eci1BFOp",
-            "Compendium.sw5e.speciesfeatures.1sV9AFw7QPRugBKX",
-            "Compendium.sw5e.speciesfeatures.PFEyO0FPvANDKWcW"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Traits"
-      }
-    ],
     "details": {
       "isDroid": false
     },
-    "-=traits": null,
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1hWO32SmeH5pLI7t",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.seIPfgY6iCDWy02H",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KfZfsgrEpoiYUr9c",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.r1XFrNbpUd9VDuYB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.MOulbHOzKjcfn7bU",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Hj0JWmQKn5boamZT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.s4wbgKNUA0yjh3en",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.3fYGr8houjIvtRxa",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ChLc3Mp9eci1BFOp",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1sV9AFw7QPRugBKX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PFEyO0FPvANDKWcW",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1Eiz25y6pwXS1H36",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "wis": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "YWsvBFruhDd9WpQq",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1VENXThUDfZQLICt",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:med"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
     "skinColorOptions": {
       "value": "Blue, yellow"
     },
@@ -58,7 +149,7 @@
       "value": "Black"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Hunched stature, mood sensitive crests, tails"
@@ -81,10 +172,18 @@
     "slanguage": {
       "value": "Anx"
     },
-    "-=damage": null,
-    "-=armorproperties": null,
-    "-=weaponproperties": null
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
   },
+  "effects": [],
+  "_id": "7L2Sa9qmEy4TcMVD",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -92,11 +191,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.0.2.6.0",
-    "coreVersion": "10.303",
-    "createdTime": 1667426105594,
-    "modifiedTime": 1692402505741,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796489,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "WD4Yk6xfKahSkFSh"
+  "_key": "!items!7L2Sa9qmEy4TcMVD"
 }

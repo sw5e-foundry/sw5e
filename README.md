@@ -1,4 +1,4 @@
-# All Development on the ssystem had been discontinued. The Sw5e FoundryVTT Module is being worked on. 
+# All Development on this FoundryVTT System had been discontinued. The Sw5e FoundryVTT Module is being worked on. 
 
 ## Foundry Virtual Tabletop - SW5e Game System
 

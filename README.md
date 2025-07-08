@@ -1,4 +1,5 @@
 # All Development on this FoundryVTT System had been discontinued. The Sw5e FoundryVTT Module is being worked on. 
+Please see the following link: https://github.com/sw5e-foundry/sw5e-module/releases/latest/download/module.json
 
 ## Foundry Virtual Tabletop - SW5e Game System
 

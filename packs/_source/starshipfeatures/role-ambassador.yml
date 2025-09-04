@@ -1,0 +1,118 @@
+name: 'Role: Ambassador'
+type: feat
+img: systems/sw5e/packs/Icons/Starship%20Features/Large.webp
+effects:
+  - _id: qQTMHDrpIch61Q7C
+    flags:
+      core:
+        statusId: ''
+    changes:
+      - key: system.abilities.cha.value
+        mode: 2
+        value: '1'
+        priority: 1
+      - key: system.abilities.con.value
+        mode: 2
+        value: '1'
+        priority: 1
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Starship%20Features/Large.webp
+    tint: null
+    transfer: true
+    origin: null
+    name: 'Role: Ambassador'
+    description: ''
+    statuses: []
+    _key: '!items.effects!zW1AB0SzRfM1Wm5F.qQTMHDrpIch61Q7C'
+    sort: 0
+folder: null
+flags: {}
+system:
+  description:
+    value: >-
+      <p>At tier 0, you adopt a particular style of design for your
+      ship.</p><h3>Ambassador</h3><p>Your ship gains a +1 bonus to the <span
+      style="font-family:'Open Sans', sans-serif">Charisma </span>and <span
+      style="font-family:'Open Sans', sans-serif">Constitution
+      </span>attributes.</p>
+    chat: ''
+    unidentified: ''
+  requirements: Large Starship
+  source:
+    custom: SotG
+  activation:
+    type: ''
+    cost: null
+    condition: ''
+  duration:
+    value: ''
+    units: ''
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+    prompt: true
+  range:
+    value: null
+    long: null
+    units: ''
+  uses:
+    value: null
+    max: ''
+    per: null
+    recovery: ''
+    prompt: true
+  consume:
+    type: ''
+    target: null
+    amount: null
+    scale: false
+  ability: null
+  actionType: ''
+  attackBonus: ''
+  chatFlavor: ''
+  critical:
+    threshold: null
+    damage: ''
+  damage:
+    parts: []
+    versatile: ''
+  formula: ''
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  type:
+    value: starship
+    subtype: role
+  recharge:
+    value: null
+    charged: false
+  attributes:
+    speed:
+      space: 350
+      turn: 250
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.0.2.7.0
+  coreVersion: '11.313'
+  createdTime: 1674494017959
+  modifiedTime: 1701986816882
+  lastModifiedBy: sw5ebuilder0000
+_id: zW1AB0SzRfM1Wm5F
+sort: 0
+_key: '!items!zW1AB0SzRfM1Wm5F'
+

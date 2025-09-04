@@ -1,0 +1,193 @@
+_id: JMZm4vuDPmbPOtLl
+name: Dashade
+type: species
+img: systems/sw5e/packs/Icons/Species/Dashade.webp
+effects:
+  - _id: G99sEwcJAyta31Wz
+    changes:
+      - key: system.details.species
+        value: Dashade
+        mode: 5
+        priority: 5
+      - key: system.traits.size
+        value: med
+        mode: 0
+        priority: 5
+      - key: system.attributes.movement.walk
+        value: '30'
+        mode: 5
+        priority: 5
+      - key: system.skills.itm.value
+        value: '1'
+        mode: 4
+        priority: 20
+      - key: system.traits.dr.value
+        value: necrotic
+        mode: 0
+        priority: 0
+      - key: system.traits.languages.value
+        value: basic
+        mode: 0
+        priority: 0
+      - key: system.traits.languages.value
+        value: dashadi
+        mode: 0
+        priority: 0
+      - key: flags.sw5e.advantage.ability.save.force.str
+        value: '1'
+        mode: 5
+        priority: 20
+      - key: flags.sw5e.advantage.ability.save.force.con
+        mode: 5
+        value: '1'
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Dashade.webp
+    tint: null
+    transfer: true
+    flags: {}
+    origin: null
+    name: Dashade
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!JMZm4vuDPmbPOtLl.G99sEwcJAyta31Wz'
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:12.2761355+00:00'
+    importer_version: 3
+    uid: Species.name-dashade
+system:
+  data: $characteristics-table
+  description:
+    value: >-
+      <h2>Biology and Appearance</h2>
+
+      <p>Dashade are a hulking reptillian species known for their strength and
+      aggression. They have three fingers on each hand, each tipped with a long,
+      curving claw.</p>
+
+      <p>Their most notable feature is their natural resistance to the power of
+      the Force. Along with their resistance to the Force, Dashade possess a
+      high tolerance for radioactive energy, able to withstand contact with
+      radioactive materials much longer than other species.</p>
+
+      <p>Despite the thick skin Dashade possess, they have the uncanny ability
+      to control the rate that heat dissipates from their skin. This allows them
+      to regulate their body temperature at will.</p>
+
+      <h2>Society and Culture</h2>
+
+      <p>Dashade's brute strength and Force resistance makes them prime
+      candidates for mercenary and assassin work. </p>
+
+      <p>Dashade society is clan-based. Theses clan's often feud over honor and
+      reputation, a trait that the dashade as a species exhibit.</p>
+
+      <h2>Names</h2>
+
+      <p>Many dashade names are short, dominated by harsher sounds, while others
+      are longer and seperated by an apostrophe. Dashade names are gender
+      neutral. Surnames are clan-based, but most dashade don't share or use
+      them. </p>
+
+      <p><strong>First Names.</strong> Anarin, Rak'vhul, Set, Vattix, Vos</p>
+
+      <p><strong>Surnames.</strong> Ferrex, Gusar, Kruyel, Orath, Xeng, Zath</p>
+    chat: ''
+    unidentified: ''
+  traits: ''
+  source: EC
+  identifier: dashade
+  advancement:
+    - _id: 1sqPHd46djOW1fCK
+      type: ItemGrant
+      configuration:
+        items:
+          - Compendium.sw5e.speciesfeatures.8XRhCE2wqCryM11P
+          - Compendium.sw5e.speciesfeatures.VBdnlRx7dzRsSZL7
+          - Compendium.sw5e.speciesfeatures.uqvJhD66sISRNYCO
+          - Compendium.sw5e.speciesfeatures.ZQjWfhr7TQBRE2jH
+          - Compendium.sw5e.speciesfeatures.2TuRL1ZmF85cZnif
+          - Compendium.sw5e.speciesfeatures.mvCqEfNcfcJ57xKW
+          - Compendium.sw5e.speciesfeatures.Q7VhIrC53B5KNJCT
+          - Compendium.sw5e.speciesfeatures.ZZZVuhI9ravdlNef
+          - Compendium.sw5e.speciesfeatures.Pt1LiMSrLNP7Gtil
+          - Compendium.sw5e.speciesfeatures.cUdH07pId7hMdI2h
+          - Compendium.sw5e.speciesfeatures.exeeXG3rOXugjqqH
+        optional: true
+      value: {}
+      level: 0
+      title: Features
+    - _id: VxtsCkrtie215Gwf
+      type: AbilityScoreImprovement
+      configuration:
+        fixed:
+          con: 2
+          cha: 1
+        points: 0
+      value: {}
+      level: 0
+    - _id: h7qo4Ux9JjNWMoDm
+      type: Size
+      configuration:
+        sizes:
+          - med
+      value: {}
+      level: 0
+    - _id: zYu2ANB9mQNsgjPK
+      type: Trait
+      configuration:
+        choices: []
+        grants:
+          - skills:itm
+        mode: default
+      value: {}
+      level: 0
+  details:
+    isDroid: false
+  skinColorOptions:
+    value: Black, dark gray, or Olive green
+  hairColorOptions:
+    value: None
+  eyeColorOptions:
+    value: Black, orange, or red
+  colorScheme:
+    value: null
+  distinctions:
+    value: Heat dissipation, Force-resistance, radiation resistance
+  heightAverage:
+    value: 5'1"
+  heightRollMod:
+    value: +2d10"
+  weightAverage:
+    value: 145 lb.
+  weightRollMod:
+    value: x(2d4) lb.
+  homeworld:
+    value: Urkupp
+  slanguage:
+    value: Dashadi
+  movement:
+    walk: 30
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674494002080
+  modifiedTime: 1703969505315
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!JMZm4vuDPmbPOtLl'
+

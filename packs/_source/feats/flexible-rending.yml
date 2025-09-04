@@ -1,0 +1,105 @@
+_id: i8p13WtbzhvNdKs9
+name: Flexible Rending
+type: feat
+img: systems/sw5e/packs/Icons/Feats/FlexibleRending.webp
+effects: []
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:19.8797262+00:00'
+    importer_version: 3
+    uid: Feat.name-flexible_rending
+system:
+  description:
+    value: >-
+      <p>You are adept at overwhelming an opponent's reflexes. You gain the
+      following benefits:</p>
+
+      <ul>
+
+      <li>Increase your Dexterity or Intelligence score by 1, to a maximum of
+      20.</li>
+
+      <li>When you make an attack roll using your Dexterity, you can choose to
+      add half your Intelligence modifier to the attack roll. Alternatively,
+      when you would make an attack roll using Intelligence, you can add half
+      your Dexterity modifier to the attack roll. You can use this feature a
+      number of times equal to your proficiency bonus. You regain all expended
+      uses of this feature when you complete a long rest.</li>
+
+      <li>When an effect you control would call for a Dexterity saving throw,
+      you can instead have it call for a Intelligence saving throw.
+      Alternatively, when an effect you control would call for a Intelligence
+      saving throw, you can instead have it call for a Dexterity saving throw.
+      You can use this feature a number of times equal to your proficiency
+      bonus. You regain all expended uses of this feature when you complete a
+      long rest.</li></ul>
+    chat: ''
+    unidentified: ''
+  requirements: 4th level
+  source: EC
+  activation:
+    type: special
+    cost: 1
+    condition: ''
+  duration:
+    value: null
+    units: inst
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+  range:
+    value: null
+    long: null
+    units: ''
+    unit: ''
+  uses:
+    value: null
+    max: '@attributes.prof'
+    per: lr
+    recovery: ''
+  consume:
+    type: ''
+    target: null
+    amount: null
+  ability: ''
+  actionType: other
+  attackBonus: 0
+  chatFlavor: ''
+  critical:
+    threshold: null
+    damage: ''
+  damage:
+    parts: []
+    versatile: ''
+  formula: ''
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  type:
+    value: feat
+    subtype: ''
+  recharge:
+    value: null
+    charged: false
+  attributes:
+    speed:
+      space: null
+      turn: null
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.3.1.2.6.3
+  coreVersion: '11.308'
+  createdTime: 1674493966817
+  modifiedTime: 1698718404968
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!i8p13WtbzhvNdKs9'
+

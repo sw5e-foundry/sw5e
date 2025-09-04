@@ -1,0 +1,78 @@
+_id: eZYKjf6U2VBlvd2z
+name: Unrelenting Grasp
+type: maneuver
+img: systems/sw5e/packs/Icons/Maneuvers/UnrelentingGrasp.webp
+effects: []
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:02.8046272+00:00'
+    importer_version: 3
+    uid: Maneuvers.name-unrelenting_grasp
+system:
+  description:
+    value: >-
+      <p>When you hit a creature within 5 feet of you with an opportunity
+      attack, you may expend a superiority die. The creature takes additional
+      damage equal to your superiority die, and you may attempt to grapple the
+      target as part of the same reaction.</p>
+    chat: ''
+    unidentified: ''
+  requirements: Proficiency in Athletics
+  source: PHB
+  activation:
+    type: null
+    cost: null
+    condition: ''
+  duration:
+    value: null
+    units: inst
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+  range:
+    value: '5'
+    long: null
+    units: ''
+    unit: feet
+  uses:
+    value: null
+    max: null
+    per: null
+    recovery: ''
+  consume:
+    type: ''
+    target: null
+    amount: null
+  ability: null
+  actionType: other
+  attackBonus: 0
+  chatFlavor: ''
+  critical:
+    threshold: null
+    damage: ''
+  damage:
+    parts: []
+    versatile: ''
+  formula: '@scale.superiority.die'
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  maneuverType: physical
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.3.1.2.6.4
+  coreVersion: '11.315'
+  createdTime: 1674493983304
+  modifiedTime: 1699591675212
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!eZYKjf6U2VBlvd2z'
+

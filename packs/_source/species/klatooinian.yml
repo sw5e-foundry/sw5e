@@ -1,0 +1,194 @@
+_id: qEBkequEiXsa9YbE
+name: Klatooinian
+type: species
+img: systems/sw5e/packs/Icons/Species/Klatooinian.webp
+effects:
+  - _id: G6pCpdwb6FUA1ViV
+    changes:
+      - key: system.details.species
+        mode: 5
+        value: Klatooinian
+        priority: 5
+      - key: system.traits.size
+        mode: 0
+        value: med
+        priority: 5
+      - key: system.attributes.movement.walk
+        mode: 5
+        value: '30'
+        priority: 5
+      - key: system.skills.itm.value
+        mode: 4
+        value: '1'
+        priority: 20
+      - key: system.skills.lor.value
+        mode: 4
+        value: '1'
+        priority: 20
+      - key: system.traits.languages.value
+        mode: 0
+        value: basic
+        priority: 20
+      - key: system.traits.languages.value
+        mode: 0
+        value: klatooinian
+        priority: 20
+      - key: system.traits.languages.value
+        mode: 0
+        value: huttese
+        priority: 20
+      - key: system.attributes.hp.bonuses.level
+        mode: 2
+        value: '+1'
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Klatooinian.webp
+    tint: null
+    transfer: true
+    flags: {}
+    origin: null
+    name: Klatooinian
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!qEBkequEiXsa9YbE.G6pCpdwb6FUA1ViV'
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:12.2831315+00:00'
+    importer_version: 3
+    uid: Species.name-klatooinian
+system:
+  data: $characteristics-table
+  description:
+    value: >-
+      <h2>Biology and Appearance</h2>
+
+      <p>Klatooinians are a humanoid species with canine features, having short
+      muzzles over toothy overbites. They are also notable for their heavy brows
+      and ridges along the tops of their heads. </p>
+
+      <h2>Society and Culture</h2>
+
+      <p>For centuries, klatooinians have been slaves to the hutts, whom they
+      view as almost godlike, immortal beings. Although the hutts allow a
+      council of elders to rule on Klatooine, all off-world affairs are wholly
+      under hutt control. Under the hutts, the klatooinians serve as soldiers
+      and guards. Even those klatooinians who do not serve the hutts are often
+      employed as hired muscle by other masters.</p>
+
+      <p>Klatooinian society was known for a strong belief in tradition and the
+      wisdom of the elders, although some younger klatooinians rebelled against
+      this norm and sought out freedom from enslavement. Others attempted to
+      gain their own fortunes as smugglers, pirates, bounty hunters, or
+      raiders.</p>
+
+      <h2>Names</h2>
+
+      <p>Klatooinian names are often derived from the names of great heroes and
+      historical figures. Surnames are familial, and are usually shorter than
+      klatooinian given names. </p>
+
+      <p><strong>Male Names.</strong> Barada, Castas, Sta-Den, Tarados</p>
+
+      <p><strong>Female Names.</strong> Gelis, Petkara, Sterasi, Yelmith </p>
+
+      <p><strong>Surnames.</strong> Eek, Gort, Gon, Ovin</p>
+    chat: ''
+    unidentified: ''
+  traits: ''
+  source: EC
+  identifier: klatooinian
+  advancement:
+    - _id: 16sS2f6Hs7zuFnPX
+      type: ItemGrant
+      configuration:
+        items:
+          - Compendium.sw5e.speciesfeatures.OBn9O7aJbBdfwS6h
+          - Compendium.sw5e.speciesfeatures.VV6rJw7ZwNa9jEKR
+          - Compendium.sw5e.speciesfeatures.CjUJR2TEeZ0Eddfc
+          - Compendium.sw5e.speciesfeatures.liYGg7uTcnBHqntt
+          - Compendium.sw5e.speciesfeatures.Plff00oyqwTfgzPD
+          - Compendium.sw5e.speciesfeatures.Q2K21jVkVbJWA8gg
+          - Compendium.sw5e.speciesfeatures.h24MdtJnLYTqOU2J
+          - Compendium.sw5e.speciesfeatures.OGHZ5JlOaGReOFi2
+          - Compendium.sw5e.speciesfeatures.u7lf8ZNqR7wsxEXa
+          - Compendium.sw5e.speciesfeatures.cpNA7ufNM4vsWtHK
+        optional: true
+      value: {}
+      level: 0
+      title: Features
+    - _id: tAoTxJZk3w53mVpG
+      type: AbilityScoreImprovement
+      configuration:
+        fixed:
+          wis: 1
+        points: 1
+      value: {}
+      level: 0
+    - _id: 16OE6AuuPk7410HK
+      type: Size
+      configuration:
+        sizes:
+          - med
+      value: {}
+      level: 0
+    - _id: 1OwVmjYZQHKy60ta
+      type: Trait
+      configuration:
+        choices:
+          - count: 2
+            pool:
+              - weapon:mvb:*
+        grants:
+          - skills:itm
+          - skills:lor
+        mode: default
+      value: {}
+      level: 0
+  details:
+    isDroid: false
+  skinColorOptions:
+    value: Green, gray, brown
+  hairColorOptions:
+    value: None
+  eyeColorOptions:
+    value: Brown, black, gray
+  colorScheme:
+    value: null
+  distinctions:
+    value: Heavy brows, short canine muzzles
+  heightAverage:
+    value: 5'4"
+  heightRollMod:
+    value: +2d10"
+  weightAverage:
+    value: 125 lb.
+  weightRollMod:
+    value: x(2d4) lb.
+  homeworld:
+    value: Klatooine
+  slanguage:
+    value: Huttese, Klatooinian
+  movement:
+    walk: 30
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674494002137
+  modifiedTime: 1703969505315
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!qEBkequEiXsa9YbE'
+

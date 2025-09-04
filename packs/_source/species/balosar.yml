@@ -1,0 +1,220 @@
+_id: fxX6jiB6zMh5LHdc
+name: Balosar
+type: species
+img: systems/sw5e/packs/Icons/Species/Balosar.webp
+effects:
+  - _id: FzG2zpKDM6Elr24P
+    changes:
+      - key: system.details.species
+        mode: 5
+        value: Balosar
+        priority: 5
+      - key: system.traits.size
+        mode: 5
+        value: med
+        priority: 5
+      - key: system.attributes.movement.walk
+        mode: 5
+        value: '30'
+        priority: 5
+      - key: system.traits.dr.value
+        mode: 0
+        value: poison
+        priority: 20
+      - key: system.traits.languages.value
+        mode: 0
+        value: basic
+        priority: 20
+      - key: system.traits.languages.value
+        mode: 0
+        value: balosur
+        priority: 20
+      - key: system.traits.toolProf.value
+        mode: 0
+        value: spice
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Balosar.webp
+    tint: null
+    transfer: true
+    flags:
+      core:
+        sourceId: >-
+          Compendium.sw5e.species.Item.fxX6jiB6zMh5LHdc.ActiveEffect.DkWzA7SfsdXIq6aA
+    origin: Compendium.sw5e.species.Item.fxX6jiB6zMh5LHdc
+    name: Balosar
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!fxX6jiB6zMh5LHdc.FzG2zpKDM6Elr24P'
+  - _id: mebaLEwfl4QjrFOD
+    changes:
+      - key: flags.sw5e.situational.advantage.skill.prc
+        mode: 5
+        value: '1'
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Balosar.webp
+    tint: null
+    transfer: true
+    flags:
+      core:
+        sourceId: >-
+          Compendium.sw5e.species.Item.fxX6jiB6zMh5LHdc.ActiveEffect.DkWzA7SfsdXIq6aA
+    origin: Compendium.sw5e.species.Item.fxX6jiB6zMh5LHdc
+    name: Keen Hearing
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!fxX6jiB6zMh5LHdc.mebaLEwfl4QjrFOD'
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:12.272138+00:00'
+    importer_version: 3
+    uid: Species.name-balosar
+system:
+  data: $characteristics-table
+  description:
+    value: >-
+      <h2>Biology and Appearance</h2>
+
+      <p>Physically similar to humans, balosars appear to be sickly and gaunt
+      when compared with the galaxy's most common species due to the heavy
+      pollution of their homeworld. The most striking difference between
+      balosars and humanity is a pair of antennapalps which sprouts from
+      underneath the thick, coarse hair on their skulls. Retractable, these
+      atennapalps allow them to listen into the subsonic range and give the
+      species physical intuition and preternatural reflexes, which members of
+      the Jedi Order sometimes mistook for Force-sensitivity. Balosars also
+      possess an acute tolerance for poisonous substances, a byproduct of life
+      on their toxic homeworld.</p>
+
+      <h2>Society and Culture</h2>
+
+      <p>Early in its history, the balosar homeworld was overrun by galactic
+      megacorporations eager to exploit the world's lax ecological protection
+      laws. The planet was home to the balo mushroom, a key ingredient in death
+      sticks, one of the galaxy's most infamous narcotics. After its discovery,
+      Balosar was wrought with corruption, addiction, and pollution from the
+      production and usage of death sticks.</p>
+
+      <p>Since there is little opportunity to flourish on their homeworld,
+      balosars often leave in search of fortune elsewhere. Their natural
+      resistance to the lethal—but not the addictive—effects of the drug
+      encourages some to enter the death stick business.</p>
+
+      <h2>Names</h2>
+
+      <p>Balosar names have a slight exotic tinge to them—often because Balosar
+      parents name their children while on a death stick high. Their surnames
+      are familial.</p>
+
+      <p><strong>Male Names.</strong> Barin, Elan, Fantes, Zerba </p>
+
+      <p><strong>Female Names.</strong> Delaana, Ferrika, Reki, Vetyl </p>
+
+      <p><strong>Surnames.</strong> Cher'dak, Mer'darro, Sel'Sabagno</p>
+    chat: ''
+    unidentified: ''
+  traits: ''
+  source: EC
+  identifier: balosar
+  advancement:
+    - _id: JiHJydYy73PEt8Tf
+      type: ItemGrant
+      configuration:
+        items:
+          - Compendium.sw5e.speciesfeatures.CrNtbbSdsYw6XoDo
+          - Compendium.sw5e.speciesfeatures.yznhpJxi1uXeMLIg
+          - Compendium.sw5e.speciesfeatures.yfkLbiRRQPyAvCRt
+          - Compendium.sw5e.speciesfeatures.3nOr1uKqL49R56fc
+          - Compendium.sw5e.speciesfeatures.WdaTtVV7RKZXSrpi
+          - Compendium.sw5e.speciesfeatures.QC6csOFTwsnmnXql
+          - Compendium.sw5e.speciesfeatures.GbEX4D1jLyCWQ9Pp
+          - Compendium.sw5e.speciesfeatures.VMi37wLBrLhl7N0G
+          - Compendium.sw5e.speciesfeatures.gtEIRAryb6eiDtP5
+          - Compendium.sw5e.speciesfeatures.E8My28EbM0D3ETsJ
+        optional: true
+      value: {}
+      level: 0
+      title: Features
+    - _id: 1HgeLkJ2e3m81Brn
+      type: AbilityScoreImprovement
+      configuration:
+        fixed:
+          dex: 2
+          cha: 1
+        points: 0
+      value: {}
+      level: 0
+    - _id: 1q0ZQDBSCOMTau3a
+      type: Size
+      configuration:
+        sizes:
+          - med
+      value: {}
+      level: 0
+    - _id: 1pxTqKQIZVkiny18
+      type: Trait
+      configuration:
+        choices: []
+        grants:
+          - tool:spicerskit
+        mode: default
+      value: {}
+      level: 0
+  details:
+    isDroid: false
+  skinColorOptions:
+    value: Pale
+  hairColorOptions:
+    value: Black, blond, orange, brown, white
+  eyeColorOptions:
+    value: Varies
+  colorScheme:
+    value: null
+  distinctions:
+    value: Antennapalps, resistance to toxins
+  heightAverage:
+    value: 4'8"
+  heightRollMod:
+    value: +2d8"
+  weightAverage:
+    value: 100 lb.
+  weightRollMod:
+    value: x(2d4) lb.
+  homeworld:
+    value: Balosar
+  slanguage:
+    value: Balosur
+  movement:
+    walk: 30
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674494002118
+  modifiedTime: 1703969505315
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!fxX6jiB6zMh5LHdc'
+

@@ -1,0 +1,78 @@
+_id: 3wBxQx2yxRv1oVZC
+name: Crippling Blow
+type: maneuver
+img: systems/sw5e/packs/Icons/Maneuvers/CripplingBlow.webp
+effects: []
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:02.790635+00:00'
+    importer_version: 3
+    uid: Maneuvers.name-crippling_blow
+system:
+  description:
+    value: >-
+      <p>When you hit a creature with a weapon attack, you can expend one
+      superiority die to cripple the creature. You add the superiority die to
+      the attack's damage roll and the creature's gains 1 slowed level until the
+      end of their next turn.</p>
+    chat: ''
+    unidentified: ''
+  requirements: null
+  source: PHB
+  activation:
+    type: null
+    cost: null
+    condition: ''
+  duration:
+    value: null
+    units: inst
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+  range:
+    value: null
+    long: null
+    units: ''
+    unit: ''
+  uses:
+    value: null
+    max: null
+    per: null
+    recovery: ''
+  consume:
+    type: ''
+    target: null
+    amount: null
+  ability: null
+  actionType: other
+  attackBonus: 0
+  chatFlavor: ''
+  critical:
+    threshold: null
+    damage: ''
+  damage:
+    parts: []
+    versatile: ''
+  formula: '@scale.superiority.die'
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  maneuverType: physical
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674493983254
+  modifiedTime: 1704036415977
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!3wBxQx2yxRv1oVZC'
+

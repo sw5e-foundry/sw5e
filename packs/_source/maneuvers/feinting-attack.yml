@@ -1,0 +1,79 @@
+_id: cYZTPXBpYf9ZISm1
+name: Feinting Attack
+type: maneuver
+img: systems/sw5e/packs/Icons/Maneuvers/FeintingAttack.webp
+effects: []
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:02.7926333+00:00'
+    importer_version: 3
+    uid: Maneuvers.name-feinting_attack
+system:
+  description:
+    value: >-
+      <p>You can expend one superiority die and use a bonus action on your turn
+      to feint, choosing one creature within 5 feet of you as your target. You
+      have advantage on your next attack roll against that creature this turn.
+      If that attack hits, add the superiority die to the attack's damage
+      roll.</p>
+    chat: ''
+    unidentified: ''
+  requirements: null
+  source: PHB
+  activation:
+    type: bonus
+    cost: 1
+    condition: ''
+  duration:
+    value: null
+    units: inst
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+  range:
+    value: '5'
+    long: null
+    units: ''
+    unit: feet
+  uses:
+    value: null
+    max: null
+    per: null
+    recovery: ''
+  consume:
+    type: ''
+    target: null
+    amount: null
+  ability: null
+  actionType: other
+  attackBonus: 0
+  chatFlavor: ''
+  critical:
+    threshold: null
+    damage: ''
+  damage:
+    parts: []
+    versatile: ''
+  formula: '@scale.superiority.die'
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  maneuverType: general
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674493983300
+  modifiedTime: 1704036415977
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!cYZTPXBpYf9ZISm1'
+

@@ -1,11 +1,13 @@
 import Datastore from "nedb";
 import fs from "fs";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import gulp from "gulp";
 import logger from "fancy-log";
 import mergeStream from "merge-stream";
 import path from "path";
 import through2 from "through2";
 import yargs from "yargs";
+import YAML from "js-yaml";
 import { compilePack, extractPack } from "@foundryvtt/foundryvtt-cli";
 
 /**
@@ -22,10 +24,16 @@ const parsedArgs = yargs(process.argv).argv;
 const PACK_DEST = "./dist/packs/packs";
 
 /**
- * Folder where source JSON files should be located relative to the 5e system folder.
+ * Folder where source YAML files should be located (DnD5e-style).
  * @type {string}
  */
-const PACK_SRC = "./packs/";
+const PACK_SRC_YAML = "./packs/_source";
+
+/**
+ * Legacy folder where source JSON files are currently stored.
+ * @type {string}
+ */
+const PACK_SRC_JSON = "./packs/";
 
 /**
  * Cache of DBs so they aren't loaded repeatedly when determining IDs.
@@ -140,16 +148,48 @@ function cleanString(str) {
  * - `gulp cleanPacks --pack classes` - Only clean the source files for the specified compendium.
  * - `gulp cleanPacks --pack classes --name Barbarian` - Only clean a single item from the specified compendium.
  */
-function cleanPacks() {
+async function cleanPacks() {
   const packName = parsedArgs.pack;
   const entryName = parsedArgs.name?.toLowerCase();
+
+  const yamlRootExists = fs.existsSync(PACK_SRC_YAML);
+  const yamlFolders = yamlRootExists ? fs.readdirSync(PACK_SRC_YAML, { withFileTypes: true }).filter(file => file.isDirectory() && (!packName || packName === file.name)) : [];
+
+  if (yamlFolders.length) {
+    for (const folder of yamlFolders) {
+      logger.info(`Cleaning YAML pack ${folder.name}`);
+      // Walk .yml files
+      async function* _walkDir(directoryPath) {
+        const directory = await readdir(directoryPath, { withFileTypes: true });
+        for (const entry of directory) {
+          const entryPath = path.join(directoryPath, entry.name);
+          if (entry.isDirectory()) yield* _walkDir(entryPath);
+          else if ([".yml", ".yaml"].includes(path.extname(entry.name))) yield entryPath;
+        }
+      }
+      for await (const src of _walkDir(path.join(PACK_SRC_YAML, folder.name))) {
+        const data = YAML.load(await readFile(src, { encoding: "utf8" }));
+        if (!data) continue;
+        const name = data.name?.toLowerCase();
+        if (entryName && entryName !== name) continue;
+        cleanPackEntry(data);
+        // Maintain id if present; otherwise determine from compiled DB
+        if (!data._id) data._id = await determineId(data, folder.name);
+        fs.rmSync(src, { force: true });
+        await writeFile(src, `${YAML.dump(data)}\n`, { mode: 0o664 });
+      }
+    }
+    return;
+  }
+
+  // Legacy JSON cleaning
   const folders = fs
-    .readdirSync(PACK_SRC, { withFileTypes: true })
+    .readdirSync(PACK_SRC_JSON, { withFileTypes: true })
     .filter(file => file.isDirectory() && (!packName || packName === file.name));
 
   const packs = folders.map(folder => {
     logger.info(`Cleaning pack ${folder.name}`);
-    return gulp.src(path.join(PACK_SRC, folder.name, "/**/*.json")).pipe(
+    return gulp.src(path.join(PACK_SRC_JSON, folder.name, "/**/*.json")).pipe(
       through2.obj(async (file, enc, callback) => {
         const json = JSON.parse(file.contents.toString());
         const name = json.name.toLowerCase();
@@ -181,15 +221,29 @@ export const clean = cleanPacks;
 async function compilePacks() {
   const packName = parsedArgs.pack;
   const nedb = !parsedArgs.levelDB;
-  // Determine which source folders to process
+
+  const yamlRootExists = fs.existsSync(PACK_SRC_YAML);
+  const yamlFolders = yamlRootExists ? fs.readdirSync(PACK_SRC_YAML, { withFileTypes: true }).filter(file => file.isDirectory() && (!packName || packName === file.name)) : [];
+
+  if (yamlFolders.length) {
+    for (const folder of yamlFolders) {
+      const src = path.join(PACK_SRC_YAML, folder.name);
+      const dest = path.join(PACK_DEST, nedb ? `${folder.name}.db` : `${folder.name}/`);
+      logger.info(`Compiling YAML pack ${folder.name}`);
+      await compilePack(src, dest, { nedb, recursive: true, log: false, transformEntry: cleanPackEntry, yaml: true });
+    }
+    return;
+  }
+
+  // Legacy JSON compilation
   const folders = fs
-    .readdirSync(PACK_SRC, { withFileTypes: true })
+    .readdirSync(PACK_SRC_JSON, { withFileTypes: true })
     .filter(file => file.isDirectory() && (!packName || packName === file.name));
 
   for ( const folder of folders ) {
-    const src = path.join(PACK_SRC, folder.name);
+    const src = path.join(PACK_SRC_JSON, folder.name);
     const dest = path.join(PACK_DEST, nedb ? `${folder.name}.db` : `${folder.name}/`);
-    logger.info(`Compiling pack ${folder.name}`);
+    logger.info(`Compiling JSON pack ${folder.name}`);
     await compilePack(src, dest, { nedb, recursive: true, log: false, transformEntry: cleanPackEntry });
   }
 }
@@ -236,7 +290,7 @@ function transformName(entry, packName) {
   const name = entry.name.toLowerCase();
   const outputName = name.replace("'", "").replace(/[^a-z0-9]+/gi, " ").trim().replace(/\s+|-{2,}/g, "-");
   const subfolder = _getSubfolderName(entry, packName);
-  return path.join(subfolder, `${outputName}.json`);
+  return path.join(subfolder, `${outputName}.yml`);
 }
 
 function checkChanges(entry, packName, dest) {
@@ -291,13 +345,13 @@ async function extractPacks() {
     const packName = path.basename(pack.name, ".db");
     const packInfo = system.packs.find(p => p.name === packName);
     const src = path.join(PACK_DEST, nedb ? pack.name : packName);
-    const dest = path.join(PACK_SRC, packName);
-    logger.info(`Extracting pack ${pack.name}`);
+    const dest = path.join(PACK_SRC_YAML, packName);
+    logger.info(`Extracting pack ${pack.name} to YAML sources`);
     await extractPack(src, dest, { nedb, log: false, documentType: packInfo.type, transformEntry: entry => {
       if ( entryName && (entryName !== entry.name.toLowerCase()) ) return false;
       cleanPackEntry(entry);
-      if ( !checkChanges(entry, packName, dest) ) return false;
-    }, transformName: entry => { return transformName(entry, packName)} });
+      // In YAML mode, differences check is not performed here; rely on git diff
+    }, transformName: entry => { return transformName(entry, packName)}, yaml: true });
   }
 }
 export const extract = extractPacks;

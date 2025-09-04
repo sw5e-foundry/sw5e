@@ -1,0 +1,198 @@
+_id: Z6J8H8R1PnicSior
+name: Bothan
+type: species
+img: systems/sw5e/packs/Icons/Species/Bothan.webp
+effects:
+  - _id: nTIwpqn8tPkjpase
+    changes:
+      - key: system.details.species
+        value: Bothan
+        mode: 5
+        priority: 5
+      - key: system.traits.size
+        value: med
+        mode: 5
+        priority: 5
+      - key: system.attributes.movement.walk
+        value: '30'
+        mode: 5
+        priority: 5
+      - key: system.skills.ins.value
+        value: '1'
+        mode: 4
+        priority: 20
+      - key: system.skills.dec.value
+        value: '1'
+        mode: 4
+        priority: 20
+      - key: system.traits.languages.value
+        value: basic
+        mode: 0
+        priority: 0
+      - key: system.traits.languages.value
+        value: bothese
+        mode: 0
+        priority: 0
+      - key: flags.sw5e.naturallyStealthy
+        value: '1'
+        mode: 5
+        priority: 20
+      - key: flags.sw5e.nimbleEscape
+        value: '1'
+        mode: 5
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Bothan.webp
+    tint: null
+    transfer: true
+    flags: {}
+    origin: null
+    name: Bothan
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!Z6J8H8R1PnicSior.nTIwpqn8tPkjpase'
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:51:55.9136241+00:00'
+    importer_version: 3
+    uid: Species.name-bothan
+system:
+  data: $characteristics-table
+  description:
+    value: >-
+      <h2>Biology and Appearance</h2>
+
+      <p>Bothans are a short species of furry humanoids. Bothans are covered in
+      fur which shifted in response to their emotional state by way of gentle
+      ripplings. It is this trait, named Wrendui, that betrays them when members
+      of their kind intend to be duplicitous in their dealings with others. They
+      possess tapered pointed ears, and both males and females were known to
+      sport beards. </p>
+
+      <p>Bothans are able to interbreed with the other species, though it is
+      rare that they do so. Such hybrids somewhat resembled baseline humans with
+      haunches, hooves, fur, pointed ears and a long tail.</p>
+
+      <h2>Society and Culture</h2>
+
+      <p>Bothan culture is guided by the philosophy and principles from the
+      ancient text known as The Way, written by Golm Fervse'dra. In this "Bothan
+      Way", the pursuit of power and influence is paramount. Thus, individual
+      bothans put their own political and economic success above all other
+      concerns, and as a species, bothans put their own advancement ahead of
+      other intergalactic interests. The volume of backstabbing, subtle
+      character assassination and political maneuvering in bothan society is
+      dizzying, and results in many species stereotyping bothans as
+      untrustworthy. In fact, most bothans are habitually paranoid, believing
+      that anyone who's not working with them, is working against them. In times
+      of crisis, the focus of bothan society shifts to a survivalist state known
+      as "ar'krai". When engaged in ar'krai, all fit bothans volunteer to defend
+      their species from impending extinction. </p>
+
+      <h2>Names</h2>
+
+      <p>Male bothan names are often trickey while female's are soft. Surnames
+      are familial.</p>
+
+      <p><strong>Male Names.</strong> Garc, Hibriak, Nith, Tramom, Ventagt </p>
+
+      <p><strong>Female Names.</strong> Ceerriah, Dhaim, Gnam, Meenn, Vit </p>
+
+      <p><strong>Surnames.</strong> Bwif'livi, Gra'kit, Hia'faitu, Main'dil</p>
+    chat: ''
+    unidentified: ''
+  traits: ''
+  source: PHB
+  identifier: bothan
+  advancement:
+    - _id: 1ligr2pOliK919Fc
+      type: ItemGrant
+      configuration:
+        items:
+          - Compendium.sw5e.speciesfeatures.yxoYaoRvIoCccmyy
+          - Compendium.sw5e.speciesfeatures.BDOThR2IRyb87p03
+          - Compendium.sw5e.speciesfeatures.CnlBskOjRLFiGItp
+          - Compendium.sw5e.speciesfeatures.Zp860xhkzJaDFNaG
+          - Compendium.sw5e.speciesfeatures.5TpgcYxKb0zV4DgT
+          - Compendium.sw5e.speciesfeatures.r7Ie0NL3IOdROk5Z
+          - Compendium.sw5e.speciesfeatures.dtZfRgFSYRyEia6Q
+          - Compendium.sw5e.speciesfeatures.eKBPlK93QAVJyeex
+          - Compendium.sw5e.speciesfeatures.Aj3IqXOauawMw3s8
+        optional: true
+      value: {}
+      level: 0
+      title: Features
+    - _id: ITF1EjWB15J1oRz5
+      type: AbilityScoreImprovement
+      configuration:
+        fixed:
+          int: 2
+          dex: 1
+        points: 0
+      value: {}
+      level: 0
+    - _id: 6W0KWZ8wDTRXsqeq
+      type: Size
+      configuration:
+        sizes:
+          - med
+      value: {}
+      level: 0
+    - _id: 1fVYOTyZfmVc1tyu
+      type: Trait
+      configuration:
+        choices: []
+        grants:
+          - skills:ins
+          - skills:dec
+        mode: default
+      value: {}
+      level: 0
+  details:
+    isDroid: false
+  skinColorOptions:
+    value: Brown
+  hairColorOptions:
+    value: Black, brown, or gray (with age)
+  eyeColorOptions:
+    value: Brown or green
+  colorScheme:
+    value: null
+  distinctions:
+    value: Diminutive stature, mood-sensitive fur
+  heightAverage:
+    value: 4'3"
+  heightRollMod:
+    value: +2d4"
+  weightAverage:
+    value: 60 lb.
+  weightRollMod:
+    value: x(2d4) lb.
+  homeworld:
+    value: Bothawui
+  slanguage:
+    value: Bothese
+  movement:
+    walk: 30
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674494002106
+  modifiedTime: 1703969505315
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!Z6J8H8R1PnicSior'
+

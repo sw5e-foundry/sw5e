@@ -8,8 +8,10 @@ import { rollup } from "rollup";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import terser from "@rollup/plugin-terser";
+import { readFileSync } from "fs";
 
-import packageJSON from "../package.json" assert { type: "json" };
+// Avoid JSON import assertions for broader Node/Gulp compatibility
+const packageJSON = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf-8"));
 
 /**
  * Parsed arguments passed in through the command line.

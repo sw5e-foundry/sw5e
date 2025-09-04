@@ -49,7 +49,7 @@ globalThis.dnd5e = globalThis.sw5e;
 /* -------------------------------------------- */
 
 // Keep on while testing new SW5e build
-CONFIG.debug.hooks = false;
+if (CONFIG.debug) CONFIG.debug.hooks = false;
 
 Hooks.once("init", function() {
   globalThis.sw5e = game.sw5e = Object.assign(game.system, globalThis.sw5e);
@@ -57,20 +57,24 @@ Hooks.once("init", function() {
 
   // Record Configuration Values
   CONFIG.SW5E = SW5E;
-  CONFIG.ActiveEffect.documentClass = documents.ActiveEffect5e;
-  CONFIG.Actor.documentClass = documents.Actor5e;
-  CONFIG.Item.documentClass = documents.Item5e;
-  CONFIG.Token.documentClass = documents.TokenDocument5e;
-  CONFIG.Token.objectClass = canvas.Token5e;
-  CONFIG.time.roundTime = 6;
+  if (CONFIG.ActiveEffect) CONFIG.ActiveEffect.documentClass = documents.ActiveEffect5e;
+  if (CONFIG.Actor) CONFIG.Actor.documentClass = documents.Actor5e;
+  if (CONFIG.Item) CONFIG.Item.documentClass = documents.Item5e;
+  if (CONFIG.Token) CONFIG.Token.documentClass = documents.TokenDocument5e;
+  if (CONFIG.Token) CONFIG.Token.objectClass = canvas.Token5e;
+  if (CONFIG.time) CONFIG.time.roundTime = 6;
   // TODO SW5E: Figure out if this is still necessary / how to make this work
   // CONFIG.fontFamilies = ["Engli-Besh", "Open Sans", "Russo One"];
-  CONFIG.Dice.DamageRoll = dice.DamageRoll;
-  CONFIG.Dice.D20Roll = dice.D20Roll;
-  CONFIG.Dice.AttribDieRoll = dice.AttribDieRoll;
-  CONFIG.MeasuredTemplate.defaults.angle = 53.13; // 5e cone RAW should be 53.13 degrees
-  CONFIG.ui.combat = applications.sidebar.CombatTracker5e;
-  CONFIG.ui.compendium = applications.sidebar.CompendiumDirectory5e;
+  if (CONFIG.Dice) {
+    CONFIG.Dice.DamageRoll = dice.DamageRoll;
+    CONFIG.Dice.D20Roll = dice.D20Roll;
+    CONFIG.Dice.AttribDieRoll = dice.AttribDieRoll;
+  }
+  if (CONFIG.MeasuredTemplate && CONFIG.MeasuredTemplate.defaults) CONFIG.MeasuredTemplate.defaults.angle = 53.13; // 5e cone RAW should be 53.13 degrees
+  if (CONFIG.ui) {
+    if (CONFIG.ui.combat) CONFIG.ui.combat = applications.sidebar.CombatTracker5e;
+    if (CONFIG.ui.compendium) CONFIG.ui.compendium = applications.sidebar.CompendiumDirectory5e;
+  }
 
   // Add DND5e namespace for module compatibility
   game.dnd5e = game.sw5e;
@@ -107,9 +111,11 @@ Hooks.once("init", function() {
   Combatant.prototype.getInitiativeRoll = documents.combat.getInitiativeRoll;
 
   // Register Roll Extensions
-  CONFIG.Dice.rolls.push(dice.D20Roll);
-  CONFIG.Dice.rolls.push(dice.DamageRoll);
-  CONFIG.Dice.rolls.push(dice.AttribDieRoll);
+  if (CONFIG.Dice && Array.isArray(CONFIG.Dice.rolls)) {
+    CONFIG.Dice.rolls.push(dice.D20Roll);
+    CONFIG.Dice.rolls.push(dice.DamageRoll);
+    CONFIG.Dice.rolls.push(dice.AttribDieRoll);
+  }
 
   // Hook up system data types
   const modelType = game.sw5e.isV10 ? "systemDataModels" : "dataModels";
@@ -188,10 +194,12 @@ Hooks.once("init", function() {
     makeDefault: true,
     label: "SW5E.SheetClassItem"
   });
-  DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalClassPageSheet, {
-    label: "SW5E.SheetClassClassSummary",
-    types: ["class"]
-  });
+  if (typeof DocumentSheetConfig?.registerSheet === "function" && typeof JournalEntryPage !== "undefined") {
+    DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalClassPageSheet, {
+      label: "SW5E.SheetClassClassSummary",
+      types: ["class"]
+    });
+  }
 
   // Preload Handlebars helpers & partials
   utils.registerHandlebarsHelpers();
@@ -392,7 +400,9 @@ Hooks.once("ready", async function() {
 
 Hooks.on("canvasInit", gameCanvas => {
   gameCanvas.grid.diagonalRule = game.settings.get("sw5e", "diagonalMovement");
-  SquareGrid.prototype.measureDistances = canvas.measureDistances;
+  if (typeof SquareGrid !== "undefined" && canvas?.measureDistances) {
+    SquareGrid.prototype.measureDistances = canvas.measureDistances;
+  }
 });
 
 /* -------------------------------------------- */

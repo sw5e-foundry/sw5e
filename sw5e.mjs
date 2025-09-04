@@ -62,6 +62,12 @@ Hooks.once("init", function() {
   if (CONFIG.Item) CONFIG.Item.documentClass = documents.Item5e;
   if (CONFIG.Token) CONFIG.Token.documentClass = documents.TokenDocument5e;
   if (CONFIG.Token) CONFIG.Token.objectClass = canvas.Token5e;
+  // Optional parity with dnd5e if these classes exist in SW5e
+  if (CONFIG.Token && canvas.TokenRuler5e) CONFIG.Token.rulerClass = canvas.TokenRuler5e;
+  if (CONFIG.Canvas?.layers?.tokens?.layerClass && canvas.layers?.TokenLayer5e) {
+    CONFIG.Canvas.layers.tokens.layerClass = canvas.layers.TokenLayer5e;
+    if (CONFIG.Token) CONFIG.Token.layerClass = canvas.layers.TokenLayer5e;
+  }
   if (CONFIG.time) CONFIG.time.roundTime = 6;
   // TODO SW5E: Figure out if this is still necessary / how to make this work
   // CONFIG.fontFamilies = ["Engli-Besh", "Open Sans", "Russo One"];
@@ -74,6 +80,9 @@ Hooks.once("init", function() {
   if (CONFIG.ui) {
     if (CONFIG.ui.combat) CONFIG.ui.combat = applications.sidebar.CombatTracker5e;
     if (CONFIG.ui.compendium) CONFIG.ui.compendium = applications.sidebar.CompendiumDirectory5e;
+    // Optional parity with dnd5e if these classes exist in SW5e
+    if (applications.ChatLog5e && CONFIG.ui.chat) CONFIG.ui.chat = applications.ChatLog5e;
+    if (applications.item?.ItemDirectory5e && CONFIG.ui.items) CONFIG.ui.items = applications.item.ItemDirectory5e;
   }
 
   // Add DND5e namespace for module compatibility

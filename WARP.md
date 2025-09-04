@@ -149,6 +149,17 @@ Uses Foundry's data model system with custom implementations for:
 - Official FoundryVTT changelog for breaking changes between v11 and v13
 - Community migration examples and best practices
 
+## DnD5e Parity Notes
+
+This system intentionally mirrors the DnD5e codebase structure where practical:
+- Directory layout: module/{applications, canvas, data, dice, documents} matches DnD5e
+- UI overrides: SW5e provides custom combat and compendium sidebar classes; no custom ChatLog or ItemDirectory at present
+- Token/Canvas: SW5e includes a custom Token class and diagonal measurement override; no custom TokenRuler or TokenLayer class detected
+- Dice: SW5e wires custom dice (D20, Damage, Attrib) similarly to DnD5e’s approach
+- Sheets: Registers Actor/Item sheets and a JournalEntryPage sheet; broader DnD5e registrations (JournalEntry, RegionBehavior, TokenConfig) are only appropriate if/when SW5e provides the corresponding classes
+
+When updating, prefer the patterns used by DnD5e 5.1.x (Foundry v13) unless SW5e-specific mechanics require deviation.
+
 ## Important Files for AI Agents
 
 - **`gulpfile.js`**: Build system configuration and task definitions

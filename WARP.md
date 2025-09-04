@@ -23,13 +23,15 @@ npm install  # Install all dependencies
 
 ### Build Commands
 ```bash
-npm run build        # Full build (clean + compile everything)
-npm run build:clean  # Clear dist directory
-npm run build:css    # Compile LESS to CSS only
-npm run build:js     # Compile JavaScript only
-npm run build:static # Copy static files to dist
-npm run build:db     # Compile JSON packs to DB files
-npm run build:watch  # Build + watch for changes
+npm run build            # Full build (clean + compile everything)
+npm run build:clean      # Clear dist directory
+npm run build:css        # Compile LESS to CSS only
+npm run build:js         # Compile JavaScript only
+npm run build:static     # Copy static files to dist
+npm run build:db         # Compile compendium packs (from YAML sources if present)
+npm run build:source     # Extract compiled packs back to YAML sources (packs/_source)
+npm run build:cleanSource# Clean YAML sources (normalize flags/metadata)
+npm run build:watch      # Build + watch for changes
 ```
 
 ### Development Workflow
@@ -43,14 +45,16 @@ npm run lint         # Run ESLint to check code style
 npm run lint:fix     # Auto-fix code style issues where possible
 ```
 
-### Compendium Pack Management
+### Compendium Pack Management (YAML)
 ```bash
-npm run build:db                        # Compile all JSON to DB files
-gulp compilePacks --pack classes        # Compile specific pack only
-npm run build:json                      # Extract DB files to JSON (debug only)
-gulp extractPacks --pack classes        # Extract specific pack
-npm run build:cleanJson                 # Clean and format JSON files
-gulp cleanPacks --pack classes          # Clean specific pack
+npm run build:cleanSource                 # Clean YAML sources (normalize flags/metadata)
+npm run build:db                          # Compile YAML sources -> DB packs
+npm run build:source                      # Extract DB packs -> YAML sources
+npm run packs:migrate:yaml                # One-time migration from legacy JSON -> YAML (if needed)
+# Selective operations:
+npm run build:db -- --pack classes        # Only compile a specific pack
+npm run build:source -- --pack classes    # Only extract a specific pack
+npm run build:source -- --pack classes --name Barbarian  # Extract single entry
 ```
 
 ## Architecture Overview

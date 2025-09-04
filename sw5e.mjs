@@ -120,10 +120,8 @@ Hooks.once("init", function() {
   Combatant.prototype.getInitiativeRoll = documents.combat.getInitiativeRoll;
 
   // Register Roll Extensions
-  if (CONFIG.Dice && Array.isArray(CONFIG.Dice.rolls)) {
-    CONFIG.Dice.rolls.push(dice.D20Roll);
-    CONFIG.Dice.rolls.push(dice.DamageRoll);
-    CONFIG.Dice.rolls.push(dice.AttribDieRoll);
+  if (CONFIG.Dice) {
+    CONFIG.Dice.rolls = [dice.D20Roll, dice.DamageRoll, dice.AttribDieRoll];
   }
 
   // Hook up system data types

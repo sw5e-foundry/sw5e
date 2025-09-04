@@ -160,6 +160,22 @@ This system intentionally mirrors the DnD5e codebase structure where practical:
 
 When updating, prefer the patterns used by DnD5e 5.1.x (Foundry v13) unless SW5e-specific mechanics require deviation.
 
+## Compendium packs (YAML sources)
+
+- Location: source files live under `packs/_source/<pack-name>/**/*.yml`. The compiled packs are written to `dist/packs/packs/*.db` and referenced by `static/system.json`.
+- Editing: create or edit `.yml` files in the appropriate `packs/_source/<pack-name>` folder. Organize entries with meaningful subfolders (e.g., by item type/subtype, power level, creature type). File names should be slugified (lowercase, hyphens).
+- Commands:
+  - Clean YAML (normalize metadata/flags): `npm run build:cleanSource`
+  - Compile YAML to packs (LevelDB or NeDB based on flags): `npm run build:db`
+  - Extract from compiled packs back to YAML sources: `npm run build:source`
+  - One-time migration from legacy JSON (if ever needed): `npm run packs:migrate:yaml`
+
+Notes:
+- Do not edit compiled DBs in `dist/`. Make changes in `packs/_source` and recompile.
+- Optional selective operations (example):
+  - Compile only a specific pack: `npm run build:db -- --pack classes`
+  - Extract only a specific pack or entry: `npm run build:source -- --pack classes --name Barbarian`
+
 ## Important Files for AI Agents
 
 - **`gulpfile.js`**: Build system configuration and task definitions

@@ -1,0 +1,120 @@
+name: Cunning Forcecaster
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:19.8767289+00:00'
+    importer_version: 3
+    uid: Feat.name-cunning_forcecaster
+type: feat
+img: systems/sw5e/packs/Icons/Feats/CunningForcecaster.webp
+effects:
+  - name: Cunning Forcecaster
+    icon: systems/sw5e/packs/Icons/Feats/CunningForcecaster.webp
+    origin: Compendium.sw5e.feats.Item.y3QU0k8Q4Ocvsbju
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    transfer: true
+    disabled: false
+    _id: NGV5GPeurIYuRcdA
+    changes:
+      - key: system.abilities.int.value
+        mode: 2
+        value: '1'
+        priority: 20
+    description: ''
+    statuses: []
+    flags: {}
+    tint: null
+    _key: '!items.effects!y3QU0k8Q4Ocvsbju.NGV5GPeurIYuRcdA'
+    sort: 0
+system:
+  description:
+    value: >-
+      <p>You've discovered a clever avenue to your study of the Force. Choose
+      one from Wisdom or Charisma. You gain the following benefits:</p>
+
+      <ul>
+
+      <li>Increase your Intelligence score by 1, to a maximum of 20.</li>
+
+      <li>You can use Intelligence instead of the chosen ability as your
+      forcecasting ability.</li>
+
+      <li>You can add Intelligence instead of the chosen ability when
+      determining your maximum force points.</li></ul>
+    chat: ''
+    unidentified: ''
+  requirements: The ability to cast force powers
+  source: EC
+  activation:
+    type: null
+    cost: null
+    condition: ''
+  duration:
+    value: null
+    units: inst
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+  range:
+    value: null
+    long: null
+    units: ''
+    unit: ''
+  uses:
+    value: null
+    max: null
+    per: null
+    recovery: ''
+  consume:
+    type: ''
+    target: null
+    amount: null
+  ability: ''
+  actionType: other
+  attackBonus: 0
+  chatFlavor: ''
+  critical:
+    threshold: null
+    damage: ''
+  damage:
+    parts: []
+    versatile: ''
+  formula: ''
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  type:
+    value: feat
+    subtype: ''
+  recharge:
+    value: null
+    charged: false
+  attributes:
+    speed:
+      space: null
+      turn: null
+folder: null
+sort: 0
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.3.1.2.6.3
+  coreVersion: '11.308'
+  createdTime: 1667426107520
+  modifiedTime: 1698716664999
+  lastModifiedBy: sw5ebuilder0000
+_id: y3QU0k8Q4Ocvsbju
+_key: '!items!y3QU0k8Q4Ocvsbju'
+

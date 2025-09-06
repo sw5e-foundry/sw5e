@@ -1,0 +1,172 @@
+_id: C5om3v1wlb315zgf
+name: Miraluka
+type: species
+img: systems/sw5e/packs/Icons/Species/Miraluka.webp
+effects:
+  - _id: 8u9KvszXamdVwo8Y
+    changes:
+      - key: system.details.species
+        value: Miraluka
+        mode: 5
+        priority: 5
+      - key: system.traits.size
+        value: med
+        mode: 5
+        priority: 5
+      - key: system.attributes.movement.walk
+        value: '30'
+        mode: 5
+        priority: 5
+      - key: system.traits.languages.value
+        value: basic
+        mode: 0
+        priority: 0
+      - key: system.traits.languages.value
+        value: miralukese
+        mode: 0
+        priority: 0
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Miraluka.webp
+    tint: null
+    transfer: true
+    flags: {}
+    origin: null
+    name: Miraluka
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!C5om3v1wlb315zgf.8u9KvszXamdVwo8Y'
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:12.2851303+00:00'
+    importer_version: 3
+    uid: Species.name-miraluka
+system:
+  data: $characteristics-table
+  description:
+    value: >-
+      <h2>Biology and Appearance</h2>
+
+      <p>The Miraluka are a near-human species that differs from Humans in that
+      they lack eyes, only retaining vestigial eye sockets, and perceive the
+      environment around them through <em>force sight</em> instead of regular
+      vision. This vision is so strong that if a Miraluka looks upon a Jedi or
+      Sith, they can "see" Force radiating off them. The strength of a
+      Miraluka's connection to the Force varies by individual.</p>
+
+      <h2>Society and Culture</h2>
+
+      <p>Miraluka are a thoughtful, cautious, and deliberative species. They
+      have little interest in personal gain or glory. For social reasons,
+      Miraluka hide their appearance by wearing a headband, a mask, or similar
+      concealing headwear. In addition all Miraluka are very united by species.
+      They call themselves "brothers" and are considered as members of a great
+      family. As a Force-using species, Miraluka are often quite shocked if
+      'shown' life not connected to the Force. </p>
+
+      <p>Many Miraluka worship two gods, Ashla and Bogan, through the philosophy
+      of the Greater Force. They do not believe in good or evil, but were taught
+      to accept both life and death.</p>
+
+      <p>Miraluka Force-sensitives are an order of their own called the Luka
+      Sene. Academic in atmosphere and culture, the Luka Sene focus primarily on
+      developing the sense-related powers of their members. However, unlike the
+      Jedi, Sith and other traditions, the Luka Sene does not dictate a member's
+      personal life.</p>
+
+      <h2>Names</h2>
+
+      <p>Miraluka names are generally two syllables. Miraluka don't use
+      surnames, as they believe they are one family.</p>
+
+      <p><strong>Male Names.</strong> Aakih, Pafil, Rikhor, Vociif, Xuwuth</p>
+
+      <p><strong>Female Names.</strong> Auchaod, Favom, Mucem, Wilierth</p>
+    chat: ''
+    unidentified: ''
+  traits: ''
+  source: EC
+  identifier: miraluka
+  advancement:
+    - _id: 1JJuA2p6zIgT1MXe
+      type: ItemGrant
+      configuration:
+        items:
+          - Compendium.sw5e.speciesfeatures.aKuwVGpxdpuN1TNB
+          - Compendium.sw5e.speciesfeatures.TANHYvLg3eXPckIy
+          - Compendium.sw5e.speciesfeatures.y1aee2mFUP2zGMcm
+          - Compendium.sw5e.speciesfeatures.zUl9R3onzPwyC71n
+          - Compendium.sw5e.speciesfeatures.yWg3tzAGRjeUHY1a
+          - Compendium.sw5e.speciesfeatures.pBZ0I1appzKPD1t0
+          - Compendium.sw5e.speciesfeatures.yHZpekJHpts4gLUy
+          - Compendium.sw5e.speciesfeatures.x6GH02i8r8icWbrh
+        optional: true
+      value: {}
+      level: 0
+      title: Features
+    - _id: NpSq9EkSeWpqHrmb
+      type: AbilityScoreImprovement
+      configuration:
+        fixed:
+          wis: 2
+          cha: 1
+        points: 0
+      value: {}
+      level: 0
+    - _id: zhUhDV0jAhs11V2v
+      type: Size
+      configuration:
+        sizes:
+          - med
+      value: {}
+      level: 0
+  details:
+    isDroid: false
+  skinColorOptions:
+    value: Pale to brown
+  hairColorOptions:
+    value: Black, brown, grey, or white
+  eyeColorOptions:
+    value: None
+  colorScheme:
+    value: null
+  distinctions:
+    value: Lack of physical eyes, inherent *force sight*
+  heightAverage:
+    value: 4'8"
+  heightRollMod:
+    value: +2d10"
+  weightAverage:
+    value: 110 lb.
+  weightRollMod:
+    value: x(2d4) lb.
+  homeworld:
+    value: Alpheridies
+  slanguage:
+    value: Miralukese
+  movement:
+    walk: 30
+  senses:
+    special: Force Sight
+    blindsight: 30
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674494002072
+  modifiedTime: 1703969505315
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!C5om3v1wlb315zgf'
+

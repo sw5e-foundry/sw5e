@@ -1,0 +1,194 @@
+_id: uKMXMqGjahK8dV5A
+name: Wookiee
+type: species
+img: systems/sw5e/packs/Icons/Species/Wookiee.webp
+effects:
+  - _id: KUCISI8H3Sy2dc98
+    changes:
+      - key: system.details.species
+        value: Wookiee
+        mode: 5
+        priority: 5
+      - key: system.traits.size
+        value: med
+        mode: 5
+        priority: 5
+      - key: system.attributes.movement.walk
+        value: '30'
+        mode: 5
+        priority: 5
+      - key: system.attributes.senses.darkvision
+        value: '60'
+        mode: 2
+        priority: 20
+      - key: system.attributes.movement.climb
+        value: '30'
+        mode: 5
+        priority: 5
+      - key: system.traits.languages.value
+        value: basic
+        mode: 0
+        priority: 0
+      - key: system.traits.languages.value
+        value: shyriiwook
+        mode: 0
+        priority: 0
+      - key: flags.sw5e.encumbranceMultiplier
+        value: '+1'
+        mode: 2
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Wookiee.webp
+    tint: null
+    transfer: true
+    flags: {}
+    origin: null
+    name: Wookiee
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!uKMXMqGjahK8dV5A.KUCISI8H3Sy2dc98'
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:51:55.9176205+00:00'
+    importer_version: 3
+    uid: Species.name-wookiee
+system:
+  data: $characteristics-table
+  description:
+    value: >-
+      <h2>Biology and Appearance</h2>
+
+      <p>Wookiees are a tall species of furry giants from the planet Kashyyyk,
+      who can grow to a height of over eight feet. They are covered from head to
+      toe in a thick, shaggy coat of hair with water-shedding properties that
+      notably came in shades of brown, black, gray, and white. The species has
+      two sexes, female and male. The latter grows long beards in adult life.
+      Wookiee eye colors are usually blue, green, yellow, golden, brown, or
+      red.</p>
+
+      <h2>Society and Culture</h2>
+
+      <p>Wookiees greatly value honor and loyalty. Therefore, their notion of
+      "family" encompassed much more than just blood ties. A part of that most
+      sacred tradition was the social institution of life debt: when a wookiee's
+      life was saved by someone else, regardless of the species, they would
+      frequently devote themselves to a lifetime of service to their savior and
+      their family. Through the mechanism of the life debt, the People of the
+      Trees used to develop unbreakable bonds with their boon companions and
+      true friends, forming a "honor family."</p>
+
+      <h2>Names</h2>
+
+      <p>Wookiee names are diverse; some names are simple and short while others
+      are long and complicated. The majority of names often have softer big
+      sounds and more melodic tones to them. Since offworlders have trouble
+      using wookiees' real names, they often adopt simpler nicknames to go
+      by.</p>
+
+      <p><strong>Male Names.</strong> Fubbodrrl, Gurrfupayyc, Kioerrr,
+      Lavgaeffoak, Snrowbishutchuh, Zufiaarkaykkk</p>
+
+      <p><strong>Female Names.</strong> Bulabba, Bonbaegnh, Hopakleupo,
+      Keumnebheu, Onninh, Osstatiemmyock</p>
+    chat: ''
+    unidentified: ''
+  traits: ''
+  source: PHB
+  identifier: wookiee
+  advancement:
+    - _id: sdOqPypwcyoH4YIj
+      type: ItemGrant
+      configuration:
+        items:
+          - Compendium.sw5e.speciesfeatures.IXofn4D8VTinIILF
+          - Compendium.sw5e.speciesfeatures.dNWTSjSAxawJL2bJ
+          - Compendium.sw5e.speciesfeatures.o2P4IKI81LgIUSPm
+          - Compendium.sw5e.speciesfeatures.F55akHA6xoWo9Pt9
+          - Compendium.sw5e.speciesfeatures.rLEZaJQe1JTRVQAl
+          - Compendium.sw5e.speciesfeatures.kwEe0SubChkZjXDJ
+          - Compendium.sw5e.speciesfeatures.n1RwGPBGip7MeOC9
+          - Compendium.sw5e.speciesfeatures.zrhXbDv2tpw4Sj9E
+          - Compendium.sw5e.speciesfeatures.qBBt5yQLZSfCChWb
+          - Compendium.sw5e.speciesfeatures.lG0XbwtmPt0qthse
+          - Compendium.sw5e.speciesfeatures.c8YgrPvjFQNL1Dkz
+          - Compendium.sw5e.speciesfeatures.qEv4ynkr3xcwJmes
+        optional: true
+      value: {}
+      level: 0
+      title: Features
+    - _id: 14u6J0pBHNYKeyyP
+      type: AbilityScoreImprovement
+      configuration:
+        fixed:
+          str: 2
+          con: 1
+        points: 0
+      value: {}
+      level: 0
+    - _id: 1TunAtrm5RityIS9
+      type: Size
+      configuration:
+        sizes:
+          - med
+      value: {}
+      level: 0
+    - _id: kG1kIh2m9l9At5aw
+      type: Trait
+      configuration:
+        choices: []
+        grants:
+          - skills:itm
+        mode: default
+      value: {}
+      level: 0
+  details:
+    isDroid: false
+  skinColorOptions:
+    value: Gray
+  hairColorOptions:
+    value: Different shades of black, brown, and white in varying combinations
+  eyeColorOptions:
+    value: Blue, green, yellow, golden, brown, or red
+  colorScheme:
+    value: null
+  distinctions:
+    value: Tall, hair covered, retractable climbing claws, long life spans
+  heightAverage:
+    value: 6'3"
+  heightRollMod:
+    value: +2d12"
+  weightAverage:
+    value: 190 lb.
+  weightRollMod:
+    value: x(2d6) lb.
+  homeworld:
+    value: Kashyyyk
+  slanguage:
+    value: Shyriiwook
+  movement:
+    walk: 30
+    climb: 30
+  senses:
+    darkvision: 60
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674494002142
+  modifiedTime: 1703969505315
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!uKMXMqGjahK8dV5A'
+

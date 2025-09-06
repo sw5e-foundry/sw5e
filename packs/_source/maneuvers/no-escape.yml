@@ -1,0 +1,78 @@
+_id: 9vk5exAIj4F67nkc
+name: No Escape
+type: maneuver
+img: systems/sw5e/packs/Icons/Maneuvers/NoEscape.webp
+effects: []
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:02.7966311+00:00'
+    importer_version: 3
+    uid: Maneuvers.name-no_escape
+system:
+  description:
+    value: >-
+      <p>Whenever you or an ally you can see makes an opportunity attack, you
+      can expend a superiority die. If the attack hits, roll the superiority die
+      and add the result to the damage roll. Additionally, the affected creature
+      gains 4 slowed levels until the start of its next turn.</p>
+    chat: ''
+    unidentified: ''
+  requirements: null
+  source: PHB
+  activation:
+    type: null
+    cost: null
+    condition: ''
+  duration:
+    value: null
+    units: inst
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+  range:
+    value: null
+    long: null
+    units: ''
+    unit: ''
+  uses:
+    value: null
+    max: null
+    per: null
+    recovery: ''
+  consume:
+    type: ''
+    target: null
+    amount: null
+  ability: null
+  actionType: other
+  attackBonus: 0
+  chatFlavor: ''
+  critical:
+    threshold: null
+    damage: ''
+  damage:
+    parts: []
+    versatile: ''
+  formula: '@scale.superiority.die'
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  maneuverType: physical
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674493983263
+  modifiedTime: 1704036415977
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!9vk5exAIj4F67nkc'
+

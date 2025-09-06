@@ -1,0 +1,197 @@
+_id: 69VQjwXwCvkgp135
+name: Herglic
+type: species
+img: systems/sw5e/packs/Icons/Species/Herglic.webp
+effects:
+  - _id: YD22dYhkmmoTaN4S
+    changes:
+      - key: system.details.species
+        mode: 5
+        value: Herglic
+        priority: 5
+      - key: system.traits.size
+        mode: 5
+        value: med
+        priority: 5
+      - key: system.attributes.movement.walk
+        mode: 5
+        value: '30'
+        priority: 5
+      - key: system.attributes.movement.swim
+        mode: 2
+        value: '30'
+        priority: 5
+      - key: system.skills.tec.value
+        mode: 4
+        value: '1'
+        priority: 20
+      - key: system.traits.languages.value
+        mode: 0
+        value: basic
+        priority: 20
+      - key: system.traits.languages.value
+        mode: 0
+        value: herglese
+        priority: 20
+      - key: flags.sw5e.encumbranceMultiplier
+        mode: 2
+        value: '1'
+        priority: 20
+      - key: system.attributes.hp.bonuses.level
+        mode: 2
+        value: '+1'
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Herglic.webp
+    tint: null
+    transfer: true
+    flags: {}
+    origin: null
+    name: Herglic
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!69VQjwXwCvkgp135.YD22dYhkmmoTaN4S'
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:12.2801331+00:00'
+    importer_version: 3
+    uid: Species.name-herglic
+system:
+  data: $characteristics-table
+  description:
+    value: >-
+      <h2>Biology and Appearance</h2>
+
+      <p>The herglic are a massive race of creatures descended from aquatic
+      mammals, breathing though a blowhole on top of their heads. They are tall
+      and wide, and have smooth, hairless skin that ranged in color from pale
+      blue to black, though some rare individuals may appear pink or have white
+      markings on their sides. Their girth tends to leave them feeling out of
+      place among smaller species; herglic tend to take up two chairs or fill
+      the entire doorway of any establishment they enter that does not cater to
+      beings their size.</p>
+
+      <h2>Society and Culture</h2>
+
+      <p>The herglics are very technologically advanced, developing space flight
+      and hyperdrives and colonizing their sector of the galaxy prior to the
+      formation of the Galactic Republic. Natural explorers and traders, they
+      sailed the cosmos establishing crucial trade routes and gaining prestige.
+      Despite their size, herglic are surprisingly dexterous while working with
+      tools, and are some of the finest engineers in the galaxy. </p>
+
+      <p>Herglics have an inquisitive but practical nature, enjoying travel and
+      having exotic experiences. Their perpetually calm demeanor  helps them
+      interact with most other species peacefully, though when dealing with
+      smaller species, herglics tend to become nervous and self-conscious about
+      their proportions. They also seem to have an innate predilection for
+      gambling and games of chance, which have gotten more than one herglic into
+      trouble on several occasions.</p>
+
+      <h2>Names</h2>
+
+      <p>Male names are typically harsher sounding than female names. Herglics
+      rarely use surnames.</p>
+
+      <p><strong>Male Names.</strong> Biglu, Melchi, Sehvorah</p>
+
+      <p><strong>Female Names.</strong> Mahg-Raet, Seese, Uddn</p>
+    chat: ''
+    unidentified: ''
+  traits: ''
+  source: EC
+  identifier: herglic
+  advancement:
+    - _id: 5n0JGvjsjUy11wQH
+      type: ItemGrant
+      configuration:
+        items:
+          - Compendium.sw5e.speciesfeatures.WxZQP6aVShp4RURw
+          - Compendium.sw5e.speciesfeatures.BzaWjpsZbDn13NjX
+          - Compendium.sw5e.speciesfeatures.bFo5OubmDFrHW7lW
+          - Compendium.sw5e.speciesfeatures.WFFzYWc4wdkeHupY
+          - Compendium.sw5e.speciesfeatures.bkxS5QeyPtDZJPtM
+          - Compendium.sw5e.speciesfeatures.SGYK85PmcBHmQ7el
+          - Compendium.sw5e.speciesfeatures.sZ4UUX9sxiuQ9C8g
+          - Compendium.sw5e.speciesfeatures.KlaNvkiMA5vvb4ph
+          - Compendium.sw5e.speciesfeatures.bvyBAClzp1ltvJM0
+          - Compendium.sw5e.speciesfeatures.IFxEjm47Er1pndeJ
+          - Compendium.sw5e.speciesfeatures.Crdx007Ame7sDuGz
+        optional: true
+      value: {}
+      level: 0
+      title: Features
+    - _id: 18t8u5tBHs4FJhhr
+      type: AbilityScoreImprovement
+      configuration:
+        fixed:
+          str: 2
+          int: 1
+        points: 0
+      value: {}
+      level: 0
+    - _id: u2skFOVdxKJ16YRX
+      type: Size
+      configuration:
+        sizes:
+          - med
+      value: {}
+      level: 0
+    - _id: 1fB4tp3Uv19Z415o
+      type: Trait
+      configuration:
+        choices: []
+        grants:
+          - skills:tec
+        mode: default
+      value: {}
+      level: 0
+  details:
+    isDroid: false
+  skinColorOptions:
+    value: Black, gray, pale blue, pale pink
+  hairColorOptions:
+    value: None
+  eyeColorOptions:
+    value: Black
+  colorScheme:
+    value: null
+  distinctions:
+    value: Aquatic organs, massive size
+  heightAverage:
+    value: 6'
+  heightRollMod:
+    value: +2d12"
+  weightAverage:
+    value: 200 lb.
+  weightRollMod:
+    value: x(2d8) lb.
+  homeworld:
+    value: Giju
+  slanguage:
+    value: Herglese
+  movement:
+    walk: 30
+    swim: 30
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674494002065
+  modifiedTime: 1703969505315
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!69VQjwXwCvkgp135'
+

@@ -1,0 +1,231 @@
+_id: adaUHwGfIrAKGSn5
+name: Rodian
+type: species
+img: systems/sw5e/packs/Icons/Species/Rodian.webp
+effects:
+  - _id: zFqjAOHt16NLbAVN
+    changes:
+      - key: system.details.species
+        mode: 5
+        value: Rodian
+        priority: 5
+      - key: system.traits.size
+        mode: 5
+        value: med
+        priority: 5
+      - key: system.attributes.movement.walk
+        mode: 5
+        value: '30'
+        priority: 5
+      - key: system.attributes.movement.climb
+        mode: 5
+        value: '30'
+        priority: 5
+      - key: system.attributes.senses.darkvision
+        mode: 2
+        value: '60'
+        priority: 20
+      - key: system.skills.sur.value
+        mode: 4
+        value: '1'
+        priority: 20
+      - key: system.skills.ste.value
+        mode: 4
+        value: '1'
+        priority: 20
+      - key: system.traits.languages.value
+        mode: 0
+        value: basic
+        priority: 20
+      - key: system.traits.languages.value
+        mode: 0
+        value: rodese
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Rodian.webp
+    tint: null
+    transfer: true
+    flags:
+      core:
+        sourceId: >-
+          Compendium.sw5e.species.Item.adaUHwGfIrAKGSn5.ActiveEffect.FUiWLoJwaDtoE4pp
+    origin: Compendium.sw5e.species.Item.adaUHwGfIrAKGSn5
+    name: Rodian
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!adaUHwGfIrAKGSn5.zFqjAOHt16NLbAVN'
+  - _id: gdc1EmOSoDmqyFii
+    changes:
+      - key: flags.sw5e.situational.advantage.skill.prc
+        mode: 5
+        value: '1'
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Rodian.webp
+    tint: null
+    transfer: true
+    flags:
+      core:
+        sourceId: >-
+          Compendium.sw5e.species.Item.adaUHwGfIrAKGSn5.ActiveEffect.FUiWLoJwaDtoE4pp
+    origin: Compendium.sw5e.species.Item.adaUHwGfIrAKGSn5
+    name: Keen Hearing and Smell
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!adaUHwGfIrAKGSn5.gdc1EmOSoDmqyFii'
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:51:55.9166212+00:00'
+    importer_version: 3
+    uid: Species.name-rodian
+system:
+  data: $characteristics-table
+  description:
+    value: >-
+      <h2>Biology and Appearence</h2>
+
+      <p>The rodians are green-skinned humanoids from the planet Rodia. They
+      possess distinctive faces: large, round, multifaceted eyes; tapir-like
+      snouts; and a pair of saucer-shaped antennae on their heads, which served
+      to detect vibrations. The flexible snouts augmented the rodians' finely
+      tuned olfactory senses, collecting and filtering the air. Their
+      characteristically large eyes indicated a primarily nocturnal ancestry and
+      were capable of seeing into the infrared part of the spectrum. Due to
+      their love of fighting and active lifestyles, most rodians kept in good
+      condition, normally lean and wiry; however, some wealthy rodians became
+      complacent and obese.</p>
+
+      <h2>Society and Culture</h2>
+
+      <p>Rodian culture is obsessed with violence and death, due to behaviors
+      and practices that are ingrained since their earliest ancestry. Their
+      densely packed jungle homeworld is ill-suited for agriculture, requiring
+      rodians to compete with vicious predators for most of their food, some of
+      which can wipe out entire rodian villages. As the rodians developed
+      cunning hunting tactics to survive, the hunt became central to their
+      culture. Eventually, having driven most of the other predators on the
+      planet to near extinction, they began to hunt each other in various wars
+      and gladiatorial contests.</p>
+
+      <h2>Names</h2>
+
+      <p>Female names tend to be longer than male names. Surnames are
+      familial.</p>
+
+      <p><strong>Male Names.</strong> Dagon, Dwedd, Gweym, Steech, Xeep</p>
+
+      <p><strong>Female Names.</strong> Heebmu, Iissi, Teezle, Whunam</p>
+
+      <p><strong>Surnames.</strong> Bluchosso, Encekserr, Gieeseaagg</p>
+    chat: ''
+    unidentified: ''
+  traits: ''
+  source: PHB
+  identifier: rodian
+  advancement:
+    - _id: uN0NoOoxBViVqArr
+      type: ItemGrant
+      configuration:
+        items:
+          - Compendium.sw5e.speciesfeatures.8gyn6mDQhALVbjT0
+          - Compendium.sw5e.speciesfeatures.QpvWN8wLB3evoWwF
+          - Compendium.sw5e.speciesfeatures.1Ug4TXdM6b2xcy56
+          - Compendium.sw5e.speciesfeatures.W4JyI4EGvqVrZSpv
+          - Compendium.sw5e.speciesfeatures.H72lnXs6cpHhKtxS
+          - Compendium.sw5e.speciesfeatures.5I5tOV48Nw48M1JB
+          - Compendium.sw5e.speciesfeatures.WCFNMKg6J8ZA9Npk
+          - Compendium.sw5e.speciesfeatures.ZQnyvvfUrmhJ4k67
+          - Compendium.sw5e.speciesfeatures.5JgX9qREf8SPtIzX
+          - Compendium.sw5e.speciesfeatures.C1eiPCwTA6C7QvnD
+        optional: true
+      value: {}
+      level: 0
+      title: Features
+    - _id: 15w6WTBRQxO4nFqM
+      type: AbilityScoreImprovement
+      configuration:
+        fixed:
+          dex: 2
+          con: 1
+        points: 0
+      value: {}
+      level: 0
+    - _id: pWe0EEL8bugpsZqM
+      type: Size
+      configuration:
+        sizes:
+          - med
+      value: {}
+      level: 0
+    - _id: uzafhGebtHu16OUG
+      type: Trait
+      configuration:
+        choices: []
+        grants:
+          - skills:sur
+          - skills:ste
+        mode: default
+      value: {}
+      level: 0
+  details:
+    isDroid: false
+  skinColorOptions:
+    value: Blue, green, purple, turquoise, or yellow
+  hairColorOptions:
+    value: None
+  eyeColorOptions:
+    value: Blue, black, green, purple, or red
+  colorScheme:
+    value: null
+  distinctions:
+    value: >-
+      Large and round pupil-less eyes, snouts, pointed ears, antennae, scaled
+      and usually green skin
+  heightAverage:
+    value: 4'9"
+  heightRollMod:
+    value: +2d10"
+  weightAverage:
+    value: 115 lb.
+  weightRollMod:
+    value: x(2d4) lb.
+  homeworld:
+    value: Rodia
+  slanguage:
+    value: Rodese
+  movement:
+    walk: 30
+    climb: 30
+  senses:
+    darkvision: 60
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674494002110
+  modifiedTime: 1703969505315
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!adaUHwGfIrAKGSn5'
+

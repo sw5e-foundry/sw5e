@@ -1,0 +1,219 @@
+_id: F8dCsTw3jHWXfals
+name: Droid, Class III
+type: species
+img: systems/sw5e/packs/Icons/Species/Droid-ClassIii.webp
+effects:
+  - _id: HFVrCmmsBSqYk1N7
+    changes:
+      - key: system.details.species
+        value: Droid, Class III
+        mode: 5
+        priority: 5
+      - key: system.traits.size
+        value: med
+        mode: 0
+        priority: 5
+      - key: system.attributes.movement.walk
+        value: '25'
+        mode: 5
+        priority: 5
+      - key: system.traits.dr.value
+        value: necrotic
+        mode: 0
+        priority: 20
+      - key: system.traits.dr.value
+        value: poison
+        mode: 0
+        priority: 20
+      - key: system.traits.dr.value
+        value: psychic
+        mode: 0
+        priority: 20
+      - key: system.traits.ci.value
+        value: diseased
+        mode: 0
+        priority: 20
+      - key: system.traits.ci.value
+        value: poisoned
+        mode: 0
+        priority: 20
+      - key: system.traits.dv.value
+        value: ion
+        mode: 0
+        priority: 20
+      - key: system.skills.lor.value
+        value: '1'
+        mode: 4
+        priority: 20
+      - key: system.traits.languages.all
+        value: '1'
+        mode: 0
+        priority: 20
+      - key: flags.sw5e.forceInsensitive
+        value: '1'
+        mode: 5
+        priority: 20
+      - key: flags.sw5e.maintenanceMode
+        value: '1'
+        mode: 5
+        priority: 20
+      - key: flags.sw5e.rapidReconstruction
+        value: '1'
+        mode: 5
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Droid%20Class%20III.webp
+    tint: null
+    transfer: true
+    flags: {}
+    origin: null
+    name: Droid, Class III
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!F8dCsTw3jHWXfals.HFVrCmmsBSqYk1N7'
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:51:55.9146224+00:00'
+    importer_version: 3
+    uid: Species.name-droid_class_iii
+system:
+  data: $characteristics-table
+  description:
+    value: >-
+      <h2>Appearance</h2>
+
+      <p>Class III droids are typically human-like in both shape and size,
+      standing at around 6 feet. They are usually a polished metallic color,
+      though this can vary based on tasks for which they are created, their
+      affiliation, or quirks of their owner.</p>
+
+      <p>They are noteworthy for their slow, shuffling gait and typically overly
+      talkative nature.</p>
+
+      <h2>Utility</h2>
+
+      <p>Class III droids are programmed to interact with humans. They are said
+      to be the most advanced droids ever invented. Protocol, servant, tutor,
+      and child care droids are all class III droids.</p>
+
+      <p>They are usually equipped with protocol chips which give them the
+      cognitive functionality to engage socially.</p>
+
+      <h2>Names</h2>
+
+      <p>Droids are typically called by their designation, given to them when
+      they are created, or some affectation given to them by their owner. Often
+      this affectation is a play on their designation. Occasionally, noteworthy
+      droids will earn monikers based on their accomplishments.</p>
+
+      <p><strong>Designations (Names).</strong> K-OHN (Kone), I-5YQ (I-Five),
+      O-MR1 (Omri), TC-14 (Teesee Fourteen)</p>
+    chat: ''
+    unidentified: ''
+  traits: ''
+  source: PHB
+  identifier: droid-classiii
+  advancement:
+    - _id: IOA497c0Vbm1yscR
+      type: ItemGrant
+      configuration:
+        items:
+          - Compendium.sw5e.speciesfeatures.mgfMdq6WCTwqQ0yA
+          - Compendium.sw5e.speciesfeatures.3DxjhnuFZG30sLOu
+          - Compendium.sw5e.speciesfeatures.idcffe8tBla4LUYP
+          - Compendium.sw5e.speciesfeatures.vAANRbFOp7CF45OA
+          - Compendium.sw5e.speciesfeatures.xDn4jck5FsFn3vzv
+          - Compendium.sw5e.speciesfeatures.FWn8CMiALGR1cl4w
+          - Compendium.sw5e.speciesfeatures.dl2zwjAMn4fJESAD
+          - Compendium.sw5e.speciesfeatures.AnZSx65GEdZ8czgw
+          - Compendium.sw5e.speciesfeatures.WF84AF9zD8qyuj32
+          - Compendium.sw5e.speciesfeatures.acKi3GcVHEvWJGP6
+          - Compendium.sw5e.speciesfeatures.R86jUrqqNzgw3hYF
+          - Compendium.sw5e.speciesfeatures.MVsJfrgL23QIN15x
+          - Compendium.sw5e.speciesfeatures.DDlyxzOymyf9SG9j
+          - Compendium.sw5e.speciesfeatures.KQrYDZ1DSIceW7kn
+          - Compendium.sw5e.speciesfeatures.3AyZZwQNNNbMdJy3
+        optional: true
+      value: {}
+      level: 0
+      title: Features
+    - _id: DExYFZ8XuQACGgjI
+      type: AbilityScoreImprovement
+      configuration:
+        fixed:
+          cha: 2
+        points: 1
+      value: {}
+      level: 0
+    - _id: 1kvAsMPcverks0dX
+      type: Size
+      configuration:
+        sizes:
+          - med
+      value: {}
+      level: 0
+    - _id: CtPoiIkBuoJ9KkbN
+      type: Trait
+      configuration:
+        choices: []
+        grants:
+          - skills:lor
+        mode: default
+      value: {}
+      level: 0
+  details:
+    isDroid: true
+  skinColorOptions:
+    value: null
+  hairColorOptions:
+    value: null
+  eyeColorOptions:
+    value: null
+  colorScheme:
+    value: Typically metallic
+  distinctions:
+    value: Human-like size, shuffling gait, typically talkative
+  heightAverage:
+    value: 5'6"
+  heightRollMod:
+    value: +2d4"
+  weightAverage:
+    value: 120 lb.
+  weightRollMod:
+    value: x(2d6) lb.
+  homeworld:
+    value: null
+  slanguage:
+    value: Varies based on location
+  droidDistinctions:
+    value: ''
+  manufacturer:
+    value: ''
+  droidLanguage:
+    value: ''
+  type:
+    value: droid
+  movement:
+    walk: 25
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674494002075
+  modifiedTime: 1703969505315
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!F8dCsTw3jHWXfals'
+

@@ -1,0 +1,161 @@
+_id: K7hFfGCqlnutg96G
+name: Multiclass Improvement
+type: feat
+img: systems/sw5e/packs/Icons/Feats/MulticlassImprovement.webp
+effects: []
+folder: null
+sort: 0
+flags:
+  betterRollssw5e:
+    critRange:
+      type: String
+      value: ''
+    critDamage:
+      type: String
+      value: ''
+    quickDesc:
+      type: Boolean
+      value: true
+      altValue: true
+    quickAttack:
+      type: Boolean
+      value: true
+      altValue: true
+    quickSave:
+      type: Boolean
+      value: true
+      altValue: true
+    quickDamage:
+      type: Array
+      value: []
+      altValue: []
+      context: []
+    quickProperties:
+      type: Boolean
+      value: true
+      altValue: true
+    quickCharges:
+      type: Boolean
+      value:
+        use: true
+        resource: true
+        charge: true
+      altValue:
+        use: true
+        resource: true
+        charge: true
+    quickTemplate:
+      type: Boolean
+      value: true
+      altValue: true
+    quickOther:
+      type: Boolean
+      value: true
+      altValue: true
+      context: ''
+    quickFlavor:
+      type: Boolean
+      value: true
+      altValue: true
+    quickPrompt:
+      type: Boolean
+      value: false
+      altValue: false
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:20.631291+00:00'
+    importer_version: 3
+    uid: Feat.name-multiclass_improvement
+system:
+  description:
+    value: >-
+      <p>You've learned to blend the skills of your different classes. Choose
+      two of the multiclass improvement options, detailed later in this chapter.
+      You can take this feat multiple times. </p>
+
+      <ul>
+
+      <li>@Compendium[sw5e.feats.Om5SVvKKX5B3FsxW]{Berserker}</li>
+
+      <li>@Compendium[sw5e.feats.E7axPXfGddza0LLj]{Consular}</li>
+
+      <li>@Compendium[sw5e.feats.kqsPoFl9VAUUTLdF]{Engineer}</li>
+
+      <li>@Compendium[sw5e.feats.wEH9b6g6fWgFi8bj]{Fighter}</li>
+
+      <li>@Compendium[sw5e.feats.lEw8HbIRuY8LTXez]{Guardian}</li>
+
+      <li>@Compendium[sw5e.feats.KrUKsGFpmHi2D8Ok]{Monk}</li>
+
+      <li>@Compendium[sw5e.feats.pJWVWjFyukfU7BTF]{Operative}</li>
+
+      <li>@Compendium[sw5e.feats.vIs6bNzTpZeGF1ft]{Scholar}</li>
+
+      <li>@Compendium[sw5e.feats.rLjbZae3xpUq7leY]{Scout}</li>
+
+      <li>@Compendium[sw5e.feats.pvFCujcCXH41vWI4]{Sentinel}</li></ul>
+    chat: ''
+    unidentified: ''
+  requirements: 4th level
+  source: EC
+  activation:
+    type: null
+    cost: null
+    condition: ''
+  duration:
+    value: null
+    units: inst
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+  range:
+    value: null
+    long: null
+    units: ''
+    unit: ''
+  uses:
+    value: null
+    max: null
+    per: null
+    recovery: ''
+  consume:
+    type: ''
+    target: null
+    amount: null
+  ability: null
+  actionType: other
+  attackBonus: 0
+  chatFlavor: ''
+  critical: null
+  damage:
+    parts: []
+    versatile: ''
+  formula: ''
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  type:
+    value: feat
+    subtype: ''
+  recharge:
+    value: null
+    charged: false
+  attributes:
+    speed:
+      space: null
+      turn: null
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.3.1.2.6.1
+  coreVersion: '11.308'
+  createdTime: 1674493966785
+  modifiedTime: 1695981493697
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!K7hFfGCqlnutg96G'
+

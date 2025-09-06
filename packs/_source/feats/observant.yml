@@ -1,0 +1,175 @@
+_id: 7diQN6VoqJhyYGtA
+name: Observant
+type: feat
+img: systems/sw5e/packs/Icons/Feats/Observant.webp
+effects:
+  - name: Observant
+    icon: systems/sw5e/packs/Icons/Feats/Observant.webp
+    origin: Compendium.sw5e.feats.Item.7diQN6VoqJhyYGtA
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    transfer: true
+    disabled: false
+    _id: uKp5Jcfy5ot8aw2I
+    changes:
+      - key: flags.sw5e.observantFeat
+        mode: 0
+        value: '1'
+        priority: 20
+    description: ''
+    statuses: []
+    flags: {}
+    tint: null
+    _key: '!items.effects!7diQN6VoqJhyYGtA.uKp5Jcfy5ot8aw2I'
+    sort: 0
+folder: null
+sort: 0
+flags:
+  betterRollssw5e:
+    critRange:
+      type: String
+      value: ''
+    critDamage:
+      type: String
+      value: ''
+    quickDesc:
+      type: Boolean
+      value: true
+      altValue: true
+    quickAttack:
+      type: Boolean
+      value: true
+      altValue: true
+    quickSave:
+      type: Boolean
+      value: true
+      altValue: true
+    quickDamage:
+      type: Array
+      value: []
+      altValue: []
+      context: []
+    quickProperties:
+      type: Boolean
+      value: true
+      altValue: true
+    quickCharges:
+      type: Boolean
+      value:
+        use: true
+        resource: true
+        charge: true
+      altValue:
+        use: true
+        resource: true
+        charge: true
+    quickTemplate:
+      type: Boolean
+      value: true
+      altValue: true
+    quickOther:
+      type: Boolean
+      value: true
+      altValue: true
+      context: ''
+    quickFlavor:
+      type: Boolean
+      value: true
+      altValue: true
+    quickPrompt:
+      type: Boolean
+      value: false
+      altValue: false
+  sw5e-importer:
+    timestamp: '2023-03-09T01:51:59.5085373+00:00'
+    importer_version: 3
+    uid: Feat.name-observant
+system:
+  description:
+    value: >-
+      <p>Quick to notice details of your environment, you gain the following
+      benefits:</p>
+
+      <ul>
+
+      <li>Increase your Intelligence or Wisdom score by 1, to a maximum of
+      20.</li>
+
+      <li>If you can see a creature's mouth while it is speaking a language you
+      understand, you can interpret what it's saying by reading its lips.</li>
+
+      <li>You are considered to have advantage when determining your passive
+      Wisdom (Perception) and passive Intelligence (Investigation)
+      scores.</li></ul>
+    chat: ''
+    unidentified: ''
+  requirements: null
+  source: PHB
+  activation:
+    type: null
+    cost: null
+    condition: ''
+  duration:
+    value: null
+    units: inst
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+  range:
+    value: null
+    long: null
+    units: ''
+    unit: ''
+  uses:
+    value: null
+    max: null
+    per: null
+    recovery: ''
+  consume:
+    type: ''
+    target: null
+    amount: null
+  ability: ''
+  actionType: other
+  attackBonus: 0
+  chatFlavor: ''
+  critical: null
+  damage:
+    parts: []
+    versatile: ''
+  formula: ''
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  type:
+    value: feat
+    subtype: ''
+  recharge:
+    value: null
+    charged: false
+  attributes:
+    speed:
+      space: null
+      turn: null
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.3.1.2.6.3
+  coreVersion: '11.308'
+  createdTime: 1674493966762
+  modifiedTime: 1698725784536
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!7diQN6VoqJhyYGtA'
+

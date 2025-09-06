@@ -1,0 +1,247 @@
+_id: 6tVXIOLALv7F5F4k
+name: Bith
+type: species
+img: systems/sw5e/packs/Icons/Species/Bith.webp
+effects:
+  - _id: gTnfCIujqHy3PcrS
+    changes:
+      - key: system.traits.size
+        mode: 5
+        value: med
+        priority: 5
+      - key: system.attributes.movement.walk
+        mode: 5
+        value: '30'
+        priority: 5
+      - key: system.details.species
+        mode: 5
+        value: Bith
+        priority: 5
+      - key: system.traits.languages.value
+        mode: 0
+        value: bith
+        priority: 20
+      - key: system.traits.languages.value
+        mode: 0
+        value: basic
+        priority: 20
+      - key: system.traits.toolProf.value
+        mode: 0
+        value: music
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Bith.webp
+    tint: null
+    transfer: true
+    flags:
+      core:
+        sourceId: >-
+          Compendium.sw5e.species.Item.6tVXIOLALv7F5F4k.ActiveEffect.064LQEqCktTG9phA
+    origin: Compendium.sw5e.species.Item.6tVXIOLALv7F5F4k
+    name: Bith
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!6tVXIOLALv7F5F4k.gTnfCIujqHy3PcrS'
+  - _id: JaW7kmJADu0cckOM
+    changes:
+      - key: flags.sw5e.situational.advantage.skill.inv
+        mode: 5
+        value: '1'
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Bith.webp
+    tint: null
+    transfer: true
+    flags:
+      core:
+        sourceId: >-
+          Compendium.sw5e.species.Item.6tVXIOLALv7F5F4k.ActiveEffect.064LQEqCktTG9phA
+    origin: Compendium.sw5e.species.Item.6tVXIOLALv7F5F4k
+    name: Detail Oriented - within 5 feet
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!6tVXIOLALv7F5F4k.JaW7kmJADu0cckOM'
+  - _id: 5ofYHXAAmxFb8fqE
+    changes:
+      - key: flags.sw5e.situational.advantage.skill.prc
+        mode: 5
+        value: '1'
+        priority: 20
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Species/Bith.webp
+    tint: null
+    transfer: true
+    flags:
+      core:
+        sourceId: >-
+          Compendium.sw5e.species.Item.6tVXIOLALv7F5F4k.ActiveEffect.064LQEqCktTG9phA
+    origin: Compendium.sw5e.species.Item.6tVXIOLALv7F5F4k
+    name: Keen Hearing and Smell
+    description: ''
+    statuses: []
+    sort: 0
+    _key: '!items.effects!6tVXIOLALv7F5F4k.5ofYHXAAmxFb8fqE'
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:51:55.9126241+00:00'
+    importer_version: 3
+    uid: Species.name-bith
+system:
+  data: $characteristics-table
+  description:
+    value: >-
+      <h2>Biology and Appearance</h2>
+
+      <p>Bith are craniopods with pale pink, yellow, or green skin, large heads,
+      large lidless eyes, toeless feet, and long fingers. Their thumb and small
+      finger were both fully opposable. The bith's internal systems are
+      different from most humanoids, as the bith have only one lung, and exhale
+      through their skin. Bith also lack a proper nose, instead having highly
+      sensitive olfactory organs hidden in the skin-flaps of their cheeks.</p>
+
+      <p>The other bith senses are also acute. Bith can sense the tonal
+      qualities of sound as well as other species sensed colors. Their eyes, as
+      big as a Menahuun's, can see microscopic details of nearby objects, but
+      are extremely nearsighted as a result. An interesting side effect of their
+      incredible sensors is the effect of sonic grenades, or screamers, on them.
+      It is described as causing their heads to explode. Similarly, bith have
+      high manual dexterity which helps them manipulate fine tools, though their
+      physical prowess with gross motor skills was only average.</p>
+
+      <h2>Society and Culture</h2>
+
+      <p>Bith are one of the galaxy's most ancient civilizations, with a history
+      going back millions of years. This antiquity garners respect in certain
+      quarters, such as among the Gree, who gave them more respect than other,
+      "younger" species. Their society is highly regimented, with everything
+      from mate selection to political leadership controlled by sophisticated
+      computer programs.</p>
+
+      <h2>Names</h2>
+
+      <p>Bith names are quite diverse. Some names look complicated and difficult
+      to pronounce, while others are quite simple. </p>
+
+      <p><strong>Male Names.</strong> Fedu, Jenkiss, Kabadons, Ph'teumkiass </p>
+
+      <p><strong>Female Names.</strong> Duhia, F'hubama, R'hothal, Thidus </p>
+
+      <p><strong>Surnames.</strong> D'intes, Hern, K'sarorn, Nimum, Rumo</p>
+    chat: ''
+    unidentified: ''
+  traits: ''
+  source: PHB
+  identifier: bith
+  advancement:
+    - _id: 17E8TyIqCfIYYP1a
+      type: ItemGrant
+      configuration:
+        items:
+          - Compendium.sw5e.speciesfeatures.Jhuc1kmLSGa6ZkGh
+          - Compendium.sw5e.speciesfeatures.l2zcNAFJW21Kx8sD
+          - Compendium.sw5e.speciesfeatures.ENhc79EfKuSBShPX
+          - Compendium.sw5e.speciesfeatures.dZq08QhhQCDYOesr
+          - Compendium.sw5e.speciesfeatures.nx6RdDgPsXc3ct6i
+          - Compendium.sw5e.speciesfeatures.79YIQTMv9MK1yucM
+          - Compendium.sw5e.speciesfeatures.HL1AoCwk2DVijqZv
+          - Compendium.sw5e.speciesfeatures.LdM6wR25FRpnFJYY
+          - Compendium.sw5e.speciesfeatures.YXKRkEKMksz5zyKk
+          - Compendium.sw5e.speciesfeatures.oXBcslXLZpebJjG5
+          - Compendium.sw5e.speciesfeatures.qhUSQnAM5pYwoq7n
+          - Compendium.sw5e.speciesfeatures.DHUy0MvZjrLWatou
+        optional: true
+      value: {}
+      level: 0
+      title: Features
+    - _id: h1LDlvLM9dpt6bKa
+      type: AbilityScoreImprovement
+      configuration:
+        fixed:
+          int: 2
+          dex: 1
+        points: 0
+      value: {}
+      level: 0
+    - _id: qUqyX4OPhdK1BoHS
+      type: Size
+      configuration:
+        sizes:
+          - med
+      value: {}
+      level: 0
+    - _id: BrvGzZ3gbQ81IMVT
+      type: Trait
+      configuration:
+        choices:
+          - count: 1
+            pool:
+              - tool:music:*
+        grants: []
+        mode: default
+      value: {}
+      level: 0
+  details:
+    isDroid: false
+  skinColorOptions:
+    value: Green, pink, white, or yellow
+  hairColorOptions:
+    value: None
+  eyeColorOptions:
+    value: Black
+  colorScheme:
+    value: null
+  distinctions:
+    value: Large cranium, acute senses of smell and hearing
+  heightAverage:
+    value: 4'9"
+  heightRollMod:
+    value: +2d6"
+  weightAverage:
+    value: 100 lb.
+  weightRollMod:
+    value: x(2d4) lb.
+  homeworld:
+    value: Clak'dor VII
+  slanguage:
+    value: Bith
+  movement:
+    walk: 30
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674494002066
+  modifiedTime: 1703969505315
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!6tVXIOLALv7F5F4k'
+

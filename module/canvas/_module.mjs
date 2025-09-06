@@ -1,6 +1,8 @@
 export { default as AbilityTemplate } from "./ability-template.mjs";
 export { default as FiringArcTemplate } from "./firing-arc-template.mjs";
 export * as detectionModes from "./detection-modes/_module.mjs";
+export { default as TokenRuler5e } from "./token-ruler.mjs";
+export * as layers from "./layers/_module.mjs";
 export { measureDistances } from "./grid.mjs";
 export { default as MapLocationControlIcon } from "./map-location-control-icon.mjs";
 export { default as Note5e } from "./note.mjs";

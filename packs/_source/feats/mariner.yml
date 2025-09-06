@@ -1,0 +1,179 @@
+_id: 1mY6qQtnIEDlMAsQ
+name: Mariner
+type: feat
+img: systems/sw5e/packs/Icons/Feats/Mariner.webp
+effects:
+  - _id: iOIplrtcWGmtS6Gu
+    changes:
+      - key: system.abilities.con.value
+        mode: 2
+        value: '1'
+        priority: 20
+      - key: system.attributes.movement.swim
+        mode: 4
+        value: (@attributes.movement.walk)
+        priority: 5
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    icon: systems/sw5e/packs/Icons/Feats/Mariner.webp
+    tint: null
+    transfer: true
+    flags: {}
+    origin: null
+    name: Mariner
+    description: ''
+    statuses: []
+    _key: '!items.effects!1mY6qQtnIEDlMAsQ.iOIplrtcWGmtS6Gu'
+    sort: 0
+folder: null
+sort: 0
+flags:
+  betterRollssw5e:
+    critRange:
+      type: String
+      value: ''
+    critDamage:
+      type: String
+      value: ''
+    quickDesc:
+      type: Boolean
+      value: true
+      altValue: true
+    quickAttack:
+      type: Boolean
+      value: true
+      altValue: true
+    quickSave:
+      type: Boolean
+      value: true
+      altValue: true
+    quickDamage:
+      type: Array
+      value: []
+      altValue: []
+      context: []
+    quickProperties:
+      type: Boolean
+      value: true
+      altValue: true
+    quickCharges:
+      type: Boolean
+      value:
+        use: true
+        resource: true
+        charge: true
+      altValue:
+        use: true
+        resource: true
+        charge: true
+    quickTemplate:
+      type: Boolean
+      value: true
+      altValue: true
+    quickOther:
+      type: Boolean
+      value: true
+      altValue: true
+      context: ''
+    quickFlavor:
+      type: Boolean
+      value: true
+      altValue: true
+    quickPrompt:
+      type: Boolean
+      value: false
+      altValue: false
+  sw5e-importer:
+    timestamp: '2023-03-09T01:51:59.5075386+00:00'
+    importer_version: 3
+    uid: Feat.name-mariner
+system:
+  description:
+    value: >-
+      <p>You've spent an exorbitant amount of time in water. You gain the
+      following benefits:</p>
+
+      <ul>
+
+      <li>Increase your Constitution score by 1, to a maximum of 20.</li>
+
+      <li>You gain a swimming speed equal to your movement speed.</li>
+
+      <li>You have advantage on a ability checks and saving throws related to
+      swimming.</li>
+
+      <li>You can hold your breath for a number of minutes equal to 1 + twice
+      your Constitution modifier.</li></ul>
+    chat: ''
+    unidentified: ''
+  requirements: null
+  source: PHB
+  activation:
+    type: null
+    cost: null
+    condition: ''
+  duration:
+    value: null
+    units: inst
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+  range:
+    value: null
+    long: null
+    units: ''
+    unit: ''
+  uses:
+    value: null
+    max: null
+    per: null
+    recovery: ''
+  consume:
+    type: ''
+    target: null
+    amount: null
+  ability: ''
+  actionType: other
+  attackBonus: 0
+  chatFlavor: ''
+  critical: null
+  damage:
+    parts: []
+    versatile: ''
+  formula: ''
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  type:
+    value: feat
+    subtype: ''
+  recharge:
+    value: null
+    charged: false
+  attributes:
+    speed:
+      space: null
+      turn: null
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.3.1.2.6.4
+  coreVersion: '11.315'
+  createdTime: 1674493966748
+  modifiedTime: 1699635157655
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!1mY6qQtnIEDlMAsQ'
+

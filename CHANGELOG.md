@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.1.2.8.1] - 2025-09-04
+
+### Note
+- Pre-release (beta) for Foundry VTT v13 migration testing. Includes YAML compendium source migration and build tooling updates. Please report issues you encounter.
+
+### Added
+- YAML compendium pack source format under `packs/_source`, organized into categorized subfolders (aligned with the DnD5e system).
+- Migration utility to convert legacy JSON compendium sources to YAML and place them under `packs/_source`.
+- Documentation in `WARP.md` describing the YAML pack workflow (clean/compile/extract), folder structure, and usage.
+
+### Changes
+- Build tooling and pack scripts updated to prioritize YAML (clean/compile/extract) while retaining legacy JSON support.
+- Updated `utils/javascript.mjs` to replace JSON import assertions with file system reads for better compatibility with current Node and bundlers.
+- Added defensive initialization guards in `sw5e.mjs` (e.g., CONFIG assignments, dice registrations, measured template defaults) to reduce runtime errors on v13.
+
+### Fixed
+- Addressed a build tooling compatibility issue caused by JSON import assertions in ESM environments.
+
 ## [3.2.1.2.9.0] - 2024-07-10
 
 ### Changes
@@ -18,6 +36,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Attribute override for techcasting will no longer be ignored.
 - Starship firing arc templates will now be correctly positioned on the ship's center.
 - Added missing tool proficiencies.
+
 
 ## [2.4.1.2.8.0] - 2024-01-03
 

@@ -6,7 +6,7 @@ export * as components from "./components/_module.mjs";
 export * as item from "./item/_module.mjs";
 export * as journal from "./journal/_module.mjs";
 export * as sidebar from "./sidebar/_module.mjs";
-
+export { default as ChatLog5e } from "./chat-log.mjs";
 export {default as Accordion} from "./accordion.mjs";
 export {default as Award} from "./award.mjs";
 export {default as ContextMenu5e} from "./context-menu.mjs";
@@ -17,3 +17,4 @@ export {default as SheetConfig} from "./sheet-config.mjs";
 export {default as SourceConfig} from "./source-config.mjs";
 export {default as Tabs5e} from "./tabs.mjs";
 export {default as TokenConfig5e} from "./token-config.mjs";
+

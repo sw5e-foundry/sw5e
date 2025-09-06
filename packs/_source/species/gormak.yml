@@ -1,0 +1,154 @@
+_id: x5uJxt0mB2FjQTd6
+name: Gormak
+type: species
+img: systems/sw5e/packs/Icons/Species/Gormak.webp
+effects: []
+folder: null
+sort: 0
+flags:
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:12.2791337+00:00'
+    importer_version: 3
+    uid: Species.name-gormak
+system:
+  data: $characteristics-table
+  description:
+    value: >-
+      <h2>Biology and Appearance</h2>
+
+      <p>The gormak are green humanoids with flat, noseless faces adorned with
+      frills, collecting in whorls on the sides of their heads. They have
+      clawed, three-fingered, frilled hands, and tend to possess a muscular
+      build. Females are slightly shorter than males and lacked a whorl located
+      above their nose. </p>
+
+      <h2>Society and Culture</h2>
+
+      <p>An aggressive species, the gormak hold an innate love of warfare and
+      competition, and are extremely hostile towards the other natives of their
+      planet, the voss. The gormak hold a belief that in order for them to
+      prosper, the voss, whom they view as a plague on the planet, must be
+      destroyed. To achieve that goal, warriors have repeatedly assaulted the
+      voss capital city over the course of centuries; however, despite their far
+      greater numbers, their nature has kept them from uniting against their
+      enemy. While their society and speech are considered primitive by galactic
+      standards, their innate talent with technology rivals the top minds of the
+      galaxy. From bits of scavenged electronics and equipment, the gormak
+      construct advanced tools, heavy machinery, specialized weapons and even
+      cybernetic implants. However, despite their incredible affinity for
+      technology, the gormak remain a pre-spaceflight culture confined to their
+      homeworld, which causes them to be viewed as a backward species despite
+      being perfectly capable of repairing, modifying and improving tech created
+      by more advanced cultures. </p>
+
+      <h2>Names</h2>
+
+      <p>Gormak are commonly named after heroes of their history by local
+      shamans. Surnames are tribe-based, but optional. </p>
+
+      <p><strong>Male Names.</strong> Damal, Henet, Wockuss, Yryu, Zenit</p>
+
+      <p><strong>Female Names.</strong> Finay, Heidith, Jhekon, Rakva, Sanas</p>
+
+      <p><strong>Surnames.</strong> -Du, -Fo, -Qa, -Ry, -Ve</p>
+    chat: ''
+    unidentified: ''
+  traits: ''
+  source: EC
+  identifier: gormak
+  advancement:
+    - _id: 169swhEJB0xM1oFC
+      type: ItemGrant
+      configuration:
+        items:
+          - Compendium.sw5e.speciesfeatures.uoQ2g2JcrEWYszMS
+          - Compendium.sw5e.speciesfeatures.shG5K1o7hpGUFhsX
+          - Compendium.sw5e.speciesfeatures.t1wF55SPXbuhpesm
+          - Compendium.sw5e.speciesfeatures.ECppxalLUtwkz9Uq
+          - Compendium.sw5e.speciesfeatures.bYq2C5J6NzappjHa
+          - Compendium.sw5e.speciesfeatures.EivQGs0zwLBTTWcM
+          - Compendium.sw5e.speciesfeatures.7AIA9vXK4FVeYmZZ
+          - Compendium.sw5e.speciesfeatures.fwX7qY5g2U3dujmw
+          - Compendium.sw5e.speciesfeatures.UdqqDBW1qoExmcNc
+          - Compendium.sw5e.speciesfeatures.Ld4UovNfDF5cjRpm
+        optional: true
+      value: {}
+      level: 0
+      title: Features
+    - _id: 1la1SFewulWkq2Mj
+      type: AbilityScoreImprovement
+      configuration:
+        fixed:
+          str: 2
+          int: 1
+        points: 0
+      value: {}
+      level: 0
+    - _id: 1L7BLHKth24aWD7u
+      type: Size
+      configuration:
+        sizes:
+          - med
+      value: {}
+      level: 0
+    - _id: iooK139rpR0ndozN
+      type: Trait
+      configuration:
+        choices:
+          - count: 1
+            pool:
+              - weapon:svb:*
+              - weapon:mvb:*
+          - count: 1
+            pool:
+              - weapon:smb:*
+              - weapon:mrb:*
+          - count: 1
+            pool:
+              - tool:armstechsimplements
+              - tool:biotechsimplements
+              - tool:constructorsimplements
+              - tool:mechanicskit
+              - tool:tinkersimplements
+        grants:
+          - skills:tec
+        mode: default
+      value: {}
+      level: 0
+  details:
+    isDroid: false
+  skinColorOptions:
+    value: Green
+  hairColorOptions:
+    value: None
+  eyeColorOptions:
+    value: Orange or blue
+  colorScheme:
+    value: null
+  distinctions:
+    value: Frills on the face and body
+  heightAverage:
+    value: 5'2"
+  heightRollMod:
+    value: +2d10"
+  weightAverage:
+    value: 100 lb.
+  weightRollMod:
+    value: x(2d4) lb.
+  homeworld:
+    value: Voss
+  slanguage:
+    value: Gormak
+  movement:
+    walk: 30
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.4.1.2.8.0
+  coreVersion: '11.315'
+  createdTime: 1674494002147
+  modifiedTime: 1703969505315
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!x5uJxt0mB2FjQTd6'
+

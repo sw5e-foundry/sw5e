@@ -50,7 +50,7 @@ globalThis.dnd5e = globalThis.sw5e;
 /* -------------------------------------------- */
 
 // Keep on while testing new SW5e build
-CONFIG.debug.hooks = false;
+if (CONFIG.debug) CONFIG.debug.hooks = false;
 
 Hooks.once( "init", function() {
   globalThis.sw5e = game.sw5e = Object.assign( game.system, globalThis.sw5e );
@@ -67,29 +67,33 @@ Hooks.once( "init", function() {
 
   // Record Configuration Values
   CONFIG.SW5E = SW5E;
-  CONFIG.ActiveEffect.documentClass = documents.ActiveEffect5e;
-  CONFIG.ActiveEffect.legacyTransferral = false;
-  CONFIG.Actor.documentClass = documents.Actor5e;
-  CONFIG.ChatMessage.documentClass = documents.ChatMessage5e;
-  CONFIG.Combat.documentClass = documents.Combat5e;
-  CONFIG.Combatant.documentClass = documents.Combatant5e;
-  CONFIG.Item.collection = dataModels.collection.Items5e;
-  CONFIG.Item.compendiumIndexFields.push( "system.container" );
-  CONFIG.Item.documentClass = documents.Item5e;
-  CONFIG.Token.documentClass = documents.TokenDocument5e;
-  CONFIG.Token.objectClass = canvas.Token5e;
-  CONFIG.Token.ringClass = canvas.TokenRing;
-  CONFIG.User.documentClass = documents.User5e;
-  CONFIG.time.roundTime = 6;
-  Roll.TOOLTIP_TEMPLATE = "systems/sw5e/templates/chat/roll-breakdown.hbs";
-  CONFIG.Dice.DamageRoll = dice.DamageRoll;
-  CONFIG.Dice.D20Roll = dice.D20Roll;
-  CONFIG.Dice.AttribDieRoll = dice.AttribDieRoll;
-  CONFIG.MeasuredTemplate.defaults.angle = 53.13; // 5e cone RAW should be 53.13 degrees
-  CONFIG.Note.objectClass = canvas.Note5e;
-  CONFIG.ui.combat = applications.sidebar.CombatTracker5e;
-  CONFIG.ui.items = sw5e.applications.item.ItemDirectory5e;
-  CONFIG.ui.compendium = applications.sidebar.CompendiumDirectory5e;
+  if (CONFIG.ActiveEffect) CONFIG.ActiveEffect.documentClass = documents.ActiveEffect5e;
+  if (CONFIG.Actor) CONFIG.Actor.documentClass = documents.Actor5e;
+  if (CONFIG.Item) CONFIG.Item.documentClass = documents.Item5e;
+  if (CONFIG.Token) CONFIG.Token.documentClass = documents.TokenDocument5e;
+  if (CONFIG.Token) CONFIG.Token.objectClass = canvas.Token5e;
+  // Optional parity with dnd5e if these classes exist in SW5e
+  if (CONFIG.Token && canvas.TokenRuler5e) CONFIG.Token.rulerClass = canvas.TokenRuler5e;
+  if (CONFIG.Canvas?.layers?.tokens?.layerClass && canvas.layers?.TokenLayer5e) {
+    CONFIG.Canvas.layers.tokens.layerClass = canvas.layers.TokenLayer5e;
+    if (CONFIG.Token) CONFIG.Token.layerClass = canvas.layers.TokenLayer5e;
+  }
+  if (CONFIG.time) CONFIG.time.roundTime = 6;
+  // TODO SW5E: Figure out if this is still necessary / how to make this work
+  // CONFIG.fontFamilies = ["Engli-Besh", "Open Sans", "Russo One"];
+  if (CONFIG.Dice) {
+    CONFIG.Dice.DamageRoll = dice.DamageRoll;
+    CONFIG.Dice.D20Roll = dice.D20Roll;
+    CONFIG.Dice.AttribDieRoll = dice.AttribDieRoll;
+  }
+  if (CONFIG.MeasuredTemplate && CONFIG.MeasuredTemplate.defaults) CONFIG.MeasuredTemplate.defaults.angle = 53.13; // 5e cone RAW should be 53.13 degrees
+  if (CONFIG.ui) {
+    if (CONFIG.ui.combat) CONFIG.ui.combat = applications.sidebar.CombatTracker5e;
+    if (CONFIG.ui.compendium) CONFIG.ui.compendium = applications.sidebar.CompendiumDirectory5e;
+    // Optional parity with dnd5e if these classes exist in SW5e
+    if (applications.ChatLog5e && CONFIG.ui.chat) CONFIG.ui.chat = applications.ChatLog5e;
+    if (applications.item?.ItemDirectory5e && CONFIG.ui.items) CONFIG.ui.items = applications.item.ItemDirectory5e;
+  }
 
   // Add DND5e namespace for module compatibility
   game.dnd5e = game.sw5e;
@@ -120,9 +124,9 @@ Hooks.once( "init", function() {
   if ( !game.settings.get( "sw5e", "sanityScore" ) ) delete SW5E.abilities.san;
 
   // Register Roll Extensions
-  CONFIG.Dice.rolls.push( dice.D20Roll );
-  CONFIG.Dice.rolls.push( dice.DamageRoll );
-  CONFIG.Dice.rolls.push( dice.AttribDieRoll );
+  if (CONFIG.Dice) {
+    CONFIG.Dice.rolls = [dice.D20Roll, dice.DamageRoll, dice.AttribDieRoll];
+  }
 
   // Hook up system data types
   CONFIG.Actor.dataModels = dataModels.actor.config;
@@ -206,40 +210,13 @@ Hooks.once( "init", function() {
     ],*/
     makeDefault: true,
     label: "SW5E.SheetClassItem"
-  } );
-  DocumentSheetConfig.unregisterSheet( Item, "sw5e", applications.item.ItemSheet5e, { types: ["container"] } );
-  DocumentSheetConfig.registerSheet( Item, "sw5e", applications.item.ContainerSheet, {
-    makeDefault: true,
-    types: ["container"],
-    label: "SW5E.SheetClassContainer"
-  } );
-
-  DocumentSheetConfig.registerSheet( JournalEntry, "sw5e", applications.journal.JournalSheet5e, {
-    makeDefault: true,
-    label: "SW5E.SheetClassJournalEntry"
-  } );
-  DocumentSheetConfig.registerSheet( JournalEntryPage, "sw5e", applications.journal.JournalClassPageSheet, {
-    label: "SW5E.SheetClassClassSummary",
-    types: ["class", "archetype"]
-  } );
-  DocumentSheetConfig.registerSheet( JournalEntryPage, "sw5e", applications.journal.JournalMapLocationPageSheet, {
-    label: "SW5E.SheetClassMapLocation",
-    types: ["map"]
-  } );
-  DocumentSheetConfig.registerSheet( JournalEntryPage, "sw5e", applications.journal.JournalRulePageSheet, {
-    label: "SW5E.SheetClassRule",
-    types: ["rule"]
-  } );
-  DocumentSheetConfig.registerSheet( JournalEntryPage, "sw5e", applications.journal.JournalPowerListPageSheet, {
-    label: "SW5E.SheetClassPowerList",
-    types: ["powers"]
-  } );
-
-  CONFIG.Token.prototypeSheetClass = applications.TokenConfig5e;
-  DocumentSheetConfig.unregisterSheet( TokenDocument, "core", TokenConfig );
-  DocumentSheetConfig.registerSheet( TokenDocument, "sw5e", applications.TokenConfig5e, {
-    label: "SW5E.SheetClassToken"
-  } );
+  });
+  if (typeof DocumentSheetConfig?.registerSheet === "function" && typeof JournalEntryPage !== "undefined") {
+    DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalClassPageSheet, {
+      label: "SW5E.SheetClassClassSummary",
+      types: ["class"]
+    });
+  }
 
   // Preload Handlebars helpers & partials
   utils.registerHandlebarsHelpers();
@@ -565,66 +542,12 @@ Hooks.once( "ready", async function() {
 /*  Canvas Initialization                       */
 /* -------------------------------------------- */
 
-Hooks.on( "canvasInit", gameCanvas => {
-  if ( game.release.generation < 12 ) {
-    gameCanvas.grid.diagonalRule = game.settings.get( "sw5e", "diagonalMovement" );
+Hooks.on("canvasInit", gameCanvas => {
+  gameCanvas.grid.diagonalRule = game.settings.get("sw5e", "diagonalMovement");
+  if (typeof SquareGrid !== "undefined" && canvas?.measureDistances) {
     SquareGrid.prototype.measureDistances = canvas.measureDistances;
   }
-  CONFIG.Token.ringClass.pushToLoad( gameCanvas.loadTexturesOptions.additionalSources );
-} );
-
-/* -------------------------------------------- */
-/*  Canvas Draw                                 */
-/* -------------------------------------------- */
-
-Hooks.on( "canvasDraw", gameCanvas => {
-  // The sprite sheet has been loaded now, we can create the uvs for each texture
-  CONFIG.Token.ringClass.createAssetsUVs();
-} );
-
-/* -------------------------------------------- */
-/*  System Styling                              */
-/* -------------------------------------------- */
-
-Hooks.on( "renderSettings", ( app, [html] ) => {
-  const details = html.querySelector( "#game-details" );
-  const pip = details.querySelector( ".system-info .update" );
-  details.querySelector( ".system" ).remove();
-
-  const heading = document.createElement( "div" );
-  heading.classList.add( "sw5e2", "sidebar-heading" );
-  heading.innerHTML = `
-    <h2>${game.i18n.localize( "WORLD.GameSystem" )}</h2>
-    <ul class="links">
-      <li>
-        <a href="https://github.com/sw5e-foundry/sw5e/releases/latest" target="_blank">
-          ${game.i18n.localize( "SW5E.Notes" )}
-        </a>
-      </li>
-      <li>
-        <a href="https://github.com/sw5e-foundry/sw5e/issues" target="_blank">${game.i18n.localize( "SW5E.Issues" )}</a>
-      </li>
-      <li>
-        <a href="https://github.com/sw5e-foundry/sw5e/wiki" target="_blank">${game.i18n.localize( "SW5E.Wiki" )}</a>
-      </li>
-      <li>
-        <a href="https://discord.com/channels/727847839631278110/812443835980447774" target="_blank">
-          ${game.i18n.localize( "SW5E.Discord" )}
-        </a>
-      </li>
-    </ul>
-  `;
-  details.insertAdjacentElement( "afterend", heading );
-
-  const badge = document.createElement( "div" );
-  badge.classList.add( "sw5e2", "system-badge" );
-  badge.innerHTML = `
-    <img src="systems/sw5e/ui/SW5e-logo.svg" data-tooltip="${sw5e.title}" alt="${sw5e.title}">
-    <span class="system-info">${sw5e.version}</span>
-  `;
-  if ( pip ) badge.querySelector( ".system-info" ).insertAdjacentElement( "beforeend", pip );
-  heading.insertAdjacentElement( "afterend", badge );
-} );
+});
 
 /* -------------------------------------------- */
 /*  Other Hooks                                 */

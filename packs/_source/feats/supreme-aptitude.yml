@@ -1,0 +1,172 @@
+_id: zYb7G5KmvBqXD28s
+name: Supreme Aptitude
+type: feat
+img: systems/sw5e/packs/Icons/Feats/SupremeAptitude.webp
+effects:
+  - name: Supreme Aptitude
+    icon: systems/sw5e/packs/Icons/Feats/SupremeAptitude.webp
+    origin: Compendium.sw5e.feats.Item.zYb7G5KmvBqXD28s
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    transfer: true
+    disabled: false
+    _id: WQYHEv8tO63VeZCx
+    changes:
+      - key: flags.sw5e.supremeAptitude
+        mode: 0
+        value: '1'
+        priority: 20
+    description: ''
+    statuses: []
+    flags: {}
+    tint: null
+    _key: '!items.effects!zYb7G5KmvBqXD28s.WQYHEv8tO63VeZCx'
+    sort: 0
+folder: null
+sort: 0
+flags:
+  betterRollssw5e:
+    critRange:
+      type: String
+      value: ''
+    critDamage:
+      type: String
+      value: ''
+    quickDesc:
+      type: Boolean
+      value: true
+      altValue: true
+    quickAttack:
+      type: Boolean
+      value: true
+      altValue: true
+    quickSave:
+      type: Boolean
+      value: true
+      altValue: true
+    quickDamage:
+      type: Array
+      value: []
+      altValue: []
+      context: []
+    quickProperties:
+      type: Boolean
+      value: true
+      altValue: true
+    quickCharges:
+      type: Boolean
+      value:
+        use: true
+        resource: true
+        charge: true
+      altValue:
+        use: true
+        resource: true
+        charge: true
+    quickTemplate:
+      type: Boolean
+      value: true
+      altValue: true
+    quickOther:
+      type: Boolean
+      value: true
+      altValue: true
+      context: ''
+    quickFlavor:
+      type: Boolean
+      value: true
+      altValue: true
+    quickPrompt:
+      type: Boolean
+      value: false
+      altValue: false
+  sw5e-importer:
+    timestamp: '2023-03-09T01:51:59.5125361+00:00'
+    importer_version: 3
+    uid: Feat.name-supreme_aptitude
+system:
+  description:
+    value: >-
+      <p>You have uncanny skill with a preternatural focus. You gain the
+      following benefits:</p>
+
+      <ul>
+
+      <li>Increase your Strength, Dexterity, Constitution, or Intelligence score
+      by 1, to a maximum of 20.</li>
+
+      <li>Whenever you have advantage on an ability check using Strength,
+      Dexterity, Constitution, or Intelligence you can reroll one of the dice
+      once. </li></ul>
+    chat: ''
+    unidentified: ''
+  requirements: 4th level; Strength, Dexterity, Constitution, or Intelligence 13
+  source: PHB
+  activation:
+    type: null
+    cost: null
+    condition: ''
+  duration:
+    value: null
+    units: inst
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+  range:
+    value: null
+    long: null
+    units: ''
+    unit: ''
+  uses:
+    value: null
+    max: null
+    per: null
+    recovery: ''
+  consume:
+    type: ''
+    target: null
+    amount: null
+  ability: ''
+  actionType: other
+  attackBonus: 0
+  chatFlavor: ''
+  critical: null
+  damage:
+    parts: []
+    versatile: ''
+  formula: ''
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  type:
+    value: feat
+    subtype: ''
+  recharge:
+    value: null
+    charged: false
+  attributes:
+    speed:
+      space: null
+      turn: null
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.3.1.2.6.3
+  coreVersion: '11.308'
+  createdTime: 1674493966856
+  modifiedTime: 1698719726336
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!zYb7G5KmvBqXD28s'
+

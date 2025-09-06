@@ -1,0 +1,173 @@
+_id: Raj7ax628fmECZjB
+name: Blinding Agility
+type: feat
+img: systems/sw5e/packs/Icons/Feats/BlindingAgility.webp
+effects:
+  - name: Blinding Agility
+    icon: systems/sw5e/packs/Icons/Feats/BlindingAgility.webp
+    origin: Compendium.sw5e.feats.Item.Raj7ax628fmECZjB
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    transfer: true
+    disabled: false
+    _id: LD7QpcPGV6Xjd8Ft
+    changes:
+      - key: system.abilities.dex.proficient
+        mode: 4
+        value: '1'
+        priority: 20
+    description: ''
+    statuses: []
+    flags: {}
+    tint: null
+    _key: '!items.effects!Raj7ax628fmECZjB.LD7QpcPGV6Xjd8Ft'
+    sort: 0
+folder: null
+sort: 0
+flags:
+  betterRollssw5e:
+    critRange:
+      type: String
+      value: ''
+    critDamage:
+      type: String
+      value: ''
+    quickDesc:
+      type: Boolean
+      value: true
+      altValue: true
+    quickAttack:
+      type: Boolean
+      value: true
+      altValue: true
+    quickSave:
+      type: Boolean
+      value: true
+      altValue: true
+    quickDamage:
+      type: Array
+      value: []
+      altValue: []
+      context: []
+    quickProperties:
+      type: Boolean
+      value: true
+      altValue: true
+    quickCharges:
+      type: Boolean
+      value:
+        use: true
+        resource: true
+        charge: true
+      altValue:
+        use: true
+        resource: true
+        charge: true
+    quickTemplate:
+      type: Boolean
+      value: true
+      altValue: true
+    quickOther:
+      type: Boolean
+      value: true
+      altValue: true
+      context: ''
+    quickFlavor:
+      type: Boolean
+      value: true
+      altValue: true
+    quickPrompt:
+      type: Boolean
+      value: false
+      altValue: false
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:19.8817247+00:00'
+    importer_version: 3
+    uid: Feat.name-blinding_agility
+system:
+  description:
+    value: >-
+      <p>You have the reflexes one who can see things before they happen,
+      granting the following benefits:</p>
+
+      <ul>
+
+      <li>You gain proficiency in Dexterity saving throws. If you are already
+      proficient in them, you instead gain expertise in them.</li>
+
+      <li>Weapons that lack the two-handed or special properties are considered
+      to have the finesse property for you.</li>
+
+      <li>Opportunity attacks made against you have disadvantage.</li></ul>
+    chat: ''
+    unidentified: ''
+  requirements: 12th level, Dexterity 20
+  source: EC
+  activation:
+    type: null
+    cost: null
+    condition: ''
+  duration:
+    value: null
+    units: inst
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+  range:
+    value: null
+    long: null
+    units: ''
+    unit: ''
+  uses:
+    value: null
+    max: null
+    per: null
+    recovery: ''
+  consume:
+    type: ''
+    target: null
+    amount: null
+  ability: ''
+  actionType: other
+  attackBonus: 0
+  chatFlavor: ''
+  critical: null
+  damage:
+    parts: []
+    versatile: ''
+  formula: ''
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  type:
+    value: feat
+    subtype: ''
+  recharge:
+    value: null
+    charged: false
+  attributes:
+    speed:
+      space: null
+      turn: null
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.3.1.2.6.3
+  coreVersion: '11.308'
+  createdTime: 1674493966795
+  modifiedTime: 1698712477538
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!Raj7ax628fmECZjB'
+

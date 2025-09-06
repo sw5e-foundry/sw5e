@@ -1,9 +1,10 @@
 import fs from "fs";
 import { readdir, readFile, writeFile } from "node:fs/promises";
+import gulp from "gulp";
 import logger from "fancy-log";
 import path from "path";
 import yargs from "yargs";
-import { hideBin } from "yargs/helpers";
+import YAML from "js-yaml";
 import { compilePack, extractPack } from "@foundryvtt/foundryvtt-cli";
 
 /**
@@ -14,10 +15,16 @@ import { compilePack, extractPack } from "@foundryvtt/foundryvtt-cli";
 const PACK_DEST = "./dist/packs/packs";
 
 /**
- * Folder where source JSON files should be located relative to the 5e system folder.
+ * Folder where source YAML files should be located (DnD5e-style).
  * @type {string}
  */
-const PACK_SRC = "./packs/";
+const PACK_SRC_YAML = "./packs/_source";
+
+/**
+ * Legacy folder where source JSON files are currently stored.
+ * @type {string}
+ */
+const PACK_SRC_JSON = "./packs/";
 
 // eslint-disable-next-line
 const argv = yargs(hideBin(process.argv))
@@ -152,25 +159,60 @@ function cleanString(str) {
  * - `npm run build:clean -- classes` - Only clean the source files for the specified compendium.
  * - `npm run build:clean -- classes Barbarian` - Only clean a single item from the specified compendium.
  */
-async function cleanPacks(packName, entryName) {
-  entryName = entryName?.toLowerCase();
-  const folders = fs.readdirSync(PACK_SRC, { withFileTypes: true }).filter(file =>
-    file.isDirectory() && ( !packName || (packName === file.name) )
-  );
+async function cleanPacks() {
+  const packName = parsedArgs.pack;
+  const entryName = parsedArgs.name?.toLowerCase();
 
-  /**
-   * Walk through directories to find JSON files.
-   * @param {string} directoryPath
-   * @yields {string}
-   */
-  async function* _walkDir(directoryPath) {
-    const directory = await readdir(directoryPath, { withFileTypes: true });
-    for ( const entry of directory ) {
-      const entryPath = path.join(directoryPath, entry.name);
-      if ( entry.isDirectory() ) yield* _walkDir(entryPath);
-      else if ( path.extname(entry.name) === ".json" ) yield entryPath;
+  const yamlRootExists = fs.existsSync(PACK_SRC_YAML);
+  const yamlFolders = yamlRootExists ? fs.readdirSync(PACK_SRC_YAML, { withFileTypes: true }).filter(file => file.isDirectory() && (!packName || packName === file.name)) : [];
+
+  if (yamlFolders.length) {
+    for (const folder of yamlFolders) {
+      logger.info(`Cleaning YAML pack ${folder.name}`);
+      // Walk .yml files
+      async function* _walkDir(directoryPath) {
+        const directory = await readdir(directoryPath, { withFileTypes: true });
+        for (const entry of directory) {
+          const entryPath = path.join(directoryPath, entry.name);
+          if (entry.isDirectory()) yield* _walkDir(entryPath);
+          else if ([".yml", ".yaml"].includes(path.extname(entry.name))) yield entryPath;
+        }
+      }
+      for await (const src of _walkDir(path.join(PACK_SRC_YAML, folder.name))) {
+        const data = YAML.load(await readFile(src, { encoding: "utf8" }));
+        if (!data) continue;
+        const name = data.name?.toLowerCase();
+        if (entryName && entryName !== name) continue;
+        cleanPackEntry(data);
+        // Maintain id if present; otherwise determine from compiled DB
+        if (!data._id) data._id = await determineId(data, folder.name);
+        fs.rmSync(src, { force: true });
+        await writeFile(src, `${YAML.dump(data)}\n`, { mode: 0o664 });
+      }
     }
+    return;
   }
+
+  // Legacy JSON cleaning
+  const folders = fs
+    .readdirSync(PACK_SRC_JSON, { withFileTypes: true })
+    .filter(file => file.isDirectory() && (!packName || packName === file.name));
+
+  const packs = folders.map(folder => {
+    logger.info(`Cleaning pack ${folder.name}`);
+    return gulp.src(path.join(PACK_SRC_JSON, folder.name, "/**/*.json")).pipe(
+      through2.obj(async (file, enc, callback) => {
+        const json = JSON.parse(file.contents.toString());
+        const name = json.name.toLowerCase();
+        if (entryName && entryName !== name) return callback(null, file);
+        cleanPackEntry(json);
+        if (!json._id) json._id = await determineId(json, folder.name);
+        fs.rmSync(file.path, { force: true });
+        fs.writeFileSync(file.path, `${JSON.stringify(json, null, 2)}\n`, { mode: 0o664 });
+        callback(null, file);
+      })
+    );
+  });
 
   for ( const folder of folders ) {
     logger.info(`Cleaning pack ${folder.name}`);
@@ -200,17 +242,33 @@ async function cleanPacks(packName, entryName) {
  * - `npm run build:db` - Compile all JSON files into their LevelDB files.
  * - `npm run build:db -- classes` - Only compile the specified pack.
  */
-async function compilePacks(packName) {
-  // Determine which source folders to process
-  const folders = fs.readdirSync(PACK_SRC, { withFileTypes: true }).filter(file =>
-    file.isDirectory() && ( !packName || (packName === file.name) )
-  );
+async function compilePacks() {
+  const packName = parsedArgs.pack;
+  const nedb = !parsedArgs.levelDB;
+
+  const yamlRootExists = fs.existsSync(PACK_SRC_YAML);
+  const yamlFolders = yamlRootExists ? fs.readdirSync(PACK_SRC_YAML, { withFileTypes: true }).filter(file => file.isDirectory() && (!packName || packName === file.name)) : [];
+
+  if (yamlFolders.length) {
+    for (const folder of yamlFolders) {
+      const src = path.join(PACK_SRC_YAML, folder.name);
+      const dest = path.join(PACK_DEST, nedb ? `${folder.name}.db` : `${folder.name}/`);
+      logger.info(`Compiling YAML pack ${folder.name}`);
+      await compilePack(src, dest, { nedb, recursive: true, log: false, transformEntry: cleanPackEntry, yaml: true });
+    }
+    return;
+  }
+
+  // Legacy JSON compilation
+  const folders = fs
+    .readdirSync(PACK_SRC_JSON, { withFileTypes: true })
+    .filter(file => file.isDirectory() && (!packName || packName === file.name));
 
   for ( const folder of folders ) {
-    const src = path.join(PACK_SRC, folder.name);
-    const dest = path.join(PACK_DEST, folder.name);
-    logger.info(`Compiling pack ${folder.name}`);
-    await compilePack(src, dest, { recursive: true, log: true, transformEntry: cleanPackEntry });
+    const src = path.join(PACK_SRC_JSON, folder.name);
+    const dest = path.join(PACK_DEST, nedb ? `${folder.name}.db` : `${folder.name}/`);
+    logger.info(`Compiling JSON pack ${folder.name}`);
+    await compilePack(src, dest, { nedb, recursive: true, log: false, transformEntry: cleanPackEntry });
   }
 }
 
@@ -335,15 +393,17 @@ function sortObject(obj) {
   return sortedObj;
 }
 
-/**
- * Checks if there are meaningful changes in an entry.
- * @param {object} entry
- * @param {string} dest
- * @returns {boolean}
- */
-function checkChanges(entry, dest) {
-  if (fs.existsSync(dest)) {
-    const oldEntry = JSON.parse(fs.readFileSync(dest, { encoding: "utf8" }));
+function transformName(entry, packName) {
+  const name = entry.name.toLowerCase();
+  const outputName = name.replace("'", "").replace(/[^a-z0-9]+/gi, " ").trim().replace(/\s+|-{2,}/g, "-");
+  const subfolder = _getSubfolderName(entry, packName);
+  return path.join(subfolder, `${outputName}.yml`);
+}
+
+function checkChanges(entry, packName, dest) {
+  const outputPath = (dest + "/" + transformName(entry, packName)).replace(/\\/g, "/");
+  if (fs.existsSync(outputPath)) {
+    const oldEntry = JSON.parse(fs.readFileSync(outputPath, { encoding: "utf8"}));
     // Do not update item if only changes are flags, stats, or advancement ids
     if (oldEntry._stats && entry._stats) oldEntry._stats = entry._stats;
     if (oldEntry.flags?.["sw5e-importer"] && entry.flags?.["sw5e-importer"]) oldEntry.flags["sw5e-importer"] = entry.flags["sw5e-importer"];
@@ -367,8 +427,55 @@ function checkChanges(entry, dest) {
   return true;
 }
 
-function transformName(entry, packName) {
-  const iID = entry.flags["sw5e-importer"]?.uid ?? "";
+/**
+ * Extract the contents of compendium packs to JSON files.
+ *
+ * - `gulp extractPacks` - Extract all compendium NEDB files into JSON files.
+ * - `gulp extractPacks --pack classes` - Only extract the contents of the specified compendium.
+ * - `gulp extractPacks --pack classes --name Barbarian` - Only extract a single item from the specified compendium.
+ * - `gulp extractPacks --levelDB` - Extracts levelDB files instead of NEDB.
+ */
+async function extractPacks() {
+  const packName = parsedArgs.pack;
+  const entryName = parsedArgs.name?.toLowerCase();
+  const nedb = !parsedArgs.levelDB;
+  // Load system.json.
+  const system = JSON.parse(fs.readFileSync("./static/system.json", { encoding: "utf8" }));
+
+  // Determine which source packs to process.
+  const packs = fs.readdirSync(PACK_DEST, { withFileTypes: true }).filter(file => {
+    if ( !file.isFile() || (path.extname(file.name) !== ".db") ) return false;
+    return !packName || (packName === path.basename(file.name, ".db"));
+  });
+
+  for ( const pack of packs ) {
+    const packName = path.basename(pack.name, ".db");
+    const packInfo = system.packs.find(p => p.name === packName);
+    const src = path.join(PACK_DEST, nedb ? pack.name : packName);
+    const dest = path.join(PACK_SRC_YAML, packName);
+    logger.info(`Extracting pack ${pack.name} to YAML sources`);
+    await extractPack(src, dest, { nedb, log: false, documentType: packInfo.type, transformEntry: entry => {
+      if ( entryName && (entryName !== entry.name.toLowerCase()) ) return false;
+      cleanPackEntry(entry);
+      // In YAML mode, differences check is not performed here; rely on git diff
+    }, transformName: entry => { return transformName(entry, packName)}, yaml: true });
+  }
+}
+export const extract = extractPacks;
+
+function deslugify(string) {
+  return string.split("_").join(" ");
+}
+
+/**
+ * Determine a subfolder name based on which pack is being extracted.
+ * @param {object} data  Data for the entry being extracted.
+ * @param {string} pack  Name of the pack.
+ * @returns {string}     Subfolder name the entry into which the entry should be created. An empty string if none.
+ * @private
+ */
+function _getSubfolderName(data, pack) {
+  const iID = data.flags["sw5e-importer"]?.uid ?? "";
   const iData = Object.fromEntries(`type-${iID}`.split(".").map(s => s.split("-")));
   let parts = new Set();
 

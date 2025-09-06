@@ -1,3 +1,10 @@
+/**
+ * Minimal SW5e item directory class for parity with DnD5e.
+ * Extends the core ItemDirectory without additional behavior for now.
+ */
+export default class ItemDirectory5e extends ItemDirectory {
+}
+
 import Item5e from "../../documents/item.mjs";
 
 /**
@@ -25,3 +32,4 @@ export default class ItemDirectory5e extends ItemDirectory {
     super._handleDroppedEntry( target, item.toDragData() );
   }
 }
+

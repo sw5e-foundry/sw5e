@@ -1,0 +1,164 @@
+_id: e7fTMc7QMlaHNski
+name: Dual Wield Mastery
+type: feat
+img: >-
+  systems/sw5e/packs/Icons/Fighting%20Styles%20and%20Masteries/DualWieldMastery.webp
+effects: []
+folder: null
+sort: 0
+flags:
+  betterRollssw5e:
+    critRange:
+      type: String
+      value: ''
+    critDamage:
+      type: String
+      value: ''
+    quickDesc:
+      type: Boolean
+      value: true
+      altValue: true
+    quickAttack:
+      type: Boolean
+      value: true
+      altValue: true
+    quickSave:
+      type: Boolean
+      value: true
+      altValue: true
+    quickDamage:
+      type: Array
+      value: []
+      altValue: []
+      context: []
+    quickProperties:
+      type: Boolean
+      value: true
+      altValue: true
+    quickCharges:
+      type: Boolean
+      value:
+        use: true
+        resource: true
+        charge: true
+      altValue:
+        use: true
+        resource: true
+        charge: true
+    quickTemplate:
+      type: Boolean
+      value: true
+      altValue: true
+    quickOther:
+      type: Boolean
+      value: true
+      altValue: true
+      context: ''
+    quickFlavor:
+      type: Boolean
+      value: true
+      altValue: true
+    quickPrompt:
+      type: Boolean
+      value: false
+      altValue: false
+  sw5e-importer:
+    timestamp: '2023-03-09T01:52:00.2990794+00:00'
+    importer_version: 3
+    uid: FightingMastery.name-dual_wield_mastery
+system:
+  description:
+    value: >-
+      <p>You've mastered fighting with two weapons, becoming a flurry of motion.
+      You gain the following benefits:</p>
+
+      <ul>
+
+      <li>You can engage in Two-Weapon Fighting even when the weapons you are
+      wielding lack the light property.</li>
+
+      <li>You can reload two weapons when you would normally only be able to
+      reload one, and reloading no longer requires a free hand, provided you are
+      wielding separate weapons in each hand.</li>
+
+      <li>Once per round, when you make an opportunity attack while wielding
+      separate weapons in each hand, you can attack with both weapons. Make a
+      separate attack roll with each weapon.</li>
+
+      <li>When you use your bonus action to engage in Two-Weapon Fighting, you
+      can choose to forgo one or more attacks. For each attack you forgo, you
+      gain a +1 bonus to AC until the start of your next turn.</li>
+
+      <li>When you use your bonus action to engage in Two-Weapon Fighting, you
+      can choose to forgo your proficiency bonus. If you do so, you can make an
+      additional attack with that weapon, also without your proficiency bonus.
+      If you would normally make more than one attack with your bonus action,
+      only one attack is made without your proficiency bonus.</li></ul>
+    chat: ''
+    unidentified: ''
+  requirements: null
+  source: PHB
+  activation:
+    type: bonus
+    cost: 1
+    condition: ''
+  duration:
+    value: null
+    units: inst
+  cover: null
+  crewed: false
+  target:
+    value: null
+    width: null
+    units: ''
+    type: ''
+  range:
+    value: null
+    long: null
+    units: ''
+    unit: ''
+  uses:
+    value: null
+    max: null
+    per: null
+    recovery: ''
+  consume:
+    type: ''
+    target: null
+    amount: null
+  ability: null
+  actionType: other
+  attackBonus: ''
+  chatFlavor: ''
+  critical:
+    threshold: null
+    damage: ''
+  damage:
+    parts: []
+    versatile: ''
+  formula: ''
+  save:
+    ability: ''
+    dc: null
+    scaling: power
+  type:
+    value: customizationOption
+    subtype: fightingMastery
+  recharge:
+    value: null
+    charged: false
+  attributes:
+    speed:
+      space: null
+      turn: null
+ownership:
+  default: 0
+_stats:
+  systemId: sw5e
+  systemVersion: 2.3.1.2.6.1
+  coreVersion: '11.308'
+  createdTime: 1674493967823
+  modifiedTime: 1695981493940
+  lastModifiedBy: sw5ebuilder0000
+_key: '!items!e7fTMc7QMlaHNski'
+

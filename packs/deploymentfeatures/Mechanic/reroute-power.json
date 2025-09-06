@@ -10,27 +10,29 @@
   "system": {
     "description": {
       "value": "<p>Also at 3rd rank, as an action on each of your turns, you can reroute power between your ship's engines, shields, and weapons through use of the ship's power coupling. A power coupling can be toggled to neutral, where all three aspects function normally, or can divert power to a specific system.</p><p>When diverting power to a system, the effects of that system are doubled:</p><ul><li><strong>Engines:</strong> A ship's flying speed is doubled.</li><li><strong>Shields:</strong> Shields take half damage and shield regeneration rate is doubled.</li><li><strong>Weapons:</strong> Weapons deal double damage.</li></ul><p>When diverting power to a system, power to the other systems is halved:</p><ul><li><strong>Engines:</strong> A ship's flying speed is reduced by half.</li><li><strong>Shields:</strong> Shields take double damage and shield regeneration rate reduced by half.</li><li><strong>Weapons:</strong> Ship weapon damage is reduced by half.</li></ul>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Mechanic 3rd Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,17 +42,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,26 +83,27 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Mechanic"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "3rd Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963432,
-    "modifiedTime": 1699591629485,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368729991,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!MPE9v00SrW329UWR"
 }

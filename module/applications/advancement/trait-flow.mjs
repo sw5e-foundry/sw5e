@@ -16,9 +16,9 @@ export default class TraitFlow extends AdvancementFlow {
 
   /** @inheritdoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       template: "systems/sw5e/templates/advancement/trait-flow.hbs"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -36,22 +36,22 @@ export default class TraitFlow extends AdvancementFlow {
   /** @inheritdoc */
   async getData() {
     this.chosen ??= await this.prepareInitialValue();
-    const available = await this.advancement.availableChoices(this.chosen);
-    return foundry.utils.mergeObject(super.getData(), {
-      hint: this.advancement.configuration.hint ? this.advancement.configuration.hint : Trait.localizedList({
+    const available = await this.advancement.availableChoices( this.chosen );
+    return foundry.utils.mergeObject( super.getData(), {
+      hint: this.advancement.configuration.hint ? this.advancement.configuration.hint : Trait.localizedList( {
         grants: this.advancement.configuration.grants, choices: this.advancement.configuration.choices
-      }),
-      slots: this.prepareTraitSlots(available),
+      } ),
+      slots: this.prepareTraitSlots( available ),
       available
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  activateListeners(html) {
-    this.form.querySelectorAll("select").forEach(s => s.addEventListener("change", this._onSelectTrait.bind(this)));
-    this.form.querySelectorAll(".remove").forEach(s => s.addEventListener("click", this._onRemoveTrait.bind(this)));
+  activateListeners( html ) {
+    this.form.querySelectorAll( "select" ).forEach( s => s.addEventListener( "change", this._onSelectTrait.bind( this ) ) );
+    this.form.querySelectorAll( ".remove" ).forEach( s => s.addEventListener( "click", this._onRemoveTrait.bind( this ) ) );
   }
 
   /* -------------------------------------------- */
@@ -60,10 +60,10 @@ export default class TraitFlow extends AdvancementFlow {
    * Add a trait to the value when one is selected.
    * @param {Event} event  Triggering change to a select input.
    */
-  _onSelectTrait(event) {
+  _onSelectTrait( event ) {
     const addedTrait = event.target.value;
     if ( addedTrait === "" ) return;
-    this.chosen.add(addedTrait);
+    this.chosen.add( addedTrait );
     this.render();
   }
 
@@ -73,18 +73,18 @@ export default class TraitFlow extends AdvancementFlow {
    * Remove a trait for the value when the remove button is clicked.
    * @param {Event} event  Triggering click.
    */
-  _onRemoveTrait(event) {
-    const tag = event.target.closest(".trait-slot");
-    this.chosen.delete(tag.dataset.key);
+  _onRemoveTrait( event ) {
+    const tag = event.target.closest( ".trait-slot" );
+    this.chosen.delete( tag.dataset.key );
     this.render();
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  async _updateObject(event, formData) {
-    if ( formData.chosen && !Array.isArray(formData.chosen) ) formData.chosen = [formData.chosen];
-    super._updateObject(event, formData);
+  async _updateObject( event, formData ) {
+    if ( formData.chosen && !Array.isArray( formData.chosen ) ) formData.chosen = [formData.chosen];
+    super._updateObject( event, formData );
   }
 
   /* -------------------------------------------- */
@@ -97,12 +97,12 @@ export default class TraitFlow extends AdvancementFlow {
    */
   async prepareInitialValue() {
     const existingChosen = this.retainedData?.chosen ?? this.advancement.value.chosen;
-    if ( existingChosen?.size ) return new Set(existingChosen);
+    if ( existingChosen?.size ) return new Set( existingChosen );
     const { available } = await this.advancement.unfulfilledChoices();
     const chosen = new Set();
     for ( const { choices } of available ) {
       const set = choices.asSet();
-      if ( set.size === 1 ) chosen.add(set.first());
+      if ( set.size === 1 ) chosen.add( set.first() );
     }
     return chosen;
   }
@@ -114,22 +114,22 @@ export default class TraitFlow extends AdvancementFlow {
    * @param {object} available  Trait availability returned by `prepareAvailableTraits`.
    * @returns {object[]}
    */
-  prepareTraitSlots(available) {
+  prepareTraitSlots( available ) {
     const config = this.advancement.configuration;
-    const count = config.choices.reduce((count, c) => count + c.count, config.grants.size);
-    const chosen = Array.from(this.chosen);
+    const count = config.choices.reduce( ( count, c ) => count + c.count, config.grants.size );
+    const chosen = Array.from( this.chosen );
     let selectorShown = false;
     const slots = [];
     for ( let i = 1; i <= count; i++ ) {
       const key = chosen.shift();
-      if ( selectorShown || (!key && !available) ) continue;
+      if ( selectorShown || ( !key && !available ) ) continue;
       selectorShown = !key;
-      slots.push({
+      slots.push( {
         key,
-        label: key ? Trait.keyLabel(key, { type: config.type }) : null,
-        showDelete: !this.advancement.configuration.grants.has(key),
+        label: key ? Trait.keyLabel( key, { type: config.type } ) : null,
+        showDelete: !this.advancement.configuration.grants.has( key ),
         showSelector: !key
-      });
+      } );
     }
     return slots;
   }

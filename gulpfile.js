@@ -27,11 +27,6 @@ export const lint = gulp.series(javascript.lint);
 // CSS compiling
 export const buildCSS = gulp.series(css.compile);
 
-// Compendium pack management
-export const cleanPacks = gulp.series(packs.clean);
-export const compilePacks = gulp.series(packs.compile);
-export const extractPacks = gulp.series(packs.extract);
-
 // Static copy
 export const copyStatic = gulp.parallel(
   staticGulp.copyBabele,
@@ -41,6 +36,7 @@ export const copyStatic = gulp.parallel(
   staticGulp.copyLang,
   staticGulp.copyPacks,
   staticGulp.copyTemplates,
+  staticGulp.copyTokens,
   staticGulp.copyUi,
   staticGulp.copyStaticRoot,
   staticGulp.copyRoot
@@ -52,7 +48,6 @@ export const buildAll = gulp.series(
   gulp.parallel(
     css.compile,
     javascript.compile,
-    packs.compile,
     copyStatic
   )
 );

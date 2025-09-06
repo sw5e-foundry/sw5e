@@ -13,38 +13,39 @@
   "system": {
     "description": {
       "value": "<h4>Cybernetic Augmentation (Replacement)</h4>\n <p><em>Prerequisite:  Intelligence 13</em></p>\n<hr />\n<p>This augmentation replaces your eyes and face.</p>\n<p>This implant contains several tools for long-term survival and reconnaissance. As a bonus action, you can activate one of the below modes that enable you to use several of these tools at once. Only one mode can be active at a time.</p>\n<p><em></em>_</p>\n<ul>\n<li><strong>Communications Mode:</strong> This communications suite includes a headcomm with a scrambler that automatically encodes messages sent to a specified recipient commlink or receiver. While this mode is active, you cannot be deafened.</li>\n<li><strong>Interceptor Mode:</strong> This is a jamming and electronic warfare suite that includes a comm jammer, a holotrace device and pocket scrambler.</li>\n<li><strong>Respirator Mode:</strong> This includes a basic respirator that grants advantage on saving throws made to avoid being poisoned and resistance to poison damage. </li>\n</ul>\n<p><strong>Side Effect:</strong> This complex interface causes significant interference with other communication devices, rendering them impossible to use. While this implant is installed, you can not use any portable device used for communication or jamming, such as a commlink or holotrace device.</p>\n<p><em>Frequently used by scouts and corporate espionage specialists, this imposing implant covers nearly the entire left half of the face, and includes a series of tools for long-term survival in hostile conditions.</em> </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "premium",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -55,16 +56,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,15 +82,26 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "cybernetic",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {}
-    }
+    "properties": [],
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "cybernetic",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -97,11 +110,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1673970648631,
-    "modifiedTime": 1695981488156,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418050632,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "JeLi7oBYQNJ317nf",
   "_key": "!items!JeLi7oBYQNJ317nf"

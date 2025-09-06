@@ -1,8 +1,171 @@
 {
-  "_id": "fUcg8MZDdEi43heY",
   "name": "Karkarodon",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2821319+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-karkarodon"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Karkarodon.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The amphibious Karkarodons have tall, slim bodies with webbed hands and feet. Their shark-like heads have pointed noses, gill slits, and many rows of razor-sharp teeth, which they use when attacking and eating. Karkarodons are skilled and fast swimmers. They attack by grabbing the target and used their jaws for ripping and tearing.</p>\n<h2>Society and Culture</h2>\n<p>Karkarodons hail from the planet Karkaris, which is located in a star system neighboring the planet Mon Cala. They harbor an intense hatred for the Mon Calamari and Quarren inhabitants. The planet is almost entirely under water, and is very uninviting to non-Karkarodons. </p>\n<p>Karkarodon culture is a warmongering, strength-based culture. Clans often fight eachother for dominance, natural resources, and to cull the weak. Each clan on the planet has a ruling triumvirate, usually comprised of venerated warriors who rule for life. When a younger Karkarodon wants to replace one of the ruling body, they challenge them to single, mortal combat. Occasionally, the challenged may spare the life of the challenger when they win, though that usually leads to resentment from the loser.</p>\n<p>Karkarodons do not believe in lying or duplicity. They believe in approaching problems head on and saying what they mean, and are generally demeaing towards those they deem their lessers.</p>\n<h2>Names</h2>\n<p>Karkarodon names are harsh and gutteral. They are generally one syllable. Surnames are clan-based rather than familial.</p>\n<p><strong>Male Names.</strong> Aurb, Rend, Riff, Trak, Vour</p>\n<p><strong>Female Names.</strong> Dewb, Garr, Rast, Scrat, Zend</p>\n<p><strong>Surnames.</strong> Alben, Gerdall, Kibben, Tamson, Zendall</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "karkarodon",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "swim": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1uwyYrENvmXqD9cm",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.IPVxZlG9uksQhIXu",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RNO0fV8GfI6is72P",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QkjOkZbVso5rG8kk",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.lXJ5L1x57HnwUebZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Xjrdirw2OjztIRtw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.4m91RRjFd5kJQKbl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.4HvisKLPejDfwXSK",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zX34fGf7JePlbMkN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.fmIRkIPSH48WtOdP",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.nMdRFCVQjsFVIo0C",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1ocY7mGcT3B81tCs",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "str": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1KQIRjOQax7IX5z4",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Blue, gray, or white"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Multiple rows of sharp teeth, powerful jaws, shark-like heads"
+    },
+    "heightAverage": {
+      "value": "4'8\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "130 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Karkaris"
+    },
+    "slanguage": {
+      "value": "Karkaran"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "aWzuTfE8yN5RwMdF",
@@ -74,128 +237,22 @@
       "name": "Karkarodon",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!fUcg8MZDdEi43heY.aWzuTfE8yN5RwMdF"
+      "_key": "!items.effects!HJdSzbJwFJCIXX4r.aWzuTfE8yN5RwMdF"
     }
   ],
+  "_id": "HJdSzbJwFJCIXX4r",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2821319+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-karkarodon"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The amphibious Karkarodons have tall, slim bodies with webbed hands and feet. Their shark-like heads have pointed noses, gill slits, and many rows of razor-sharp teeth, which they use when attacking and eating. Karkarodons are skilled and fast swimmers. They attack by grabbing the target and used their jaws for ripping and tearing.</p>\n<h2>Society and Culture</h2>\n<p>Karkarodons hail from the planet Karkaris, which is located in a star system neighboring the planet Mon Cala. They harbor an intense hatred for the Mon Calamari and Quarren inhabitants. The planet is almost entirely under water, and is very uninviting to non-Karkarodons. </p>\n<p>Karkarodon culture is a warmongering, strength-based culture. Clans often fight eachother for dominance, natural resources, and to cull the weak. Each clan on the planet has a ruling triumvirate, usually comprised of venerated warriors who rule for life. When a younger Karkarodon wants to replace one of the ruling body, they challenge them to single, mortal combat. Occasionally, the challenged may spare the life of the challenger when they win, though that usually leads to resentment from the loser.</p>\n<p>Karkarodons do not believe in lying or duplicity. They believe in approaching problems head on and saying what they mean, and are generally demeaing towards those they deem their lessers.</p>\n<h2>Names</h2>\n<p>Karkarodon names are harsh and gutteral. They are generally one syllable. Surnames are clan-based rather than familial.</p>\n<p><strong>Male Names.</strong> Aurb, Rend, Riff, Trak, Vour</p>\n<p><strong>Female Names.</strong> Dewb, Garr, Rast, Scrat, Zend</p>\n<p><strong>Surnames.</strong> Alben, Gerdall, Kibben, Tamson, Zendall</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "karkarodon",
-    "advancement": [
-      {
-        "_id": "lGuQSkyU47IS6KyZ",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.IPVxZlG9uksQhIXu",
-            "Compendium.sw5e.speciesfeatures.RNO0fV8GfI6is72P",
-            "Compendium.sw5e.speciesfeatures.QkjOkZbVso5rG8kk",
-            "Compendium.sw5e.speciesfeatures.lXJ5L1x57HnwUebZ",
-            "Compendium.sw5e.speciesfeatures.Xjrdirw2OjztIRtw",
-            "Compendium.sw5e.speciesfeatures.4m91RRjFd5kJQKbl",
-            "Compendium.sw5e.speciesfeatures.4HvisKLPejDfwXSK",
-            "Compendium.sw5e.speciesfeatures.zX34fGf7JePlbMkN",
-            "Compendium.sw5e.speciesfeatures.fmIRkIPSH48WtOdP",
-            "Compendium.sw5e.speciesfeatures.nMdRFCVQjsFVIo0C"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1Raq4vHMVoijedOl",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "con": 2,
-            "str": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1B3DLC5WTBuQ12N5",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Blue, gray, or white"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Multiple rows of sharp teeth, powerful jaws, shark-like heads"
-    },
-    "heightAverage": {
-      "value": "4'8\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "130 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Karkaris"
-    },
-    "slanguage": {
-      "value": "Karkaran"
-    },
-    "movement": {
-      "walk": 30,
-      "swim": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002116,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796762,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!fUcg8MZDdEi43heY"
+  "_key": "!items!HJdSzbJwFJCIXX4r"
 }

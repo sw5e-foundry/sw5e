@@ -16,70 +16,84 @@
   "system": {
     "description": {
       "value": "<h1>Whills Order</h1>\n<p>Monks of the Whills Order hold the secrets of the Force sacred, and dedicate their lives to defending ancient  knowledge of the Force and its artifacts. They master the use of ranged weapons, often crafting their own weapons in respectful admiration of the Jedi tradition of crafting lightweapons.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "whillsorder",
     "classIdentifier": "monk",
     "advancement": [
       {
-        "_id": "QH7Ia4j2yR0XcFbC",
+        "_id": "1iCzSPTjZbZgChUr",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.VEOq69gg0l6lolMK"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.VEOq69gg0l6lolMK",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1RLQ4679HQDD1u03",
+        "_id": "1tQd9Id3nldJ1LqJ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.aZhT3MroOAPBsYk3"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.aZhT3MroOAPBsYk3",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "5SQOyRd7mIq1fH9w",
+        "_id": "pFZmyhvuQLFtZeRg",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.mCJv9MUv4Zp11I8G"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.mCJv9MUv4Zp11I8G",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "TQBbCKAXr1RQdQTY",
+        "_id": "1QzhQlRD9sVcNGSZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.R5H3i6PfQEzdXyz9"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.R5H3i6PfQEzdXyz9",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "nvCv4JiqAj8pAziO",
+        "_id": "1ciN31vjLRpwkRWQ",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -90,9 +104,12 @@
             "weapon:ion rifle",
             "weapon:lightbow"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -103,7 +120,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -111,11 +128,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959775,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689895,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!qrHsv2kIAuh551eP"
 }

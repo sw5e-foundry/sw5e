@@ -1,4 +1,5 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
         <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
@@ -19,7 +20,7 @@
                 </li>
                 <li>
                     <select name="system.size">
-                        {{ selectOptions config.actorSizes selected=system.size }}
+                        {{ selectOptions config.actorSizes selected=system.size labelAttr="label" }}
                     </select>
                 </li>
             </ul>
@@ -39,48 +40,63 @@
 
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
-            {{editor 
-				enriched.description
-				target="system.description.value"
-				button=true
-				owner=owner
-				editable=editable
-			}}
+            {{editor
+            enriched.description
+            target="system.description.value"
+            button=true
+            owner=owner
+            editable=editable
+            }}
         </div>
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
+
             {{!-- Identifier --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.Identifier" }}</label>
                 <div class="form-fields">
-                    <input type="text" name="system.identifier" value="{{system.identifier}}">
+                    <input type="text" name="system.identifier" value="{{ system.identifier }}"
+                        placeholder="{{ item.identifier }}">
                 </div>
                 <p class="hint">
-                    {{{localize "SW5E.StarshipIdentifierHint" identifier=system.identifier}}}
+                    {{{ localize "SW5E.StarshipIdentifierHint" identifier=item.identifier }}}
+                    {{ localize "SW5E.IdentifierError" }}
                 </p>
             </div>
             {{#each config.ssTypeDetails as |detail id|}}
             {{#if (or ../useOldMove (not detail.move))}}
-                <div class="form-group">
-                    <label>{{ localize detail.name }}</label>
-                    <div class="form-fields">
-                        {{#if detail.select}}
-                            <select name="system.{{id}}">
-                                {{#select (lookup ../system id)}} {{#each (lookup ../config detail.select)}}
-                                    <option value="{{this}}">{{this}}</option>
-                                {{/each}} {{/select}}
-                            </select>
-                        {{else}}
-                            <input type="text" name="system.{{id}}" value="{{lookup ../system id}}" data-dtype="Number"/>
-                        {{/if}}
-                    </div>
+            <div class="form-group">
+                <label>{{ localize detail.name }}</label>
+                <div class="form-fields">
+                    {{#if detail.select}}
+                    <select name="system.{{id}}">
+                        {{#select (lookup ../system id)}} {{#each (lookup ../config detail.select)}}
+                        <option value="{{this}}">{{this}}</option>
+                        {{/each}} {{/select}}
+                    </select>
+                    {{else}}
+                    <input type="text" name="system.{{id}}" value="{{lookup ../system id}}" data-dtype="Number" />
+                    {{/if}}
                 </div>
+            </div>
             {{/if}}
             {{/each}}
+
+            {{!-- Starting Equipment --}}
+            <h3 class="form-header">
+                {{ localize "SW5E.StartingEquipment.Title" }}
+                <a class="config-button" data-action="starting-equipment"
+                    data-tooltip="SW5E.StartingEquipment.Action.Configure"
+                    aria-label="{{ localize 'SW5E.StartingEquipment.Action.Configure' }}">
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                </a>
+            </h3>
+            {{#with system.startingEquipmentDescription}}{{{ this }}}{{else}}{{ localize "None" }}{{/with}}
+
         </div>
 
-        {{!-- Advancement Tab --}} 
+        {{!-- Advancement Tab --}}
         {{> "sw5e.item-advancement"}}
 
         {{!-- Effects Tab --}}

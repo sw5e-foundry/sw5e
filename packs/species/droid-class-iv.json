@@ -1,8 +1,217 @@
 {
-  "_id": "g757RyHCGYLVqo5d",
   "name": "Droid, Class IV",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9146224+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-droid_class_iv"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Droid-ClassIv.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Appearance</h2>\n<p>Class IV droids are typically human-like in both shape and size, though there are many advanced models (such as droidekas) that forgo this standardization. They are usually colored to match their affiliation, though personally owned class IV droids might not be. Certain models of class IV droids, such as the HK-series, are made to look like class III droids to disguise their martial nature.</p>\n<h2>Utility</h2>\n<p>Class IV droids are programmed for military and security purposes. Such droids tend to perform tasks of violence or combat might be expected. Almost all class IV droids carry weapons. Armed combat droids are among the first droids ever created. Security, gladiator, battle, and assassin droids are all class IV droids.</p>\n<h2>Names</h2>\n<p>Droids are typically called by their designation, given to them when they are created, or some affectation given to them by their owner. Often this affectation is a play on their designation. Occasionally, noteworthy droids will earn monikers based on their accomplishments.</p>\n<p><strong>Designations (Names).</strong> K-2SO (Kay-Tuesso), PZ-99 (Peezee-Ninety-Nine), VL-44 (Vee-El Forty-Four)</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "droid-classiv",
+    "details": {
+      "isDroid": true
+    },
+    "type": {
+      "value": "droid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "wQ7eJhxFBIGGnrNz",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WLgSCT1Xrj8t42Bp",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.y7E22hY0tHvPgFII",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.NNI5DJOvZqBZP97c",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.EkU0JL2ZzqBLQFx9",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WqGgKp3YKUEhbrPp",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.wXqxeu2EOditYznc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2YmSgQPiEsji55Ci",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rKLyARUzgZtPOyNI",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.6NPZy5ckv7yksTp8",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jNSH7eGPvw7v88UC",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.oVXEMd1zDK4gZQUb",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WCEp2wn9LSYVySec",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.uvCE9wEDVbAPvNeA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JPm4W9hXNF21nsGI",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.NCT5GqWVt40T0QLg",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "7MnaRTmmNrg1wB3q",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1m3rFM6tZcZjPCnV",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "scyXUkbJVjV1tVbV",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "weapon:smb:*",
+                "weapon:mrb:*",
+                "weapon:svb:*",
+                "weapon:mvb:*"
+              ]
+            }
+          ],
+          "grants": [
+            "armor:lgt",
+            "armor:med"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": ""
+    },
+    "hairColorOptions": {
+      "value": ""
+    },
+    "eyeColorOptions": {
+      "value": ""
+    },
+    "colorScheme": {
+      "value": "Varies"
+    },
+    "distinctions": {
+      "value": "Variable size, combat-designed nature, often humanoid"
+    },
+    "heightAverage": {
+      "value": "5'2\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "110 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": ""
+    },
+    "slanguage": {
+      "value": "Galactic Basic"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "yyg9z15jh6tMBTrg",
@@ -122,167 +331,22 @@
       "name": "Droid, Class IV",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!g757RyHCGYLVqo5d.yyg9z15jh6tMBTrg"
+      "_key": "!items.effects!pJxV9T3hWI7F4eXu.yyg9z15jh6tMBTrg"
     }
   ],
+  "_id": "pJxV9T3hWI7F4eXu",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9146224+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-droid_class_iv"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Appearance</h2>\n<p>Class IV droids are typically human-like in both shape and size, though there are many advanced models (such as droidekas) that forgo this standardization. They are usually colored to match their affiliation, though personally owned class IV droids might not be. Certain models of class IV droids, such as the HK-series, are made to look like class III droids to disguise their martial nature.</p>\n<h2>Utility</h2>\n<p>Class IV droids are programmed for military and security purposes. Such droids tend to perform tasks of violence or combat might be expected. Almost all class IV droids carry weapons. Armed combat droids are among the first droids ever created. Security, gladiator, battle, and assassin droids are all class IV droids.</p>\n<h2>Names</h2>\n<p>Droids are typically called by their designation, given to them when they are created, or some affectation given to them by their owner. Often this affectation is a play on their designation. Occasionally, noteworthy droids will earn monikers based on their accomplishments.</p>\n<p><strong>Designations (Names).</strong> K-2SO (Kay-Tuesso), PZ-99 (Peezee-Ninety-Nine), VL-44 (Vee-El Forty-Four)</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "droid-classiv",
-    "advancement": [
-      {
-        "_id": "1Hs6DoMfzX403enJ",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.WLgSCT1Xrj8t42Bp",
-            "Compendium.sw5e.speciesfeatures.y7E22hY0tHvPgFII",
-            "Compendium.sw5e.speciesfeatures.NNI5DJOvZqBZP97c",
-            "Compendium.sw5e.speciesfeatures.EkU0JL2ZzqBLQFx9",
-            "Compendium.sw5e.speciesfeatures.WqGgKp3YKUEhbrPp",
-            "Compendium.sw5e.speciesfeatures.wXqxeu2EOditYznc",
-            "Compendium.sw5e.speciesfeatures.2YmSgQPiEsji55Ci",
-            "Compendium.sw5e.speciesfeatures.rKLyARUzgZtPOyNI",
-            "Compendium.sw5e.speciesfeatures.6NPZy5ckv7yksTp8",
-            "Compendium.sw5e.speciesfeatures.jNSH7eGPvw7v88UC",
-            "Compendium.sw5e.speciesfeatures.oVXEMd1zDK4gZQUb",
-            "Compendium.sw5e.speciesfeatures.WCEp2wn9LSYVySec",
-            "Compendium.sw5e.speciesfeatures.uvCE9wEDVbAPvNeA",
-            "Compendium.sw5e.speciesfeatures.JPm4W9hXNF21nsGI",
-            "Compendium.sw5e.speciesfeatures.NCT5GqWVt40T0QLg"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "bV3SHUSjIrq3CCut",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "con": 2
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1NhGfF3uOqytqgGt",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "BWXmxz1DtCV6VCFE",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 2,
-              "pool": [
-                "weapon:smb:*",
-                "weapon:mrb:*",
-                "weapon:svb:*",
-                "weapon:mvb:*"
-              ]
-            }
-          ],
-          "grants": [
-            "armor:lgt",
-            "armor:med"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": true
-    },
-    "skinColorOptions": {
-      "value": null
-    },
-    "hairColorOptions": {
-      "value": null
-    },
-    "eyeColorOptions": {
-      "value": null
-    },
-    "colorScheme": {
-      "value": "Varies"
-    },
-    "distinctions": {
-      "value": "Variable size, combat-designed nature, often humanoid"
-    },
-    "heightAverage": {
-      "value": "5'2\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "110 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": null
-    },
-    "slanguage": {
-      "value": "Galactic Basic"
-    },
-    "droidDistinctions": {
-      "value": ""
-    },
-    "manufacturer": {
-      "value": ""
-    },
-    "droidLanguage": {
-      "value": ""
-    },
-    "type": {
-      "value": "droid"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002119,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797625,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!g757RyHCGYLVqo5d"
+  "_key": "!items!pJxV9T3hWI7F4eXu"
 }

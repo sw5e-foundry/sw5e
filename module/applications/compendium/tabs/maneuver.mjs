@@ -36,7 +36,7 @@ export class CompendiumBrowserManeuverTab extends CompendiumBrowserTab {
       const indexFields = [
         "img",
         "system.activation",
-        "system.maneuverType",
+        "system.type.value",
         "system.source"
       ];
 
@@ -56,19 +56,22 @@ export class CompendiumBrowserManeuverTab extends CompendiumBrowserTab {
 
             // Prepare source
             const source = maneuverData.system.source.label ?? maneuverData.system.source.custom ?? maneuverData.system.source;
-            const sourceSlug = sluggify(source);
-            if (source) sources.add(source);
+            var sourceSlug;
+            if (source && foundry.utils.getType(source) === "string") {
+              sourceSlug = sluggify(source);
+              sources.add(source);
+            }
 
             maneuvers.push({
               type: maneuverData.type,
               name: maneuverData.name,
               img: maneuverData.img,
               uuid: `Compendium.${pack.collection}.${maneuverData._id}`,
-              category: maneuverData.system.maneuverType,
-              categoryLabel: CONFIG.SW5E.maneuverTypes[maneuverData.system.maneuverType],
+              category: maneuverData.system.type.value,
+              categoryLabel: CONFIG.SW5E.maneuverTypes[maneuverData.system.type.value],
               time: maneuverData.system.activation.type,
               timeLabel: CONFIG.SW5E.abilityActivationTypes[maneuverData.system.activation.type],
-              source: sourceSlug
+              source: sourceSlug ?? ""
             });
           }
         }

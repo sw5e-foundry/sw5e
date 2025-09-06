@@ -8,11 +8,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> 2nd rank</em></p><p>You have gunner training that allows you to perform special combat gambits. You learn two gambits of your choice from among those available to the gunner deployment. </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -25,10 +26,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": null,
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -79,8 +82,15 @@
       }
     },
     "prerequisites": [
-      "2nd rank"
-    ]
+      null
+    ],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -89,11 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494021242,
-    "modifiedTime": 1699591752611,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552921226,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!A7wMSHk58PwFvoeL"
 }

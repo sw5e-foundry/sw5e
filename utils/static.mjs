@@ -12,6 +12,7 @@ const JSON_WATCH = ["static/json/**/*"];
 const LANG_WATCH = ["static/lang/**/*"];
 const PACKS_WATCH = ["static/packs/**/*"];
 const TEMPLATES_WATCH = ["static/templates/**/*"];
+const TOKENS_WATCH = ["static/tokens/**/*"];
 const UI_WATCH = ["static/ui/**/*"];
 const STATIC_ROOT_WATCH = ["static/system.json", "static/template.json"];
 const ROOT_WATCH = ["LICENSE", "README.md", "CONTRIBUTIONS.md", "CHANGELOG.md"];
@@ -51,6 +52,11 @@ export function copyTemplates() {
     .pipe(gulp.dest(dest + "templates"));
 }
 
+export function copyTokens() {
+  return gulp.src(src + "tokens/**/*")
+    .pipe(gulp.dest(dest + "tokens"));
+}
+
 export function copyUi() {
   return gulp.src(src + "ui/**/*")
     .pipe(gulp.dest(dest + "ui"));
@@ -74,6 +80,7 @@ export function watchUpdates() {
   gulp.watch(LANG_WATCH, copyLang);
   gulp.watch(PACKS_WATCH, copyPacks);
   gulp.watch(TEMPLATES_WATCH, copyTemplates);
+  gulp.watch(TOKENS_WATCH, copyTokens);
   gulp.watch(UI_WATCH, copyUi);
   gulp.watch(STATIC_ROOT_WATCH, copyStaticRoot);
   gulp.watch(ROOT_WATCH, copyRoot);

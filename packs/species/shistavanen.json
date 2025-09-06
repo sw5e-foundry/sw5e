@@ -1,8 +1,175 @@
 {
-  "_id": "q77zsiObxfzRNWUF",
   "name": "Shistavanen",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.291126+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-shistavanen"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Shistavanen.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Shistavanen have pronounced muzzles, sharp claws, long pointed teeth, and pointed ears set on top of their heads. Shistavanen also possess large glowing eyes, and can also run at high speeds for long periods without getting tired, alternately using two or four limbs. As predators, they possess keen hearing and smell and excellent night vision.</p>\n<h2>Society and Culture</h2>\n<p>As a species, the Shistavanen are isolationists. The species colonized all the unpopulated worlds in the Uvena system to prevent them from being settled by non-Shistavanen, and their restrictive trade laws (which are unapologetic in how they favor their own kind over off-world traders).  Most of their society uses technology similar to the rest of the galaxy, though some parts of Uvena Prime use slightly less sophisticated technology.</p>\n<p>A minority of Shistavanen are more outgoing, and travel the galaxy's hyperlanes. Even these Shistavanen usually remain by themselves or with other Shistavanen. Due to their natural predatory instincts, Shistavanen commonly find employment as scouts, mercenaries and bounty hunters. Many other species react badly to Shistavanen, since their isolationist culture makes them an unfamiliar sight, and their predatory appearance put other species on edge.</p>\n<h2>Names</h2>\n<p>Shistavanen first names typically sound graceful, while their surnames are more gutteral. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Bustuc, Hulvav, Kembol, Nemdav, Sirul</p>\n<p><strong>Female Names.</strong> Gaeft, Laer, Recloz, Shaalir, Thovnim</p>\n<p><strong>Surnames.</strong> Ghirat, Lakrevl, Meq, Nukroft, Rosk</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "shistavanen",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "TbSYZFy8iGWZhKjh",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VVeh66TfnPtkvO8N",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HtXYLhkTcxvul9gM",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.YD63aRg6N227dDhT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.K2QZOIExNASJlRAM",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.yXNY45InlhaDNYsc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.00qqGSh24CqpJiZK",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.eo3ztEkIura8ZlPf",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.g47CKLCofEff2b1H",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PyBOqmt6eYHPm2va",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.b6AFSARAWcmSiM6l",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mLf5JTlns8KMmv5S",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "a6obfBs1wrL1urAY",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "con": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1khMZUWa7KpFFGkN",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Black or light to dark brown"
+    },
+    "hairColorOptions": {
+      "value": "Black, light to dark brown, grey (usually with age)"
+    },
+    "eyeColorOptions": {
+      "value": "Black or gray"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Lupine appearance, enhanced senses, increased speed, increased strength, healing ability"
+    },
+    "heightAverage": {
+      "value": "5'7\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "140 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Uvena Prime"
+    },
+    "slanguage": {
+      "value": "Shistavanen"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "030roldwXYH7zFrt",
@@ -66,8 +233,7 @@
       "name": "Shistavanen",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!q77zsiObxfzRNWUF.030roldwXYH7zFrt"
+      "_key": "!items.effects!OeiuT1PoRukxp7r9.030roldwXYH7zFrt"
     },
     {
       "_id": "5SmFeXfECxPBRmqb",
@@ -101,131 +267,22 @@
       "name": "Keen Hearing and Smell",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!q77zsiObxfzRNWUF.5SmFeXfECxPBRmqb"
+      "_key": "!items.effects!OeiuT1PoRukxp7r9.5SmFeXfECxPBRmqb"
     }
   ],
+  "_id": "OeiuT1PoRukxp7r9",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.291126+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-shistavanen"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Shistavanen have pronounced muzzles, sharp claws, long pointed teeth, and pointed ears set on top of their heads. Shistavanen also possess large glowing eyes, and can also run at high speeds for long periods without getting tired, alternately using two or four limbs. As predators, they possess keen hearing and smell and excellent night vision.</p>\n<h2>Society and Culture</h2>\n<p>As a species, the Shistavanen are isolationists. The species colonized all the unpopulated worlds in the Uvena system to prevent them from being settled by non-Shistavanen, and their restrictive trade laws (which are unapologetic in how they favor their own kind over off-world traders).  Most of their society uses technology similar to the rest of the galaxy, though some parts of Uvena Prime use slightly less sophisticated technology.</p>\n<p>A minority of Shistavanen are more outgoing, and travel the galaxy's hyperlanes. Even these Shistavanen usually remain by themselves or with other Shistavanen. Due to their natural predatory instincts, Shistavanen commonly find employment as scouts, mercenaries and bounty hunters. Many other species react badly to Shistavanen, since their isolationist culture makes them an unfamiliar sight, and their predatory appearance put other species on edge.</p>\n<h2>Names</h2>\n<p>Shistavanen first names typically sound graceful, while their surnames are more gutteral. Surnames are familial.</p>\n<p><strong>Male Names.</strong> Bustuc, Hulvav, Kembol, Nemdav, Sirul</p>\n<p><strong>Female Names.</strong> Gaeft, Laer, Recloz, Shaalir, Thovnim</p>\n<p><strong>Surnames.</strong> Ghirat, Lakrevl, Meq, Nukroft, Rosk</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "shistavanen",
-    "advancement": [
-      {
-        "_id": "TMBF2LFJCGzMcMZO",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.VVeh66TfnPtkvO8N",
-            "Compendium.sw5e.speciesfeatures.HtXYLhkTcxvul9gM",
-            "Compendium.sw5e.speciesfeatures.YD63aRg6N227dDhT",
-            "Compendium.sw5e.speciesfeatures.K2QZOIExNASJlRAM",
-            "Compendium.sw5e.speciesfeatures.yXNY45InlhaDNYsc",
-            "Compendium.sw5e.speciesfeatures.00qqGSh24CqpJiZK",
-            "Compendium.sw5e.speciesfeatures.eo3ztEkIura8ZlPf",
-            "Compendium.sw5e.speciesfeatures.g47CKLCofEff2b1H",
-            "Compendium.sw5e.speciesfeatures.PyBOqmt6eYHPm2va",
-            "Compendium.sw5e.speciesfeatures.b6AFSARAWcmSiM6l",
-            "Compendium.sw5e.speciesfeatures.mLf5JTlns8KMmv5S"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1oVzkCHCZzUaX27q",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "str": 2,
-            "con": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1mS9Ggs7iDka1DRL",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Black or light to dark brown"
-    },
-    "hairColorOptions": {
-      "value": "Black, light to dark brown, grey (usually with age)"
-    },
-    "eyeColorOptions": {
-      "value": "Black or gray"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Lupine appearance, enhanced senses, increased speed, increased strength, healing ability"
-    },
-    "heightAverage": {
-      "value": "5'7\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "140 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Uvena Prime"
-    },
-    "slanguage": {
-      "value": "Shistavanen"
-    },
-    "movement": {
-      "walk": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002136,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796986,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!q77zsiObxfzRNWUF"
+  "_key": "!items!OeiuT1PoRukxp7r9"
 }

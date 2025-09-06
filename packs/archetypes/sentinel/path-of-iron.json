@@ -13,71 +13,88 @@
   "system": {
     "description": {
       "value": "<h1>Path of Iron</h1>\n<p>Many sentinels choose to focus on a discipline that demands physical strength, reflexes, and fortitude. Those sentinels who follow the Path of Iron train their bodies to their physical peak, able to withstand nigh intolerable punishment and bolster their physical combat capabilities. </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "pathofiron",
     "classIdentifier": "sentinel",
     "advancement": [
       {
-        "_id": "18Nx2sHHH6a71OVL",
+        "_id": "1rCAlE8MrXjJ1Czn",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.470BDfkTeP8WZYzT",
-            "Compendium.sw5e.archetypefeatures.qsO2x2s4Kv6aLXCn"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.470BDfkTeP8WZYzT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.qsO2x2s4Kv6aLXCn",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "I1Aa8oVk8zInerPk",
+        "_id": "1yxad8ZrAzYg1PAQ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ePW9BKKzIbPk6iS3"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ePW9BKKzIbPk6iS3",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "1LFhUSLA63zCnPrE",
+        "_id": "1361fO3RwXirbMVK",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ZYlDvqntNfJEjcUl"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ZYlDvqntNfJEjcUl",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "muLYEC5OoFpC2orz",
+        "_id": "4dEL8pCZGCG1STeY",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.5dtx2hw5whRYnFly"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.5dtx2hw5whRYnFly",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
         "title": "Features"
       },
       {
-        "_id": "1Main55Xmq1e1KVF",
+        "_id": "1kH3ZhLTeKDBchxl",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -85,13 +102,16 @@
             "weapon:mvb",
             "weapon:mlw"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
-        "_id": "1wLD9tXfxE51rljg",
+        "_id": "1gabFClXxSdYEVVj",
         "type": "Trait",
         "configuration": {
           "choices": [],
@@ -99,9 +119,12 @@
             "armor:med",
             "armor:hvy"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -109,15 +132,11 @@
       "force": "none",
       "forceOverride": "",
       "tech": "none",
-      "techOverride": "",
-      "-=progression": null,
-      "-=ability": null
+      "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
-    },
-    "-=className": null,
-    "-=classCasterType": null
+      "progression": 0
+    }
   },
   "folder": null,
   "sort": 0,
@@ -126,11 +145,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426103159,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689806,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "mp8JaOq5euxKnYjE",
   "_key": "!items!mp8JaOq5euxKnYjE"

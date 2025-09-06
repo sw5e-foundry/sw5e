@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Astrotech Engineering:</strong> 18th level</em></p>\n<p>As an action, you can end your field in a electromagnetic burst of power with an effect determined by the field you were generating.</p>\n<p>Once you've used this feature, you must complete a long rest before you can use it again.</p>\n<h3>Ionizing Burst</h3>\n<p>Choose up to 10 creatures of your choice that are within 60 feet. Each must make a Constitution saving throw. On a failed save, a target takes [[/r 14d6]] ion damage and is stunned until the start of your next turn. On a success, it takes half damage and isn't stunned.</p>\n<h3>Jamming Burst</h3>\n<p>Choose up to 10 creatures of your choice that are within 60 feet. Once in the next minute, when a chosen creature fails a saving throw caused by a tech power or is hit by an attack power, the creature can choose to succeed on the saving throw or have the attack miss instead.</p>\n<h3>Targeting Burst</h3>\n<p>Choose up to 10 creatures of your choice that are within 60 feet. Each creature must succeed on a Constitution saving throw against your tech save DC or be blinded for [[/r 1d4+1]] turns. </p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Astrotech Engineering) 18",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "minute"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "60",
+      "value": 60,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -79,25 +84,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Engineer"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493958220,
-    "modifiedTime": 1704036421154,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368717624,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!uvNnBOOtYFjrq9AV"
 }

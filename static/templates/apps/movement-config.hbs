@@ -1,24 +1,25 @@
 <form autocomplete="off">
-  <p class="notes">{{localize "SW5E.MovementConfigHint"}}</p>
-  {{#each movements as |movement id|}}
+    <p class="notes">{{localize "SW5E.MovementConfigHint"}}</p>
+    {{#each movements as |movement id|}}
     <div class="form-group">
         <label>{{localize movement.label}}</label>
-        {{numberInput movement.value name=(concat @root.keyPath "." id) placeholder=movement.placeholder step=0.1 min=0}}
+        {{numberInput movement.value name=(concat @root.keyPath "." id) placeholder=movement.placeholder step=0.1
+        min=0}}
     </div>
-  {{/each}}
-  {{#if selectUnits}}
-  <div class="form-group">
-    <label>{{localize "SW5E.MovementUnits"}}</label>
-    <select name="{{keyPath}}.units">
-      {{selectOptions units selected=movement.units blank=unitsPlaceholder}}
-    </select>
-  </div>
-  {{/if}}
-  {{#if canHover}}
-  <div class="form-group">
-    <label>{{localize "SW5E.MovementHover"}}</label>
-    <input name="{{keyPath}}.hover" type="checkbox" {{checked movement.hover}} />
-  </div>
-  {{/if}}
-  <button type="submit"><i class="far fa-save"></i> {{localize "Submit"}}</button>
+    {{/each}}
+    {{#if selectUnits}}
+    <div class="form-group">
+        <label>{{localize "SW5E.MovementUnits"}}</label>
+        <select name="{{keyPath}}.units">
+            {{selectOptions units selected=movement.units blank=unitsPlaceholder}}
+        </select>
+    </div>
+    {{/if}}
+    {{#if canHover}}
+    <div class="form-group">
+        <label>{{localize "SW5E.MovementHover"}}</label>
+        <input name="{{keyPath}}.hover" type="checkbox" {{checked movement.hover}} />
+    </div>
+    {{/if}}
+    <button type="submit"><i class="far fa-save"></i> {{ localize "Submit"}}</button>
 </form>

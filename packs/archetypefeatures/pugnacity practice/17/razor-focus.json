@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Pugnacity Practice:</strong> 17th level</em></p>\n<p>You can enter a hyper-focused state of mind for 1 minute as a bonus action. You must maintain concentration, as if concentrating on a power. For the duration, each time you successfully deal Sneak Attack damage against a creature, you gain two additional Sneak Attack dice, cumulatively, as your attacks become increasingly precise. These additional dice are lost when your focus ends, whether through failing to maintain concentration or after 1 minute.</p>\n<p>The first time you use this feature, you suffer no ill effect. If you use this feature again before you finish a long rest, you suffer one level of exhaustion each time you use it.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Pugnacity Practice) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
@@ -33,33 +34,37 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -84,18 +89,27 @@
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.3",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493957981,
-    "modifiedTime": 1698185488699,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368706707,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!hNLCVeWzPt9KyXDY"
 }

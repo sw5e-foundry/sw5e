@@ -16,86 +16,112 @@
   "system": {
     "description": {
       "value": "<h1>Shien/Djem So Form</h1>\n<p>Shien/Djem So Form, also known as Perseverance Form, utilizes a force-enhanced strength to overwhelm opponents. Those guardians who focus on Shien/Djem So Form actively attempt to force an opening rather than waiting for the opportunity to present itself.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "shien-djemsoform",
     "classIdentifier": "guardian",
     "advancement": [
       {
-        "_id": "Xazb1K8TNIg1hmhT",
+        "_id": "wS7z8lwfSz0s8msZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.5SMUjqM1OmMKM9FN",
-            "Compendium.sw5e.archetypefeatures.YimtybLAJaWNmF6s",
-            "Compendium.sw5e.archetypefeatures.2mEEwJZkHwAA2w5m",
-            "Compendium.sw5e.archetypefeatures.Jgh5ELvo3lTfygod"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.5SMUjqM1OmMKM9FN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.YimtybLAJaWNmF6s",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.2mEEwJZkHwAA2w5m",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Jgh5ELvo3lTfygod",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1J8muPAd7pxQQnPv",
+        "_id": "1gL72I9Gu0p3KGU7",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.MreyGP5F49yjithE"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.MreyGP5F49yjithE",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "qQIpUE2DsE61NQvl",
+        "_id": "XgHUJKC8dI9B6bDV",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.xWhFkvuhJJEU70ES"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.xWhFkvuhJJEU70ES",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "1zxkCm5sAfpk1raA",
+        "_id": "zdHX4IwK13x13Zky",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.UvMKVj608ijSAfgd"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.UvMKVj608ijSAfgd",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
         "title": "Features"
       },
       {
-        "_id": "1S6y9gewgognEpMS",
+        "_id": "17r94wc5ay9Y1iQc",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "armor:hvy"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
-        "_id": "TQJ4M4dBsLlWHu9W",
+        "_id": "1aSZ8cBgwnD51NkT",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -108,9 +134,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 7
       }
     ],
@@ -121,7 +150,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -129,11 +158,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959775,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689887,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!qXYcepno6c5cYqZC"
 }

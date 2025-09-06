@@ -9,8 +9,8 @@ import Advancement from "../../documents/advancement/advancement.mjs";
  * @param {object} [options={}]     Dialog rendering options.
  */
 export default class AdvancementSelection extends Dialog {
-  constructor(item, dialogData = {}, options = {}) {
-    super(dialogData, options);
+  constructor( item, dialogData = {}, options = {} ) {
+    super( dialogData, options );
 
     /**
      * Store a reference to the Item to which this Advancement is being added.
@@ -23,13 +23,13 @@ export default class AdvancementSelection extends Dialog {
 
   /** @inheritDoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       classes: ["sw5e", "sheet", "advancement"],
       template: "systems/sw5e/templates/advancement/advancement-selection.hbs",
       title: "SW5E.AdvancementSelectionTitle",
       width: 500,
       height: "auto"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -44,35 +44,44 @@ export default class AdvancementSelection extends Dialog {
   /** @inheritDoc */
   getData() {
     const context = { types: {} };
-
-    for (const [name, advancement] of Object.entries(CONFIG.SW5E.advancementTypes)) {
-      if (!(advancement.prototype instanceof Advancement)
-        || !advancement.metadata.validItemTypes.has(this.item.type)) continue;
+    for ( let [name, config] of Object.entries( CONFIG.SW5E.advancementTypes ) ) {
+      if ( config.prototype instanceof Advancement ) {
+        foundry.utils.logCompatibilityWarning(
+          "Advancement type configuration changed into an object with `documentClass` defining the advancement class.",
+          { since: "SW5e 3.1", until: "SW5e 3.3", once: true }
+        );
+        config = {
+          documentClass: config,
+          validItemTypes: config.metadata.validItemTypes
+        };
+      }
+      const advancement = config.documentClass;
+      if ( config.hidden || !config.validItemTypes?.has( this.item.type ) ) continue;
       context.types[name] = {
         label: advancement.metadata.title,
         icon: advancement.metadata.icon,
         hint: advancement.metadata.hint,
-        disabled: !advancement.availableForItem(this.item)
+        disabled: !advancement.availableForItem( this.item )
       };
     }
-    context.types = sw5e.utils.sortObjectEntries(context.types, "label");
+    context.types = sw5e.utils.sortObjectEntries( context.types, "label" );
     return context;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  activateListeners(html) {
-    super.activateListeners(html);
-    html.on("change", "input", this._onChangeInput.bind(this));
+  activateListeners( html ) {
+    super.activateListeners( html );
+    html.on( "change", "input", this._onChangeInput.bind( this ) );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  _onChangeInput(event) {
-    const submit = this.element[0].querySelector("button[data-button='submit']");
-    submit.disabled = !this.element[0].querySelector("input[name='type']:checked");
+  _onChangeInput( event ) {
+    const submit = this.element[0].querySelector( "button[data-button='submit']" );
+    submit.disabled = !this.element[0].querySelector( "input[name='type']:checked" );
   }
 
   /* -------------------------------------------- */
@@ -86,29 +95,29 @@ export default class AdvancementSelection extends Dialog {
    * @param {object} [config.options={}]          Additional rendering options passed to the Dialog.
    * @returns {Promise<AdvancementConfig|null>}   Result of `Item5e#createAdvancement`.
    */
-  static async createDialog(item, { rejectClose = false, options = {} } = {}) {
-    return new Promise((resolve, reject) => {
+  static async createDialog( item, { rejectClose = false, options = {} } = {} ) {
+    return new Promise( ( resolve, reject ) => {
       const dialog = new this(
         item,
         {
-          title: `${game.i18n.localize("SW5E.AdvancementSelectionTitle")}: ${item.name}`,
+          title: `${game.i18n.localize( "SW5E.AdvancementSelectionTitle" )}: ${item.name}`,
           buttons: {
             submit: {
               callback: html => {
-                const formData = new FormDataExtended(html.querySelector("form"));
-                const type = formData.get("type");
-                resolve(item.createAdvancement(type));
+                const formData = new FormDataExtended( html.querySelector( "form" ) );
+                const type = formData.get( "type" );
+                resolve( item.createAdvancement( type ) );
               }
             }
           },
           close: () => {
-            if (rejectClose) reject("No advancement type was selected");
-            else resolve(null);
+            if ( rejectClose ) reject( "No advancement type was selected" );
+            else resolve( null );
           }
         },
-        foundry.utils.mergeObject(options, { jQuery: false })
+        foundry.utils.mergeObject( options, { jQuery: false } )
       );
-      dialog.render(true);
-    });
+      dialog.render( true );
+    } );
   }
 }

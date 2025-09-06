@@ -13,18 +13,19 @@
   "system": {
     "description": {
       "value": "<p>Your watery weapon has the reach property, deals cold damage on a hit, and you can use your focus ability modifier instead of Dexterity or Strength for its attack and damage rolls. You must use the same modifier for both rolls. Additionally, when you would make a melee weapon attack, you can instead use your weapon to wet a 5-foot square within your weapon's reach. The affected area is difficult terrain. Each creature who starts its turn in the square or enters it for the first time must make a Dexterity saving throw, falling prone on a failed save.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Kro Var Order) 11",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
@@ -33,28 +34,29 @@
       "value": "5",
       "width": null,
       "units": "ft",
-      "type": "square"
+      "type": "square",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -84,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Monk"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -93,11 +104,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426104192,
-    "modifiedTime": 1699591595239,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368719728,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "xDZTmDvKNvbhufV0",
   "_key": "!items!xDZTmDvKNvbhufV0"

@@ -1,8 +1,171 @@
 {
-  "_id": "ka64bu22N2unBlTV",
   "name": "Killik",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2821319+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-killik"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Killik.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Killiks possess a strong chitinous exoskeleton that is glossy and greenish with their carcasses capable of surviving thousands of years of erosion as seen by the colonists of Alderaan. The exoskeleton also contains a number of spiracles which served as their way of breathing. Typically, these Human-sized hive creatures have four arms with each ending in a powerful three-fingered claw. They stand on two stout legs that are capable of leaping great distances. Killiks can communicate with other Killiks through use of pheromones.</p>\n<h2>Society and Culture</h2>\n<p>The Killiks have a communal society, with each and every Killik being in mental contact with another. Due to their hive mind, every Killik nest is virtually one individual. Killiks are also peaceful in nature. Their telepathic connection is capable of extending to other species which includes non-insectoids. A willing creature can submit to this telepathy to become a Joiner. They effectively become another vessel of the hive mind.</p>\n<p>Killiks lose connection to their hive mind at great distances. Those who voluntarily leave the hive mind are referred to as Leavers. It is rare that they are allowed to rejoin their hive without reason.</p>\n<h2>Names</h2>\n<p>Killiks are a hive-mind insectoid that typically don't use names. On the offchance they do, it's usually an incomprehensible series of clicking noises. They are receptive to nicknames given by others.</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "killik",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1kEQNl0JtlllpoIt",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bgVgvpXNuQv5VcXY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.4RixIwSIKtOfhtrs",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.smKnguSPcLt8YElr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ofKeocJWxNcbNECL",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ygqUcWI75FHGl8KY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.l0GiIjn6PCPKSrEH",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.L8ddtp99xusmkoKJ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HcizKFtb4on21TUp",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.0kRXKDIJBBR2GXXu",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RwSH0Fe34yksh17t",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1LwKuTDt1du7LbQM",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "con": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1TMjlcuRzxHI1qTj",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Brown, chestnut, green, red, scarlet, or yellow"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black or orange"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Chitinous armor, mandibles projected from face, four arms ending in long three toed claws protrude from their torsos"
+    },
+    "heightAverage": {
+      "value": "4'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "110 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Alderaan"
+    },
+    "slanguage": {
+      "value": "Killik"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "EWQOMXrZbfi4zSPF",
@@ -74,127 +237,22 @@
       "name": "Killik",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!ka64bu22N2unBlTV.EWQOMXrZbfi4zSPF"
+      "_key": "!items.effects!VVvIFTD1kJLWjVHu.EWQOMXrZbfi4zSPF"
     }
   ],
+  "_id": "VVvIFTD1kJLWjVHu",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2821319+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-killik"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Killiks possess a strong chitinous exoskeleton that is glossy and greenish with their carcasses capable of surviving thousands of years of erosion as seen by the colonists of Alderaan. The exoskeleton also contains a number of spiracles which served as their way of breathing. Typically, these Human-sized hive creatures have four arms with each ending in a powerful three-fingered claw. They stand on two stout legs that are capable of leaping great distances. Killiks can communicate with other Killiks through use of pheromones.</p>\n<h2>Society and Culture</h2>\n<p>The Killiks have a communal society, with each and every Killik being in mental contact with another. Due to their hive mind, every Killik nest is virtually one individual. Killiks are also peaceful in nature. Their telepathic connection is capable of extending to other species which includes non-insectoids. A willing creature can submit to this telepathy to become a Joiner. They effectively become another vessel of the hive mind.</p>\n<p>Killiks lose connection to their hive mind at great distances. Those who voluntarily leave the hive mind are referred to as Leavers. It is rare that they are allowed to rejoin their hive without reason.</p>\n<h2>Names</h2>\n<p>Killiks are a hive-mind insectoid that typically don't use names. On the offchance they do, it's usually an incomprehensible series of clicking noises. They are receptive to nicknames given by others.</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "killik",
-    "advancement": [
-      {
-        "_id": "1EqIjgqNDqf3rFAY",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.bgVgvpXNuQv5VcXY",
-            "Compendium.sw5e.speciesfeatures.4RixIwSIKtOfhtrs",
-            "Compendium.sw5e.speciesfeatures.smKnguSPcLt8YElr",
-            "Compendium.sw5e.speciesfeatures.ofKeocJWxNcbNECL",
-            "Compendium.sw5e.speciesfeatures.ygqUcWI75FHGl8KY",
-            "Compendium.sw5e.speciesfeatures.l0GiIjn6PCPKSrEH",
-            "Compendium.sw5e.speciesfeatures.L8ddtp99xusmkoKJ",
-            "Compendium.sw5e.speciesfeatures.HcizKFtb4on21TUp",
-            "Compendium.sw5e.speciesfeatures.0kRXKDIJBBR2GXXu",
-            "Compendium.sw5e.speciesfeatures.RwSH0Fe34yksh17t"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "136V0bWuCMbe1TTq",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2,
-            "con": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "h50ocmqFOKfakQ3V",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Brown, chestnut, green, red, scarlet, or yellow"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black or orange"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Chitinous armor, mandibles projected from face, four arms ending in long three toed claws protrude from their torsos"
-    },
-    "heightAverage": {
-      "value": "4'9\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "110 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Alderaan"
-    },
-    "slanguage": {
-      "value": "Killik"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002124,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797154,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!ka64bu22N2unBlTV"
+  "_key": "!items!VVvIFTD1kJLWjVHu"
 }

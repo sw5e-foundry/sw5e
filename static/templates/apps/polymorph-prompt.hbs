@@ -2,19 +2,19 @@
     <div class="left-column">
         <h3>{{localize 'SW5E.PolymorphCustomTransformation'}}</h3>
         {{#each content.settings}}
-            <div>
-                <label class="checkbox" for="{{@key}}">
-                    <input type="checkbox" id="{{@key}}" name="{{@key}}" {{checked (lookup ../content.options @key)}}>
-                    {{this}}
-                </label>
-            </div>
+        <div>
+            <label class="checkbox" for="{{@key}}">
+                <input type="checkbox" id="{{@key}}" name="{{@key}}" {{checked (lookup ../content.options @key)}}>
+                {{this}}
+            </label>
+        </div>
         {{/each}}
         {{#unless content.isToken}}
         <hr>
         <div>
             <label class="checkbox" for="transformTokens">
-                <input type="checkbox" id="transformTokens" name="transformTokens"
-                    {{checked content.options.transformTokens}}>
+                <input type="checkbox" id="transformTokens" name="transformTokens" {{checked
+                    content.options.transformTokens}}>
                 {{localize 'SW5E.PolymorphTokens'}}
             </label>
         </div>

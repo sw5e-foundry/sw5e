@@ -6,8 +6,8 @@ import HitPointsConfig from "./hit-points-config.mjs";
 export default class HullPointsConfig extends HitPointsConfig {
   /** @inheritdoc */
   getData() {
-    return foundry.utils.mergeObject(super.getData(), {
+    return foundry.utils.mergeObject( super.getData(), {
       label: "SW5E.HullDie"
-    });
+    } );
   }
 }

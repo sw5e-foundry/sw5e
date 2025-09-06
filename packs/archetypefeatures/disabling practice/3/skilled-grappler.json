@@ -16,13 +16,14 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Disabling Practice:</strong> 3rd level</em></p>\n<p>You learn a number of grappling techniques to subdue your opponents. When you hit a creature grappled by you with an unarmed strike and deal Sneak Attack damage, you may choose to forgo two of your Sneak Attack dice to make the attack a grappling technique.</p>\n<p>Some of your grappling techniques require your target to make a saving throw to resist the grappling technique's effects. The saving throw DC is calculated as follows: </p>\n<p><em></em>_</p>\n<p><strong>Grapple Technique save DC</strong> = 8 + your proficiency bonus + your Strength modifier</p>\n<p><em></em>_</p>\n<h3>Constrict</h3>\n<p>You attempt to choke the target into unconsciousness. The target must make a Constitution saving throw or be restrained until the end of your following turn.  </p>\n<p>If you maintain this technique for 1 minute, the target falls unconscious for 1 hour. Droids and constructs can not be knocked unconscious in this way.</p>\n<h3>Disarm</h3>\n<p>You attempt to disarm a weapon or other object the target is holding. The target must make a Strength saving throw. On a failed save, it releases the object. If you have a free hand, you can catch the object. Otherwise, it lands at your feet.</p>\n<h3>Hip Toss</h3>\n<p>You attempt to throw your target to the ground. The target must make a Dexterity saving throw. On a failed save, the target is pushed back 5 feet, knocked prone, and stunned until the start of your next turn. This ends the grapple.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Disabling Practice) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
@@ -33,33 +34,37 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,25 +79,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957360,
-    "modifiedTime": 1699591595136,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368682937,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!5I1fXw5tY9a14LoC"
 }

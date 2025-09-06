@@ -16,73 +16,96 @@
   "system": {
     "description": {
       "value": "<h1>Ysannanite Form</h1>\n<p>Ysannanite Form, also know as the Unorthodox Form, pairs the use of lightsaber with blasters, seamlessly blending the two weapons to perform impressive feats. Those guardians who focus on the Ysannanite Form are able to cut enemies down as efficiently with blaster as with blade.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "ysannaniteform",
     "classIdentifier": "guardian",
     "advancement": [
       {
-        "_id": "1KEIUTsxdtra29LI",
+        "_id": "1EO541vFy5e3hLNr",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.1QZNaWpMgsZmn3Lf",
-            "Compendium.sw5e.archetypefeatures.vNY00do0tlsbdIcp",
-            "Compendium.sw5e.archetypefeatures.D2S2JJqdpnT520ri",
-            "Compendium.sw5e.archetypefeatures.Vl1fYezxoWQRjGDe"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.1QZNaWpMgsZmn3Lf",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.vNY00do0tlsbdIcp",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.D2S2JJqdpnT520ri",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Vl1fYezxoWQRjGDe",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1tyarJUQ4cEzBg9N",
+        "_id": "dycf05ZVBUC1qQOQ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.1B6xQuJCP8NK3Etg"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.1B6xQuJCP8NK3Etg",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "sYrXjElWpJL77dQa",
+        "_id": "1BAC26w6YeduN8xL",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.N4m8VRMbmlNAdPdo"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.N4m8VRMbmlNAdPdo",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "1nhApb227bXL1v9x",
+        "_id": "OZoQiOaCego1i1Sz",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.fJOMvX0p6D3Uklrr"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.fJOMvX0p6D3Uklrr",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
         "title": "Features"
       },
       {
-        "_id": "uCuMjBVrgLRX2T7C",
+        "_id": "C4fKWaThaK01sahg",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -100,9 +123,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -113,7 +139,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -121,11 +147,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959754,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689592,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!XKpKuW4WGO0M31co"
 }

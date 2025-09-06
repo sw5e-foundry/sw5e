@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Way of Endurance:</strong> 6th, 9th, 13th, and 17th level</em></p>\n<p>You learn to turn an opponent's aggression back on them. When you deal damage with a force power or a melee weapon attack, if you took damage since the start of your last turn, you deal an extra [[/r 1d6]] damage. The damage is the same type as the power or weapon's damage.</p>\n<p>This die increases when you reach certain levels in this class: to [[/r 1d8]] at 9th level, to [[/r 1d10]] at 13th level, and to [[/r 1d12]] at 17th level.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Consular (Way of Endurance) 13",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -86,7 +89,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -96,11 +109,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1680288495987,
-    "modifiedTime": 1699591595145,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368686116,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "AyZn2IpkkM8FvReC",
   "_key": "!items!AyZn2IpkkM8FvReC"

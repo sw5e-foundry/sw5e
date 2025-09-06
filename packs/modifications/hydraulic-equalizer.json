@@ -16,38 +16,39 @@
   "system": {
     "description": {
       "value": "<h4>Item Modification (Armor)</h4>\n <p>This armor or shield's strength number is reduced by one step (from 21 to 19, 19 to 17, 17 to 15, 15 to 13, or 13 to 11). If the strength number is 11, this modification removes the strength property from it entirely.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "standard",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -56,18 +57,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": "none",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -83,31 +85,37 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "armor",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {
-        "Strength": false
-      },
-      "Strength": false
+    "properties": [],
+    "unidentified": {
+      "description": ""
     },
-    "modified": [],
-    "modificationItemType": "equipment"
+    "type": {
+      "value": "armor",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493999153,
-    "modifiedTime": 1699591687630,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368837162,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!8Y6PmvjSTzjCxiuw"
 }

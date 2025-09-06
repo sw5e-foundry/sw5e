@@ -8,22 +8,24 @@
   "system": {
     "description": {
       "value": "<p>(Range 1200/4800), explosive, keen 1</p><p>65 (130) lb</p><p>2d10 (4d10) energy</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 650,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "none",
       "cost": 1,
@@ -36,10 +38,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": 1200,
@@ -48,21 +51,25 @@
     },
     "uses": {
       "value": null,
-      "max": "0",
-      "per": "",
+      "max": "",
+      "per": null,
       "recovery": "",
-      "autoDestroy": false
+      "autoDestroy": false,
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "rwak",
-    "attackBonus": "0",
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -78,84 +85,27 @@
       "dc": null,
       "scaling": "power"
     },
-    "consumableType": "ammo",
-    "ammoType": "sstorpedo",
-    "properties": {
-      "amm": false,
-      "aut": false,
-      "bur": null,
-      "con": null,
-      "def": null,
-      "dex": null,
-      "dir": null,
-      "drm": false,
-      "dgd": false,
-      "dis": null,
-      "dpt": false,
-      "dou": false,
-      "exp": true,
-      "fin": false,
-      "fix": false,
-      "foc": false,
-      "hvy": false,
-      "hid": false,
-      "hom": false,
-      "ion": false,
-      "ken": true,
-      "lgt": false,
-      "lum": false,
-      "mlt": false,
-      "mig": false,
-      "ovr": null,
-      "pic": null,
-      "pow": false,
-      "rap": null,
-      "rch": false,
-      "rel": null,
-      "ret": false,
-      "sat": false,
-      "shk": null,
-      "sil": false,
-      "spc": false,
-      "str": null,
-      "thr": false,
-      "two": false,
-      "ver": false,
-      "vic": null,
-      "zon": false,
-      "mgc": false,
-      "ran": false,
-      "smr": false
+    "properties": [
+      "exp",
+      "ken"
+    ],
+    "attuned": false,
+    "type": {
+      "value": "ammo",
+      "subtype": "sstorpedo"
     },
-    "armor": {
-      "value": 10
+    "unidentified": {
+      "description": ""
     },
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "modify": {
-      "chassis": "none",
-      "augmentSlots": 0,
-      "modSlots": 4,
-      "items": [],
-      "changes": {},
-      "type": null
-    },
-    "weaponType": "ammo",
-    "baseItem": "",
-    "ammo": {
-      "target": null,
-      "value": null,
-      "use": null,
-      "types": [
-        "powerCell"
-      ]
-    },
-    "proficient": true,
-    "attuned": false
+    "_propertyValues": {},
+    "container": null,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "ownership": {
     "default": 0
@@ -164,11 +114,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494019811,
-    "modifiedTime": 1699591748137,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552917713,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!HB76MNUZTWLyMsGG"
 }

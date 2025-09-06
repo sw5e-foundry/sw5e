@@ -8,27 +8,29 @@
   "system": {
     "description": {
       "value": "<p>Also at 4th tier, when your ship is hit with an attack roll, a crew member at the helm can add the ship's Constitution modifier to AC, potentially causing the attack to miss.</p><p>This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship is refitted.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,16 +41,17 @@
       "value": 4,
       "max": "@details.tier",
       "per": "refitting",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "con",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,8 +81,16 @@
         "turn": null
       }
     },
-    "size": "Medium",
-    "tier": "4"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -88,11 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494017927,
-    "modifiedTime": 1699591742517,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552913577,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!LUbYxort97HhJtcZ"
 }

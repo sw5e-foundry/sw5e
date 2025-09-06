@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:58.345213+00:00",
+      "timestamp": "2023-05-30T20:15:43.1826842+00:00",
       "importer_version": 3,
       "uid": "Archetype.name-beguiler_practice"
     }
@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Beguiler Practice</h1>\n<p>Those operatives who choose the Beguiler Practice augment their natural wiles and charm with subtle utilization of the Force. They tap into these powers to cloud the minds of their foes, distracting and diverting before abruptly dispatching them.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "beguilerpractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "1B2jV7Crjvwm1xan",
+        "_id": "WuTtb3jvOd31FLuC",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.0YLFqB0MfZPAXK6i",
-            "Compendium.sw5e.archetypefeatures.fiU1UEzqH4x7TjXp"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.0YLFqB0MfZPAXK6i",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.fiU1UEzqH4x7TjXp",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "O6DQuizUklE1lkeX",
+        "_id": "6TD04Ky2vE6f67ak",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.34udwLn3L6yNJnsY"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.34udwLn3L6yNJnsY",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "WgYqucMcgi91dSLv",
+        "_id": "103GFegYYq0HbmGU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.MiTdjRmFCw4dsEd7"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.MiTdjRmFCw4dsEd7",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "Ulcfw1EJJAERTExB",
+        "_id": "1hb02hU9JWgIDq94",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.d7wAQPshxavsna3o"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.d7wAQPshxavsna3o",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,11 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959751,
-    "modifiedTime": 1695981489837,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689552,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!Uncxt2SzKHT45QWy"
 }

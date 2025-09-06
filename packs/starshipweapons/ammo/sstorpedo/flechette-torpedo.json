@@ -8,38 +8,41 @@
   "system": {
     "description": {
       "value": "<p>(Range 600/2400), special</p>\n<p>85 (170) lb</p>\n<p>A Flechette torpedo detonates at a point within range, creating a 200 (400) foot cube of difficult terrain. Any ship entering or starting their turn in this area must succeed at a Dexterity saving throw (DC 15) or take 1d8 [2d8] kinetic damage.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 850,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "none",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 200,
+      "value": "200",
       "width": null,
       "units": "ft",
-      "type": "cube"
+      "type": "cube",
+      "prompt": true
     },
     "range": {
       "value": 600,
@@ -49,20 +52,24 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
+      "per": null,
       "recovery": "",
-      "autoDestroy": false
+      "autoDestroy": false,
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "rwak",
-    "attackBonus": "0",
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -78,84 +85,26 @@
       "dc": 15,
       "scaling": "flat"
     },
-    "consumableType": "ammo",
-    "ammoType": "sstorpedo",
-    "properties": {
-      "amm": false,
-      "aut": false,
-      "bur": null,
-      "con": null,
-      "def": null,
-      "dex": null,
-      "dir": null,
-      "drm": false,
-      "dgd": false,
-      "dis": null,
-      "dpt": false,
-      "dou": false,
-      "exp": false,
-      "fin": false,
-      "fix": false,
-      "foc": false,
-      "hvy": false,
-      "hid": false,
-      "hom": false,
-      "ion": false,
-      "ken": null,
-      "lgt": false,
-      "lum": false,
-      "mlt": false,
-      "mig": false,
-      "ovr": null,
-      "pic": null,
-      "pow": false,
-      "rap": null,
-      "rch": false,
-      "rel": null,
-      "ret": false,
-      "sat": false,
-      "shk": null,
-      "sil": false,
-      "spc": true,
-      "str": null,
-      "thr": false,
-      "two": false,
-      "ver": false,
-      "vic": null,
-      "zon": false,
-      "mgc": false,
-      "ran": false,
-      "smr": false
+    "properties": [
+      "spc"
+    ],
+    "attuned": false,
+    "type": {
+      "value": "ammo",
+      "subtype": "sstorpedo"
     },
-    "armor": {
-      "value": 10
+    "unidentified": {
+      "description": ""
     },
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "modify": {
-      "chassis": "none",
-      "augmentSlots": 0,
-      "modSlots": 4,
-      "items": [],
-      "changes": {},
-      "type": null
-    },
-    "weaponType": "ammo",
-    "baseItem": "",
-    "ammo": {
-      "target": null,
-      "value": null,
-      "use": null,
-      "types": [
-        "powerCell"
-      ]
-    },
-    "proficient": true,
-    "attuned": false
+    "_propertyValues": {},
+    "container": null,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "ownership": {
     "default": 0
@@ -164,11 +113,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494019826,
-    "modifiedTime": 1699591748140,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552917902,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!WgNMcZ1lZUgoeD4v"
 }

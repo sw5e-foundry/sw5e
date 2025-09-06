@@ -90,9 +90,12 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
             if (creatureSubtype) creatureSubtypes.add(creatureSubtype);
 
             // Prepare source
-            const source = actorData.system.details.source;
-            const sourceSlug = sluggify(source);
-            if (source) sources.add(source);
+            const source = actorData.system.details.source.label ?? actorData.system.details.source.custom ?? actorData.system.details.source;
+            var sourceSlug;
+            if (source && foundry.utils.getType(source) === "string") {
+              sourceSlug = sluggify(source);
+              sources.add(source);
+            }
 
             // Prepare traits
             const traits = {
@@ -127,7 +130,7 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
       this.indexData = bestiaryActors;
 
       // Filters
-      this.filterData.checkboxes.sizes.options = this.generateCheckboxOptions(CONFIG.SW5E.actorSizes);
+      this.filterData.checkboxes.sizes.options = this.generateCheckboxOptions(CONFIG.SW5E.actorSizes, { label: "label" });
       this.filterData.checkboxes.alignment.options = this.generateSourceCheckboxOptions(alignments);
       this.filterData.checkboxes.creatureType.options = this.generateSourceCheckboxOptions(creatureTypes);
       this.filterData.checkboxes.creatureSubtype.options = this.generateSourceCheckboxOptions(creatureSubtypes);

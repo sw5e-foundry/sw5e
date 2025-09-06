@@ -16,71 +16,88 @@
   "system": {
     "description": {
       "value": "<h1>Addicted Approach</h1>\n<p>For some, the consumption of substances is the entirety of their life. For berserkers of the Addicted Approach, substances cause their fury to burn stronger and deeper, granting significant benefits.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "addictedapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "gxXV23M7rs6xctDO",
+        "_id": "1CkKR7Jjfotl1af3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.CKntWLvkT4yeEBoz",
-            "Compendium.sw5e.archetypefeatures.OScTgUb0TSSZq83i"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.CKntWLvkT4yeEBoz",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.OScTgUb0TSSZq83i",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "10ARvtMuWhSo1ChL",
+        "_id": "wS6vmsOGpCf1p8TZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.A8fbhjrWemYCKBIB"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.A8fbhjrWemYCKBIB",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "1wwlqsUUDRo11OTW",
+        "_id": "cWKsw5ZIkmRCCsw3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.j0rh642WBKpFaKQF"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.j0rh642WBKpFaKQF",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "1gjtflH4Ln7J15nq",
+        "_id": "24CwNQwjvKjHybye",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.xzRNHB2M2HdOZzr7"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.xzRNHB2M2HdOZzr7",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
       },
       {
-        "_id": "1yDYAoKIRJ5L1IOh",
+        "_id": "Xp7arRxJ3z1ONZg5",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -93,9 +110,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -106,7 +126,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -114,11 +134,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959778,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689937,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!sqh0smYo8vBLmA61"
 }

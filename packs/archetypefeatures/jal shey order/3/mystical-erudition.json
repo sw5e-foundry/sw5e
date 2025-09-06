@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Jal Shey Order:</strong> 3rd level</em></p>\n<p>You've undergone extensive training in lore from the Jal Shey's collected knowledge. You learn one language of your choice, and you gain proficiency in your choice of Lore, Medicine, Nature, or Technology. You learn an additional language and an additional skill proficiency from the above list at 11th level.</p>\n<p>Additionally, you can strike multiple pressure points to extract crucial details about your foe. Whenever you hit a creature with an unarmed strike, you can learn learn certain information about its capabilities. The GM tells you if the creature has one of the following characteristics of your choice:</p>\n<ul>\n<li>Condition immunities</li>\n<li>Damage vulnerabilities</li>\n<li>Damage resistances</li>\n<li>Damage immunities</li></ul>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Monk (Jal Shey Order) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,25 +79,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Monk"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493957339,
-    "modifiedTime": 1695981490773,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418053762,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!3s0MvRg7iwuxkJTo"
 }

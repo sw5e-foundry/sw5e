@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Biochem Engineering:</strong> 3rd level</em></p>\n<p>You learn to modify and combine your biochemist's kit and poisoner's kit, creating a mobile laboratory using your chemistry expertise. Over the course of a long rest, you can create your modified biochemist's pack. You must have a biochemist's kit, a poisoner's kit, and materials in order to perform this modification.</p>\n<p>Your biochemist's pack is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. Your modified biochemist's pack has 4 modification slots, and it gains more at higher levels, as shown in the Modification Slots column of the engineer table. For each modification installed in excess of your proficiency bonus, your tech point maximum is reduced by 1. Over the course of a long rest, you can install, replace, or remove a number of modifications up to your Intelligence modifier (minimum of one).</p>\n<p>Some modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.</p>\n<p>Your modified biochemist's pack comes equipped with a chemical distribution system, complete with three chemical mixtures: corrosive, invigorating, and noxious. As an action, you can activate your distributor and target a creature within 30 feet, with an effect determined by the mixture.</p>\n<h3>Corrosive Mixture</h3>\n<p>Your distributor emits a burst of acid. The target must make a Dexterity sav-ing throw. On a failed save, a creature takes [[/r 1d6]] + your Intelligence modifier acid damage. This mixture's damage increases by [[/r 1d6]] when you reach 5th level ([[/r 2d6]]), 11th level ([[/r 3d6]]), and 17th level ([[/r 4d6]]).</p>\n<h3>Invigorating Mixture</h3>\n<p>Your distributor emits a bolt of kolto. The target gains [[/r 1d6]] + your Intelligence modifier temporary hit points, which last until the end of your next turn. The temporary hit points granted by this mixture increases by [[/r 1d6]] when you reach 5th level ([[/r 2d6]]), 11th level ([[/r 3d6]]), and 17th level ([[/r 4d6]]).</p>\n<h3>Noxious Mixture</h3>\n<p>Your distributor emits a cloud of poison. The target must make a Constitution saving throw. On a failed save, a creature takes [[/r 1d6]] + your Intelligence modifier poison damage. This mixture's damage increases by [[/r 1d6]] when you reach 5th level ([[/r 2d6]]), 11th level ([[/r 3d6]]), and 17th level ([[/r 4d6]]).</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Biochem Engineering) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "turn"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -87,25 +92,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Engineer"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493958252,
-    "modifiedTime": 1699591595240,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368720200,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!xvHfbGtOjBzLFol1"
 }

@@ -21,6 +21,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 - Addressed a build tooling compatibility issue caused by JSON import assertions in ESM environments.
+
+## [3.2.1.2.9.0] - 2024-07-10
+
+### Changes
+
+- `Cool Down` button for starship weapons now has a different icon from the `Reload` button.
+- Compendium Updates.
+- Updated core to match [dnd5e 3.2.1](https://github.com/foundryvtt/dnd5e/releases/tag/release-3.2.1).
+
+### Fixed
+
+- Starship Modifications from the compendium should now have their base price autocalculated instead of set to 0.
+- Attribute override for techcasting will no longer be ignored.
+- Starship firing arc templates will now be correctly positioned on the ship's center.
+- Added missing tool proficiencies.
+
+
 ## [2.4.1.2.8.0] - 2024-01-03
 
 ### Added

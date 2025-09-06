@@ -20,23 +20,23 @@
 export class TraitConfigurationData extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
-      hint: new foundry.data.fields.StringField({label: "SW5E.AdvancementHint"}),
-      mode: new foundry.data.fields.StringField({initial: "default", label: "SW5E.AdvancementTraitMode"}),
-      allowReplacements: new foundry.data.fields.BooleanField({
+      hint: new foundry.data.fields.StringField( {label: "SW5E.AdvancementHint"} ),
+      mode: new foundry.data.fields.StringField( {initial: "default", label: "SW5E.AdvancementTraitMode"} ),
+      allowReplacements: new foundry.data.fields.BooleanField( {
         required: true, label: "SW5E.AdvancementTraitAllowReplacements",
         hint: "SW5E.AdvancementTraitAllowReplacementsHint"
-      }),
-      grants: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+      } ),
+      grants: new foundry.data.fields.SetField( new foundry.data.fields.StringField(), {
         required: true, label: "SW5E.AdvancementTraitGrants"
-      }),
-      choices: new foundry.data.fields.ArrayField(new foundry.data.fields.SchemaField({
-        count: new foundry.data.fields.NumberField({
+      } ),
+      choices: new foundry.data.fields.ArrayField( new foundry.data.fields.SchemaField( {
+        count: new foundry.data.fields.NumberField( {
           required: true, positive: true, integer: true, initial: 1, label: "SW5E.AdvancementTraitCount"
-        }),
-        pool: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-          required: false, initial: undefined, label: "DOCUMENT.Items"
-        })
-      }), {label: "SW5E.AdvancementTraitChoices"})
+        } ),
+        pool: new foundry.data.fields.SetField( new foundry.data.fields.StringField(), {
+          required: false, label: "DOCUMENT.Items"
+        } )
+      } ), {label: "SW5E.AdvancementTraitChoices"} )
     };
   }
 }
@@ -49,9 +49,9 @@ export class TraitConfigurationData extends foundry.abstract.DataModel {
 export class TraitValueData extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
-      chosen: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-        required: false, initial: undefined
-      })
+      chosen: new foundry.data.fields.SetField( new foundry.data.fields.StringField(), {
+        required: false
+      } )
     };
   }
 }

@@ -8,11 +8,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Prerequisite:</strong> at least 1 level in operative</em></p><p>Once per turn, you can deal an extra [[/r 1d6]] damage to one ship you hit with a ship attack if you have advantage on the attack roll. You can select this venture multiple times.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -25,10 +26,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": null,
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -79,8 +82,15 @@
       }
     },
     "prerequisites": [
-      "at least 1 level in operative"
-    ]
+      null
+    ],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -89,11 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494021267,
-    "modifiedTime": 1699591752616,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552921502,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!r0as3L57tmg0kcdM"
 }

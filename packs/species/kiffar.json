@@ -9,52 +9,107 @@
   },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Kiffar.webp",
-  "effects": [],
   "system": {
-    "data": "$characteristics-table",
     "description": {
       "value": "<h2>Biology and Appearance</h2>\n<p>The kiffar are very closely related to humans, enough that they can interbreed, though kiffar typically have darker hair. The biggest visual difference between the two is that the kiffar always wear tattoos, that represent their clan. Kiffar are more likely to be Force-sensitive, which is typically manifested in psychometry, a rare Force power that about one percent of the kiffar population can use. Using psychometry, kiffar can touch objects and receive visions from the Force that show them the object—s past. </p>\n<h2>Society and Culture</h2>\n<p>The kiffar reside on the planets of Kiffu and Kiffex. Kiffar are a people who value their own independence, staying out of galactic affairs and being ruled only by themselves. They see outsiders as dangerous and are generally nationalists. They are organized into clans, and clan heritage is very important to them. Their markings, which they call qukuuf, are passed down through the family maternally, but kiffar with a human mother will typically use their father—s tattoos. Conversely, clan membership is passed down paternally, and those with a human father can join their mother—s clan. The traditional colors of the facial tattoos are red, yellow, and green. Various patterns and designs are used to identify the clan. </p>\n<p>Kiffu Guardians, also known as the Guardians of Kiffu, are an important kiffar institution that acts as a police force in their space. The Kiffu Guardians wear black armor, and they share a symbol with clan Vos, which is a gold five-pointed star outlined by a circle. </p>\n<h2>Names</h2>\n<p>Kiffar use names similar to those of humans, varying drastically clan by clan. Surnames are familiar. </p>\n<p><strong>Male Names.</strong> Kurros, Sathran, Vis, Ziflos</p>\n<p><strong>Female Names.</strong> Grai, Ian—, Kinnas, Sonti</p>\n<p><strong>Surnames.</strong> Gov, Keffane, Mullisa, Vel</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "traits": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "identifier": "kiffar",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
     "advancement": [
       {
-        "_id": "18NWeCDyTV2azKEw",
+        "_id": "Fcym6kff1WwxrXYv",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.speciesfeatures.bNabQm91AzbC9fnA",
-            "Compendium.sw5e.speciesfeatures.cBaxYY0ff0xcdAdM",
-            "Compendium.sw5e.speciesfeatures.ymArtvjbbfzLkyHo",
-            "Compendium.sw5e.speciesfeatures.ygByoLLrax2uLL12",
-            "Compendium.sw5e.speciesfeatures.vRZHypNpHsMemV2B",
-            "Compendium.sw5e.speciesfeatures.VQy6DkhUgB3nYYui",
-            "Compendium.sw5e.speciesfeatures.LOmq7QKDlRX1gTsc",
-            "Compendium.sw5e.speciesfeatures.pGmC2ZbzP0LOZaDZ",
-            "Compendium.sw5e.speciesfeatures.bm8FgdVGDalQlwT0",
-            "Compendium.sw5e.speciesfeatures.1HXxcR15JKy3bZmK"
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bNabQm91AzbC9fnA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cBaxYY0ff0xcdAdM",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ymArtvjbbfzLkyHo",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ygByoLLrax2uLL12",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vRZHypNpHsMemV2B",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VQy6DkhUgB3nYYui",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LOmq7QKDlRX1gTsc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.pGmC2ZbzP0LOZaDZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bm8FgdVGDalQlwT0",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1HXxcR15JKy3bZmK",
+              "optional": false
+            }
           ],
-          "optional": true
+          "optional": true,
+          "power": null
         },
         "value": {},
         "level": 0,
         "title": "Features"
       },
       {
-        "_id": "p01YLRWOisT1fCr4",
+        "_id": "xjFVJM1Za9Oj9dai",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
-          "points": 3
+          "points": 3,
+          "cap": 2
         },
-        "value": {},
+        "value": {
+          "type": "asi"
+        },
         "level": 0
       },
       {
-        "_id": "kCXR7SC6Dwd16nO3",
+        "_id": "1iOwyXmgAIZmeDxU",
         "type": "Size",
         "configuration": {
           "sizes": [
@@ -65,7 +120,7 @@
         "level": 0
       },
       {
-        "_id": "19eoA3X0LCc21T4m",
+        "_id": "1LqU5qvs0JkzM9P0",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -78,16 +133,15 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 0
       }
     ],
-    "details": {
-      "isDroid": false
-    },
-    "-=traits": null,
     "skinColorOptions": {
       "value": "Light to dark tones"
     },
@@ -98,7 +152,7 @@
       "value": "Orange, brown, green, blue, or gray"
     },
     "colorScheme": {
-      "value": null
+      "value": ""
     },
     "distinctions": {
       "value": "Near-human, rare psychometry ability"
@@ -121,13 +175,18 @@
     "slanguage": {
       "value": "Galactic Basic"
     },
-    "-=damage": null,
-    "-=armorproperties": null,
-    "-=weaponproperties": null,
-    "movement": {
-      "walk": 30
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
     }
   },
+  "effects": [],
+  "_id": "PdQm6LvOEOWbxOpg",
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -135,12 +194,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1667426105595,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797028,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_id": "yWV2vZQTbdE6xAei",
-  "_key": "!items!yWV2vZQTbdE6xAei"
+  "_key": "!items!PdQm6LvOEOWbxOpg"
 }

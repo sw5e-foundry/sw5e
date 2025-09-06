@@ -16,80 +16,100 @@
   "system": {
     "description": {
       "value": "<h1>Sawbones Practice</h1>\n<p>Those operatives who choose the Sawbones Practice have studied the humanoid body on a more intimate level than other operatives. While others may know where best to stab in order to kill, you also know how to repair the wounds you inflict, as well as how to make them even deeper. You delve into the secrets of the body, learning as much medical knowledge as you can get your hands on, regardless of how dirty the work becomes.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "sawbonespractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "LNhkBfnjJpUEigue",
+        "_id": "5TGO6W89MMe1FNCf",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.kVTZjfeZRtAQTRNZ",
-            "Compendium.sw5e.archetypefeatures.Zy87jhJHs3BUGim5"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.kVTZjfeZRtAQTRNZ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Zy87jhJHs3BUGim5",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "mupJhhrlc3BAyH23",
+        "_id": "1QLDEbs38idU5q3j",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.eWjwLseohzB8EhYQ"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.eWjwLseohzB8EhYQ",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "AsId6zXq1bV1Eb5e",
+        "_id": "1Q899MMTCmrfR3Pz",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.4vKrQarcBwYaFiQ8"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.4vKrQarcBwYaFiQ8",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "1d3oXwMzbZTz1kDD",
+        "_id": "17f0uuXIBGVbyu8S",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.IBxXS7o4VV3znf5i"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.IBxXS7o4VV3znf5i",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "139BUq0A9iWZ1EIe",
+        "_id": "mw3PYMz3vTL1tCUF",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "skills:med"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -100,7 +120,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -108,11 +128,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959761,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689691,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!clgsLYZaIxSQ0pLW"
 }

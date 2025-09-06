@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Triage Technique:</strong> 11th level</em></p>\n<p>When you target a creature with your Ranger's Quarry, you can grant one of the following additional effects of your choice:</p>\n<ul>\n<li><strong><em>Adrenaline/Tranquilizer.</em></strong> The creature's movement speed is doubled until the end of its next turn. Alternatively, it gains a level of slowed until the end of its next turn.</li>\n<li><strong><em>Focus/Dizziness.</em></strong> The creature has either advantage or disadvantage (your choice) on the first ability check, attack roll, or saving throw it makes within the next minute.</li>\n<li><strong><em>Toughen/Weaken.</em></strong> The creature gains temporary hit points equal to your scout level, which last for 1 minute. Alternatively, the creature must make a Constitution saving throw against your tech save DC. On a failure, it takes psychic damage equal to your scout level and it can't regain hit points until the start of your next turn.</li>\n</ul>\n<p>You can use each feature once. You regain any expended uses when you complete a short or long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Scout (Triage Technique) 11",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -33,33 +34,37 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -83,25 +88,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Scout"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493957914,
-    "modifiedTime": 1698794203484,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418053762,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!bayEAWiTjhqDChpF"
 }

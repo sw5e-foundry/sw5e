@@ -8,38 +8,41 @@
   "system": {
     "description": {
       "value": "Ammunition, reload 24",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 6000,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -49,19 +52,23 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
-    "chatFlavor": null,
-    "critical": null,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -71,21 +78,29 @@
       ],
       "versatile": ""
     },
-    "formula": null,
-    "save": null,
-    "armor": null,
-    "hp": null,
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "armor": {
+      "value": null
+    },
+    "hp": {
+      "value": null,
+      "max": null,
+      "dt": null,
+      "conditions": ""
+    },
     "modify": {
       "chassis": "none",
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null
+      "changes": {}
     },
-    "weaponType": "tertiary (starship)",
     "weaponClass": "",
-    "baseItem": "",
     "ammo": {
       "target": "",
       "value": null,
@@ -94,56 +109,30 @@
         "sscluster"
       ]
     },
-    "properties": {
-      "amm": true,
-      "aut": false,
-      "bur": null,
-      "con": null,
-      "def": null,
-      "dex": null,
-      "dir": null,
-      "drm": false,
-      "dgd": false,
-      "dis": null,
-      "dpt": false,
-      "dou": false,
-      "exp": false,
-      "fin": false,
-      "fix": false,
-      "foc": false,
-      "hvy": false,
-      "hid": false,
-      "hom": false,
-      "ion": false,
-      "ken": null,
-      "lgt": false,
-      "lum": false,
-      "mlt": false,
-      "mig": false,
-      "ovr": null,
-      "pic": null,
-      "pow": false,
-      "rap": null,
-      "rch": false,
-      "rel": 24,
-      "ret": false,
-      "sat": false,
-      "shk": null,
-      "sil": false,
-      "spc": true,
-      "str": null,
-      "thr": false,
-      "two": false,
-      "ver": false,
-      "vic": null,
-      "zon": false,
-      "mgc": false,
-      "ran": false,
-      "smr": false
-    },
-    "proficient": true,
+    "properties": [
+      "amm",
+      "rel",
+      "spc"
+    ],
+    "proficient": 1,
     "attuned": false,
-    "weaponSize": "Huge"
+    "type": {
+      "value": "tertiary (starship)",
+      "subtype": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "_propertyValues": {},
+    "container": null,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "firingArc": ""
   },
   "ownership": {
     "default": 0
@@ -152,11 +141,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494019833,
-    "modifiedTime": 1699591748142,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552917972,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!ZZsEu5ijYwqGLMIU"
 }

@@ -1,11 +1,16 @@
-<form id="recharge-repair-hd" class="dialog-content" onsubmit="event.preventDefault();">
-    <p>{{ localize "SW5E.RechargeRepairHint" }}</p>
+<form id="recharge-repair-hulld" class="dialog-content" onsubmit="event.preventDefault();">
+    <p>
+        {{#if isGroup}}{{ localize "SW5E.RechargeRepairHintGroup" }}
+        {{else}}{{ localize "SW5E.RechargeRepairHint" }}{{/if}}
+    </p>
+
+    {{#if availableHullD}}
     <div class="form-group">
         <label>{{ localize "SW5E.RechargeRepairSelect" }}</label>
         <div class="form-fields">
             <select name="hulld">
                 {{#select denomination}}
-                {{#each availableHD as |num denom|}}
+                {{#each availableHullD as |num denom|}}
                 <option value="{{denom}}">{{denom}} ({{num}} {{ localize "SW5E.available" }})</option>
                 {{/each}}
                 {{/select}}
@@ -18,11 +23,18 @@
         <p class="notes">{{ localize "SW5E.RechargeRepairNoHD" }}</p>
         {{/unless}}
     </div>
-    
+    {{else}}
+    <div class="form-group">
+        <label>{{ localize "SW5E.HullDiceAutoSpend.Label" }}</label>
+        <input type="checkbox" name="autoHullD">
+        <p class="hint">{{localize "SW5E.HullDiceAutoSpend.Hint" }}</p>
+    </div>
+    {{/if}}
+
     {{#if promptNewDay}}
     <div class="form-group">
-        <label>Is New Day?</label>
-        <input type="checkbox" name="newDay" {{checked newDay}}/>
+        <label>{{ localize "SW5E.NewDay" }}</label>
+        <input type="checkbox" name="newDay" {{checked newDay}} />
         <p class="hint">Recover limited use abilities which recharge "per day"?</p>
     </div>
     {{/if}}

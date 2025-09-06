@@ -10,27 +10,29 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Power Die Location:</strong> Shields</em><br />When you have no shields, as an action, you can expend one power die to expend a shield die to bring your shields back online with a value equal to your ship's regeneration rate plus the amount rolled on the power die.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Technician 1st Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -40,17 +42,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "powerdice",
       "target": "attributes.power.shields.value",
-      "amount": 1
+      "amount": 1,
+      "scale": false
     },
     "ability": "",
     "actionType": "heal",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -85,26 +88,27 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Technician"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": "Stratagem"
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "1st Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963457,
-    "modifiedTime": 1699591629489,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368730248,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!hbxNu6cTyA58N6hM"
 }

@@ -8,27 +8,29 @@
   "system": {
     "description": {
       "value": "<p>At 4th rank, when you take the Patch action, you can choose to forgo your proficiently equipped bonus. If you succeed on the check, you can expend 2 Hull Dice, instead of one. For each Hull Die spent in this way, roll the die and add the ship's Constitution modifier to it.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Technician 4th Rank",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -39,16 +41,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,15 +81,16 @@
         "turn": null
       }
     },
-    "deployment": {
-      "value": "Technician"
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "featureType": {
-      "value": ""
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
     },
-    "rank": {
-      "value": "4th Rank"
-    }
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -95,11 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493963419,
-    "modifiedTime": 1699591629484,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368729854,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!CSUFg11onuVBt0Rw"
 }

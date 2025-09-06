@@ -1,8 +1,202 @@
 {
-  "_id": "PnwyP9DTF7IUItOB",
   "name": "Zabrak",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:55.9186198+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-zabrak"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Zabrak.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Zabrak are near-human, but have a number of significant physical characteristics that set them apart from baseline Humanity. The most striking of these are a series of vestigial horns that crown the heads of both males and females. These horns grow at puberty in varying patterns and signified that their rite of passage is drawing near.</p>\n<p>In addition to their horns, another of the traits that make zabrak instantly recognizable are their facial tattoos, which are made up of thin lines received during their rite of passage. These could symbolize many things, including but not limited to family lineage, place of birth, or even a design that reflected their individual personalities.</p>\n<p>Lastly, zabraks possess a second heart.</p>\n<h2>Society and Culture</h2>\n<p>Zabrak are often seen by most other species as being single-minded, an observation that is not terribly incorrect. This single-minded determination comes from the fact that they are a species with a strong sense of self-assuredness, confident that they are able to accomplish any task that they set out to do. However, this does not lead a zabrak to develop a sense of prideful superiority towards others. Though it is not uncommon to see competition between colonies, this is not seen as a negative. The zabraks believe that the various experiences of the different colonies only serve to add to the species' overall value throughout the galaxy.</p>\n<h2>Names</h2>\n<p>Zabrak names are usually derived from the animals living on their planet. Zabraks don't use surnames.</p>\n<p><strong>Male Names.</strong> Kadro, Muraa, Neqama, Ruvroo, Xadra</p>\n<p><strong>Female Names.</strong> Blostopa, Mega, Novrar, Rebroke</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "PHB"
+    },
+    "identifier": "zabrak",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1TpuzWVGYT2wOyrk",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.60YNHc3KDdzK32k0",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.1ivfhdCjWjbiDjYl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.plAIPiBU1eOKmHRC",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.M1nyItdg8JMJArzl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PMTzgRJe7Juw7OoN",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TPyIVhIYtahoEqCU",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PU8t5srK9HRcTwHH",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.UzGZ2oBr6XsfmFl3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xrJ0Ait0eoniHROj",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xfwtCqZMTOMjjFCA",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.x5RsIg0gRTf29yej",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "LDpoOGbAJ6O1zT9N",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1f1zGIz7pAqKCIw5",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "2K3YAeh8raTDmcdJ",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:per",
+                "skills:itm"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "tool:artisan:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Pale to dark brown, red, orange and yellow"
+    },
+    "hairColorOptions": {
+      "value": "Black, blonde, brown, red, or purple"
+    },
+    "eyeColorOptions": {
+      "value": "Yellow, green, orange, brown, blue, red, or purple"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Horns, two hearts, facial tattoos"
+    },
+    "heightAverage": {
+      "value": "5'1\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "120 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": ""
+    },
+    "slanguage": {
+      "value": "Zabraki"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "o7n6csSMm1fhRWhM",
@@ -74,152 +268,22 @@
       "name": "Zabrak",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!PnwyP9DTF7IUItOB.o7n6csSMm1fhRWhM"
+      "_key": "!items.effects!J6RBTCTrAOCTh5WL.o7n6csSMm1fhRWhM"
     }
   ],
+  "_id": "J6RBTCTrAOCTh5WL",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:55.9186198+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-zabrak"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Zabrak are near-human, but have a number of significant physical characteristics that set them apart from baseline Humanity. The most striking of these are a series of vestigial horns that crown the heads of both males and females. These horns grow at puberty in varying patterns and signified that their rite of passage is drawing near.</p>\n<p>In addition to their horns, another of the traits that make zabrak instantly recognizable are their facial tattoos, which are made up of thin lines received during their rite of passage. These could symbolize many things, including but not limited to family lineage, place of birth, or even a design that reflected their individual personalities.</p>\n<p>Lastly, zabraks possess a second heart.</p>\n<h2>Society and Culture</h2>\n<p>Zabrak are often seen by most other species as being single-minded, an observation that is not terribly incorrect. This single-minded determination comes from the fact that they are a species with a strong sense of self-assuredness, confident that they are able to accomplish any task that they set out to do. However, this does not lead a zabrak to develop a sense of prideful superiority towards others. Though it is not uncommon to see competition between colonies, this is not seen as a negative. The zabraks believe that the various experiences of the different colonies only serve to add to the species' overall value throughout the galaxy.</p>\n<h2>Names</h2>\n<p>Zabrak names are usually derived from the animals living on their planet. Zabraks don't use surnames.</p>\n<p><strong>Male Names.</strong> Kadro, Muraa, Neqama, Ruvroo, Xadra</p>\n<p><strong>Female Names.</strong> Blostopa, Mega, Novrar, Rebroke</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "PHB",
-    "identifier": "zabrak",
-    "advancement": [
-      {
-        "_id": "18j6jllrD8Ym1Jwl",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.60YNHc3KDdzK32k0",
-            "Compendium.sw5e.speciesfeatures.1ivfhdCjWjbiDjYl",
-            "Compendium.sw5e.speciesfeatures.plAIPiBU1eOKmHRC",
-            "Compendium.sw5e.speciesfeatures.M1nyItdg8JMJArzl",
-            "Compendium.sw5e.speciesfeatures.PMTzgRJe7Juw7OoN",
-            "Compendium.sw5e.speciesfeatures.TPyIVhIYtahoEqCU",
-            "Compendium.sw5e.speciesfeatures.PU8t5srK9HRcTwHH",
-            "Compendium.sw5e.speciesfeatures.UzGZ2oBr6XsfmFl3",
-            "Compendium.sw5e.speciesfeatures.xrJ0Ait0eoniHROj",
-            "Compendium.sw5e.speciesfeatures.xfwtCqZMTOMjjFCA",
-            "Compendium.sw5e.speciesfeatures.x5RsIg0gRTf29yej"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1z4WM2BBwol61ycR",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "con": 2
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "11EtRWkxyTZH17nA",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "w2NlePAIhFTHTYaK",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "skills:per",
-                "skills:itm"
-              ]
-            },
-            {
-              "count": 1,
-              "pool": [
-                "tool:artisan:*"
-              ]
-            }
-          ],
-          "grants": [],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Pale to dark brown, red, orange and yellow"
-    },
-    "hairColorOptions": {
-      "value": "Black, blonde, brown, red, or purple"
-    },
-    "eyeColorOptions": {
-      "value": "Yellow, green, orange, brown, blue, red, or purple"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Horns, two hearts, facial tattoos"
-    },
-    "heightAverage": {
-      "value": "5'1\""
-    },
-    "heightRollMod": {
-      "value": "+2d12\""
-    },
-    "weightAverage": {
-      "value": "120 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": null
-    },
-    "slanguage": {
-      "value": "Zabraki"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002095,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796830,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!PnwyP9DTF7IUItOB"
+  "_key": "!items!J6RBTCTrAOCTh5WL"
 }

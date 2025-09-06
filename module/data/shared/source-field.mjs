@@ -9,39 +9,49 @@ const { SchemaField, StringField } = foundry.data.fields;
  * @property {string} license  Type of license that covers this item.
  */
 export default class SourceField extends SchemaField {
-  constructor(fields={}, options={}) {
-    super({
-      book: new StringField({label: "SW5E.SourceBook"}),
-      page: new StringField({label: "SW5E.SourcePage"}),
-      custom: new StringField({label: "SW5E.SourceCustom"}),
-      license: new StringField({label: "SW5E.SourceLicense"}),
+  constructor( fields = {}, options = {} ) {
+    fields = {
+      book: new StringField( { label: "SW5E.SourceBook" } ),
+      page: new StringField( { label: "SW5E.SourcePage" } ),
+      custom: new StringField( { label: "SW5E.SourceCustom" } ),
+      license: new StringField( { label: "SW5E.SourceLicense" } ),
       ...fields
-    }, { label: "SW5E.Source", ...options });
+    };
+    Object.entries( fields ).forEach( ( [k, v] ) => !v ? delete fields[k] : null );
+    super( fields, { label: "SW5E.Source", ...options } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  initialize(value, model, options={}) {
-    const obj = super.initialize(value, model, options);
+  initialize( value, model, options = {} ) {
+    const obj = super.initialize( value, model, options );
 
-    Object.defineProperty(obj, "label", {
+    Object.defineProperty( obj, "label", {
       get() {
         if ( this.custom ) return this.custom;
-        const page = Number.isNumeric(this.page)
-          ? game.i18n.format("SW5E.SourcePageDisplay", { page: this.page }) : this.page;
-        return game.i18n.format("SW5E.SourceDisplay", { book: this.book ?? "", page: page ?? "" }).trim();
+        const page = Number.isNumeric( this.page )
+          ? game.i18n.format( "SW5E.SourcePageDisplay", { page: this.page } ) : this.page;
+        return game.i18n.format( "SW5E.SourceDisplay", { book: this.book ?? "", page: page ?? "" } ).trim();
       },
       enumerable: false
-    });
-    Object.defineProperty(obj, "toString", {
+    } );
+    Object.defineProperty( obj, "toString", {
       value: () => {
-        foundry.utils.logCompatibilityWarning("Source has been converted to an object, the label can now be accessed "
-         + "using the `source#label` property.", { since: "SW5e 2.4", until: "SW5e 2.6" });
+        foundry.utils.logCompatibilityWarning(
+          "Source has been converted to an object, the label can now be accessed using the `source#label` property.",
+          { since: "SW5e 2.4", until: "SW5e 3.1" }
+        );
         return obj.label;
       },
       enumerable: false
-    });
+    } );
+    Object.defineProperty( obj, "directlyEditable", {
+      get() {
+        return ( this.custom ?? "" ) === this.label;
+      },
+      enumerable: false
+    } );
 
     return obj;
   }

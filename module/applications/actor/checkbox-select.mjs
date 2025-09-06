@@ -3,8 +3,8 @@
  * @extends {Dialog}
  */
 export default class CheckboxSelectDialog extends Dialog {
-  constructor(checkboxes, dialogData = {}, options = {}) {
-    super(dialogData, options);
+  constructor( checkboxes, dialogData = {}, options = {} ) {
+    super( dialogData, options );
     this.checkboxes = checkboxes;
   }
 
@@ -12,10 +12,10 @@ export default class CheckboxSelectDialog extends Dialog {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return mergeObject( super.defaultOptions, {
       template: "systems/sw5e/templates/apps/checkbox-select.hbs",
       classes: ["sw5e", "dialog"]
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -52,7 +52,7 @@ export default class CheckboxSelectDialog extends Dialog {
    *  defaultSelect: [ "cheese", "pepperoni" ]
    * });
    */
-  static async checkboxSelect({
+  static async checkboxSelect( {
     title,
     content,
     checkboxes,
@@ -62,14 +62,14 @@ export default class CheckboxSelectDialog extends Dialog {
     render,
     rejectClose = false,
     options = {}
-  } = {}) {
-    return new Promise((resolve, reject) => {
+  } = {} ) {
+    return new Promise( ( resolve, reject ) => {
       const select = {};
-      for (const key of Object.keys(checkboxes)) {
+      for ( const key of Object.keys( checkboxes ) ) {
         select[key] = {
-          label: game.i18n.localize(checkboxes[key]),
-          selected: defaultSelect.includes(key),
-          disabled: disabled.includes(key)
+          label: game.i18n.localize( checkboxes[key] ),
+          selected: defaultSelect.includes( key ),
+          disabled: disabled.includes( key )
         };
       }
       const dialog = new this(
@@ -80,24 +80,24 @@ export default class CheckboxSelectDialog extends Dialog {
           buttons: {
             ok: {
               icon: '<i class="fas fa-check"></i>',
-              label: game.i18n.localize(confirmLabel),
+              label: game.i18n.localize( confirmLabel ),
               callback: html => {
-                const boxes = html[0].querySelectorAll("input");
+                const boxes = html[0].querySelectorAll( "input" );
                 const result = [];
-                for (const box of boxes) if (box.checked) result.push(box.name);
-                resolve(result);
+                for ( const box of boxes ) if ( box.checked ) result.push( box.name );
+                resolve( result );
               }
             }
           },
           render,
           close: () => {
-            if (rejectClose) reject("The selection Dialog was closed without a choice being made");
-            else resolve(null);
+            if ( rejectClose ) reject( "The selection Dialog was closed without a choice being made" );
+            else resolve( null );
           }
         },
         options
       );
-      dialog.render(true);
-    });
+      dialog.render( true );
+    } );
   }
 }

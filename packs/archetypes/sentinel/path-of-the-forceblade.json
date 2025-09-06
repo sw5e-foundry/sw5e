@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Path of the Forceblade</h1>\n<p>Some few master their weapon in ways that differ from their peers. Those sentinels who follow the Path of the Forceblade channel the Force into their weapon, forming a unique connection that grants you greater control over the weapon; it becomes an extension of their will.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "pathoftheforceblade",
     "classIdentifier": "sentinel",
     "advancement": [
       {
-        "_id": "1pRwAViqUVRIrZy1",
+        "_id": "d4TH2oX33zN1JiKR",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.3kxULrcQfqD0PHCi",
-            "Compendium.sw5e.archetypefeatures.KOiETj8QsFdp2cVz"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.3kxULrcQfqD0PHCi",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.KOiETj8QsFdp2cVz",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1kj5XUzhArwE1Nde",
+        "_id": "1NGJfgQgFwJ3TamM",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Yq4cBPxGVtcsjwdT"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Yq4cBPxGVtcsjwdT",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "XvUSuoSthFnfetwl",
+        "_id": "P9qkojsQCVb1JOLt",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.9UP919oW3qE3p31P"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.9UP919oW3qE3p31P",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "zS6x4O4KmSj1l13o",
+        "_id": "1OyeWvNTGmxj1qmE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.P5jlHfbFfEgppwin"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.P5jlHfbFfEgppwin",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,11 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959753,
-    "modifiedTime": 1695981489837,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689584,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!Wq9eYdFiIcwL0Y4p"
 }

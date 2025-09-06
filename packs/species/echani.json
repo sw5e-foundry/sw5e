@@ -1,8 +1,200 @@
 {
-  "_id": "X4rO9i7Nn51TeZEG",
   "name": "Echani",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2771354+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-echani"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Echani.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Echani are characterized by their white skin, hair, and eyes, and their remarkable tendency to look very much alike one another to outside observers, particularly amongst family members. It is thought that their origins stem from Arkanian experimentation on the human genome, a hypothesis that could explain their physical conformity.</p>\n<h2>Society and Culture</h2>\n<p>A matriarchal, caste-based society originating from the Inner Rim world of Eshan, the echani spread to encompass a confederacy of six worlds including Bengali and Thyrsus, known as the Six Sisters, governed by the all-female Echani Command. </p>\n<p>\t</p>\n<p>Echani generals are sometimes seen by others as having the ability to predict their opponent's next move. This is no biologicial trait inherent to the species, but rather stems from the fact that combat is so ingrained into every level of echani culture; the echani hold to the idea that combat is the truest form of communication, and to know someone fully, you must fight them. While their combat rituals require complete freedom of movement and unarmed martial arts, in warfare, they tend towards light armor and melee weapons, and are considered excellent craftsmen of such.</p>\n<h2>Names</h2>\n<p>Echani names tend to lack hard consonants, but are otherwise as variable as human ones. Echani surnames are tied directly to their place in the caste system.</p>\n<p><strong>Male Names.</strong> Caelian, Inarin, Losor, Uelis, Yusanis </p>\n<p><strong>Female Names.</strong> Astri, Brianna, Isena, Raskta, Senriel</p>\n<p><strong>Surnames.</strong> Authal, Elysi, Fenni, Kinro, Lsu</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "echani",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "K5OyizYc8xW1Kq7b",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.i5PnJvFYEJxFC6er",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Ko83e5qNjJyfEhE9",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BjB7NfMxDlDBUjMM",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.8GWGiRmWcdH9unxG",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.n9YpklVcZg80rvlV",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DLkwuKQnQCNpJgym",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WKJVAX8Tf8M3wEYg",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JZQUo3cCOZ2AgCcm",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.4llZIg5Cg2h1YAK9",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.25Dmy1sbRrjVftA2",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.eslyAMIFXCdjw554",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "ah8m473hGcv167AM",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "wis": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "122c5rEoUMCPWgKc",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1GsHpZ4da1Vm6AGu",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "weapon:mvb:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:lor",
+            "skills:acr",
+            "armor:lgt"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Pale tones"
+    },
+    "hairColorOptions": {
+      "value": "White"
+    },
+    "eyeColorOptions": {
+      "value": "Silver"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Fair skin, white hair and eyes, remarkable familial similarity."
+    },
+    "heightAverage": {
+      "value": "5'1\""
+    },
+    "heightRollMod": {
+      "value": "+1d10\""
+    },
+    "weightAverage": {
+      "value": "105 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Eshan"
+    },
+    "slanguage": {
+      "value": "Galactic Basic"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "HNBMxZCToQEy6PSr",
@@ -74,150 +266,22 @@
       "name": "Echani",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!X4rO9i7Nn51TeZEG.HNBMxZCToQEy6PSr"
+      "_key": "!items.effects!9w8whTkcbsnqnRVK.HNBMxZCToQEy6PSr"
     }
   ],
+  "_id": "9w8whTkcbsnqnRVK",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2771354+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-echani"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Echani are characterized by their white skin, hair, and eyes, and their remarkable tendency to look very much alike one another to outside observers, particularly amongst family members. It is thought that their origins stem from Arkanian experimentation on the human genome, a hypothesis that could explain their physical conformity.</p>\n<h2>Society and Culture</h2>\n<p>A matriarchal, caste-based society originating from the Inner Rim world of Eshan, the echani spread to encompass a confederacy of six worlds including Bengali and Thyrsus, known as the Six Sisters, governed by the all-female Echani Command. </p>\n<p>\t</p>\n<p>Echani generals are sometimes seen by others as having the ability to predict their opponent's next move. This is no biologicial trait inherent to the species, but rather stems from the fact that combat is so ingrained into every level of echani culture; the echani hold to the idea that combat is the truest form of communication, and to know someone fully, you must fight them. While their combat rituals require complete freedom of movement and unarmed martial arts, in warfare, they tend towards light armor and melee weapons, and are considered excellent craftsmen of such.</p>\n<h2>Names</h2>\n<p>Echani names tend to lack hard consonants, but are otherwise as variable as human ones. Echani surnames are tied directly to their place in the caste system.</p>\n<p><strong>Male Names.</strong> Caelian, Inarin, Losor, Uelis, Yusanis </p>\n<p><strong>Female Names.</strong> Astri, Brianna, Isena, Raskta, Senriel</p>\n<p><strong>Surnames.</strong> Authal, Elysi, Fenni, Kinro, Lsu</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "echani",
-    "advancement": [
-      {
-        "_id": "16fsEVplpfm5cqbk",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.i5PnJvFYEJxFC6er",
-            "Compendium.sw5e.speciesfeatures.Ko83e5qNjJyfEhE9",
-            "Compendium.sw5e.speciesfeatures.BjB7NfMxDlDBUjMM",
-            "Compendium.sw5e.speciesfeatures.8GWGiRmWcdH9unxG",
-            "Compendium.sw5e.speciesfeatures.n9YpklVcZg80rvlV",
-            "Compendium.sw5e.speciesfeatures.DLkwuKQnQCNpJgym",
-            "Compendium.sw5e.speciesfeatures.WKJVAX8Tf8M3wEYg",
-            "Compendium.sw5e.speciesfeatures.JZQUo3cCOZ2AgCcm",
-            "Compendium.sw5e.speciesfeatures.4llZIg5Cg2h1YAK9",
-            "Compendium.sw5e.speciesfeatures.25Dmy1sbRrjVftA2",
-            "Compendium.sw5e.speciesfeatures.eslyAMIFXCdjw554"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "17aJnZzvOYwoU6Qg",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "dex": 2,
-            "wis": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1mRAskft0NvsIhMs",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "I01efg71hjq1s6Mk",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 2,
-              "pool": [
-                "weapon:mvb:*"
-              ]
-            }
-          ],
-          "grants": [
-            "skills:lor",
-            "skills:acr",
-            "armor:lgt"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Pale tones"
-    },
-    "hairColorOptions": {
-      "value": "White"
-    },
-    "eyeColorOptions": {
-      "value": "Silver"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Fair skin, white hair and eyes, remarkable familial similarity."
-    },
-    "heightAverage": {
-      "value": "5'1\""
-    },
-    "heightRollMod": {
-      "value": "+1d10\""
-    },
-    "weightAverage": {
-      "value": "105 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Eshan"
-    },
-    "slanguage": {
-      "value": "Galactic Basic"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002104,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796576,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!X4rO9i7Nn51TeZEG"
+  "_key": "!items!9w8whTkcbsnqnRVK"
 }

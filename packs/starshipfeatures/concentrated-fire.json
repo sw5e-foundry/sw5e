@@ -8,27 +8,29 @@
   "system": {
     "description": {
       "value": "<p>Also at 2nd tier, once per turn, when you attack a ship of size Large or larger, and it was previously hit by an allied ship of size Large or larger's weapons since the end of its last turn, you have advantage on the attack. If you already had advantage, you may instead reroll one of the dice once (your choice).</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": "when you attack a ship of size Large or larger, and it was previously hit by an allied ship of size Large or larger’s weapons since the end of its last turn"
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -36,19 +38,20 @@
       "units": ""
     },
     "uses": {
-      "value": "",
+      "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "rwak",
-    "attackBonus": "0",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,8 +81,16 @@
         "turn": null
       }
     },
-    "size": "Large",
-    "tier": "2"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -88,11 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494017914,
-    "modifiedTime": 1699591742516,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552913521,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!AmZvh5sRfZMJQSmr"
 }

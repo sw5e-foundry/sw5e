@@ -17,12 +17,12 @@ export default class ProficiencyConfig extends BaseConfigSheet {
 
   /** @inheritdoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       classes: ["sw5e"],
       template: "systems/sw5e/templates/apps/proficiency-config.hbs",
       width: 500,
       height: "auto"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
@@ -53,8 +53,8 @@ export default class ProficiencyConfig extends BaseConfigSheet {
       ? this.document.type === "starship"
         ? CONFIG.SW5E.starshipSkills[this.options.key].label
         : CONFIG.SW5E.skills[this.options.key].label
-      : Trait.keyLabel(this.options.key, { trait: "tool" });
-    return `${game.i18n.format("SW5E.ProficiencyConfigureTitle", {label})}: ${this.document.name}`;
+      : Trait.keyLabel( this.options.key, { trait: "tool" } );
+    return `${game.i18n.format( "SW5E.ProficiencyConfigureTitle", {label} )}: ${this.document.name}`;
   }
 
   /* -------------------------------------------- */
@@ -67,7 +67,7 @@ export default class ProficiencyConfig extends BaseConfigSheet {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  getData(options={}) {
+  getData( options={} ) {
     return {
       abilities: CONFIG.SW5E.abilities,
       proficiencyLevels: CONFIG.SW5E.proficiencyLevelsLabels,
@@ -82,17 +82,17 @@ export default class ProficiencyConfig extends BaseConfigSheet {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  async _updateObject(event, formData) {
-    if ( this.isTool ) return super._updateObject(event, formData);
+  async _updateObject( event, formData ) {
+    if ( this.isTool ) return super._updateObject( event, formData );
     const passive = formData[`system.skills.${this.options.key}.bonuses.passive`];
-    const passiveRoll = new Roll(passive);
+    const passiveRoll = new Roll( passive );
     if ( !passiveRoll.isDeterministic ) {
-      const message = game.i18n.format("SW5E.FormulaCannotContainDiceError", {
-        name: game.i18n.localize("SW5E.SkillBonusPassive")
-      });
-      ui.notifications.error(message);
-      throw new Error(message);
+      const message = game.i18n.format( "SW5E.FormulaCannotContainDiceError", {
+        name: game.i18n.localize( "SW5E.SkillBonusPassive" )
+      } );
+      ui.notifications.error( message );
+      throw new Error( message );
     }
-    return super._updateObject(event, formData);
+    return super._updateObject( event, formData );
   }
 }

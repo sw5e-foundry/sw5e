@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Performance Practice:</strong> 3rd level</em></p>\n<p>You learn to conduct impressive displays of grace and speed in combat. While you aren't wearing medium or heavy armor or wielding a medium or heavy shield, and you take the Attack action on your turn and attack with a weapon with either the light or finesse properties, your walking speed increases by 10 feet until the end of the turn, and if you deal Sneak Attack damage, you may choose to forgo two of your Sneak Attack dice to make the attack a dazzling step.</p>\n<p>Some of your dazzling steps require your target to make a saving throw to resist the dazzling step's effects. The saving throw DC is calculated as follows:</p>\n<p><em></em>_</p>\n<p><strong>Dazzling Step save DC</strong> = 8 + your proficiency bonus + your Charisma modifier</p>\n<p><em></em>_</p>\n<h3>Defensive Step</h3>\n<p>You defend yourself from further attack. Roll two Sneak Attack dice. You gain temporary hit points that last until the start of your next turn equal to the amount rolled.</p>\n<h3>Mobile Step</h3>\n<p>You twist and twirl around the target. The target must make a Strength saving throw. A Huge or larger creature automatically succeeds. On a failed save, it is pushed back 5 feet, and you can immediately move into the space it just vacated without provoking opportunity attacks.</p>\n<h3>Offensive Step</h3>\n<p>Choose another creature that you can see within your reach. The creature must make a Dexterity saving throw. On a failed save, roll two Sneak Attack dice. The creature takes damage equal to the amount rolled. This damage is of the same as your weapon's damage.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Performance Practice) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,25 +79,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493958144,
-    "modifiedTime": 1699591595222,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368713546,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!q5oRw0VY6iFzFD5m"
 }

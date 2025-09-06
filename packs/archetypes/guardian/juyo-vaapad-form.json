@@ -16,82 +16,108 @@
   "system": {
     "description": {
       "value": "<h1>Juyo/Vaapad Form</h1>\n<p>Juyo/Vaapad Form, also known as Ferocity Form, revels in the satisfaction of battle and victory. Those guardians who focus on Juyo/Vaapad Form channel their emotions into their fighting, making heavy, sweeping strikes.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "juyo-vaapadform",
     "classIdentifier": "guardian",
     "advancement": [
       {
-        "_id": "9wIT4GRKysk130i7",
+        "_id": "47eDxNx9jyQ1mYy6",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.udoaYE19dKjYosoW",
-            "Compendium.sw5e.archetypefeatures.tuT3x2moL6lkTxiW",
-            "Compendium.sw5e.archetypefeatures.mVpigwAIL1Q6dUhT",
-            "Compendium.sw5e.archetypefeatures.xsNi8pgotdI7Xinc"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.udoaYE19dKjYosoW",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.tuT3x2moL6lkTxiW",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.mVpigwAIL1Q6dUhT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.xsNi8pgotdI7Xinc",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1BCFFex17GpO1lgl",
+        "_id": "joMvPx0oksbEZy5z",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.WOC9XyQpdhs2CeGq"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.WOC9XyQpdhs2CeGq",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "5ozB4smc1SDGFcqY",
+        "_id": "186OYMd2vJlY1713",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.CvZhxawQQ7L7MmUT"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.CvZhxawQQ7L7MmUT",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
         "title": "Features"
       },
       {
-        "_id": "eZ5DtSI2diT1Gyb0",
+        "_id": "1PlAgyCYQqcHAZUQ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.21IcHCEbQXjzQ8kr"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.21IcHCEbQXjzQ8kr",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 20,
         "title": "Features"
       },
       {
-        "_id": "9oKadkE3ov4u4t7K",
+        "_id": "elgQ0iscVToupXXC",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "armor:hvy"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -102,7 +128,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -110,11 +136,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959771,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689842,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!odCsSvAG0Tmn6AoK"
 }

@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off" onsubmit="event.preventDefault();">
     <header class="sheet-header flexrow">
         <h1 class="name">
-            <input type="text" name="name" value="{{entity.name}}" placeholder="Name"/>
+            <input type="text" name="name" value="{{entity.name}}" placeholder="Name" />
         </h1>
     </header>
 
@@ -12,17 +12,17 @@
 
     <div class="form-group">
         <label>{{ localize "TABLE.Formula" }}</label>
-        <input type="text" name="formula" value="{{entity.formula}}" placeholder="Roll Formula"/>
+        <input type="text" name="formula" value="{{entity.formula}}" placeholder="Roll Formula" />
     </div>
 
     <div class="form-group">
         <label>{{ localize "TABLE.Replacement" }}</label>
-        <input type="checkbox" name="replacement" {{checked entity.replacement}}/>
+        <input type="checkbox" name="replacement" {{checked entity.replacement}} />
     </div>
 
     <div class="form-group">
         <label>{{ localize "TABLE.DisplayRoll" }}</label>
-        <input type="checkbox" name="displayRoll" {{checked entity.displayRoll}}/>
+        <input type="checkbox" name="displayRoll" {{checked entity.displayRoll}} />
     </div>
 
     <!-- Roll Table Results Loop -->
@@ -62,10 +62,10 @@
 
             {{#each results as |result i|}}
             <li class="table-result flexrow {{#if result.drawn}}drawn{{/if}}" data-result-id="{{result._id}}">
-                <input type="hidden" name="results.{{i}}._id" value="{{result._id}}"/>
+                <input type="hidden" name="results.{{i}}._id" value="{{result._id}}" />
 
                 <div class="result-image">
-                    <img src="{{result.img}}" data-edit="results.{{i}}.img" width="32" height="32"/>
+                    <img src="{{result.img}}" data-edit="results.{{i}}.img" width="32" height="32" />
                 </div>
 
                 <div class="result-type">
@@ -79,10 +79,11 @@
                 </div>
 
                 <div class="result-details">
-                    <input type="hidden" name="results.{{i}}.resultId" value="{{result.resultId}}"/>
+                    <input type="hidden" name="results.{{i}}.resultId" value="{{result.resultId}}" />
 
                     {{#if result.isText}}
-                    <input type="text" name="results.{{i}}.text" value="{{result.text}}" placeholder="Result description"/>
+                    <input type="text" name="results.{{i}}.text" value="{{result.text}}"
+                        placeholder="Result description" />
 
                     {{else if result.isEntity}}
                     <select name="results.{{i}}.collection">
@@ -92,7 +93,7 @@
                         {{/each}}
                         {{/select}}
                     </select>
-                    <input class="result-target" name="results.{{i}}.text" type="text" value="{{result.text}}"/>
+                    <input class="result-target" name="results.{{i}}.text" type="text" value="{{result.text}}" />
 
                     {{else if result.isCompendium}}
                     <select name="results.{{i}}.collection">
@@ -102,18 +103,21 @@
                         {{/each}}
                         {{/select}}
                     </select>
-                    <input class="result-target" name="results.{{i}}.text" type="text" value="{{result.text}}"/>
+                    <input class="result-target" name="results.{{i}}.text" type="text" value="{{result.text}}" />
                     {{/if}}
                 </div>
 
                 <div class="result-weight">
-                    <input type="text" name="results.{{i}}.weight" value="{{result.weight}}" placeholder="1" data-dtype="Number"/>
+                    <input type="text" name="results.{{i}}.weight" value="{{result.weight}}" placeholder="1"
+                        data-dtype="Number" />
                 </div>
 
                 <div class="result-range">
-                    <input type="text" name="results.{{i}}.rangeL" value="{{result.range.[0]}}" placeholder="L" data-dtype="Number"/>
+                    <input type="text" name="results.{{i}}.rangeL" value="{{result.range.[0]}}" placeholder="L"
+                        data-dtype="Number" />
                     <span> - </span>
-                    <input type="text" name="results.{{i}}.rangeH" value="{{result.range.[1]}}" placeholder="H" data-dtype="Number"/>
+                    <input type="text" name="results.{{i}}.rangeH" value="{{result.range.[1]}}" placeholder="H"
+                        data-dtype="Number" />
                 </div>
 
                 {{#if ../owner}}
@@ -121,7 +125,7 @@
                     <a class="lock-result" data-tooltip="TABLE.ToggleDrawn">
                         <i class="fas {{#if result.drawn}}fa-lock{{else}}fa-unlock{{/if}} fa-fw"></i>
                     </a>
-                    <input type="hidden" name="results.{{i}}.drawn" value="{{result.drawn}}" data-dtype="Boolean"/>
+                    <input type="hidden" name="results.{{i}}.drawn" value="{{result.drawn}}" data-dtype="Boolean" />
                     <a class="delete-result" data-tooltip="TABLE.ResultDelete">
                         <i class="fas fa-trash fa-fw"></i>
                     </a>
@@ -141,4 +145,3 @@
         <button class="roll" type="button"><i class="fas fa-dice-d20"></i> {{ localize "TABLE.Roll" }}</button>
     </footer>
 </form>
-

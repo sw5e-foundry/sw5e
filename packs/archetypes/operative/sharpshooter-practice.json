@@ -16,71 +16,88 @@
   "system": {
     "description": {
       "value": "<h1>Sharpshooter Practice</h1>\n<p>Those operatives who choose the Sharpshooter Practice are bringers of death. Striking from a safe distance, the Sharpshooter uses precision shooting to control the battlefield and bring targets down quickly.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "sharpshooterpractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "O2wKnJgV8GX1u1hk",
+        "_id": "Bx4eD9sk1fL1a0ta",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.EPofIsN2oSX6uzQ6",
-            "Compendium.sw5e.archetypefeatures.OtPFxtcX0Jl6C0pV"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.EPofIsN2oSX6uzQ6",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.OtPFxtcX0Jl6C0pV",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1ubgUvgSEytr13wh",
+        "_id": "3k5i2PBD5491MEuT",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.SW97VK7ioAknT184"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.SW97VK7ioAknT184",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "BeYycFIuB8g1eenV",
+        "_id": "tPcZn00WHy3yKHQU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.pMSjuBGHp7lChFdw"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pMSjuBGHp7lChFdw",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "16VdGDqlJdfO1hAm",
+        "_id": "MqXRtUaUEgI1MGl9",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.YMrYuotaa5g9xhKB"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.YMrYuotaa5g9xhKB",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "k7LrS5nCLsu81tcA",
+        "_id": "WJ2nU5ur7ys1UhJg",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -92,9 +109,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -105,7 +125,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -113,11 +133,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959768,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689796,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!lfbHaiCvlK8VdP3V"
 }

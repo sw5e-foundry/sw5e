@@ -13,41 +13,42 @@
   "system": {
     "description": {
       "value": "<h4>Cybernetic Augmentation (Replacement)</h4>\n <p><em>Prerequisite:  Intelligence 13</em></p>\n<hr />\n<p>This augmentation replaces your eyes.</p>\n<p>You can activate or deactivate this augmentation as a bonus action. While this augmentation is active, you gain advantage on Wisdom (Perception) checks that rely on sight beyond 30 feet. In conditions of clear visibility, you can make out details of even extremely distant creatures and objects as small as 2 feet across.</p>\n<p><strong>Side Effect:</strong> While this augmentation is active, you have disadvantage on Wisdom (Perception) and Intelligence (Investigation) checks within 30 feet that rely on sight.</p>\n<p><em>This eye replacement features integrated macrobinoculars, granting improved ability to see further away.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
-    "equipped": false,
     "rarity": "premium",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
       "units": "feet"
     },
@@ -55,16 +56,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,15 +82,26 @@
       "dc": null,
       "scaling": "power"
     },
-    "modificationType": "cybernetic",
-    "modificationSlot": "slot1",
     "modifying": {
       "id": null,
       "disabled": false
     },
-    "properties": {
-      "indeterminate": {}
-    }
+    "properties": [],
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "cybernetic",
+      "subtype": "slot1",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "enchantment": null,
+    "summons": null
   },
   "folder": null,
   "sort": 0,
@@ -97,11 +110,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1673970648621,
-    "modifiedTime": 1695981488156,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418050632,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "eKp6TRmJ1f3grPA9",
   "_key": "!items!eKp6TRmJ1f3grPA9"

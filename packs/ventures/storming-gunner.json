@@ -10,11 +10,12 @@
   "system": {
     "description": {
       "value": "<p>You can use your immense strength to steady primary weapons with the burst, rapid, or saturate features. When you make an attack roll with a primary ship weapon having at least one of these features while on a Medium or smaller ship, you can use your Strength modifier, instead of the ship's Wisdom modifier, for the attack rolls or setting the DC for the targets' saves.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -27,10 +28,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -41,16 +43,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": null,
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -80,18 +83,25 @@
         "turn": null
       }
     },
-    "prerequisites": []
+    "prerequisites": [],
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494021239,
-    "modifiedTime": 1699591752611,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552921190,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!3fHlNmzGAt2OkCte"
 }

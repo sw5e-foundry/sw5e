@@ -13,38 +13,41 @@
   "system": {
     "description": {
       "value": "<h3>Modal (double-saber and tech-staff)</h3>\n<p>A weapon with this property can switch between modes. A list of weapons in parentheses appears with the property-the weapons between which an exotic weapon can be switched by using an object interaction.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 1375,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -53,18 +56,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "mwak",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -94,23 +98,39 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null
+      "changes": {}
     },
-    "weaponType": "exoticLW",
     "weaponClass": "",
-    "baseItem": "saberstaff",
     "ammo": {
       "target": null,
       "value": null,
       "use": null,
       "types": []
     },
-    "properties": {
-      "dou": true,
-      "-=amm": null
+    "properties": [
+      "dou"
+    ],
+    "proficient": null,
+    "_propertyValues": {
+      "dou": true
     },
-    "proficient": null
+    "type": {
+      "value": "exoticLW",
+      "subtype": ""
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "firingArc": ""
   },
   "folder": null,
   "sort": 0,
@@ -119,11 +139,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426099440,
-    "modifiedTime": 1704036394533,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418047287,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "8VjKAKu1UfvGU3t5",
   "_key": "!items!8VjKAKu1UfvGU3t5"

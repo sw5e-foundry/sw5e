@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:15.1804514+00:00",
+      "timestamp": "2023-05-30T20:14:20.0081165+00:00",
       "importer_version": 3,
       "uid": "Archetype.name-mechanist_technique"
     }
@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Mechanist Technique</h1>\n<p>Some scouts are peerless inventors, skilled at working with droids and other forms of technology. Followers of the Mechanist Technique make up for the weakness of organics with the strength and purity of their creations.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "mechanisttechnique",
     "classIdentifier": "scout",
     "advancement": [
       {
-        "_id": "1QKAnAH1QIQs1JHo",
+        "_id": "1JvpDKixgEQULAzq",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.w5dVSh020rm5poaQ",
-            "Compendium.sw5e.archetypefeatures.czcAcya6I9K5RRXe"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.w5dVSh020rm5poaQ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.czcAcya6I9K5RRXe",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "15G71cS6DiIE1gsb",
+        "_id": "19DtYVwjYICpEqlU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.n61Di59i1v3AHzbe"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.n61Di59i1v3AHzbe",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 7,
         "title": "Features"
       },
       {
-        "_id": "11OfnCI2voru1pDN",
+        "_id": "4ZowFZdzZva1mfiK",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.eviAtXKewLeaplqC"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.eviAtXKewLeaplqC",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 11,
         "title": "Features"
       },
       {
-        "_id": "1kUMDSAz5MCH1zcl",
+        "_id": "Yfpio2iUIe21dp3Z",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.uXSijgT60H3yg2Ee"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.uXSijgT60H3yg2Ee",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 15,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,11 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959711,
-    "modifiedTime": 1695981489837,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552688995,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!4ldzxHJd8qW1LGDA"
 }

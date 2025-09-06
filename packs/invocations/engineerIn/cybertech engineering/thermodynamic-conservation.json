@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p>Once per round when you take cold, fire, or lightning damage from a force or tech power, you gain temporary hit points equal to twice the power's level to potentially absorb the damage (minimum of 1). These points last until the end of your next turn.</p>\n<p>If the Mk II upgrade of the affecting amplifier is installed, the temporary hit points gained increase by an amount equal to your Intelligence modifier (minimum of 1).</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Cybertech Engineering)",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "",
       "cost": null,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -91,11 +104,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1680288497256,
-    "modifiedTime": 1699591665882,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368792378,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "y3YJvHgXFFQEiHGm",
   "_key": "!items!y3YJvHgXFFQEiHGm"

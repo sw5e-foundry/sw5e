@@ -16,81 +16,104 @@
   "system": {
     "description": {
       "value": "<h1>Construction Engineering</h1>\n<p>Those engineers who choose the Construction Engineering discipline create portable, pre-built battlements that allow them to command the battlefield.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "constructionengineering",
     "classIdentifier": "engineer",
     "advancement": [
       {
-        "_id": "Dbx3K55sCft1TfXY",
+        "_id": "1t2aJGYaLNrA18fS",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ktQfMH5Yt4sjWtCf",
-            "Compendium.sw5e.archetypefeatures.efnftfI2h5rwSuZI",
-            "Compendium.sw5e.archetypefeatures.CIhtAVNI1zSGCuCC"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ktQfMH5Yt4sjWtCf",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.efnftfI2h5rwSuZI",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.CIhtAVNI1zSGCuCC",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1LLzbgxP9bRD9uto",
+        "_id": "1QwzkDfoAqHhhMXZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.OOGH2EyLvZodWT2Y"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.OOGH2EyLvZodWT2Y",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "prWMu2Bzpaoc1uIL",
+        "_id": "5vnFjG6lhGhMW5Lv",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.CSAxlh0rqViHbixT"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.CSAxlh0rqViHbixT",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
       },
       {
-        "_id": "1BT8QuGJMilqUE7E",
+        "_id": "iNbcoq1rdWDEwJVX",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.2xW5zzabk25ItSJS"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.2xW5zzabk25ItSJS",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
         "title": "Features"
       },
       {
-        "_id": "MGjb38wRBVX1z42E",
+        "_id": "1J7WKKBJt5kH1es3",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "tool:constructorsimplements"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -101,7 +124,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -109,11 +132,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959765,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689753,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!f7POhRSg0x4UXp1i"
 }

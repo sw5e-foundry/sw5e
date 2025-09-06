@@ -13,48 +13,50 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Path of Witchcraft:</strong> 13th and 17th level</em></p>\n<p>You've learned to absorb the fleeting magicks of your familiar. When your familiar is destroyed by taking damage, you can choose to grant temporary hit points equal to [[/r 2d8]] + your Wisdom or Charisma modifier (your choice) to one friendly creature of your choice you can see within 30 feet.</p>\n<p>You can use this feature five times. You gain an additional use at 17th level. You regain all expended uses when you finish a long rest.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Sentinel (Path of Witchcraft) 17",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "30",
+      "value": 30,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 5,
+      "max": "5",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -84,7 +86,16 @@
         "turn": null
       }
     },
-    "className": "Sentinel"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "folder": null,
   "sort": 0,
@@ -93,11 +104,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426104210,
-    "modifiedTime": 1699591595166,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368693873,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "OXsU64Lw1qds23z6",
   "_key": "!items!OXsU64Lw1qds23z6"

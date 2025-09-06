@@ -1,8 +1,175 @@
 {
-  "_id": "mgDm7I7RSzOvuIOG",
   "name": "Codru-Ji",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2741371+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-codru_ji"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Codru-Ji.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Codru-Ji are humanoids generally near-human in their adult appearances, save for their four arms. While their hair, eye, and skin pigmentations tend towards earthen hues, brighter colorations such as blonde hair or blue eyes, though uncommon, also exist. Rarer still, some adults maintain a light coat of fur or elongated, pointed ears. These eccentric attributes result from their unusual childhood forms.</p>\n<p>Codru-Ji children are actually sapient, six-legged canid creatures that cannot speak. Codru-Ji in this stage of their lives are called Wyrwulves: they mature to their more recognizable figures after reaching puberty. At that point, a blue, rubbery substance cocoons a Wyrwulf for several weeks before it emerges as a humanoid adolescent. They do, however, retain both the natural resilience and the enhanced hearing of their previous selves.</p>\n<h2>Society and Culture</h2>\n<p>The Codru-Ji are proud and protective of their ancient customs, and they carefully manage their homeworld's economy to keep a degree of anonymity from the galaxy at large. They fear the tainting of their long-held practices by outside influence as well as prejudice against them for the almost barbaric level of callousness they will display towards one another in pursuit of personal gain. The kidnapping of a political rivals' children or the ransoming of off-worlders back to their people are both common practices. </p>\n<h2>Names</h2>\n<p>Codru-Ji names are often kept to two syllables. Clan names are appended to the given name as a hyphenated affix.</p>\n<p><strong>Male Names.</strong> Kossok, Tirrit, Uttar, Yunnan</p>\n<p><strong>Female Names.</strong> Davvi, Kella, Russa, Zollu </p>\n<p><strong>Clan Names.</strong> -Fa, -Mu, Ro-, -Sy, Yi-</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "codru-ji",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "17FxKHB64bQilmDS",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.i0TaGqvrt2vlvWoC",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RW6tnlHcG4k2dJQy",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HI3dTE0armHm8HEc",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.AWw3wW1Fcl8EpoYK",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rDMuKEYs5FTTnVNX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ZrEu11mFQvXqeOP3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zuFX4LbvfDJzPpd4",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7XvBu9HdayvYHAgT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BRDvXuTPWpkzJfqO",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.XnXDqOPrWPlPKjjv",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9Gwlkl9Vrrvdij8E",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "lkzRKVE0HbomeHsl",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "con": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "5DhI8rjDLW29U4e1",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Light to dark tones"
+    },
+    "hairColorOptions": {
+      "value": "Black, brown, gray, or white (usually with age)"
+    },
+    "eyeColorOptions": {
+      "value": "Black, slate, gray, or brown"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Four arms"
+    },
+    "heightAverage": {
+      "value": "4'6\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "90 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d6) lb."
+    },
+    "homeworld": {
+      "value": "Munto Codru"
+    },
+    "slanguage": {
+      "value": "Codruese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "aU47lgX8jlnHbYS6",
@@ -72,8 +239,7 @@
       "name": "Codru-ji",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!mgDm7I7RSzOvuIOG.aU47lgX8jlnHbYS6"
+      "_key": "!items.effects!vWjZpqR4F2xlbn0T.aU47lgX8jlnHbYS6"
     },
     {
       "_id": "SslLyEo0ihq0EfXd",
@@ -107,128 +273,22 @@
       "name": "Keen Hearing",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!mgDm7I7RSzOvuIOG.SslLyEo0ihq0EfXd"
+      "_key": "!items.effects!vWjZpqR4F2xlbn0T.SslLyEo0ihq0EfXd"
     }
   ],
+  "_id": "vWjZpqR4F2xlbn0T",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2741371+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-codru_ji"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Codru-Ji are humanoids generally near-human in their adult appearances, save for their four arms. While their hair, eye, and skin pigmentations tend towards earthen hues, brighter colorations such as blonde hair or blue eyes, though uncommon, also exist. Rarer still, some adults maintain a light coat of fur or elongated, pointed ears. These eccentric attributes result from their unusual childhood forms.</p>\n<p>Codru-Ji children are actually sapient, six-legged canid creatures that cannot speak. Codru-Ji in this stage of their lives are called Wyrwulves: they mature to their more recognizable figures after reaching puberty. At that point, a blue, rubbery substance cocoons a Wyrwulf for several weeks before it emerges as a humanoid adolescent. They do, however, retain both the natural resilience and the enhanced hearing of their previous selves.</p>\n<h2>Society and Culture</h2>\n<p>The Codru-Ji are proud and protective of their ancient customs, and they carefully manage their homeworld's economy to keep a degree of anonymity from the galaxy at large. They fear the tainting of their long-held practices by outside influence as well as prejudice against them for the almost barbaric level of callousness they will display towards one another in pursuit of personal gain. The kidnapping of a political rivals' children or the ransoming of off-worlders back to their people are both common practices. </p>\n<h2>Names</h2>\n<p>Codru-Ji names are often kept to two syllables. Clan names are appended to the given name as a hyphenated affix.</p>\n<p><strong>Male Names.</strong> Kossok, Tirrit, Uttar, Yunnan</p>\n<p><strong>Female Names.</strong> Davvi, Kella, Russa, Zollu </p>\n<p><strong>Clan Names.</strong> -Fa, -Mu, Ro-, -Sy, Yi-</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "codru-ji",
-    "advancement": [
-      {
-        "_id": "1NdmlZ0NJJKd1Fba",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.i0TaGqvrt2vlvWoC",
-            "Compendium.sw5e.speciesfeatures.RW6tnlHcG4k2dJQy",
-            "Compendium.sw5e.speciesfeatures.HI3dTE0armHm8HEc",
-            "Compendium.sw5e.speciesfeatures.AWw3wW1Fcl8EpoYK",
-            "Compendium.sw5e.speciesfeatures.rDMuKEYs5FTTnVNX",
-            "Compendium.sw5e.speciesfeatures.ZrEu11mFQvXqeOP3",
-            "Compendium.sw5e.speciesfeatures.zuFX4LbvfDJzPpd4",
-            "Compendium.sw5e.speciesfeatures.7XvBu9HdayvYHAgT",
-            "Compendium.sw5e.speciesfeatures.BRDvXuTPWpkzJfqO",
-            "Compendium.sw5e.speciesfeatures.XnXDqOPrWPlPKjjv",
-            "Compendium.sw5e.speciesfeatures.9Gwlkl9Vrrvdij8E"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "TnpUhJ4fTv81TzFW",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "cha": 2,
-            "con": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "171LurfaEKv31GwE",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Light to dark tones"
-    },
-    "hairColorOptions": {
-      "value": "Black, brown, gray, or white (usually with age)"
-    },
-    "eyeColorOptions": {
-      "value": "Black, slate, gray, or brown"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Four arms"
-    },
-    "heightAverage": {
-      "value": "4'6\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "90 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d6) lb."
-    },
-    "homeworld": {
-      "value": "Munto Codru"
-    },
-    "slanguage": {
-      "value": "Codruese"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002127,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797803,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!mgDm7I7RSzOvuIOG"
+  "_key": "!items!vWjZpqR4F2xlbn0T"
 }

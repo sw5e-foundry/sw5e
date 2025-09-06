@@ -1,8 +1,170 @@
 {
-  "_id": "h7a4AXxuGg6ZuusU",
   "name": "Harch",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2801331+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-harch"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Harch.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The Harch possess a large-fanged mouth between two prominent chelicerae, above which they have six red eyes arranged in a semicircle. The two lowest eyes are larger and roughly twice the size of the four smaller eyes. Harch walk on two legs and have six arms, with the second and third set of arm protruding from behind the first pair rather than directly above or below them. These arms are covered in thick hair and end in three-fingered hands.</p>\n<p>The Harch are distantly related to the Aqualish species and there is much debate among geneticists regarding the relationship between the Harch and the Aqualish Ualaq subspecies. However, the Harch themselves considered such discussions to be obscene.</p>\n<h2>Society and Culture</h2>\n<p>Not much is known about the Harch, as few of them have mingled with the galactic community, preferring to stay on Secundus Ando. Harch that leave the planet tend to have a more aspirant nature than their fellows, and often reach great heights in their chosen professions in the galaxy. Such Harch are considered outliers—most apparently care little for titles.</p>\n<p>Like the Arcona species, female Harch are seen as more domineering and aggressive than their male counterparts. It is not unheard of for a male Harch to raise entire broods of hatchlings alone.</p>\n<h2>Names</h2>\n<p>Harch names are not gender-specific. Harch do not use surnames.</p>\n<p><strong>Names.</strong> Cubach, Quixoch, Trench, Turch</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "harch",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "climb": 30,
+      "burrow": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "187ccmTTI0V21t4p",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.TKeWgFpMl26TUyDD",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.czNULlwURR9svBCR",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.VoaeX4LzttRM7EOJ",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.o2kMRE1GpOKO1flH",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PQCipYiLoWOdomkz",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.BiwAPQRuiwoHlNF0",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.sGS7FtJUTXpSvI3y",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LlPjKV8K8DCvn82y",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WigluPOdDUGMhAS1",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.x8wOGbxe7TE2xwiC",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "H9gKV5uJliflCrLm",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 1
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1PDQFxKrQUU1PC1T",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Pale pink"
+    },
+    "hairColorOptions": {
+      "value": "Brown, black"
+    },
+    "eyeColorOptions": {
+      "value": "Red"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Spider-like with six eyes, eight limbs and chelicerae"
+    },
+    "heightAverage": {
+      "value": "5'5\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "150 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Secundus Ando"
+    },
+    "slanguage": {
+      "value": "Harchese"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "fVMBhfpLgK7mYOvF",
@@ -74,130 +236,22 @@
       "name": "Harch",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!h7a4AXxuGg6ZuusU.fVMBhfpLgK7mYOvF"
+      "_key": "!items.effects!xuSvZJygENT4So4T.fVMBhfpLgK7mYOvF"
     }
   ],
+  "_id": "xuSvZJygENT4So4T",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2801331+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-harch"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The Harch possess a large-fanged mouth between two prominent chelicerae, above which they have six red eyes arranged in a semicircle. The two lowest eyes are larger and roughly twice the size of the four smaller eyes. Harch walk on two legs and have six arms, with the second and third set of arm protruding from behind the first pair rather than directly above or below them. These arms are covered in thick hair and end in three-fingered hands.</p>\n<p>The Harch are distantly related to the Aqualish species and there is much debate among geneticists regarding the relationship between the Harch and the Aqualish Ualaq subspecies. However, the Harch themselves considered such discussions to be obscene.</p>\n<h2>Society and Culture</h2>\n<p>Not much is known about the Harch, as few of them have mingled with the galactic community, preferring to stay on Secundus Ando. Harch that leave the planet tend to have a more aspirant nature than their fellows, and often reach great heights in their chosen professions in the galaxy. Such Harch are considered outliers—most apparently care little for titles.</p>\n<p>Like the Arcona species, female Harch are seen as more domineering and aggressive than their male counterparts. It is not unheard of for a male Harch to raise entire broods of hatchlings alone.</p>\n<h2>Names</h2>\n<p>Harch names are not gender-specific. Harch do not use surnames.</p>\n<p><strong>Names.</strong> Cubach, Quixoch, Trench, Turch</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "harch",
-    "advancement": [
-      {
-        "_id": "1KGGBYCBFsa3AV37",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.TKeWgFpMl26TUyDD",
-            "Compendium.sw5e.speciesfeatures.czNULlwURR9svBCR",
-            "Compendium.sw5e.speciesfeatures.VoaeX4LzttRM7EOJ",
-            "Compendium.sw5e.speciesfeatures.o2kMRE1GpOKO1flH",
-            "Compendium.sw5e.speciesfeatures.PQCipYiLoWOdomkz",
-            "Compendium.sw5e.speciesfeatures.BiwAPQRuiwoHlNF0",
-            "Compendium.sw5e.speciesfeatures.sGS7FtJUTXpSvI3y",
-            "Compendium.sw5e.speciesfeatures.LlPjKV8K8DCvn82y",
-            "Compendium.sw5e.speciesfeatures.WigluPOdDUGMhAS1",
-            "Compendium.sw5e.speciesfeatures.x8wOGbxe7TE2xwiC"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "W4xCoiVk3hwBDpLW",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 1
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "wo0VK2BqsSa10YE0",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Pale pink"
-    },
-    "hairColorOptions": {
-      "value": "Brown, black"
-    },
-    "eyeColorOptions": {
-      "value": "Red"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Spider-like with six eyes, eight limbs and chelicerae"
-    },
-    "heightAverage": {
-      "value": "5'5\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "150 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Secundus Ando"
-    },
-    "slanguage": {
-      "value": "Harchese"
-    },
-    "movement": {
-      "walk": 30,
-      "climb": 30
-    },
-    "senses": {
-      "darkvision": 60
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002120,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797834,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!h7a4AXxuGg6ZuusU"
+  "_key": "!items!xuSvZJygENT4So4T"
 }

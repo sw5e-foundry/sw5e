@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Pugnacity Practice:</strong> 3rd level</em></p>\n<p>You've learned ways to use your martial ability to boost your combat performance. When you deal Sneak Attack damage, you may choose to forgo two of your Sneak Attack dice to make the attack a blitz attack.</p>\n<p>Some of your blitz attacks require your target to make a saving throw to resist the attack's effects. The saving throw DC is as follows:</p>\n<p><em></em>_</p>\n<p><strong>Blitz Attack save DC</strong> = 8 + your proficiency bonus + your Strength or Dexterity modifier (your choice)</p>\n<p><em></em>_</p>\n<h3>Demoralizing Attack</h3>\n<p>The target must make a Wisdom saving throw. On a failed save, it is frightened of you until the end of your next turn.</p>\n<h3>Diverting Attack</h3>\n<p>Roll two of your Sneak Attack dice. The first time the target would deal damage before the start of your next turn, that damage is reduced by an amount equal to the resulting roll.</p>\n<h3>Warmonger's Attack</h3>\n<p>If the target makes an attack against you or an allied creature within 5 feet of you before the start of your next turn, you can use your reaction to make a melee weapon attack against it.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Pugnacity Practice) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "turn"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "5",
+      "value": 5,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,25 +79,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493958223,
-    "modifiedTime": 1699591595234,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368717904,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!vRIbUglvI9HNlUAk"
 }

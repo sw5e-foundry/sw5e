@@ -16,134 +16,241 @@
   "system": {
     "description": {
       "value": "<h1>Gadgeteer Engineering</h1>\n<p>Those engineers who choose the Gadgeteer discipline focus on the ability to craft reusable consumables and items that augment and complement their techcasting abilities.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Gadgeteer Modifications</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.K7cz3aJVJGSyh4VA]{Advanced grounding system}</li>\n<li>@Compendium[sw5e.invocations.LEyfRemATgHUykZ7]{Auto-injection regenerator}</li>\n<li>@Compendium[sw5e.invocations.8wtSMKvl0EsUF2wc]{Autothrusters}</li>\n<li>@Compendium[sw5e.invocations.0oVriWQgC840cVil]{Climbing gloves}</li>\n<li>@Compendium[sw5e.invocations.NdmYsHy4KLQStR3T]{Darkvision goggles}</li>\n<li>@Compendium[sw5e.invocations.5k4cPTOeD4qpNrvE]{Extended tank}</li>\n<li>@Compendium[sw5e.invocations.IAhaNMAszCyrMiQh]{Flame vents}</li>\n<li>@Compendium[sw5e.invocations.TUtmXa3tTh2jJnAk]{Frailcasting inhibitor}</li>\n<li>@Compendium[sw5e.invocations.6JjvqfF93PmjamZP]{Grounding system}</li>\n<li>@Compendium[sw5e.invocations.wpAfCBJS7P0foxhq]{Integrated amplifier}</li>\n<li>@Compendium[sw5e.invocations.aWDCtIdXd9ZywF5U]{Integrated rangefinder}</li>\n<li>@Compendium[sw5e.invocations.FvBG7pVhf99UL0MM]{Intelligence core override}</li>\n<li>@Compendium[sw5e.invocations.fdcR3ZtYLJ12GDzF]{Jet pack}</li>\n<li>@Compendium[sw5e.invocations.IO6ghou8lbjNFkGK]{Mechanical arm}</li>\n<li>@Compendium[sw5e.invocations.k7fxyHJMc86KMhi6]{Mimicker}</li>\n<li>@Compendium[sw5e.invocations.dHTzPLGB9aPHahNH]{Miniaturized hydraulics}</li>\n<li>@Compendium[sw5e.invocations.B30gW9hF1Ua1ftIl]{Oil spill}</li>\n<li>@Compendium[sw5e.invocations.5bCac4l7Nvm2u6ME]{Powered grappling hook}</li>\n<li>@Compendium[sw5e.invocations.cZZxgJLtKXGSm1Dd]{Prototype grounding system}</li>\n<li>@Compendium[sw5e.invocations.21h10lNneIHODAFb]{Rendcasting inhibitor}</li>\n<li>@Compendium[sw5e.invocations.IwkyPFjYcKMPqFaV]{Quick start engine}</li>\n<li>@Compendium[sw5e.invocations.vW84mXiKscKko6sU]{Recycled adrenals}</li>\n<li>@Compendium[sw5e.invocations.YuUXqFj9z5nxO4MP]{Recycled explosives}</li>\n<li>@Compendium[sw5e.invocations.npvcnig14F9KK16V]{Recycled stimpacs}</li>\n<li>@Compendium[sw5e.invocations.P4IkxHfFfCb0TEso]{Sentry turret}</li>\n<li>@Compendium[sw5e.invocations.Tqpd7KIQNJBMjnJK]{Shocking hook}</li>\n<li>@Compendium[sw5e.invocations.WscfgwMYPo4Sis5s]{Stealth field generator}</li>\n<li>@Compendium[sw5e.invocations.JaY2YCYiyqPEVHDk]{Shocking barrier}</li>\n<li>@Compendium[sw5e.invocations.rNLPGmA1ttwfL4AB]{Truesight goggles}</li>\n<li>@Compendium[sw5e.invocations.wPFLX7X8GqvW96fi]{Weapon integration}</li>\n<li>@Compendium[sw5e.invocations.En0BfFvYqv1WpRJS]{Withercasting inhibitor}</li>\n<li>@Compendium[sw5e.invocations.cZExwgTklzdTWGiu]{Wrist-mounted grappling hook}</li>\n</ul>"
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "gadgeteerengineering",
     "classIdentifier": "engineer",
     "advancement": [
       {
-        "_id": "1FI7NwSCzdchqMLQ",
+        "_id": "xrvg0cOjn3M1DF5k",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.xVu1g0z3mnl8RAPt",
-            "Compendium.sw5e.archetypefeatures.DUJPUaDKKRh3BjPB",
-            "Compendium.sw5e.archetypefeatures.RH6chmr8R2fN3Krm"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.xVu1g0z3mnl8RAPt",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.DUJPUaDKKRh3BjPB",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.RH6chmr8R2fN3Krm",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "YWHW51FU8NqDFYTC",
+        "_id": "DsgBXBGwTHDLmvEw",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.OgenAoFLPl4P15AE"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.OgenAoFLPl4P15AE",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "ec9mMfeojsdUzQXS",
+        "_id": "1HLHpdPs6J2E5pxH",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.E3RQkBmawtaJJDfc"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.E3RQkBmawtaJJDfc",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
       },
       {
-        "_id": "bpkHTkhcSxsks46Q",
+        "_id": "18g1phpqzaRwcUha",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ameiUgcoTly17A28"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ameiUgcoTly17A28",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 18,
         "title": "Features"
       },
       {
-        "_id": "xXt4Mz7sRWzdEIH5",
+        "_id": "RH1azdu4KT110BIQ",
         "type": "Trait",
         "configuration": {
           "choices": [],
           "grants": [
             "tool:gadgeteersimplements"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
-        "_id": "wpYWVaRXBYY1mNZN",
+        "_id": "1iGKW6D5WiLnfcMu",
         "type": "ItemChoice",
         "configuration": {
           "hint": "",
           "choices": {
-            "3": 4,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "3": {
+              "count": 4,
+              "replacement": false
+            },
+            "5": {
+              "count": 1,
+              "replacement": false
+            },
+            "9": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            },
+            "13": {
+              "count": 1,
+              "replacement": false
+            },
+            "17": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.CrKEC1gp2SZGvpXe",
-            "Compendium.sw5e.invocations.LEyfRemATgHUykZ7",
-            "Compendium.sw5e.invocations.8wtSMKvl0EsUF2wc",
-            "Compendium.sw5e.invocations.oP44Nh5y7Rx4xx4g",
-            "Compendium.sw5e.invocations.aWAicQrJ6tn2Gzwh",
-            "Compendium.sw5e.invocations.5k4cPTOeD4qpNrvE",
-            "Compendium.sw5e.invocations.IAhaNMAszCyrMiQh",
-            "Compendium.sw5e.invocations.TUtmXa3tTh2jJnAk",
-            "Compendium.sw5e.invocations.n2OQXkO0kwmC2Qjb",
-            "Compendium.sw5e.invocations.wpAfCBJS7P0foxhq",
-            "Compendium.sw5e.invocations.aWDCtIdXd9ZywF5U",
-            "Compendium.sw5e.invocations.hhY19yCvkn9LB95s",
-            "Compendium.sw5e.invocations.fdcR3ZtYLJ12GDzF",
-            "Compendium.sw5e.invocations.IO6ghou8lbjNFkGK",
-            "Compendium.sw5e.invocations.k7fxyHJMc86KMhi6",
-            "Compendium.sw5e.invocations.dHTzPLGB9aPHahNH",
-            "Compendium.sw5e.invocations.vt6gjZTYuqtp1lFL",
-            "Compendium.sw5e.invocations.6hXmiJSlTJsZvvfh",
-            "Compendium.sw5e.invocations.cZZxgJLtKXGSm1Dd",
-            "Compendium.sw5e.invocations.80WHBt3lIsqHXY1C",
-            "Compendium.sw5e.invocations.IwkyPFjYcKMPqFaV",
-            "Compendium.sw5e.invocations.vW84mXiKscKko6sU",
-            "Compendium.sw5e.invocations.YuUXqFj9z5nxO4MP",
-            "Compendium.sw5e.invocations.npvcnig14F9KK16V",
-            "Compendium.sw5e.invocations.18EkTqoKI75l9yos",
-            "Compendium.sw5e.invocations.Tqpd7KIQNJBMjnJK",
-            "Compendium.sw5e.invocations.OrC7N0OQ2XtlDPF9",
-            "Compendium.sw5e.invocations.JaY2YCYiyqPEVHDk",
-            "Compendium.sw5e.invocations.rNLPGmA1ttwfL4AB",
-            "Compendium.sw5e.invocations.wPFLX7X8GqvW96fi",
-            "Compendium.sw5e.invocations.DA98Z873SLRyfrYN",
-            "Compendium.sw5e.invocations.LZT81Hu6ypq06T6R"
+            {
+              "uuid": "Compendium.sw5e.invocations.CrKEC1gp2SZGvpXe"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.LEyfRemATgHUykZ7"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.8wtSMKvl0EsUF2wc"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.oP44Nh5y7Rx4xx4g"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.aWAicQrJ6tn2Gzwh"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.5k4cPTOeD4qpNrvE"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.IAhaNMAszCyrMiQh"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.TUtmXa3tTh2jJnAk"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.n2OQXkO0kwmC2Qjb"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.wpAfCBJS7P0foxhq"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.aWDCtIdXd9ZywF5U"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.hhY19yCvkn9LB95s"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.fdcR3ZtYLJ12GDzF"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.IO6ghou8lbjNFkGK"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.k7fxyHJMc86KMhi6"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.dHTzPLGB9aPHahNH"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.vt6gjZTYuqtp1lFL"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.6hXmiJSlTJsZvvfh"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.cZZxgJLtKXGSm1Dd"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.80WHBt3lIsqHXY1C"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.IwkyPFjYcKMPqFaV"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.vW84mXiKscKko6sU"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.YuUXqFj9z5nxO4MP"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.npvcnig14F9KK16V"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.18EkTqoKI75l9yos"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Tqpd7KIQNJBMjnJK"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.OrC7N0OQ2XtlDPF9"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.JaY2YCYiyqPEVHDk"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.rNLPGmA1ttwfL4AB"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.wPFLX7X8GqvW96fi"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.DA98Z873SLRyfrYN"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.LZT81Hu6ypq06T6R"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -156,7 +263,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Gadgeteer Modifications"
       }
     ],
@@ -167,7 +277,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -175,11 +285,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959749,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689516,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!TkSzn6cSCBsySMql"
 }

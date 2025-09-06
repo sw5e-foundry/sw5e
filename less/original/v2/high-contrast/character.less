@@ -1,0 +1,61 @@
+.sw5e-flag-high-contrast .sw5e2.sheet.actor.character,
+.sw5e2.sheet.actor.character.sw5e-flag-high-contrast {
+  .sidebar {
+    .card {
+      .stats .lozenges .lozenge .value {
+        text-shadow: 0 0 2px var(--sw5e-color-dark);
+        filter: drop-shadow(0 0 2px var(--sw5e-color-dark));
+      }
+      .meter.sectioned > .tmp > input::placeholder { color: var(--color-text-light-6); }
+    }
+    .favorites > ul .drop { opacity: .5; }
+  }
+
+  .skills, .tools {
+    > ul > li { border-bottom: var(--sw5e-border-dark); }
+    .ability, .passive { color: var(--color-text-dark-primary); }
+  }
+  .saves {
+    > ul > li {
+      --border-style: var(--sw5e-border-dark);
+      &:nth-child(odd) { border-inline-end: var(--border-style); }
+    }
+  }
+
+  .pill-lg {
+    &.empty:hover { opacity: 1; }
+    &.texture::before { --gradient-end: color-mix(in oklab, var(--sw5e-background-card), transparent 40%); }
+  }
+
+  .ability-scores .ability-score {
+    &::before { background: transparent url("ui/ability-score-tab-hc.svg") no-repeat top center / contain; }
+    .label { color: var(--sw5e-color-dark); }
+    .score { color: var(--color-text-light-1); }
+  }
+}
+
+/* ---------------------------------- */
+/*  Light Mode                        */
+/* ---------------------------------- */
+
+.sw5e-flag-high-contrast:is(.sw5e-theme-light, .theme-dark) .sw5e2.sheet.actor.character,
+.sw5e2.sheet.actor.character.sw5e-flag-high-contrast.sw5e-theme-light {
+  .sheet-header { background: var(--sw5e-color-maroon); }
+  .sidebar .favorites > h3 { color: var(--sw5e-color-dark); }
+  .tab.features .classes .class .level > span { color: var(--sw5e-color-dark); }
+}
+
+/* ---------------------------------- */
+/*  Dark Mode                         */
+/* ---------------------------------- */
+
+.sw5e-flag-high-contrast:is(.sw5e-theme-dark, .theme-dark) .sw5e2.sheet.actor.character,
+.sw5e2.sheet.actor.character.sw5e-flag-high-contrast.sw5e-theme-dark {
+  .sheet-header { background: none; }
+  .sidebar .favorites > h3 { color: var(--sw5e-color-light); }
+  .tab.features .classes .class .level > span { color: var(--sw5e-color-light); }
+  .ability-scores .ability-score {
+    &::before { filter: invert(100%); }
+    .label { color: var(--color-text-light-1); }
+  }
+}

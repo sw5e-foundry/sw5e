@@ -16,50 +16,55 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Sawbones Practice:</strong> 3rd level</em></p>\n<p>You learn to apply your anatomical knowledge in direct combat, in order to hinder your targets. When you deal Sneak Attack damage to a creature, you may choose to forgo two of your Sneak Attack Dice in order to hinder the creature, provided they have the appropiate physiology.</p>\n<p>Some of your debilitating strikes require your target to make a saving throw to resist the debilitating strike's effects. The saving throw DC is calculated as follows: </p>\n<p><em></em>_</p>\n<p><strong>Debilitating Strike save DC</strong> = 8 + your proficiency bonus + your Intelligence modifier.</p>\n<p><em></em>_</p>\n<h3>Bleeding Wound</h3>\n<p>You attempt to create a lingering wound in the target for one minute. The target must make a Constitution saving throw. On a failed save, at the start of each of the target's turns, it takes true damage equal to one Sneak Attack die and repeats this saving throw, ending the effect on a success. </p>\n<h3>Crippling Pain</h3>\n<p>You attempt to cause distracting pain in the target. The target must make a Constitution saving throw. On a failed save, it has disadvantage on attack rolls until the end of your next turn. </p>\n<h3>Hampering Shot</h3>\n<p>You attempt to hamper the target's movement. The target must make a Constitution saving throw. On a failed save, it gains 1 slowed level and it makes Dexterity saving throws with disadvantage until the end of its next turn.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Operative (Sawbones Practice) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "minute"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,25 +79,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Operative"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493957847,
-    "modifiedTime": 1699591595189,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368702111,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!Zy87jhJHs3BUGim5"
 }

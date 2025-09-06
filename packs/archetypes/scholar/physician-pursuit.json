@@ -16,71 +16,88 @@
   "system": {
     "description": {
       "value": "<h1>Physician Pursuit</h1>\n<p>Physicians study the medical, anatomical, and biological sciences. Those scholars who choose the Physician Pursuit use their knowledge to mend their allies on the field and deal crippling blows with surgical precision.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Physician Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.BvIylg9ZcwFXnbXA]{Advanced remote healer}</li>\n<li>@Compendium[sw5e.invocations.gfQcmx1NRvuBBFwc]{Experimental treatments}</li>\n<li>@Compendium[sw5e.invocations.Fsr28zOmUMFk4fR0]{From the brink}</li>\n<li>@Compendium[sw5e.invocations.eRWzoUBSCZW86rky]{Health advisor}</li>\n<li>@Compendium[sw5e.invocations.hZXmlhPMXAvf96Rl]{Patient protector}</li>\n<li>@Compendium[sw5e.invocations.vwNjOmc4gZHMKnYC]{Surgical precision}</li>\n<li>@Compendium[sw5e.invocations.NN9LGmaXwgLdYJdg]{Tend the wounded}</li>\n</ul>"
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "physicianpursuit",
     "classIdentifier": "scholar",
     "advancement": [
       {
-        "_id": "1IDyXDhNQJMiacxH",
+        "_id": "1g6UjSZd9a1w1a0W",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.ADu31iAcdO57ggLT",
-            "Compendium.sw5e.archetypefeatures.l4baMhJrCvAZQAw2"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ADu31iAcdO57ggLT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.l4baMhJrCvAZQAw2",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "5M9fMLMNfiH1Ahu7",
+        "_id": "1dnFbbpffHkA19aZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.pSbkArj1o3Z7WRCS"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.pSbkArj1o3Z7WRCS",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "dYkO4aegjOiDk64i",
+        "_id": "kmWcUalEGe41AvoX",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.hnc259js63blUqkB"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hnc259js63blUqkB",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "DB7BRDtoMIuagJHb",
+        "_id": "2xtY173zHlE1lXpT",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.eAem3vy3uo6k4AQE"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.eAem3vy3uo6k4AQE",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "1MzfG3vhD7cG1Db5",
+        "_id": "JebY02o34UCxsjps",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -95,38 +112,78 @@
           "grants": [
             "tool:biochemistskit"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
-        "_id": "1fKfoxCkYJ1W1H9G",
+        "_id": "1PegYnk5KvhBGjFp",
         "type": "ItemChoice",
         "configuration": {
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
-            "2": 2,
-            "3": 2,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "2": {
+              "count": 2,
+              "replacement": false
+            },
+            "3": {
+              "count": 2,
+              "replacement": false
+            },
+            "5": {
+              "count": 1,
+              "replacement": false
+            },
+            "9": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            },
+            "13": {
+              "count": 1,
+              "replacement": false
+            },
+            "17": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.BvIylg9ZcwFXnbXA",
-            "Compendium.sw5e.invocations.gfQcmx1NRvuBBFwc",
-            "Compendium.sw5e.invocations.Fsr28zOmUMFk4fR0",
-            "Compendium.sw5e.invocations.eRWzoUBSCZW86rky",
-            "Compendium.sw5e.invocations.hZXmlhPMXAvf96Rl",
-            "Compendium.sw5e.invocations.vwNjOmc4gZHMKnYC",
-            "Compendium.sw5e.invocations.NN9LGmaXwgLdYJdg"
+            {
+              "uuid": "Compendium.sw5e.invocations.BvIylg9ZcwFXnbXA"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.gfQcmx1NRvuBBFwc"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Fsr28zOmUMFk4fR0"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.eRWzoUBSCZW86rky"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.hZXmlhPMXAvf96Rl"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.vwNjOmc4gZHMKnYC"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.NN9LGmaXwgLdYJdg"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -139,7 +196,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Physician Discoveries"
       }
     ],
@@ -150,7 +210,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -158,11 +218,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959728,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689226,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!E3s4Z8jsY2Q4KHHU"
 }

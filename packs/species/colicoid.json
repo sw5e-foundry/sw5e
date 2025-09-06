@@ -1,8 +1,194 @@
 {
-  "_id": "4bThBS2MMOG5Udt0",
   "name": "Colicoid",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2751362+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-colicoid"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Colicoid.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Colicoids are tall insectoids that held multiple appendages. Their bodies are chitinous and include a powerful stinging tail. A colicoid's physiology allows them to curl up into a protective ball and unfurl suddenly which allow them to catch their prey unaware. This rolling method of locomotion is second nature to the colicoids. Their insectoid minds provide them a natural defense against mind tricks. </p>\n<p>Some members are colicoid queens that are different as they are more than twice the size of even the largest warrior breeds. This makes them extremely dangerous and are the only colicoids that possess a unique poisonous stinger. This combined with their strength and size makes them deadly combatants, especially when within their nests. However, a queen tends to only fight when her young are being threatened.</p>\n<h2>Society and Culture</h2>\n<p>Though highly intelligent, colicoids are emotionless and cannibalistic in nature. Their ruthless cunning serves them well on the battlefield as it does on the negotiating table. It is known that long ago that they transferred these ruthless characteristics to their commerce activities. As a result, they are known to be brutally efficient in their business practices. They are noted for being vicious and calculating creatures that are driven by greed whilst showing little regard for others. The colicoids have numerous successful commercial ventures and hold strict business protocols. </p>\n<h2>Names</h2>\n<p>Colicoid names are typically very short and gender neutral, with surnames being based on the queen from which they spawned. </p>\n<p><strong>First Names.</strong> Gal, Het, Kaf, Lyp, Nok, Yin</p>\n<p><strong>Surnames.</strong> Bek, Dor, Set, Tel, Wim, Zal</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "colicoid",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 25,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "1g4gt3wMTioY1rEo",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.m8GWdbj5WvXkF9Kr",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.cowbWf4ngIzIUrkm",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.WD3MHdyBow9jQ0Gb",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.4u5ylBfOVzDspEmb",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jgXgwrkXGFoOYlFO",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.YgNJ2vV9gtzAhCTX",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.NjTk7ChqgHdtxLdd",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Ewn5spXpAjRLhDKY",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.nRynMjKjoG4BX3ms",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.l9JOIkoVIFINS8Y0",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DROXXgEI8pygRfh8",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.rb7vsegqyMEqHiHy",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1BudjYVZ7AW91fIq",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "qFvABYHMV0pP1HYZ",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "NyDvl4sVbbQ1cl1x",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:prc"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Brown, green, or purple"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Orange, purple, red, or yellow"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Carnivorous insectoids, four legs, defensive \"ball mode\""
+    },
+    "heightAverage": {
+      "value": "5'2\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "120 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Colla IV"
+    },
+    "slanguage": {
+      "value": "Colicoid"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "lNQzl0PRPGz1LnkR",
@@ -92,141 +278,22 @@
       "name": "Colicoid",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!4bThBS2MMOG5Udt0.lNQzl0PRPGz1LnkR"
+      "_key": "!items.effects!YUJzeqnVa84wsCBn.lNQzl0PRPGz1LnkR"
     }
   ],
+  "_id": "YUJzeqnVa84wsCBn",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2751362+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-colicoid"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Colicoids are tall insectoids that held multiple appendages. Their bodies are chitinous and include a powerful stinging tail. A colicoid's physiology allows them to curl up into a protective ball and unfurl suddenly which allow them to catch their prey unaware. This rolling method of locomotion is second nature to the colicoids. Their insectoid minds provide them a natural defense against mind tricks. </p>\n<p>Some members are colicoid queens that are different as they are more than twice the size of even the largest warrior breeds. This makes them extremely dangerous and are the only colicoids that possess a unique poisonous stinger. This combined with their strength and size makes them deadly combatants, especially when within their nests. However, a queen tends to only fight when her young are being threatened.</p>\n<h2>Society and Culture</h2>\n<p>Though highly intelligent, colicoids are emotionless and cannibalistic in nature. Their ruthless cunning serves them well on the battlefield as it does on the negotiating table. It is known that long ago that they transferred these ruthless characteristics to their commerce activities. As a result, they are known to be brutally efficient in their business practices. They are noted for being vicious and calculating creatures that are driven by greed whilst showing little regard for others. The colicoids have numerous successful commercial ventures and hold strict business protocols. </p>\n<h2>Names</h2>\n<p>Colicoid names are typically very short and gender neutral, with surnames being based on the queen from which they spawned. </p>\n<p><strong>First Names.</strong> Gal, Het, Kaf, Lyp, Nok, Yin</p>\n<p><strong>Surnames.</strong> Bek, Dor, Set, Tel, Wim, Zal</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "colicoid",
-    "advancement": [
-      {
-        "_id": "1oWNrheJLSuF1eBs",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.m8GWdbj5WvXkF9Kr",
-            "Compendium.sw5e.speciesfeatures.cowbWf4ngIzIUrkm",
-            "Compendium.sw5e.speciesfeatures.WD3MHdyBow9jQ0Gb",
-            "Compendium.sw5e.speciesfeatures.4u5ylBfOVzDspEmb",
-            "Compendium.sw5e.speciesfeatures.jgXgwrkXGFoOYlFO",
-            "Compendium.sw5e.speciesfeatures.YgNJ2vV9gtzAhCTX",
-            "Compendium.sw5e.speciesfeatures.NjTk7ChqgHdtxLdd",
-            "Compendium.sw5e.speciesfeatures.Ewn5spXpAjRLhDKY",
-            "Compendium.sw5e.speciesfeatures.nRynMjKjoG4BX3ms",
-            "Compendium.sw5e.speciesfeatures.l9JOIkoVIFINS8Y0",
-            "Compendium.sw5e.speciesfeatures.DROXXgEI8pygRfh8",
-            "Compendium.sw5e.speciesfeatures.rb7vsegqyMEqHiHy"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1hcNtxYKGMY3Kqjj",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "YenQpKrcAls33Utb",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "DSM9uVfTOrXj63dI",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:prc"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Brown, green, or purple"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Orange, purple, red, or yellow"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Carnivorous insectoids, four legs, defensive \"ball mode\""
-    },
-    "heightAverage": {
-      "value": "5'2\""
-    },
-    "heightRollMod": {
-      "value": "+2d10\""
-    },
-    "weightAverage": {
-      "value": "120 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Colla IV"
-    },
-    "slanguage": {
-      "value": "Colicoid"
-    },
-    "movement": {
-      "walk": 25
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002063,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797210,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!4bThBS2MMOG5Udt0"
+  "_key": "!items!YUJzeqnVa84wsCBn"
 }

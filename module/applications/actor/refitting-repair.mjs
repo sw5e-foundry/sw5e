@@ -6,8 +6,8 @@
  * @param {object} [options={}]     Dialog rendering options.
  */
 export default class RefittingRepairDialog extends Dialog {
-  constructor(actor, dialogData = {}, options = {}) {
-    super(dialogData, options);
+  constructor( actor, dialogData = {}, options = {} ) {
+    super( dialogData, options );
     this.actor = actor;
   }
 
@@ -15,21 +15,22 @@ export default class RefittingRepairDialog extends Dialog {
 
   /** @inheritDoc */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       template: "systems/sw5e/templates/apps/refitting-repair.hbs",
       classes: ["sw5e", "dialog"]
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
   getData() {
-    const data = super.getData();
-    const variant = game.settings.get("sw5e", "restVariant");
-    data.promptNewDay = variant !== "gritty"; // It's always a new day when repairing 1 week
-    data.newDay = variant === "normal"; // It's probably a new day when repaiting normally (8 hours)
-    return data;
+    const context = super.getData();
+    const variant = game.settings.get( "sw5e", "restVariant" );
+    context.isGroup = this.actor.type === "group";
+    context.promptNewDay = variant !== "gritty"; // It's always a new day when repairing 1 week
+    context.newDay = variant === "normal"; // It's probably a new day when repariting normally (8 hours)
+    return context;
   }
 
   /* -------------------------------------------- */
@@ -41,32 +42,29 @@ export default class RefittingRepairDialog extends Dialog {
    * @param {Actor5e} [options.actor]  Actor that is taking the refitting repair.
    * @returns {Promise}                Promise that resolves when the repair is completed or rejects when canceled.
    */
-  static async refittingRepairDialog({ actor } = {}) {
-    return new Promise((resolve, reject) => {
-      const dlg = new this(actor, {
-        title: `${game.i18n.localize("SW5E.RefittingRepair")}: ${actor.name}`,
+  static async refittingRepairDialog( { actor } = {} ) {
+    return new Promise( ( resolve, reject ) => {
+      const dlg = new this( actor, {
+        title: `${game.i18n.localize( "SW5E.RefittingRepair" )}: ${actor.name}`,
         buttons: {
           rest: {
             icon: '<i class="fas fa-wrench"></i>',
-            label: game.i18n.localize("SW5E.Repair"),
+            label: game.i18n.localize( "SW5E.Repair" ),
             callback: html => {
-              let newDay = true;
-              if (game.settings.get("sw5e", "restVariant") !== "gritty") {
-                newDay = html.find('input[name="newDay"]')[0].checked;
-              }
-              resolve(newDay);
+              const formData = new FormDataExtended( html.find( "form" )[0] );
+              resolve( formData.object );
             }
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: game.i18n.localize("Cancel"),
+            label: game.i18n.localize( "Cancel" ),
             callback: reject
           }
         },
         default: "repair",
         close: reject
-      });
-      dlg.render(true);
-    });
+      } );
+      dlg.render( true );
+    } );
   }
 }

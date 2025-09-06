@@ -16,71 +16,88 @@
   "system": {
     "description": {
       "value": "<h1>Pugnacity Practice</h1>\n<p>Those operatives who choose the Pugnacity Practice apply an atypical versatility to their actions, comfortably dispatching foes from afar or face to face.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "pugnacitypractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "122cMt5nM9mOFCqS",
+        "_id": "1PrSi8eMaPOkhbod",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.PRKDBjXs3pYzDy1C",
-            "Compendium.sw5e.archetypefeatures.vRIbUglvI9HNlUAk"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.PRKDBjXs3pYzDy1C",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.vRIbUglvI9HNlUAk",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1TPyFqj0gfM016Pl",
+        "_id": "P4nZtZvZXPSK0PKI",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.1B1GoAslEcuta50o"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.1B1GoAslEcuta50o",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "4l4RXJbE5Me1270p",
+        "_id": "1oHbeZyBn3OmuUBs",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.Ik2nJuqsZYJ2neNe"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.Ik2nJuqsZYJ2neNe",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "18LNXpMQVZxT1yOi",
+        "_id": "nN1wiY58FOt4nQDM",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.hNLCVeWzPt9KyXDY"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.hNLCVeWzPt9KyXDY",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "gmK1r4RNNS91w4y1",
+        "_id": "JhIdVoLRCwB11nVo",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -95,9 +112,12 @@
             "armor:med",
             "armor:hvy"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -108,7 +128,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -116,11 +136,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959780,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689961,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!tfyLKw3FUjMQkEgB"
 }

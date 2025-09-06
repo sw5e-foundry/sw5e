@@ -9,7 +9,7 @@
                 {{choice.label}}
             </label>
             {{#if choice.children}}
-              {{> traitList choices=choice.children}}
+            {{> traitList choices=choice.children}}
             {{/if}}
         </li>
         {{/each}}
@@ -22,7 +22,7 @@
     {{#if allowCustom}}
     <div class="form-group stacked">
         <label>{{ localize "SW5E.TraitSelectorSpecial" }}</label>
-        <input type="text" name="choices.custom" value="{{custom}}" data-dtype="String"/>
+        <input type="text" name="choices.custom" value="{{custom}}" data-dtype="String" />
     </div>
     {{/if}}
 

@@ -1,8 +1,198 @@
 {
-  "_id": "axhsa64akVnjd47D",
   "name": "Geonosian",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2791337+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-geonosian"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Geonosian.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Geonosians have a hard chitin exoskeleton that provided protection from physical impacts and bouts of radiation that occasionally shower their world. Geonosians are strong despite their thin builds, and are capable of constructing massive hives and factories in concert. The head of a Geonosian is elongated and large with their skulls ridged on the top and by the side where they have bulbous, thick-lidded eyes. Both are physically strong and covered with bony ridges which protected their arms, legs, and vital organs. </p>\n<h2>Society and Culture</h2>\n<p>Geonosian society is caste-based with little upward mobility, though some of the lower caste do develop ambition. Workers are conditioned to loathe even the concept of separation from their hive and the system of control. A low-ranking worker's normal life is one of endless toil and labor to satisfy the aristocracy, who are known to make spectacular demands. The warrior caste tend to be highly competitive and are eager to prove themselves. They are born with an abnormal level of intelligence, and one of their only hopes of escape from their rigid duty is entering voluntarily into gladiatorial combat. Should they survive, they are granted freedom. Ultimately, their society exist to benefit those few members that reside in the upper caste. Members of the aristocratic classes are known to be ambitious, domineering, and manipulative. They constantly move towards improving their standing and holdings while sumultaneously working to ruin their rivals.</p>\n<h2>Names</h2>\n<p>Geonosian names are usually harsh sounding. Lower castes don't get surnames. Upper caste surnames are familial.</p>\n<p><strong>Male Names.</strong> Buck, Goshey, Nik, Sozz, Techtu</p>\n<p><strong>Female Names.</strong> Datte, Kida, Miri, Nare, Tenessi</p>\n<p><strong>Surnames.</strong> Chak, Hor, Lur, Marpes, Zol</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "geonosian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "fly": 30,
+      "burrow": null,
+      "climb": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "u3SPNH9dfw26F6pS",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.zG1cYUeHC1eK1B3z",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.x6PrtGv8rUbQ6LOb",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.JxckPIfYId9CrtOw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.HPAsc9GZrhI24PYk",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.Y2POEc0jVi96yXjH",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.bOjt9taB0Sg429Ga",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.EGxD3Vca8T5k180f",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.johiswX9RyiIjR5x",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.ail7xxuflqpcN7AM",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.kXuSosqpMvkuInIq",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "REnvp79MepE1xaM4",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2
+          },
+          "points": 1,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "uusXJtw846bvPp3i",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "ypdBHfrLh6oG2iQc",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:artisan:*"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "weapon:smb:*",
+                "weapon:mrb:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Gray, green, or orange"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Hive-based, winged semi-insectoids"
+    },
+    "heightAverage": {
+      "value": "5'5\""
+    },
+    "heightRollMod": {
+      "value": "+2d4\""
+    },
+    "weightAverage": {
+      "value": "60 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Geonosis"
+    },
+    "slanguage": {
+      "value": "Geonosian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "pjSHHuM2UzrJ1wY8",
@@ -74,152 +264,22 @@
       "name": "Geonosian",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!axhsa64akVnjd47D.pjSHHuM2UzrJ1wY8"
+      "_key": "!items.effects!kF0GaM3Ay8aHSWEs.pjSHHuM2UzrJ1wY8"
     }
   ],
+  "_id": "kF0GaM3Ay8aHSWEs",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2791337+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-geonosian"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Geonosians have a hard chitin exoskeleton that provided protection from physical impacts and bouts of radiation that occasionally shower their world. Geonosians are strong despite their thin builds, and are capable of constructing massive hives and factories in concert. The head of a Geonosian is elongated and large with their skulls ridged on the top and by the side where they have bulbous, thick-lidded eyes. Both are physically strong and covered with bony ridges which protected their arms, legs, and vital organs. </p>\n<h2>Society and Culture</h2>\n<p>Geonosian society is caste-based with little upward mobility, though some of the lower caste do develop ambition. Workers are conditioned to loathe even the concept of separation from their hive and the system of control. A low-ranking worker's normal life is one of endless toil and labor to satisfy the aristocracy, who are known to make spectacular demands. The warrior caste tend to be highly competitive and are eager to prove themselves. They are born with an abnormal level of intelligence, and one of their only hopes of escape from their rigid duty is entering voluntarily into gladiatorial combat. Should they survive, they are granted freedom. Ultimately, their society exist to benefit those few members that reside in the upper caste. Members of the aristocratic classes are known to be ambitious, domineering, and manipulative. They constantly move towards improving their standing and holdings while sumultaneously working to ruin their rivals.</p>\n<h2>Names</h2>\n<p>Geonosian names are usually harsh sounding. Lower castes don't get surnames. Upper caste surnames are familial.</p>\n<p><strong>Male Names.</strong> Buck, Goshey, Nik, Sozz, Techtu</p>\n<p><strong>Female Names.</strong> Datte, Kida, Miri, Nare, Tenessi</p>\n<p><strong>Surnames.</strong> Chak, Hor, Lur, Marpes, Zol</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "geonosian",
-    "advancement": [
-      {
-        "_id": "8XOptdIQVJ2EMyib",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.zG1cYUeHC1eK1B3z",
-            "Compendium.sw5e.speciesfeatures.x6PrtGv8rUbQ6LOb",
-            "Compendium.sw5e.speciesfeatures.JxckPIfYId9CrtOw",
-            "Compendium.sw5e.speciesfeatures.HPAsc9GZrhI24PYk",
-            "Compendium.sw5e.speciesfeatures.Y2POEc0jVi96yXjH",
-            "Compendium.sw5e.speciesfeatures.bOjt9taB0Sg429Ga",
-            "Compendium.sw5e.speciesfeatures.EGxD3Vca8T5k180f",
-            "Compendium.sw5e.speciesfeatures.johiswX9RyiIjR5x",
-            "Compendium.sw5e.speciesfeatures.ail7xxuflqpcN7AM",
-            "Compendium.sw5e.speciesfeatures.kXuSosqpMvkuInIq"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "11NHwXDOFalfAJ4h",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "dex": 2
-          },
-          "points": 1
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "abYMLhNrkna1pwwH",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1kAUwxc9TZRT3eld",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "tool:artisan:*"
-              ]
-            },
-            {
-              "count": 1,
-              "pool": [
-                "weapon:smb:*",
-                "weapon:mrb:*"
-              ]
-            }
-          ],
-          "grants": [],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Gray, green, or orange"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Hive-based, winged semi-insectoids"
-    },
-    "heightAverage": {
-      "value": "5'5\""
-    },
-    "heightRollMod": {
-      "value": "+2d4\""
-    },
-    "weightAverage": {
-      "value": "60 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Geonosis"
-    },
-    "slanguage": {
-      "value": "Geonosian"
-    },
-    "movement": {
-      "walk": 30,
-      "fly": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002110,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553797518,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!axhsa64akVnjd47D"
+  "_key": "!items!kF0GaM3Ay8aHSWEs"
 }

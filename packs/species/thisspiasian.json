@@ -1,8 +1,195 @@
 {
-  "_id": "0EcNY9y4DSoYS8Vk",
   "name": "Thisspiasian",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2931264+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-thisspiasian"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Thisspiasian.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Thisspiasians are easily recognized by their abundant beards and their long tails, which often reach over six feet. These tails are very strong and are commonly used to carry large objects. When meditating or at rest, a thisspiasian will coil their tail beneath their torso, reducing their height by several feet. They also possess four arms, with the upper set being stronger and larger. Each of their four hands have five fingers, and each finger is tipped with a long, sturdy claw. It is thought unsophisticated or unseemly by upper-class thisspiasians to have the bottom two visible in public, so they are generally hidden from sight via larger garments, with the smaller limbs sometimes even bound to their bodies. Thisspiasians need very little sleep to function normally, resting for only two hours a day, with brief meditative moments scattered throughout the day to refocus.</p>\n<h2>Society and Culture</h2>\n<p>Thisspiasian culture is one of proud warriors who keep their emotions well-concealed and their rages checked. Many outsiders see only a thisspiasian's outward facade of tranquility, and to most being it seems as if thisspiasians existed in a sea of calm. This is far from the truth, however, as they are in truth a very passionate species below the surface. A thisspiasian who doesn't meditate as often as they should will often be prone to otherwise atypical emotional outbursts.</p>\n<p>Thisspias is ruled by a hereditary leader called the Blood Monarch. Due to their seemingly archaic ruling structure, thisspiasians are often considered out-of-touch. </p>\n<h2>Names</h2>\n<p>Thisspiasian names typically are composed of two similar sounding syllables. Surnames are familial. </p>\n<p><strong>First Names.</strong> Annak, Effed, Emmet, Gorro, Koto</p>\n<p><strong>Surnames.</strong> Albarn, Braibel, Kirsingr, Raledurn</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "thisspiasian",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "XWvCvhQXLexSKL3i",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.KeA2x42OZPg5esKd",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.mGzd3yXZALPOmPU6",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.2iLP2Q5Ifs2YyeBe",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.egjtJJQAS2Mbohl3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QYfxA2odU9tT8yxW",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.y2d7cLML6sjURYd9",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.xkFRk9Xw5KH6ag4J",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.CZQEsXiQegNFPG7l",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.DfS3oxezhg0ViTpw",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.uMNzOGZD5pQay2gO",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.hzhH1cbXrB4m8vqG",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vWJc3iankukbeixs",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "5Q6YwVfG4tO1jDFs",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2,
+            "str": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1yCTodngGPCk1mgg",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "nyIYrXFfdp91c1fz",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:lor"
+          ],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Pale to green"
+    },
+    "hairColorOptions": {
+      "value": "Black, blond, brown, grey, or white (with age)"
+    },
+    "eyeColorOptions": {
+      "value": "Yellow"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Four arms, serpentine, large beards"
+    },
+    "heightAverage": {
+      "value": "4'8\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "250 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Thisspias"
+    },
+    "slanguage": {
+      "value": "Thisspiasian"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "BPpKJqS5i9yfJIHs",
@@ -72,8 +259,7 @@
       "name": "Thisspiasian",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!0EcNY9y4DSoYS8Vk.BPpKJqS5i9yfJIHs"
+      "_key": "!items.effects!714R27g4Oxb2PtI9.BPpKJqS5i9yfJIHs"
     },
     {
       "_id": "6sFYvuWTUi9YMb9J",
@@ -107,142 +293,22 @@
       "name": "Inscrutable - against effects that read thoughts",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!0EcNY9y4DSoYS8Vk.6sFYvuWTUi9YMb9J"
+      "_key": "!items.effects!714R27g4Oxb2PtI9.6sFYvuWTUi9YMb9J"
     }
   ],
+  "_id": "714R27g4Oxb2PtI9",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2931264+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-thisspiasian"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Thisspiasians are easily recognized by their abundant beards and their long tails, which often reach over six feet. These tails are very strong and are commonly used to carry large objects. When meditating or at rest, a thisspiasian will coil their tail beneath their torso, reducing their height by several feet. They also possess four arms, with the upper set being stronger and larger. Each of their four hands have five fingers, and each finger is tipped with a long, sturdy claw. It is thought unsophisticated or unseemly by upper-class thisspiasians to have the bottom two visible in public, so they are generally hidden from sight via larger garments, with the smaller limbs sometimes even bound to their bodies. Thisspiasians need very little sleep to function normally, resting for only two hours a day, with brief meditative moments scattered throughout the day to refocus.</p>\n<h2>Society and Culture</h2>\n<p>Thisspiasian culture is one of proud warriors who keep their emotions well-concealed and their rages checked. Many outsiders see only a thisspiasian's outward facade of tranquility, and to most being it seems as if thisspiasians existed in a sea of calm. This is far from the truth, however, as they are in truth a very passionate species below the surface. A thisspiasian who doesn't meditate as often as they should will often be prone to otherwise atypical emotional outbursts.</p>\n<p>Thisspias is ruled by a hereditary leader called the Blood Monarch. Due to their seemingly archaic ruling structure, thisspiasians are often considered out-of-touch. </p>\n<h2>Names</h2>\n<p>Thisspiasian names typically are composed of two similar sounding syllables. Surnames are familial. </p>\n<p><strong>First Names.</strong> Annak, Effed, Emmet, Gorro, Koto</p>\n<p><strong>Surnames.</strong> Albarn, Braibel, Kirsingr, Raledurn</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "thisspiasian",
-    "advancement": [
-      {
-        "_id": "MXMuLa0W4Kt1TrSr",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.KeA2x42OZPg5esKd",
-            "Compendium.sw5e.speciesfeatures.mGzd3yXZALPOmPU6",
-            "Compendium.sw5e.speciesfeatures.2iLP2Q5Ifs2YyeBe",
-            "Compendium.sw5e.speciesfeatures.egjtJJQAS2Mbohl3",
-            "Compendium.sw5e.speciesfeatures.QYfxA2odU9tT8yxW",
-            "Compendium.sw5e.speciesfeatures.y2d7cLML6sjURYd9",
-            "Compendium.sw5e.speciesfeatures.xkFRk9Xw5KH6ag4J",
-            "Compendium.sw5e.speciesfeatures.CZQEsXiQegNFPG7l",
-            "Compendium.sw5e.speciesfeatures.DfS3oxezhg0ViTpw",
-            "Compendium.sw5e.speciesfeatures.uMNzOGZD5pQay2gO",
-            "Compendium.sw5e.speciesfeatures.hzhH1cbXrB4m8vqG",
-            "Compendium.sw5e.speciesfeatures.vWJc3iankukbeixs"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "BQuB7m3BfzXWDXsw",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "wis": 2,
-            "str": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "xc5pBUjQtLh1lAjQ",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1dlK1tEb8htMHg8t",
-        "type": "Trait",
-        "configuration": {
-          "choices": [],
-          "grants": [
-            "skills:lor"
-          ],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Pale to green"
-    },
-    "hairColorOptions": {
-      "value": "Black, blond, brown, grey, or white (with age)"
-    },
-    "eyeColorOptions": {
-      "value": "Yellow"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Four arms, serpentine, large beards"
-    },
-    "heightAverage": {
-      "value": "4'8\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "250 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Thisspias"
-    },
-    "slanguage": {
-      "value": "Thisspiasian"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002052,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796466,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!0EcNY9y4DSoYS8Vk"
+  "_key": "!items!714R27g4Oxb2PtI9"
 }

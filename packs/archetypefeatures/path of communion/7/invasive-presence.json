@@ -16,11 +16,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Path of Communion:</strong> 7th level</em></p>\n<p>Your spirit can invade another creature's being. As an action, your spirit can touch a creature within 5 feet of it, forcing it to make a Wisdom saving throw against your universal force save DC. If you or creatures that are friendly to you are fighting it, it has advantage on the saving throw. </p>\n<p>On a failed save, your spirit moves into that creatures space, inhabiting its body, for 1 minute. The affected creature has disadvantage on the first attack roll, ability check, or saving throw it makes each turn. At the end of each its turns, the creature repeats this save. On a success, it repels the spirit from its body, and it becomes immune to this feature for 24 hours.</p>\n<p>Once you've used this feature, you must complete a long rest before you can use it again.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Sentinel (Path of Communion) 7",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -33,33 +34,37 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
-      "value": "5",
+      "value": 5,
       "long": null,
-      "units": "",
-      "unit": "feet"
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": 1,
+      "max": "1",
       "per": "lr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,25 +79,37 @@
       "value": "class",
       "subtype": ""
     },
-    "recharge": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
     "attributes": {
       "speed": {
         "space": null,
         "turn": null
       }
     },
-    "className": "Sentinel"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493958016,
-    "modifiedTime": 1699591595207,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368708498,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!kAYHyZ2j11MuED94"
 }

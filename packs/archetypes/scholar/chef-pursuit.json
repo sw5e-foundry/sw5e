@@ -16,71 +16,88 @@
   "system": {
     "description": {
       "value": "<h1>Chef Pursuit</h1>\n<p>Without it empires fall, armies dissolve into nothingness, and species are forgotten with the passage of time. A favored tool of assassins, crime lords, and moguls: food. Those scholars who choose the Chef Pursuit know the importance and power that food carries.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": "<h1>Chef Discoveries</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.Rgo1yvfNXpomIxc6]{Allergens}</li>\n<li>@Compendium[sw5e.invocations.BGhI0oqlP37M916r]{Alternative fuel}</li>\n<li>@Compendium[sw5e.invocations.F2RfuXpGudIgHYaR]{Banquet}</li>\n<li>@Compendium[sw5e.invocations.QcDLLVt0AeSuBXre]{Brain food}</li>\n<li>@Compendium[sw5e.invocations.WuVg1QpZwTVNBGvo]{Debilitants}</li>\n<li>@Compendium[sw5e.invocations.oBoBLTIIQiSNKob7]{Energizers}</li>\n<li>@Compendium[sw5e.invocations.rEurkWMlj6RwodoQ]{Enhancers}</li>\n<li>@Compendium[sw5e.invocations.DGVURcZoXWwkNgMc]{Filling meal}</li>\n<li>@Compendium[sw5e.invocations.BYspMucGpM6CuwIN]{Full course}</li>\n<li>@Compendium[sw5e.invocations.VirrTNmszKdHDJ6H]{Health food}</li>\n<li>@Compendium[sw5e.invocations.Ial4QnGTTqr7CReT]{Muscle relaxants}</li>\n<li>@Compendium[sw5e.invocations.d9um1RPYANCMSWGe]{On the rocks}</li>\n<li>@Compendium[sw5e.invocations.G80KOpVBCjtvBoj4]{Secret ingredient}</li>\n<li>@Compendium[sw5e.invocations.FXTJZaUX3mkroOjm]{Spice of life}</li>\n<li>@Compendium[sw5e.invocations.qh79HYjg5lxRMDSl]{Supplements}</li>\n<li>@Compendium[sw5e.invocations.eMElabL116n5XJmD]{Vitamins}</li>\n</ul>"
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "chefpursuit",
     "classIdentifier": "scholar",
     "advancement": [
       {
-        "_id": "109Jmd9ruvSJ1jup",
+        "_id": "1rwMEn8V2IAb1cBL",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.CAZeKeseBHQp9Pko",
-            "Compendium.sw5e.archetypefeatures.nCs6NVeaLoDueywC"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.CAZeKeseBHQp9Pko",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.nCs6NVeaLoDueywC",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1gB98cANXxED71Is",
+        "_id": "Y4mdJqCP1a1kJIY0",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.szOx52zJzpJDDk2G"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.szOx52zJzpJDDk2G",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "12cJro6BsBKu1ldi",
+        "_id": "Kiilp0iJ7qj1pZ0E",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.OMEv8u23ORmqxHnj"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.OMEv8u23ORmqxHnj",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "D5UnBl6mVHQiQaeS",
+        "_id": "wi7PUjjxlhbXs1F5",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.gyGfm8RxCPlB4ObC"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.gyGfm8RxCPlB4ObC",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
         "title": "Features"
       },
       {
-        "_id": "1RAjshIwraFK1Cui",
+        "_id": "8Rp5oE1qzp31FunU",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -95,47 +112,105 @@
           "grants": [
             "tool:chefskit"
           ],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       },
       {
-        "_id": "WZ3rtIuo5iv1IjLu",
+        "_id": "12Q8UBjELYl51sy7",
         "type": "ItemChoice",
         "configuration": {
           "hint": "As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
           "choices": {
-            "2": 2,
-            "3": 2,
-            "5": 1,
-            "9": 1,
-            "11": 1,
-            "13": 1,
-            "17": 1
+            "2": {
+              "count": 2,
+              "replacement": false
+            },
+            "3": {
+              "count": 2,
+              "replacement": false
+            },
+            "5": {
+              "count": 1,
+              "replacement": false
+            },
+            "9": {
+              "count": 1,
+              "replacement": false
+            },
+            "11": {
+              "count": 1,
+              "replacement": false
+            },
+            "13": {
+              "count": 1,
+              "replacement": false
+            },
+            "17": {
+              "count": 1,
+              "replacement": false
+            }
           },
           "allowDrops": true,
           "type": "feat",
           "pool": [
-            "Compendium.sw5e.invocations.Rgo1yvfNXpomIxc6",
-            "Compendium.sw5e.invocations.BGhI0oqlP37M916r",
-            "Compendium.sw5e.invocations.F2RfuXpGudIgHYaR",
-            "Compendium.sw5e.invocations.QcDLLVt0AeSuBXre",
-            "Compendium.sw5e.invocations.WuVg1QpZwTVNBGvo",
-            "Compendium.sw5e.invocations.oBoBLTIIQiSNKob7",
-            "Compendium.sw5e.invocations.rEurkWMlj6RwodoQ",
-            "Compendium.sw5e.invocations.DGVURcZoXWwkNgMc",
-            "Compendium.sw5e.invocations.BYspMucGpM6CuwIN",
-            "Compendium.sw5e.invocations.VirrTNmszKdHDJ6H",
-            "Compendium.sw5e.invocations.Ial4QnGTTqr7CReT",
-            "Compendium.sw5e.invocations.d9um1RPYANCMSWGe",
-            "Compendium.sw5e.invocations.G80KOpVBCjtvBoj4",
-            "Compendium.sw5e.invocations.FXTJZaUX3mkroOjm",
-            "Compendium.sw5e.invocations.qh79HYjg5lxRMDSl",
-            "Compendium.sw5e.invocations.eMElabL116n5XJmD"
+            {
+              "uuid": "Compendium.sw5e.invocations.Rgo1yvfNXpomIxc6"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.BGhI0oqlP37M916r"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.F2RfuXpGudIgHYaR"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.QcDLLVt0AeSuBXre"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.WuVg1QpZwTVNBGvo"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.oBoBLTIIQiSNKob7"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.rEurkWMlj6RwodoQ"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.DGVURcZoXWwkNgMc"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.BYspMucGpM6CuwIN"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.VirrTNmszKdHDJ6H"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.Ial4QnGTTqr7CReT"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.d9um1RPYANCMSWGe"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.G80KOpVBCjtvBoj4"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.FXTJZaUX3mkroOjm"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.qh79HYjg5lxRMDSl"
+            },
+            {
+              "uuid": "Compendium.sw5e.invocations.eMElabL116n5XJmD"
+            }
           ],
           "power": {
-            "ability": "",
+            "ability": [
+              ""
+            ],
             "preparation": "",
             "uses": {
               "per": "",
@@ -148,7 +223,10 @@
             "level": ""
           }
         },
-        "value": {},
+        "value": {
+          "added": {},
+          "replaced": {}
+        },
         "title": "Chef Discoveries"
       }
     ],
@@ -159,7 +237,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -167,11 +245,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959769,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689824,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!nig3ZPBNyS0KzZmL"
 }

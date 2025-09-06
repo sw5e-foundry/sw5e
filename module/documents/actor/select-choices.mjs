@@ -19,14 +19,14 @@ import { sortObjectEntries } from "../../utils.mjs";
  * @param {Object<string, SelectChoicesEntry>} [choices={}]  Initial choices for the object.
  */
 export default class SelectChoices {
-  constructor(choices={}) {
-    const clone = foundry.utils.deepClone(choices);
-    for ( const value of Object.values(clone) ) {
-      if ( !value.children || (value.children instanceof SelectChoices) ) continue;
+  constructor( choices={} ) {
+    const clone = foundry.utils.deepClone( choices );
+    for ( const value of Object.values( clone ) ) {
+      if ( !value.children || ( value.children instanceof SelectChoices ) ) continue;
       value.category = true;
-      value.children = new this.constructor(value.children);
+      value.children = new this.constructor( value.children );
     }
-    Object.assign(this, clone);
+    Object.assign( this, clone );
   }
 
   /* -------------------------------------------- */
@@ -36,11 +36,11 @@ export default class SelectChoices {
    * @param {Set<string>} [set]  Existing set to which the values will be added.
    * @returns {Set<string>}
    */
-  asSet(set) {
+  asSet( set ) {
     set ??= new Set();
-    for ( const [key, choice] of Object.entries(this) ) {
-      if ( choice.children ) choice.children.asSet(set);
-      else set.add(key);
+    for ( const [key, choice] of Object.entries( this ) ) {
+      if ( choice.children ) choice.children.asSet( set );
+      else set.add( key );
     }
     return set;
   }
@@ -53,11 +53,11 @@ export default class SelectChoices {
    */
   clone() {
     const newData = {};
-    for ( const [key, value] of Object.entries(this) ) {
-      newData[key] = foundry.utils.deepClone(value);
+    for ( const [key, value] of Object.entries( this ) ) {
+      newData[key] = foundry.utils.deepClone( value );
       if ( value.children ) newData[key].children = value.children.clone();
     }
-    const clone = new this.constructor(newData);
+    const clone = new this.constructor( newData );
     return clone;
   }
 
@@ -69,12 +69,12 @@ export default class SelectChoices {
    * @returns {[string, SelectChoicesEntry]|null}  An array with the first value being the matched key,
    *                                               and the second being the value.
    */
-  find(key) {
-    for ( const [k, v] of Object.entries(this) ) {
-      if ( (k === key) || k.endsWith(`:${key}`) ) {
+  find( key ) {
+    for ( const [k, v] of Object.entries( this ) ) {
+      if ( ( k === key ) || k.endsWith( `:${key}` ) ) {
         return [k, v];
       } else if ( v.children ) {
-        const result = v.children.find(key);
+        const result = v.children.find( key );
         if ( result ) return result;
       }
     }
@@ -90,9 +90,9 @@ export default class SelectChoices {
    * @param {boolean} [options.inplace=true]  Should this SelectChoices be mutated or a new one returned?
    * @returns {SelectChoices}
    */
-  merge(other, { inplace=true }={}) {
-    if ( !inplace ) return this.clone().merge(other);
-    return foundry.utils.mergeObject(this, other);
+  merge( other, { inplace=true }={} ) {
+    if ( !inplace ) return this.clone().merge( other );
+    return foundry.utils.mergeObject( this, other );
   }
 
   /* -------------------------------------------- */
@@ -104,11 +104,11 @@ export default class SelectChoices {
    * @returns {number}
    * @protected
    */
-  _sort(lhs, rhs) {
-    if ( (lhs.sorting === false) && (rhs.sorting === false) ) return 0;
+  _sort( lhs, rhs ) {
+    if ( ( lhs.sorting === false ) && ( rhs.sorting === false ) ) return 0;
     if ( lhs.sorting === false ) return -1;
     if ( rhs.sorting === false ) return 1;
-    return lhs.label.localeCompare(rhs.label);
+    return lhs.label.localeCompare( rhs.label, game.i18n.lang );
   }
 
   /* -------------------------------------------- */
@@ -119,21 +119,21 @@ export default class SelectChoices {
    * @param {boolean} [options.inplace=true]  Should this SelectChoices be mutated or a new one returned?
    * @returns {SelectChoices}
    */
-  sort({ inplace=true }={}) {
-    const sorted = new SelectChoices(sortObjectEntries(this, this._sort));
+  sort( { inplace=true }={} ) {
+    const sorted = new SelectChoices( sortObjectEntries( this, this._sort ) );
 
     if ( inplace ) {
-      for ( const key of Object.keys(this) ) delete this[key];
-      this.merge(sorted);
-      for ( const entry of Object.values(this) ) {
+      for ( const key of Object.keys( this ) ) delete this[key];
+      this.merge( sorted );
+      for ( const entry of Object.values( this ) ) {
         if ( entry.children ) entry.children.sort();
       }
       return this;
     }
 
     else {
-      for ( const entry of Object.values(sorted) ) {
-        if ( entry.children ) entry.children = entry.children.sort({ inplace });
+      for ( const entry of Object.values( sorted ) ) {
+        if ( entry.children ) entry.children = entry.children.sort( { inplace } );
       }
       return sorted;
     }
@@ -193,21 +193,21 @@ export default class SelectChoices {
    * // Results in categoryTwo with only childOne
    * choices.filter(new Set(["type:categoryTwo:childOne"]));
    */
-  filter(filter, { inplace=true }={}) {
-    if ( !inplace ) return this.clone().filter(filter);
+  filter( filter, { inplace=true }={} ) {
+    if ( !inplace ) return this.clone().filter( filter );
     if ( filter instanceof SelectChoices ) filter = filter.asSet();
 
-    for ( const [key, trait] of Object.entries(this) ) {
+    for ( const [key, trait] of Object.entries( this ) ) {
       // Remove children if direct match and no wildcard for this category present
-      const wildcardKey = key.replace(/(:|^)(\w+)$/, "$1*");
-      if ( filter.has(key) && !filter.has(wildcardKey) ) {
+      const wildcardKey = key.replace( /(:|^)(\w+)$/, "$1*" );
+      if ( filter.has( key ) && !filter.has( wildcardKey ) ) {
         if ( trait.children ) delete trait.children;
       }
 
       // Check children, remove entry if no children match filter
-      else if ( !filter.has(wildcardKey) && !filter.has(`${key}:*`) ) {
-        if ( trait.children ) trait.children.filter(filter);
-        if ( foundry.utils.isEmpty(trait.children ?? {}) ) delete this[key];
+      else if ( !filter.has( wildcardKey ) && !filter.has( `${key}:*` ) ) {
+        if ( trait.children ) trait.children.filter( filter );
+        if ( foundry.utils.isEmpty( trait.children ?? {} ) ) delete this[key];
       }
     }
 
@@ -239,11 +239,11 @@ export default class SelectChoices {
    * // Results in categoryOne and childOne being removed, but categoryTwo and childTwo remaining
    * choices.exclude(new Set(["categoryOne", "categoryTwo:childOne"]));
    */
-  exclude(keys, { inplace=true }={}) {
-    if ( !inplace ) return this.clone().exclude(keys);
-    for ( const [key, trait] of Object.entries(this) ) {
-      if ( keys.has(key) ) delete this[key];
-      else if ( trait.children ) trait.children = trait.children.exclude(keys);
+  exclude( keys, { inplace=true }={} ) {
+    if ( !inplace ) return this.clone().exclude( keys );
+    for ( const [key, trait] of Object.entries( this ) ) {
+      if ( keys.has( key ) ) delete this[key];
+      else if ( trait.children ) trait.children = trait.children.exclude( keys );
     }
     return this;
   }

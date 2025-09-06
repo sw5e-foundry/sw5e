@@ -6,9 +6,9 @@
  * @param {number} [options.advantageMode]  What advantage modifier to apply to the roll (none, advantage, disadvantage)
  */
 export default class AttribDieRoll extends Roll {
-  constructor(formula, data, options) {
-    super(formula, data, options);
-    if (!this.options.configured) this.configureModifiers();
+  constructor( formula, data, options ) {
+    super( formula, data, options );
+    if ( !this.options.configured ) this.configureModifiers();
   }
 
   /* -------------------------------------------- */
@@ -18,9 +18,9 @@ export default class AttribDieRoll extends Roll {
    * @param {Roll} roll
    * @returns {AttribDieRoll}
    */
-  static fromRoll(roll) {
-    const newRoll = new this(roll.formula, roll.data, roll.options);
-    Object.assign(newRoll, roll);
+  static fromRoll( roll ) {
+    const newRoll = new this( roll.formula, roll.data, roll.options );
+    Object.assign( newRoll, roll );
     return newRoll;
   }
 
@@ -36,11 +36,11 @@ export default class AttribDieRoll extends Roll {
    * @returns {{advantageMode: D20Roll.ADV_MODE, isFF: boolean}}  Whether the roll is fast-forwarded, and its advantage
    *                                                              mode.
    */
-  static determineAdvantageMode({ event, advantage = false, disadvantage = false, fastForward } = {}) {
-    const isFF = fastForward ?? (event?.shiftKey || event?.altKey || event?.ctrlKey || event?.metaKey);
+  static determineAdvantageMode( { event, advantage = false, disadvantage = false, fastForward } = {} ) {
+    const isFF = fastForward ?? ( event?.shiftKey || event?.altKey || event?.ctrlKey || event?.metaKey );
     let advantageMode = this.ADV_MODE.NORMAL;
-    if (advantage || event?.altKey) advantageMode = this.ADV_MODE.ADVANTAGE;
-    else if (disadvantage || event?.ctrlKey || event?.metaKey) advantageMode = this.ADV_MODE.DISADVANTAGE;
+    if ( advantage || event?.altKey ) advantageMode = this.ADV_MODE.ADVANTAGE;
+    else if ( disadvantage || event?.ctrlKey || event?.metaKey ) advantageMode = this.ADV_MODE.DISADVANTAGE;
     return { isFF: !!isFF, advantageMode };
   }
 
@@ -97,18 +97,18 @@ export default class AttribDieRoll extends Roll {
     die.modifiers = [];
 
     // Handle Advantage or Disadvantage
-    if (this.hasAdvantage) {
+    if ( this.hasAdvantage ) {
       die.number = 2;
-      die.modifiers.push("kh");
+      die.modifiers.push( "kh" );
       die.options.advantage = true;
-    } else if (this.hasDisadvantage) {
+    } else if ( this.hasDisadvantage ) {
       die.number = 2;
-      die.modifiers.push("kl");
+      die.modifiers.push( "kl" );
       die.options.disadvantage = true;
     } else die.number = 1;
 
     // Re-compile the underlying formula
-    this._formula = this.constructor.getFormula(this.terms);
+    this._formula = this.constructor.getFormula( this.terms );
 
     // Mark configuration as complete
     this.options.configured = true;
@@ -117,18 +117,18 @@ export default class AttribDieRoll extends Roll {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  async toMessage(messageData = {}, options = {}) {
+  async toMessage( messageData = {}, options = {} ) {
     // Evaluate the roll now so we have the results available
-    if (!this._evaluated) await this.evaluate({ async: true });
+    if ( !this._evaluated ) await this.evaluate( { async: true } );
 
     // Add appropriate advantage mode message flavor and sw5e roll flags
     messageData.flavor = messageData.flavor || this.options.flavor;
-    if (this.hasAdvantage) messageData.flavor += ` (${game.i18n.localize("SW5E.Advantage")})`;
-    else if (this.hasDisadvantage) messageData.flavor += ` (${game.i18n.localize("SW5E.Disadvantage")})`;
+    if ( this.hasAdvantage ) messageData.flavor += ` (${game.i18n.localize( "SW5E.Advantage" )})`;
+    else if ( this.hasDisadvantage ) messageData.flavor += ` (${game.i18n.localize( "SW5E.Disadvantage" )})`;
 
     // Record the preferred rollMode
     options.rollMode = options.rollMode ?? this.options.rollMode;
-    return super.toMessage(messageData, options);
+    return super.toMessage( messageData, options );
   }
 
   /* -------------------------------------------- */
@@ -160,17 +160,17 @@ export default class AttribDieRoll extends Roll {
     options = {}
   ) {
     // Render the Dialog inner HTML
-    const content = await renderTemplate(template ?? this.constructor.EVALUATION_TEMPLATE, {
-      formula: `${this.formula} + @bonus`,
+    const content = await renderTemplate( template ?? this.constructor.EVALUATION_TEMPLATE, {
+      formulas: [{formula: `${this.formula} + @bonus`}],
       defaultRollMode,
       rollModes: CONFIG.Dice.rollModes,
       chooseModifier,
       defaultAbility,
       abilities: CONFIG.SW5E.abilities
-    });
+    } );
 
     let defaultButton = "normal";
-    switch (defaultAction) {
+    switch ( defaultAction ) {
       case AttribDieRoll.ADV_MODE.ADVANTAGE:
         defaultButton = "advantage";
         break;
@@ -180,31 +180,31 @@ export default class AttribDieRoll extends Roll {
     }
 
     // Create the Dialog window and await submission of the form
-    return new Promise(resolve => {
+    return new Promise( resolve => {
       new Dialog(
         {
           title,
           content,
           buttons: {
             advantage: {
-              label: game.i18n.localize("SW5E.Advantage"),
-              callback: html => resolve(this._onDialogSubmit(html, AttribDieRoll.ADV_MODE.ADVANTAGE))
+              label: game.i18n.localize( "SW5E.Advantage" ),
+              callback: html => resolve( this._onDialogSubmit( html, AttribDieRoll.ADV_MODE.ADVANTAGE ) )
             },
             normal: {
-              label: game.i18n.localize("SW5E.Normal"),
-              callback: html => resolve(this._onDialogSubmit(html, AttribDieRoll.ADV_MODE.NORMAL))
+              label: game.i18n.localize( "SW5E.Normal" ),
+              callback: html => resolve( this._onDialogSubmit( html, AttribDieRoll.ADV_MODE.NORMAL ) )
             },
             disadvantage: {
-              label: game.i18n.localize("SW5E.Disadvantage"),
-              callback: html => resolve(this._onDialogSubmit(html, AttribDieRoll.ADV_MODE.DISADVANTAGE))
+              label: game.i18n.localize( "SW5E.Disadvantage" ),
+              callback: html => resolve( this._onDialogSubmit( html, AttribDieRoll.ADV_MODE.DISADVANTAGE ) )
             }
           },
           default: defaultButton,
-          close: () => resolve(null)
+          close: () => resolve( null )
         },
         options
-      ).render(true);
-    });
+      ).render( true );
+    } );
   }
 
   /* -------------------------------------------- */
@@ -216,21 +216,29 @@ export default class AttribDieRoll extends Roll {
    * @returns {AttribDieRoll}        This Attribute Die roll.
    * @private
    */
-  _onDialogSubmit(html, advantageMode) {
-    const form = html[0].querySelector("form");
+  _onDialogSubmit( html, advantageMode ) {
+    const form = html[0].querySelector( "form" );
 
     // Append a situational bonus term
-    if (form.bonus.value) {
-      const bonus = new Roll(form.bonus.value, this.data);
-      if (!(bonus.terms[0] instanceof OperatorTerm)) this.terms.push(new OperatorTerm({ operator: "+" }));
-      this.terms = this.terms.concat(bonus.terms);
+    if ( form.bonus.value ) {
+      const bonus = new Roll( form.bonus.value, this.data );
+      if ( !( bonus.terms[0] instanceof OperatorTerm ) ) this.terms.push( new OperatorTerm( { operator: "+" } ) );
+      this.terms = this.terms.concat( bonus.terms );
     }
 
     // Customize the modifier
-    if (form.ability?.value) {
+    if ( form.ability?.value ) {
       const abl = this.data.abilities[form.ability.value];
-      this.terms.findSplice(t => t.term === "@mod", new NumericTerm({ number: abl.mod }));
-      this.options.flavor += ` (${CONFIG.SW5E.abilities[form.ability.value]})`;
+      this.terms = this.terms.flatMap( t => {
+        if ( t.term === "@mod" ) return new NumericTerm( {number: abl.mod} );
+        if ( t.term === "@abilityCheckBonus" ) {
+          const bonus = abl.bonuses?.check;
+          if ( bonus ) return new Roll( bonus, this.data ).terms;
+          return new NumericTerm( {number: 0} );
+        }
+        return t;
+      } );
+      this.options.flavor += ` (${CONFIG.SW5E.abilities[form.ability.value]?.label ?? ""})`;
     }
 
     // Apply advantage or disadvantage

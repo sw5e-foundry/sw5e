@@ -1,8 +1,156 @@
 {
-  "_id": "HwLeq62ElMqBrGpK",
   "name": "Half-human",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2801331+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-half_human"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Half-Human.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>The appearance and biological features of half-humans vary drastically by each species, but tend to fall somewhere in the middle. A common side-effect of a species interbreeding with humans is the loss of darkvision and tails.</p>\n<h2>Society and Culture</h2>\n<p>Half-humans are subjects of two separate cultures, but belong in neither. A half-human might be raised amongst humans or their other half, or might be fully ostracized, instead growing up in a remote, isolated place, removed from both species.</p>\n<p>&gt; #### Traits</p>\n<p>&gt; Half-humans gain the <strong><em>Defiant</em></strong> special trait from their human half. They also gain the special traits from their non-human half, except for those trait(s) mentioned in the Half-Human table above.</p>\n<h2>Names</h2>\n<p>Half-human names might follow human conventions, or that of the other half. Often, they blend the two in some fashion, perhaps taking a human surname, with a special name.</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "half-human",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "126pKVesTslRdXIq",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vcaupTsG5WrQBeCi",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.16fdzeopvOTpLu5U",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.jv4hVm1T9ssJ8oTT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.dhBFKePiOOsBDKrd",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.9QBnm0qqRDEoRowb",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.QOXVq1HVmdf3vo5q",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.vQN6qZGEUzVBLwYC",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "PYbD689l12fe20ZX",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1d7LC9Ntmtsv1TyK",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": ""
+    },
+    "hairColorOptions": {
+      "value": ""
+    },
+    "eyeColorOptions": {
+      "value": ""
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": ""
+    },
+    "heightAverage": {
+      "value": ""
+    },
+    "heightRollMod": {
+      "value": ""
+    },
+    "weightAverage": {
+      "value": ""
+    },
+    "weightRollMod": {
+      "value": ""
+    },
+    "homeworld": {
+      "value": ""
+    },
+    "slanguage": {
+      "value": ""
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "ijcI8bBJYOzbQxAH",
@@ -44,121 +192,22 @@
       "name": "Half-Human",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!HwLeq62ElMqBrGpK.ijcI8bBJYOzbQxAH"
+      "_key": "!items.effects!Np2Ol3tLNZhZnHlg.ijcI8bBJYOzbQxAH"
     }
   ],
+  "_id": "Np2Ol3tLNZhZnHlg",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:12.2801331+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-half_human"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>The appearance and biological features of half-humans vary drastically by each species, but tend to fall somewhere in the middle. A common side-effect of a species interbreeding with humans is the loss of darkvision and tails.</p>\n<h2>Society and Culture</h2>\n<p>Half-humans are subjects of two separate cultures, but belong in neither. A half-human might be raised amongst humans or their other half, or might be fully ostracized, instead growing up in a remote, isolated place, removed from both species.</p>\n<p>&gt; #### Traits</p>\n<p>&gt; Half-humans gain the <strong><em>Defiant</em></strong> special trait from their human half. They also gain the special traits from their non-human half, except for those trait(s) mentioned in the Half-Human table above.</p>\n<h2>Names</h2>\n<p>Half-human names might follow human conventions, or that of the other half. Often, they blend the two in some fashion, perhaps taking a human surname, with a special name.</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "half-human",
-    "advancement": [
-      {
-        "_id": "9vae7E6MPCe18wTY",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.vcaupTsG5WrQBeCi",
-            "Compendium.sw5e.speciesfeatures.16fdzeopvOTpLu5U",
-            "Compendium.sw5e.speciesfeatures.jv4hVm1T9ssJ8oTT",
-            "Compendium.sw5e.speciesfeatures.dhBFKePiOOsBDKrd",
-            "Compendium.sw5e.speciesfeatures.9QBnm0qqRDEoRowb",
-            "Compendium.sw5e.speciesfeatures.QOXVq1HVmdf3vo5q",
-            "Compendium.sw5e.speciesfeatures.vQN6qZGEUzVBLwYC"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "129M6y2Od9TjJIZI",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {},
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "OsxQCzvrrXs1xguV",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": null
-    },
-    "hairColorOptions": {
-      "value": null
-    },
-    "eyeColorOptions": {
-      "value": null
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": null
-    },
-    "heightAverage": {
-      "value": null
-    },
-    "heightRollMod": {
-      "value": null
-    },
-    "weightAverage": {
-      "value": null
-    },
-    "weightRollMod": {
-      "value": null
-    },
-    "homeworld": {
-      "value": null
-    },
-    "slanguage": {
-      "value": null
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002078,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796964,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!HwLeq62ElMqBrGpK"
+  "_key": "!items!Np2Ol3tLNZhZnHlg"
 }

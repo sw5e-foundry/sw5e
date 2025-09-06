@@ -1,8 +1,188 @@
 {
-  "_id": "KLAbeG2Iyq9iTdHJ",
   "name": "Verpine",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:11.8993534+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-verpine"
+    }
+  },
   "type": "species",
   "img": "systems/sw5e/packs/Icons/Species/Verpine.webp",
+  "system": {
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Verpine are thin bipedal insectoids whose heads are dominated by large compound eyes. They also have two antennae, one located behind each eye. Their hardened carapace, composed of a green chitinous substance called carahide, is as flexible as the skin of other creatures, yet tough enough to deflect a blade or even absorb a glancing blaster bolt. The Verpine circulatory system does not contain a heart.</p>\n<p>Verpine eyes are keen enough to pick out microscopic details. Their antennae contain tympanic nerves which pick up sound. Their antennae are also sensitive to radio waves, giving Verpine the natural ability to sense and transmit radio waves to communicate with another Verpine in their language over long distances.</p>\n<h2>Society and Culture</h2>\n<p>The Verpine people hail from the Roche asteroid field, which is the fractured remnants of their home planet. The Roche live in artificial, self-sustaining environments inside these fragments.</p>\n<p>Verpine culture is oriented around crafting; they are noteworthy manufacturers of weapons, shield generators, armor, as well as personal use items such as breathing apparatuses. They are also gifted pilots.</p>\n<h2>Names</h2>\n<p>Verpine had variable naming customs. Not all Verpines adopt surnames. Male and female Verpine names do not differentiate.</p>\n<p><strong>First Names.</strong> Fxz'et, Kuli, Moegid, Ss's, Zix</p>\n<p><strong>Surnames.</strong> And'et, Ned'Ix, Ned'lx, Niskooen, Zes'sx</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "EC"
+    },
+    "identifier": "verpine",
+    "details": {
+      "isDroid": false
+    },
+    "type": {
+      "value": "humanoid"
+    },
+    "movement": {
+      "walk": 30,
+      "burrow": null,
+      "climb": null,
+      "fly": null,
+      "swim": null,
+      "units": null,
+      "hover": false
+    },
+    "senses": {
+      "darkvision": null,
+      "blindsight": null,
+      "tremorsense": null,
+      "truesight": null,
+      "units": null,
+      "special": ""
+    },
+    "advancement": [
+      {
+        "_id": "17weG2JJcf7Z1KLA",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PhaBbhIgwJU0dU9a",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.RSgSTiPLhOpDnkXi",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.euGMiKK2TnulMCQD",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.LwqVf4ukLBZspkC3",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.p2O6bXplM2dF9Kjl",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.04dQHHGamkerWfCj",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.v9nqiYceh5VENXPT",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.7T7zuhinqIf0xKw5",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.speciesfeatures.PqjCzeUaMz0KB7X0",
+              "optional": false
+            }
+          ],
+          "optional": true,
+          "power": null
+        },
+        "value": {},
+        "level": 0,
+        "title": "Features"
+      },
+      {
+        "_id": "1j028UNHOENSN0zw",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "con": 1
+          },
+          "points": 0,
+          "cap": 2
+        },
+        "value": {
+          "type": "asi"
+        },
+        "level": 0
+      },
+      {
+        "_id": "1GD2Jq5Hg7EpgHhW",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "CuOvCYrmmP2gPwD9",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default",
+          "allowReplacements": false
+        },
+        "value": {
+          "chosen": []
+        },
+        "level": 0
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Green"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black or red"
+    },
+    "colorScheme": {
+      "value": ""
+    },
+    "distinctions": {
+      "value": "Hive-based insectoids, radio wave senses, technological aptitude, hardened carapace, short snouts, and small, toothless mouths"
+    },
+    "heightAverage": {
+      "value": "5'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d8\""
+    },
+    "weightAverage": {
+      "value": "80 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Roche asteroid field"
+    },
+    "slanguage": {
+      "value": "Verpine"
+    },
+    "droidDistinctions": {
+      "value": ""
+    },
+    "manufacturer": {
+      "value": ""
+    },
+    "droidLanguage": {
+      "value": ""
+    }
+  },
   "effects": [
     {
       "_id": "ch1P73CKaCd3Czcy",
@@ -62,144 +242,22 @@
       "name": "Verpine",
       "description": "",
       "statuses": [],
-      "sort": 0,
-      "_key": "!items.effects!KLAbeG2Iyq9iTdHJ.ch1P73CKaCd3Czcy"
+      "_key": "!items.effects!E7MudmqNzBDpqwHc.ch1P73CKaCd3Czcy"
     }
   ],
+  "_id": "E7MudmqNzBDpqwHc",
   "folder": null,
   "sort": 0,
-  "flags": {
-    "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:11.8993534+00:00",
-      "importer_version": 3,
-      "uid": "Species.name-verpine"
-    }
-  },
-  "system": {
-    "data": "$characteristics-table",
-    "description": {
-      "value": "<h2>Biology and Appearance</h2>\n<p>Verpine are thin bipedal insectoids whose heads are dominated by large compound eyes. They also have two antennae, one located behind each eye. Their hardened carapace, composed of a green chitinous substance called carahide, is as flexible as the skin of other creatures, yet tough enough to deflect a blade or even absorb a glancing blaster bolt. The Verpine circulatory system does not contain a heart.</p>\n<p>Verpine eyes are keen enough to pick out microscopic details. Their antennae contain tympanic nerves which pick up sound. Their antennae are also sensitive to radio waves, giving Verpine the natural ability to sense and transmit radio waves to communicate with another Verpine in their language over long distances.</p>\n<h2>Society and Culture</h2>\n<p>The Verpine people hail from the Roche asteroid field, which is the fractured remnants of their home planet. The Roche live in artificial, self-sustaining environments inside these fragments.</p>\n<p>Verpine culture is oriented around crafting; they are noteworthy manufacturers of weapons, shield generators, armor, as well as personal use items such as breathing apparatuses. They are also gifted pilots.</p>\n<h2>Names</h2>\n<p>Verpine had variable naming customs. Not all Verpines adopt surnames. Male and female Verpine names do not differentiate.</p>\n<p><strong>First Names.</strong> Fxz'et, Kuli, Moegid, Ss's, Zix</p>\n<p><strong>Surnames.</strong> And'et, Ned'Ix, Ned'lx, Niskooen, Zes'sx</p>",
-      "chat": "",
-      "unidentified": ""
-    },
-    "traits": "",
-    "source": "EC",
-    "identifier": "verpine",
-    "advancement": [
-      {
-        "_id": "ABTwKqWBbOvxfUtZ",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.speciesfeatures.PhaBbhIgwJU0dU9a",
-            "Compendium.sw5e.speciesfeatures.RSgSTiPLhOpDnkXi",
-            "Compendium.sw5e.speciesfeatures.euGMiKK2TnulMCQD",
-            "Compendium.sw5e.speciesfeatures.LwqVf4ukLBZspkC3",
-            "Compendium.sw5e.speciesfeatures.p2O6bXplM2dF9Kjl",
-            "Compendium.sw5e.speciesfeatures.04dQHHGamkerWfCj",
-            "Compendium.sw5e.speciesfeatures.v9nqiYceh5VENXPT",
-            "Compendium.sw5e.speciesfeatures.7T7zuhinqIf0xKw5",
-            "Compendium.sw5e.speciesfeatures.PqjCzeUaMz0KB7X0"
-          ],
-          "optional": true
-        },
-        "value": {},
-        "level": 0,
-        "title": "Features"
-      },
-      {
-        "_id": "1nTZ6LJmLjnc4OCu",
-        "type": "AbilityScoreImprovement",
-        "configuration": {
-          "fixed": {
-            "int": 2,
-            "con": 1
-          },
-          "points": 0
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "YW3MLBFsTd21jPhJ",
-        "type": "Size",
-        "configuration": {
-          "sizes": [
-            "med"
-          ]
-        },
-        "value": {},
-        "level": 0
-      },
-      {
-        "_id": "1sfSirLC1lN6Yb56",
-        "type": "Trait",
-        "configuration": {
-          "choices": [
-            {
-              "count": 1,
-              "pool": [
-                "tool:*"
-              ]
-            }
-          ],
-          "grants": [],
-          "mode": "default"
-        },
-        "value": {},
-        "level": 0
-      }
-    ],
-    "details": {
-      "isDroid": false
-    },
-    "skinColorOptions": {
-      "value": "Green"
-    },
-    "hairColorOptions": {
-      "value": "None"
-    },
-    "eyeColorOptions": {
-      "value": "Black or red"
-    },
-    "colorScheme": {
-      "value": null
-    },
-    "distinctions": {
-      "value": "Hive-based insectoids, radio wave senses, technological aptitude, hardened carapace, short snouts, and small, toothless mouths"
-    },
-    "heightAverage": {
-      "value": "5'9\""
-    },
-    "heightRollMod": {
-      "value": "+2d8\""
-    },
-    "weightAverage": {
-      "value": "80 lb."
-    },
-    "weightRollMod": {
-      "value": "x(2d4) lb."
-    },
-    "homeworld": {
-      "value": "Roche asteroid field"
-    },
-    "slanguage": {
-      "value": "Verpine"
-    },
-    "movement": {
-      "walk": 30
-    }
-  },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
-    "createdTime": 1674494002082,
-    "modifiedTime": 1703969505315,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "createdTime": 1720296028336,
+    "modifiedTime": 1720553796701,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
-  "_key": "!items!KLAbeG2Iyq9iTdHJ"
+  "_key": "!items!E7MudmqNzBDpqwHc"
 }

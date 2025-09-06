@@ -7,28 +7,30 @@
   "_id": "SpqPIgt1VzPz9Kj4",
   "system": {
     "description": {
-      "value": "<p>Also at 5th tier, a crew member can, as a bonus action, delegate a plan of action to the crew. The ship can immediately move up to its flying speed, and up to five crew members on that ship can use their reaction to immediately take an action.</p>\n<p>Once this feature has been used, it can&rsquo;t be used again until the ship recharges.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p>Also at 5th tier, a crew member can, as a bonus action, delegate a plan of action to the crew. The ship can immediately move up to its flying speed, and up to five crew members on that ship can use their reaction to immediately take an action.</p>\n<p>Once this feature has been used, it can't be used again until the ship recharges.</p>",
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "bonus",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -36,19 +38,20 @@
       "units": ""
     },
     "uses": {
-      "value": "1",
+      "value": 1,
       "max": "1",
       "per": "recharge",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,8 +81,16 @@
         "turn": null
       }
     },
-    "size": "Huge",
-    "tier": "5"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -88,11 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494017938,
-    "modifiedTime": 1699591742517,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552913671,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!SpqPIgt1VzPz9Kj4"
 }

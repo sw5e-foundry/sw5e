@@ -7,98 +7,40 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "betterRollssw5e": {
-      "critRange": {
-        "type": "String",
-        "value": ""
-      },
-      "critDamage": {
-        "type": "String",
-        "value": ""
-      },
-      "quickDesc": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickAttack": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickSave": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickDamage": {
-        "type": "Array",
-        "value": [],
-        "altValue": [],
-        "context": []
-      },
-      "quickProperties": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickCharges": {
-        "type": "Boolean",
-        "value": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        },
-        "altValue": {
-          "quantity": false,
-          "use": false,
-          "resource": true
-        }
-      },
-      "quickOther": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true,
-        "context": ""
-      },
-      "quickFlavor": {
-        "type": "Boolean",
-        "value": true,
-        "altValue": true
-      },
-      "quickPrompt": {
-        "type": "Boolean",
-        "value": false,
-        "altValue": false
-      }
-    },
     "sw5e-importer": {
       "timestamp": "2023-03-09T01:52:04.8484415+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-reactive_ultrachrome_armor.subtype-heavy_exoskeleton"
+    },
+    "sw5e": {
+      "migratedProperties": [
+        "stealthDisadvantage"
+      ]
     }
   },
   "system": {
     "description": {
       "value": "<h4>Armor (Heavy Exoskeleton)</h4>\n <p><em><strong>Requires attunement</strong></em></p>\n<hr />\n<p>You have resistence to unenhanced damage while you wear this armor. Additionally, you can use an action to make yourself immune to unenhanced damage for 10 minutes or until you are no longer wearing the armor. Once this special action is used, it can't be used again until the next dawn.</p>\n<p><em>Made with just enough ultrachrome to give you an edge while still keeping things interesting, these suits of armor can discharge an integrated power cell to catalyze this metal normally used in starship hulls into a more resilient state.</em></p>\n<p> </p>\n<h2>Heavy exoskeleton</h2>\n<h3>Bulky</h3>\n<p>While wearing armor with this property, you have disadvantage on Dexterity (Stealth) checks that rely on sound.</p>\n<h3>Strength 17</h3>\n<p>While wearing armor or wielding a shield with this property, your speed is reduced by 10 unless your Strength score meets or exceeds the strength number. </p>\n<hr />\n<p>Heavy exoskeletons are virtually the heaviest armor acquirable during the Galactic War. It is ideal for extreme combat situations that involved direct damage and also offers a very good level of protection in sacrifice of dexterity. Some consider it claustrophobic but that was the trade-off for safety.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 65,
+    "weight": {
+      "value": 65,
+      "units": "lb"
+    },
     "price": {
       "value": 9000,
       "denomination": "gc"
     },
-    "attunement": 1,
+    "attunement": "required",
     "equipped": false,
     "rarity": "legendary",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
@@ -109,10 +51,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -121,20 +64,24 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -147,8 +94,8 @@
     },
     "armor": {
       "value": 18,
-      "type": "heavy",
-      "dex": 0
+      "dex": 0,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -187,63 +134,50 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "baseItem": "heavyexoskeleton",
     "speed": {
       "value": null,
       "conditions": ""
     },
     "strength": null,
-    "stealth": true,
-    "properties": {
-      "Absorptive": null,
-      "Agile": null,
-      "Anchor": null,
-      "Avoidant": null,
-      "Barbed": null,
-      "Bulky": true,
-      "Charging": null,
-      "Concealing": null,
-      "Cumbersome": null,
-      "Gauntleted": null,
-      "Imbalanced": null,
-      "Impermeable": null,
-      "Insulated": null,
-      "Interlocking": null,
-      "Lambent": null,
-      "Lightweight": null,
-      "Magnetic": null,
-      "Obscured": null,
-      "Obtrusive": null,
-      "Powered": null,
-      "Reactive": null,
-      "Regulated": null,
-      "Reinforced": null,
-      "Responsive": null,
-      "Rigid": null,
-      "Silent": null,
-      "Spiked": null,
-      "Strength": 17,
-      "Steadfast": null,
-      "Versatile": null
-    },
+    "properties": [
+      "Bulky",
+      "Strength",
+      "stealthDisadvantage"
+    ],
     "proficient": null,
-    "equiped": false,
-    "weaponType": ""
+    "type": {
+      "value": "heavy",
+      "baseItem": "heavyexoskeleton"
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "_propertyValues": {
+      "Bulky": true,
+      "Strength": 17,
+      "stealthDisadvantage": true
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493964876,
-    "modifiedTime": 1704036401790,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720553676016,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!feQIX3p3KVvujy4M"
 }

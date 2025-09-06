@@ -1,10 +1,10 @@
 <form autocomplete="off">
-  {{> "sw5e.advancement-controls"}}
+    {{> "sw5e.advancement-controls"}}
 
-  <div class="form-group">
-    <label>{{localize "SW5E.AdvancementHint"}}</label>
-    <textarea name="configuration.hint" placeholder="{{default.hint}}">{{configuration.hint}}</textarea>
-  </div>
+    <div class="form-group">
+        <label>{{localize "SW5E.AdvancementHint"}}</label>
+        <textarea name="configuration.hint" placeholder="{{default.hint}}">{{configuration.hint}}</textarea>
+    </div>
 
-  {{> "sw5e.trait-list" choices=sizes prefix="configuration.sizes"}}
+    {{> "sw5e.trait-list" choices=sizes prefix="configuration.sizes"}}
 </form>

@@ -16,71 +16,88 @@
   "system": {
     "description": {
       "value": "<h1>Ballistic Approach</h1>\n<p>For many, rushing an opponent with guns blazing is a last resort. For Berserkers of the Ballistic Approach, this isn't a last resort; it's the primary plan. Leading with a blaster and pure, unbridled rage, the berserker never lets an empty gun diminish their fury.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "PHB"
     },
-    "source": "PHB",
     "identifier": "ballisticapproach",
     "classIdentifier": "berserker",
     "advancement": [
       {
-        "_id": "1H8t1tbpQHUM1GVL",
+        "_id": "plQ0d6jKKk4s6s15",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.CkwEWRhU0Y8HPkHt",
-            "Compendium.sw5e.archetypefeatures.RTq7tBpZM0Qf2P03"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.CkwEWRhU0Y8HPkHt",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.RTq7tBpZM0Qf2P03",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "1C4jdf1yXgmk1TJt",
+        "_id": "hzFflFWmWjRh45s8",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.h5MeIN8utjAqFORR"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.h5MeIN8utjAqFORR",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 6,
         "title": "Features"
       },
       {
-        "_id": "O3PCDfptrN01miBr",
+        "_id": "1ojTKRM8nIKjx3eT",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.DWm0s5SZ86921Q72"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.DWm0s5SZ86921Q72",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 10,
         "title": "Features"
       },
       {
-        "_id": "1CnraW9bNXGJxSpc",
+        "_id": "rhDLP1LaBl419kaE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.LMvbZfbx0lih3Dbu"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.LMvbZfbx0lih3Dbu",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 14,
         "title": "Features"
       },
       {
-        "_id": "1eQBnEmIFL1u1lFz",
+        "_id": "1yyH5FQXiUeNgP5v",
         "type": "Trait",
         "configuration": {
           "choices": [
@@ -92,9 +109,12 @@
             }
           ],
           "grants": [],
-          "mode": "default"
+          "mode": "default",
+          "allowReplacements": false
         },
-        "value": {},
+        "value": {
+          "chosen": []
+        },
         "level": 3
       }
     ],
@@ -105,7 +125,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -113,11 +133,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493959745,
-    "modifiedTime": 1703969496781,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689464,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!R0OP16qx1RSVU8WV"
 }

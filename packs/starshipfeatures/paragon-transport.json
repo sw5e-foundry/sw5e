@@ -7,28 +7,30 @@
   "_id": "U8KNQB2MDTgsow5K",
   "system": {
     "description": {
-      "value": "<p>As of 5th tier, your starship is the best in its class. Two of your ship&rsquo;s ability scores increase by 2. It&rsquo;s maximums for these scores increase by two.</p>",
-      "chat": "",
-      "unidentified": ""
+      "value": "<p>As of 5th tier, your starship is the best in its class. Two of your ship's ability scores increase by 2. It's maximums for these scores increase by two.</p>",
+      "chat": ""
     },
     "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
       "type": "none",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -36,19 +38,20 @@
       "units": ""
     },
     "uses": {
-      "value": "",
+      "value": null,
       "max": "",
-      "per": "",
-      "recovery": ""
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "con",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -78,8 +81,16 @@
         "turn": null
       }
     },
-    "size": "Medium",
-    "tier": "5"
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
@@ -88,11 +99,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494017940,
-    "modifiedTime": 1699591742517,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552913679,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!U8KNQB2MDTgsow5K"
 }

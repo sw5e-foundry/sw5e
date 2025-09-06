@@ -8,8 +8,8 @@ import BaseConfigSheet from "./base-config.mjs";
  * @param {string} abilityId            The ability key as defined in CONFIG.SW5E.abilities.
  */
 export default class ActorAbilityConfig extends BaseConfigSheet {
-  constructor(actor, options, abilityId) {
-    super(actor, options);
+  constructor( actor, options, abilityId ) {
+    super( actor, options );
     this._abilityId = abilityId;
   }
 
@@ -17,33 +17,33 @@ export default class ActorAbilityConfig extends BaseConfigSheet {
 
   /** @override */
   static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject( super.defaultOptions, {
       classes: ["sw5e"],
       template: "systems/sw5e/templates/apps/ability-config.hbs",
       width: 500,
       height: "auto"
-    });
+    } );
   }
 
   /* -------------------------------------------- */
 
   /** @override */
   get title() {
-    return `${game.i18n.format("SW5E.AbilityConfigureTitle", {
+    return `${game.i18n.format( "SW5E.AbilityConfigureTitle", {
       ability: CONFIG.SW5E.abilities[this._abilityId].label
-    })}: ${this.document.name}`;
+    } )}: ${this.document.name}`;
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  getData(options) {
+  getData( options ) {
     const src = this.document.toObject();
     const ability = CONFIG.SW5E.abilities[this._abilityId].label;
     return {
       ability: src.system.abilities[this._abilityId] ?? this.document.system.abilities[this._abilityId] ?? {},
-      labelSaves: game.i18n.format("SW5E.AbilitySaveConfigure", { ability }),
-      labelChecks: game.i18n.format("SW5E.AbilityCheckConfigure", { ability }),
+      labelSaves: game.i18n.format( "SW5E.AbilitySaveConfigure", { ability } ),
+      labelChecks: game.i18n.format( "SW5E.AbilityCheckConfigure", { ability } ),
       abilityId: this._abilityId,
       proficiencyLevels: CONFIG.SW5E.proficiencyLevels,
       bonusGlobalSave: src.system.bonuses?.abilities?.save,

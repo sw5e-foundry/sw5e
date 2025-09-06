@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p>You can augment a single grenade, mine, or thermal detonator to regain its charge. An augmented explosive can only be used by you, and it uses your tech save DC instead of its own. Once you've activated an explosive, it can't be activated again until you finish a short or long rest.</p>\n<p>You can select this modification multiple times. Each time you do so, you can maintain an additional augmented explosive, to a maximum equal to your Intelligence modifier.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Engineer (Cybertech Engineering (Depreciated))",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "special",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "1",
       "per": "sr",
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -91,11 +104,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1680288497258,
-    "modifiedTime": 1699591665857,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368787895,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "Q4wHTjRKMdMZD1jP",
   "_key": "!items!Q4wHTjRKMdMZD1jP"

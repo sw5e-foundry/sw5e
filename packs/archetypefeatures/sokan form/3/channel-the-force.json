@@ -12,11 +12,12 @@
   "system": {
     "description": {
       "value": "<p><em><strong>Sokan Form:</strong> 3rd level</em></p>\n<p>You gain the following Channel the Force option.</p>\n<h3>High Ground Defense</h3>\n<p>When an opponent within 5 feet of you makes a melee attack against you, you can use your reaction and expend a use of your Channel the Force to move to another space within 5 feet of that creature without provoking opportunity attacks, imposing disadvantage on the roll. If the attack misses, you can attempt to shove the creature up to 10 feet away from you as a part of that same reaction.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Guardian (Sokan Form) 3",
-    "source": "EC",
+    "source": {
+      "custom": "EC"
+    },
     "activation": {
       "type": "reaction",
       "cost": 1,
@@ -29,10 +30,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 5,
@@ -43,16 +45,17 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -81,7 +84,17 @@
         "space": 300,
         "turn": 250
       }
-    }
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "effects": [],
   "folder": null,
@@ -91,11 +104,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1680288495978,
-    "modifiedTime": 1699591595182,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368699851,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "WapvBdGqMhOj0huz",
   "_key": "!items!WapvBdGqMhOj0huz"

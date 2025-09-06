@@ -8,22 +8,24 @@
   "system": {
     "description": {
       "value": "<p>2300 (4600) cr</p><p>35 (70) lb</p><p>When a pulse bomb detonates, each ship within 200 [400] feet must make a Constitution saving throw (DC 15). A ship takes 2d10 [4d10] ion damage on a failed save, or half as much on a successful one. Additionally, on a failed save, it is ionized for 1 minute. As an action on each of their turns, a crew member can have the ship repeat the saving throw, ending the effect on a success. Ships larger than you have advantage on their saving throw.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "source": {
+      "custom": "SotG"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "none",
       "cost": 1,
@@ -36,10 +38,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 200,
+      "value": "200",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -48,21 +51,25 @@
     },
     "uses": {
       "value": null,
-      "max": "0",
-      "per": "",
+      "max": "",
+      "per": null,
       "recovery": "",
-      "autoDestroy": false
+      "autoDestroy": false,
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -78,84 +85,26 @@
       "dc": 15,
       "scaling": "flat"
     },
-    "consumableType": "ammo",
-    "ammoType": "ssbomb",
-    "properties": {
-      "amm": false,
-      "aut": false,
-      "bur": null,
-      "con": null,
-      "def": null,
-      "dex": null,
-      "dir": null,
-      "drm": false,
-      "dgd": false,
-      "dis": null,
-      "dpt": false,
-      "dou": false,
-      "exp": false,
-      "fin": false,
-      "fix": false,
-      "foc": false,
-      "hvy": false,
-      "hid": false,
-      "hom": false,
-      "ion": true,
-      "ken": null,
-      "lgt": false,
-      "lum": false,
-      "mlt": false,
-      "mig": false,
-      "ovr": null,
-      "pic": null,
-      "pow": false,
-      "rap": null,
-      "rch": false,
-      "rel": null,
-      "ret": false,
-      "sat": false,
-      "shk": null,
-      "sil": false,
-      "spc": false,
-      "str": null,
-      "thr": false,
-      "two": false,
-      "ver": false,
-      "vic": null,
-      "zon": false,
-      "mgc": false,
-      "ran": false,
-      "smr": false
+    "properties": [
+      "ion"
+    ],
+    "attuned": false,
+    "type": {
+      "value": "ammo",
+      "subtype": "ssbomb"
     },
-    "armor": {
-      "value": 10
+    "unidentified": {
+      "description": ""
     },
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
+    "attack": {
+      "bonus": "",
+      "flat": false
     },
-    "modify": {
-      "chassis": "none",
-      "augmentSlots": 0,
-      "modSlots": 4,
-      "items": [],
-      "changes": {},
-      "type": null
-    },
-    "weaponType": "ammo",
-    "baseItem": "",
-    "ammo": {
-      "target": null,
-      "value": null,
-      "use": null,
-      "types": [
-        "powerCell"
-      ]
-    },
-    "proficient": true,
-    "attuned": false
+    "_propertyValues": {},
+    "container": null,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "ownership": {
     "default": 0
@@ -164,11 +113,11 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674494019821,
-    "modifiedTime": 1699591748139,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552917839,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!SAqOPRfqRaoSDuM8"
 }

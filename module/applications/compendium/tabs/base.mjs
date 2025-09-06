@@ -203,20 +203,27 @@ export class CompendiumBrowserTab {
 
     /**
      * Generates a localized and sorted CheckBoxOptions object from config data
-     * @param configData
-     * @param sort
+     * @param {object} configData
+     * @param {object} config
+     * @param {boolean} config.sort
+     * @param {string|null} config.label
      */
-    generateCheckboxOptions(configData, sort = true) {
+    generateCheckboxOptions(configData, options = {}) {
+      options = foundry.utils.mergeObject({
+        sort: true,
+        label: null
+      }, options);
+
       // Localize labels for sorting
       const localized = Object.entries(configData).reduce(
-        (result, [key, label]) => ({
+        (result, [key, value]) => ({
           ...result,
-          [key]: game.i18n.localize(label)
+          [key]: game.i18n.localize(options.label ? value[options.label] ?? value : value)
         }),
         {}
       );
-        // Return localized and sorted CheckBoxOptions
-      return Object.entries(sort ? this.sortedConfig(localized) : localized).reduce(
+      // Return localized and sorted CheckBoxOptions
+      return Object.entries(options.sort ? this.sortedConfig(localized) : localized).reduce(
         (result, [key, label]) => ({
           ...result,
           [key]: {
@@ -273,5 +280,16 @@ export class CompendiumBrowserTab {
     hasAllIndexFields(data, indexFields) {
       for (const field of indexFields) if (getProperty(data, field) === undefined) return false;
       return true;
+    }
+
+    /**
+     * Lists all index fields that are not present in the index data
+     * @param data
+     * @param indexFields
+     */
+    listMissingIndexFields(data, indexFields) {
+      const missing = [];
+      for (const field of indexFields) if (getProperty(data, field) === undefined) missing.push(field);
+      return missing;
     }
 }

@@ -13,38 +13,41 @@
   "system": {
     "description": {
       "value": "<h4>Weapon (Unarmed Strike)</h4>\n <p><em><strong>Requires attunement</strong></em></p>\n<hr />\n<p>These modifiable handwraps chassis comes with vacant modification slots for vibroweapon modifications. They can house modifications of standard rarity.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 0,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
     "price": {
       "value": 0,
       "denomination": "gc"
     },
-    "attunement": 1,
+    "attunement": "required",
     "equipped": false,
     "rarity": "standard",
     "identified": true,
-    "isCargo": false,
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "enemy"
+      "type": "enemy",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -53,18 +56,19 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "mwak",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -99,22 +103,35 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null
+      "changes": {}
     },
-    "weaponType": "natural",
     "weaponClass": "",
-    "baseItem": "unarmedstrike",
     "ammo": {
       "target": null,
       "value": null,
       "use": null,
       "types": []
     },
-    "properties": {
-      "-=amm": null
+    "properties": [],
+    "proficient": null,
+    "_propertyValues": {},
+    "type": {
+      "value": "natural",
+      "subtype": ""
     },
-    "proficient": null
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "firingArc": ""
   },
   "folder": null,
   "sort": 0,
@@ -123,11 +140,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1673899185913,
-    "modifiedTime": 1704036401790,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418048515,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "keA593io4v6cCQ1P",
   "_key": "!items!keA593io4v6cCQ1P"

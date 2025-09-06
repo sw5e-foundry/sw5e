@@ -13,48 +13,50 @@
   "system": {
     "description": {
       "value": "<p>When you make an Technology check, you can expend a superiority die, rolling the die and adding it to the [[/r d20]] roll. You can wait until after rolling the [[/r d20]] before doing so, but you must decide before the GM says whether the roll succeeds or fails.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "Proficiency in Technology",
-    "source": "PHB",
+    "source": {
+      "custom": "PHB"
+    },
     "activation": {
-      "type": null,
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
       "long": null,
-      "units": "",
-      "unit": ""
+      "units": ""
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "other",
-    "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -70,7 +72,24 @@
       "dc": null,
       "scaling": "power"
     },
-    "maneuverType": "general"
+    "type": {
+      "value": "general",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": [],
+    "recharge": {
+      "value": null,
+      "charged": false
+    }
   },
   "folder": null,
   "sort": 0,
@@ -79,11 +98,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1667426102989,
-    "modifiedTime": 1704036415977,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368793849,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_id": "Kmk1gbTGNzhkmZEH",
   "_key": "!items!Kmk1gbTGNzhkmZEH"

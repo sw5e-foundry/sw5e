@@ -16,38 +16,41 @@
   "system": {
     "description": {
       "value": "<h3>Cumbersome</h3>\n<p>While wearing armor or wielding a shield with this property, your speed is reduced by 5.</p>\n<h3>Reactive 1</h3>\n<p>When you are wearing armor with this property and a creature hits you with an attack roll, you gain a bonus to AC against the next attack from that creature before the start of your next turn equal to the reactive number.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "requirements": "",
-    "source": "WH",
+    "source": {
+      "custom": "WH"
+    },
     "quantity": 1,
-    "weight": 10,
+    "weight": {
+      "value": 10,
+      "units": "lb"
+    },
     "price": {
       "value": 1100,
       "denomination": "gc"
     },
-    "attunement": 0,
+    "attunement": "",
     "equipped": false,
     "rarity": "",
     "identified": true,
-    "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "cover": null,
     "crewed": false,
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -56,20 +59,24 @@
     },
     "uses": {
       "value": null,
-      "max": null,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -82,8 +89,8 @@
     },
     "armor": {
       "value": 11,
-      "type": "light",
-      "dex": null
+      "dex": null,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -122,34 +129,48 @@
       "augmentSlots": 0,
       "modSlots": 4,
       "items": [],
-      "changes": {},
-      "type": null,
-      "overrides": {}
+      "changes": {}
     },
-    "baseItem": "duraniumcombatsuit",
     "speed": {
       "value": null,
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
-    "properties": {
+    "properties": [
+      "Cumbersome",
+      "Reactive"
+    ],
+    "proficient": null,
+    "_propertyValues": {
       "Cumbersome": true,
       "Reactive": 1
     },
-    "proficient": null,
-    "weaponType": ""
+    "type": {
+      "value": "light",
+      "baseItem": "duraniumcombatsuit"
+    },
+    "unidentified": {
+      "description": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attuned": false,
+    "enchantment": null,
+    "summons": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.4.1.2.8.0",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493960262,
-    "modifiedTime": 1704036410369,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720418051102,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!3yQwYNsqhOTwQbs5"
 }

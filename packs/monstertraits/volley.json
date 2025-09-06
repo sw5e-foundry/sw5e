@@ -7,11 +7,12 @@
   "system": {
     "description": {
       "value": "<p>The <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> makes one ranged attack against every enemy within 10 feet of a point it can see.</p><section id=\"secret-UgdQSJ6IF2H3gIao\" class=\"secret\"><p><span style=\"font-family:'Open Sans'\"><em style=\"box-sizing:inherit;user-select:text;color:#1c1c1c;font-family:'Open Sans';font-size:12px\">Ranged Weapon Attack </em>+6, Range 100/400 ft., One target. <em style=\"box-sizing:inherit;user-select:text;color:#1c1c1c;font-family:'Open Sans';font-size:12px\">Hit : </em>8 (1d8+4) energy damage</span></p></section>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
     "requirements": "",
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
@@ -24,10 +25,11 @@
     "cover": null,
     "crewed": false,
     "target": {
-      "value": 10,
+      "value": "10",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
       "value": 100,
@@ -36,18 +38,19 @@
     },
     "uses": {
       "value": null,
-      "max": "0",
-      "per": "",
-      "recovery": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "rwak",
-    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -82,21 +85,27 @@
         "turn": null
       }
     },
-    "powercasting": {
-      "force": "none",
-      "tech": "none"
-    }
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "enchantment": null,
+    "summons": null,
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "3.2.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1669754873892,
-    "modifiedTime": 1699591681495,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720368815906,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "folder": null,
   "sort": 0,

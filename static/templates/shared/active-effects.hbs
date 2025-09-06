@@ -1,0 +1,65 @@
+{{#sw5e-concealSection concealDetails}}
+<{{elements.effects}} class="effects-element">
+  <ol class="items-list effects-list">
+    {{#each effects as |section sid|}}
+    {{#unless section.hidden}}
+    <li class="items-header flexrow" data-effect-type="{{section.type}}">
+        <h3 class="item-name effect-name flexrow">{{localize section.label}}</h3>
+        <div class="effect-source">{{localize "SW5E.Source"}}</div>
+        <div class="effect-source">{{localize "SW5E.Duration"}}</div>
+        <div class="item-controls effect-controls flexrow">
+            {{#if @root.editable}}
+            <a class="effect-control" data-action="create" data-tooltip="{{ section.localizationPrefix }}Create"
+               aria-label="{{ localize (concat section.localizationPrefix 'Create') }}">
+                <i class="fas fa-plus" aria-hidden="true"></i> {{localize "SW5E.Add"}}
+            </a>
+            {{/if}}
+        </div>
+    </li>
+
+    {{#if section.info}}
+    <ol class="info">
+        {{#each section.info}}
+            <li class="notification info">{{ this }}</li>
+        {{/each}}
+    </ol>
+    {{/if}}
+
+    <ol class="item-list">
+        {{#each section.effects as |effect|}}
+        <li class="item effect flexrow" data-effect-id="{{ effect.id }}"
+            {{~#if (and @root.actor (ne effect.target effect.parent))}} data-parent-id="{{ effect.parent.id }}"{{/if}}>
+            <div class="item-name effect-name flexrow">
+                <img class="item-image" src="{{ effect.icon }}">
+                <h4>{{ effect.name }}</h4>
+            </div>
+            <div class="effect-source">{{ effect.sourceName }}</div>
+            <div class="effect-duration">{{ effect.duration.label }}</div>
+            <div class="item-controls effect-controls flexrow">
+                {{#if @root.editable}}
+                {{#unless (eq section.type "enchantment")}}
+                <a class="effect-control" data-action="toggle"
+                   data-tooltip="{{ section.localizationPrefix }}{{ ifThen effect.disabled 'Enable' 'Disable' }}"
+                   aria-label="{{ localize (concat section.localizationPrefix
+                   (ifThen effect.disabled 'Enable' 'Disable')) }}">
+                    <i class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}" aria-hidden="true"></i>
+                </a>
+                {{/unless}}
+                <a class="effect-control" data-action="edit" data-tooltip="{{ section.localizationPrefix }}Edit"
+                   aria-label="{{ localize (concat section.localizationPrefix 'Edit') }}">
+                    <i class="fas fa-edit" aria-hidden="true"></i>
+                </a>
+                <a class="effect-control" data-action="delete" data-tooltip="{{ section.localizationPrefix }}Delete"
+                   aria-label="{{ localize (concat section.localizationPrefix 'Delete') }}">
+                    <i class="fas fa-trash" aria-hidden="true"></i>
+                </a>
+                {{/if}}
+            </div>
+        </li>
+        {{/each}}
+    </ol>
+    {{/unless}}
+    {{/each}}
+  </ol>
+</{{elements.effects}}>
+{{/sw5e-concealSection}}

@@ -16,64 +16,81 @@
   "system": {
     "description": {
       "value": "<h1>Ruffian Practice</h1>\n<p>Those operatives who choose the Ruffian Practice use rough-and-tumble tactics to handle any fight, big or small. They incite chaos and make devious moves that keep their enemies reeling.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "invocations": {
-      "value": ""
+    "source": {
+      "custom": "EC"
     },
-    "source": "EC",
     "identifier": "ruffianpractice",
     "classIdentifier": "operative",
     "advancement": [
       {
-        "_id": "1zF0tyPpMikm1OgN",
+        "_id": "1NnPDPE2U87iEm37",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.rFrna2NtTXeQecXy",
-            "Compendium.sw5e.archetypefeatures.ntnQrd9OioT0GBg4"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.rFrna2NtTXeQecXy",
+              "optional": false
+            },
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.ntnQrd9OioT0GBg4",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 3,
         "title": "Features"
       },
       {
-        "_id": "mit6THDTrGW1tK3D",
+        "_id": "1N69OtpRjF1z1q3U",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.sEi7GizEJyo5fwWs"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.sEi7GizEJyo5fwWs",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 9,
         "title": "Features"
       },
       {
-        "_id": "1ndYdfuLgzJp1xTH",
+        "_id": "B4rxnjDcd2Q1jouy",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.4pX87Q4lCIMa21vB"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.4pX87Q4lCIMa21vB",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 13,
         "title": "Features"
       },
       {
-        "_id": "m6u1f4JC9FEmXRPT",
+        "_id": "1vJUhbxDBiOkiyu3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
-            "Compendium.sw5e.archetypefeatures.xkGpjUxmL8wQYEW9"
+            {
+              "uuid": "Compendium.sw5e.archetypefeatures.xkGpjUxmL8wQYEW9",
+              "optional": false
+            }
           ],
-          "optional": false
+          "optional": false,
+          "power": null
         },
         "value": {},
         "level": 17,
@@ -87,7 +104,7 @@
       "techOverride": ""
     },
     "superiority": {
-      "progression": "0"
+      "progression": 0
     }
   },
   "ownership": {
@@ -95,11 +112,11 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "3.2.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959737,
-    "modifiedTime": 1695981489837,
-    "lastModifiedBy": "sw5ebuilder0000"
+    "modifiedTime": 1720552689354,
+    "lastModifiedBy": "sw5ebuilder00000"
   },
   "_key": "!items!MTWzXN3wC6vg7yaF"
 }

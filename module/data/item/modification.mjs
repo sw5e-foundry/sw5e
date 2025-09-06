@@ -1,84 +1,57 @@
-import { MappingField } from "../fields.mjs";
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
+import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
-import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
+import ItemTypeField from "./fields/item-type-field.mjs";
+
+const { BooleanField, ForeignDocumentField, SchemaField, SetField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Equipment items.
  * @mixes ItemDescriptionTemplate
+ * @mixes ItemTypeTemplate
+ * @mixes IdentifiableTemplate
  * @mixes PhysicalItemTemplate
+ * @mixes EquippableItemTemplate
  * @mixes ActivatedEffectTemplate
  * @mixes ActionTemplate
  *
- * @property {string} modificationType      Modification type as defined in `SW5E.modificationTypes`.
- * @property {string} modificationSlot      Modification slot as defined in `SW5E.modificationSlots`.
  * @property {object} modifying
  * @property {string} modifying.id          Id of the item this modification is applied to.
  * @property {boolean} modifying.disabled   Is this modification disabled?
  */
-export default class ModificationData extends SystemDataModel.mixin(
+export default class ModificationData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
+  IdentifiableTemplate,
+  ItemTypeTemplate,
   PhysicalItemTemplate,
   ActivatedEffectTemplate,
   ActionTemplate
 ) {
   /** @inheritdoc */
   static defineSchema() {
-    return this.mergeSchema(super.defineSchema(), {
-      modificationType: new foundry.data.fields.StringField({
-        required: true,
-        initial: "vibroweapon",
-        label: "SW5E.ItemModificationType"
-      }),
-      modificationSlot: new foundry.data.fields.StringField({
-        required: true,
-        initial: "slot1",
-        label: "SW5E.ItemModificationSlot"
-      }),
-      modifying: new foundry.data.fields.SchemaField(
+    return this.mergeSchema( super.defineSchema(), {
+      type: new ItemTypeField( { value: "vibroweapon", subtype: true }, { label: "SW5E.ItemModificationType" } ),
+      modifying: new SchemaField(
         {
-          id: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
-          disabled: new foundry.data.fields.BooleanField({})
+          id: new ForeignDocumentField( foundry.documents.BaseItem, { idOnly: true } ),
+          disabled: new BooleanField( {} )
         },
         {}
       ),
-      properties: makeItemProperties(
-        {
-          ...CONFIG.SW5E.weaponProperties,
-          ...CONFIG.SW5E.castingProperties,
-          ...CONFIG.SW5E.equipmentProperties
-        },
-        {
-          required: true,
-          extraFields: {
-            indeterminate: new MappingField(new foundry.data.fields.BooleanField({ initial: true }), {
-              required: true,
-              initialKeys: {
-                ...CONFIG.SW5E.weaponProperties,
-                ...CONFIG.SW5E.castingProperties,
-                ...CONFIG.SW5E.equipmentProperties
-              }
-            })
-          }
-        }
-      )
-    });
+      properties: new SetField( new StringField(), { label: "SW5E.ItemProperties" } )
+    } );
   }
 
   /* -------------------------------------------- */
   /*  Migrations                                  */
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
-  static _migrateData(source) {
-    super._migrateData(source);
-    migrateItemProperties(source.properties, {
-      ...CONFIG.SW5E.weaponProperties,
-      ...CONFIG.SW5E.castingProperties,
-      ...CONFIG.SW5E.equipmentProperties
-    });
-  }
+  // /** @inheritdoc */
+  // static _migrateData( source ) {
+  //   super._migrateData( source );
+  // }
 }
